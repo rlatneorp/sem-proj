@@ -35,6 +35,7 @@
 수정을하면aaaaa
 >>>>>>> branch 'main' of https://github.com/rlatneo/sem-proj.git
 하이요 항;
+오잉 이거 하셨네
 	<%@ include file="WEB-INF/views/common/bottom.jsp"%>
 </body>
 </html> 
