@@ -31,7 +31,7 @@
 =======
 수정되는가
 왜 안돼 왜 안되 안돼 아니되어요
-앗
+앗gg
 수정을하면aaaaa
 >>>>>>> branch 'main' of https://github.com/rlatneo/sem-proj.git
 하이요 항;
