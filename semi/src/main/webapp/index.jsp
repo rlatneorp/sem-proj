@@ -9,7 +9,7 @@
 </head>
 <body>
 <!--  상단 -->
-<%-- 	<%@ include file="WEB-INF/views/common/top.jsp"%> --%>
+	<%@ include file="WEB-INF/views/common/top.jsp"%>
 <!-- 로그인 이후 상단 -->
 <%-- 	<%@ include file="WEB-INF/views/user/afterLogin.jsp"%> --%>
 <!--                       상단 필요한 부분            -->
@@ -25,6 +25,9 @@
 <%-- 	<%@ include file="WEB-INF/views/user/foundPwd.jsp"%> --%>
 <%-- 	<%@ include file="WEB-INF/views/user/pwdReSetting.jsp"%> --%>
 <%-- 	<%@ include file="WEB-INF/views/user/foundIdResult.jsp"%> --%>
+<!-- matching -->
+	<%@ include file="WEB-INF/views/matching/matching1.jsp" %>
+
 <!--  하단은 항상 켜놓기 -->
 	<%@ include file="WEB-INF/views/common/bottom.jsp"%>
 </body>
