@@ -34,7 +34,8 @@
 앗
 수정을하면aaaaa
 >>>>>>> branch 'main' of https://github.com/rlatneo/sem-proj.git
-오잉 이거 하셨네ㅠㅎㅋ
+오잉 이거 하셨네ㅠㅎㅋ 
+3시 33분
 	<%@ include file="WEB-INF/views/common/bottom.jsp"%>
 </body>
 </html> 
