@@ -29,6 +29,7 @@
 수정되는가
 왜 안돼 왜 안되 안돼 아니되어요
 앗
+수정을하면
 	<%@ include file="WEB-INF/views/common/bottom.jsp"%>
 </body>
 </html> 
