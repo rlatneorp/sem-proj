@@ -29,7 +29,7 @@
 수정되는가
 왜 안돼 왜 안되 안돼 아니되어요
 앗
-수정을하면aaaaaㄹ
+수정을하면aaaaaㅠㅠㄹㅋㅋㅋ
 	<%@ include file="WEB-INF/views/common/bottom.jsp"%>
 </body>
 </html> 
