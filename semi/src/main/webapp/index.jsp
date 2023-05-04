@@ -26,10 +26,7 @@
 <%-- 	<%@ include file="WEB-INF/views/user/pwdReSetting.jsp"%> --%>
 <%-- 	<%@ include file="WEB-INF/views/user/foundIdResult.jsp"%> --%>
 <!--  하단은 항상 켜놓기 -->
-<<<<<<< HEAD
-	
-=======ㄹㄴㅁㅇㄹ
-ㅋㅎㅎㅊㅋㅌㅊㅌㅋsdffsdfzz
+이제 수정하지말죠
 	<%@ include file="WEB-INF/views/common/bottom.jsp"%>
 </body>
 </html> 
