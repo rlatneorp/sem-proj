@@ -39,6 +39,8 @@
 어 되나 여기서 수정을 해볼게요
 또다시 수정을 하면
 여기서 수정ㅁㅁ
+
+여기에 수정을 추가해볼께요!
 	<%@ include file="WEB-INF/views/common/bottom.jsp"%>
 </body>
 </html> 
