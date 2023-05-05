@@ -26,21 +26,7 @@
 <%-- 	<%@ include file="WEB-INF/views/user/pwdReSetting.jsp"%> --%>
 <%-- 	<%@ include file="WEB-INF/views/user/foundIdResult.jsp"%> --%>
 <!--  하단은 항상 켜놓기 -->
-<<<<<<< HEAD
-	
-=======
-수정되는가
-왜 안돼 왜 안되 안돼 아니되어요
-앗gg
-수정을하면aaaaa
->>>>>>> branch 'main' of https://github.com/rlatneo/sem-proj.git
-하이요 항;
-오잉 이거 하셨네
-어 되나 여기서 수정을 해볼게요
-또다시 수정을 하면
-여기서 수정ㅁㅁ
 
-여기에 수정을 추가해볼께요!
 	<%@ include file="WEB-INF/views/common/bottom.jsp"%>
 </body>
 </html> 
