@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>аЩ╩ГЁ╙╤С</title>
+	<title>Л╖▒Л┌╛К┌≤К²╪</title>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" />
 	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
@@ -20,31 +20,31 @@
 		<div class="card shadow mb-4 mainBox">
 			<div class="card-body text-start p-5">
 				<div>
-					<p class="fs-2 mb-5 fw-bold">╦╤юлфДюлаЖ</p>
+					<p class="fs-2 mb-5 fw-bold">К╖┬Л²╢М▌≤Л²╢Л╖─</p>
 					
 					<div class="container px-0 mb-5 mx-0">
-						<p class="px-2 fs-5 fw-bold">╫╨диаы ╨╞╟Ф</p>
+						<p class="px-2 fs-5 fw-bold">Л┼╓Л╪─Л╓└ КЁ─Й╡╫</p>
 					</div>
 					
 					<div class="container px-2 mb-5 mx-0">
 						<img src="https://github.com/mdo.png" alt="mdo" width="72" height="72" class="rounded-circle image-block me-3">
 						<div class="d-inline-block align-middle col-3">
 							<div>
-								<span class="fs-5 fw-bold mb-2">х╚╠Ф╣©</span>
+								<span class="fs-5 fw-bold mb-2">М≥█Й╦╦К▐≥</span>
 							</div>
 							<div>
-								<span class="fs-6">╟М╬Гюл</span>
+								<span class="fs-6">ЙЁ═Л√▒Л²╢</span>
 							</div>
 						</div>
 						
 						<div class="d-inline-block me-5">
 							<a href="${ contextPath }/modifySchedule.mp">
-								<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">а╤ю╡го╠Б</button>
+								<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">Л║╟Л°╗М∙≤Й╦╟</button>
 							</a>
 						</div>
 						
 						<div class="d-inline-block me-5">
-							<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">цК╪рго╠Б</button>
+							<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">Л╥╗Л├▄М∙≤Й╦╟</button>
 						</div>
 					</div>
 					
@@ -52,21 +52,21 @@
 						<img src="https://github.com/mdo.png" alt="mdo" width="72" height="72" class="rounded-circle image-block me-3">
 						<div class="d-inline-block align-middle  col-3">
 							<div>
-								<span class="fs-5 fw-bold mb-2">Ё╡Ё╙╢╝╬╬</span>
+								<span class="fs-5 fw-bold mb-2">К┌╗К┌≤К┬■Л■╗</span>
 							</div>
 							<div>
-								<span class="fs-6">╟╜╬СаЖ</span>
+								<span class="fs-6">Й╟∙Л√╪Л╖─</span>
 							</div>
 						</div>
 						
 						<div class="d-inline-block me-5">
 							<a href="${ contextPath }/modifySchedule.mp">
-								<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">а╤ю╡го╠Б</button>
+								<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">Л║╟Л°╗М∙≤Й╦╟</button>
 							</a>
 						</div>
 						
 						<div class="d-inline-block me-5">
-							<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">цК╪рго╠Б</button>
+							<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">Л╥╗Л├▄М∙≤Й╦╟</button>
 						</div>
 					</div>
 					
@@ -74,21 +74,21 @@
 						<img src="https://github.com/mdo.png" alt="mdo" width="72" height="72" class="rounded-circle image-block me-3">
 						<div class="d-inline-block align-middle  col-3">
 							<div>
-								<span class="fs-5 fw-bold mb-2">╩ГаЬюл</span>
+								<span class="fs-5 fw-bold mb-2">Л┌╛Л╖└Л²╢</span>
 							</div>
 							<div>
-								<span class="fs-6">╤х╟╟Ёв</span>
+								<span class="fs-6">К≤▒Й╟≥К└╓</span>
 							</div>
 						</div>
 						
 						<div class="d-inline-block me-5">
 							<a href="${ contextPath }/modifySchedule.mp">
-								<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">а╤ю╡го╠Б</button>
+								<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">Л║╟Л°╗М∙≤Й╦╟</button>
 							</a>
 						</div>
 						
 						<div class="d-inline-block me-5">
-							<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">цК╪рго╠Б</button>
+							<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">Л╥╗Л├▄М∙≤Й╦╟</button>
 						</div>
 					</div>
 					
