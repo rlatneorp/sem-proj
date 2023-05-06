@@ -1,7 +1,0 @@
-INDEX VERSION 1.131
-C:\backup\semi-\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1230005361.index
-\semi\src\main\java
-C:\backup\semi-\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4200469205.index
-\semi\src\main\java
-C:\backup\semi-\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2533613086.index
-\semi\src\main\java
