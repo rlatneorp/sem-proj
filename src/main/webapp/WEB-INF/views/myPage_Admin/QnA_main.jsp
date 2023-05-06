@@ -18,18 +18,20 @@ h2 {text-align: center; font-weight: 700;}
 
 img {margin-left: 6.5px; margin-top: 6px; width: 27px; height: 27px;}
 
-.area {border: 1px solid lightgray; padding: 35px; margin-left: auto; margin-right: auto; width: 50%;
+.area {border: 1px solid lightgray; padding: 25px; margin-left: auto; margin-right: auto; width: 50%;
 			border-radius: 20px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);  text-align: center;}
 			
 th {background-color: #eee;}
 
-.pagination { margin-left: 850px; }
+h4 { display: inline-block; margin-left: 25%; font-weight: 700;}
 
-.pagination a { color: #1abc9c; }
+#btn {display: absolute; background-color: white; color: black; border: 1px solid lightgray; width: 145px; height: 34px;
+			border-radius: 10px; margin-left: 560px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);}
+			
+#btn2 {display: absolute; background-color: white; color: black; border: 1px solid lightgray; width: 145px; height: 34px;
+			border-radius: 10px; margin-left: 500px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);}
 
-.pagination a:hover {color: black;}
-
-.search { justify-content: center; align-items: center; text-align: center; }
+#btn a { text-decoration: none; color: black; }
 			
 </style>
 <body>
@@ -49,13 +51,12 @@ th {background-color: #eee;}
 	
 	<br>
 	
-	<h2>1:1문의 관리</h2>
+	<h2>고객센터 관리</h2>
 	
-	<br>
+	<br><br><br><br><br>
 	
-	<div class="trash">
-	<img src="img/trash.png" id="img"/>
-	</div>
+	<h4>1:1문의 관리</h4>
+	<button id="btn"><a href="${ contextPath }/QnA_list.me">전체 내역 보기</a></button>
 	
 	<br><br>
 	
@@ -64,101 +65,100 @@ th {background-color: #eee;}
 			  <thead>
 			    <tr>
 			      <th scope="col">글번호</th>
-			      <th scope="col">분류</th>
 			      <th scope="col">제목</th>
 			      <th scope="col">작성자</th>
 			      <th scope="col">작성일</th>
-			      <th scope="col">답변상태</th>
-			      <th scope="col">선택</th>
 			    </tr>
 			  </thead>
 			  <tbody>
 			    <tr>
 			      <th scope="row">001</th>
-			      <td>회원</td>
-			      <td>문의합니다</td>
+			      <td><a href="${ contextPath }/QnA_detail.me">문의합니다</a></td>
 			      <td>강건강</td>
 			      <td>2023 - 04 - 22</td>
-			      <td>답변 완료</td>
-			      <td><input type="checkbox"/></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">001</th>
-			      <td>집사</td>
 			      <td>문의합니다</td>
 			      <td>강건강</td>
 			      <td>2023 - 04 - 22</td>
-			      <td>미답변</td>
-			      <td><input type="checkbox"/></td>
-			    </tr>
-			     <tr>
-			      <th scope="row">001</th>
-			      <td>회원</td>
-			      <td>문의합니다</td>
-			      <td>강건강</td>
-			      <td>2023 - 04 - 22</td>
-			      <td>답변 완료</td>
-			      <td><input type="checkbox"/></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">001</th>
-			      <td>집사</td>
 			      <td>문의합니다</td>
 			      <td>강건강</td>
 			      <td>2023 - 04 - 22</td>
-			      <td>미답변</td>
-			      <td><input type="checkbox"/></td>
-			    </tr>
-			     <tr>
-			      <th scope="row">001</th>
-			      <td>회원</td>
-			      <td>문의합니다</td>
-			      <td>강건강</td>
-			      <td>2023 - 04 - 22</td>
-			      <td>답변 완료</td>
-			      <td><input type="checkbox"/></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">001</th>
-			      <td>집사</td>
 			      <td>문의합니다</td>
 			      <td>강건강</td>
 			      <td>2023 - 04 - 22</td>
-			      <td>미답변</td>
-			      <td><input type="checkbox"/></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">001</th>
+			      <td>문의합니다</td>
+			      <td>강건강</td>
+			      <td>2023 - 04 - 22</td>
 			    </tr>
 			  </tbody>
 			</table>		
 		</div>
 
-	<br><br><br>
+	<br><br><br><br><br><br>
 	
-	<nav aria-label="Page navigation example">
-		<ul class="pagination">
-			<li class="page-item">
-				<a class="page-link" href="#"aria-label="Previous">
-				<span aria-hidden="true">&laquo;</span></a>
-			</li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
-		</ul>
-	</nav>
+	<h4>자주 묻는 질문 관리</h4>
+	<button id="btn2">전체 내역 보기</button>
 	
 	<br><br>
 	
-	<select class="search">
-	    <option value="title">제목</option>
-	    <option value="member">분류</option>
-	    <option value="replyStatus">답변상태</option>
-	</select>
-
-	<input type="text" size="10" class="search"/>
+	<div class="area" id="area3">
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th scope="col">글번호</th>
+			      <th scope="col">제목</th>
+			      <th scope="col">작성자</th>
+			      <th scope="col">작성일</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <th scope="row">001</th>
+			      <td>집사나라는 어떤 나라인가요?</td>
+			      <td>관리자</td>
+			      <td>2023 - 04 - 22</td>
+			    </tr>
+			    <tr>
+			      <th scope="row">001</th>
+			      <td>집사나라는 어떤 나라인가요?</td>
+			      <td>관리자</td>
+			      <td>2023 - 04 - 22</td>
+			    </tr>
+			    <tr>
+			      <th scope="row">001</th>
+			      <td>집사나라는 어떤 나라인가요?</td>
+			      <td>관리자</td>
+			      <td>2023 - 04 - 22</td>
+			    </tr>
+			    <tr>
+			      <th scope="row">001</th>
+			      <td>집사나라는 어떤 나라인가요?</td>
+			      <td>관리자</td>
+			      <td>2023 - 04 - 22</td>
+			    </tr>
+			    <tr>
+			      <th scope="row">001</th>
+			      <td>집사나라는 어떤 나라인가요?</td>
+			      <td>관리자</td>
+			      <td>2023 - 04 - 22</td>
+			    </tr>
+			</table>		
+		</div>
 	
-	<button type="submit" class="search">조회</button>
+	<br><br><br><br><br><br><br><br>
+	
+	
 	
 	
 </body>
