@@ -21,14 +21,14 @@
 					<div class="container px-0 mb-5 mx-0">
 					<a href="#" class="d-block link-dark text-decoration-none mb-4">
 						<img src="https://github.com/mdo.png" alt="mdo" width="48" height="48" class="rounded-circle image-block me-2">
-						<span class="text-small fw-bold">홍길동 회원님</span>
+						<span class="text-small fw-bold">홍길동 집사님</span>
 					</a>
 					</div>
 					
 					
 					<div class="container px-2 mb-4 mx-0">			
 						<p class="mb-3 fs-6 fw-bold">가능시간</p>
-						<a href="${ contextPath }/workTime.mp" class="text-decoration-none">
+						<a href="${ contextPath }/jibsaWorkTime.js" class="text-decoration-none">
 						<div class="mb-1 col-6 d-inline-block text-top">
 							<p class="fs-7 d-inline-block text-decoration-none align-middle text-dark">시간 정하기</p>
 						</div>
@@ -40,7 +40,7 @@
 					
 					<div class="container px-2 mb-4 mx-0">			
 						<p class="mb-3 fs-6 fw-bold">스케줄 관리</p>
-						<a href="${ contextPath }/managementSchedule.mp" class="text-decoration-none">
+						<a href="${ contextPath }/jibsaManagementSchedule.js" class="text-decoration-none">
 						<div class="col-6 d-inline-block text-top">
 							<p class="fs-7 d-inline-block text-decoration-none align-middle text-dark">회원 스케줄 관리</p>
 						</div>
@@ -52,7 +52,7 @@
 					
 					<div class="container px-2 mb-4 mx-0">			
 						<p class="mb-3 fs-6 fw-bold">집사정보</p>
-						<a href="${ contextPath }/modifyInfo.mp" class="text-decoration-none">
+						<a href="${ contextPath }/jibsaModifyInfo.js" class="text-decoration-none">
 						<div class="col-6 d-inline-block text-top">
 							<p class="fs-7 d-inline-block text-decoration-none align-middle text-dark">정보 수정하기</p>
 						</div>
@@ -64,7 +64,7 @@
 					
 					<div class="container px-2 mb-4 mx-0">			
 						<p class="mb-3 fs-6 fw-bold">후기현황</p>
-						<a href="${ contextPath }/#" class="text-decoration-none">
+						<a href="${ contextPath }/review.js" class="text-decoration-none">
 						<div class="col-6 d-inline-block text-top">
 							<p class="fs-7 d-inline-block text-decoration-none align-middle text-dark">후기 조회</p>
 						</div>
@@ -76,7 +76,7 @@
 					
 					<div class="container px-2 mb-5 mx-0">			
 						<p class="mb-3 fs-6 fw-bold">결제</p>
-						<a href="${ contextPath }/#" class="text-decoration-none">
+						<a href="${ contextPath }/premium.js" class="text-decoration-none">
 						<div class="col-6 d-inline-block text-top">
 							<p class="fs-7 d-inline-block text-decoration-none align-middle text-dark">프리미엄 결제하기</p>
 						</div>
@@ -91,7 +91,7 @@
 					
 					<div class="container px-2 mb-4 mx-0">			
 						<p class="mb-3 fs-6 fw-bold">고객센터</p>
-						<a href="${ contextPath }/#" class="text-decoration-none">
+						<a href="${ contextPath }/personal.js" class="text-decoration-none">
 						<div class="col-6 d-inline-block text-top">
 							<p class="fs-7 d-inline-block text-decoration-none align-middle text-dark">1:1 문의</p>
 						</div>
@@ -122,7 +122,7 @@
 					</div>
 					
 					<div class="container px-2 mb-4 mx-0">			
-						<a href="${ contextPath }/#" class="text-decoration-none">
+						<a href="${ contextPath }/secession.js" class="text-decoration-none">
 						<div class="col-6 d-inline-block text-top">
 							<p class="fs-7 d-inline-block text-decoration-none align-middle text-dark text-opacity-50">파트너 탈퇴</p>
 						</div>

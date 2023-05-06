@@ -42,7 +42,7 @@
 					
 					
 					<div class="mb-1 text-top">
-						<form method="post" action="${ contextPath }/managementSchedule.mp">
+						<form method="post" action="${ contextPath }/jibsaManagementSchedule.js">
 							<div class="container mb-3">
 								<p class="mb-4 fs-5 fw-bold">변경요청 보내기</p>
 								

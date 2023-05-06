@@ -1,16 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap" rel="stylesheet">
+
+	<!-- 이환희 css파일(추후 병합 요망) -->
+	<link rel="stylesheet" href="${ contextPath }/css/main.css"/>
+
 <title>top</title>
 <style>
 .menu1:hover:not(.active){color: rgb(51, 51, 51);}
@@ -27,13 +32,14 @@
 </style>
 </head>
 <body>
+	<c:set value="${ pageContext.servletContext.contextPath }" var="contextPath" scope="application"/>
 <header> 
 	<hr id="top_hr">
 	<br>
 	<div>
 	<div class="topCont"> 
 		<div class="topLeft" style="color: inherit;">
-	    	<a class="menu1"><img src="resources/image/logo.png" alt="logo" class="logo"></a>
+	    	<a class="menu1" href="${contextPath}"><img src="resources/image/logo.png" alt="logo" class="logo"></a>
 		    <a class="menu1">집사매칭</a>
 		    <a class="menu1">이용후기</a>
 		    <a class="menu1">고객센터</a>

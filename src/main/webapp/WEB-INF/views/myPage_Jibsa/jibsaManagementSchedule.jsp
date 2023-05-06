@@ -38,7 +38,7 @@
 						</div>
 						
 						<div class="d-inline-block me-5">
-							<a href="${ contextPath }/modifySchedule.mp">
+							<a href="${ contextPath }/jibsaModifySchedule.js">
 								<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">조율하기</button>
 							</a>
 						</div>
@@ -60,7 +60,7 @@
 						</div>
 						
 						<div class="d-inline-block me-5">
-							<a href="${ contextPath }/modifySchedule.mp">
+							<a href="${ contextPath }/jibsaModifySchedule.js">
 								<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">조율하기</button>
 							</a>
 						</div>
@@ -82,7 +82,7 @@
 						</div>
 						
 						<div class="d-inline-block me-5">
-							<a href="${ contextPath }/modifySchedule.mp">
+							<a href="${ contextPath }/jibsaModifySchedule.js">
 								<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">조율하기</button>
 							</a>
 						</div>

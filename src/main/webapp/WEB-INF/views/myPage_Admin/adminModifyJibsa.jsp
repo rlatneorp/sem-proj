@@ -6,6 +6,7 @@
 	<meta charset="UTF-8">
 	<title>myPage</title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,700,0,0" />
+	
 </head>
 <body>
 	<jsp:include page="../common/top.jsp"></jsp:include>
@@ -16,17 +17,17 @@
 		<div class="card shadow mb-4 d-inline-block mainBox">
 			<div class="card-body text-start p-5">
 				<div>
-					<p class="fs-2 mb-5 fw-bold">마이페이지</p>
+					<p class="fs-2 mb-5 fw-bold">집사 정보 수정</p>
 					
 					<div class="container px-0 mb-3 mx-0">
 						<p class="px-2 fs-5 fw-bold">정보 수정하기</p>
 					</div>
 					
-					<form method="post" action="${ contextPath }/myPage.mp">
+					<form method="post" action="${ contextPath }/adminMain.ad">
 						<div class="container mb-5 mx-0">
 						<a href="#" class="d-block link-dark text-decoration-none mb-3">
 							<img src="https://github.com/mdo.png" alt="mdo" width="72" height="72" class="rounded-circle image-block me-2">
-							<span class="fs-5 fw-bold">홍길동 회원님</span>
+							<span class="fs-5 fw-bold">홍길동 집사님</span>
 						</a>
 						</div>
 						
@@ -89,7 +90,7 @@
 						</div>
 						
 						<div class="container text-center">
-							<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">등록하기</button>
+							<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">수정하기</button>
 						</div>
 					</form>
 				</div>
