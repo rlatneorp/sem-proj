@@ -31,8 +31,7 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		String ret = "home";
-		return ret;
+		return "redirect:index.jsp";
 	}
 	
 

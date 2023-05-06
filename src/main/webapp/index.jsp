@@ -9,7 +9,7 @@
 </head>
 <body>
 <!--  상단 -->
-<%-- 	<%@ include file="WEB-INF/views/common/top.jsp"%> --%>
+	<%@ include file="WEB-INF/views/common/top.jsp"%>
 <!-- 로그인 이후 상단 -->
 <%-- 	<%@ include file="WEB-INF/views/user/afterLogin.jsp"%> --%>
 <!--                       상단 필요한 부분            -->
