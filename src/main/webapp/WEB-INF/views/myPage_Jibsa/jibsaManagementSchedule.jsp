@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,13 +93,90 @@
 						</div>
 					</div>
 					
+					<div class="container px-2 mb-5 mx-0">
+						<img src="https://github.com/mdo.png" alt="mdo" width="72" height="72" class="rounded-circle image-block me-3">
+						<div class="d-inline-block align-middle  col-3">
+							<div>
+								<span class="fs-5 fw-bold mb-2">사진이</span>
+							</div>
+							<div>
+								<span class="fs-6">똑같네</span>
+							</div>
+						</div>
+						
+						<div class="d-inline-block me-5">
+							<a href="${ contextPath }/jibsaModifySchedule.js">
+								<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">조율하기</button>
+							</a>
+						</div>
+						
+						<div class="d-inline-block me-5">
+							<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">취소하기</button>
+						</div>
+					</div>
+					
+					<div class="container px-2 mb-5 mx-0">
+						<img src="https://github.com/mdo.png" alt="mdo" width="72" height="72" class="rounded-circle image-block me-3">
+						<div class="d-inline-block align-middle  col-3">
+							<div>
+								<span class="fs-5 fw-bold mb-2">사진이</span>
+							</div>
+							<div>
+								<span class="fs-6">똑같네</span>
+							</div>
+						</div>
+						
+						<div class="d-inline-block me-5">
+							<a href="${ contextPath }/jibsaModifySchedule.js">
+								<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">조율하기</button>
+							</a>
+						</div>
+						
+						<div class="d-inline-block me-5">
+							<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">취소하기</button>
+						</div>
+					</div>
+					
+					
+					
+					<!-- 페이징 -->
+					<div class="container px-2 mx-0 justify-content-center d-flex">
+						<nav aria-label="Standard pagination example d-flex">
+				        	<ul class="pagination">
+				        	
+					            <li class="page-item">
+					            	<c:url value="${ loc }" var="goBack">
+				            			<c:param name="page" value="${ pi.currentPage - 1 }"/>
+				            		</c:url>
+					            	<a class="page-link" href="${ goBack }" aria-label="Previous">
+					            		<span aria-hidden="true">&laquo;</span>
+					              	</a>
+					            </li>
+					            
+					            <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+									<c:url value="${ loc }" var="goNum">
+										<c:param name="page" value="${ p }"/>
+									</c:url>
+					            	<li class="page-item"><a class="page-link" href="${ goNum }">${ p }</a></li>
+					            </c:forEach>
+					            
+					            <li class="page-item">
+					            	<c:url value="${ loc }" var="goNext">
+					            		<c:param name="page" value="${ pi.currentPage + 1 }"/>
+					            	</c:url>
+					            	<a class="page-link" href="${ goNext }" aria-label="Next">
+					            		<span aria-hidden="true">&raquo;</span>
+					            	</a>
+					            </li>
+					    	</ul>
+				        </nav>					
+					</div>
 					
 					
 			    </div>
 			</div>
 		</div>
 	</div>
-	
 	
 
 </body>

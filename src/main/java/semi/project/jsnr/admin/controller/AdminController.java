@@ -1,4 +1,4 @@
-package semi.project.jsnr.admin;
+package semi.project.jsnr.admin.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

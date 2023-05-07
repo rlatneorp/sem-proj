@@ -30,9 +30,6 @@
 	
 	<div class="text-center">
 		<div class="card shadow mb-4 d-inline-block">
-<!-- 		<div class="card-header py-3"> -->
-<!-- 		<h6 class="m-0 font-weight-bold text-primary">Custom Text Color Utilities</h6> -->
-<!-- 		</div> -->
 			<div class="card-body text-start p-5 mainBox">
 				<div>
 					<p class="fs-2 mb-5 fw-bold">마이페이지</p>
@@ -44,7 +41,7 @@
 					
 					<div class="mx-0">			
 						<div class="mb-1 d-inline-block text-top">
-							<form method="post" action="myPage.mp">
+							<form method="post" action="jibsaMain.js">
 								<div class="container mb-3">
 									<p class="mb-4 fs-6 fw-bold">근무 가능 시간</p>
 									

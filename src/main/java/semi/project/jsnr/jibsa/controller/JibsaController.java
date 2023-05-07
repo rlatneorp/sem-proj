@@ -1,12 +1,13 @@
-package semi.project.jsnr.jibsa;
+package semi.project.jsnr.jibsa.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class JibsaController {
 	
-	@GetMapping("jibsaMain.js")
+	@RequestMapping("jibsaMain.js")
 	public String jibsaMain() {
 		return "jibsaMain";
 	}
@@ -52,4 +53,14 @@ public class JibsaController {
 		System.out.println("secession.js");
 		return "secession";
 	}
+	
+	
+//	@GetMapping("ScheduleList.js")
+//	public ArrayList<>
+	
+	
+	
+	
+	
+	
 }

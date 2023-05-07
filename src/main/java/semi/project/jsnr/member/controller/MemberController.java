@@ -1,4 +1,4 @@
-package semi.project.jsnr.member;
+package semi.project.jsnr.member.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
