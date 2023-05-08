@@ -36,8 +36,12 @@
 <%-- 	<%@ include file="WEB-INF/views/user/foundPwd.jsp"%> --%>
 <%-- 	<%@ include file="WEB-INF/views/user/pwdReSetting.jsp"%> --%>
 <%-- 	<%@ include file="WEB-INF/views/user/foundIdResult.jsp"%> --%>
-<!--  하단은 항상 켜놓기 -->
+<!-- 매칭 -->
+	<%@ include file="WEB-INF/views/matching/matching1.jsp"%>
+<%-- 	<%@ include file="WEB-INF/views/matching/matching2.jsp"%> --%>
+<%-- 	<%@ include file="WEB-INF/views/matching/matching3.jsp"%> --%>
 
+<!--  하단은 항상 켜놓기 -->
 	<%@ include file="WEB-INF/views/common/bottom.jsp"%>
 </body>
 </html> 
