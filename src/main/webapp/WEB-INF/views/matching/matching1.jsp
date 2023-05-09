@@ -11,18 +11,22 @@
 	input[type=radio]:checked {
 	  background-color: rgb(26, 188, 156);
 	}
-	button {
+	button.look-button {
 		background-color: rgb(26, 188, 156);
 		color: white;
 		text-align: center;
-		font-size: 1.7rem;
-		padding: 0.7rem 1.5rem;
+		font-size: 1.2rem;
+		padding: 0.5rem 1.5rem;
 		background-color: rgb(26, 188, 156);
 		border-radius: 20px; /* 둥근 모서리 크기 */
 		border: none; /* 외각선 제거 */
 		margin: 0 auto;
 	}
 	button.search-button {
+		background-color: rgb(26, 188, 156);
+		color: white;
+		border: none;
+		text-align: center;
         padding: 0.3rem 0.5rem; /* 패딩값 조정 */
         font-size: 1rem; /* 폰트 크기 조정 */
         border-radius: 10px; /* 둥근 모서리 크기 */
