@@ -9,7 +9,7 @@
 </head>
 <body>
 <!--  상단 -->
-	<%@ include file="WEB-INF/views/common/top.jsp"%>
+<%-- 	<%@ include file="WEB-INF/views/common/top.jsp"%> --%>
 	
 	<!-- 로그인 기능 구현 전 임시 링크 -->
 	<div style="margin: 50px; border: 1px solid gray;">
@@ -43,6 +43,6 @@
 	<%@ include file="WEB-INF/views/home/home.jsp" %>
 
 <!--  하단은 항상 켜놓기 -->
-	<%@ include file="WEB-INF/views/common/bottom.jsp"%>
+<%-- 	<%@ include file="WEB-INF/views/common/bottom.jsp"%> --%>
 </body>
 </html> 
