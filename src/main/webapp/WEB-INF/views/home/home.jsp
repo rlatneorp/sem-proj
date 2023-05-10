@@ -170,10 +170,10 @@
 
 	<script>
 		const images = [
-			{src: 'images/logo.png', link: 'https://www.naver.com'},
-			{src: 'images/cat1.jpg', link: 'https://www.google.com'},
-			{src: 'images/dog1.jpg', link: 'https://www.naver.com'},
-			{src: 'images/dog2.jpg', link: 'https://www.naver.com'}
+			{src: 'resources/image/logo.png', link: 'https://www.naver.com'},
+			{src: 'resources/image/cat1.jpg', link: 'https://www.google.com'},
+			{src: 'resources/image/dog1.jpg', link: 'https://www.naver.com'},
+			{src: 'resources/image/dog2.jpg', link: 'https://www.naver.com'}
 			
 		];
 
@@ -223,7 +223,7 @@
 	</script>
 	
 	<div class="container">
-	  <img src="images/home1.png" alt="image description">
+	  <img src="resources/image/home1.png" alt="image description">
 	</div>
 	
 	<div class="container">  
