@@ -32,19 +32,19 @@
 						
 						<div class="container mb-4">
 							<p class="fs-5">이름</p>
-							<input type="text" value="홍길동" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);">
+							<input type="text" name="name" value="홍길동" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);">
 						</div>
 						<div class="container mb-4">
 							<p class="fs-5">이메일</p>
-							<input type="text" value="hoggd@gmail.com" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);">
+							<input type="text" name="email" value="hoggd@gmail.com" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);">
 						</div>
 						<div class="container mb-4">
 							<p class="fs-5">연락처</p>
-							<input type="text" value="010-1234-5678" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);">
+							<input type="text" name="phone" value="010-1234-5678" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);">
 						</div>
 						<div class="container mb-5">
 							<p class="fs-5">주소</p>
-							<input type="text" value="서울시 중구 남대문로 1 KH정보" class="input px-2 fs-7 w-100" style="color: rgba(0,0,0,0.8);">
+							<input type="text" name="address" value="서울시 중구 남대문로 1 KH정보" class="input px-2 fs-7 w-100" style="color: rgba(0,0,0,0.8);">
 						</div>
 						<hr>
 						

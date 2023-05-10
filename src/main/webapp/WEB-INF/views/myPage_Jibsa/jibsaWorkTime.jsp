@@ -45,55 +45,51 @@
 								<div class="container mb-3">
 									<p class="mb-4 fs-6 fw-bold">근무 가능 시간</p>
 									
-									<div>
-										<span class="d-inline-block col-2">출근시간 : </span>
-										<select name="startHour" class="input">
-											<option>0</option>
-											<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
-											<option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-											<option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option>
-											<option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option>
-										</select>
-										<p class="d-inline-block ms-1">시</p>
-										
-										<select name="startMinute" class="input">
-											<option>00</option><option>10</option>
-											<option>20</option><option>30</option>
-											<option>40</option><option>50</option>
-										</select>
-										<p class="d-inline-block ms-1">분</p>
-									</div>
-
-									<div>
-										<span class="d-inline-block col-2">퇴근시간 : </span>
-										<select name="endHour" class="input">
-											<option>0</option>
-											<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
-											<option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-											<option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option>
-											<option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option>
-										</select>
-										<p class="d-inline-block ms-1">시</p>
-										<select name="endMinute" class="input">
-											<option>00</option><option>10</option>
-											<option>20</option><option>30</option>
-											<option>40</option><option>50</option>
-										</select>
-										<p class="d-inline-block ms-1">분</p>
 									
+									<div id="cloneBox">
+										<div>
+										
+											<label for="wd1">월요일</label><input type="checkbox" id="wd1" name="workDay1" class="ms-1 me-4 checkBox">
+											<div class="d-inline-block">
+												<input type="time">
+												<select name="startHour1" class="input" style="width: 50px;">
+													<option>0</option>
+													<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+													<option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+													<option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option>
+													<option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option>
+												</select>
+												<p class="d-inline-block ms-1">시</p>
+												
+												<select name="startMinute1" class="input" style="width: 50px;">
+													<option>00</option><option>10</option>
+													<option>20</option><option>30</option>
+													<option>40</option><option>50</option>
+												</select>
+												<p class="d-inline-block ms-1">분</p>
+												
+												<span class="d-inline-block"> ~ </span>
+												<select name="endHour1" class="input" style="width: 50px;">
+													<option>0</option>
+													<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+													<option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+													<option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option>
+													<option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option>
+												</select>
+												<p class="d-inline-block ms-1">시</p>
+												<select name="endMinute1" class="input" style="width: 50px;">
+													<option>00</option><option>10</option>
+													<option>20</option><option>30</option>
+													<option>40</option><option>50</option>
+												</select>
+												<p class="d-inline-block ms-1">분</p>
+											</div>
+										</div>
+										
 									</div>
 								</div>
 								
-								<div class="container mb-4">
-									<p class="mb-4 fs-6 fw-bold">근무 가능 요일</p>
-									<label for="wd1">월요일</label><input type="checkbox" id="wd1" name="workDay" class="ms-1 me-2 checkBox">
-									<label for="wd2">화요일</label><input type="checkbox" id="wd2" name="workDay" class="ms-1 me-2 checkBox">
-									<label for="wd3">수요일</label><input type="checkbox" id="wd3" name="workDay" class="ms-1 me-2 checkBox">
-									<label for="wd4">목요일</label><input type="checkbox" id="wd4" name="workDay" class="ms-1 me-2 checkBox">
-									<label for="wd5">금요일</label><input type="checkbox" id="wd5" name="workDay" class="ms-1 me-2 checkBox">
-									<label for="wd6">토요일</label><input type="checkbox" id="wd6" name="workDay" class="ms-1 me-2 checkBox">
-									<label for="wd7">일요일</label><input type="checkbox" id="wd7" name="workDay" class="ms-1 me-2 checkBox">
-								</div>
+								
 								<div class="d-flex mx-2">
 									<div id="calBox" class="d-inline-block me-2">
 										<div id="datepicker"></div>
@@ -108,7 +104,7 @@
 								</div>
 								
 							</form>
-							
+						</div>
 					</div>
 				</div>
 		    </div>
@@ -116,6 +112,40 @@
 	</div>
 	
 	<script>
+		window.onload = function(){
+			const cBox = document.getElementById('cloneBox');
+			
+			for(i = 1; i < 7; i++){
+				
+				switch(i){
+				case 1:  a="'wd2'>화"; b="'wd2'"; c="2"; break;
+				case 2:  a="'wd3'>수"; b="'wd3'"; c="3"; break;
+				case 3:  a="'wd4'>목"; b="'wd4'"; c="4"; break;
+				case 4:  a="'wd5'>금"; b="'wd5'"; c="5"; break;
+				case 5:  a="'wd6'>토"; b="'wd6'"; c="6"; break;
+				default: a="'wd7'>일"; b="'wd7'"; c="7"; break;
+				}
+				cBox.innerHTML += 	"<div>"
+										+"<label for="+a+"요일</label>"
+										+"<input type='checkbox' id="+b+" name='workDay"+c+"' class='ms-1 me-4 checkBox'> "
+										+"<div class='d-inline-block'>"+cBox.querySelector('div').querySelector('div').innerHTML+"</div>";
+					
+				cSelect = cBox.querySelectorAll('div')[i].querySelectorAll('select');
+				cLabel = cBox.querySelectorAll('div')[i].querySelector('label');
+				
+				cSelect[0].name = "startHour"+(i);
+				cSelect[1].name = "startMinute"+(i);
+				cSelect[2].name = "endHour"+(i);
+				cSelect[3].name = "endMinute"+(i);
+			}
+			
+			console.log( cBox.querySelector('input') );
+			
+			
+			
+			
+		}
+		
 		const calBox = document.getElementById('calBox');
 		calBox.addEventListener('mouseenter', function(){
 			const cal = document.getElementById('datepicker');
@@ -130,7 +160,7 @@
 		 		});
 			}
 		})
-	
+			
 	</script>
 	
 	

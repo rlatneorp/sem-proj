@@ -18,7 +18,7 @@
 			<li><a href="myPage.me">회원 마이페이지</a></li>
 			<li><a href="jibsaMain.js">집사 마이페이지</a></li>
 			<li><a href="adminMain.ad">관리자 마이페이지</a></li>
-			
+			<li><a href="jibsaList.js">집사 리스트</a></li>
 		</ul>
 	</div>
 <!-- 로그인 이후 상단 -->

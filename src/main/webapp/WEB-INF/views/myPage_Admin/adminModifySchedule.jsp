@@ -58,8 +58,7 @@
 								
 								<div class="shadow rounded-3 w-100 px-5 py-5 text-center mb-5" style="border: 1px solid rgba(0,0,0,0.2);">
 									<select name="year" class="input">
-										<option>2023</option>
-										<option>2024</option>
+										<option>2023</option><option>2024</option><option>2025</option><option>2026</option>
 									</select>
 									<p class="d-inline-block ms-1">년</p>
 									<select name="month" class="input">
@@ -68,7 +67,7 @@
 										<option>9</option><option>10</option><option>11</option><option>12</option>
 									</select>
 									<p class="d-inline-block ms-1">월</p>
-									<select name="month" class="input">
+									<select name="day" class="input">
 										<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
 										<option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option selected>12</option>
 										<option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option>

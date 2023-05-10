@@ -28,7 +28,7 @@
 					
 					<div class="container px-2 mb-4 mx-0">			
 						<p class="mb-3 fs-6 fw-bold">가능시간</p>
-						<a href="${ contextPath }/jibsaWorkTime.js" class="text-decoration-none">
+						<a href="${ contextPath }/jibsaWorkTime.js" class="text-decoration-none ">
 						<div class="mb-1 col-6 d-inline-block text-top">
 							<p class="fs-7 d-inline-block text-decoration-none align-middle text-dark">시간 정하기</p>
 						</div>

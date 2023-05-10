@@ -44,19 +44,19 @@ public class JibsaController {
 	
 	@GetMapping("review.js")
 	public String review() {
-		System.out.println("review.js");
 		return "review";
 	}
 	
 	@GetMapping("secession.js")
 	public String secession() {
-		System.out.println("secession.js");
 		return "secession";
 	}
 	
-	
-//	@GetMapping("ScheduleList.js")
-//	public ArrayList<>
+//	임시 연결
+	@GetMapping("jibsaList.js")
+	public String jibsaList() {
+		return "jibsaList";
+	}
 	
 	
 	
