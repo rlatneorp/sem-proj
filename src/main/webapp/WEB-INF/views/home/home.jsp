@@ -125,14 +125,14 @@
 		}
 		
 		
-		button {
+		button.select {
 		background-color: rgb(26, 188, 156);
 		color: white;
 		text-align: center;
 		font-size: 1.7rem;
 		padding: 0.7rem 1.5rem;
 		background-color: rgb(26, 188, 156);
-		border-radius: 10px; /* 둥근 모서리 크기 */
+		border-radius: 15px; /* 둥근 모서리 크기 */
 		border: none; /* 외각선 제거 */
 		margin: 0 auto;
 		}
@@ -234,7 +234,7 @@
 		<div>
 		  <p>반려동물 위탁돌봄을 희망하는<br>
 		  	보호자와 전문가를<br>서로 매칭해줍니다</p>
-		  <button>파트너매칭</button>
+		  <button class="select">파트너매칭</button>
 		</div>
 	  <img src="resources/image/home2.jpg" alt="image description">
 	</div>
@@ -245,12 +245,12 @@
 		  <p>다양한 이용후기를 보면서 <br>
 		  	어떤 서비스를 받을지 결정하세요 
 		  </p>
-		  <button>이용후기</button>
+		  <button class="select">이용후기</button>
 	  </div>
 	</div>
 	
 	<div class="video-container">
-	  <iframe width="560" height="315" src="video/short.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	  <iframe width="560" height="315" src="resources/video/short.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	</div>
 	
 
