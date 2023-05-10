@@ -33,13 +33,13 @@
 	<br><br><br><br><br>
 	<div class="login1">
 		<img src="resources/image/loginLogo.png" id="loginLogo">
-		<form action="login.me" method="post">
+		<form action="login.do" method="post">
 		<div id="loginBox"> 
 			<div id="userName">
 				<div id="person">
 					<span class="material-symbols-outlined">person</span>
 				</div> 
-				<input type="text" placeholder=" 아이디" id="loginId">
+				<input type="text" placeholder=" 아이디" id="loginId" name="memberId">
 				
 			</div>
 			<br>
@@ -47,11 +47,11 @@
 				<div id="person">
 					<span class="material-symbols-outlined">vpn_key</span>
 				</div> 
-				<input type="password" placeholder=" 비밀번호" id="loginPwd">
+				<input type="password" placeholder=" 비밀번호" id="loginPwd" name="memberPwd">
 			</div> 
 		</div>
 		<br><br><br><br><br>
-		<div id="btnDiv"><button id="loginBtn" onclick="lgoin" name="login">로그인</button></div>
+		<div id="btnDiv"><button id="loginBtn" name="login">로그인</button></div>
 		</form>
 		<br>
 		<div id="loginBot"><a> 아이디 찾기 </a> | <a> 비밀번호 찾기 </a> | <a> 회원가입 </a></div>

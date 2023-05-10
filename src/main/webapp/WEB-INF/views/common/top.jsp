@@ -45,7 +45,7 @@
 		    <a class="menu1">고객센터</a>
 		</div>
 		<div class="topRight">    
-		    <a class="menu1" href="login.me">로그인</a>
+		    <a class="menu1" href="${ contextPath }/loginView.do">로그인</a>
 		    <a class="menu1">회원가입</a>
 			<button class="btjipsa menu2" type="submit">집사 지원</button>
 		</div>
