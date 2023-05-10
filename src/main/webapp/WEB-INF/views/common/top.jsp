@@ -46,7 +46,7 @@
 		</div>
 		<div class="topRight">    
 		    <a class="menu1" href="login.me">로그인</a>
-		    <a class="menu1">회원가입</a>
+		    <a class="menu1" href="${ contextPath }/reviewsList.bo">회원가입</a>
 			<button class="btjipsa menu2" type="submit">집사 지원</button>
 		</div>
 	</div>
