@@ -5,8 +5,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import semi.project.jsnr.member.model.service.MemberService;
@@ -26,17 +28,26 @@ public class MemberController {
 		return "myPage";
 	}
 	
-	@PostMapping("login.me")
-	public String login(Member m, Model model) {
-		Member loginUser = mService.login(m);
+	@RequestMapping("loginView.do")
+	public String loginView() {
+		return "login/login";
+	}
+	
+	@PostMapping("login.do")
+	public String login(@RequestParam("memberId") String memberId, @RequestParam("memberPwd") String memberPwd, Model model) {
+		System.out.println(memberId);
+		System.out.println(memberPwd);
+		Member loginUser = mService.login(memberId);
 		
-		bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd());
+		System.out.println(loginUser);
 		
-		if(bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd())) {
+//		bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd());
+		
+		if(loginUser != null) {
 			model.addAttribute("loginUser", loginUser);
-			return "redirect:afterLogin";
+			return "redirect:login/afterLogin";
 		} else {
-			return "login";
+			return "login/login";
 		}
 		
 	}

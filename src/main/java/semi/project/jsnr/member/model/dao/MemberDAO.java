@@ -8,8 +8,9 @@ import semi.project.jsnr.member.model.vo.Member;
 @Repository
 public class MemberDAO {
 
-	public Member login(SqlSessionTemplate sqlSession, Member m) {
-		return sqlSession.selectOne("memberMapper.login", m);
+	public Member login(SqlSessionTemplate sqlSession, String memberId) {
+		System.out.println("DAO");
+		return sqlSession.selectOne("memberMapper.login", memberId);
 	}
 
 }

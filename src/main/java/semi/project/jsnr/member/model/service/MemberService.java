@@ -16,7 +16,8 @@ public class MemberService {
 	@Autowired
 	private MemberDAO mDAO;
 
-	public Member login(Member m) {
-		return mDAO.login(sqlSession, m);
+	public Member login(String memberId) {
+		System.out.println("service");
+		return mDAO.login(sqlSession, memberId);
 	}
 }
