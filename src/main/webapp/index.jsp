@@ -15,7 +15,7 @@
 	<div style="margin: 50px; border: 1px solid gray;">
 		<h3>로그인 기능 구현 전 임시 링크</h3>
 		<ul>
-			<li><a href="#">회원 마이페이지</a></li>
+			<li><a href="myPage.me">회원 마이페이지</a></li>
 			<li><a href="jibsaMain.js">집사 마이페이지</a></li>
 			<li><a href="adminMain.ad">관리자 마이페이지</a></li>
 			
@@ -37,9 +37,10 @@
 <%-- 	<%@ include file="WEB-INF/views/user/pwdReSetting.jsp"%> --%>
 <%-- 	<%@ include file="WEB-INF/views/user/foundIdResult.jsp"%> --%>
 <!-- 매칭 -->
-	<%@ include file="WEB-INF/views/matching/matching1.jsp"%>
+<%-- 	<%@ include file="WEB-INF/views/matching/matching1.jsp"%> --%>
 <%-- 	<%@ include file="WEB-INF/views/matching/matching2.jsp"%> --%>
 <%-- 	<%@ include file="WEB-INF/views/matching/matching3.jsp"%> --%>
+	<%@ include file="WEB-INF/views/home/home.jsp" %>
 
 <!--  하단은 항상 켜놓기 -->
 	<%@ include file="WEB-INF/views/common/bottom.jsp"%>

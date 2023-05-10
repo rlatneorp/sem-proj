@@ -5,6 +5,10 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	
+	<typeAliases>
+		<typeAlias type="semi.project.jsnr.member.vo.Member" alias="Member"/>
+	</typeAliases>
+	
 	<mappers>
 		<mapper resource="mappers/admin-mapper.xml"/>
 		<mapper resource="mappers/member-mapper.xml"/>

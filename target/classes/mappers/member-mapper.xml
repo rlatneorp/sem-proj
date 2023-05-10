@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="memberMapper">
-	
+	<select id="login" resultMap="memberResultSet">
+		select *
+		from member
+		where member_id = #{memberId} and member_status = 'Y'
+	</select>
+	<resultMap type="Member" id="memberResultSet">
+		<id column="MEMBER_NO" property="memberNo"/>
+		<result column="MEMBER_ID" property="memberId"/>
+		<result column="MEMBER_PWD" property="memberPwd"/>
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="MEMBER_EMAIL" property="memberEmail"/>
+		<result column="IS_ADMIN" property="isAdmin"/>
+		<result column="IS_JIBSA" property="isJibsa"/>
+		<result column="MEMBER_STATUS" property="memberStatus"/>
+		<result column="EXIT_DATE" property="exitDate"/>
+		<result column="BLACKLIST" property="blackList"/>
+		<result column="MEMBER_PHONE" property="memberPhone"/>
+		<result column="MEMBER_ADDRESS" property="memberAddress"/>
+	</resultMap>
 
 </mapper>
