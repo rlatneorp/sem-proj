@@ -236,11 +236,11 @@
 		  	보호자와 전문가를<br>서로 매칭해줍니다</p>
 		  <button>파트너매칭</button>
 		</div>
-	  <img src="images/home2.jpg" alt="image description">
+	  <img src="resources/image/home2.jpg" alt="image description">
 	</div>
 	
 	<div class="container">
-	  <img src="images/home3.jpg" alt="image description">
+	  <img src="resources/image/home3.jpg" alt="image description">
 	  <div>
 		  <p>다양한 이용후기를 보면서 <br>
 		  	어떤 서비스를 받을지 결정하세요 
