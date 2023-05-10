@@ -6,7 +6,7 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias type="semi.project.jsnr.member.vo.Member" alias="Member"/>
+		<typeAlias type="semi.project.jsnr.member.model.vo.Member" alias="Member"/>
 	</typeAliases>
 	
 	<mappers>
