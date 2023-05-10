@@ -41,11 +41,11 @@
 		<div class="topLeft" style="color: inherit;">
 	    	<a class="menu1" href="${contextPath}"><img src="resources/image/logo.png" alt="logo" class="logo"></a>
 		    <a class="menu1">집사매칭</a>
-		    <a class="menu1">이용후기</a>
+		    <a class="menu1" href="${ contextPath }/reviewsList.bo">이용후기</a>
 		    <a class="menu1">고객센터</a>
 		</div>
 		<div class="topRight">    
-		    <a class="menu1" href="${ contextPath }/loginView.do">로그인</a>
+		    <a class="menu1">로그인</a>
 		    <a class="menu1">회원가입</a>
 			<button class="btjipsa menu2" type="submit">집사 지원</button>
 		</div>

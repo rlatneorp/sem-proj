@@ -20,9 +20,7 @@ public class PageInfo {
 	private int endPage;
 	private int boardLimit;
 
-	public PageInfo() {
-		super();
-	}
+	public PageInfo() {	}
 
 	public PageInfo(int currentPage, int listCount, int pageLimit, int maxPage, int startPage, int endPage,
 			int boardLimit) {
