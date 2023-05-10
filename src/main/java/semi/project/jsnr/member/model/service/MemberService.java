@@ -17,7 +17,6 @@ public class MemberService {
 	private MemberDAO mDAO;
 
 	public Member login(String memberId) {
-		System.out.println("service");
 		return mDAO.login(sqlSession, memberId);
 	}
 }
