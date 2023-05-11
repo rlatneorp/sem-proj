@@ -200,8 +200,6 @@ public class Jibsa {
 				+ isPrivacy + ", isTrue=" + isTrue + ", charAddress=" + charAddress + ", isPrimium=" + isPrimium
 				+ ", primiumPaymentDate=" + primiumPaymentDate + ", isTrainer=" + isTrainer + "]";
 	}
-	
-
 }
 
 
