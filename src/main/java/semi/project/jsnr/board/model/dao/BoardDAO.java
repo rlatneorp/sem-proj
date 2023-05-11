@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import semi.project.jsnr.board.model.vo.Board;
-import semi.project.jsnr.board.model.vo.PageInfo;
+import semi.project.jsnr.common.model.vo.PageInfo;
 
 @Repository
 public class BoardDAO {

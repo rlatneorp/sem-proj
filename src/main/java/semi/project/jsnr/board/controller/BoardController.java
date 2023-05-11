@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import semi.project.jsnr.board.model.exception.BoardException;
 import semi.project.jsnr.board.model.service.BoardService;
 import semi.project.jsnr.board.model.vo.Board;
-import semi.project.jsnr.board.model.vo.PageInfo;
 import semi.project.jsnr.common.Pagination;
+import semi.project.jsnr.common.model.vo.PageInfo;
 
 @Controller
 public class BoardController {

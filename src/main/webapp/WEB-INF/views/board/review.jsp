@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 <style>
-	#reviewMain{max-width: none !important;}
+	#reviewMain{width: 1200px; max-width: none !important; margin: 0 auto;}
  	
  	.reBtn {color: #1abc9c; border: 1px solid #1abc9c; background-color: white; width:60px; height: 30px; border-radius: 20px;}		
 		
@@ -22,9 +22,9 @@
  	
 	* {font-family: 'Noto Sans KR', sans-serif;}
 	
-	body { max-width: none !important; margin: 0 auto; text-align: center; margin-left: auto; margin-right: auto; position: sticky}
+	body { max-width: none !important; margin: 0 auto; text-align: center; margin-left: auto; margin-right: auto;}
 	
-	.title {margin-left: 450px; font-weight: 700;}
+	.title {margin-left: 200px; font-weight: 700;}
 	
 	.area {border: 1px solid lightgray; padding: 20px;
 			border-radius: 20px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);  text-align: center;}
@@ -33,7 +33,7 @@
 	
 	.subtitle {font-size: 20px; text-align: left; font-weight: 500;}
 
-	#area1 {display: inline-block; width: 380px; height: 340px; margin-left: 570px; align-items: center; justify-content: center;
+	#area1 {display: inline-block; width: 380px; height: 340px; margin-left: 218px;  align-items: center; justify-content: center;
 			top: 100px;}
 	#area2 {display: inline-block; width: 380px; height: 340px; align-items: center; padding-top: 81px;}
 	#area3 {margin-left: auto; margin-right: auto; width: 765px; height: 340px; margin-top: 20px;}
@@ -46,18 +46,17 @@
  	#li1{ float:left; margin-top:30px; margin-left:30px; display:inline-block;}
  	#li2{ float:left; margin-top:44px; margin-left: 20px; display:inline-block;}
  	#li3{ float:right; margin-top:38px; display:inline-block; }
- 	#li4{ float:left; margin-top:44px; margin-left: 100px; }
- 	#li5{ margin-top: 160px; }
- 	#li6{ float: inherit; margin-top: -80px;}
+ 	#li4{ float:right; margin-top:44px; margin-right: 100px; }
+ 	#li5{ margin-top: 130px; }
 </style>
 </head>
-<body id="reviewMain">
+<body>
 	<jsp:include page="../common/top.jsp"/>
 	
+	<div id="reviewMain">
 	<br>
 	<h2 class="title">마이페이지</h2><br>
 	<h4 class="title">후기 현황</h4><br><br>
-
 	<form>
 		<div class="area" id="area1">
 			최대 3개월 범위 내에서 조회가 가능합니다.<br><br>
@@ -140,10 +139,10 @@
 				<tr>
 					<th scope="row">${ status.index + 1 }</th>
 					<td>${ i.memberName }</td>
-					<td>${ i.matchEndDate }</td>
+					<td>${ i.endDate }</td>
 					<td>${ i.animalName }</td>
 					<td>
-						<button class="reBtn${status.index+1}" style="color: #1abc9c; border: 1px solid #1abc9c; background-color: white; width:60px; height: 30px; border-radius: 20px;">후기</button>
+						<button class="reBtn${ status.index+1}" style="color: #1abc9c; border: 1px solid #1abc9c; background-color: white; width:60px; height: 30px; border-radius: 20px;">후기</button>
 					</td>
 				</tr>
 				<div class="mo modal${status.index + 1}">
@@ -160,13 +159,12 @@
 					    <img src="resources/image/star2.png" width="30px" height="30px"/>
 				    </div>
 				   	<div id="li4"><a>${ i.animalName }</a></div>
-					<div id="li5"><a>${ i.reviewText }</a></div>
-					<div id="li6"><hr></div>
-					
+					<div id="li5"><hr><br><a>${ i.reviewContent }</a></div>
 				</div>	 
 			</c:forEach>
 		</tbody>
 	</table> 
+	</div>
 	</div>
 	<script>
 		window.onload = () =>{ 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import semi.project.jsnr.board.model.dao.BoardDAO;
 import semi.project.jsnr.board.model.vo.Board;
-import semi.project.jsnr.board.model.vo.PageInfo;
+import semi.project.jsnr.common.model.vo.PageInfo;
 
 
 @Service("bService")
@@ -29,5 +29,6 @@ public class BoardServiceImpl implements BoardService{
 	public ArrayList<Board> selectBoardList(PageInfo pi, int i) {
 		return bDAO.selectBoardList(sqlSession, pi, i);
 	}
+
 
 }

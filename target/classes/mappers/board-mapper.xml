@@ -9,7 +9,7 @@
 	<select id="selectBoardList" resultMap="boardResultSet">
 		select matching_no, member_name, end_date, animal_name, review_content
 		from matching
-		    join animal on(jibsa_no = member_no)
+		    join animal using(member_no)
 		    join member using(member_no)
 	</select>
 	
