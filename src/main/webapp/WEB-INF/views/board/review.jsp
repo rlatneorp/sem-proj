@@ -168,6 +168,8 @@
 	</table> 
 	</div>
 	</div>
+	<br><br><br>
+<jsp:include page="../common/bottom.jsp"/>
 	<script>
 		window.onload = () =>{ 
 			const reBtns = document.querySelectorAll('[class^="reBtn"]');
@@ -192,6 +194,7 @@
 			    });
 			 }   
 	 	 }
+
 	</script>
 
 </body>
