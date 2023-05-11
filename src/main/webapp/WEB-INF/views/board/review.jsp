@@ -44,9 +44,11 @@
 	#reviewId{font-family: 'Noto Sans KR', sans-serif;  font-weight: 500; list-style: none; position: relative; }
  	#btnX{float:right; margin-left: -60px;}
  	#li1{ float:left; margin-top:30px; margin-left:30px; display:inline-block;}
- 	#li2{ float:left; margin-top:44px; margin-left: 20px; display:inline-block;}
- 	#li3{ float:right; margin-top:38px; display:inline-block; }
- 	#li4{ float:right; margin-top:44px; margin-right: 100px; }
+ 	#li2{ float:left; margin-top:38px; margin-left: 20px; display:inline-block;}
+ 	#li2{ font-size: 30px; font-weight: 500;}
+ 	#li3{ float:right; margin-top:45px; display:inline-block; }
+ 	#li4{ float:right; margin-top:45px; margin-right: 50px; }
+ 	#li4{ font-size: 20px; font-weight: 400;}
  	#li5{ margin-top: 130px; }
 </style>
 </head>
@@ -149,7 +151,7 @@
 		    		<button class="xB xBtn${status.index + 1}">
 		    			<img src="resources/image/x.png"/>
 		    		</button>
-				    <div id="li1"><img src="resources/image/user.png" width="50px" height="50px"/></div>
+				    <div id="li1"><img src="resources/image/user.png" width="70px" height="70px"/></div>
 				    <div id="li2"><a>${ i.memberName }</a></div>
 				    <div id="li3">
 					    <img src="resources/image/star1.png" width="30px" height="30px"/>
