@@ -9,7 +9,6 @@ import semi.project.jsnr.member.model.vo.Member;
 public class MemberDAO {
 
 	public Member login(SqlSessionTemplate sqlSession, String memberId) {
-		System.out.println("DAO");
 		return sqlSession.selectOne("memberMapper.login", memberId);
 	}
 

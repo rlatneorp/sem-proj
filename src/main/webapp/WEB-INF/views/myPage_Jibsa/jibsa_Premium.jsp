@@ -17,7 +17,7 @@
 	
 	.area {border: 1px solid lightgray; padding: 20px; 
 			border-radius: 20px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);  text-align: center;
-			margin-left: auto; margin-right: auto; width: 800px;  display: flex; align-items: center; justify-content: center;}
+			margin-left: auto; margin-right: auto; width: 780px; height: 100px; display: flex; align-items: center; justify-content: center;}
 			
 	.purchase {background-color: #1abc9c; color:white; border: none; width:110px; height: 40px;
 			border-radius: 50px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);}
@@ -45,20 +45,17 @@
 	<span class="subtitle">원하는 프리미엄 결제 개월 수를 선택해주세요</span><br><br><br>
 	
 	<div class="area">
-		<h4>1개월 정액<br>
-		12000원</h4>
+		<h4>1개월 12000원</h4>
 		<button class="purchase purchase2">구매하기</button>
 	</div><br>
 	
 	<div class="area">
-		<h4>3개월 정액<br>
-		35000원</h4>
+		<h4>3개월 35000원</h4>
 		<button class="purchase purchase2">구매하기</button>
 	</div><br>
 	
 	<div class="area">
-		<h4>6개월 정액<br>
-		68000원</h4>
+		<h4>6개월 68000원</h4>
 		<button class="purchase purchase2">구매하기</button><br>
 	</div><br><br>
 	
