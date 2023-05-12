@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 
@@ -10,6 +11,8 @@
 	.review {
 	  display: flex;
 	  align-items: flex-start;
+	  width: 400px;
+	  height: 200px;
 	}
 	
 	.review .profile {
@@ -88,6 +91,7 @@
 </style>
 </head>
 <body>
+<%@ include file="../common/top.jsp" %>
 
 	<div class="container">
 	  
@@ -105,137 +109,24 @@
 	</div>
 	
 	<div class="container text-left">
+	<c:forEach items="${ list }" var="n">
+		<c:if test="${ n.isJibsa.equalsIgnoreCase('n')}">
 	  <div class="row">
 		  	<div class="col">
 			    <div class="review">
 				  <div class="profile">
 					  <img src="images/eunbee1.jpg">
-					  <div class="username">은비맘 회원님</div>
+					  	<div class="username">${ n.memberName }</div>
 					  </div>
 					  <div class="info">
-					    <h2>집사님 이름</h2>
-					    <p>이용을 해보니 너무 좋았어요 <br>
-					    	하<br>
-					    	하하<br>
-					    	하하하<br>
-					    	하하하하<br>
-					    	하하하하하<br>
-					    	하하하하하하<br>
-					    	하하하하하하하<br>
-					    </p>
+					    <h2>${ n.jibsaName }</h2>
+					    <p>${ n.reviewContent }</p>
 				  </div>
 				</div>
 			</div>	
-			
-			<div class="col">
-			    <div class="review">
-				  <div class="profile">
-					  <img src="images/eunbee1.jpg">
-					  <div class="username">은비맘 회원님</div>
-					  </div>
-					  <div class="info">
-					    <h2>집사님 이름</h2>
-					    <p>이용을 해보니 너무 좋았어요 <br>
-					    	하<br>
-					    	하하<br>
-					    	하하하<br>
-					    	하하하하<br>
-					    	하하하하하<br>
-					    	하하하하하하<br>
-					    	하하하하하하하<br>
-					    </p>
-				  </div>
-				</div>
-			</div>	
-	  </div>
-	  
-	  <div class="row">
-		   <div class="col">
-			    <div class="review">
-				  <div class="profile">
-					  <img src="images/logo.png">
-					  <div class="username">은비맘 회원님</div>
-					  </div>
-					  <div class="info">
-					    <h2>집사님 이름</h2>
-					    <p>이용을 해보니 너무 좋았어요 <br>
-					    	하<br>
-					    	하하<br>
-					    	하하하<br>
-					    	하하하하<br>
-					    	하하하하하<br>
-					    	하하하하하하<br>
-					    	하하하하하하하<br>
-					    </p>
-				  </div>
-				</div>
-			</div>	
-			
-			<div class="col">
-			    <div class="review">
-				  <div class="profile">
-					  <img src="images/logo.png">
-					  <div class="username">은비맘 회원님</div>
-					  </div>
-					  <div class="info">
-					    <h2>집사님 이름</h2>
-					    <p>이용을 해보니 너무 좋았어요 <br>
-					    	하<br>
-					    	하하<br>
-					    	하하하<br>
-					    	하하하하<br>
-					    	하하하하하<br>
-					    	하하하하하하<br>
-					    	하하하하하하하<br>
-					    </p>
-				  </div>
-				</div>
-			</div>	
-	  </div>
-	  
-	 <div class="row">
-	     	<div class="col">
-			    <div class="review">
-				  <div class="profile">
-					  <img src="images/logo.png">
-					  <div class="username">은비맘 회원님</div>
-					  </div>
-					  <div class="info">
-					    <h2>집사님 이름</h2>
-					    <p>이용을 해보니 너무 좋았어요 <br>
-					    	하<br>
-					    	하하<br>
-					    	하하하<br>
-					    	하하하하<br>
-					    	하하하하하<br>
-					    	하하하하하하<br>
-					    	하하하하하하하<br>
-					    </p>
-				  </div>
-				</div>
-			</div>	
-			
-			<div class="col">
-			    <div class="review">
-				  <div class="profile">
-					  <img src="images/logo.png">
-					  <div class="username">은비맘 회원님</div>
-					  </div>
-					  <div class="info">
-					    <h2>집사님 이름</h2>
-					    <p>이용을 해보니 너무 좋았어요 <br>
-					    	하<br>
-					    	하하<br>
-					    	하하하<br>
-					    	하하하하<br>
-					    	하하하하하<br>
-					    	하하하하하하<br>
-					    	하하하하하하하<br>
-					    </p>
-				  </div>
-				</div>
-			</div>	
-	  </div>
+	  	</div>
+	  	</c:if>
+	</c:forEach>
 	  
 	  <div class="row">
 		  				
@@ -249,7 +140,7 @@
 						<c:url value = "${loc }" var="blistBack">
 							<c:param name="page" value="${ pi.currentPage -1 }"/>
 							<c:if test="${ condition != null}">
-								<c:param name = "condition" value = "${condition	}"/>
+								<c:param name = "condition" value = "${condition}"/>
 								<c:param name = "value" value = "${value}"/>
 							</c:if>
 						</c:url>
@@ -320,11 +211,9 @@
 			
 			
 			</script>
-		
 	
-	
-	  	
 	  </div>
 	</div>
+	<%@ include file="../common/bottom.jsp" %>
 </body>
 </html>

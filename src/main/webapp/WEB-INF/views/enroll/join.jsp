@@ -50,6 +50,7 @@
 			<br>
 			<li class="lii"><a>주소</a></li>
 			<li class="lii"><input class="uul2" type="text" placeholder=" 주소를 입력하세요"></li>
+			<br><br>
 			<div class="joinBtnDiv">
 				<input type="submit" class="joinBtn" value="가입하기">
 			</div>

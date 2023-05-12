@@ -5,12 +5,13 @@
 		select count(*)
 		from matching
 	</select>
-	
-	<select id="selectBoardList" resultMap="boardResultSet">
-		select matching_no, member_name, end_date, animal_name, review_content
-		from matching
+
+	<select id="reviewBoardList" resultMap="boardResultSet">
+    	select *
+		from member
 		    join animal using(member_no)
-		    join member using(member_no)
+            join jibsa_profile using(member_no)
+            join matching using(member_no)
 	</select>
 	
 	<resultMap type="Board" id="boardResultSet">
@@ -26,5 +27,8 @@
 		<result column="JIBSA_COMMENT" property="jibsaComment"/>
 		<result column="MEMBER_NAME" property="memberName"/>
 		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="JIBSA_NAME" property="jibsaName"/>
+		<result column="IS_JIBSA" property="isJibsa"/>
+		
 	</resultMap>
 </mapper>

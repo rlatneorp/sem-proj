@@ -20,26 +20,47 @@ public class BoardController {
 	@Autowired
 	private BoardService bService;
 	
-	@GetMapping("reviewsList.bo")
-	public String selectBoardList(@RequestParam(value="page", required=false) Integer currentPage, Model model) {
+	
+//	@GetMapping("reviewMain.bo")
+//	public String selectBoardList(@RequestParam(value="page", required=false) Integer currentPage, Model model) {
+//		if(currentPage == null) {
+//			currentPage = 1;
+//		}
+//		
+//		int listCount = bService.getListCount(1);
+//		
+//		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5);
+//		
+//		ArrayList<Board> list = bService.selectBoardList(pi, 1);
+//		
+//		if(list != null) {
+//			model.addAttribute("pi", pi);
+//			model.addAttribute("list", list);
+//			return "review_Main";
+//		} else {
+//			throw new BoardException("게시글 조회를 실패하였습니다.");
+//		}
+//	}
+	
+	@GetMapping("reviewMain.bo")
+	public String reviewBoardList(@RequestParam(value="page", required=false) Integer currentPage, Model model) {
 		if(currentPage == null) {
 			currentPage = 1;
 		}
 		
 		int listCount = bService.getListCount(1);
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 6);
 		
-		ArrayList<Board> list = bService.selectBoardList(pi, 1);
+		ArrayList<Board> list = bService.reviewBoardList(pi, 1);
+		
 		
 		if(list != null) {
 			model.addAttribute("pi", pi);
 			model.addAttribute("list", list);
-			return "review";
+			return "review_Main";
 		} else {
 			throw new BoardException("게시글 조회를 실패하였습니다.");
 		}
-	}
-	
-	
+	}	
 }

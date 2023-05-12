@@ -8,5 +8,5 @@ import semi.project.jsnr.common.model.vo.PageInfo;
 public interface BoardService {
 	int getListCount(int i);
 
-	ArrayList<Board> selectBoardList(PageInfo pi, int i);
+	ArrayList<Board> reviewBoardList(PageInfo pi, int i);
 }

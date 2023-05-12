@@ -69,7 +69,7 @@
 		<div class="topLeft" style="color: inherit;">
 	    	<a class="menu1" href="${contextPath}"><img src="resources/image/logo.png" alt="logo" class="logo"></a>
 		    <a class="menu1">집사매칭</a>
-		    <a class="menu1" href="${ contextPath }/reviewsList.bo">이용후기</a>
+		    <a class="menu1" href="${ contextPath }/reviewMain.bo">이용후기</a>
 		    <a class="menu1">고객센터</a>
 		</div>
 		<c:if test="${ empty loginUser }">
