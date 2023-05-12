@@ -68,9 +68,9 @@
 	<div class="topCont"> 
 		<div class="topLeft" style="color: inherit;">
 	    	<a class="menu1" href="${contextPath}"><img src="resources/image/logo.png" alt="logo" class="logo"></a>
-		    <a class="menu1">집사매칭</a>
-		    <a class="menu1" href="${ contextPath }/reviewMain.bo">이용후기</a>
-		    <a class="menu1">고객센터</a>
+		    <a class="menu1" href="${ contextPath }/matching_Main.mc">집사매칭</a>
+		    <a class="menu1" href="${ contextPath }/jibsa_List.bo">집사보기</a>
+		    <a class="menu1" href="${ contextPath }/reviewsList.bo">이용후기</a>
 		</div>
 		<c:if test="${ empty loginUser }">
 		<div class="topRight">    
@@ -91,7 +91,7 @@
 					       <li><a class="animal" style="display: block; float:left;">고양이</a><a class="animal">시암</a></li>
 					       <li><a class="animal">미돌이</a></li>
 					       <li><a><hr></a></li>
-					       <li><a class="myMenu">마이페이지</a></li>
+					       <li><a class="myMenu" href="${ contextPath }/myPage.me">마이페이지</a></li>
 					       <li><a class="myMenu">프로필 설정</a></li>
 				  		   <li><a><button class="btjipsa menu2" id = "btjibsa_apply">집사 지원</button></a></li>
 					       <li><a><button onclick="location.href='${contextPath}/logout.do'" id="logOut">로그아웃</button></a></li>
@@ -106,7 +106,7 @@
 </header>
 <script>
 	let click = document.getElementById("drop-c");
-	click.style.display = "none"
+// 	click.style.display = "none";
 	
 	const dp_menu=()=>{
 	    if(click.style.display === "none"){

@@ -2,6 +2,8 @@ package semi.project.jsnr.board.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,8 @@ import semi.project.jsnr.board.model.service.BoardService;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.common.Pagination;
 import semi.project.jsnr.common.model.vo.PageInfo;
+import semi.project.jsnr.jibsa.model.vo.Jibsa;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 
 @Controller
 public class BoardController {

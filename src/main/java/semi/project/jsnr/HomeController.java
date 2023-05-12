@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -60,29 +60,12 @@ public class HomeController {
 		return "login/login";
 	}
 	
-	@PostMapping("login.do")
-	public String login(@RequestParam("memberId") String memberId, @RequestParam("memberPwd") String memberPwd, Model model) {
-		Member loginUser = mService.login(memberId);
-		System.out.println(loginUser);
-		
-		if(loginUser != null) {
-			model.addAttribute("loginUser", loginUser);
-			return "redirect:home.do";
-		} else {
-			return "login/login";
-		}
-		
-	}
-	
-//	// 암호화 할라해ㅔㅆ느데 실패했어요 도와주세요 흑흑 로그인 비번 암호화
+	// 암호화 X 혹시 몰라서 안 지움
 //	@PostMapping("login.do")
-//	public String login(@RequestParam("memberId") String memberId, @RequestParam("memberPwd") String memberPwd, Model model,
-//						@ModelAttribute Member m) {
-//		Member loginUser = mService.login(memberId);
+//	public String login(@ModelAttribute Member m, Model model) {
+//		Member loginUser = mService.login(m);
 //		
-//		bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd());
-//		
-//		if(bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd())) {
+//		if(loginUser != null) {
 //			model.addAttribute("loginUser", loginUser);
 //			return "redirect:home.do";
 //		} else {
@@ -90,6 +73,22 @@ public class HomeController {
 //		}
 //		
 //	}
+	
+	// 비번 암호화
+	@PostMapping("login.do")
+	public String login(Model model, @ModelAttribute Member m) {
+		Member loginUser = mService.login(m);
+		
+		bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd());
+		
+		if(bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd())) {
+			model.addAttribute("loginUser", loginUser);
+			return "redirect:home.do";
+		} else {
+			return "login/login";
+		}
+		
+	}
 	
 	@RequestMapping("logout.do")
 	public String logout(SessionStatus status) {

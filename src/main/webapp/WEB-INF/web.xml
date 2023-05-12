@@ -81,7 +81,20 @@
 		<url-pattern>*.ad</url-pattern>
 	</servlet-mapping>
 
-
+	<!-- matching Servlet -->
+	<servlet>
+		<servlet-name>matchingServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/matching-context.xml</param-value>
+		</init-param>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>matchingServlet</servlet-name>
+		<url-pattern>*.mc</url-pattern>
+	</servlet-mapping>
 
 	<!-- 인코딩 처리 -->
 	<filter>

@@ -24,9 +24,17 @@ public class MemberController {
 	
 	@GetMapping("myPage.me")
 	public String myPage() {
-		return "myPage";
+		return "member_User_Info";
 	}
 	
+	@GetMapping("reservation.me")
+	public String reservation() {
+		return "member_Reservation_Main";
+	}
 	
+	@GetMapping("serviceCenter.me")
+	public String serviceCenter() {
+		return "Member_FAQ";
+	}
 	
 }

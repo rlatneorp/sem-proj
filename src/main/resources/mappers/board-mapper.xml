@@ -31,4 +31,61 @@
 		<result column="IS_JIBSA" property="isJibsa"/>
 		
 	</resultMap>
+	
+	<select id="getJibsaListCount" resultType="_int">
+		select count(*)
+		from jibsa_profile
+	</select>
+	
+	<select id="getSelectJibsaProfileList" resultMap="jibsaProfileResultSet">
+		select *
+		from jibsa_profile
+			 join jibsa using(member_no)
+<!-- 		where profile_status = 'Y' -->
+		order by member_No desc
+	</select>
+	
+	<resultMap type="JibsaProfile" id="jibsaProfileResultSet">
+		<id column="MEMBER_NO" property="memberNo"/>	
+		<result column="JIBSA_NAME" property="jibsaName"/>
+		<result column="PROFILE_TITLE" property="profileTitle"/>
+		<result column="PROFILE_TAG" property="profileTag"/>
+		<result column="JIBSA_AVG_RATING" property="jibsaAvgRating"/>
+		<result column="AVAILABLE_AREA" property="availableArea"/>
+		<result column="EXPECTED_SALARY" property="exptectedSalary"/>
+		<result column="WORK_COUNT" property="workCount"/>
+	</resultMap>
+	
+	<select id="getJibsaInfo" resultMap="jibsaInfoResultSet">
+		select *
+		from jibsa
+		where member_no = #{mId}
+	</select>
+	
+	<resultMap type="Jibsa" id="jibsaInfoResultSet">
+		<id column="MEMBER_NO" property="memberNo"/>
+		<result column="JIBSA_GENDER" property="jibsaGender"/>
+		<result column="JIBSA_RRN" property="jibsaRrn"/>
+		<result column="IS_SMOKING" property="isSmoking"/>
+		<result column="WORK_COUNT" property="workCount"/>
+		<result column="WORK_CAREER" property="workCareer"/>
+		<result column="VEHICLE" property="vehicle"/>
+		<result column="AVAILABLE_HOUR" property="availableHour"/>
+		<result column="AVAILABLE_TIMES" property="availableTime"/>
+		<result column="AVAILABLE_AREA" property="availableArea"/>
+		<result column="MOTIVE" property="motive"/>
+		<result column="EXPECTED_SALARY" property="exptectedSalary"/>
+		<result column="IS_PRIVACY" property="isPrivacy"/>
+		<result column="IS_TRUE" property="isTrue"/>
+		<result column="CHAR_ADDRESS" property="charAddress"/>
+		<result column="IS_PRIMIUM" property="isPrimium"/>
+		<result column="PRIMIUM_PAYMENT_DATE" property="primiumPaymentDate"/>
+		<result column="IS_TRAINER" property="isTrainer"/>
+	</resultMap>
+	
+	<select id="getJibsaProfile" resultMap="jibsaProfileResultSet">
+		select *
+		from jibsa_profile
+		where member_no = #{mId}
+	</select>
 </mapper>
