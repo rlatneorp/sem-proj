@@ -2,3 +2,6 @@
 META-INF/*
 .springBeans
 target
+.metadata/*
+.metadata
+metadata
