@@ -44,7 +44,12 @@
 			<br>
 			<li class="lii"><a>이메일</a></li>
 			<li class="lii"><input class="uul2" type="email" placeholder=" 이메일을 입력하세요"></li>
-			<br><br>
+			<br>
+			<li class="lii"><a>연락처</a></li>
+			<li class="lii"><input class="uul2" type="email" placeholder=" 연락처를 입력하세요"></li>
+			<br>
+			<li class="lii"><a>주소</a></li>
+			<li class="lii"><input class="uul2" type="email" placeholder=" 주소를 입력하세요"></li>
 			<div class="joinBtnDiv">
 				<input type="submit" class="joinBtn" value="가입하기">
 			</div>
