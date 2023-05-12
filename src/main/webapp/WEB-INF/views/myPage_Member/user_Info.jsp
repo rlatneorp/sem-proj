@@ -92,10 +92,10 @@ body {
 				    <div class="col">
 				      	<div class="p-2">내 반려동물</div><br>
 		                    <div class="p-4">
-		                        <h4 class="h4">코코</h4>
-		                        <h6 class="h6">강아지 / 소형 / 여</h6><br>
+		                        <h4 class="h4">${ animalName }</h4>
+		                        <h6 class="h6">${ animalKind } / ${ animalWeight } kg / ${ animalGender }</h6><br>
 		                        <img src="#" class="petImg"/><br><br><br>
-		                        <button class="inbtn" onclick="location.href='petInsert.jsp';">더 등록하기</button>
+		                        <button class="inbtn" onclick="location.href='${ contextPath }/pet_Insert.me'">더 등록하기</button>
 		                    </div>
 				    	</div>
 				    <div class="col">
