@@ -76,7 +76,7 @@
 		<div class="topRight">    
 		    <a class="menu1" href="${ contextPath }/loginView.do">로그인</a>
 		    <a class="menu1">회원가입</a>
-			<button class="btjipsa menu2" type="submit">집사 지원</button>
+			<button class="btjipsa menu2" type="submit" onclick="location.href='${contextPath}/enrollJibsa.js'">집사 지원</button>
 		</div>
 		</c:if>
 		<c:if test="${ !empty loginUser }"> 

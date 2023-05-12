@@ -23,8 +23,24 @@ public class JibsaController {
 	
 	
 	@RequestMapping("enrollJibsa.js")
-	public String enroll(Member m) {
-		return "enrolljibsa";
+	public String enroll(@ModelAttribute Member m,
+						Model model) {
+		
+			return "enrollJibsa";
+	}
+	
+	@RequestMapping("enrollJibsaPage.js")
+	public String enrollJibsaPage(@ModelAttribute Member m,
+			Model model) {
+		
+		return "enrollJibsaPage";
+	}
+	
+	@RequestMapping("enrollTrainerPage.js")
+	public String enrollTrainerPage(@ModelAttribute Member m,
+			Model model) {
+		
+		return "enrollTrainerPage";
 	}
 	
 	@PostMapping("updateJibsa.me")

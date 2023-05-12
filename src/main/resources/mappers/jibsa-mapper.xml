@@ -6,5 +6,10 @@
 		set 
 		where ID=#{id}
 	</update>
-
+	<update id="enrollJibsa">
+		update member
+		set 
+		where ID=#{id}
+	</update>
+	
 </mapper>

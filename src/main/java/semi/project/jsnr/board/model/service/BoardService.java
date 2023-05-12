@@ -10,7 +10,7 @@ import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 public interface BoardService {
 	int getListCount(int i);
 
-	ArrayList<Board> selectBoardList(PageInfo pi, int i);
+	ArrayList<Board> reviewBoardList(PageInfo pi, int i);
 
 	int getJibsaListCount();
 

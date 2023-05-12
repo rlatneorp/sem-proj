@@ -19,6 +19,10 @@ public class JibsaService {
 	public int updateJibsa(Member m) {
 		return jDAO.updateJibsa(sqlSession, m);
 	}
+
+	public int enrollJibsa(Member m) {
+		return jDAO.enrollJibsa(sqlSession, m);
+	}
 	
 	
 }

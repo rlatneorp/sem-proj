@@ -23,6 +23,6 @@
 	
 	<context:component-scan base-package="semi.project.jsnr" />
 	
-	
+
 	
 </beans:beans>

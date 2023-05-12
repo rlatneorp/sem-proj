@@ -11,4 +11,8 @@ public class JibsaDAO {
 	public int updateJibsa(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.update("jibsaMapper.updateJibsa", m);
 	}
+
+	public int enrollJibsa(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("jibsaMapper.enrollJibsa", m);
+	}
 }

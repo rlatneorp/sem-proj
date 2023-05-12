@@ -43,6 +43,6 @@
 	<%@ include file="WEB-INF/views/home/home.jsp" %>
 
 <!--  하단은 항상 켜놓기 -->
-<%-- 	<%@ include file="WEB-INF/views/common/bottom.jsp"%> --%>
+<%-- 	<%@ include file="WEB-INF/views/myPage_Member/jibsa_Apply.jsp"%> --%>
 </body>
 </html> 
