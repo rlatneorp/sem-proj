@@ -52,11 +52,11 @@ public class JibsaController {
 		return "secession";
 	}
 	
-//	임시 연결
-	@GetMapping("jibsaList.js")
-	public String jibsaList() {
-		return "jibsaList";
-	}
+////	임시 연결
+//	@GetMapping("jibsaList.js")
+//	public String jibsaList() {
+//		return "jibsaList";
+//	}
 	
 	
 	

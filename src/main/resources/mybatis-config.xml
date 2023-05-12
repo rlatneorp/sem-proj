@@ -8,6 +8,8 @@
 	<typeAliases>
 		<typeAlias alias="board" type="semi.project.jsnr.board.model.vo.Board"/>
 		<typeAlias type="semi.project.jsnr.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="semi.project.jsnr.jibsa.model.vo.Jibsa" alias="Jibsa"/>
+		<typeAlias type="semi.project.jsnr.jibsa.model.vo.JibsaProfile" alias="JibsaProfile"/>
 	</typeAliases>
 	
 	<mappers>

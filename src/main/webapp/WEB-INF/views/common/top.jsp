@@ -65,9 +65,9 @@
 	<div class="topCont"> 
 		<div class="topLeft" style="color: inherit;">
 	    	<a class="menu1" href="${contextPath}"><img src="resources/image/logo.png" alt="logo" class="logo"></a>
-		    <a class="menu1">집사매칭</a>
+		    <a class="menu1" href="${ contextPath }/matching_Main.mc">집사매칭</a>
+		    <a class="menu1" href="${ contextPath }/jibsa_List.bo">집사보기</a>
 		    <a class="menu1" href="${ contextPath }/reviewsList.bo">이용후기</a>
-		    <a class="menu1">고객센터</a>
 		</div>
 		<c:if test="${ empty loginUser }">
 		<div class="topRight">    
@@ -102,7 +102,7 @@
 </header>
 <script>
 	let click = document.getElementById("drop-c");
-	click.style.display = "none"
+// 	click.style.display = "none";
 	
 	const dp_menu=()=>{
 	    if(click.style.display === "none"){

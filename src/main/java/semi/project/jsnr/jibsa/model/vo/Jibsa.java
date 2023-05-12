@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Jibsa {
 	private int memberNo;
 	private String jibsaGender;
-	private int jibsaPrn;
+	private int jibsaRrn;
 	private String isSmoking;
 	private int workCount;
 	private String workCareer;
@@ -22,14 +22,14 @@ public class Jibsa {
 	private Date primiumPaymentDate;
 	private String isTrainer;
 	
-	public Jibsa(int memberNo, String jibsaGender, int jibsaPrn, String isSmoking, int workCount, String workCareer,
+	public Jibsa(int memberNo, String jibsaGender, int jibsaRrn, String isSmoking, int workCount, String workCareer,
 			String vehicle, String availableHour, int availableTime, String availableArea, String motive,
 			int exptectedSalary, String isPrivacy, String isTrue, String charAddress, String isPrimium,
 			Date primiumPaymentDate, String isTrainer) {
 		super();
 		this.memberNo = memberNo;
 		this.jibsaGender = jibsaGender;
-		this.jibsaPrn = jibsaPrn;
+		this.jibsaRrn = jibsaRrn;
 		this.isSmoking = isSmoking;
 		this.workCount = workCount;
 		this.workCareer = workCareer;
@@ -63,12 +63,12 @@ public class Jibsa {
 		this.jibsaGender = jibsaGender;
 	}
 
-	public int getJibsaPrn() {
-		return jibsaPrn;
+	public int getJibsaRrn() {
+		return jibsaRrn;
 	}
 
-	public void setJibsaPrn(int jibsaPrn) {
-		this.jibsaPrn = jibsaPrn;
+	public void setJibsaRrn(int jibsaRrn) {
+		this.jibsaRrn = jibsaRrn;
 	}
 
 	public String getIsSmoking() {
@@ -193,7 +193,7 @@ public class Jibsa {
 
 	@Override
 	public String toString() {
-		return "Jibsa [memberNo=" + memberNo + ", jibsaGender=" + jibsaGender + ", jibsaPrn=" + jibsaPrn
+		return "Jibsa [memberNo=" + memberNo + ", jibsaGender=" + jibsaGender + ", jibsaRrn=" + jibsaRrn
 				+ ", isSmoking=" + isSmoking + ", workCount=" + workCount + ", workCareer=" + workCareer + ", vehicle="
 				+ vehicle + ", availableHour=" + availableHour + ", availableTime=" + availableTime + ", availableArea="
 				+ availableArea + ", motive=" + motive + ", exptectedSalary=" + exptectedSalary + ", isPrivacy="

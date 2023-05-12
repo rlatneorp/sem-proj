@@ -46,6 +46,7 @@
 
 </head>
 <body>
+	<%@ include file="../common/top.jsp" %>
 	<div class="container ">
 	  
 		<br><br><br>
