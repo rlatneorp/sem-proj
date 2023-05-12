@@ -22,61 +22,19 @@ public class MemberController {
 	@Autowired
 	private MemberService mService;
 	
-	@Autowired
-	private BCryptPasswordEncoder bcrypt;
-	
 	@GetMapping("myPage.me")
 	public String myPage() {
-		return "myPage";
+		return "member_User_Info";
 	}
 	
-	@RequestMapping("home.do")
-	public String home() {
-		return "redirect:home/home";
+	@GetMapping("reservation.me")
+	public String reservation() {
+		return "member_Reservation_Main";
 	}
 	
-	@RequestMapping("loginView.do")
-	public String loginView() {
-		return "login/login";
+	@GetMapping("serviceCenter.me")
+	public String serviceCenter() {
+		return "Member_FAQ";
 	}
-	
-	@PostMapping("login.do")
-	public String login(@RequestParam("memberId") String memberId, @RequestParam("memberPwd") String memberPwd, Model model) {
-		Member loginUser = mService.login(memberId);
-		
-		if(loginUser != null) {
-			model.addAttribute("loginUser", loginUser);
-			return "redirect:home.do";
-		} else {
-			return "login/login";
-		}
-		
-	}
-	
-//	// 암호화 할라해ㅔㅆ느데 실패했어요 도와주세요 흑흑
-//	@PostMapping("login.do")
-//	public String login(@RequestParam("memberId") String memberId, @RequestParam("memberPwd") String memberPwd, Model model,
-//						@ModelAttribute Member m) {
-//		Member loginUser = mService.login(memberId);
-//		
-//		bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd());
-//		
-//		if(bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd())) {
-//			model.addAttribute("loginUser", loginUser);
-//			return "redirect:home.do";
-//		} else {
-//			return "login/login";
-//		}
-//		
-//	}
-	
-	@RequestMapping("logout.do")
-	public String logout(SessionStatus status) {
-		status.setComplete();
-		
-		return "redirect:home.do";
-	}
-	
-	
 	
 }

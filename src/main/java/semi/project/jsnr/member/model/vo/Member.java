@@ -16,6 +16,8 @@ public class Member {
 	private String memberPhone;
 	private String memberAddress;
 	
+	public Member() {}
+	
 	public Member(int memberNo, String memberId, String memberPwd, String memberName, String memberEmail,
 			String isAdmin, String isJibsa, String memberStatus, Date exitDate, int blackList, String memberPhone,
 			String memberAddress) {

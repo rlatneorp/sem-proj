@@ -19,7 +19,9 @@
 <style>
 .menu1:hover:not(.active){color: rgb(51, 51, 51);}
 
-.btjipsa{width: 138px; height: 58px; background: rgb(26, 188, 156); border-style: none; border-radius: 4px;}
+.btjipsa{width: 138px; height: 58px; background: rgb(26, 188, 156); border-style: none; border-radius: 4px; }
+#btjibsa_apply{color: white; border-radius: 4px; width:100px; height:37px; margin-left: 45px; 
+		 font-family: 'Noto Sans KR', sans-serif; font-size : 18px}
 .topCont{width: 1200px; max-width: none !important; margin: 0 auto;}
 .logo{width: 160px;}
 .menu1{font-size: 23px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; margin: 10px; color: rgb(51, 51, 51); text-decoration: none;}
@@ -54,6 +56,7 @@
 		#logOut{border: solid 1px; border-radius: 4px; width:100px; height:37px; margin-left: 45px; border-color: rgb(151, 222, 206); background-color: white;
 		 font-family: 'Noto Sans KR', sans-serif; color: rgb(26, 188, 156);}
 		#droul{margin: 0px 0px 0px; padding: 1px 1px 1px 1px; list-style: none;}
+	
 </style>
 </head>
 <body>
@@ -82,14 +85,15 @@
 				<a class="menu2">${ loginUser.memberName }</a>
 				<div class="dropd" style="float:right; " aria-expanded="false">
 					<button onclick="dp_menu()" class="butn"><img src="resources/image/down.png"></button>
-				    <div style="width: 230px; height: 305px;" id="drop-c">
+				    <div style="width: 230px; height: 390px;" id="drop-c">
 				    	<ul id="droul">
 					       <li><a class="name">${ loginUser.memberName }님</a></li>
 					       <li><a class="animal" style="display: block; float:left;">고양이</a><a class="animal">시암</a></li>
 					       <li><a class="animal">미돌이</a></li>
 					       <li><a><hr></a></li>
-					       <li><a class="myMenu">마이페이지</a></li>
+					       <li><a class="myMenu" href="${ contextPath }/myPage.me">마이페이지</a></li>
 					       <li><a class="myMenu">프로필 설정</a></li>
+				  		   <li><a><button class="btjipsa menu2" id = "btjibsa_apply">집사 지원</button></a></li>
 					       <li><a><button onclick="location.href='${contextPath}/logout.do'" id="logOut">로그아웃</button></a></li>
 				        </ul>
 				    </div>

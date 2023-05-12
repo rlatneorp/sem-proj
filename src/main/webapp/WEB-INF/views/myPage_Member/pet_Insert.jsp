@@ -80,7 +80,7 @@ body {
 					  <h4 style="margin-right: 56%;"><b>내 반려동물</b></h4>
 					  <h6 style="margin-right: 46%;">반려동물의 정보를 추가하세요!</h6><br>
 					      	<div class="insert">
-					      		<form>
+					      		<form action="${ contextPath }/insertAnimal.me" method="POST">
 					      			<p class="sel">1. 반려동물 사진</p>
 					      			<div id="img"></div>
     							  	<input class="form-control" type="file" accept="image/*" id="formFile">
@@ -130,7 +130,7 @@ body {
     							  	<p class="sel">7. 참고사항</p>
     							  	<textarea cols="50" rows="10" style="resize: none" name="content"></textarea>
     							  	<br><br><br>
-									<button type="button" id="btn" onclick="location.href='userInfo.jsp';">등록하기</button>
+									<button type="submit" id="btn">등록하기</button>
 					      		</form>
 					      	</div>
 					      </div>
