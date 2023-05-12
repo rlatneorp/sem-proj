@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import semi.project.jsnr.jibsa.model.dao.JibsaDAO;
+import semi.project.jsnr.member.model.vo.Member;
 
 @Service
 public class JibsaService {
@@ -14,6 +15,10 @@ public class JibsaService {
 	
 	@Autowired
 	private JibsaDAO jDAO;
+
+	public int updateJibsa(Member m) {
+		return jDAO.updateJibsa(sqlSession, m);
+	}
 	
 	
 }
