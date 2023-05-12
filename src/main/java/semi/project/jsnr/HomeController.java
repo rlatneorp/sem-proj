@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import semi.project.jsnr.member.model.service.MemberService;
@@ -22,6 +23,7 @@ import semi.project.jsnr.member.model.vo.Member;
 /**
  * Handles requests for the application home page.
  */
+@SessionAttributes("loginUser")
 @Controller
 public class HomeController {
 	
@@ -61,6 +63,7 @@ public class HomeController {
 	@PostMapping("login.do")
 	public String login(@RequestParam("memberId") String memberId, @RequestParam("memberPwd") String memberPwd, Model model) {
 		Member loginUser = mService.login(memberId);
+		System.out.println(loginUser);
 		
 		if(loginUser != null) {
 			model.addAttribute("loginUser", loginUser);

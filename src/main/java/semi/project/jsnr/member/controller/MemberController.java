@@ -15,6 +15,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import semi.project.jsnr.member.model.service.MemberService;
 import semi.project.jsnr.member.model.vo.Member;
 
+@SessionAttributes("loginUser")
 @Controller
 public class MemberController {
 	
