@@ -28,7 +28,7 @@
 			  position: fixed;
 			  left: 250px;
 			  width: 0;
-			  height: 74%;
+			  height: 70%;
 			  margin-left: -250px;
 			  overflow-y: auto;
 			  background: rgb(26, 188, 156);
@@ -132,9 +132,9 @@
 	        <div id="sidebar-wrapper">
 				<ul class="sidebar-nav">
 					<li class="sidebar-brand">마이페이지</li>
-			  		<li><label onclick="location.href='../myPage/userInfo.jsp';" class="lab">내 정보</label><hr></li>
-					<li><label class="lab" onclick="location.href='../myPage/reservation.jsp';">예약 관리</label><hr></li>
-					<li><label class="lab" onclick="location.href='../myPage/serviceCenter.jsp';">고객센터</label></li>
+			  		<li><label onclick="location.href='${contextPath}/myPage.me';" class="lab">내 정보</label><hr></li>
+					<li><label class="lab" onclick="location.href='${contextPath}/reservation.me';">예약 관리</label><hr></li>
+					<li><label class="lab" onclick="location.href='${contextPath}/serviceCenter.me';">고객센터</label></li>
 					<li class="bot"><label for="inbtn1" style="cursor: pointer;">집사로 전환하기</label>
 						<img src="../../img/button.png" id="inbtn1"/>
 					</li>

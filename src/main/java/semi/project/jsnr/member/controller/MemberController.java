@@ -34,7 +34,7 @@ public class MemberController {
 	
 	@GetMapping("serviceCenter.me")
 	public String serviceCenter() {
-		return "Member_FAQ";
+		return "member_FAQ";
 	}
 	
 }
