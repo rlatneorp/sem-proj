@@ -66,5 +66,50 @@ public class BoardController {
 		} else {
 			throw new BoardException("게시글 조회를 실패하였습니다.");
 		}
-	}	
+	}
+	
+	@GetMapping("jibsa_List.bo")
+	public String jibsaList(@RequestParam(value="page", required=false) Integer page,
+							Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int listCount = bService.getJibsaListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 6);
+		
+		ArrayList<JibsaProfile> pList = bService.selectJibsaProfileList(pi);
+				
+		for(int i = 0; i < pList.size(); i++) {
+			System.out.println(pList.get(i));
+		}
+		
+		if(pList != null) {
+			model.addAttribute("pi", pi);
+			model.addAttribute("pList", pList);
+		}
+		return "jibsa_List";
+	}
+	
+	@GetMapping("jibsa_Detail.bo")
+	public String selectProfile(@RequestParam(value="page", required=false) Integer page,
+								@RequestParam("mId") int mId,
+								HttpSession session,
+								Model model) {
+		Jibsa jibsa = bService.getJibsaInfo(mId);
+		JibsaProfile jp = bService.getJibsaProfile(mId);
+		
+		if(jibsa != null) {
+			model.addAttribute("page", page);
+			model.addAttribute("jibsa", jibsa);
+			model.addAttribute("jp", jp);
+			return "jibsa_Detail";
+		} else {
+			throw new BoardException("게시글 조회를 실패하였습니다.");
+		}
+		
+	}
+	
 }
