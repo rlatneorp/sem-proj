@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="memberMapper">
-	<update id="updateJibsa">
-		update member
-		set 
+	<insert id="insertJibsa">
+		insert jibsa
+		set MEMBER_NO = #{ },
+			JIBSA_RRN = #{ jibsaPrn },
+			AVAILABLE_AREA = #{ availableArea },
+			JIBSA_GENDER =#{ jibsaGender } ,
+			IS_SMOKING = #{ isSmoking },
+			WORK_COUNT = #{ },
+			WORK_CAREER = null,
+			VEHICLE = #{ },
+			AVAILABLE_HOUR =#{ } ,
+			AVAILABLE_TIMES = #{ },
+			MOTIVE = #{ },
+			EXPECTED_SALARY = #{ } ,
+			IS_PRIVACY = #{ },
+			IS_TRUE = #{ },
+			CHAR_ADDRESS = #{ } ,
+			IS_PRIMIUM = #{ },
+			PRIMIUM_PAYMENT_DATE = #{ } ,
+			IS_TRAINER = #{ }
+			
 		where ID=#{id}
-	</update>
-	<update id="enrollJibsa">
-		update member
-		set 
-		where ID=#{id}
-	</update>
+	</insert>
+
 	
 </mapper>

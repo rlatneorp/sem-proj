@@ -73,7 +73,7 @@
 	<form class="container" style="width: 780px; 
 	max-width: none !important; 
 	margin: 0 auto; text-align: left; margin-right: 600px;" 
-	action="${ contextPath }/enrollJibsa.me" method="POST" >
+	action="${ contextPath }/enrollJibsa.js" method="POST" >
 	<br><br><br><br><br><br>
 		<h3>집사 지원서 작성하기</h3>
 		<hr/>
@@ -90,15 +90,15 @@
 			
 				<label class ="e title"> 주민등록 번호 앞 7자리</label><br/>
 				<span class = "add">만 18세 이상부터 지원할 수 있습니다.</span><br/>
-				<input type="number" class=" i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224);  font-size: 15px;  font-weight: normal;width:120px; height: 43px;"  placeholder=" 생년월일"> <input type="number" class=" i name"  style=" paddig : 40px; margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:120px; height: 43px;" placeholder=" 1자리 ******"><br/><br/>
+				<input type="number" id="jibsaPrn" class=" i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224);  font-size: 15px;  font-weight: normal;width:120px; height: 43px;"  placeholder=" 생년월일"> <input type="number" class=" i name"  style=" paddig : 40px; margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:120px; height: 43px;" placeholder=" 1자리 ******"><br/><br/>
 				
 				<label class ="title">이메일</label><br/>
 				<input type="text" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 이메일을 입력해주세요"
 						value ="${ loginUser.memberEmail }" readonly><br/><br/>
 				
-				<label class ="e title"> 거주지 주소</label><br/>
+				<label class ="e title">방문가능지역</label><br/>
 				<span class = "add">시/군/구까지 입력해주세요.</span><br/>
-				<input type="text" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 주소를 입력해주세요"><br/><br/>
+				<input type="text" id="availableArea" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 주소를 입력해주세요"><br/><br/>
 			</div>
 			
 			<div class="container">
@@ -107,17 +107,17 @@
 				
 				<label class ="e title"> 성별</label><br/>
 				<label style="margin-left: 25px;"><input type="radio" name="gender" value="male">남자</label>
-				<label><input type="radio" name="gender" value="female">여자</label>
+				<label><input type="radio" id="jibsaGender" name="gender" value="female">여자</label>
 				<br/><br/>
 				
-				<label class ="e title"> 연락처</label><br/>
+				<label class ="e title"> 연락처 </label><br/>
 				<span class = "add">입력하신 연락처로 합격 여부를 알려드립니다.</span><br/>
 				<input type="number" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 휴대혼 번호를 입력해주세요."><br/><br/>
 				
-				<label class ="e title"> 흡연유무</label><br/>
+				<label class ="e title"> 흡연유무 </label><br/>
 				<span class = "add">직업 특성 상 흡연을 하시는 경우 집사 활동이 어려울 수 있습니다.</span><br/>
 				<label style="margin-left: 25px;"><input type="radio" name="gender" value="yes">흡연 함</label>
-				<label><input type="radio" name="gender" value="no">흡연 안함</label>
+				<label><input type="radio" id="isSmoking" name="gender" value="no">흡연 안함</label>
 			</div>
 		</div>
 		<br/><br/>

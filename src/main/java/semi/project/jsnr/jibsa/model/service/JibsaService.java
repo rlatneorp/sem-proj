@@ -16,13 +16,11 @@ public class JibsaService {
 	@Autowired
 	private JibsaDAO jDAO;
 
-	public int updateJibsa(Member m) {
-		return jDAO.updateJibsa(sqlSession, m);
+	public int insertJibsa(Member m) {
+		return jDAO.insertJibsa(sqlSession, m);
 	}
 
-	public int enrollJibsa(Member m) {
-		return jDAO.enrollJibsa(sqlSession, m);
-	}
+	
 	
 	
 }

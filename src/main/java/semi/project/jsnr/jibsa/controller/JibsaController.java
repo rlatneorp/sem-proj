@@ -43,15 +43,15 @@ public class JibsaController {
 		return "enrollTrainerPage";
 	}
 	
-	@PostMapping("updateJibsa.me")
-	public String editMyInfo(@ModelAttribute Member m, 
+	@PostMapping("insertJibsa.js")
+	public String insertJibsa(@ModelAttribute Member m, 
 							Model model) {
 		
-		int result = jService.updateJibsa(m);
+		int result = jService.insertJibsa(m);
 		
 		if(result>0) {
-			Member updateJibsa = mService.login(m);
-			model.addAttribute("loginUser",updateJibsa);
+			Member insertJibsa = mService.login(m);
+			model.addAttribute("loginUser",insertJibsa);
 			return " ";
 		} else {
 			throw new JibsaException("정보 수정 실패했습니다.");
