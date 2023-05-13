@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="AnimalMapper">
+	<select id="AnimalList" resultMap="animalResultSet">
+		select *
+		from animal
+  		where member_no = #{memberNo}
+	</select>
+	
+	<resultMap type="Animal" id="animalResultSet">
+		<id column="ANIMAL_NO" property="animalNo" />
+		<result column="ANIMAL_NAME" property="animalName" />
+		<result column="ANIMAL_GENDER" property="animalGender" />
+		<result column="ANIMAL_KIND" property="animalKind" />
+		<result column="ANIMAL_WEIGHT" property="animalWeight" />
+		<result column="ANIMAL_NOTE" property="animalNote" />
+		<result column="MEMBER_NO" property="memberNo" />
+	</resultMap>
 
 	<insert id="insertAnimal">
 		insert into animal
 		values(#{animalName}, #{animalGender}, #{animalKind}, #{animalWeight}, #{animalNote})
 	</insert>
 	
-
 </mapper>

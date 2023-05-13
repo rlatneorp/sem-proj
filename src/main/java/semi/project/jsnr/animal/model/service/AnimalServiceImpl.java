@@ -19,7 +19,11 @@ public class AnimalServiceImpl implements AnimalService {
 	@Autowired
 	private AnimalDAO aDAO;
 	
-
+	@Override
+	public ArrayList<Animal> AnimalList(int memberNo) {
+		return aDAO.AnimalList(sqlSession, memberNo);
+	}
+	
 	@Override
 	public int insertAnimal(Animal a) {
 		return aDAO.insertAnimal(sqlSession, a);

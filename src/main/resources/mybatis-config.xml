@@ -10,6 +10,7 @@
 		<typeAlias type="semi.project.jsnr.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="semi.project.jsnr.jibsa.model.vo.Jibsa" alias="Jibsa"/>
 		<typeAlias type="semi.project.jsnr.jibsa.model.vo.JibsaProfile" alias="JibsaProfile"/>
+		<typeAlias type="semi.project.jsnr.animal.model.vo.Animal" alias="Animal"/>
 	</typeAliases>
 	
 	<mappers>
@@ -17,6 +18,7 @@
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
 		<mapper resource="mappers/jibsa-mapper.xml"/>
+		<mapper resource="mappers/animal-mapper.xml"/>
 	</mappers>
 	
 </configuration>

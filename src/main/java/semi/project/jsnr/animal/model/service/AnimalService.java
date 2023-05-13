@@ -6,6 +6,8 @@ import java.util.HashMap;
 import semi.project.jsnr.animal.model.vo.Animal;
 
 public interface AnimalService {
+	
+	ArrayList<Animal> AnimalList(int memberNo);
 
 	int insertAnimal(Animal a);
 	

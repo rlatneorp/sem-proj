@@ -25,7 +25,10 @@ public class AnimalController {
 	private AnimalService aService;
 	
 	@RequestMapping("user_Info.me")
-	public String user_Info() {
+	public String user_Info(HttpSession session) {
+		Member loginUser = (Member) session.getAttribute("loginUser"); // 로그인한 유저 정보 얻기
+		int memberNo = loginUser.getMemberNo(); // 로그인한 유저의 memberNo 가져오기
+		ArrayList<Animal> animalList = aService.AnimalList(memberNo); // 해당 유저가 등록한 동물 정보 가져오기
 		return "user_Info";
 	}
 	
