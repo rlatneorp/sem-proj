@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,9 +93,9 @@ body {
 				    <div class="col">
 				      	<div class="p-2">내 반려동물</div><br>
 		                    <div class="p-4">
-		                        <h4 class="h4">${ animalName }</h4>
-		                        <h6 class="h6">${ animalKind } / ${ animalWeight } kg / ${ animalGender }</h6><br>
-		                        <img src="#" class="petImg"/><br><br><br>
+			                      <h4 class="h4">${ loginUser.memberName }</h4>
+			                      <h6 class="h6">${ animal.animalName } / ${ Animal.animalWeight } kg / ${ Animal.animalGender }</h6><br>
+			                      <img src="#" class="petImg"/><br><br><br>
 		                        <button class="inbtn" onclick="location.href='${ contextPath }/pet_Insert.me'">더 등록하기</button>
 		                    </div>
 				    	</div>
