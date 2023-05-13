@@ -93,7 +93,7 @@
 					       <li><a><hr></a></li>
 					       <li><a class="myMenu" href="${ contextPath }/myPage.me">마이페이지</a></li>
 					       <li><a class="myMenu">프로필 설정</a></li>
-				  		   <li><a><button class="btjipsa menu2" id = "btjibsa_apply">집사 지원</button></a></li>
+				  		   <li><a href="${contextPath}/enrollJibsa.js"><button class="btjipsa menu2" id = "btjibsa_apply" >집사 지원</button></a></li>
 					       <li><a><button onclick="location.href='${contextPath}/logout.do'" id="logOut">로그아웃</button></a></li>
 				        </ul>
 				    </div>
@@ -115,6 +115,13 @@
 	        click.style.display = "none";
 	    }
 	}
+	
+	// 로드 될 때마다 drop-c 를 사라지게 하는 함수
+	window.addEventListener("load", function() {
+		  let click = document.getElementById("drop-c");
+		  click.style.display = "none";
+	});
+
 </script>
 </body>
 </html>
