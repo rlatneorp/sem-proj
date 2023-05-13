@@ -3,24 +3,24 @@
 <mapper namespace="memberMapper">
 	<insert id="insertJibsa">
 		insert jibsa
-		set MEMBER_NO = #{ },
+		set MEMBER_NO = null,
 			JIBSA_RRN = #{ jibsaPrn },
 			AVAILABLE_AREA = #{ availableArea },
 			JIBSA_GENDER =#{ jibsaGender } ,
 			IS_SMOKING = #{ isSmoking },
-			WORK_COUNT = #{ },
+			WORK_COUNT = null,
 			WORK_CAREER = null,
-			VEHICLE = #{ },
-			AVAILABLE_HOUR =#{ } ,
-			AVAILABLE_TIMES = #{ },
-			MOTIVE = #{ },
-			EXPECTED_SALARY = #{ } ,
-			IS_PRIVACY = #{ },
-			IS_TRUE = #{ },
-			CHAR_ADDRESS = #{ } ,
-			IS_PRIMIUM = #{ },
-			PRIMIUM_PAYMENT_DATE = #{ } ,
-			IS_TRAINER = #{ }
+			VEHICLE = null,
+			AVAILABLE_HOUR = null ,
+			AVAILABLE_TIMES = null,
+			MOTIVE = null,
+			EXPECTED_SALARY = null ,
+			IS_PRIVACY = null,
+			IS_TRUE = null,
+			CHAR_ADDRESS = null ,
+			IS_PRIMIUM = null,
+			PRIMIUM_PAYMENT_DATE = null ,
+			IS_TRAINER = null
 			
 		where ID=#{id}
 	</insert>
