@@ -46,19 +46,18 @@ public class AnimalController {
 		
 		int result = aService.updateAnimal(a);
 		
-		System.out.println(a);
+		Animal editAnimal = aService.animalList(a.getMemberNo());
 		System.out.println(result);
+		System.out.println(a.getMemberNo());
+		System.out.println(editAnimal);
 		
 		if(result > 0) {
-			model.addAttribute("animal", aService.animalEditList(a));
+			model.addAttribute("animal", editAnimal);
 			return "redirect:member_User_Info.me";
 		} else {
 			throw new AnimalException("동물 정보 수정에 실패하였습니다.");
-		}
-		
+		}		
 	}
-		
-	}
-	
+}
 
 
