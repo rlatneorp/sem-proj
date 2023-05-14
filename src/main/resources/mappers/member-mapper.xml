@@ -21,4 +21,69 @@
 		<result column="MEMBER_ADDRESS" property="memberAddress"/>
 	</resultMap>
 
+	<select id="getMemberQnaListCount" resultType="_int">
+		select count(*)
+		from qna
+		where member_no = #{mId} and qna_status = 'Y'
+	</select>	
+
+	<select id="getMemberQnaList" resultMap="qnaResultSet">
+		select *
+		from qna
+		where member_no = #{mId} and qna_status = 'Y'
+		order by qna_no desc
+	</select>
+	<resultMap type="qna" id="qnaResultSet">
+		<id column="QNA_NO" property="qnaNo"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="QNA_CATEGORY" property="qnaCategory"/>
+		<result column="QNA_TITLE" property="qnaTitle"/>
+		<result column="QNA_CONTENT" property="qnaContent"/>
+		<result column="QUESTION_DATE" property="questionDate"/>
+		<result column="QNA_ANSWER" property="qnaAnswer"/>
+		<result column="ANSWER_DATE" property="answerDate"/>
+		<result column="QNA_STATUS" property="qnaStatus"/>
+	</resultMap>
+
+	<select id="getMemberFaqList" resultMap="faqResultSet">
+		select *
+		from faq
+			 join member on(member_no = faq_writer)
+		where faq_status = 'Y'
+	</select>
+	<resultMap type="faq" id="faqResultSet">
+		<id column="FAQ_NO" property="faqNo"/>
+		<result column="MEMBER_NAME" property="faqWriter"/>
+		<result column="FAQ_TITLE" property="faqTitle"/>
+		<result column="FAQ_CONTENT" property="faqContent"/>
+		<result column="FAQ_CREATE_DATE" property="faqCreateDate"/>
+		<result column="FAQ_STATUS" property="faqStatus"/>
+	</resultMap>
+	
+	<select id="getQnaSelect" resultMap="qnaResultSet">
+		select *
+		from qna
+		where qna_no = #{qId} and qna_status = 'Y'
+	</select>
+	
+	<update id="updateQna">
+		update qna
+		set qna_title = #{qnaTitle},
+			qna_Category = #{qnaCategory},
+			qna_content = #{qnaContent}
+		where qna_no = #{qnaNo}
+	</update>
+	
+	<update id="deleteQna">
+		update qna
+		set qna_status = 'N'
+		where qna_no = #{qId}
+	</update>
+
+	<insert id="insertQna">
+		insert into qna
+		values(seq_b_id.nextval, #{memberNo}, #{qnaCategory}, #{qnaTitle}, #{qnaContent}, default, null, null, default)
+	</insert>
+
 </mapper>

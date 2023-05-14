@@ -129,10 +129,12 @@
 	        <div id="sidebar-wrapper">
 				<ul class="sidebar-nav">
 					<li class="sidebar-brand">관리자 페이지</li>
-			  		<li><label onclick="location.href='';" class="lab">회원 관리</label><hr></li>  <!-- 일단 화면 이동은 href로 넣어놨어요 -->
-					<li><label class="lab" onclick="location.href='';">집사 관리</label><hr></li>
+			  		<li><label class="lab" onclick="location.href='${contextPath}/admin_Member_Manage.ad'" >회원 관리</label><hr></li>  <!-- 일단 화면 이동은 href로 넣어놨어요 -->
+					<li><label class="lab" onclick="location.href='${contextPath}/admin_Jibsa_Manage.ad'">집사 관리</label><hr></li>
 					<li><label class="lab" onclick="location.href='';">후기 게시판 관리</label><hr></li>
-					<li><label class="lab" onclick="location.href='';">고객센터 관리</label></li>
+					<li><label class="lab" onclick="location.href='${contextPath}/admin_FAQ.ad'">-고객센터 관리</label></li>
+					<li><label class="lab" onclick="location.href='${contextPath}/admin_FAQ.ad'">자주묻는질문 관리</label></li>
+					<li><label class="lab" onclick="location.href='${contextPath}/admin_QNA.ad'">1:1문의 관리</label></li>
 				</ul>
 			</div>
 		</div>

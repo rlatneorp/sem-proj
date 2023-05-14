@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,81 +111,50 @@
 					 <button class="faqbtn">자주묻는질문</button>
 					 <button class="faqbtn">1:1 문의</button>
 					 </div>
-					    <br><br>
-						    <div class="tablediv" id="faqD">
-									<h2 style="text-align: left">자주하는 질문</h2><br><br>
-									
-									<div class="search">
-								  		<input type="text" placeholder=" 검색어를 입력해주세요">
-								  		<img src="../../img/search.png" id="search-icon">
-									</div><br><br><br>
-								
-									<button class="accordion">1. 집사나라는 어떤 나라인가요?</button>
-									<div class="panel">
-									  <p>Content 1</p>
-									</div>
-									
-									<button class="accordion">2. 결제는 어떻게 하나요?</button>
-									<div class="panel">
-									  <p>Content 2</p>
-									</div>
-									
-									<button class="accordion">3. 우리 아이를 어떻게 믿고 맡기죠?</button>
-									<div class="panel">
-									  <p>Content 3</p>
-									</div>
-									
-									<button class="accordion">4. 으아앙</button>
-									<div class="panel">
-									  <p>Content 4</p>
-									</div>
-						    	</div>
-						    	<div class="tablediv" id="qnaD">
-							    <table class="table">
-							    	<thead>
+					 	<br><br>
+						<div class="tablediv" id="faqD">
+							<h2 style="text-align: left">자주하는 질문</h2><br><br>
+							
+							<div class="search">
+						  		<input type="text" placeholder=" 검색어를 입력해주세요">
+						  		<img src="../../img/search.png" id="search-icon">
+							</div><br><br><br>
+						
+							<c:forEach items="${fList }" var="f" varStatus="st">
+								<button class="accordion">${st.count}. ${f.faqTitle }</button>
+								<div class="panel">
+									<p>${f.faqContent }</p>
+								</div>
+							</c:forEach>
+							
+				    	</div>
+				    	<div class="tablediv" id="qnaD">
+					    <table class="table">
+					    	<thead>
+						    	<tr>
+						    		<th>글 번호</th>
+						    		<th>제목</th>
+						    		<th>작성 날짜</th>
+						    		<th>답변 여부</th>
+						    	</tr>
+					    	</thead>
+					    	<tbody>
+						    	<c:forEach items="${qList}" var="q">
 							    	<tr>
-							    		<th>글 번호</th>
-							    		<th>제목</th>
-							    		<th>작성 날짜</th>
-							    		<th>답변 여부</th>
+							    		<td>${q.qnaNo}</td>
+							    		<td onclick="location.href='${contextPath}/member_QnA_Detail.me?qId=${q.qnaNo }'" class="detail">${q.qnaTitle }</td>
+							    		<td>${q.questionDate }</td>
+							    		<td>
+							    			<c:if test="${q.qnaAnswer eq null }">답변 중</c:if>
+							    			<c:if test="${q.qnaAnswer ne null }">답변 완료</c:if>
+							    		</td>
 							    	</tr>
-							    	</thead>
-							    	<tbody>
-							    	<tr>
-							    		<td>1255</td>
-							    		<td onclick="location.href='editQ&A.jsp';" class="detail">문의합니다.</td>
-							    		<td>2023-04-17(월)</td>
-							    		<td>답변중</td>
-							    	</tr>
-							    	<tr>
-							    		<td>1187</td>
-							    		<td>예약 취소하고 싶어요</td>
-							    		<td>2023-04-16(토)</td>
-							    		<td>답변중</td>
-							    	</tr>
-							    	<tr>
-							    		<td>1125</td>
-							    		<td>회원 탈퇴는 어떻게 하나요?</td>
-							    		<td>2023-04-15(금)</td>
-							    		<td>답변완료</td>
-							    	</tr>
-							    	<tr>
-							    		<td>1112</td>
-							    		<td>결제는 어떻게 하나요?</td>
-							    		<td>2023-04-06(토)</td>
-							    		<td>답변완료</td>
-							    	</tr>
-							    	<tr>
-							    		<td>1110</td>
-							    		<td>집사와 상담은 어떻게 하나요?</td>
-							    		<td>2023-04-01(화)</td>
-							    		<td>답변완료</td>
-							    	</tr>
-							    	</tbody>
-						    	</table>
-						    	<button id="write" onclick="location.href='Q&A.jsp';">문의하기</button>
-					    </div>
-					 </div>
+							    </c:forEach>	
+						    </tbody>
+				    	</table>
+				    	<button id="write" onclick="location.href='${contextPath}/member_QnA_Write.me'">문의하기</button>
+				    	</div>
+				 	</div>
 				</div>
 	         </div>
 	      </div>

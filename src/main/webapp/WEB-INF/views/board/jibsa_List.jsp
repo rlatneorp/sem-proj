@@ -71,15 +71,20 @@
 			</c:forEach>
 			
 			
-			<nav aria-label="Standard pagination example" style="float: right;">
+			<nav aria-label="Standard pagination example" style="float: center;">
 				<ul class="pagination">
           			<li class="page-item">
           				<c:url var="goBack" value="${ loc }">
-          					<c:param name="page" value="${ pi.currentPage-1 }"></c:param>
+          					<c:if test="${ pi.currentPage-1 lt 1 }">
+	          					<c:param name="page" value="1"></c:param>
+          					</c:if>
+          					<c:if test="${ pi.currentPage-1 gt 0 }">
+	          					<c:param name="page" value="${ pi.currentPage-1 }"></c:param>
+          					</c:if>
           				</c:url>
           				<a class="page-link" href="${ goBack }" aria-label="Previous">
           					<span aria-hidden="true">&laquo;</span>
-           			</a>
+           				</a>
           			</li>
           			<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
          				<c:url var="goNum" value="${ loc }">
@@ -89,7 +94,12 @@
           			</c:forEach>
           			<li class="page-item">
           				<c:url var="goNext" value="${ loc }">
-          					<c:param name="page" value="${ pi.currentPage+1 }"></c:param>
+          					<c:if test="${ pi.currentPage+1 gt pi.endPage }">
+	          					<c:param name="page" value="${ pi.endPage }"></c:param>
+          					</c:if>
+          					<c:if test="${ pi.currentPage+1 le pi.endPage }">
+	          					<c:param name="page" value="${ pi.currentPage+1 }"></c:param>
+          					</c:if>
           				</c:url>
           				<a class="page-link" href="${ goNext }" aria-label="Next">
           					<span aria-hidden="true">&raquo;</span>

@@ -7,11 +7,11 @@
 	</select>
 
 	<select id="reviewBoardList" resultMap="boardResultSet">
-    	select *
-		from member
-		    join animal using(member_no)
-            join jibsa_profile using(member_no)
-            join matching using(member_no)
+		select *
+		from member m
+		    join animal a on(a.member_no = m.member_no)
+		    join matching ma on(ma.animal_no = a.animal_no)
+		    join jibsa_profile jp on(jp.member_no = ma.member_no)
 	</select>
 	
 	<resultMap type="Board" id="boardResultSet">
@@ -37,12 +37,12 @@
 		from jibsa_profile
 	</select>
 	
-	<select id="getSelectJibsaProfileList" resultMap="jibsaProfileResultSet">
+	<select id="selectJibsaProfileList" resultMap="jibsaProfileResultSet">
 		select *
 		from jibsa_profile
 			 join jibsa using(member_no)
 <!-- 		where profile_status = 'Y' -->
-		order by member_No desc
+		order by member_no desc
 	</select>
 	
 	<resultMap type="JibsaProfile" id="jibsaProfileResultSet">
@@ -56,36 +56,86 @@
 		<result column="WORK_COUNT" property="workCount"/>
 	</resultMap>
 	
-	<select id="getJibsaInfo" resultMap="jibsaInfoResultSet">
+	<select id="getJibsaInfo" resultMap="jibsaResultSet">
 		select *
 		from jibsa
-		where member_no = #{mId}
+			 join member using(member_no)
+		where member_no = #{mId} and member_status = 'Y'  
+		order by member_no desc
 	</select>
 	
-	<resultMap type="Jibsa" id="jibsaInfoResultSet">
+	<resultMap type="Jibsa" id="jibsaResultSet">
 		<id column="MEMBER_NO" property="memberNo"/>
+		<result column="MEMBER_NAME" property="memberName"/>
 		<result column="JIBSA_GENDER" property="jibsaGender"/>
 		<result column="JIBSA_RRN" property="jibsaRrn"/>
 		<result column="IS_SMOKING" property="isSmoking"/>
-		<result column="WORK_COUNT" property="workCount"/>
 		<result column="WORK_CAREER" property="workCareer"/>
-		<result column="VEHICLE" property="vehicle"/>
 		<result column="AVAILABLE_HOUR" property="availableHour"/>
-		<result column="AVAILABLE_TIMES" property="availableTime"/>
 		<result column="AVAILABLE_AREA" property="availableArea"/>
 		<result column="MOTIVE" property="motive"/>
 		<result column="EXPECTED_SALARY" property="exptectedSalary"/>
-		<result column="IS_PRIVACY" property="isPrivacy"/>
-		<result column="IS_TRUE" property="isTrue"/>
 		<result column="CHAR_ADDRESS" property="charAddress"/>
 		<result column="IS_PRIMIUM" property="isPrimium"/>
 		<result column="PRIMIUM_PAYMENT_DATE" property="primiumPaymentDate"/>
+		<result column="PRIMIUM_END_DATE" property="primiumEndDate"/>
 		<result column="IS_TRAINER" property="isTrainer"/>
 	</resultMap>
 	
 	<select id="getJibsaProfile" resultMap="jibsaProfileResultSet">
 		select *
 		from jibsa_profile
-		where member_no = #{mId}
+			 join member using(member_no)
+		where member_no = #{mId} and member_status = 'Y'
+		
 	</select>
+	
+	<select id="getQnaListCount" resultType="_int">
+		select count(*)
+		from qna
+		where qna_status = 'Y'
+	</select>
+
+	<select id="selectQnaList" resultMap="qnaResultSet">
+		select *
+		from qna
+			 join member using(member_no)
+		where qna_status = 'Y'
+		order by qna_no desc
+	</select>
+	
+	<resultMap type="qna" id="qnaResultSet">
+		<id column="QNA_NO" property="qnaNo"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="QNA_CATEGORY" property="qnaCategory"/>
+		<result column="QNA_TITLE" property="qnaTitle"/>
+		<result column="QNA_CONTENT" property="qnaContent"/>
+		<result column="QUESTION_DATE" property="questionDate"/>
+		<result column="QNA_ANSWER" property="qnaAnswer"/>
+		<result column="ANSWER_DATE" property="answerDate"/>
+		<result column="QNA_STATUS" property="qnaStatus"/>
+	</resultMap>	
+	
+	<select id="selectFaqList" resultMap="faqResultSet">
+		select *
+		from faq
+			 join member on(member_no = faq_writer)
+		where faq_status = 'Y'
+		order by faq_no desc
+	</select>
+	
+	<resultMap type="faq" id="faqResultSet">
+		<id column="FAQ_NO" property="faqNo"/>
+		<result column="MEMBER_NAME" property="faqWriter"/>
+		<result column="FAQ_TITLE" property="faqTitle"/>
+		<result column="FAQ_CONTENT" property="faqContent"/>
+		<result column="FAQ_CREATE_DATE" property="faqCreateDate"/>
+		<result column="FAQ_STATUS" property="faqStatus"/>
+	</resultMap>	
+	
+	
+	
+	
+	
 </mapper>
