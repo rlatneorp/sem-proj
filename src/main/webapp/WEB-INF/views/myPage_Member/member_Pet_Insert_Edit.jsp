@@ -90,7 +90,7 @@ body {
     							  	<input type="text" name="name" value="${ animal.animalName }" style="width: 400px; height: 35px;"/>
     							  	<br><br><br>
     							  	
-    							  	<p class="sel">2. '코코'는</p>
+    							  	<p class="sel">2. ${ animal.animalName }는</p>
     							  	<label for="dog">
     							  		<input type="radio" name="breed" class="rad" id="dog" <c:if test="${ animal.animalKind == '강아지' }">checked</c:if>> 강아지
     							  	</label>
@@ -117,21 +117,21 @@ body {
     							  	</label>
     							  	<br><br><br>
     							  	
-    							  	<p class="sel">3. '코코'의 성별</p>
+    							  	<p class="sel">3. ${ animal.animalName }의 성별</p>
     							  	<input type="radio" name="gender" id="M" <c:if test="${ animal.animalGender == 'M' }">checked</c:if>><label for="M">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;&nbsp;
     							  	<input type="radio" name="gender" id="F" <c:if test="${ animal.animalGender == 'F' }">checked</c:if>><label for="F">&nbsp;여자</label>
     							  	<br><br><br>
     							  	
-    							  	<p class="sel">4. '코코'는 중성화수술</p>
+    							  	<p class="sel">4. ${ animal.animalName }는 중성화수술</p>
     							  	<input type="radio" name="surgery" id="ok" <c:if test="${ animal.isNeuter == 'Y' }">checked</c:if>><label for="ok">&nbsp;했어요</label>&nbsp;
     							  	<input type="radio" name="surgery" id="nok" <c:if test="${ animal.isNeuter == 'N' }">checked</c:if>><label for="nok">&nbsp;안했어요</label>
     							  	<br><br><br>
     							  	
-    							  	<p class="sel">5. '코코'의 생일</p>
+    							  	<p class="sel">5. ${ animal.animalName }의 생일</p>
     							  	<input type="date" name="date" style="width: 120px;" value="${ animal.birthDate }">
     							  	<br><br><br>
     							  	
-    							  	<p class="sel">6. '코코'의 몸무게</p>
+    							  	<p class="sel">6. ${ animal.animalName }의 몸무게</p>
     							  	<input type="text" name="kg" value="${ animal.animalWeight }"> kg
     							  	<br><br><br>
     							  	

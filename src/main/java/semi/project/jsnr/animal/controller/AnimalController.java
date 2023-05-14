@@ -41,12 +41,16 @@ public class AnimalController {
 	}
 	
 	@PostMapping("updateAnimal.me")
-	public String updateAnimal(@ModelAttribute Animal a, Model model) {
+	public String updateAnimal(@ModelAttribute Animal a, Model model, HttpSession session) {
+		System.out.println(a);
 		
 		int result = aService.updateAnimal(a);
 		
+		System.out.println(a);
+		System.out.println(result);
+		
 		if(result > 0) {
-			model.addAttribute("animal", result);
+			model.addAttribute("animal", aService.animalEditList(a));
 			return "redirect:member_User_Info.me";
 		} else {
 			throw new AnimalException("동물 정보 수정에 실패하였습니다.");
