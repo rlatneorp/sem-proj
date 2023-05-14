@@ -15,8 +15,8 @@ public class AnimalDAO {
 		return sqlSession.selectOne("AnimalMapper.animalList", memberNo);
 	}
 	
-	public int insertAnimal(SqlSessionTemplate sqlSession, Animal a) {
-		return sqlSession.insert("AnimalMapper.insertAnimal", a);
+	public int updateAnimal(SqlSessionTemplate sqlSession, Animal a) {
+		return sqlSession.update("AnimalMapper.updateAnimal", a);
 	}
 
 	

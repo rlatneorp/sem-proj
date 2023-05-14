@@ -9,7 +9,7 @@ public interface AnimalService {
 	
 	Animal animalList(int memberNo);
 
-	int insertAnimal(Animal a);
+	int updateAnimal(Animal a);
 	
 
 }

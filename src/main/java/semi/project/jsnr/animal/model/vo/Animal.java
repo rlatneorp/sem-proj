@@ -8,9 +8,13 @@ public class Animal {
 	private double animalWeight;
 	private String animalNote;
 	private int memberNo;
-	
+	private String animalType;
+	private String animalSize;
+	private String isNeuter;
+	private String birthDate;
+
 	public Animal(int animalNo, String animalName, String animalGender, String animalKind, double animalWeight,
-			String animalNote, int memberNo) {
+			String animalNote, int memberNo, String animalType, String animalSize, String isNeuter, String birthDate) {
 		super();
 		this.animalNo = animalNo;
 		this.animalName = animalName;
@@ -19,6 +23,10 @@ public class Animal {
 		this.animalWeight = animalWeight;
 		this.animalNote = animalNote;
 		this.memberNo = memberNo;
+		this.animalType = animalType;
+		this.animalSize = animalSize;
+		this.isNeuter = isNeuter;
+		this.birthDate = birthDate;
 	}
 
 	public int getAnimalNo() {
@@ -76,13 +84,45 @@ public class Animal {
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
+	
+	public String getAnimalType() {
+		return animalType;
+	}
+
+	public void setAnimalType(String animalType) {
+		this.animalType = animalType;
+	}
+
+	public String getAnimalSize() {
+		return animalSize;
+	}
+
+	public void setAnimalSize(String animalSize) {
+		this.animalSize = animalSize;
+	}
+
+	public String getIsNeuter() {
+		return isNeuter;
+	}
+
+	public void setIsNeuter(String isNeuter) {
+		this.isNeuter = isNeuter;
+	}
+
+	public String getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
 
 	@Override
 	public String toString() {
 		return "Animal [animalNo=" + animalNo + ", animalName=" + animalName + ", animalGender=" + animalGender
 				+ ", animalKind=" + animalKind + ", animalWeight=" + animalWeight + ", animalNote=" + animalNote
-				+ ", memberNo=" + memberNo + "]";
+				+ ", memberNo=" + memberNo + ", animalType=" + animalType + ", animalSize=" + animalSize + ", isNeuter="
+				+ isNeuter + ", birthDate=" + birthDate + "]";
 	}
-	
 	
 }
