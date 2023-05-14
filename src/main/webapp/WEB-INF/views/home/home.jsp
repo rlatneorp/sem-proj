@@ -146,11 +146,9 @@
 		  padding: 20px;
 		}
 		
-		.video-container iframe {
-		  max-width: 800px;
-		  width: 100%;
-		  height: 475px;
-		}
+        #videoStyle{
+          border-radius: 20px;
+        }
 	</style>
 </head>
 <body>
@@ -250,7 +248,7 @@
 	</div>
 	
 	<div class="video-container">
-	  <iframe width="560" height="315" src="resources/video/short.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	  <video id="videoStyle" width="720" height="405" src="resources/video/short.mp4" loop="loop" title="YouTube video player" autoplay="autoplay" muted="muted"></video>
 	</div>
 	
 `	<%@ include file="../common/bottom.jsp" %>
