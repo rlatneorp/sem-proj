@@ -20,8 +20,8 @@ public class AnimalServiceImpl implements AnimalService {
 	private AnimalDAO aDAO;
 	
 	@Override
-	public ArrayList<Animal> AnimalList(int memberNo) {
-		return aDAO.AnimalList(sqlSession, memberNo);
+	public Animal animalList(int memberNo) {
+		return aDAO.animalList(sqlSession, memberNo);
 	}
 	
 	@Override

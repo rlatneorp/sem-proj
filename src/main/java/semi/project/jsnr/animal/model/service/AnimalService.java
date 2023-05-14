@@ -7,7 +7,7 @@ import semi.project.jsnr.animal.model.vo.Animal;
 
 public interface AnimalService {
 	
-	ArrayList<Animal> AnimalList(int memberNo);
+	Animal animalList(int memberNo);
 
 	int insertAnimal(Animal a);
 	
