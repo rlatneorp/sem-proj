@@ -1,6 +1,7 @@
 package semi.project.jsnr.member.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -42,6 +43,18 @@ public class MemberDAO {
 
 	public int insertQna(SqlSessionTemplate sqlSession, Qna q) {
 		return sqlSession.insert("memberMapper.insertQna", q);
+	}
+
+	public int checkMemberId(SqlSessionTemplate sqlSession, String memberId) {
+		return sqlSession.selectOne("memberMapper.checkMemberId", memberId);
+	}
+
+	public int updateInfo(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.updateInfo", m);
+	}
+
+	public int updatePwd(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.update("memberMapper.updatePwd", map);
 	}
 
 }

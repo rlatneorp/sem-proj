@@ -3,20 +3,25 @@ package semi.project.jsnr.member.controller;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Base64.Decoder;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
 import semi.project.jsnr.common.Pagination;
 import semi.project.jsnr.common.model.vo.PageInfo;
+import semi.project.jsnr.member.model.exception.MemberException;
 import semi.project.jsnr.member.model.service.MemberService;
 import semi.project.jsnr.member.model.vo.Member;
 
@@ -27,17 +32,15 @@ public class MemberController {
 	@Autowired
 	private MemberService mService;
 	
-	@GetMapping("myPage.me")
-	public String myPage() {
-		return "member_User_Info";
-	}
+	@Autowired
+	private BCryptPasswordEncoder bcrypt;
 	
-	@GetMapping("reservation.me")
+	@GetMapping("member_reservation.me")
 	public String reservation() {
 		return "member_Reservation_Main";
 	}
 	
-	@GetMapping("serviceCenter.me")
+	@GetMapping("member_serviceCenter.me")
 	public String serviceCenter(@RequestParam(value="page", required=false) Integer page,
 								@ModelAttribute("loginUser") Member m,
 								Model model) {
@@ -148,8 +151,57 @@ public class MemberController {
 		}
 	}
 	
+	@GetMapping("member_editInfo.me")
+	public String member_editInfo() {
+		return "member_Edit";
+	}
 	
+	@GetMapping("member_checkMemberId.me")
+	@ResponseBody
+	public String member_checkMemberId(@RequestParam("memberId") String memberId) {
+		int count = mService.checkMemberId(memberId);
+		
+		String result = count == 0 ? "yes" : "no";
+		
+		return result;
+	}
 	
+	@RequestMapping("member_updateInfo.me")
+	public String member_updateInfo(@ModelAttribute Member m, Model model) {
+		int result = mService.updateInfo(m);
+		System.out.println(result);
+		
+		if(result > 0) {
+			Member updateMember = mService.login(m);
+			model.addAttribute("loginUser", updateMember);
+			
+			return "redirect:member_editInfo.me";
+		} else {
+			return "";
+//			throw new MemberException("정보 수정에 실패하였습니다.");
+		}
+	}
 	
+	@RequestMapping("member_updatePwd.me")
+	public String member_updatePwd(@RequestParam("memberPwd") String pwd, 
+								   @RequestParam("memberNewPwd") String newpwd, Model model,
+								   @ModelAttribute Member m) {
+		if(bcrypt.matches(pwd, m.getMemberPwd())) {
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("memberId", m.getMemberId());
+			map.put("newPwd", bcrypt.encode(newpwd));
+			int result = mService.updatePwd(map);
+			if(result > 0) {
+				Member update = mService.login(m);
+				model.addAttribute("loginUser", update);
+				
+				return "redirect:member_editInfo.me";
+			} else {
+				throw new MemberException("비밀번호 변경에 실패하였습니다.");
+			}
+		} else {
+			throw new MemberException("비밀번호 수정에 실패하였습니다");
+		}
+	}
 	
 }

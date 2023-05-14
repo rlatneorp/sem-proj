@@ -30,6 +30,7 @@ public class AnimalController {
 		
 		Animal animal = aService.animalList(memberNo); // 해당 유저가 등록한 동물 정보 가져오기
 		model.addAttribute("animal", animal);
+		model.addAttribute("loginUser", loginUser);
 
 		return "member_User_Info";
 	}

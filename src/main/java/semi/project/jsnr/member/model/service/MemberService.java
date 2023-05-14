@@ -1,6 +1,9 @@
 package semi.project.jsnr.member.model.service;
 
-import java.util.ArrayList;import org.apache.ibatis.session.SqlSessionManager;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.apache.ibatis.session.SqlSessionManager;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,5 +52,17 @@ public class MemberService {
 
 	public int insertQna(Qna q) {
 		return mDAO.insertQna(sqlSession, q);
+	}
+
+	public int checkMemberId(String memberId) {
+		return mDAO.checkMemberId(sqlSession, memberId);
+	}
+
+	public int updateInfo(Member m) {
+		return mDAO.updateInfo(sqlSession, m);
+	}
+
+	public int updatePwd(HashMap<String, String> map) {
+		return mDAO.updatePwd(sqlSession, map);
 	}
 }

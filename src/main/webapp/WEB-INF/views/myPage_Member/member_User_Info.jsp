@@ -111,18 +111,18 @@ body {
 		                        <table class="info">
 		                            <tr>
 		                                <td class="bold">이름</td>
-		                                <td class="nbold">홍길동</td>
+		                                <td class="nbold">${ loginUser.memberName }</td>
 		                            </tr>
 		                            <tr>
 		                                <td class="bold">연락처</td>
-		                                <td class="nbold">010-1010-1010</td>
+		                                <td class="nbold">${ loginUser.memberPhone }</td>
 		                            </tr>
 		                            <tr>
 		                                <td class="bold">찾아갈 주소</td>
-		                                <td class="nbold">서울시 중구 남대문로1</td>
+		                                <td class="nbold">${ loginUser.memberAddress }</td>
 		                            </tr>
 		                        </table><br>
-		                        <button class="inbtn" onclick="location.href='edit.jsp';">수정하기</button>
+		                        <button class="inbtn" onclick="location.href='${contextPath}/member_editInfo.me'">수정하기</button>
 		                    </div>
 				    </div>
 				  </div>

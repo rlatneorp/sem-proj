@@ -85,5 +85,24 @@
 		insert into qna
 		values(seq_b_id.nextval, #{memberNo}, #{qnaCategory}, #{qnaTitle}, #{qnaContent}, default, null, null, default)
 	</insert>
+	
+	<select id="checkMemberId" resultType="_int">
+		select count(*)
+		from member
+		where member_id = #{memberId}
+	</select>
+	
+	<update id="updateInfo">
+		update member
+		set member_id = #{memberId}, member_name = #{memberName}, member_email = #{memberEmail},
+			member_phone = #{memberPhone}, member_address = #{memberAddress}
+		where member_no = #{memberNo}
+	</update>
+	
+	<update id="updatePwd">
+		update member
+		set member_pwd = #{newPwd}
+		where member_id = #{memberId}
+	</update>
 
 </mapper>
