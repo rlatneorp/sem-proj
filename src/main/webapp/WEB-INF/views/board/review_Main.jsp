@@ -47,9 +47,9 @@
 	.row.parent {
  		 padding: 3px;
 	}
-	.col {
+	.col{
 			border: 0.5px solid rgb(26, 188, 156);
-			padding: 18px;
+			padding: 30px;
 			margin: 10px;
 			border-radius: 30px;
 	}
@@ -98,7 +98,7 @@
 		<br><br><br>
 		<h1>이용 후기</h1>
 		
-	</div>
+	
 	
 	<div class="container">
 	<select>
@@ -108,14 +108,13 @@
 	</select>
 	</div>
 	
-	<div class="container text-left">
-	<c:forEach items="${ list }" var="n">
-		<c:if test="${ n.isJibsa.equalsIgnoreCase('n')}">
+	<div class="container text-left" >
 	  <div class="row">
+		<c:forEach items="${ list }" var="n">
 		  	<div class="col">
 			    <div class="review">
 				  <div class="profile">
-					  <img src="images/eunbee1.jpg">
+					  <img src="resources/image/profile.png">
 					  	<div class="username">${ n.memberName }</div>
 					  </div>
 					  <div class="info">
@@ -124,10 +123,10 @@
 				  </div>
 				</div>
 			</div>	
+		</c:forEach>
 	  	</div>
-	  	</c:if>
-	</c:forEach>
-	  
+	  </div>
+	</div>
 	  <div class="row">
 		  				
 			<div class="pagingArea" align="center">

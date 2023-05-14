@@ -27,7 +27,7 @@ public class BoardController {
 	@Autowired
 	private BoardService bService;
 	
-	@GetMapping("reviewMain.bo")
+	@GetMapping("review_Main.bo")
 	public String reviewBoardList(@RequestParam(value="page", required=false) Integer currentPage, Model model) {
 		
 		if(currentPage == null) {

@@ -7,11 +7,11 @@
 	</select>
 
 	<select id="reviewBoardList" resultMap="boardResultSet">
-    	select *
-		from member
-		    join animal using(member_no)
-            join jibsa_profile using(member_no)
-            join matching using(member_no)
+		select *
+		from member m
+		    join animal a on(a.member_no = m.member_no)
+		    join matching ma on(ma.animal_no = a.animal_no)
+		    join jibsa_profile jp on(jp.member_no = ma.member_no)
 	</select>
 	
 	<resultMap type="Board" id="boardResultSet">
