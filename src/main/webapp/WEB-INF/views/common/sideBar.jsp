@@ -132,7 +132,7 @@
 	        <div id="sidebar-wrapper">
 				<ul class="sidebar-nav">
 					<li class="sidebar-brand">마이페이지</li>
-			  		<li><label onclick="location.href='${contextPath}/myPage.me';" class="lab">내 정보</label><hr></li>
+			  		<li><label onclick="location.href='${contextPath}/member_User_Info.me';" class="lab">내 정보</label><hr></li>
 					<li><label class="lab" onclick="location.href='${contextPath}/member_reservation.me';">예약 관리</label><hr></li>
 					<li><label class="lab" onclick="location.href='${contextPath}/member_serviceCenter.me';">고객센터</label></li>
 					<li class="bot"><label for="inbtn1" style="cursor: pointer;">집사로 전환하기</label>

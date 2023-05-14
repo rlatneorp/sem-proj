@@ -166,21 +166,21 @@ public class MemberController {
 		return result;
 	}
 	
-	@RequestMapping("member_updateInfo.me")
-	public String member_updateInfo(@ModelAttribute Member m, Model model) {
-		int result = mService.updateInfo(m);
-		System.out.println(result);
-		
-		if(result > 0) {
-			Member updateMember = mService.login(m);
-			model.addAttribute("loginUser", updateMember);
-			
-			return "redirect:member_editInfo.me";
-		} else {
-			return "";
-//			throw new MemberException("정보 수정에 실패하였습니다.");
-		}
-	}
+//	@RequestMapping("member_updateInfo.me")
+//	public String member_updateInfo(@ModelAttribute Member m, Model model) {
+//		int result = mService.updateInfo(m);
+//		System.out.println(result);
+//		
+//		if(result > 0) {
+//			Member updateMember = mService.login(m);
+//			model.addAttribute("loginUser", updateMember);
+//			
+//			return "redirect:member_editInfo.me";
+//		} else {
+//			return "";
+////			throw new MemberException("정보 수정에 실패하였습니다.");
+//		}
+//	}
 	
 	@RequestMapping("member_updatePwd.me")
 	public String member_updatePwd(@RequestParam("memberPwd") String pwd, 
