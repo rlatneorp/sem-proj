@@ -15,11 +15,17 @@
 		<result column="ANIMAL_WEIGHT" property="animalWeight" />
 		<result column="ANIMAL_NOTE" property="animalNote" />
 		<result column="MEMBER_NO" property="memberNo" />
+		<result column="ANIMAL_TYPE" property="animalType" />
+		<result column="ANIMAL_SIZE" property="animalSize" />
+		<result column="IS_NEUTER" property="isNeuter" />
+		<result column="BIRTH_DATE" property="birthDate" />
 	</resultMap>
 
-	<insert id="insertAnimal">
-		insert into animal
-		values(#{animalName}, #{animalGender}, #{animalKind}, #{animalWeight}, #{animalNote})
-	</insert>
+	<update id="updateAnimal">
+		update animal
+		set animal_name = #{animalName}, animal_gender = #{animalGender}, animal_kind = #{animalKind}, animal_weight = #{animalWeight},
+			animal_note = #{animalNote}, animal_type = #{animalType}, animal_size = #{animalSize}, is_neuter = #{isNeuter}, birth_date = #{birthDate}
+		where member_no = #{memberNo}
+	</update>
 	
 </mapper>

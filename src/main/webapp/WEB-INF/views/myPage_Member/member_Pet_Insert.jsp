@@ -81,12 +81,15 @@ body {
 					  <h6 style="margin-right: 46%;">반려동물의 정보를 추가하세요!</h6><br>
 					      	<div class="insert">
 					      		<form action="${ contextPath }/insertAnimal.me" method="POST">
+					      		
 					      			<p class="sel">1. 반려동물 사진</p>
 					      			<div id="img"></div>
     							  	<input class="form-control" type="file" accept="image/*" id="formFile">
     							  	<br>
+    							  	
     							  	<input type="text" name="name" placeholder="이름 ex.코코" style="width: 400px; height: 35px;"/>
     							  	<br><br><br>
+    							  	
     							  	<p class="sel">2. '코코'는</p>
     							  	<label for="dog">
     							  		<input type="radio" name="breed" class="rad" id="dog"> 강아지
@@ -113,23 +116,29 @@ body {
     							  		<input type="text" name="other" value="ex. 토끼 등"/>
     							  	</label>
     							  	<br><br><br>
+    							  	
     							  	<p class="sel">3. '코코'의 성별</p>
     							  	<input type="radio" name="gender" id="M"><label for="M">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;&nbsp;
     							  	<input type="radio" name="gender" id="F"><label for="F">&nbsp;여자</label>
     							  	<br><br><br>
+    							  	
     							  	<p class="sel">4. '코코'는 중성화수술</p>
     							  	<input type="radio" name="surgery" id="ok"><label for="ok">&nbsp;했어요</label>&nbsp;
     							  	<input type="radio" name="surgery" id="nok"><label for="nok">&nbsp;안했어요</label>
     							  	<br><br><br>
+    							  	
     							  	<p class="sel">5. '코코'의 생일</p>
     							  	<input type="date" name="date" style="width: 120px;">
     							  	<br><br><br>
+    							  	
     							  	<p class="sel">6. '코코'의 몸무게</p>
     							  	<input type="text" name="kg"> kg
     							  	<br><br><br>
+    							  	
     							  	<p class="sel">7. 참고사항</p>
     							  	<textarea cols="50" rows="10" style="resize: none" name="content"></textarea>
     							  	<br><br><br>
+    							  	
 									<button type="submit" id="btn">등록하기</button>
 					      		</form>
 					      	</div>
@@ -141,6 +150,7 @@ body {
 			const dbtn = document.getElementById('dog');
 			const cbtn = document.getElementById('cat');
 			const obtn = document.getElementById('other');
+			
 			const div = document.getElementsByClassName('hide');
 			
 			div[0].style.display = 'none';
@@ -162,6 +172,7 @@ body {
 				div[0].style.display = 'none';
 				div[1].style.display = 'none';
 			});
+
 			
 			const input = document.getElementById('formFile');
 			const imgDiv = document.getElementById('img');
