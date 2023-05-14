@@ -170,6 +170,27 @@
 	</div>
 	<br><br><br>
 <jsp:include page="../common/bottom.jsp"/>
+
+
+		<div class="modal fade" tabindex="-1" role="dialog" id="modalChoice">
+			<div class="modal-dialog" role="document">
+	    		<div class="modal-content rounded-3 shadow">
+	      			<div class="modal-body p-4 text-center">
+	        			<h3 class="mb-0">정말로 삭제하시겠습니까?</h3>
+	        			<p class="mb-0">삭제 후 게시글은 복구할 수 없습니다.</p>
+	      			</div>
+	      			<div class="modal-footer flex-nowrap p-0">
+	        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end" onclick="location.href='${contextPath}/delete.bo?bId='+btoa(${b.boardId})">
+	        				<strong>네</strong>
+	        			</button>
+	        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">아니오</button>
+	      			</div>
+	    		</div>
+	  		</div>
+		</div>	
+		
+		
+		
 	<script>
 		window.onload = () =>{ 
 			const reBtns = document.querySelectorAll('[class^="reBtn"]');

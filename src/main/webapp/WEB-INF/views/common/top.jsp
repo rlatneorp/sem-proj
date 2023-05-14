@@ -36,7 +36,7 @@
 		.btjipsa{width: 138px; height: 58px; background: rgb(26, 188, 156); border-style: none; border-radius: 4px;}
 		.topLoginCont{width: 1200px; max-width: none !important; margin: 0 auto;}
 		.logo{width: 160px;}
-		.menu1{font-size: 23px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; margin: 10px; color: rgb(51, 51, 51); text-decoration: none;}
+		.menu1{font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; margin: 10px; color: rgb(51, 51, 51); text-decoration: none;}
 		.menu2{font-size: 23px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; color: rgb(51, 51, 51); text-decoration: none; justify-content: unset;}
 		.left{margin-left: 5%; display: inline;}
 		#right{margin-left: 18%; display: inline;}
@@ -87,6 +87,14 @@
 					<button onclick="dp_menu()" class="butn"><img src="resources/image/down.png"></button>
 				    <div style="width: 230px; height: 390px;" id="drop-c">
 				    	<ul id="droul">
+				    	<c:if test="${ loginUser.isAdmin eq 'Y' }">
+					       <li><a class="name">${ loginUser.memberName }관리자</a></li>
+					       <li><a><hr></a></li>
+					       <li><a class="myMenu" href="${ contextPath }/admin_Main.ad">관리자페이지</a></li>
+					       <li><a><button onclick="location.href='${contextPath}/logout.do'" id="logOut">로그아웃</button></a></li>
+				    	</c:if>
+				    	
+				    	<c:if test="${ loginUser.isAdmin eq 'N' }">
 					       <li><a class="name">${ loginUser.memberName }님</a></li>
 					       <li><a class="animal" style="display: block; float:left;">고양이</a><a class="animal">시암</a></li>
 					       <li><a class="animal">미돌이</a></li>
@@ -95,6 +103,7 @@
 					       <li><a class="myMenu">프로필 설정</a></li>
 				  		   <li><a href="${contextPath}/enrollJibsa.js"><button class="btjipsa menu2" id = "btjibsa_apply" >집사 지원</button></a></li>
 					       <li><a><button onclick="location.href='${contextPath}/logout.do'" id="logOut">로그아웃</button></a></li>
+				    	</c:if>
 				        </ul>
 				    </div>
 			  	 </div>

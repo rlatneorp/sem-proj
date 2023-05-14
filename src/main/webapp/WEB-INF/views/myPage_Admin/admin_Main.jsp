@@ -13,6 +13,9 @@
 		<h2>admin 임시 링크</h2>
 	
 		<div class="col-12 mb-5">
+			<a href="${ contextPath }/admin_FAQ.ad" class="btn btn-primary text-decoration-none fs-4">admin_FAQ</a>
+		</div>
+		<div class="col-12 mb-5">
 			<a href="${ contextPath }/adminModifyJibsa.ad" class="btn btn-primary text-decoration-none fs-4">adminModifyJibsa</a>
 		</div>
 		<div class="col-12 mb-5">

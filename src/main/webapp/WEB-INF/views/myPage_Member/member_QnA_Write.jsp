@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>후기 작성</title>
+<title>문의 작성</title>
 <style>
-	#reviewForm{
+	Form{
 		width: 700px;
 		margin: 0 auto;
 		text-align: left;
@@ -30,24 +30,26 @@
 	        	<div class="container text-center">
 	        		<h4 style="margin-right: 600px;"><b>문의 하기</b></h4>
 	        		<br><br>
-		        	<form method="post" id="reviewForm">
-		        		<select name="gubun">
-		        			<option>문의</option>
-		        			<option>신고</option>
+		        	<form method="post" action="member_QnA_Insert.me">
+		        		<input type="hidden" name="memberNo" value="${loginUser.memberNo }">
+		        		<select name="qnaCategory">
+	        				<option selected>문의</option>
+	        				<option>신고</option>
 		        		</select>
 		        		<br><br>
 				        <div class="form-group">
-				              <label for="exampleFormControlInput1">제목</label><br><br>
-				            <input type="text" class="form-control" id="exampleFormControlInput1" name="title" value="문의합니다.">
+			              	<label for="exampleFormControlInput1">제목</label><br><br>
+			            	<input type="text" class="form-control" id="exampleFormControlInput1" name="qnaTitle" placeholder="제목을 작성해주세요.">
 				        </div>
 				        <br>
 				        <div class="form-group">
 				            <label for="exampleFormControlTextarea1">내용</label><br><br>
-				            <textarea class="form-control" id="exampleFormControlTextarea1" name="contents" rows="10" style="resize: none">문의문의합니다.</textarea>
+				            <textarea class="form-control" id="exampleFormControlTextarea1" name="qnaContent" rows="10" style="resize: none"></textarea>
 				        </div>
+				        <div class="text-center">
+				    		<button class="subbtn">문의하기</button>
+				    	</div>
 				    </form>
-				    <button class="subbtn" onclick="location.href='serviceCenter.jsp';">수정하기</button>
-				    <button class="subbtn" onclick="location.href='serviceCenter.jsp';">삭제하기</button>
 	        	</div>
 			</div>
 	    </div>

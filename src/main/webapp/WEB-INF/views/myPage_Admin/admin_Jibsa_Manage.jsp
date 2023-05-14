@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,8 @@
 </style>
 </head>
 <body>
-
+	<%@ include file="../common/top.jsp" %>
+	<%@ include file="../common/adminSideBar.jsp" %>
 	<div id="wrapper" class="toggled">
         <div id="page-content-wrapper">
 	    	<div class="container-fluid">
@@ -38,58 +40,82 @@
 					    <div class="tablediv">
 						    <table class="table">
 						    	<thead>
-						    	<tr>
-						    		<th>회원 번호</th>
-						    		<th>이름</th>
-						    		<th>아이디</th>
-						    		<th>등록 동물 수</th>
-						    		<th>가입 날짜</th>
-						    		<th>신고내역</th>
-						    	</tr>
+							    	<tr>
+							    		<th>회원 번호</th>
+							    		<th>이름</th>
+							    		<th>지원서 제출여부</th>
+							    		<th>희망시급</th>
+							    		<th>프리미엄가입</th>
+							    		<th>프리미엄가입일자</th>
+							    		<th>프리미엄종료일자</th>
+							    		<th>분류</th>
+							    	</tr>
 						    	</thead>
 						    	<tbody>
-						    	<tr>
-						    		<td>1255</td>
-						    		<td >장현지</td>
-						    		<td>kkkkkk</td>
-						    		<td>2</td>
-						    		<td>2023-04-17(월)</td>
-						    		<td>신고됨</td>
-						    	</tr>
-						    	<tr>
-						    		<td>1255</td>
-						    		<td >이환희</td>
-						    		<td>kkkkkk</td>
-						    		<td>2</td>
-						    		<td>2023-04-17(월)</td>
-						    		<td></td>
-						    	</tr>
-						    	<tr>
-						    		<td>1255</td>
-						    		<td >엄수민</td>
-						    		<td>kkkkkk</td>
-						    		<td>2</td>
-						    		<td>2023-04-17(월)</td>
-						    		<td></td>
-						    	</tr>
-						    	<tr>
-						    		<td>1255</td>
-						    		<td >신다온</td>
-						    		<td>kkkkkk</td>
-						    		<td>2</td>
-						    		<td>2023-04-17(월)</td>
-						    		<td></td>
-						    	</tr>
-						    	<tr>
-						    		<td>1255</td>
-						    		<td >김수대</td>
-						    		<td>kkkkkk</td>
-						    		<td>2</td>
-						    		<td>2023-04-17(월)</td>
-						    		<td>신고됨</td>
-						    	</tr>
+						    		<c:forEach items="${jList}" var="j">
+								    	<tr>
+								    		<td>${j.memberNo}</td>
+								    		<td>${j.memberName}</td>
+								    		<td>
+								    			<c:if test="${j.motive eq null}"></c:if>
+								    			<c:if test="${j.motive ne null}">제출완료</c:if>
+								    		</td>
+								    		<td>${j.exptectedSalary}</td>
+								    		<td>
+								    			<c:if test="${j.isPrimium eq 'Y'}">가입</c:if>
+								    			<c:if test="${j.isPrimium eq 'Y'}"></c:if>
+								    		</td>
+								    		<td>${j.primiumPaymentDate}</td>
+								    		<td>${j.primiumEndDate}</td>
+								    		<td>
+								    			<c:if test="${j.isTrainer eq 'Y'}">훈련사</c:if>
+								    			<c:if test="${j.isTrainer ne 'Y'}">집사</c:if>
+								    		</td>
+								    	</tr>
+							    	</c:forEach>
 						    	</tbody>
 					    	</table>
+					    	
+					    	
+					    	<div>
+								<nav aria-label="Standard pagination example" style="float: center;">
+									<ul class="pagination text-center">
+					          			<li class="page-item">
+					          				<c:url var="goBack" value="${ loc }">
+					          					<c:if test="${ pi.currentPage-1 lt 1 }">
+						          					<c:param name="page" value="1"></c:param>
+					          					</c:if>
+					          					<c:if test="${ pi.currentPage-1 gt 0 }">
+						          					<c:param name="page" value="${ pi.currentPage-1 }"></c:param>
+					          					</c:if>
+					          				</c:url>
+					          				<a class="page-link" href="${ goBack }" aria-label="Previous">
+					          					<span aria-hidden="true">&laquo;</span>
+					           				</a>
+					          			</li>
+					          			<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+					         				<c:url var="goNum" value="${ loc }">
+					         					<c:param name="page" value="${ p }"></c:param>
+					         				</c:url>
+					          				<li class="page-item"><a class="page-link" href="${ goNum }">${ p }</a></li>
+					          			</c:forEach>
+					          			<li class="page-item">
+					          				<c:url var="goNext" value="${ loc }">
+					          					<c:if test="${ pi.currentPage+1 gt pi.endPage }">
+						          					<c:param name="page" value="${ pi.endPage }"></c:param>
+					          					</c:if>
+					          					<c:if test="${ pi.currentPage+1 le pi.endPage }">
+						          					<c:param name="page" value="${ pi.currentPage+1 }"></c:param>
+					          					</c:if>
+					          				</c:url>
+					          				<a class="page-link" href="${ goNext }" aria-label="Next">
+					          					<span aria-hidden="true">&raquo;</span>
+					          				</a>
+					          			</li>
+					   				</ul>
+					     		</nav>
+				     		</div>
+				     		
 					    </div>
 					</div>
 	            </div>

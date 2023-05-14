@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,14 +41,14 @@ h4 { display: inline-block; margin-left: 25%; font-weight: 700;}
 	<br>
 	
 	<div id="wrapper" class="toggled">
-	    	<div id="page-content-wrapper">
-	        	<div class="container text-center">
-				  <div class="row align-items-center">
-				  <jsp:include page="../common/adminSideBar.jsp"/>
-				  </div>
+		<div id="page-content-wrapper">
+			<div class="container text-center">
+				<div class="row align-items-center">
+					<jsp:include page="../common/adminSideBar.jsp"/>
 				</div>
-	    	</div>
-		</div>
+			</div>
+	   	</div>
+	</div>
 	
 	<br>
 	
@@ -56,54 +57,32 @@ h4 { display: inline-block; margin-left: 25%; font-weight: 700;}
 	<br><br><br><br><br>
 	
 	<h4>1:1문의 관리</h4>
-	<button id="btn"><a href="${ contextPath }/QnA_list.me">전체 내역 보기</a></button>
+	<button id="btn"><a href="${ contextPath }/qna_List.bo">전체 내역 보기</a></button>
 	
 	<br><br>
-	
+		
 	<div class="area" id="area3">
-			<table class="table">
-			  <thead>
-			    <tr>
-			      <th scope="col">글번호</th>
-			      <th scope="col">제목</th>
-			      <th scope="col">작성자</th>
-			      <th scope="col">작성일</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td><a href="${ contextPath }/QnA_detail.me">문의합니다</a></td>
-			      <td>강건강</td>
-			      <td>2023 - 04 - 22</td>
-			    </tr>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>문의합니다</td>
-			      <td>강건강</td>
-			      <td>2023 - 04 - 22</td>
-			    </tr>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>문의합니다</td>
-			      <td>강건강</td>
-			      <td>2023 - 04 - 22</td>
-			    </tr>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>문의합니다</td>
-			      <td>강건강</td>
-			      <td>2023 - 04 - 22</td>
-			    </tr>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>문의합니다</td>
-			      <td>강건강</td>
-			      <td>2023 - 04 - 22</td>
-			    </tr>
-			  </tbody>
-			</table>		
-		</div>
+		<table class="table">
+			<thead>
+				<tr>
+				<th scope="col">글번호</th>
+				<th scope="col">제목</th>
+				<th scope="col">작성자</th>
+				<th scope="col">작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${ qList }" var ="q">
+					<tr>
+						<th scope="row">${ q.qnaNo }</th>
+						<td><a href="${ contextPath }/QnA_detail.me?bId="${q.qnaNo }>${q.qnaTitle }</a></td>
+						<td>${q.memberName }</td>
+						<td>${q.questionDate }</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>		
+	</div>
 
 	<br><br><br><br><br><br>
 	
@@ -113,48 +92,27 @@ h4 { display: inline-block; margin-left: 25%; font-weight: 700;}
 	<br><br>
 	
 	<div class="area" id="area3">
-			<table class="table">
-			  <thead>
-			    <tr>
-			      <th scope="col">글번호</th>
-			      <th scope="col">제목</th>
-			      <th scope="col">작성자</th>
-			      <th scope="col">작성일</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>집사나라는 어떤 나라인가요?</td>
-			      <td>관리자</td>
-			      <td>2023 - 04 - 22</td>
-			    </tr>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>집사나라는 어떤 나라인가요?</td>
-			      <td>관리자</td>
-			      <td>2023 - 04 - 22</td>
-			    </tr>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>집사나라는 어떤 나라인가요?</td>
-			      <td>관리자</td>
-			      <td>2023 - 04 - 22</td>
-			    </tr>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>집사나라는 어떤 나라인가요?</td>
-			      <td>관리자</td>
-			      <td>2023 - 04 - 22</td>
-			    </tr>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>집사나라는 어떤 나라인가요?</td>
-			      <td>관리자</td>
-			      <td>2023 - 04 - 22</td>
-			    </tr>
-			</table>		
-		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">글번호</th>
+					<th scope="col">제목</th>
+					<th scope="col">작성자</th>
+					<th scope="col">작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+  				<c:forEach items="${ fList }" var = "f">
+					<tr>
+						<th scope="row">${f.faqNo }</th>
+						<td>${f.faqTitle }</td>
+						<td>${f.faqWriter }</td>
+						<td>${f.faqCreateDate }</td>
+					</tr>
+  				
+  				</c:forEach>
+		</table>		
+	</div>
 	
 	<br><br><br><br><br><br><br><br>
 	

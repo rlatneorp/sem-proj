@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import semi.project.jsnr.board.model.dao.BoardDAO;
 import semi.project.jsnr.board.model.vo.Board;
+import semi.project.jsnr.board.model.vo.Faq;
+import semi.project.jsnr.board.model.vo.Qna;
 import semi.project.jsnr.common.model.vo.PageInfo;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
 import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
@@ -39,7 +41,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public ArrayList<JibsaProfile> selectJibsaProfileList(PageInfo pi) {
-		return bDAO.getSelectJibsaProfileList(sqlSession, pi);
+		return bDAO.selectJibsaProfileList(sqlSession, pi);
 	}
 
 	@Override
@@ -50,6 +52,21 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public JibsaProfile getJibsaProfile(int mId) {
 		return bDAO.getJibsaProfile(sqlSession, mId);
+	}
+
+	@Override
+	public int getQnaListCount() {
+		return bDAO.getQnaListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Qna> selectQnaList(PageInfo pi) {
+		return bDAO.selectQnaList(sqlSession, pi);
+	}
+
+	@Override
+	public ArrayList<Faq> selectFaqList(PageInfo pi) {
+		return bDAO.selectFaqList(sqlSession, pi);
 	}
 
 

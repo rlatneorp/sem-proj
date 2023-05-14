@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,129 +66,67 @@ select { width: 90px; height: 30px; }
 	<br><br>
 	
 	<div class="area" id="area3">
-			<table class="table">
-			  <thead>
-			    <tr>
-			      <th scope="col">글번호</th>
-			      <th scope="col">분류</th>
-			      <th scope="col">제목</th>
-			      <th scope="col">작성자</th>
-			      <th scope="col">작성일</th>
-			      <th scope="col">답변상태</th>
-			      <th scope="col">선택</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>회원</td>
-			      <td><a href="${ contextPath }/QnA_detail.me">문의합니다</a></td>
-			      <td>강건강(user01)</td>
-			      <td>2023 - 04 - 22</td>
-			      <td>답변 완료</td>
-			      <td><input type="checkbox"/></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>집사</td>
-			      <td>문의합니다</td>
-			      <td>강건강(user01)</td>
-			      <td>2023 - 04 - 22</td>
-			      <td>미답변</td>
-			      <td><input type="checkbox"/></td>
-			    </tr>
-			     <tr>
-			      <th scope="row">001</th>
-			      <td>회원</td>
-			      <td>문의합니다</td>
-			      <td>강건강(user01)</td>
-			      <td>2023 - 04 - 22</td>
-			      <td>답변 완료</td>
-			      <td><input type="checkbox"/></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>집사</td>
-			      <td>문의합니다</td>
-			      <td>강건강(user01)</td>
-			      <td>2023 - 04 - 22</td>
-			      <td>미답변</td>
-			      <td><input type="checkbox"/></td>
-			    </tr>
-			     <tr>
-			      <th scope="row">001</th>
-			      <td>회원</td>
-			      <td>문의합니다</td>
-			      <td>강건강(user01)</td>
-			      <td>2023 - 04 - 22</td>
-			      <td>답변 완료</td>
-			      <td><input type="checkbox"/></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>집사</td>
-			      <td>문의합니다</td>
-			      <td>강건강(user01)</td>
-			      <td>2023 - 04 - 22</td>
-			      <td>미답변</td>
-			      <td><input type="checkbox"/></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>회원</td>
-			      <td>문의합니다</td>
-			      <td>강건강(user01)</td>
-			      <td>2023 - 04 - 22</td>
-			      <td>답변 완료</td>
-			      <td><input type="checkbox"/></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>집사</td>
-			      <td>문의합니다</td>
-			      <td>강건강(user01)</td>
-			      <td>2023 - 04 - 22</td>
-			      <td>미답변</td>
-			      <td><input type="checkbox"/></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>회원</td>
-			      <td>문의합니다</td>
-			      <td>강건강(user01)</td>
-			      <td>2023 - 04 - 22</td>
-			      <td>답변 완료</td>
-			      <td><input type="checkbox"/></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>집사</td>
-			      <td>문의합니다</td>
-			      <td>강건강(user01)</td>
-			      <td>2023 - 04 - 22</td>
-			      <td>미답변</td>
-			      <td><input type="checkbox"/></td>
-			    </tr>
-			  </tbody>
-			</table>		
-		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">글번호</th>
+					<th scope="col">분류</th>
+					<th scope="col">제목</th>
+					<th scope="col">작성자</th>
+					<th scope="col">작성일</th>
+					<th scope="col">답변상태</th>
+					<th scope="col">선택</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${ qList}" var="q">
+					<tr>
+						<th scope="row">${q.qnaNo }</th>
+						<td>${q.qnaCategory }</td>
+						<td><a href="${ contextPath }/QnA_detail.bo?bId=?"${q.qnaNo}>${q.qnaTitle}</a></td>
+						<td>${q.memberName }</td>
+						<td>${q.questionDate }</td>
+						<td>
+							<c:if test="${q.qnaAnswer eq null}">답변 대기</c:if>
+							<c:if test="${q.qnaAnswer ne null}">답변 완료</c:if>
+						</td>
+						<td><input type="checkbox"/></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>		
+	</div>
 
-	<br><br><br>
+	<br><br>
 	
-	<nav aria-label="Page navigation example">
-		<ul class="pagination">
-			<li class="page-item">
-				<a class="page-link" href="#"aria-label="Previous">
-				<span aria-hidden="true">&laquo;</span></a>
-			</li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
-		</ul>
-	</nav>
+	<div>
+		<nav aria-label="Standard pagination example" style="float: center;">
+			<ul class="pagination">
+				<li class="page-item">
+					<c:url var="goBack" value="${ loc }">
+						<c:param name="page" value="${ pi.currentPage-1 }"></c:param>
+					</c:url>
+					<a class="page-link" href="${ goBack }" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+				<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+					<c:url var="goNum" value="${ loc }">
+						<c:param name="page" value="${ p }"></c:param>
+					</c:url>
+					<li class="page-item"><a class="page-link" href="${ goNum }">${ p }</a></li>
+				</c:forEach>
+				<li class="page-item">
+					<c:url var="goNext" value="${ loc }">
+						<c:param name="page" value="${ pi.currentPage+1 }"></c:param>
+					</c:url>
+					<a class="page-link" href="${ goNext }" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
 	
 	<br><br>
 	

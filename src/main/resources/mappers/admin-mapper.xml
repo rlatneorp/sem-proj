@@ -1,6 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="adminMapper">
-	
+	<select id="getMemberCount" resultType="_int">
+		select count(*)
+		from member
+	</select>
 
+	<select id="selectMemberList" resultMap="memberResultSet">
+		select *
+		from member
+		order by member_no desc
+	</select>
+	<resultMap type="Member" id="memberResultSet">
+		<id column="MEMBER_NO" property="memberNo"/>
+		<result column="MEMBER_ID" property="memberId"/>
+		<result column="MEMBER_PWD" property="memberPwd"/>
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="MEMBER_EMAIL" property="memberEmail"/>
+		<result column="IS_ADMIN" property="isAdmin"/>
+		<result column="IS_JIBSA" property="isJibsa"/>
+		<result column="MEMBER_STATUS" property="memberStatus"/>
+		<result column="EXIT_DATE" property="exitDate"/>
+		<result column="BLACKLIST" property="blackList"/>
+		<result column="MEMBER_PHONE" property="memberPhone"/>
+		<result column="MEMBER_ADDRESS" property="memberAddress"/>
+	</resultMap>
+
+	<select id="getJibsaCount" resultType="_int">
+		select count(*)
+		from jibsa
+	</select>
+	
+	<select id="selectJibsaList" resultMap="jibsaResultSet">
+		select *
+		from jibsa
+			 join member using(member_no)
+		order by member_no desc
+	</select>
+	<resultMap type="Jibsa" id="jibsaResultSet">
+		<id column="MEMBER_NO" property="memberNo"/>
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="JIBSA_GENDER" property="jibsaGender"/>
+		<result column="JIBSA_RRN" property="jibsaRrn"/>
+		<result column="IS_SMOKING" property="isSmoking"/>
+		<result column="WORK_CAREER" property="workCareer"/>
+		<result column="AVAILABLE_HOUR" property="availableHour"/>
+		<result column="AVAILABLE_AREA" property="availableArea"/>
+		<result column="MOTIVE" property="motive"/>
+		<result column="EXPECTED_SALARY" property="exptectedSalary"/>
+		<result column="CHAR_ADDRESS" property="charAddress"/>
+		<result column="IS_PRIMIUM" property="isPrimium"/>
+		<result column="PRIMIUM_PAYMENT_DATE" property="primiumPaymentDate"/>
+		<result column="PRIMIUM_END_DATE" property="primiumEndDate"/>
+		<result column="IS_TRAINER" property="isTrainer"/>
+	</resultMap>
+	
+	<select id="getFaqCount" resultType="_int">
+		select count(*)
+		from faq
+	</select>
+	
+	<select id="selectFaqList" resultMap="faqResultSet">
+		select *
+		from faq
+	</select>
+	<resultMap type="faq" id="faqResultSet">
+		<id column="FAQ_NO" property="faqNo"/>
+		<result column="MEMBER_NAME" property="faqWriter"/>
+		<result column="FAQ_TITLE" property="faqTitle"/>
+		<result column="FAQ_CONTENT" property="faqContent"/>
+		<result column="FAQ_CREATE_DATE" property="faqCreateDate"/>
+		<result column="FAQ_STATUS" property="faqStatus"/>
+	</resultMap>	
+	
+	<select id="getQnaCount" resultType="_int">
+		select count(*)
+		from qna
+	</select>
+	
+	<select id="selectQnaList" resultMap="qnaResultSet">
+		select *
+		from qna
+			 join member using(member_no)
+		order by qna_no desc
+	</select>
+	<resultMap type="qna" id="qnaResultSet">
+		<id column="QNA_NO" property="qnaNo"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="QNA_CATEGORY" property="qnaCategory"/>
+		<result column="QNA_TITLE" property="qnaTitle"/>
+		<result column="QNA_CONTENT" property="qnaContent"/>
+		<result column="QUESTION_DATE" property="questionDate"/>
+		<result column="QNA_ANSWER" property="qnaAnswer"/>
+		<result column="ANSWER_DATE" property="answerDate"/>
+		<result column="QNA_STATUS" property="qnaStatus"/>
+	</resultMap>	
+	
 </mapper>

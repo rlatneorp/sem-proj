@@ -4,47 +4,50 @@ import java.sql.Date;
 
 public class Jibsa {
 	private int memberNo;
+	private String memberName;
 	private String jibsaGender;
 	private int jibsaRrn;
 	private String isSmoking;
-	private int workCount;
 	private String workCareer;
-	private String vehicle;
 	private String availableHour;
-	private int availableTime;
 	private String availableArea;
 	private String motive;
 	private int exptectedSalary;
-	private String isPrivacy;
-	private String isTrue;
 	private String charAddress;
 	private String isPrimium;
 	private Date primiumPaymentDate;
+	private Date primiumEndDate;
 	private String isTrainer;
 	
-	public Jibsa(int memberNo, String jibsaGender, int jibsaRrn, String isSmoking, int workCount, String workCareer,
-			String vehicle, String availableHour, int availableTime, String availableArea, String motive,
-			int exptectedSalary, String isPrivacy, String isTrue, String charAddress, String isPrimium,
-			Date primiumPaymentDate, String isTrainer) {
+	public Jibsa() {}
+
+	public Jibsa(int memberNo, String memberName, String jibsaGender, int jibsaRrn, String isSmoking, String workCareer,
+			String availableHour, String availableArea, String motive, int exptectedSalary, String charAddress,
+			String isPrimium, Date primiumPaymentDate, Date primiumEndDate, String isTrainer) {
 		super();
 		this.memberNo = memberNo;
+		this.memberName = memberName;
 		this.jibsaGender = jibsaGender;
 		this.jibsaRrn = jibsaRrn;
 		this.isSmoking = isSmoking;
-		this.workCount = workCount;
 		this.workCareer = workCareer;
-		this.vehicle = vehicle;
 		this.availableHour = availableHour;
-		this.availableTime = availableTime;
 		this.availableArea = availableArea;
 		this.motive = motive;
 		this.exptectedSalary = exptectedSalary;
-		this.isPrivacy = isPrivacy;
-		this.isTrue = isTrue;
 		this.charAddress = charAddress;
 		this.isPrimium = isPrimium;
 		this.primiumPaymentDate = primiumPaymentDate;
+		this.primiumEndDate = primiumEndDate;
 		this.isTrainer = isTrainer;
+	}
+
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 
 	public int getMemberNo() {
@@ -79,14 +82,6 @@ public class Jibsa {
 		this.isSmoking = isSmoking;
 	}
 
-	public int getWorkCount() {
-		return workCount;
-	}
-
-	public void setWorkCount(int workCount) {
-		this.workCount = workCount;
-	}
-
 	public String getWorkCareer() {
 		return workCareer;
 	}
@@ -95,28 +90,12 @@ public class Jibsa {
 		this.workCareer = workCareer;
 	}
 
-	public String getVehicle() {
-		return vehicle;
-	}
-
-	public void setVehicle(String vehicle) {
-		this.vehicle = vehicle;
-	}
-
 	public String getAvailableHour() {
 		return availableHour;
 	}
 
 	public void setAvailableHour(String availableHour) {
 		this.availableHour = availableHour;
-	}
-
-	public int getAvailableTime() {
-		return availableTime;
-	}
-
-	public void setAvailableTime(int availableTime) {
-		this.availableTime = availableTime;
 	}
 
 	public String getAvailableArea() {
@@ -143,22 +122,6 @@ public class Jibsa {
 		this.exptectedSalary = exptectedSalary;
 	}
 
-	public String getIsPrivacy() {
-		return isPrivacy;
-	}
-
-	public void setIsPrivacy(String isPrivacy) {
-		this.isPrivacy = isPrivacy;
-	}
-
-	public String getIsTrue() {
-		return isTrue;
-	}
-
-	public void setIsTrue(String isTrue) {
-		this.isTrue = isTrue;
-	}
-
 	public String getCharAddress() {
 		return charAddress;
 	}
@@ -183,6 +146,14 @@ public class Jibsa {
 		this.primiumPaymentDate = primiumPaymentDate;
 	}
 
+	public Date getPrimiumEndDate() {
+		return primiumEndDate;
+	}
+
+	public void setPrimiumEndDate(Date primiumEndDate) {
+		this.primiumEndDate = primiumEndDate;
+	}
+
 	public String getIsTrainer() {
 		return isTrainer;
 	}
@@ -193,13 +164,14 @@ public class Jibsa {
 
 	@Override
 	public String toString() {
-		return "Jibsa [memberNo=" + memberNo + ", jibsaGender=" + jibsaGender + ", jibsaRrn=" + jibsaRrn
-				+ ", isSmoking=" + isSmoking + ", workCount=" + workCount + ", workCareer=" + workCareer + ", vehicle="
-				+ vehicle + ", availableHour=" + availableHour + ", availableTime=" + availableTime + ", availableArea="
-				+ availableArea + ", motive=" + motive + ", exptectedSalary=" + exptectedSalary + ", isPrivacy="
-				+ isPrivacy + ", isTrue=" + isTrue + ", charAddress=" + charAddress + ", isPrimium=" + isPrimium
-				+ ", primiumPaymentDate=" + primiumPaymentDate + ", isTrainer=" + isTrainer + "]";
+		return "Jibsa [memberNo=" + memberNo + ", memberName=" + memberName + ", jibsaGender=" + jibsaGender
+				+ ", jibsaRrn=" + jibsaRrn + ", isSmoking=" + isSmoking + ", workCareer=" + workCareer
+				+ ", availableHour=" + availableHour + ", availableArea=" + availableArea + ", motive=" + motive
+				+ ", exptectedSalary=" + exptectedSalary + ", charAddress=" + charAddress + ", isPrimium=" + isPrimium
+				+ ", primiumPaymentDate=" + primiumPaymentDate + ", primiumEndDate=" + primiumEndDate + ", isTrainer="
+				+ isTrainer + "]";
 	}
+
 }
 
 

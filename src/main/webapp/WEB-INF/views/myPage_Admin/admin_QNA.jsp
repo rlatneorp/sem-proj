@@ -63,37 +63,43 @@
 						<span class="trash">
 							<img src="../../img/trash.png" id="img"/>
 						</span>
-					    <div class="tablediv" id="faqD">
-						    <table class="table">
-						    	<thead>
-							    	<tr>
-							    		<th>글 번호</th>
-							    		<th>제목</th>
-							    		<th>작성자</th>
-							    		<th>작성일</th>
-							    		<th>활성화</th>
-							    		<th>선택</th>
-							    	</tr>
-						    	</thead>
-						    	<tbody>
-						    		<c:forEach items="${fList}" var="f">
+				    		<div class="tablediv" id="faqD">
+							    <table class="table">
+							    	<thead>
 								    	<tr>
-								    		<td>${f.faqNo}</td>
-								    		<td>${f.faqTitle}</td>
-								    		<td>${f.faqWriter}</td>
-								    		<td>${f.faqCreateDate}</td>
-								    		<td>
-								    			<c:if test="${f.faqStatus eq 'Y'}">활성화</c:if>
-								    			<c:if test="${f.faqStatus eq 'N'}">비활성화</c:if>
-								    		</td>
-								    		<td><input type="checkbox" name="delete"></td>
+								    		<th>글 번호</th>
+								    		<th>분류</th>
+								    		<th>제목</th>
+								    		<th>작성자</th>
+								    		<th>작성일</th>
+								    		<th>답변여부</th>
+								    		<th>삭제여부</th>
+								    		<th>선택</th>
 								    	</tr>
-								    </c:forEach>
-						    	
-						    	</tbody>
-					    	</table>
-					    </div>
-					    <button id="write" onclick="location.href='admin_writeFAQ.jsp';">글쓰기</button>
+							    	</thead>
+							    	<tbody>
+							    		<c:forEach items="${qList}" var="q">
+									    	<tr>
+									    		<td>${q.qnaNo}</td>
+									    		<td>${q.qnaCategory}</td>
+									    		<td>${q.qnaTitle}</td>
+									    		<td>${q.memberName}</td>
+									    		<td>${q.questionDate}</td>
+									    		<td>
+									    			<c:if test="${q.qnaAnswer eq null}">답변대기</c:if>
+									    			<c:if test="${q.qnaAnswer ne null}">답변완료</c:if>
+									    		</td>
+									    		<td>
+									    			<c:if test="${q.qnaStatus eq 'Y'}"></c:if>
+									    			<c:if test="${q.qnaStatus eq 'N'}">삭제됨</c:if>
+									    		</td>
+									    		<td><input type="checkbox" name="delete"></td>
+									    	</tr>
+									    </c:forEach>
+							    	
+							    	</tbody>
+						    	</table>
+						    </div>
 					    </div>
 					    <br>
 					    
