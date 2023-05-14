@@ -90,7 +90,7 @@ body {
     							  	<input type="text" name="animalName" value="${ animal.animalName }" style="width: 400px; height: 35px;"/>
     							  	<br><br><br>
     							  	
-    							  	<p class="sel">2. ${ animal.animalName }는</p>
+    							  	<p class="sel">2. ${ animal.animalName }은/는</p>
     							  	<label for="dog">
     							  		<input type="radio" name="animalKind" class="rad" value="DOG" id="dog" <c:if test="${ animal.animalKind == 'DOG' }">checked</c:if>> 강아지
     							  	</label>
@@ -122,7 +122,7 @@ body {
     							  	<input type="radio" name="animalGender" id="F" value="F" <c:if test="${ animal.animalGender == 'F' }">checked</c:if>><label for="F">&nbsp;여자</label>
     							  	<br><br><br>
     							  	
-    							  	<p class="sel">4. ${ animal.animalName }는 중성화수술</p>
+    							  	<p class="sel">4. ${ animal.animalName }은/는 중성화수술</p>
     							  	<input type="radio" name="isNeuter" id="ok" value="Y" <c:if test="${ animal.isNeuter == 'Y' }">checked</c:if>><label for="ok">&nbsp;했어요</label>&nbsp;
     							  	<input type="radio" name="isNeuter" id="nok" value="N" <c:if test="${ animal.isNeuter == 'N' }">checked</c:if>><label for="nok">&nbsp;안했어요</label>
     							  	<br><br><br>
