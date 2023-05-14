@@ -1,6 +1,7 @@
 package semi.project.jsnr.board.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
@@ -27,4 +28,8 @@ public interface BoardService {
 	ArrayList<Qna> selectQnaList(PageInfo pi);
 
 	ArrayList<Faq> selectFaqList(PageInfo pi);
+
+	int getSearchListCount(HashMap<String, String> map);
+
+	ArrayList<Board> selectSearchList(HashMap<String, String> map, PageInfo pi);
 }

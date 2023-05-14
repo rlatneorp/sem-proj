@@ -171,9 +171,9 @@
 					</c:if>
 					<c:if test="${ pi.currentPage <  pi.maxPage }">
 						<c:url value = "${loc }" var="blistNext">
-							<c:param name="page" value="${ pi.currentPage +1 }"/>
+							<c:param name="page" value="${ pi.currentPage +1}"/>
 							<c:if test="${ condition != null}">
-								<c:param name = "condition" value = "${condition	}"/>
+								<c:param name = "condition" value = "${condition}"/>
 								<c:param name = "value" value = "${value}"/>
 							</c:if>
 						</c:url>
@@ -187,7 +187,7 @@
 			
 				<label>검색조건</label>
 				<select >
-					<option value = "petsitter"<c:if test="${condition == 'petsitter' }">selected</c:if>> 집사이름</option>
+					<option value ="petsitter"<c:if test="${condition == 'petsitter' }">selected</c:if>>집사이름</option>
 					<option value="animalCategory"<c:if test="${condition == 'animalCategory' }">selected</c:if>>동물종류</option>
 					
 				</select>
@@ -212,7 +212,6 @@
 			</script>
 	
 	  </div>
-	</div>
 	<%@ include file="../common/bottom.jsp" %>
 </body>
 </html>

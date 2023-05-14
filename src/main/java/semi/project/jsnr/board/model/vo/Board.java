@@ -6,6 +6,7 @@ public class Board {
 	private int matchingNo;
 	private int animalNo;
 	private String animalName;
+	private String animalKind;
 	private Date startDate;
 	private Date endDate;
 	private String matchingPlace;
@@ -22,13 +23,14 @@ public class Board {
 	public Board() {}
 
 
-	public Board(int matchingNo, int animalNo, String animalName, Date startDate, Date endDate, String matchingPlace,
-			String reviewContent, int reviewRaiting, int reviewCount, String jibsaComment, String memberName,
-			int memberNo, String jibsaName, String isJibsa) {
+	public Board(int matchingNo, int animalNo, String animalName, String animalKind, Date startDate, Date endDate,
+			String matchingPlace, String reviewContent, int reviewRaiting, int reviewCount, String jibsaComment,
+			String memberName, int memberNo, String jibsaName, String isJibsa) {
 		super();
 		this.matchingNo = matchingNo;
 		this.animalNo = animalNo;
 		this.animalName = animalName;
+		this.animalKind = animalKind;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.matchingPlace = matchingPlace;
@@ -70,6 +72,16 @@ public class Board {
 
 	public void setAnimalName(String animalName) {
 		this.animalName = animalName;
+	}
+
+
+	public String getAnimalKind() {
+		return animalKind;
+	}
+
+
+	public void setAnimalKind(String animalKind) {
+		this.animalKind = animalKind;
 	}
 
 
@@ -186,12 +198,12 @@ public class Board {
 	@Override
 	public String toString() {
 		return "Board [matchingNo=" + matchingNo + ", animalNo=" + animalNo + ", animalName=" + animalName
-				+ ", startDate=" + startDate + ", endDate=" + endDate + ", matchingPlace=" + matchingPlace
-				+ ", reviewContent=" + reviewContent + ", reviewRaiting=" + reviewRaiting + ", reviewCount="
-				+ reviewCount + ", jibsaComment=" + jibsaComment + ", memberName=" + memberName + ", memberNo="
-				+ memberNo + ", jibsaName=" + jibsaName + ", isJibsa=" + isJibsa + "]";
+				+ ", animalKind=" + animalKind + ", startDate=" + startDate + ", endDate=" + endDate
+				+ ", matchingPlace=" + matchingPlace + ", reviewContent=" + reviewContent + ", reviewRaiting="
+				+ reviewRaiting + ", reviewCount=" + reviewCount + ", jibsaComment=" + jibsaComment + ", memberName="
+				+ memberName + ", memberNo=" + memberNo + ", jibsaName=" + jibsaName + ", isJibsa=" + isJibsa + "]";
 	}
-	
-	
-	
+
+
+
 }

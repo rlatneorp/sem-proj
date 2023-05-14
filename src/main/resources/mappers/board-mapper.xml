@@ -12,12 +12,14 @@
 		    join animal a on(a.member_no = m.member_no)
 		    join matching ma on(ma.animal_no = a.animal_no)
 		    join jibsa_profile jp on(jp.member_no = ma.member_no)
+		    order by end_date desc
 	</select>
 	
 	<resultMap type="Board" id="boardResultSet">
 		<id column="MATCHING_NO" property="matchingNo"/>
 		<result column="ANIMAL_NO" property="animalNo"/>
 		<result column="ANIMAL_NAME" property="animalName"/>
+		<result column="ANIMAL_KIND" property="animalKind"/>
 		<result column="START_DATE" property="startDate"/>
 		<result column="END_DATE" property="endDate"/>
 		<result column="MATCHING_PLACE" property="matchingPlace"/>
@@ -134,8 +136,42 @@
 		<result column="FAQ_STATUS" property="faqStatus"/>
 	</resultMap>	
 	
-	
-	
+	<select id="getSearchListCount" resultType="_int"> 
+		select count(*)
+		from member m
+		    join animal a on(a.member_no = m.member_no)
+		    join matching ma on(ma.animal_no = a.animal_no)
+		    join jibsa_profile jp on(jp.member_no = ma.member_no)
+		<if test="condition == 'petsitter'">
+				and jibsa_name = #{value}
+		</if> 
+		<if test="condition == 'animalCategory'">
+				and animal_kind like '%' || #{value} || '%'
+		</if>
+		<if test="condition != 'petsitter' and condition != 'animalCategory'">
+				and (jibsa_name = #{value} 
+				or animal_kind like '%' || #{value} || '%'
+		</if> 
+	</select>
+	<select id="selectSearchList" resultMap="boardResultSet">
+		select *
+		from member m
+		    join animal a on(a.member_no = m.member_no)
+		    join matching ma on(ma.animal_no = a.animal_no)
+		    join jibsa_profile jp on(jp.member_no = ma.member_no)
+		<if test="condition == 'petsitter'">
+				and jibsa_name = #{value}
+		</if> 
+		<if test="condition == 'animalCategory'">
+				and animal_kind like '%' || #{value} || '%'
+		</if>
+		<if test="condition != 'petsitter' and condition != 'animalCategory'">
+				and (jibsa_name = #{value} 
+				or animal_kind like '%' || #{value} || '%'
+		</if> 
+		
+		order by end_date desc
+	</select>
 	
 	
 </mapper>
