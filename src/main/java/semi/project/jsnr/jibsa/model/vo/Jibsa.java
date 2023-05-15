@@ -17,13 +17,12 @@ public class Jibsa {
 	private Date primiumPaymentDate;
 	private Date primiumEndDate;
 	private String isTrainer;
-	private String isJibsa;
 	
 	public Jibsa() {}
 
-	public Jibsa(int memberNo, String memberName, String jibsaGender, int jibsaRrn, String isSmoking, String workCareer,
+	public Jibsa(int memberNo, String jibsaGender, int jibsaRrn, String isSmoking, String workCareer,
 			String availableHour, String availableArea, String motive, int exptectedSalary, String chatAddress,
-			String isPrimium, Date primiumPaymentDate, Date primiumEndDate, String isTrainer, String isJibsa) {
+			String isPrimium, Date primiumPaymentDate, Date primiumEndDate, String isTrainer) {
 		super();
 		this.memberNo = memberNo;
 		this.jibsaGender = jibsaGender;
@@ -39,7 +38,6 @@ public class Jibsa {
 		this.primiumPaymentDate = primiumPaymentDate;
 		this.primiumEndDate = primiumEndDate;
 		this.isTrainer = isTrainer;
-		this.isJibsa = isJibsa;
 	}
 
 	public int getMemberNo() {
@@ -154,24 +152,16 @@ public class Jibsa {
 		this.isTrainer = isTrainer;
 	}
 
-	public String getIsJibsa() {
-		return isJibsa;
-	}
-
-	public void setIsJibsa(String isJibsa) {
-		this.isJibsa = isJibsa;
-	}
-
 	@Override
 	public String toString() {
-		return "Jibsa [memberNo=" + memberNo + ", memberName=" + memberName + ", jibsaGender=" + jibsaGender
-				+ ", jibsaRrn=" + jibsaRrn + ", isSmoking=" + isSmoking + ", workCareer=" + workCareer
-				+ ", availableHour=" + availableHour + ", availableArea=" + availableArea + ", motive=" + motive
-				+ ", exptectedSalary=" + exptectedSalary + ", chatAddress=" + chatAddress + ", isPrimium=" + isPrimium
-				+ ", primiumPaymentDate=" + primiumPaymentDate + ", primiumEndDate=" + primiumEndDate + ", isTrainer="
-				+ isTrainer + ", isJibsa=" + isJibsa + "]";
+		return "Jibsa [memberNo=" + memberNo + ", jibsaGender=" + jibsaGender + ", jibsaRrn=" + jibsaRrn
+				+ ", isSmoking=" + isSmoking + ", workCareer=" + workCareer + ", availableHour=" + availableHour
+				+ ", availableArea=" + availableArea + ", motive=" + motive + ", exptectedSalary=" + exptectedSalary
+				+ ", chatAddress=" + chatAddress + ", isPrimium=" + isPrimium + ", primiumPaymentDate="
+				+ primiumPaymentDate + ", primiumEndDate=" + primiumEndDate + ", isTrainer=" + isTrainer + "]";
 	}
 
+	
 	
 
 }

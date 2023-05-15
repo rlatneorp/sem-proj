@@ -28,7 +28,7 @@
 	<div class="jo">
 		<ul class="uul"> 	
 			<li class="lii"><a>아이디</a></li>
-			<li class="lii"><input class="uul2" type="text" placeholder=" 사용할 아이디를 입력하세요">
+			<li class="lii"><input class="uul2" id="memberId" type="text" placeholder=" 사용할 아이디를 입력하세요">
 				<button class="joinIdBt">
 	          		<img src="resources/image/bb.png"/>
 	        	</button></li>

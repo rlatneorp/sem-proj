@@ -150,8 +150,6 @@ public class AdminController {
 		
 		Member m = new Member();
 		m.setMemberNo(j.getMemberNo());
-		m.setMemberName(j.getMemberName());
-		m.setIsJibsa(j.getIsJibsa());
 		int result1 = aService.updateMember(m);
 		
 		int result2 = aService.updateJibsa(j);
