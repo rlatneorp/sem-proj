@@ -32,4 +32,8 @@ public interface BoardService {
 	int getSearchListCount(HashMap<String, String> map);
 
 	ArrayList<Board> selectSearchList(HashMap<String, String> map, PageInfo pi);
+
+	Board reviewDetail(int bId, boolean yn);
+
+	ArrayList<Board> reviewDetailReply(int mId);
 }

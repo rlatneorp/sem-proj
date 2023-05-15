@@ -13,9 +13,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap" rel="stylesheet">
 <title>집사나라 - 회원가입 - 약관동의</title>
 <style>
-.joinNotice{font-size: 45px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; color: black; text-decoration: none; margin-left: 25%;}
+.joinNotice{font-size: 45px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; color: black; text-decoration: none; text-align: center;}
 .notice{width: 577px; height: 876px; margin-left: 30%; border: 1px solid white; box-shadow: rgb(224, 224, 224) 0px 0px 10px 0px; border-radius: 4px;}
-.noticeContent{font-size: 24px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; color: black; text-decoration: none; margin-left: 38%;}
+.noticeContent{font-size: 24px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; color: black; text-decoration: none; text-align: center;}
 .noticeHead{font-size: 16px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; color: black; text-decoration: none; display:inline;}
 .join1{width: 30px; margin-left: 27px;  margin-bottom: 30px; margin-top: 10px;}
 .join2{width: 25px; margin-left: 29px;  margin-bottom: 10px;}
@@ -29,6 +29,7 @@
 </style>
 </head>
 <body>
+<jsp:include page="../common/top.jsp"/>
 <article style="width: 1200px; margin: 0 auto;">
 <br><br>
 	<div class="joinNotice">
@@ -96,13 +97,14 @@
 				<div class="noticBot">집사나라 서비스 및 제휴 이벤트 혜택 등의 정보를 휴대전화(집사나라앱 알림 또는 문자), 이메일로 받을 수 있습니다. 일부 서비스(별개의 회원 체계 운영, 집사나라 가입 후 추가 가입하는 서비스 등)의 경우, 수신에 대해 별도로 안내 드리며 동의를 구합니다.</div>
 			<br><br><br>
 			<div class="joinBtn"> 
-				<button type="submit" id="joinCancel" value="cancel">취소</button>
-				<button type="submit" id="joinCheck" value="check">확인</button>
+				<button onclick="location.href='${ contextPath }/home.do'" type="submit" id="joinCancel" value="cancel">취소</button>
+				<button onclick="location.href='${ contextPath }/enrollMember.do'" type="submit" id="joinCheck" value="check">확인</button>
 			</div>
 			</div>
 		</div>
 	</div>
 <br><br><br><br>
+<%@ include file="../common/bottom.jsp" %>
 </article>
 
 

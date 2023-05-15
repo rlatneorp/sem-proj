@@ -32,14 +32,14 @@
 	<hr id="top_hr">
 	<br><br><br><br><br>
 	<div class="login1">
-		<img src="resources/image/loginLogo.png" id="loginLogo">
+		<a href="${ contextPath }"><img src="resources/image/loginLogo.png" id="loginLogo"></a>
 		<form action="login.do" method="post">
 		<div id="loginBox"> 
 			<div id="userName">
 				<div id="person">
 					<span class="material-symbols-outlined">person</span>
 				</div> 
-				<input type="text" placeholder=" 아이디" id="loginId" name="memberId">
+				<input type="text" placeholder=" 아이디" id="loginId" name="memberId" required>
 				
 			</div>
 			<br>
@@ -47,14 +47,14 @@
 				<div id="person">
 					<span class="material-symbols-outlined">vpn_key</span>
 				</div> 
-				<input type="password" placeholder=" 비밀번호" id="loginPwd" name="memberPwd">
+				<input type="password" placeholder=" 비밀번호" id="loginPwd" name="memberPwd" required>
 			</div> 
 		</div>
 		<br><br><br><br><br>
 		<div id="btnDiv"><button id="loginBtn" name="login">로그인</button></div>
 		</form>
 		<br>
-		<div id="loginBot"><a> 아이디 찾기 </a> | <a> 비밀번호 찾기 </a> | <a> 회원가입 </a></div>
+		<div id="loginBot"><a href="${ contextPath }/searchId.do"> 아이디 찾기 </a> | <a href="${ contextPath }/searchPwd.do"> 비밀번호 찾기 </a> | <a href="${ contextPath }/enroll.do"> 회원가입 </a></div>
 		<br><br>
 	</div>
 	<br><br><br><br><br><br><br><br><br><br>

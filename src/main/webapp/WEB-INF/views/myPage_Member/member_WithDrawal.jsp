@@ -42,16 +42,23 @@
 					 <h4 style="margin-right: 700px;"><b>회원 탈퇴</b></h4>
 					 <hr>
 					 <div id="box">
-					 	<img src="../../img/logo.png" id="img"><br><br><br>
+					 	<img src="resources/image/logo.png" id="img"><br><br><br>
 					 	<h4>홍길동님이 홍길동님께서 집사나라를 탈퇴 하신다니 아쉽네요!</h4>
 						<h4>항상 행복하시길 바라며 나중에 다시 뵙길 바라요!</h4>
 					 </div>
 					 <br><br>
-					 <button onclick="location.href='${contextPath}';" id="wbtn">탈퇴하기</button>
-					 <button onclick="location.href='userInfo.jsp';" id="cancel">취소하기</button>
+					 <button id="wbtn">탈퇴하기</button>
+					 <button onclick="location.href='${contextPath}/member_User_Info.me';" id="cancel">취소하기</button>
 				</div>
 			</div>
 	    </div>
 	</div>
+	<script>
+		document.getElementById('wbtn').onclick = () => {
+			if (confirm('정말로 탈퇴하시겠습니까?')) {
+	            location.href = '${contextPath}/member_DeleteInfo.do';
+	        }
+		}
+	</script>
 </body>
 </html>

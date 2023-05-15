@@ -165,6 +165,39 @@
 		</div>
 	</div>
 
+
+	<div class="container">
+	  <img src="resources/image/home1.png" alt="image description">
+	</div>
+	
+	<div class="container">  
+	  <p>더욱더 발전하는 반려동물 파트너 문화를 만드는 집사나라</p>
+	</div>
+	
+	<div class="container">
+		<div>
+		  <p>반려동물 위탁돌봄을 희망하는<br>
+		  	보호자와 전문가를<br>서로 매칭해줍니다</p>
+		  <button class="select">파트너매칭</button>
+		</div>
+	  <img src="resources/image/home2.jpg" alt="image description">
+	</div>
+	
+	<div class="container">
+	  <img src="resources/image/home3.jpg" alt="image description">
+	  <div>
+		  <p>다양한 이용후기를 보면서 <br>
+		  	어떤 서비스를 받을지 결정하세요 
+		  </p>
+		  <button class="select">이용후기</button>
+	  </div>
+	</div>
+	
+	<div class="video-container">
+	  <video id="videoStyle" width="720" height="405" src="resources/video/short.mp4" loop="loop" title="YouTube video player" autoplay="autoplay" muted="muted"></video>
+	</div>
+	
+`	<%@ include file="../common/bottom.jsp" %>
 	<script>
 		const images = [
 			{src: 'resources/image/logo.png', link: 'https://www.naver.com'},
@@ -220,37 +253,5 @@
 		
 	</script>
 	
-	<div class="container">
-	  <img src="resources/image/home1.png" alt="image description">
-	</div>
-	
-	<div class="container">  
-	  <p >더욱더 발전하는 반려동물 파트너 문화를 만드는 집사나라</p>
-	</div>
-	
-	<div class="container">
-		<div>
-		  <p>반려동물 위탁돌봄을 희망하는<br>
-		  	보호자와 전문가를<br>서로 매칭해줍니다</p>
-		  <button class="select">파트너매칭</button>
-		</div>
-	  <img src="resources/image/home2.jpg" alt="image description">
-	</div>
-	
-	<div class="container">
-	  <img src="resources/image/home3.jpg" alt="image description">
-	  <div>
-		  <p>다양한 이용후기를 보면서 <br>
-		  	어떤 서비스를 받을지 결정하세요 
-		  </p>
-		  <button class="select">이용후기</button>
-	  </div>
-	</div>
-	
-	<div class="video-container">
-	  <video id="videoStyle" width="720" height="405" src="resources/video/short.mp4" loop="loop" title="YouTube video player" autoplay="autoplay" muted="muted"></video>
-	</div>
-	
-`	<%@ include file="../common/bottom.jsp" %>
 </body>
 </html>

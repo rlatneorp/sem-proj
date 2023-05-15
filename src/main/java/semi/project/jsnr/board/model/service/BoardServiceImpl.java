@@ -80,6 +80,22 @@ public class BoardServiceImpl implements BoardService{
 		return bDAO.selectSearchList(sqlSession, map, pi);
 	}
 
+	@Override
+	public Board reviewDetail(int mId, boolean yn) {
+		int result = 0;
+		if(yn) {
+			result = bDAO.reviewCount(sqlSession, mId);
+		}
+		Board b = bDAO.reviewDetail(sqlSession, mId);
+			
+		return b;
+	}
+
+	@Override
+	public ArrayList<Board> reviewDetailReply(int mId) {
+		return bDAO.reviewDetailReply(sqlSession, mId);
+	}
+
 
 
 }

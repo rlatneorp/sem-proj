@@ -11,7 +11,7 @@ public class Board {
 	private Date endDate;
 	private String matchingPlace;
 	private String reviewContent;
-	private int reviewRaiting;
+	private int reviewRating;
 	private int reviewCount;
 	private String jibsaComment;
 	private String memberName;
@@ -24,7 +24,7 @@ public class Board {
 
 
 	public Board(int matchingNo, int animalNo, String animalName, String animalKind, Date startDate, Date endDate,
-			String matchingPlace, String reviewContent, int reviewRaiting, int reviewCount, String jibsaComment,
+			String matchingPlace, String reviewContent, int reviewRating, int reviewCount, String jibsaComment,
 			String memberName, int memberNo, String jibsaName, String isJibsa) {
 		super();
 		this.matchingNo = matchingNo;
@@ -35,7 +35,7 @@ public class Board {
 		this.endDate = endDate;
 		this.matchingPlace = matchingPlace;
 		this.reviewContent = reviewContent;
-		this.reviewRaiting = reviewRaiting;
+		this.reviewRating = reviewRating;
 		this.reviewCount = reviewCount;
 		this.jibsaComment = jibsaComment;
 		this.memberName = memberName;
@@ -126,12 +126,12 @@ public class Board {
 
 
 	public int getReviewRaiting() {
-		return reviewRaiting;
+		return reviewRating;
 	}
 
 
-	public void setReviewRaiting(int reviewRaiting) {
-		this.reviewRaiting = reviewRaiting;
+	public void setReviewRaiting(int reviewRating) {
+		this.reviewRating = reviewRating;
 	}
 
 
@@ -199,8 +199,8 @@ public class Board {
 	public String toString() {
 		return "Board [matchingNo=" + matchingNo + ", animalNo=" + animalNo + ", animalName=" + animalName
 				+ ", animalKind=" + animalKind + ", startDate=" + startDate + ", endDate=" + endDate
-				+ ", matchingPlace=" + matchingPlace + ", reviewContent=" + reviewContent + ", reviewRaiting="
-				+ reviewRaiting + ", reviewCount=" + reviewCount + ", jibsaComment=" + jibsaComment + ", memberName="
+				+ ", matchingPlace=" + matchingPlace + ", reviewContent=" + reviewContent + ", reviewRating="
+				+ reviewRating + ", reviewCount=" + reviewCount + ", jibsaComment=" + jibsaComment + ", memberName="
 				+ memberName + ", memberNo=" + memberNo + ", jibsaName=" + jibsaName + ", isJibsa=" + isJibsa + "]";
 	}
 
