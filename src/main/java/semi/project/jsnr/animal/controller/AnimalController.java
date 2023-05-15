@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import semi.project.jsnr.animal.model.exception.AnimalException;
@@ -42,15 +43,19 @@ public class AnimalController {
 	}
 	
 	@PostMapping("updateAnimal.me")
-	public String updateAnimal(@ModelAttribute Animal a, Model model, HttpSession session) {
-		System.out.println(a);
+	public String updateAnimal(@ModelAttribute Animal a,
+							   @RequestParam (value="dType") String dType,
+							   @RequestParam (value="cType") String cType,
+							   @RequestParam (value="oType") String oType,
+							   Model model, HttpSession session) {
+		
+		String animalType = dType + cType + oType;
+		
+		a.setAnimalType(animalType);
 		
 		int result = aService.updateAnimal(a);
 		
 		Animal editAnimal = aService.animalList(a.getMemberNo());
-		System.out.println(result);
-		System.out.println(a.getMemberNo());
-		System.out.println(editAnimal);
 		
 		if(result > 0) {
 			model.addAttribute("animal", editAnimal);

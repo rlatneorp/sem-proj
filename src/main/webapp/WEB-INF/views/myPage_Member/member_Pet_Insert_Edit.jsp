@@ -95,7 +95,7 @@ body {
     							  		<input type="radio" name="animalKind" class="rad" value="DOG" id="dog" <c:if test="${ animal.animalKind == 'DOG' }">checked</c:if>> 강아지
     							  	</label>
     							  	<div class="hide">
-    							  		&nbsp;&nbsp;<input type="text" name="animalType" <c:if test="${ animal.animalKind == 'DOG' }">value="${ animal.animalType }"</c:if>/>이에요<br>
+    							  		&nbsp;&nbsp;<input type="text" name="dType" <c:if test="${ animal.animalKind == 'DOG' }">value="${ animal.animalType }"</c:if>/>이에요<br>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="ds" value="small" <c:if test="${ animal.animalKind == 'DOG' and animal.animalSize == 'small' }">checked</c:if>><label for="ds">&nbsp;소형</label>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="dm" value="medium" <c:if test="${ animal.animalKind == 'DOG' and animal.animalSize == 'medium' }">checked</c:if>><label for="dm">&nbsp;중형</label>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="dl" value="large" <c:if test="${ animal.animalKind == 'DOG' and animal.animalSize == 'large' }">checked</c:if>><label for="dl">&nbsp;대형</label>
@@ -105,7 +105,7 @@ body {
     							  		<input type="radio" name="animalKind" class="rad" value="CAT" id="cat" <c:if test="${ animal.animalKind == 'CAT' }">checked</c:if>> 고양이
     							  	</label>
     							  	<div class="hide">
-    							  		&nbsp;&nbsp;<input type="text" name="animalType" <c:if test="${ animal.animalKind == 'CAT' }">value="${ animal.animalType }"</c:if>/>이에요<br>
+    							  		&nbsp;&nbsp;<input type="text" name="cType" <c:if test="${ animal.animalKind == 'CAT' }">value="${ animal.animalType }"</c:if>/>이에요<br>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="cs" value="small" <c:if test="${ animal.animalKind == 'CAT' and animal.animalSize == 'small' }">checked</c:if>><label for="cs">&nbsp;소형</label>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="cm" value="medium" <c:if test="${ animal.animalKind == 'CAT' and animal.animalSize == 'medium' }">checked</c:if>><label for="cm">&nbsp;중형</label>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="cl" value="large" <c:if test="${ animal.animalKind == 'CAT' and animal.animalSize == 'large' }">checked</c:if>><label for="cl">&nbsp;대형</label>
@@ -113,7 +113,7 @@ body {
     							  	<br>
     							  	<label for="other">
     							  		<input type="radio" name="animalKind" class="rad" value="other" id="other" <c:if test="${ animal.animalKind ne 'DOG' and animal.animalKind ne 'CAT'}">checked</c:if>> 기타
-    							  		<input type="text" name="animalType" <c:if test="${ animal.animalKind ne 'DOG' and animal.animalKind ne 'CAT'}">value="${ animal.animalType }"</c:if>/>
+    							  		<input type="text" name="oType" <c:if test="${ animal.animalKind ne 'DOG' and animal.animalKind ne 'CAT'}">value="${ animal.animalType }"</c:if>/>
     							  	</label>
     							  	<br><br><br>
     							  	
