@@ -4,7 +4,6 @@ import java.sql.Date;
 
 public class Jibsa {
 	private int memberNo;
-	private String memberName;
 	private String jibsaGender;
 	private int jibsaRrn;
 	private String isSmoking;
@@ -13,7 +12,7 @@ public class Jibsa {
 	private String availableArea;
 	private String motive;
 	private int exptectedSalary;
-	private String charAddress;
+	private String chatAddress;
 	private String isPrimium;
 	private Date primiumPaymentDate;
 	private Date primiumEndDate;
@@ -21,12 +20,11 @@ public class Jibsa {
 	
 	public Jibsa() {}
 
-	public Jibsa(int memberNo, String memberName, String jibsaGender, int jibsaRrn, String isSmoking, String workCareer,
-			String availableHour, String availableArea, String motive, int exptectedSalary, String charAddress,
+	public Jibsa(int memberNo, String jibsaGender, int jibsaRrn, String isSmoking, String workCareer,
+			String availableHour, String availableArea, String motive, int exptectedSalary, String chatAddress,
 			String isPrimium, Date primiumPaymentDate, Date primiumEndDate, String isTrainer) {
 		super();
 		this.memberNo = memberNo;
-		this.memberName = memberName;
 		this.jibsaGender = jibsaGender;
 		this.jibsaRrn = jibsaRrn;
 		this.isSmoking = isSmoking;
@@ -35,19 +33,11 @@ public class Jibsa {
 		this.availableArea = availableArea;
 		this.motive = motive;
 		this.exptectedSalary = exptectedSalary;
-		this.charAddress = charAddress;
+		this.chatAddress = chatAddress;
 		this.isPrimium = isPrimium;
 		this.primiumPaymentDate = primiumPaymentDate;
 		this.primiumEndDate = primiumEndDate;
 		this.isTrainer = isTrainer;
-	}
-
-	public String getMemberName() {
-		return memberName;
-	}
-
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
 	}
 
 	public int getMemberNo() {
@@ -122,12 +112,12 @@ public class Jibsa {
 		this.exptectedSalary = exptectedSalary;
 	}
 
-	public String getCharAddress() {
-		return charAddress;
+	public String getChatAddress() {
+		return chatAddress;
 	}
 
-	public void setCharAddress(String charAddress) {
-		this.charAddress = charAddress;
+	public void setChatAddress(String chatAddress) {
+		this.chatAddress = chatAddress;
 	}
 
 	public String getIsPrimium() {
@@ -164,13 +154,14 @@ public class Jibsa {
 
 	@Override
 	public String toString() {
-		return "Jibsa [memberNo=" + memberNo + ", memberName=" + memberName + ", jibsaGender=" + jibsaGender
-				+ ", jibsaRrn=" + jibsaRrn + ", isSmoking=" + isSmoking + ", workCareer=" + workCareer
-				+ ", availableHour=" + availableHour + ", availableArea=" + availableArea + ", motive=" + motive
-				+ ", exptectedSalary=" + exptectedSalary + ", charAddress=" + charAddress + ", isPrimium=" + isPrimium
-				+ ", primiumPaymentDate=" + primiumPaymentDate + ", primiumEndDate=" + primiumEndDate + ", isTrainer="
-				+ isTrainer + "]";
+		return "Jibsa [memberNo=" + memberNo + ", jibsaGender=" + jibsaGender + ", jibsaRrn=" + jibsaRrn
+				+ ", isSmoking=" + isSmoking + ", workCareer=" + workCareer + ", availableHour=" + availableHour
+				+ ", availableArea=" + availableArea + ", motive=" + motive + ", exptectedSalary=" + exptectedSalary
+				+ ", chatAddress=" + chatAddress + ", isPrimium=" + isPrimium + ", primiumPaymentDate="
+				+ primiumPaymentDate + ", primiumEndDate=" + primiumEndDate + ", isTrainer=" + isTrainer + "]";
 	}
+
+	
 
 }
 

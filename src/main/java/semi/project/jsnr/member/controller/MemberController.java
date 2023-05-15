@@ -216,4 +216,8 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping("join.do")
+	public String enroll() {
+		return "enroll/join";
+	}
 }

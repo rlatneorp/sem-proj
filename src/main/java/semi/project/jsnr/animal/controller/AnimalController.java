@@ -91,7 +91,6 @@ public class AnimalController {
 		System.out.println(result);
 		System.out.println(insertAnimal);
 		
-		
 		if(result > 0) {
 			model.addAttribute("animal", insertAnimal);	
 			return "redirect:member_User_Info.me";
