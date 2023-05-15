@@ -1,5 +1,11 @@
 package semi.project.jsnr.animal.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import semi.project.jsnr.animal.model.exception.AnimalException;
 import semi.project.jsnr.animal.model.service.AnimalService;
 import semi.project.jsnr.animal.model.vo.Animal;
+import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.member.model.vo.Member;
 
 @SessionAttributes("animal")
@@ -49,24 +57,53 @@ public class AnimalController {
 							   @RequestParam (value="dType") String dType,
 							   @RequestParam (value="cType") String cType,
 							   @RequestParam (value="oType") String oType,
-							   Model model, HttpSession session) {
+							   Model model, HttpSession session, HttpServletRequest request,
+							   @RequestParam("file") MultipartFile file) {
 		
 		String animalType = dType + cType + oType;
-		
 		a.setAnimalType(animalType);
 		
 		int result = aService.updateAnimal(a);
 		
-		Animal editAnimal = aService.animalList(a.getMemberNo());
+		Animal editAnimal = aService.animalList(a.getMemberNo()); 
 		
-		System.out.println(editAnimal);
+		System.out.println(editAnimal); // 동물 정보 수정
 		
-		if(result > 0) {
-			model.addAttribute("animal", editAnimal);
-			return "redirect:member_User_Info.me";
-		} else {
-			throw new AnimalException("동물 정보 수정에 실패하였습니다.");
-		}		
+		// 사진 업로드 처리
+		a.setImageLevel(1);
+
+		if (!file.isEmpty()) { // 파일이 비어있지 않은 경우
+			String[] returnArr = saveFile(file, request);
+			if (returnArr[1] != null) { // 리턴값이 비어있지 않은 경우
+				Image image = new Image();
+				image.setOriginalName(file.getOriginalFilename());
+				image.setRenameName(returnArr[1]);
+				image.setImagePath(returnArr[0]);
+
+	            // 이전 이미지 파일 삭제 처리
+	            String delRename = request.getParameter("delRename");
+	            Integer delLevel = Integer.parseInt(request.getParameter("delLevel"));
+	            
+//	            for(String rename : deleteAttm) { // deleteAttm에 담긴 rename과 level을 쪼개줌
+//	            	if(!rename.equals("none")) { // rename 값이 비워져있을 수도 있기 때문에
+//	            		String[] split = rename.split("/");
+//	            		delRename.add(split[0]);
+//	            		delLevel.add(Integer.parseInt(split[1]));
+//	            	}
+//	            }
+	            
+	            if (delRename != null && delLevel != null) {
+	                // TODO: 이전 이미지 파일을 삭제하고 데이터베이스에서 해당 레코드를 제거합니다.
+	            }
+	        }
+	    }
+
+	    if (result > 0) {
+	        model.addAttribute("animal", editAnimal);
+	        return "redirect:member_User_Info.me";
+	    } else {
+	        throw new AnimalException("동물 정보 수정에 실패하였습니다.");
+	    }   
 	}
 	
 	@RequestMapping("member_Pet_Insert.me")
@@ -102,7 +139,7 @@ public class AnimalController {
 		}		
 	}
 	
-	@GetMapping("deleteAnimal.me")
+	@GetMapping("deleteAnimal.me") // 삭제
 	public String deleteAnimal(@ModelAttribute Animal a) {
 		
 		int result = aService.deleteAnimal(a);
@@ -112,6 +149,39 @@ public class AnimalController {
 		} else {
 			throw new AnimalException("동물 정보 삭제에 실패하였습니다.");
 		}		
+	}
+	
+	public String[] saveFile(MultipartFile file, HttpServletRequest request) {
+		// 파일 저장소 지정
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\uploadFiles"; // 역슬래시 두개로 \ 하나를 나타내도록 함
+		File folder = new File(savePath);
+		
+		if(!folder.exists()) {
+			folder.mkdirs();
+		}
+		
+		// 파일 이름 변경 형식 지정
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+		int ranNum = (int)(Math.random()*100000);
+		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) + ranNum
+								+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+		
+		// 변경된 이름의 파일을 저장
+		String renamePath = folder + "\\" + renameFileName;
+		try {
+			file.transferTo(new File(renamePath));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		String[] returnArr = new String[2];
+		returnArr[0] = savePath;
+		returnArr[1] = renameFileName;
+		
+		return returnArr;
 	}
 }
 

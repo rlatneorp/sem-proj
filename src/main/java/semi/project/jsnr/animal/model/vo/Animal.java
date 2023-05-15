@@ -13,11 +13,12 @@ public class Animal {
 	private String isNeuter;
 	private String birthDate;
 	private String isStatus;
+	private int imageLevel;
 	
 	public Animal() {};
 
 	public Animal(int animalNo, String animalName, String animalGender, String animalKind, double animalWeight,
-			String animalNote, int memberNo, String animalType, String animalSize, String isNeuter, String birthDate, String isStatus) {
+			String animalNote, int memberNo, String animalType, String animalSize, String isNeuter, String birthDate, String isStatus, int imageLevel) {
 		super();
 		this.animalNo = animalNo;
 		this.animalName = animalName;
@@ -31,6 +32,7 @@ public class Animal {
 		this.isNeuter = isNeuter;
 		this.birthDate = birthDate;
 		this.isStatus = isStatus;
+		this.imageLevel = imageLevel;
 	}
 
 	public int getAnimalNo() {
@@ -129,11 +131,20 @@ public class Animal {
 		this.isStatus = isStatus;
 	}
 
+	public int getImageLevel() {
+		return imageLevel;
+	}
+
+	public void setImageLevel(int imageLevel) {
+		this.imageLevel = imageLevel;
+	}
+
 	@Override
 	public String toString() {
 		return "Animal [animalNo=" + animalNo + ", animalName=" + animalName + ", animalGender=" + animalGender
 				+ ", animalKind=" + animalKind + ", animalWeight=" + animalWeight + ", animalNote=" + animalNote
 				+ ", memberNo=" + memberNo + ", animalType=" + animalType + ", animalSize=" + animalSize + ", isNeuter="
-				+ isNeuter + ", birthDate=" + birthDate + ", isStatus=" + isStatus + "]";
+				+ isNeuter + ", birthDate=" + birthDate + ", isStatus=" + isStatus + ", BoardType=" + imageLevel + "]";
 	}
+	
 }
