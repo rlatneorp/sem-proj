@@ -37,7 +37,7 @@
 		<div id="loginBox"> 
 			<div id="userName">
 				<div id="person">
-					<span class="material-symbols-outlined">person</span>
+					<span class="material-symbols-outlined d-inline-block">person</span>
 				</div> 
 				<input type="text" placeholder=" 아이디" id="loginId" name="memberId" required>
 				
@@ -45,7 +45,7 @@
 			<br>
 			<div id="password">
 				<div id="person">
-					<span class="material-symbols-outlined">vpn_key</span>
+					<span class="material-symbols-outlined d-inline-block">vpn_key</span>
 				</div> 
 				<input type="password" placeholder=" 비밀번호" id="loginPwd" name="memberPwd" required>
 			</div> 
