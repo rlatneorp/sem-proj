@@ -50,11 +50,6 @@ public class HomeController {
 		return "redirect:index.jsp";
 	}
 	
-//	@RequestMapping("home.do")
-//	public String home() {
-//		return "redirect:home/home";
-//	}
-	
 	@RequestMapping("loginView.do")
 	public String loginView() {
 		return "login/login";

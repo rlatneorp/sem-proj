@@ -166,26 +166,25 @@ public class MemberController {
 		return result;
 	}
 	
-//	@RequestMapping("member_updateInfo.me")
-//	public String member_updateInfo(@ModelAttribute Member m, Model model) {
-//		int result = mService.updateInfo(m);
-//		System.out.println(result);
-//		
-//		if(result > 0) {
-//			Member updateMember = mService.login(m);
-//			model.addAttribute("loginUser", updateMember);
-//			
-//			return "redirect:member_editInfo.me";
-//		} else {
-//			return "";
-////			throw new MemberException("정보 수정에 실패하였습니다.");
-//		}
-//	}
+	@RequestMapping("member_updateInfo.me")
+	public String member_updateInfo(@ModelAttribute Member m, Model model) {
+		int result = mService.updateInfo(m);
+		
+		if(result > 0) {
+			Member updateMember = mService.login(m);
+			model.addAttribute("loginUser", updateMember);
+			
+			return "redirect:member_editInfo.me";
+		} else {
+			throw new MemberException("정보 수정에 실패하였습니다.");
+		}
+	}
 	
 	@RequestMapping("member_updatePwd.me")
 	public String member_updatePwd(@RequestParam("memberPwd") String pwd, 
-								   @RequestParam("memberNewPwd") String newpwd, Model model,
-								   @ModelAttribute Member m) {
+								   @RequestParam("memberNewPwd") String newpwd, Model model) {
+		Member m = (Member)model.getAttribute("loginUser");
+		
 		if(bcrypt.matches(pwd, m.getMemberPwd())) {
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("memberId", m.getMemberId());
@@ -201,6 +200,19 @@ public class MemberController {
 			}
 		} else {
 			throw new MemberException("비밀번호 수정에 실패하였습니다");
+		}
+	}
+	
+	@GetMapping("member_deleteInfo.do")
+	public String member_deleteInfo(Model model) {
+		String memberId = ((Member)model.getAttribute("loginUser")).getMemberId();
+		
+		int result = mService.deleteInfo(memberId);
+		
+		if(result > 0) {
+			return "logout.do";
+		} else {
+			throw new MemberException("회원 탈퇴에 실패하였습니다.");
 		}
 	}
 	
