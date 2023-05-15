@@ -33,4 +33,9 @@ public class AnimalServiceImpl implements AnimalService {
 	public int insertAnimal(Animal a) {
 		return aDAO.insertAnimal(sqlSession, a);
 	}
+	
+	@Override
+	public int deleteAnimal(Animal a) {
+		return aDAO.deleteAnimal(sqlSession, a);
+	}
 }

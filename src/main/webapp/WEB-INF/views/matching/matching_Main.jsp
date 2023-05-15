@@ -121,7 +121,7 @@
 	      <br><br>
 	      <form action="jsp/matching/matching2.jsp">
 			  <div class="d-flex justify-content-center">
-			    <button type="button">찾아보기</button>
+			    <button type="button" onclick="location.href='${contextPath}/matching_Result.mc'">찾아보기</button>
 			  </div>
 		  </form>
 	    </div>

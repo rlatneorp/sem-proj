@@ -27,6 +27,10 @@ public class AnimalDAO {
 		return sqlSession.insert("AnimalMapper.insertAnimal", a);
 	}
 
+	public int deleteAnimal(SqlSessionTemplate sqlSession, Animal a) {
+		return sqlSession.update("AnimalMapper.deleteAnimal", a);
+	}
+
 	
 	
 }
