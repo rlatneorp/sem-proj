@@ -151,12 +151,12 @@ public class MemberController {
 		}
 	}
 	
-	@GetMapping("member_editInfo.me")
+	@GetMapping("member_EditInfo.me")
 	public String member_editInfo() {
 		return "member_Edit";
 	}
 	
-	@GetMapping("member_checkMemberId.me")
+	@GetMapping("member_CheckMemberId.me")
 	@ResponseBody
 	public String member_checkMemberId(@RequestParam("memberId") String memberId) {
 		int count = mService.checkMemberId(memberId);
@@ -166,7 +166,7 @@ public class MemberController {
 		return result;
 	}
 	
-	@RequestMapping("member_updateInfo.me")
+	@RequestMapping("member_UpdateInfo.me")
 	public String member_updateInfo(@ModelAttribute Member m, Model model) {
 		int result = mService.updateInfo(m);
 		
@@ -180,7 +180,7 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping("member_updatePwd.me")
+	@RequestMapping("member_UpdatePwd.me")
 	public String member_updatePwd(@RequestParam("memberPwd") String pwd, 
 								   @RequestParam("memberNewPwd") String newpwd, Model model) {
 		Member m = (Member)model.getAttribute("loginUser");
@@ -203,7 +203,7 @@ public class MemberController {
 		}
 	}
 	
-	@GetMapping("member_deleteInfo.do")
+	@GetMapping("member_DeleteInfo.do")
 	public String member_deleteInfo(Model model) {
 		String memberId = ((Member)model.getAttribute("loginUser")).getMemberId();
 		

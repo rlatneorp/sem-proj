@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -91,6 +92,31 @@ public class HomeController {
 		
 		return "redirect:home.do";
 	}
+	
+	// 아이디 찾기
+	@GetMapping("searchId.do")
+	public String searchId() {
+		return "enroll/found_Id";
+	}
+	
+	@PostMapping("foundId.do")
+	public String foundId(@ModelAttribute Member m, Model model) {
+		String memberId = mService.foundId(m);
+		
+		model.addAttribute("memberName", m.getMemberName());
+		model.addAttribute("memberId", memberId);
+		
+		return "enroll/found_Id_Result";
+	}
+	
+	// 비밀번호 찾기
+	@GetMapping("searchPwd.do")
+	public String searchPwd() {
+		return "enroll/found_Pwd";
+	}
+	
+	
+	
 	
 
 }

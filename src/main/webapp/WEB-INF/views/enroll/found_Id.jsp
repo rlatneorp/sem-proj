@@ -19,30 +19,30 @@
 #foundIdLogo{width: 472px; text-align: center; display: inline;}
 #foundIdTitle{text-align: center; font-size: 24px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; margin: 10px; text-decoration: none;}
 #foundIdName{font-size: 18px; font-family: 'Noto Sans KR', sans-serif; font-weight: 400; margin: 10px; text-decoration: none; color: rgb(51, 51, 51);}
-#foundIdPhone{font-size: 18px; font-family: 'Noto Sans KR', sans-serif; font-weight: 400; margin: 10px; text-decoration: none; color: rgb(51, 51, 51);}
+#foundIdEmail{font-size: 18px; font-family: 'Noto Sans KR', sans-serif; font-weight: 400; margin: 10px; text-decoration: none; color: rgb(51, 51, 51);}
 .foundIdnp{text-align: left;}
 #finBtn{margin-left: 70px; width: 300px; height: 40px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94);}
-#fipBtn{border: none; border-radius: 4px; margin-left: 38px; width: 130px; height: 40px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94);}
+#fipBtn{margin-left: 54px; width: 300px; height: 40px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94);}
 #foundIdNext1{box-shadow:0px 0px 15px 5px rgb(224, 224, 224); border: none; border-radius: 25px; width: 168px; height: 44px; font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: 400; text-decoration: none; color: white; background: rgb(26, 188, 156);}
 </style>
 </head>
 <body>
 <hr id="top_hr">
-<form> 
+<form action="${ contextPath }/foundId.do" method="post"> 
 	<div class="foundId">
-		<img src="resources/image/loginLogo.png" id="foundIdLogo">
+		<a href="${ contextPath }/home.do"><img src="resources/image/loginLogo.png" id="foundIdLogo"></a>
 		<br><br>
-		<div id="foundId"> 
+ 		<div id="foundId"> 
 			<a id="foundIdTitle">아이디 찾기</a>
 			<div class="foundIdnp"> 
 				<br><br><br><br>
 				<a id="foundIdName">이름</a>
-				<input type="text" id="finBtn" placeholder=" 이름을 입력하세요">
+				<input type="text" id="finBtn" name="memberName" placeholder=" 이름을 입력하세요" required>
 				<br><br>
-				<a id="foundIdPhone">휴대전화</a>
-				<button id="fipBtn">인증하기</button>
+				<a id="foundIdEmail">이메일</a>
+				<input type="text" id="fipBtn" name="memberEmail" placeholder=" 이메일을 입력하세요" required>
 			</div>
-			<br><br><br><br><br>
+			<br><br><br>
 			<div>
 				<button type="submit" id="foundIdNext1">다음</button>	
 			</div>

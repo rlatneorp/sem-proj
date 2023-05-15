@@ -83,7 +83,7 @@
 					   <h4 style="margin-right: 58%;"><b>나의 정보</b></h4>
 					   		<br>
 					      	<div class="edit">
-					      		<form id="editForm" action="${ contextPath }/member_updateInfo.me" method="post">
+					      		<form id="editForm" action="${ contextPath }/member_UpdateInfo.me" method="post">
 					      			<p class="sel">1. 아이디</p>
     							  	<input type="text" name="memberId" value="${ loginUser.memberId }" readonly id="id" style="background: lightgray;"/>
     							  	<br><br>
@@ -114,12 +114,12 @@
 	            </div>
 	            <div id="modal">
 				<h5>정말로 탈퇴하시겠습니까?</h5><br>
-				<button type="submit" id="btn3" onclick="location.href='${contextPath}/member_deleteInfo.do'">탈퇴하기</button>&nbsp;
+				<button type="submit" id="btn3" onclick="location.href='${contextPath}/member_DeleteInfo.do'">탈퇴하기</button>&nbsp;
 				<button id="btn4">취소하기</button>
 				</div>
 				
 				<div id="changeModal">
-					<form action="${ contextPath }/member_updatePwd.me" method="post">
+					<form action="${ contextPath }/member_UpdatePwd.me" method="post">
 						<p class="sel">1. 현재 비밀번호</p>
 	    				<input type="password" name="memberPwd" class="pwd"/>
 	    				<br><br>

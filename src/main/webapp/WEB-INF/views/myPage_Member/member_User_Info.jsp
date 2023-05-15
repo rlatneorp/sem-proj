@@ -122,7 +122,7 @@ body {
 		                                <td class="nbold">${ loginUser.memberAddress }</td>
 		                            </tr>
 		                        </table><br>
-		                        <button class="inbtn" onclick="location.href='${contextPath}/member_editInfo.me'">수정하기</button>
+		                        <button class="inbtn" onclick="location.href='${contextPath}/member_EditInfo.me'">수정하기</button>
 		                    </div>
 				    </div>
 				  </div>

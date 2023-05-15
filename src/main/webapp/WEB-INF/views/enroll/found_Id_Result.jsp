@@ -29,30 +29,28 @@
 </head>
 <body>
 <hr id="top_hr">
-<form> 
 	<div class="foundId2">
-		<img src="resources/image/loginLogo.png" id="foundIdLogo">
+		<a href="${ contextPath }/home.do"><img src="resources/image/loginLogo.png" id="foundIdLogo"></a>
 		<br><br>
 		<div id="foundId2"> 
 			<a id="foundIdTitle">아이디 찾기</a>
 			<div class="foundedId"> 
 				<br><br><br>
-				<a id="foundedId1">${ username }</a>
+				<a id="foundedId1">${ memberName }</a>
 				<a id="foundedId3">님의 아이디는</a>
 				<br><br>
-				<input type="text" id="foundedId2">
-				<a id="foundedId4"> 입니다.</a>
+				<input type="text" id="foundedId2" value="${ memberId }" readonly style="text-align: center;">
+				<a id="foundedId4">입니다.</a>
 				<br><br>
 			</div>
 			<br><br><br><br>
 			<div>
-				<button type="submit" id="login">로그인</button>	
+				<button type="submit" id="login" onclick="location.href='${contextPath}/loginView.do'">로그인</button>	
 				&nbsp;&nbsp;&nbsp;
-				<button type="submit" id="foundPwd">비밀번호 찾기</button>	
+				<button type="submit" id="foundPwd" onclick="location.href='${contextPath}/searchPwd.do'">비밀번호 찾기</button>	
 			</div>
 		</div>
 	</div>
 	<br><br><br><br><br><br><br><br><br><br>
-</form>
 </body>
 </html>
