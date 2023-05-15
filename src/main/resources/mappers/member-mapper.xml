@@ -110,5 +110,11 @@
 		set member_status = 'N'
 		where member_id = #{memberId}
 	</update>
+	
+	<select id="foundId" resultType="string">
+		select member_id
+		from member
+		where member_name = #{memberName} and member_email = #{memberEmail}
+	</select>
 
 </mapper>

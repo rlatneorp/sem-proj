@@ -32,7 +32,7 @@
 <hr id="top_hr">
 <form> 
 	<div class="pwdSet">
-		<img src="resources/image/loginLogo.png" id="pwdSetLogo">
+		<a href="${ contextPath }/home.do"><img src="resources/image/loginLogo.png" id="pwdSetLogo"></a>
 		<br><br>
 		<div id="pwdSet"> 
 			<a id="pwdSetTitle">비밀번호 재설정</a>

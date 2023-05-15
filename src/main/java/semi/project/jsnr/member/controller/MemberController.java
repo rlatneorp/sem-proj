@@ -35,12 +35,12 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 	
-	@GetMapping("member_reservation.me")
+	@GetMapping("member_Reservation.me")
 	public String reservation() {
 		return "member_Reservation_Main";
 	}
 	
-	@GetMapping("member_serviceCenter.me")
+	@GetMapping("member_ServiceCenter.me")
 	public String serviceCenter(@RequestParam(value="page", required=false) Integer page,
 								@ModelAttribute("loginUser") Member m,
 								Model model) {
@@ -151,12 +151,12 @@ public class MemberController {
 		}
 	}
 	
-	@GetMapping("member_editInfo.me")
+	@GetMapping("member_EditInfo.me")
 	public String member_editInfo() {
 		return "member_Edit";
 	}
 	
-	@GetMapping("member_checkMemberId.me")
+	@GetMapping("member_CheckMemberId.me")
 	@ResponseBody
 	public String member_checkMemberId(@RequestParam("memberId") String memberId) {
 		int count = mService.checkMemberId(memberId);
@@ -166,7 +166,7 @@ public class MemberController {
 		return result;
 	}
 	
-	@RequestMapping("member_updateInfo.me")
+	@RequestMapping("member_UpdateInfo.me")
 	public String member_updateInfo(@ModelAttribute Member m, Model model) {
 		int result = mService.updateInfo(m);
 		
@@ -174,13 +174,13 @@ public class MemberController {
 			Member updateMember = mService.login(m);
 			model.addAttribute("loginUser", updateMember);
 			
-			return "redirect:member_editInfo.me";
+			return "redirect:member_EditInfo.me";
 		} else {
 			throw new MemberException("정보 수정에 실패하였습니다.");
 		}
 	}
 	
-	@RequestMapping("member_updatePwd.me")
+	@RequestMapping("member_UpdatePwd.me")
 	public String member_updatePwd(@RequestParam("memberPwd") String pwd, 
 								   @RequestParam("memberNewPwd") String newpwd, Model model) {
 		Member m = (Member)model.getAttribute("loginUser");
@@ -194,7 +194,7 @@ public class MemberController {
 				Member update = mService.login(m);
 				model.addAttribute("loginUser", update);
 				
-				return "redirect:member_editInfo.me";
+				return "redirect:member_EditInfo.me";
 			} else {
 				throw new MemberException("비밀번호 변경에 실패하였습니다.");
 			}
@@ -203,7 +203,7 @@ public class MemberController {
 		}
 	}
 	
-	@GetMapping("member_deleteInfo.do")
+	@GetMapping("member_DeleteInfo.do")
 	public String member_deleteInfo(Model model) {
 		String memberId = ((Member)model.getAttribute("loginUser")).getMemberId();
 		
@@ -214,6 +214,11 @@ public class MemberController {
 		} else {
 			throw new MemberException("회원 탈퇴에 실패하였습니다.");
 		}
+	}
+	
+	@GetMapping("member_WithDrawal.me")
+	public String member_WithDrawal() {
+		return "member_WithDrawal";
 	}
 	
 	@RequestMapping("join.do")

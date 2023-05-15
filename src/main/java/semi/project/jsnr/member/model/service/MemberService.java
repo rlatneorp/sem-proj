@@ -69,4 +69,8 @@ public class MemberService {
 	public int deleteInfo(String memberId) {
 		return mDAO.deleteInfo(sqlSession, memberId);
 	}
+
+	public String foundId(Member m) {
+		return mDAO.foundId(sqlSession, m);
+	}
 }

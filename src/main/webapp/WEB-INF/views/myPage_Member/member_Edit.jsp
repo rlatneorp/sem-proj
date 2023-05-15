@@ -83,7 +83,7 @@
 					   <h4 style="margin-right: 58%;"><b>나의 정보</b></h4>
 					   		<br>
 					      	<div class="edit">
-					      		<form id="editForm" action="${ contextPath }/member_updateInfo.me" method="post">
+					      		<form id="editForm" action="${ contextPath }/member_UpdateInfo.me" method="post">
 					      			<p class="sel">1. 아이디</p>
     							  	<input type="text" name="memberId" value="${ loginUser.memberId }" readonly id="id" style="background: lightgray;"/>
     							  	<br><br>
@@ -107,19 +107,14 @@
 					      		</form>
 					      	</div>
 					      	<br>
-					      	<button id="wbtn">회원 탈퇴</button>
+					      	<button id="wbtn" onclick="location.href='${contextPath}/member_WithDrawal.me'">회원 탈퇴</button>
 					      </div>
 					    </div>
 					</div>
 	            </div>
-	            <div id="modal">
-				<h5>정말로 탈퇴하시겠습니까?</h5><br>
-				<button type="submit" id="btn3" onclick="location.href='${contextPath}/member_deleteInfo.do'">탈퇴하기</button>&nbsp;
-				<button id="btn4">취소하기</button>
-				</div>
 				
 				<div id="changeModal">
-					<form action="${ contextPath }/member_updatePwd.me" method="post">
+					<form action="${ contextPath }/member_UpdatePwd.me" method="post">
 						<p class="sel">1. 현재 비밀번호</p>
 	    				<input type="password" name="memberPwd" class="pwd"/>
 	    				<br><br>
@@ -129,7 +124,7 @@
 						<p class="sel">3. 비밀번호 확인</p>
 	    				<input type="password" id="pwdConfirm" class="pwd"/>
 	    				<div style="height: 30px; font-size: 12px;" id="pwdDiv"></div>
-						<button type="submit" id="btn5">변경하기</button>&nbsp;&nbsp;&nbsp;
+						<button id="btn5">변경하기</button>&nbsp;&nbsp;&nbsp;
 						<button type="button" id="btn6">취소하기</button>
 					</form>
 				</div>
@@ -138,14 +133,6 @@
 				
 				<script>
 					window.onload = () =>{
-						document.getElementById('wbtn').addEventListener('click', () => {
-							document.getElementById('modal').style.display = 'block';
-						});
-						
-						document.getElementById('btn4').addEventListener('click', () => {
-							document.getElementById('modal').style.display = 'none';
-						});
-						
 						document.getElementById('change').addEventListener('click', () => {
 							document.getElementById('changeModal').style.display = 'block';
 						});
@@ -158,7 +145,7 @@
 						const pwd = document.getElementById('newPwd');
 						const pwdc = document.getElementById('pwdConfirm');
 						const pwdDiv = document.getElementById('pwdDiv');
-						const ebtn = document.getElementById('ebtn');
+						const btn5 = document.getElementById('btn5');
 						const form = document.getElementById('editForm');
 						
 						// 비밀번호 칸
@@ -189,14 +176,14 @@
 							}
 						});
 						
-						ebtn.addEventListener('click', (e) => {
+						btn5.addEventListener('click', (e) => {
 							if(pwdDiv.innerText == '비밀번호가 일치하지 않습니다.'){
 								alert('비밀번호가 일치하지 않습니다.');
 								pwdc.focus();
 								e.preventDefault();
 							} else if(pwdDiv.innerText == '비밀번호가 일치합니다.') {
 								form.submit();
-								alert('변경되었습니다.');
+								alert('비밀번호가 변경되었습니다.');
 							}
 						})
 						
