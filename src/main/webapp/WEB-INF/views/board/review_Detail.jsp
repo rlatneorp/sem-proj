@@ -162,7 +162,7 @@
 				
 				
 				<form>
-				  <div id=comment>
+				  <div id="comment">
 				    <label>댓글 : </label>
 					<input type="text" placeholder="댓글을 입력해주세요" name="search" >
 					<input type="submit" value = "글쓰기">

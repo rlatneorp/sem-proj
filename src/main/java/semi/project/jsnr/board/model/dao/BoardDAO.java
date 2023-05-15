@@ -74,16 +74,16 @@ public class BoardDAO {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectSearchList", map, rowBounds);
 	}
 
-	public int reviewCount(SqlSessionTemplate sqlSession, int bId) {
-		return sqlSession.update("boardMapper.reviewCount", bId);
+	public int reviewCount(SqlSessionTemplate sqlSession, int mId) {
+		return sqlSession.update("boardMapper.reviewCount", mId);
 	}
 
-	public Board reviewDetail(SqlSessionTemplate sqlSession, int bId) {
-		return sqlSession.selectOne("boardMapper.reviewDetail", bId);
+	public Board reviewDetail(SqlSessionTemplate sqlSession, int mId) {
+		return sqlSession.selectOne("boardMapper.reviewDetail", mId);
 	}
 
-	public ArrayList<Board> reviewDetailReply(SqlSessionTemplate sqlSession, String jibsa) {
-		return (ArrayList)sqlSession.selectList("boardMapper.reviewDetailReply", jibsa);
+	public ArrayList<Board> reviewDetailReply(SqlSessionTemplate sqlSession, int mId) {
+		return (ArrayList)sqlSession.selectList("boardMapper.reviewDetailReply", mId);
 	}
 }
 

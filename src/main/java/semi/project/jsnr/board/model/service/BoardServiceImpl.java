@@ -81,19 +81,19 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public Board reviewDetail(int bId, boolean yn) {
+	public Board reviewDetail(int mId, boolean yn) {
 		int result = 0;
 		if(yn) {
-			result = bDAO.reviewCount(sqlSession, bId);
+			result = bDAO.reviewCount(sqlSession, mId);
 		}
-		Board b = bDAO.reviewDetail(sqlSession, bId);
+		Board b = bDAO.reviewDetail(sqlSession, mId);
 			
 		return b;
 	}
 
 	@Override
-	public ArrayList<Board> reviewDetailReply(String jibsa) {
-		return bDAO.reviewDetailReply(sqlSession, jibsa);
+	public ArrayList<Board> reviewDetailReply(int mId) {
+		return bDAO.reviewDetailReply(sqlSession, mId);
 	}
 
 

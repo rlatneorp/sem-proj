@@ -102,7 +102,6 @@
 		<h1>이용 후기</h1>
 		
 	
-	
 	<div class="container">
 	<select>
 	  <option selected>평점순으로 보기</option>
@@ -110,15 +109,17 @@
 	  <option value="2">이름 순으로 보기</option>
 	</select>
 	</div>
-	
+	  
 	<div class="container text-left" >
 	  <div class="row">
+	  <article>
 		<c:forEach items="${ list }" var="n">
 		  	<div class="col">
 			    <div class="review">
 				  <div class="profile">
 					  <img src="resources/image/profile.png">
 					  	<div class="username">${ n.memberName }</div>
+					  	<div class="matchingNo">${ n.matchingNo }</div>
 					  </div>
 					  <div class="info">
 					    <h2>${ n.jibsaName }</h2>
@@ -127,10 +128,11 @@
 					</div>
 				</div>	
 			</c:forEach>
+	 	</article>
 	  	</div>
 	  </div>
 	</div>
-
+	
 	  <div class="row">
 		  				
 			<div class="pagingArea" align="center">
@@ -205,7 +207,7 @@
 <%@ include file="../common/bottom.jsp" %>
 
 <script>
-	
+	window.onload=()=>{
 		document.getElementById('searchArea').querySelector('button').addEventListener('click', function(){
 		const value = this.previousElementSibling.value;
 		const condition = this.previousElementSibling.previousElementSibling.value;
@@ -213,23 +215,19 @@
 		location.href = '${contextPath}/search.bo?value='+value+'&condition='+condition;
 		});		
 		
-		const reviewContents = document.querySelector('.reviewContent');
-		for(const content of reviewContents){
-			content.addEventListener('click', function(){
-				const contentEtc = this.previousElementSibling.value;
-				const jibsa = contentEtc.innerText.value;
-				const writer = document.querySelector('.username').value;
-				const bId = '';
-				if(bId == null){
-					bId.add(${list.matchingNo});
-				} else{
-					return bId;
-				}
-				
-				location.href='${ contextPath }/review_Detail.bo?bId=' + bId + '&writer=' + writer + '&jibsa=' + jibsa+ '&page=' + ${pi.currentPage}; 
+		const reviewContent = document.querySelector('article');
+		const reviewDiv = reviewContent.querySelectorAll('div')
+		for(const div of reviewDiv){
+			div.addEventListener('click', function(){
+				const contentEtc = this.previousElementSibling;
+				const jibsa = contentEtc.innerText;
+				const writer = contentEtc.previousElementSibling.innerText;
+				const mId = jibsa.previousElementSibling.value;
+				 
+				location.href='${ contextPath }/review_Detail.bo?mId=' + mId + '&writer=' + writer + '&jibsa=' + jibsa+ '&page=' + ${pi.currentPage}; 
 			})
-		};
-	
+		}
+	}
 
 </script>
  </body>

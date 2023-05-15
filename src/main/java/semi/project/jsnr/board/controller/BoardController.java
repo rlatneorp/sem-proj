@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import semi.project.jsnr.board.model.exception.BoardException;
 import semi.project.jsnr.board.model.service.BoardService;
@@ -127,12 +128,11 @@ public class BoardController {
 		}
 	}
 	
-	@GetMapping("review_Detail.bo")
-	public String reviewDetail(@RequestParam(value="page", required=false) Integer page, Model model, HttpSession session, @RequestParam("bId") int bId, @RequestParam("writer") String writer, @RequestParam("jibsa") String jibsa) {
+	@RequestMapping("review_Detail.bo")
+	public ModelAndView reviewDetail(@RequestParam(value="page", required=false) Integer currentPage, ModelAndView mv, HttpSession session, @RequestParam(value="mId", required=false) int mId, @RequestParam("writer") String writer) {
 		
-		
-		if(page == null) {
-			page = 1;
+		if(currentPage == null) {
+			currentPage = 1;
 		}
 		
 		Member m = (Member)session.getAttribute("loginUser");
@@ -145,16 +145,17 @@ public class BoardController {
 			yn = true;
 		}
 		
-		Board b = bService.reviewDetail(bId, yn);	
-		ArrayList<Board> list = bService.reviewDetailReply(jibsa);
+		Board b = bService.reviewDetail(mId, yn);	
+		ArrayList<Board> list = bService.reviewDetailReply(mId);
 			
 		
 		if(b != null) {
-			model.addAttribute("b", b);
-			model.addAttribute("page", page);
-			model.addAttribute("list", list);
+			mv.addObject("b", b);
+			mv.addObject("page", currentPage);
+			mv.addObject("list", list);
 
-			return "review_Detail";
+			mv.setViewName("review_Detail");
+			return mv;
 		} else {
 			throw new BoardException("게시글 상세보기를 실패하였습니다.");
 		}

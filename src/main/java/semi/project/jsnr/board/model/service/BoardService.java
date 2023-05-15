@@ -35,5 +35,5 @@ public interface BoardService {
 
 	Board reviewDetail(int bId, boolean yn);
 
-	ArrayList<Board> reviewDetailReply(String jibsa);
+	ArrayList<Board> reviewDetailReply(int mId);
 }
