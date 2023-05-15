@@ -124,18 +124,4 @@
 		<url-pattern>*.bo</url-pattern>
 	</servlet-mapping>
 	
-	<!-- 첨부파일 -->
-	<servlet>
-	<servlet-name>AttmServlet</servlet-name>
-	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/attm-context.xml</param-value>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>boardServlet</servlet-name>
-		<url-pattern>*.me</url-pattern>
-	</servlet-mapping>
-	
 </web-app>

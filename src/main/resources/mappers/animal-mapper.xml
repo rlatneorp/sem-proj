@@ -20,18 +20,19 @@
 		<result column="IS_NEUTER" property="isNeuter" />
 		<result column="BIRTH_DATE" property="birthDate" />
 		<result column="IS_STATUS" property="isStatus" />
+		<result column="IMAGE_LEVEL" property="imageLevel" />
 	</resultMap>
 
 	<update id="updateAnimal">
 		update animal
 		set animal_name = #{animalName}, animal_gender = #{animalGender}, animal_kind = #{animalKind}, animal_weight = #{animalWeight},
-			animal_note = #{animalNote}, animal_type = #{animalType}, animal_size = #{animalSize}, is_neuter = #{isNeuter}, birth_date = #{birthDate}, is_status = default
+			animal_note = #{animalNote}, animal_type = #{animalType}, animal_size = #{animalSize}, is_neuter = #{isNeuter}, birth_date = #{birthDate}, is_status = default, image_level = default
 		where member_no = #{memberNo}
 	</update>
 	
 	<insert id="insertAnimal">
 		insert into animal
-		values(seq_ani_id, #{animalName}, #{animalGender}, #{animalKind}, #{animalWeight}, #{animalNote}, #{memberNo}, #{animalType}, #{animalSize}, #{isNeuter}, #{birthDate}, default)
+		values(seq_ani_id, #{animalName}, #{animalGender}, #{animalKind}, #{animalWeight}, #{animalNote}, #{memberNo}, #{animalType}, #{animalSize}, #{isNeuter}, #{birthDate}, default, default)
 	</insert>
 	
 	<update id="deleteAnimal">
