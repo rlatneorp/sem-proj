@@ -86,7 +86,7 @@
 				<a class="menu2">${ loginUser.memberName }</a>
 				<div class="dropd" style="float:right; " aria-expanded="false">
 					<button onclick="dp_menu()" class="butn"><img src="resources/image/down.png"></button>
-				    <div style="width: 230px; height: 390px;" id="drop-c">
+				    <div style="width: 230px; height: 390px; display: none;" id="drop-c">
 				    	<ul id="droul">
 				    	<c:if test="${ loginUser.isAdmin eq 'Y' }">
 					       <li><a class="name">${ loginUser.memberName }관리자</a></li>
@@ -115,23 +115,17 @@
 	<hr id="top_hr2">
 </header>
 <script>
-	let click = document.getElementById("drop-c");
-// 	click.style.display = "none";
+	const dp_menu = () => {
+	  const dropC = document.getElementById("drop-c");
+	  if (dropC.style.display === "none") {
+	    dropC.style.display = "block";
+	  } else {
+	    dropC.style.display = "none";
+	  }
+	};
 	
-	const dp_menu=()=>{
-	    if(click.style.display === "none"){
-	        click.style.display = "block";
-	    }else{
-	        click.style.display = "none";
-	    }
-	}
 	
-	// 로드 될 때마다 drop-c 를 사라지게 하는 함수
-	window.addEventListener("load", function() {
-		  let click = document.getElementById("drop-c");
-		  click.style.display = "none";
-	});
-
+	 
 </script>
 </body>
 </html>

@@ -5,12 +5,12 @@
 		insert jibsa
 		set MEMBER_NO = null,
 			JIBSA_RRN = #{ jibsaPrn },
-			AVAILABLE_AREA = #{ availableArea },
 			JIBSA_GENDER =#{ jibsaGender } ,
+			JIBSA_RRN = #{ jibsaRrn},
+			AVAILABLE_AREA = #{ availableArea },
 			IS_SMOKING = #{ isSmoking },
 			WORK_COUNT = null,
 			WORK_CAREER = null,
-			VEHICLE = null,
 			AVAILABLE_HOUR = null ,
 			AVAILABLE_TIMES = null,
 			MOTIVE = null,
@@ -23,6 +23,7 @@
 			IS_TRAINER = null
 			
 		where ID=#{id}
+	
 	</insert>
 
 	
