@@ -36,90 +36,72 @@
 	    	<div class="container-fluid">
 	        	<div class="container text-center">
 					 <h4 style="margin-right: 58%;"><b>집사 관리</b></h4>
-					    <br><br>
-					    <div class="tablediv">
-						    <table class="table">
-						    	<thead>
+				    <br><br>
+				    <div class="tablediv">
+					    <table class="table">
+					    	<thead>
+						    	<tr>
+						    		<th>회원 번호</th>
+						    		<th>이름</th>
+						    		<th>지원서 제출여부</th>
+						    		<th>희망시급</th>
+						    		<th>프리미엄가입</th>
+						    		<th>프리미엄가입일자</th>
+						    		<th>프리미엄종료일자</th>
+						    		<th>집사활동여부</th>
+						    		<th>분류</th>
+						    	</tr>
+					    	</thead>
+					    	<tbody>
+					    		<c:forEach items="${jList}" var="j">
 							    	<tr>
-							    		<th>회원 번호</th>
-							    		<th>이름</th>
-							    		<th>지원서 제출여부</th>
-							    		<th>희망시급</th>
-							    		<th>프리미엄가입</th>
-							    		<th>프리미엄가입일자</th>
-							    		<th>프리미엄종료일자</th>
-							    		<th>분류</th>
+							    		<td>${j.memberNo}</td>
+							    		<td>
+							    			<a href="${contextPath}/admin_Jibsa_Detail.ad?page=${page}&mId=${j.memberNo}">${j.memberName}</a>
+						    			</td>
+							    		
+							    		<td>
+							    			<c:if test="${j.motive eq null}"></c:if>
+							    			<c:if test="${j.motive ne null}">제출완료</c:if>
+							    		</td>
+							    		<td>${j.exptectedSalary}</td>
+							    		<td>
+							    			<c:if test="${j.isPrimium eq 'Y'}">가입</c:if>
+							    			<c:if test="${j.isPrimium eq 'Y'}"></c:if>
+							    		</td>
+							    		<td>${j.primiumPaymentDate}</td>
+							    		<td>${j.primiumEndDate}</td>
+							    		<td>${j.isJibsa}</td>
+							    		<td>
+							    			<c:if test="${j.isTrainer eq 'Y'}">훈련사</c:if>
+							    			<c:if test="${j.isTrainer ne 'Y'}">집사</c:if>
+							    		</td>
 							    	</tr>
-						    	</thead>
-						    	<tbody>
-						    		<c:forEach items="${jList}" var="j">
-								    	<tr>
-								    		<td>${j.memberNo}</td>
-								    		<td>${j.memberName}</td>
-								    		<td>
-								    			<c:if test="${j.motive eq null}"></c:if>
-								    			<c:if test="${j.motive ne null}">제출완료</c:if>
-								    		</td>
-								    		<td>${j.exptectedSalary}</td>
-								    		<td>
-								    			<c:if test="${j.isPrimium eq 'Y'}">가입</c:if>
-								    			<c:if test="${j.isPrimium eq 'Y'}"></c:if>
-								    		</td>
-								    		<td>${j.primiumPaymentDate}</td>
-								    		<td>${j.primiumEndDate}</td>
-								    		<td>
-								    			<c:if test="${j.isTrainer eq 'Y'}">훈련사</c:if>
-								    			<c:if test="${j.isTrainer ne 'Y'}">집사</c:if>
-								    		</td>
-								    	</tr>
-							    	</c:forEach>
-						    	</tbody>
-					    	</table>
-					    	
-					    	
-					    	<div>
-								<nav aria-label="Standard pagination example" style="float: center;">
-									<ul class="pagination text-center">
-					          			<li class="page-item">
-					          				<c:url var="goBack" value="${ loc }">
-					          					<c:if test="${ pi.currentPage-1 lt 1 }">
-						          					<c:param name="page" value="1"></c:param>
-					          					</c:if>
-					          					<c:if test="${ pi.currentPage-1 gt 0 }">
-						          					<c:param name="page" value="${ pi.currentPage-1 }"></c:param>
-					          					</c:if>
-					          				</c:url>
-					          				<a class="page-link" href="${ goBack }" aria-label="Previous">
-					          					<span aria-hidden="true">&laquo;</span>
-					           				</a>
-					          			</li>
-					          			<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-					         				<c:url var="goNum" value="${ loc }">
-					         					<c:param name="page" value="${ p }"></c:param>
-					         				</c:url>
-					          				<li class="page-item"><a class="page-link" href="${ goNum }">${ p }</a></li>
-					          			</c:forEach>
-					          			<li class="page-item">
-					          				<c:url var="goNext" value="${ loc }">
-					          					<c:if test="${ pi.currentPage+1 gt pi.endPage }">
-						          					<c:param name="page" value="${ pi.endPage }"></c:param>
-					          					</c:if>
-					          					<c:if test="${ pi.currentPage+1 le pi.endPage }">
-						          					<c:param name="page" value="${ pi.currentPage+1 }"></c:param>
-					          					</c:if>
-					          				</c:url>
-					          				<a class="page-link" href="${ goNext }" aria-label="Next">
-					          					<span aria-hidden="true">&raquo;</span>
-					          				</a>
-					          			</li>
-					   				</ul>
-					     		</nav>
-				     		</div>
-				     		
-					    </div>
-					</div>
-	            </div>
-	        </div>
+						    	</c:forEach>
+					    	</tbody>
+				    	</table>
+				    	
+				    	
+				    	<div>
+							<%@ include file="../common/paging.jsp" %>
+					
+							<br>
+							<div>
+								<select class="search" style="padding: 3px 4px;">
+									<option>제목</option>
+									<option>이름</option>
+									<option>아이디</option>
+								</select>
+								<input type="text" style="border-radius: 8px; padding: 3px 3px; border: 1px solid gray; margin-right: 5px;">
+								<button onclick="location.href='';"  style="border-radius: 8px; padding: 3px 3px; border: 1px solid gray; margin-right: 5px;">조회</button>
+								<button onclick="location.href='QnA_main.jsp';"  style="border-radius: 8px; padding: 3px 3px; border: 1px solid gray; margin-right: 5px;">목록</button>
+							</div>
+			     		</div>
+				    </div>
+				</div>
+            </div>
+        </div>
+	</div>
 	    <br><br><br><br><br><br><br><br><br><br><br><br><br>
 		
 </body>

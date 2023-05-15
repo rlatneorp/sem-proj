@@ -130,7 +130,7 @@
 		<div class="rounded-box">
 			
 			<label class ="e title"> 경력사항</label><br/>
-			<textarea name="career" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 138px;" 
+			<textarea id="workCareer" name="career" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 138px;" 
 				placeholder=" 관련 업종 근무 경험, 관련 학과 졸업 등 없는 경우엔 없다고 작성" 
 				rows="5"  style="width: 900px;" ></textarea>
 			<br/><br/>
@@ -144,7 +144,7 @@
 		
 		<div class="rounded-box">
 			<label class ="e title"> 지원 동기</label><br/>
-			<textarea name="career" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 138px;" 
+			<textarea id = "motive" name="career" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 138px;" 
 				placeholder=" 지원한 동기를 적어주세요." 
 				rows="5"  style="width: 600px;" ></textarea>
 			<br/><br/>

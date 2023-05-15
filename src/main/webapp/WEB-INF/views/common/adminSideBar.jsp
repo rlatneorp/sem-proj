@@ -138,9 +138,6 @@
 				</ul>
 			</div>
 		</div>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<footer>
-			<%@ include file="../common/bottom.jsp" %>
-		</footer>
+		
 </body>
 </html>

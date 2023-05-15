@@ -69,4 +69,13 @@ public class MemberService {
 	public int deleteInfo(String memberId) {
 		return mDAO.deleteInfo(sqlSession, memberId);
 	}
+
+	public String foundId(Member m) {
+		return mDAO.foundId(sqlSession, m);
+	}
+
+	public int enrollMember(Member m) {
+		// TODO Auto-generated method stub
+		return mDAO.enrollMember(sqlSession, m);
+	}
 }

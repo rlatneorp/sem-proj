@@ -60,7 +60,7 @@ public class JibsaController {
 	
 	@RequestMapping("jibsaMain.js")
 	public String jibsaMain() {
-		return "jibsaMain";
+		return "jibsa_Main";
 	}
 	
 	@GetMapping("jibsaManagementSchedule.js")

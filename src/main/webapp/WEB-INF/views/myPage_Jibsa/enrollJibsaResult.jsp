@@ -63,7 +63,8 @@
 	
 	<div class="apply-info">
 	  <br>
-	  <p>지원 결과는 진행절차가 진행되는 대로 기재하신 연락처를 통해 통지해 드리겠습니다.</p>
+	  <p>지원 결과는 진행절차가 진행되는 대로 </p>
+	  <p>기재하신 연락처를 통해 통지해 드리겠습니다.</p>
 	  
 	  <br>
 	  <button onclick="location.href='${ contextPath }/home.do'">홈 화면으로 가기</button>

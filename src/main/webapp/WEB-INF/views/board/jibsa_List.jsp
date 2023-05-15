@@ -57,10 +57,11 @@
 				    			<span class="col-4 ps-3">시급</span>
 				    			<span class="col-8 px-0">${ l.exptectedSalary }</span>
 			    			</div>
-			    			<div class="row px-0 text-start">
-				    			<span class="col-4 ps-3">매칭횟수</span>
-				    			<span class="col-8 px-0">${ l.workCount }번 </span>
-			    			</div>
+<!-- 			    			보류 -->
+<!-- 			    			<div class="row px-0 text-start"> -->
+<!-- 				    			<span class="col-4 ps-3">매칭횟수</span> -->
+<%-- 				    			<span class="col-8 px-0">${ l.workCount }번 </span> --%>
+<!-- 			    			</div> -->
 			    			<div class="text-end">
 				    			<span class="px-0">평점 ${ l.jibsaAvgRating }점</span>
 			    			</div>

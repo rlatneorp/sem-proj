@@ -61,4 +61,12 @@ public class MemberDAO {
 		return sqlSession.update("memberMapper.deleteInfo", memberId);
 	}
 
+	public String foundId(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("memberMapper.foundId", m);
+	}
+
+	public int enrollMember(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.insert("memberMapper.enrollMember", m);
+	}
+
 }

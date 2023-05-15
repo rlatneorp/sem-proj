@@ -53,7 +53,7 @@
 							    	<c:forEach items="${ mList }" var="m">
 								    	<tr>
 								    		<td>${m.memberNo }</td>
-								    		<td>${m.memberName }</td>
+								    		<td><a href="${contextPath}/admin_Member_Detail.ad?page=${pi.currentPage}&mId=${m.memberNo}">${m.memberName }</a></td>
 								    		<td>${m.memberId }</td>
 								    		<td>등록동물 수(수정 필요)</td>
 								    		<td>가입날짜(수정 필요)</td>
@@ -65,50 +65,28 @@
 							    	</c:forEach>
 						    	</tbody>
 					    	</table>
-					    </div>
-					</div>
 					
-					<div>
-						<nav aria-label="Standard pagination example" style="float: center;">
-							<ul class="pagination text-center">
-			          			<li class="page-item">
-			          				<c:url var="goBack" value="${ loc }">
-			          					<c:if test="${ pi.currentPage-1 lt 1 }">
-				          					<c:param name="page" value="1"></c:param>
-			          					</c:if>
-			          					<c:if test="${ pi.currentPage-1 gt 0 }">
-				          					<c:param name="page" value="${ pi.currentPage-1 }"></c:param>
-			          					</c:if>
-			          				</c:url>
-			          				<a class="page-link" href="${ goBack }" aria-label="Previous">
-			          					<span aria-hidden="true">&laquo;</span>
-			           				</a>
-			          			</li>
-			          			<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-			         				<c:url var="goNum" value="${ loc }">
-			         					<c:param name="page" value="${ p }"></c:param>
-			         				</c:url>
-			          				<li class="page-item"><a class="page-link" href="${ goNum }">${ p }</a></li>
-			          			</c:forEach>
-			          			<li class="page-item">
-			          				<c:url var="goNext" value="${ loc }">
-			          					<c:if test="${ pi.currentPage+1 gt pi.endPage }">
-				          					<c:param name="page" value="${ pi.endPage }"></c:param>
-			          					</c:if>
-			          					<c:if test="${ pi.currentPage+1 le pi.endPage }">
-				          					<c:param name="page" value="${ pi.currentPage+1 }"></c:param>
-			          					</c:if>
-			          				</c:url>
-			          				<a class="page-link" href="${ goNext }" aria-label="Next">
-			          					<span aria-hidden="true">&raquo;</span>
-			          				</a>
-			          			</li>
-			   				</ul>
-			     		</nav>
-		     		</div>
-		     		
+					
+							<div>
+								<%@ include file="../common/paging.jsp" %>
+								
+								<br>
+								<div>
+									<select class="search" style="padding: 3px 4px;">
+										<option>제목</option>
+										<option>이름</option>
+										<option>아이디</option>
+									</select>
+									<input type="text" style="border-radius: 8px; padding: 3px 3px; border: 1px solid gray; margin-right: 5px;">
+									<button onclick="location.href='';"  style="border-radius: 8px; padding: 3px 3px; border: 1px solid gray; margin-right: 5px;">조회</button>
+									<button onclick="location.href='QnA_main.jsp';"  style="border-radius: 8px; padding: 3px 3px; border: 1px solid gray; margin-right: 5px;">목록</button>
+								</div>
+				     		</div>
+		     		    </div>
+					</div>
 	            </div>
 	        </div>
+        </div>
 	    <br><br><br><br><br><br><br><br><br><br><br><br><br>
 		
 </body>
