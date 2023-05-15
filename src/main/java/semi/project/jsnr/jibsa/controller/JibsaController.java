@@ -100,20 +100,6 @@ public class JibsaController {
 		return "review";
 	}
 	
-	@GetMapping("secession.js")
-	public String secession() {
-		return "secession";
-	}
-	
-////	임시 연결
-//	@GetMapping("jibsaList.js")
-//	public String jibsaList() {
-//		return "jibsaList";
-//	}
-	
-	
-	
-	
 	
 	
 }
