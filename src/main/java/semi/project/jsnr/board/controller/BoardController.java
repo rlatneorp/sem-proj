@@ -20,6 +20,7 @@ import semi.project.jsnr.common.Pagination;
 import semi.project.jsnr.common.model.vo.PageInfo;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
 import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
+import semi.project.jsnr.member.model.vo.Member;
 
 @Controller
 public class BoardController {
@@ -126,6 +127,38 @@ public class BoardController {
 		}
 	}
 	
-	
-	
+	@GetMapping("review_Detail.bo")
+	public String reviewDetail(@RequestParam(value="page", required=false) Integer page, Model model, HttpSession session, @RequestParam("bId") int bId, @RequestParam("writer") String writer, @RequestParam("jibsa") String jibsa) {
+		
+		
+		if(page == null) {
+			page = 1;
+		}
+		
+		Member m = (Member)session.getAttribute("loginUser");
+		String login = null;
+		if(m != null) {
+			login = m.getMemberId();
+		}
+		boolean yn = false;
+		if(!writer.equals(login)) {
+			yn = true;
+		}
+		
+		Board b = bService.reviewDetail(bId, yn);	
+		ArrayList<Board> list = bService.reviewDetailReply(jibsa);
+			
+		
+		if(b != null) {
+			model.addAttribute("b", b);
+			model.addAttribute("page", page);
+			model.addAttribute("list", list);
+
+			return "review_Detail";
+		} else {
+			throw new BoardException("게시글 상세보기를 실패하였습니다.");
+		}
+		
+	}
 }
+	
