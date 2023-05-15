@@ -98,11 +98,10 @@ body {
 				                    <img src="#" class="petImg"/><br><br><br>
 			                        <button class="inbtn" onclick="location.href='${ contextPath }/member_Pet_Insert_Edit.me'">수정하기</button>
 			                   	</c:if>
-			                   	<c:if test="${ empty animal }">
-				                	<h6 class="h6">본인의 반려동물 정보를 등록해주세요</h6><br>
-				                    <img src="#" class="petImg"/><br><br><br>
+  								<c:if test="${ empty animal }">
+				                	<h4 class="h6">본인의 반려동물 정보를 등록해주세요</h4><br><br>
 			                        <button class="inbtn" onclick="location.href='${ contextPath }/member_Pet_Insert.me'">등록하기</button>
-			                   	</c:if>
+			                    </c:if>
 		                    </div>
 				    	</div>
 				    <div class="col">

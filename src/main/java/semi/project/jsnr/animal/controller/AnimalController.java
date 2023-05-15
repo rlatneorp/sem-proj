@@ -23,7 +23,7 @@ public class AnimalController {
 	@Autowired
 	private AnimalService aService;
 	
-	@RequestMapping("member_User_Info.me")
+	@RequestMapping("member_User_Info.me") // 조회
 	public String animalList(HttpSession session, Model model) {
 		Member loginUser = (Member) session.getAttribute("loginUser"); // 로그인한 유저 정보 얻기
 		
@@ -42,7 +42,7 @@ public class AnimalController {
 		return "member_Pet_Insert_Edit";
 	}
 	
-	@PostMapping("updateAnimal.me")
+	@PostMapping("updateAnimal.me") // 수정
 	public String updateAnimal(@ModelAttribute Animal a,
 							   @RequestParam (value="dType") String dType,
 							   @RequestParam (value="cType") String cType,
@@ -62,6 +62,34 @@ public class AnimalController {
 			return "redirect:member_User_Info.me";
 		} else {
 			throw new AnimalException("동물 정보 수정에 실패하였습니다.");
+		}		
+	}
+	
+	@RequestMapping("member_Pet_Insert.me")
+	public String member_Pet_Insert() {
+
+		return "member_Pet_Insert";
+	}
+	
+	@PostMapping("insertAnimal.me") // 등록
+	public String insertAnimal(@ModelAttribute Animal a,
+							   @RequestParam (value="dType") String dType,
+							   @RequestParam (value="cType") String cType,
+							   @RequestParam (value="oType") String oType,
+							   Model model, HttpSession session) {
+		
+		String animalType = dType + cType + oType;
+		a.setAnimalType(animalType);
+		
+		int result = aService.insertAnimal(a);
+		
+		Animal insertAnimal = aService.animalList(a.getMemberNo());
+		
+		if(result > 0) {
+			model.addAttribute("animal", insertAnimal);
+			return "redirect:member_User_Info.me";
+		} else {
+			throw new AnimalException("동물 정보 등록에 실패하였습니다.");
 		}		
 	}
 }

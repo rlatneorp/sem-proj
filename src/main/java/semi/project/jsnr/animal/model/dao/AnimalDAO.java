@@ -23,6 +23,10 @@ public class AnimalDAO {
 		return sqlSession.update("AnimalMapper.updateAnimal", a);
 	}
 
+	public int insertAnimal(SqlSessionTemplate sqlSession, Animal a) {
+		return sqlSession.insert("AnimalMapper.insertAnimal", a);
+	}
+
 	
 	
 }
