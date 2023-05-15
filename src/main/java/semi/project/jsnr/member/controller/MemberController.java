@@ -210,7 +210,7 @@ public class MemberController {
 		int result = mService.deleteInfo(memberId);
 		
 		if(result > 0) {
-			return "logout.do";
+			return "redirect:logout.do";
 		} else {
 			throw new MemberException("회원 탈퇴에 실패하였습니다.");
 		}
