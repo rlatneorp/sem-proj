@@ -79,7 +79,9 @@
 						    		<c:forEach items="${fList}" var="f">
 								    	<tr>
 								    		<td>${f.faqNo}</td>
-								    		<td>${f.faqTitle}</td>
+								    		<td>
+								    			<a href="${contextPath}/admin_FAQ_Detail.ad?fId=${f.faqNo}">${f.faqTitle}</a>
+								    		</td>
 								    		<td>${f.faqWriter}</td>
 								    		<td>${f.faqCreateDate}</td>
 								    		<td>

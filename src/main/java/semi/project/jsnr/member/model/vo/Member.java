@@ -11,16 +11,18 @@ public class Member {
 	private String isAdmin;
 	private String isJibsa;
 	private String memberStatus;
+	private Date enrollDate;
 	private Date exitDate;
 	private int blackList;
 	private String memberPhone;
 	private String memberAddress;
+	private int animalCount;
 	
 	public Member() {}
-	
+
 	public Member(int memberNo, String memberId, String memberPwd, String memberName, String memberEmail,
-			String isAdmin, String isJibsa, String memberStatus, Date exitDate, int blackList, String memberPhone,
-			String memberAddress) {
+			String isAdmin, String isJibsa, String memberStatus, Date enrollDate, Date exitDate, int blackList,
+			String memberPhone, String memberAddress, int animalCount) {
 		super();
 		this.memberNo = memberNo;
 		this.memberId = memberId;
@@ -30,10 +32,12 @@ public class Member {
 		this.isAdmin = isAdmin;
 		this.isJibsa = isJibsa;
 		this.memberStatus = memberStatus;
+		this.enrollDate = enrollDate;
 		this.exitDate = exitDate;
 		this.blackList = blackList;
 		this.memberPhone = memberPhone;
 		this.memberAddress = memberAddress;
+		this.animalCount = animalCount;
 	}
 
 	public int getMemberNo() {
@@ -100,6 +104,14 @@ public class Member {
 		this.memberStatus = memberStatus;
 	}
 
+	public Date getEnrollDate() {
+		return enrollDate;
+	}
+
+	public void setEnrollDate(Date enrollDate) {
+		this.enrollDate = enrollDate;
+	}
+
 	public Date getExitDate() {
 		return exitDate;
 	}
@@ -132,13 +144,22 @@ public class Member {
 		this.memberAddress = memberAddress;
 	}
 
+	public int getAnimalCount() {
+		return animalCount;
+	}
+
+	public void setAnimalCount(int animalCount) {
+		this.animalCount = animalCount;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [memberNo=" + memberNo + ", memberId=" + memberId + ", memberPwd=" + memberPwd + ", memberName="
 				+ memberName + ", memberEmail=" + memberEmail + ", isAdmin=" + isAdmin + ", isJibsa=" + isJibsa
-				+ ", memberStatus=" + memberStatus + ", exitDate=" + exitDate + ", blackList=" + blackList
-				+ ", memberPhone=" + memberPhone + ", memberAddress=" + memberAddress + "]";
+				+ ", memberStatus=" + memberStatus + ", enrollDate=" + enrollDate + ", exitDate=" + exitDate
+				+ ", blackList=" + blackList + ", memberPhone=" + memberPhone + ", memberAddress=" + memberAddress
+				+ ", animalCount=" + animalCount + "]";
 	}
-	
+
 	
 }

@@ -11,6 +11,12 @@
 		from member
 		order by member_no desc
 	</select>
+	<select id="selectMember" resultMap="memberResultSet">
+		select *
+		from member
+		where member_no = #{mId}
+	</select>
+	
 	<resultMap type="Member" id="memberResultSet">
 		<id column="MEMBER_NO" property="memberNo"/>
 		<result column="MEMBER_ID" property="memberId"/>
@@ -20,11 +26,37 @@
 		<result column="IS_ADMIN" property="isAdmin"/>
 		<result column="IS_JIBSA" property="isJibsa"/>
 		<result column="MEMBER_STATUS" property="memberStatus"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
 		<result column="EXIT_DATE" property="exitDate"/>
 		<result column="BLACKLIST" property="blackList"/>
 		<result column="MEMBER_PHONE" property="memberPhone"/>
 		<result column="MEMBER_ADDRESS" property="memberAddress"/>
 	</resultMap>
+	
+	<select id="getAnimalCount" resultType="_int">
+		select count(*)
+		from animal
+		where member_no = #{mId}
+	</select>
+	
+	<update id="updateMember">
+		update member
+		set 
+			<if test="isAdmin == null">
+				member_name = #{memberName},
+				is_jibsa = #{isJibsa}
+			</if>
+			<if test="isAdmin != null">
+				member_name = #{memberName},
+				member_email = #{memberEmail},
+				is_admin = #{isAdmin},
+				is_jibsa = #{isJibsa},
+				member_status = #{memberStatus},
+				member_phone = #{memberPhone},
+				member_address = #{memberAddress}
+			</if>
+		where member_no = #{memberNo}
+	</update>
 
 	<select id="getJibsaCount" resultType="_int">
 		select count(*)
@@ -37,6 +69,12 @@
 			 join member using(member_no)
 		order by member_no desc
 	</select>
+	<select id="selectJibsa" resultMap="jibsaResultSet">
+		select *
+		from jibsa
+			 join member using(member_no)
+		where member_no = #{memberNo}
+	</select>
 	<resultMap type="Jibsa" id="jibsaResultSet">
 		<id column="MEMBER_NO" property="memberNo"/>
 		<result column="MEMBER_NAME" property="memberName"/>
@@ -48,12 +86,42 @@
 		<result column="AVAILABLE_AREA" property="availableArea"/>
 		<result column="MOTIVE" property="motive"/>
 		<result column="EXPECTED_SALARY" property="exptectedSalary"/>
-		<result column="CHAR_ADDRESS" property="charAddress"/>
+		<result column="CHAT_ADDRESS" property="chatAddress"/>
 		<result column="IS_PRIMIUM" property="isPrimium"/>
 		<result column="PRIMIUM_PAYMENT_DATE" property="primiumPaymentDate"/>
 		<result column="PRIMIUM_END_DATE" property="primiumEndDate"/>
 		<result column="IS_TRAINER" property="isTrainer"/>
+		<result column="IS_JIBSA" property="isJibsa"/>
 	</resultMap>
+	
+	<update id="updateJibsa">
+		update jibsa
+		set jibsa_gender =
+			<if test='jibsaGender == "F"'>
+				'F',
+			</if>
+			<if test='jibsaGender == "M"'>
+				'M',
+			</if>
+			jibsa_rrn = #{jibsaRrn},
+			is_smoking = #{isSmoking},
+			work_career = #{workCareer},
+<!-- 			available_hour = #{availableHour}, -->
+			available_area = #{availableArea},
+ 			motive = #{motive},
+			expected_salary = #{exptectedSalary},
+			chat_address = #{chatAddress},
+			is_primium = #{isPrimium},
+			
+			<if test="primiumPaymentDate != null">
+				primium_payment_date = #{primiumPaymentDate},
+			</if>
+			<if test="primiumEndDate != null">
+				primium_end_date = #{primiumEndDate},
+			</if>
+			is_trainer = #{isTrainer}
+		where member_no = #{memberNo}
+	</update>
 	
 	<select id="getFaqCount" resultType="_int">
 		select count(*)
@@ -63,6 +131,14 @@
 	<select id="selectFaqList" resultMap="faqResultSet">
 		select *
 		from faq
+			 join member on(member_no = faq_writer)
+		order by faq_no desc
+	</select>
+	<select id="selectFaq" resultMap="faqResultSet">
+		select * 
+		from faq 
+			 join member on(member_no = faq_writer)
+		where faq_no = #{fId}
 	</select>
 	<resultMap type="faq" id="faqResultSet">
 		<id column="FAQ_NO" property="faqNo"/>
@@ -72,6 +148,14 @@
 		<result column="FAQ_CREATE_DATE" property="faqCreateDate"/>
 		<result column="FAQ_STATUS" property="faqStatus"/>
 	</resultMap>	
+	
+	<update id="updateFaq">
+		update faq
+		set faq_title = #{faqTitle},
+			faq_content = #{faqContent},
+			faq_status = #{faqStatus}
+		where faq_no = #{faqNo}
+	</update>
 	
 	<select id="getQnaCount" resultType="_int">
 		select count(*)
