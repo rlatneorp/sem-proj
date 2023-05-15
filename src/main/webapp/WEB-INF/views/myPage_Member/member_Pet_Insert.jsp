@@ -95,7 +95,7 @@ body {
     							  		<input type="radio" name="animalKind" class="rad" id="dog"> 강아지
     							  	</label>
     							  	<div class="hide">
-    							  		&nbsp;&nbsp;<input type="text" name="dType" value="품종"/>이에요<br>
+    							  		&nbsp;&nbsp;<input type="text" name="dType" placeholder="품종"/>이에요<br>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="ds"><label for="ds">&nbsp;소형</label>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="dm"><label for="dm">&nbsp;중형</label>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="dl"><label for="dl">&nbsp;대형</label>
@@ -105,7 +105,7 @@ body {
     							  		<input type="radio" name="animalKind" class="rad" id="cat"> 고양이
     							  	</label>
     							  	<div class="hide">
-    							  		&nbsp;&nbsp;<input type="text" name="cType" value="품종"/>이에요<br>
+    							  		&nbsp;&nbsp;<input type="text" name="cType" placeholder="품종"/>이에요<br>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="cs"><label for="cs">&nbsp;소형</label>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="cm"><label for="cm">&nbsp;중형</label>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="cl"><label for="cl">&nbsp;대형</label>

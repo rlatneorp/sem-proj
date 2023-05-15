@@ -30,6 +30,7 @@ public class AnimalController {
 		int memberNo = loginUser.getMemberNo(); // 로그인한 유저의 memberNo 가져오기
 		
 		Animal animal = aService.animalList(memberNo); // 해당 유저가 등록한 동물 정보 가져오기
+		
 		model.addAttribute("animal", animal);
 		model.addAttribute("loginUser", loginUser);
 
@@ -85,13 +86,21 @@ public class AnimalController {
 		
 		Animal insertAnimal = aService.animalList(a.getMemberNo());
 		
+		System.out.println(animalType);
+		System.out.println(a);
+		System.out.println(result);
+		System.out.println(insertAnimal);
+		
+		
 		if(result > 0) {
-			model.addAttribute("animal", insertAnimal);
+			model.addAttribute("animal", insertAnimal);	
 			return "redirect:member_User_Info.me";
 		} else {
 			throw new AnimalException("동물 정보 등록에 실패하였습니다.");
 		}		
 	}
+	
+	@PostMapping("")
 }
 
 

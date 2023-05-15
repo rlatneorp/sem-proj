@@ -58,10 +58,21 @@ body {
 	  padding: 10px;
 	  border: none;
 	  border-radius: 10px;
-	  margin-left: 160px;
+	  margin-left: 95px;
 	  width: 85px;
 	  cursor: pointer;
   }
+  #btn2{
+	  background: lightgray;
+	  color: white;
+	  padding: 10px;
+	  border: none;
+	  border-radius: 10px;
+	  margin-left: 30px;
+	  width: 85px;
+	  cursor: pointer;
+  }
+  
   rad{
   	max-height: 0;
   	overflow: hidden;
@@ -140,6 +151,7 @@ body {
     							  	<br><br><br>
     							  	
 									<button type="submit" id="btn">수정하기</button>
+									<button type="button" id="btn2" onclick="location.href='${contextPath}/deleteAnimal.me'">삭제하기</button>
 					      		</form>
 					      	</div>
 					      </div>
