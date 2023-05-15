@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Jibsa {
 	private int memberNo;
+	private String memberName;
 	private String jibsaGender;
 	private int jibsaRrn;
 	private String isSmoking;
@@ -17,16 +18,16 @@ public class Jibsa {
 	private Date primiumPaymentDate;
 	private Date primiumEndDate;
 	private String isTrainer;
+	private String isJibsa;
 
-	
 	public Jibsa() {}
 
-
-	public Jibsa(int memberNo, String jibsaGender, int jibsaRrn, String isSmoking, String workCareer,
+	public Jibsa(int memberNo, String memberName, String jibsaGender, int jibsaRrn, String isSmoking, String workCareer,
 			String availableHour, String availableArea, String motive, int exptectedSalary, String chatAddress,
-			String isPrimium, Date primiumPaymentDate, Date primiumEndDate, String isTrainer) {
+			String isPrimium, Date primiumPaymentDate, Date primiumEndDate, String isTrainer, String isJibsa) {
 		super();
 		this.memberNo = memberNo;
+		this.memberName = memberName;
 		this.jibsaGender = jibsaGender;
 		this.jibsaRrn = jibsaRrn;
 		this.isSmoking = isSmoking;
@@ -40,6 +41,7 @@ public class Jibsa {
 		this.primiumPaymentDate = primiumPaymentDate;
 		this.primiumEndDate = primiumEndDate;
 		this.isTrainer = isTrainer;
+		this.isJibsa = isJibsa;
 	}
 
 
@@ -50,6 +52,16 @@ public class Jibsa {
 
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
+	}
+
+
+	public String getMemberName() {
+		return memberName;
+	}
+
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 
 
@@ -183,18 +195,27 @@ public class Jibsa {
 	}
 
 
+	public String getIsJibsa() {
+		return isJibsa;
+	}
+
+
+	public void setIsJibsa(String isJibsa) {
+		this.isJibsa = isJibsa;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Jibsa [memberNo=" + memberNo + ", jibsaGender=" + jibsaGender + ", jibsaRrn=" + jibsaRrn
-				+ ", isSmoking=" + isSmoking + ", workCareer=" + workCareer + ", availableHour=" + availableHour
-				+ ", availableArea=" + availableArea + ", motive=" + motive + ", exptectedSalary=" + exptectedSalary
-				+ ", chatAddress=" + chatAddress + ", isPrimium=" + isPrimium + ", primiumPaymentDate="
-				+ primiumPaymentDate + ", primiumEndDate=" + primiumEndDate + ", isTrainer=" + isTrainer + "]";
+		return "Jibsa [memberNo=" + memberNo + ", memberName=" + memberName + ", jibsaGender=" + jibsaGender
+				+ ", jibsaRrn=" + jibsaRrn + ", isSmoking=" + isSmoking + ", workCareer=" + workCareer
+				+ ", availableHour=" + availableHour + ", availableArea=" + availableArea + ", motive=" + motive
+				+ ", exptectedSalary=" + exptectedSalary + ", chatAddress=" + chatAddress + ", isPrimium=" + isPrimium
+				+ ", primiumPaymentDate=" + primiumPaymentDate + ", primiumEndDate=" + primiumEndDate + ", isTrainer="
+				+ isTrainer + ", isJibsa=" + isJibsa + "]";
 	}
-	
-	
 
-	
+
 
 }
 
