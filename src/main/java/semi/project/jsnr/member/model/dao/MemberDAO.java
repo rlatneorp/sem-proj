@@ -57,4 +57,8 @@ public class MemberDAO {
 		return sqlSession.update("memberMapper.updatePwd", map);
 	}
 
+	public int deleteInfo(SqlSessionTemplate sqlSession, String memberId) {
+		return sqlSession.update("memberMapper.deleteInfo", memberId);
+	}
+
 }

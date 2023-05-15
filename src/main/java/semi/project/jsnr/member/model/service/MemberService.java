@@ -65,4 +65,8 @@ public class MemberService {
 	public int updatePwd(HashMap<String, String> map) {
 		return mDAO.updatePwd(sqlSession, map);
 	}
+
+	public int deleteInfo(String memberId) {
+		return mDAO.deleteInfo(sqlSession, memberId);
+	}
 }
