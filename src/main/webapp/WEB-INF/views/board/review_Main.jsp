@@ -6,6 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap"  rel="stylesheet">
 <title>이용 후기</title>
 <style>
 	.review {
@@ -37,7 +38,7 @@
 	  margin-left:20px;
 	}
 	
-	.review p {
+	.review a {
 	  font-size: 1rem;
 	  margin-bottom: 10px;
 	  margin-top: 20px;
@@ -53,13 +54,14 @@
 			margin: 10px;
 			border-radius: 30px;
 	}
-	p {
+	.reviewContent {
 	   display: -webkit-box;
 	   -webkit-line-clamp: 4;
 	   -webkit-box-orient: vertical;
 	   overflow: hidden;
 	   text-overflow: ellipsis;
 	   max-height: 120px; /* line-height와 font-size를 곱한 값을 입력합니다. */
+	   color: rgb(51, 51, 51); text-decoration: none; 
  	}
  	
  	.username {
@@ -88,12 +90,13 @@
         border-radius: 10px; /* 둥근 모서리 크기 */
     }
 	
+	body{font-family: 'Noto Sans KR', sans-serif;}
 </style>
 </head>
 <body>
 <%@ include file="../common/top.jsp" %>
 
-	<div class="container">
+	<div class="container-xxl">
 	  
 		<br><br><br>
 		<h1>이용 후기</h1>
@@ -119,14 +122,15 @@
 					  </div>
 					  <div class="info">
 					    <h2>${ n.jibsaName }</h2>
-					    <p>${ n.reviewContent }</p>
-				  </div>
-				</div>
-			</div>	
-		</c:forEach>
+					    <a class="reviewContent" href="${ contextPath }/review_Detail.bo">${ n.reviewContent }</a>
+					  </div>
+					</div>
+				</div>	
+			</c:forEach>
 	  	</div>
 	  </div>
 	</div>
+
 	  <div class="row">
 		  				
 			<div class="pagingArea" align="center">
@@ -196,22 +200,37 @@
 				<br><br><br>
 			</div>	
 			
-			<script>
-				//검색하기 버튼을 누르면
-				//search.bo로 검색 조건(condition)과 검색 값(value)를 데이터 넘기기
-				// : 검색이기 때문에 get방식 사용
-				
-				document.getElementById('searchArea').querySelector('button').addEventListener('click', function(){
-					const value = this.previousElementSibling.value;
-					const condition = this.previousElementSibling.previousElementSibling.value;
-					
-					location.href = '${contextPath}/search.bo?value='+value+'&condition='+condition;
-				});		
-			
-			
-			</script>
 	
 	  </div>
-	<%@ include file="../common/bottom.jsp" %>
-</body>
+<%@ include file="../common/bottom.jsp" %>
+
+<script>
+	
+		document.getElementById('searchArea').querySelector('button').addEventListener('click', function(){
+		const value = this.previousElementSibling.value;
+		const condition = this.previousElementSibling.previousElementSibling.value;
+		
+		location.href = '${contextPath}/search.bo?value='+value+'&condition='+condition;
+		});		
+		
+		const reviewContents = document.querySelector('.reviewContent');
+		for(const content of reviewContents){
+			content.addEventListener('click', function(){
+				const contentEtc = this.previousElementSibling.value;
+				const jibsa = contentEtc.innerText.value;
+				const writer = document.querySelector('.username').value;
+				const bId = '';
+				if(bId == null){
+					bId.add(${list.matchingNo});
+				} else{
+					return bId;
+				}
+				
+				location.href='${ contextPath }/review_Detail.bo?bId=' + bId + '&writer=' + writer + '&jibsa=' + jibsa+ '&page=' + ${pi.currentPage}; 
+			})
+		};
+	
+
+</script>
+ </body>
 </html>

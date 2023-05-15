@@ -20,7 +20,7 @@
   }
   .edit{
   	width: 650px;
-  	height: 1000px;
+  	height: 800px;
   	border-radius: 10px;
   	box-shadow: 0px 0px 14px gray;
   	margin-left: 200px;
@@ -83,10 +83,10 @@
 					   <h4 style="margin-right: 58%;"><b>나의 정보</b></h4>
 					   		<br>
 					      	<div class="edit">
-					      		<form id="editForm" action="${ contextPath }/member_updateInfo.me" method="post">
+					      		<form id="editForm" action="${ contextPath }/member_UpdateInfo.me" method="post">
 					      			<p class="sel">1. 아이디</p>
-    							  	<input type="text" name="memberId" value="${ loginUser.memberId }" required id="id"/>
-    							  	<div style="height: 30px; font-size: 12px;" id="idDiv"></div>
+    							  	<input type="text" name="memberId" value="${ loginUser.memberId }" readonly id="id" style="background: lightgray;"/>
+    							  	<br><br>
 					      			<p class="sel">2. 비밀번호</p>
     							  	<input type="password" name="memberPwd" readonly style="background: lightgray;"/>
     							  	<button type="button" id="change">변경</button>
@@ -95,7 +95,7 @@
     							  	<input type="text" name="memberName" value="${ loginUser.memberName }" required/>
     							  	<br><br>
 					      			<p class="sel">4. 이메일</p>
-    							  	<input type="text" name="member_Email" value="${ loginUser.memberEmail }" required/>
+    							  	<input type="text" name="memberEmail" value="${ loginUser.memberEmail }" required/>
     							  	<br><br>
     							  	<p class="sel">5. 연락처</p>
     							  	<input type="text" name="memberPhone" value="${ loginUser.memberPhone }" required/>
@@ -107,19 +107,14 @@
 					      		</form>
 					      	</div>
 					      	<br>
-					      	<button id="wbtn">회원 탈퇴</button>
+					      	<button id="wbtn" onclick="location.href='${contextPath}/member_WithDrawal.me'">회원 탈퇴</button>
 					      </div>
 					    </div>
 					</div>
 	            </div>
-	            <div id="modal">
-				<h5>정말로 탈퇴하시겠습니까?</h5><br>
-				<button type="submit" id="btn3">탈퇴하기</button>&nbsp;
-				<button id="btn4">취소하기</button>
-				</div>
 				
 				<div id="changeModal">
-					<form action="${ contextPath }/member_updatePwd.me" method="post">
+					<form action="${ contextPath }/member_UpdatePwd.me" method="post">
 						<p class="sel">1. 현재 비밀번호</p>
 	    				<input type="password" name="memberPwd" class="pwd"/>
 	    				<br><br>
@@ -129,7 +124,7 @@
 						<p class="sel">3. 비밀번호 확인</p>
 	    				<input type="password" id="pwdConfirm" class="pwd"/>
 	    				<div style="height: 30px; font-size: 12px;" id="pwdDiv"></div>
-						<button type="submit" id="btn5">변경하기</button>&nbsp;&nbsp;&nbsp;
+						<button id="btn5">변경하기</button>&nbsp;&nbsp;&nbsp;
 						<button type="button" id="btn6">취소하기</button>
 					</form>
 				</div>
@@ -138,14 +133,6 @@
 				
 				<script>
 					window.onload = () =>{
-						document.getElementById('wbtn').addEventListener('click', () => {
-							document.getElementById('modal').style.display = 'block';
-						});
-						
-						document.getElementById('btn4').addEventListener('click', () => {
-							document.getElementById('modal').style.display = 'none';
-						});
-						
 						document.getElementById('change').addEventListener('click', () => {
 							document.getElementById('changeModal').style.display = 'block';
 						});
@@ -155,34 +142,13 @@
 						});
 						
 						// 아이디 중복확인, 비밀번호 일치
-						const id = document.getElementById('id');
 						const pwd = document.getElementById('newPwd');
 						const pwdc = document.getElementById('pwdConfirm');
-						const idDiv = document.getElementById('idDiv');
 						const pwdDiv = document.getElementById('pwdDiv');
-						const ebtn = document.getElementById('ebtn');
+						const btn5 = document.getElementById('btn5');
 						const form = document.getElementById('editForm');
 						
-						id.addEventListener('focusout', () => {
-							$.ajax({
-								url : '${contextPath}/checkMemberId.me',
-								data : {memberId : id.value},
-								success : data => {
-									console.log(data);
-									if(data == 'yes'){
-										idDiv.innerText = '사용 가능한 아이디입니다.';
-										idDiv.style.color = 'green';
-									} else if(data == 'no') {
-										idDiv.innerText = '중복된 아이디입니다.';
-										idDiv.style.color = 'red';
-									}
-								},
-								error : data => {
-									console.log(data)
-								}
-							});
-						});
-						
+						// 비밀번호 칸
 						pwd.addEventListener('focusout', (e) => {
 							if(pwd.value != '' && pwdc.value != ''){
 								if(pwd.value == pwdc.value) {
@@ -196,6 +162,7 @@
 							}
 						});
 						
+						// 비밀번호 확인 칸
 						pwdc.addEventListener('focusout', (e) => {
 							if(pwd.value != '' && pwdc.value != ''){
 								if(pwd.value == pwdc.value) {
@@ -209,17 +176,14 @@
 							}
 						});
 						
-						ebtn.addEventListener('click', (e) => {
+						btn5.addEventListener('click', (e) => {
 							if(pwdDiv.innerText == '비밀번호가 일치하지 않습니다.'){
 								alert('비밀번호가 일치하지 않습니다.');
 								pwdc.focus();
 								e.preventDefault();
-							} else if(pwdDiv.innerText == '비밀번호가 일치합니다.' || idDiv.innerText == '사용 가능한 아이디입니다.') {
+							} else if(pwdDiv.innerText == '비밀번호가 일치합니다.') {
 								form.submit();
-							} else if(idDiv.innerText == '중복된 아이디입니다.'){
-								alert('중복된 아이디입니다.');
-								id.focus();
-								e.preventDefault();
+								alert('비밀번호가 변경되었습니다.');
 							}
 						})
 						

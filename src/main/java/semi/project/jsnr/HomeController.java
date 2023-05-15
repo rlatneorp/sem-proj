@@ -4,12 +4,15 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,11 +53,6 @@ public class HomeController {
 		return "redirect:index.jsp";
 	}
 	
-//	@RequestMapping("home.do")
-//	public String home() {
-//		return "redirect:home/home";
-//	}
-	
 	@RequestMapping("loginView.do")
 	public String loginView() {
 		return "login/login";
@@ -93,9 +91,35 @@ public class HomeController {
 	@RequestMapping("logout.do")
 	public String logout(SessionStatus status) {
 		status.setComplete();
+//		session.setAttribute("animal", null); // 남아있는 animal 객체도 초기화해야해서 넣었습니다..
 		
 		return "redirect:home.do";
 	}
+	
+	// 아이디 찾기
+	@GetMapping("searchId.do")
+	public String searchId() {
+		return "enroll/found_Id";
+	}
+	
+	@PostMapping("foundId.do")
+	public String foundId(@ModelAttribute Member m, Model model) {
+		String memberId = mService.foundId(m);
+		
+		model.addAttribute("memberName", m.getMemberName());
+		model.addAttribute("memberId", memberId);
+		
+		return "enroll/found_Id_Result";
+	}
+	
+	// 비밀번호 찾기
+	@GetMapping("searchPwd.do")
+	public String searchPwd() {
+		return "enroll/found_Pwd";
+	}
+	
+	
+	
 	
 
 }

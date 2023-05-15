@@ -76,7 +76,7 @@
 		<c:if test="${ empty loginUser }">
 		<div class="topRight">    
 		    <a class="menu1" href="${ contextPath }/loginView.do">로그인</a>
-		    <a class="menu1">회원가입</a>
+		    <a class="menu1" href="${ contextPath }/joinNotice.do">회원가입</a>
 			<button class="btjipsa menu2" type="submit" onclick="location.href='${contextPath}/enrollJibsa.js'">집사 지원</button>
 		</div>
 		</c:if>
@@ -86,7 +86,7 @@
 				<a class="menu2">${ loginUser.memberName }</a>
 				<div class="dropd" style="float:right; " aria-expanded="false">
 					<button onclick="dp_menu()" class="butn"><img src="resources/image/down.png"></button>
-				    <div style="width: 230px; height: 390px;" id="drop-c">
+				    <div style="width: 230px; height: 390px; display: none;" id="drop-c">
 				    	<ul id="droul">
 				    	<c:if test="${ loginUser.isAdmin eq 'Y' }">
 					       <li><a class="name">${ loginUser.memberName }관리자</a></li>
@@ -101,7 +101,7 @@
 					       <li><a class="animal">미돌이</a></li>
 					       <li><a><hr></a></li>
 					       <li><a class="myMenu" href="${ contextPath }/member_User_Info.me">마이페이지</a></li>
-					       <li><a class="myMenu">프로필 설정</a></li>
+					       <li><a class="myMenu" href="${ contextPath }/member_EditInfo.me">프로필 설정</a></li>
 				  		   <li><a href="${contextPath}/enrollJibsa.js"><button class="btjipsa menu2" id = "btjibsa_apply" >집사 지원</button></a></li>
 					       <li><a><button onclick="location.href='${contextPath}/logout.do'" id="logOut">로그아웃</button></a></li>
 				    	</c:if>
@@ -115,23 +115,17 @@
 	<hr id="top_hr2">
 </header>
 <script>
-	let click = document.getElementById("drop-c");
-// 	click.style.display = "none";
+	const dp_menu = () => {
+	  const dropC = document.getElementById("drop-c");
+	  if (dropC.style.display === "none") {
+	    dropC.style.display = "block";
+	  } else {
+	    dropC.style.display = "none";
+	  }
+	};
 	
-	const dp_menu=()=>{
-	    if(click.style.display === "none"){
-	        click.style.display = "block";
-	    }else{
-	        click.style.display = "none";
-	    }
-	}
 	
-	// 로드 될 때마다 drop-c 를 사라지게 하는 함수
-	window.addEventListener("load", function() {
-		  let click = document.getElementById("drop-c");
-		  click.style.display = "none";
-	});
-
+	 
 </script>
 </body>
 </html>

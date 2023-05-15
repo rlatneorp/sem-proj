@@ -25,12 +25,12 @@ public class AnimalServiceImpl implements AnimalService {
 	}
 	
 	@Override
-	public Animal animalEditList(Animal a) {
-		return aDAO.animalEditList(sqlSession, a);
+	public int updateAnimal(Animal a) {
+		return aDAO.updateAnimal(sqlSession, a);
 	}
 	
 	@Override
-	public int updateAnimal(Animal a) {
-		return aDAO.updateAnimal(sqlSession, a);
+	public int insertAnimal(Animal a) {
+		return aDAO.insertAnimal(sqlSession, a);
 	}
 }

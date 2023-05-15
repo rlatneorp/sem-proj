@@ -12,6 +12,8 @@ public class Animal {
 	private String animalSize;
 	private String isNeuter;
 	private String birthDate;
+	
+	public Animal() {};
 
 	public Animal(int animalNo, String animalName, String animalGender, String animalKind, double animalWeight,
 			String animalNote, int memberNo, String animalType, String animalSize, String isNeuter, String birthDate) {

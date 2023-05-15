@@ -28,4 +28,9 @@
 		where member_no = #{memberNo}
 	</update>
 	
+	<insert id="insertAnimal">
+		insert into animal
+		values(seq_ani_id, #{animalName}, #{animalGender}, #{animalKind}, #{animalWeight}, #{animalNote}, #{memberNo}, #{animalType}, #{animalSize}, #{isNeuter}, #{birthDate})
+	</insert>
+	
 </mapper>

@@ -4,7 +4,6 @@ import java.sql.Date;
 
 public class Jibsa {
 	private int memberNo;
-	private String memberName;
 	private String jibsaGender;
 	private int jibsaRrn;
 	private String isSmoking;
@@ -27,7 +26,6 @@ public class Jibsa {
 			String isPrimium, Date primiumPaymentDate, Date primiumEndDate, String isTrainer, String isJibsa) {
 		super();
 		this.memberNo = memberNo;
-		this.memberName = memberName;
 		this.jibsaGender = jibsaGender;
 		this.jibsaRrn = jibsaRrn;
 		this.isSmoking = isSmoking;
@@ -42,14 +40,6 @@ public class Jibsa {
 		this.primiumEndDate = primiumEndDate;
 		this.isTrainer = isTrainer;
 		this.isJibsa = isJibsa;
-	}
-
-	public String getMemberName() {
-		return memberName;
-	}
-
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
 	}
 
 	public int getMemberNo() {
@@ -181,6 +171,8 @@ public class Jibsa {
 				+ ", primiumPaymentDate=" + primiumPaymentDate + ", primiumEndDate=" + primiumEndDate + ", isTrainer="
 				+ isTrainer + ", isJibsa=" + isJibsa + "]";
 	}
+
+	
 
 }
 

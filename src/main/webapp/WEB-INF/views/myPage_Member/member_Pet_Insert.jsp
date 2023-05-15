@@ -87,56 +87,56 @@ body {
     							  	<input class="form-control" type="file" accept="image/*" id="formFile">
     							  	<br>
     							  	
-    							  	<input type="text" name="name" placeholder="이름 ex.코코" style="width: 400px; height: 35px;"/>
+    							  	<input type="text" name="animalName" placeholder="이름 ex.코코" style="width: 400px; height: 35px;"/>
     							  	<br><br><br>
     							  	
     							  	<p class="sel">2. '코코'는</p>
     							  	<label for="dog">
-    							  		<input type="radio" name="breed" class="rad" id="dog"> 강아지
+    							  		<input type="radio" name="animalKind" class="rad" id="dog"> 강아지
     							  	</label>
     							  	<div class="hide">
-    							  		&nbsp;&nbsp;<input type="text" name="breed" value="품종"/>이에요<br>
-    							  		&nbsp;&nbsp;<input type="radio" name="size" id="ds"><label for="ds">&nbsp;소형</label>
-    							  		&nbsp;&nbsp;<input type="radio" name="size" id="dm"><label for="dm">&nbsp;중형</label>
-    							  		&nbsp;&nbsp;<input type="radio" name="size" id="dl"><label for="dl">&nbsp;대형</label>
+    							  		&nbsp;&nbsp;<input type="text" name="dType" placeholder="품종"/>이에요<br>
+    							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="ds"><label for="ds">&nbsp;소형</label>
+    							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="dm"><label for="dm">&nbsp;중형</label>
+    							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="dl"><label for="dl">&nbsp;대형</label>
     							  	</div>
     							  	<br>
     							  	<label for="cat">
-    							  		<input type="radio" name="breed" class="rad" id="cat"> 고양이
+    							  		<input type="radio" name="animalKind" class="rad" id="cat"> 고양이
     							  	</label>
     							  	<div class="hide">
-    							  		&nbsp;&nbsp;<input type="text" name="breed" value="품종"/>이에요<br>
-    							  		&nbsp;&nbsp;<input type="radio" name="size" id="cs"><label for="cs">&nbsp;소형</label>
-    							  		&nbsp;&nbsp;<input type="radio" name="size" id="cm"><label for="cm">&nbsp;중형</label>
-    							  		&nbsp;&nbsp;<input type="radio" name="size" id="cl"><label for="cl">&nbsp;대형</label>
+    							  		&nbsp;&nbsp;<input type="text" name="cType" placeholder="품종"/>이에요<br>
+    							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="cs"><label for="cs">&nbsp;소형</label>
+    							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="cm"><label for="cm">&nbsp;중형</label>
+    							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="cl"><label for="cl">&nbsp;대형</label>
     							  	</div>
     							  	<br>
     							  	<label for="other">
-    							  		<input type="radio" name="breed" class="rad" id="other"> 기타
-    							  		<input type="text" name="other" value="ex. 토끼 등"/>
+    							  		<input type="radio" name="animalKind" class="rad" id="other"> 기타
+    							  		<input type="text" name="oType" placeholder="ex. 토끼 등"/>
     							  	</label>
     							  	<br><br><br>
     							  	
     							  	<p class="sel">3. '코코'의 성별</p>
-    							  	<input type="radio" name="gender" id="M"><label for="M">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;&nbsp;
-    							  	<input type="radio" name="gender" id="F"><label for="F">&nbsp;여자</label>
+    							  	<input type="radio" name="animalGender" id="M"><label for="M">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;&nbsp;
+    							  	<input type="radio" name="animalGender" id="F"><label for="F">&nbsp;여자</label>
     							  	<br><br><br>
     							  	
     							  	<p class="sel">4. '코코'는 중성화수술</p>
-    							  	<input type="radio" name="surgery" id="ok"><label for="ok">&nbsp;했어요</label>&nbsp;
-    							  	<input type="radio" name="surgery" id="nok"><label for="nok">&nbsp;안했어요</label>
+    							  	<input type="radio" name="isNeuter" id="ok"><label for="ok">&nbsp;했어요</label>&nbsp;
+    							  	<input type="radio" name="isNeuter" id="nok"><label for="nok">&nbsp;안했어요</label>
     							  	<br><br><br>
     							  	
     							  	<p class="sel">5. '코코'의 생일</p>
-    							  	<input type="date" name="date" style="width: 120px;">
+    							  	<input type="date" name="birthDate" style="width: 120px;">
     							  	<br><br><br>
     							  	
     							  	<p class="sel">6. '코코'의 몸무게</p>
-    							  	<input type="text" name="kg"> kg
+    							  	<input type="text" name="animalWeight"> kg
     							  	<br><br><br>
     							  	
     							  	<p class="sel">7. 참고사항</p>
-    							  	<textarea cols="50" rows="10" style="resize: none" name="content"></textarea>
+    							  	<textarea cols="50" rows="10" style="resize: none" name="animalNote"></textarea>
     							  	<br><br><br>
     							  	
 									<button type="submit" id="btn">등록하기</button>
