@@ -22,32 +22,43 @@
         <div id="page-content-wrapper">
 	    	<div class="container-fluid">
 	        	<div class="container text-center">
-	        		<h4 style="margin-right: 490px;"><b>자주 묻는 질문 관리</b></h4>
+	        		<div style="width: 700px" class="d-inline-block text-start mb-5">
+	        			<h4><b>1:1문의내용</b></h4>
+	        		</div>
 	        		<br>
-		        	<form method="post" id="reviewForm" action="${contextPath}/admin_FAQ_Update.ad">
+		        	<form method="post" id="reviewForm" action="${contextPath}/admin_QNA_Update.ad">
 		        		<input type="hidden" name="page" value="${page}">
-		        		<input type="hidden" name="faqNo" value="${f.faqNo}">
-				        <div class="form-group">
-				              <label for="exampleFormControlInput1">제목</label><br><br>
-				            <input type="text" class="form-control" id="exampleFormControlInput1" name="faqTitle" value="${f.faqTitle}">
+		        		<input type="hidden" name="qnaNo" value="${q.qnaNo}">
+				        <div class="form-group row mb-5">
+				            <label class="col-2 mb-2">작성자</label><b class="col-10">${q.memberName}(${q.memberId})</b><br>
+				            <label class="col-2 mb-2">문의일자</label><b class="col-10">${q.questionDate}</b>
+				            <label class="col-2 mb-2">분류</label><b class="col-10">${q.qnaCategory}</b>
 				        </div>
-				        <br>
-				        <div class="form-group">
-				            <label for="exampleFormControlTextarea1">내용</label><br><br>
-				            <textarea class="form-control" id="exampleFormControlTextarea1" name="faqContent" rows="10" style="resize: none">${f.faqContent}</textarea>
+				        <div class="form-group mb-5">
+				            <label >제목</label><br><br>
+				            <input type="text" class="form-control" name="qnaTitle" value="${q.qnaTitle}" readonly>
 				        </div>
-				        <br>
-					    
-					    <div id="divBox" class="row mb-4">
-						    <p class="col-2">활성화여부</p><p class="col-2">${f.faqStatus}</p>
-							<input type="hidden" name="faqStatus" value="${f.faqStatus}">
+				        <div class="form-group mb-5">
+				            <label>문의내용</label><br><br>
+				            <textarea class="form-control" name="qnaContent" rows="10" style="resize: none" readonly>${q.qnaContent}</textarea>
+				        </div>
+				        <div class="form-group mb-5">
+				            <label>답변내용</label>
+				            <label>
+					            <c:if test="${answerDate ne ''}">&nbsp&nbsp(${q.answerDate})</c:if>
+				            </label><br><br>
+				            <textarea class="form-control" name="qnaAnswer" rows="10" style="resize: none">${q.qnaAnswer}</textarea>
+				        </div>
+					    <div id="divBox" class="row mb-5">
+						    <p class="col-2">활성화여부</p><p class="col-1">${q.qnaStatus}</p>
+							<input type="hidden" name="qnaStatus" value="${q.qnaStatus}">
 							<button type="button" class="col-1 rounded">Y</button>
 							<button type="button" class="col-1 rounded">N</button><p class="col-4"></p>
 						</div>
+					    
 						
 						<div class="container text-center">
-							<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">수정하기</button>
-							<button type="button" id="deleteModal" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">삭제하기</button>
+							<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">작성하기</button>
 							<button type="button" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;" onclick="history.back()">뒤로가기</button>
 						</div>
 				    </form>

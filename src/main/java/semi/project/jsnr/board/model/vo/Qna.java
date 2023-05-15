@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Qna {
 	private int qnaNo;
 	private int memberNo;
+	private String memberId;
 	private String memberName;
 	private String qnaCategory;
 	private String qnaTitle;
@@ -16,11 +17,12 @@ public class Qna {
 	
 	public Qna() {}
 
-	public Qna(int qnaNo, int memberNo, String memberName, String qnaCategory, String qnaTitle, String qnaContent,
-			Date questionDate, String qnaAnswer, Date answerDate, String qnaStatus) {
+	public Qna(int qnaNo, int memberNo, String memberId, String memberName, String qnaCategory, String qnaTitle,
+			String qnaContent, Date questionDate, String qnaAnswer, Date answerDate, String qnaStatus) {
 		super();
 		this.qnaNo = qnaNo;
 		this.memberNo = memberNo;
+		this.memberId = memberId;
 		this.memberName = memberName;
 		this.qnaCategory = qnaCategory;
 		this.qnaTitle = qnaTitle;
@@ -46,7 +48,15 @@ public class Qna {
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
-	
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
 	public String getMemberName() {
 		return memberName;
 	}
@@ -113,12 +123,11 @@ public class Qna {
 
 	@Override
 	public String toString() {
-		return "Qna [qnaNo=" + qnaNo + ", memberNo=" + memberNo + ", qnaCategory=" + qnaCategory + ", qnaTitle="
-				+ qnaTitle + ", qnaContent=" + qnaContent + ", questionDate=" + questionDate + ", qnaAnswer="
-				+ qnaAnswer + ", answerDate=" + answerDate + ", qnaStatus=" + qnaStatus + "]";
+		return "Qna [qnaNo=" + qnaNo + ", memberNo=" + memberNo + ", memberId=" + memberId + ", memberName="
+				+ memberName + ", qnaCategory=" + qnaCategory + ", qnaTitle=" + qnaTitle + ", qnaContent=" + qnaContent
+				+ ", questionDate=" + questionDate + ", qnaAnswer=" + qnaAnswer + ", answerDate=" + answerDate
+				+ ", qnaStatus=" + qnaStatus + "]";
 	}
-	
-	
-	
+
 	
 }

@@ -87,5 +87,22 @@ public class AdminDAO {
 		return sqlSession.update("adminMapper.updateFaq", f);
 	}
 
+	public int insertFaq(SqlSessionTemplate sqlSession, Faq f) {
+		return sqlSession.insert("adminMapper.insertFaq", f);
+	}
+
+	public int deleteFaq(SqlSessionTemplate sqlSession, int fId) {
+		return sqlSession.delete("adminMapper.deleteFaq", fId);
+	}
+
+	public Qna selectQna(SqlSessionTemplate sqlSession, int qId) {
+		return sqlSession.selectOne("adminMapper.selectQna", qId);
+	}
+
+	public int updateQna(SqlSessionTemplate sqlSession, Qna q) {
+		return sqlSession.update("adminMapper.updateQna", q);
+	}
+
+
 
 }

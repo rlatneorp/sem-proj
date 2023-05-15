@@ -67,12 +67,12 @@
 							    	<thead>
 								    	<tr>
 								    		<th>글 번호</th>
-								    		<th>분류</th>
 								    		<th>제목</th>
 								    		<th>작성자</th>
 								    		<th>작성일</th>
 								    		<th>답변여부</th>
-								    		<th>삭제여부</th>
+								    		<th>분류</th>
+								    		<th>활성화여부</th>
 								    		<th>선택</th>
 								    	</tr>
 							    	</thead>
@@ -80,17 +80,19 @@
 							    		<c:forEach items="${qList}" var="q">
 									    	<tr>
 									    		<td>${q.qnaNo}</td>
-									    		<td>${q.qnaCategory}</td>
-									    		<td>${q.qnaTitle}</td>
+									    		<td>
+									    			<a href="${contextPath}/admin_QNA_Detail.ad?page=${page}&qId=${q.qnaNo}">${q.qnaTitle}</a>
+								    			</td>
 									    		<td>${q.memberName}</td>
 									    		<td>${q.questionDate}</td>
 									    		<td>
 									    			<c:if test="${q.qnaAnswer eq null}">답변대기</c:if>
 									    			<c:if test="${q.qnaAnswer ne null}">답변완료</c:if>
 									    		</td>
+									    		<td>${q.qnaCategory}</td>
 									    		<td>
-									    			<c:if test="${q.qnaStatus eq 'Y'}"></c:if>
-									    			<c:if test="${q.qnaStatus eq 'N'}">삭제됨</c:if>
+									    			<c:if test="${q.qnaStatus eq 'Y'}">활성화</c:if>
+									    			<c:if test="${q.qnaStatus eq 'N'}">비활성화</c:if>
 									    		</td>
 									    		<td><input type="checkbox" name="delete"></td>
 									    	</tr>

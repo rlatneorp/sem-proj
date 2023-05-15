@@ -95,7 +95,7 @@
 						    	</tbody>
 					    	</table>
 					    </div>
-					    <button id="write" onclick="location.href='admin_writeFAQ.jsp';">글쓰기</button>
+					    <button id="write" onclick="location='${contextPath}/admin_FAQ_Write.ad'">글쓰기</button>
 					    </div>
 					    <br>
 					    

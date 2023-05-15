@@ -157,6 +157,18 @@
 		where faq_no = #{faqNo}
 	</update>
 	
+	<insert id="insertFaq">
+		insert into faq
+		values(seq_b_id.nextval, #{faqWriter}, #{faqTitle}, #{faqContent}, sysdate, #{faqStatus})
+	</insert>
+	
+	<delete id="deleteFaq">
+		delete from faq
+		where faq_no = #{faqNo}
+	</delete> 
+	
+	
+	
 	<select id="getQnaCount" resultType="_int">
 		select count(*)
 		from qna
@@ -168,9 +180,16 @@
 			 join member using(member_no)
 		order by qna_no desc
 	</select>
+	<select id="selectQna" resultMap="qnaResultSet">
+		select *
+		from qna
+			 join member using(member_no)
+		where qna_no = #{qId}
+	</select>
 	<resultMap type="qna" id="qnaResultSet">
 		<id column="QNA_NO" property="qnaNo"/>
 		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="MEMBER_ID" property="memberId"/>
 		<result column="MEMBER_NAME" property="memberName"/>
 		<result column="QNA_CATEGORY" property="qnaCategory"/>
 		<result column="QNA_TITLE" property="qnaTitle"/>
@@ -180,5 +199,13 @@
 		<result column="ANSWER_DATE" property="answerDate"/>
 		<result column="QNA_STATUS" property="qnaStatus"/>
 	</resultMap>	
+	
+	<update id="updateQna">
+		update qna
+		set qna_answer = #{qnaAnswer},
+			answer_date = sysdate,
+			qna_status = #{qnaStatus}
+		where qna_no = #{qnaNo}
+	</update>
 	
 </mapper>

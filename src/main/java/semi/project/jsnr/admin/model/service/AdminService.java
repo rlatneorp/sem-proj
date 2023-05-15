@@ -82,6 +82,22 @@ public class AdminService {
 		return aDAO.updateFaq(sqlSession, f);
 	}
 
+	public int insertFaq(Faq f) {
+		return aDAO.insertFaq(sqlSession, f);
+	}
+
+	public int deleteFaq(int fId) {
+		return aDAO.deleteFaq(sqlSession, fId);
+	}
+
+	public Qna selectQna(int qId) {
+		return aDAO.selectQna(sqlSession, qId);
+	}
+
+	public int updateQna(Qna q) {
+		return aDAO.updateQna(sqlSession, q);
+	}
+
 
 	
 }

@@ -1,6 +1,10 @@
 package semi.project.jsnr.admin.controller;
 
 import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Base64.Decoder;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -225,6 +229,66 @@ public class AdminController {
 		}
 	}
 	
+	@GetMapping("admin_FAQ_Write.ad")
+	public String admin_FAQ_Write(@RequestParam(value="page", required=false) Integer page,
+			   					  Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		model.addAttribute("page", currentPage);
+		return "admin_FAQ_Write";
+	}
+	
+	@PostMapping("admin_FAQ_Insert.ad")
+	public String admin_FAQ_Insert(@RequestParam(value="page", required=false) Integer page,
+								   @ModelAttribute Faq f,
+								   HttpSession session,
+				 				   Model model) {
+		int currentPage = 1;
+		if(page != null) {
+		currentPage = page;
+		}
+		
+		f.setFaqWriter(((Member)session.getAttribute("loginUser")).getMemberNo()+"");
+		
+		int result = aService.insertFaq(f);
+		System.out.println(f);
+		if(result > 0) {
+			model.addAttribute("page", currentPage);
+			return "redirect:admin_FAQ.ad";
+		} else {
+			System.out.println("FAQ정보 insert 실패함");
+			return "";
+		}
+	}
+	
+	@GetMapping("admin_FAQ_Delete.ad")
+	public String admin_FAQ_Delete(@RequestParam(value="page", required=false) Integer page,
+								   @RequestParam("fId") String encodeFId,
+								   Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		Decoder decoder = Base64.getDecoder();
+		byte[] byteArr = decoder.decode(encodeFId);
+		String decode = new String(byteArr);
+		int fId = Integer.parseInt(decode);
+		
+		int result = aService.deleteFaq(fId);
+		
+		if(result > 0) {
+			model.addAttribute("page", currentPage);
+			return "redirect:admin_FAQ.ad";
+		}else {
+			System.out.println("에러 페이지로 연결");
+			return "";
+		}
+		
+	}
+	
 	@GetMapping("admin_QNA.ad")
 	public String admin_QNA(@RequestParam(value="page", required=false) Integer page,
 							Model model) {
@@ -244,12 +308,51 @@ public class AdminController {
 			System.out.println(qList);
 			return "admin_QNA";
 		} else {
-			System.out.println("QNA정보 불러오기 실패함");
+			System.out.println("QNA LIST정보 불러오기 실패함");
 			return "";
 		}
 		
 	}
 	
+	@GetMapping("admin_QNA_Detail.ad")
+	public String admin_QNA_Detail(@RequestParam(value="page", required=false) Integer page,
+								   @RequestParam("qId") int qId,
+								   Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		Qna q = aService.selectQna(qId);
+		if(q != null) {
+			model.addAttribute("q", q);
+			model.addAttribute("page", currentPage);
+			return "admin_QNA_Detail";
+		} else {
+			System.out.println("QNA정보 불러오기 실패함");
+			return "";
+		}
+	}
+	
+	@PostMapping("admin_QNA_Update.ad")
+	public String admin_QNA_Update(@RequestParam(value="page", required=false) Integer page,
+								   @ModelAttribute Qna q,
+								   Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int result = aService.updateQna(q);
+		if(result > 0) {
+			model.addAttribute("page", currentPage);
+			return "redirect:admin_QNA.ad";
+		} else {
+			System.out.println("QNA정보 update 실패함");
+			return "";
+		}
+		
+	}
 	
 	
 	
