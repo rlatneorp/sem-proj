@@ -93,12 +93,12 @@ body {
 				    <div class="col">
 				      	<div class="p-2">내 반려동물</div><br>
 		                    <div class="p-4"><br>
-			                    <c:if test="${ !empty animal }">
+			                    <c:if test="${ animal.isStatus eq 'Y' }">
 				                	<h6 class="h6">${ animal.animalKind } / ${ animal.animalName } / ${ animal.animalGender }</h6><br>
 				                    <img src="#" class="petImg"/><br><br><br>
 			                        <button class="inbtn" onclick="location.href='${ contextPath }/member_Pet_Insert_Edit.me'">수정하기</button>
 			                   	</c:if>
-  								<c:if test="${ empty animal }">
+  								<c:if test="${ animal.isStatus eq 'N' }">
 				                	<h4 class="h6">본인의 반려동물 정보를 등록해주세요</h4><br><br>
 			                        <button class="inbtn" onclick="location.href='${ contextPath }/member_Pet_Insert.me'">등록하기</button>
 			                    </c:if>

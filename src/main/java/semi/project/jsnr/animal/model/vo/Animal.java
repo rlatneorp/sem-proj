@@ -12,11 +12,12 @@ public class Animal {
 	private String animalSize;
 	private String isNeuter;
 	private String birthDate;
+	private String isStatus;
 	
 	public Animal() {};
 
 	public Animal(int animalNo, String animalName, String animalGender, String animalKind, double animalWeight,
-			String animalNote, int memberNo, String animalType, String animalSize, String isNeuter, String birthDate) {
+			String animalNote, int memberNo, String animalType, String animalSize, String isNeuter, String birthDate, String isStatus) {
 		super();
 		this.animalNo = animalNo;
 		this.animalName = animalName;
@@ -29,6 +30,7 @@ public class Animal {
 		this.animalSize = animalSize;
 		this.isNeuter = isNeuter;
 		this.birthDate = birthDate;
+		this.isStatus = isStatus;
 	}
 
 	public int getAnimalNo() {
@@ -119,12 +121,19 @@ public class Animal {
 		this.birthDate = birthDate;
 	}
 
+	public String getIsStatus() {
+		return isStatus;
+	}
+
+	public void setIsStatus(String isStatus) {
+		this.isStatus = isStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "Animal [animalNo=" + animalNo + ", animalName=" + animalName + ", animalGender=" + animalGender
 				+ ", animalKind=" + animalKind + ", animalWeight=" + animalWeight + ", animalNote=" + animalNote
 				+ ", memberNo=" + memberNo + ", animalType=" + animalType + ", animalSize=" + animalSize + ", isNeuter="
-				+ isNeuter + ", birthDate=" + birthDate + "]";
+				+ isNeuter + ", birthDate=" + birthDate + ", isStatus=" + isStatus + "]";
 	}
-	
 }
