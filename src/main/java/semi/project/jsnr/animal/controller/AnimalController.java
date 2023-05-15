@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,6 +59,8 @@ public class AnimalController {
 		
 		Animal editAnimal = aService.animalList(a.getMemberNo());
 		
+		System.out.println(editAnimal);
+		
 		if(result > 0) {
 			model.addAttribute("animal", editAnimal);
 			return "redirect:member_User_Info.me";
@@ -99,7 +102,7 @@ public class AnimalController {
 		}		
 	}
 	
-	@PostMapping("deleteAnimal.me")
+	@GetMapping("deleteAnimal.me")
 	public String deleteAnimal(@ModelAttribute Animal a) {
 		
 		int result = aService.deleteAnimal(a);
@@ -108,10 +111,8 @@ public class AnimalController {
 			return "redirect:member_User_Info.me";
 		} else {
 			throw new AnimalException("동물 정보 삭제에 실패하였습니다.");
-		}
-		
+		}		
 	}
-	
 }
 
 
