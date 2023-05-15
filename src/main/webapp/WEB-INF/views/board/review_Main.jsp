@@ -216,16 +216,15 @@
 		});		
 		
 		const reviewContent = document.querySelector('article');
-		const reviewDiv = reviewContent.querySelectorAll('div')
-		for(const div of reviewDiv){
-			div.addEventListener('click', function(){
-				const contentEtc = this.previousElementSibling;
-				const jibsa = contentEtc.innerText;
-				const writer = contentEtc.previousElementSibling.innerText;
-				const mId = jibsa.previousElementSibling.value;
+		const reviewDiv = reviewContent.querySelectorAll('div');
+		for(const divs of reviewDiv){
+			divs.addEventListener('click', function(){
+				const div = this;
+				const mId = div[5].innerText;
+				const writer = div[4].innerText;
 				 
-				location.href='${ contextPath }/review_Detail.bo?mId=' + mId + '&writer=' + writer + '&jibsa=' + jibsa+ '&page=' + ${pi.currentPage}; 
-			})
+				location.href='${ contextPath }/review_Detail.bo?mId='+ mId + '&writer=' + writer + '&page=' + ${pi.currentPage}; 
+			});
 		}
 	}
 
