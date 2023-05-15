@@ -59,5 +59,33 @@ public class AdminDAO {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectQnaList", pi, rowBounds);
 	}
 
+	public Member selectMember(SqlSessionTemplate sqlSession, int mId) {
+		return sqlSession.selectOne("adminMapper.selectMember", mId);
+	}
+
+	public int getAnimalCount(SqlSessionTemplate sqlSession, int mId) {
+		return sqlSession.selectOne("adminMapper.getAnimalCount", mId);
+	}
+
+	public int updateMember(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("adminMapper.updateMember", m);
+	}
+	
+	public Jibsa selectJibsa(SqlSessionTemplate sqlSession, int mId) {
+		return sqlSession.selectOne("adminMapper.selectJibsa", mId);
+	}
+
+	public int updateJibsa(SqlSessionTemplate sqlSession, Jibsa j) {
+		return sqlSession.update("adminMapper.updateJibsa", j);
+	}
+
+	public Faq selectFaq(SqlSessionTemplate sqlSession, int fId) {
+		return sqlSession.selectOne("adminMapper.selectFaq", fId);
+	}
+
+	public int updateFaq(SqlSessionTemplate sqlSession, Faq f) {
+		return sqlSession.update("adminMapper.updateFaq", f);
+	}
+
 
 }

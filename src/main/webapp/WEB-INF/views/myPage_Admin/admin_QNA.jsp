@@ -28,8 +28,7 @@
 	#faqbtn{text-align: left; width: 800px; margin: 0 auto;}
 	#box{padding: 3px 4px;}
 	.search{
-		border-radius: 8px; padding: 3px 3px; border: 1px solid gray;
-		margin-right: 5px;
+		
 	}
 	button{
 		width: 60px; height: 33px;
@@ -107,13 +106,13 @@
 						
 						<br>
 						<div>
-							<select id="box" class="search">
+							<select class="search" style="padding: 3px 4px;">
 								<option>제목</option>
 								<option>작성자</option>
 							</select>
-							<input type="text" class="search">
-							<button onclick="location.href='';" class="search">조회</button>
-							<button onclick="location.href='QnA_main.jsp';" class="search">목록</button>
+							<input type="text" style="border-radius: 8px; padding: 3px 3px; border: 1px solid gray; margin-right: 5px;">
+							<button onclick="location.href='';"  style="border-radius: 8px; padding: 3px 3px; border: 1px solid gray; margin-right: 5px;">조회</button>
+							<button onclick="location.href='QnA_main.jsp';"  style="border-radius: 8px; padding: 3px 3px; border: 1px solid gray; margin-right: 5px;">목록</button>
 						</div>
 					</div>
 	            </div>

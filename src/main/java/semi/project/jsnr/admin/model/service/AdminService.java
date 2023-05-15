@@ -54,6 +54,34 @@ public class AdminService {
 		return aDAO.selectQnaList(sqlSession, pi);
 	}
 
+	public Member selectMember(int mId) {
+		return aDAO.selectMember(sqlSession, mId);
+	}
+
+	public int getAnimalCount(int mId) {
+		return aDAO.getAnimalCount(sqlSession, mId);
+	}
+
+	public int updateMember(Member m) {
+		return aDAO.updateMember(sqlSession, m);
+	}
+
+	public Jibsa selectJibsa(int mId) {
+		return aDAO.selectJibsa(sqlSession, mId);
+	}
+
+	public int updateJibsa(Jibsa j) {
+		return aDAO.updateJibsa(sqlSession, j);
+	}
+
+	public Faq selectFaq(int fId) {
+		return aDAO.selectFaq(sqlSession, fId);
+	}
+
+	public int updateFaq(Faq f) {
+		return aDAO.updateFaq(sqlSession, f);
+	}
+
 
 	
 }

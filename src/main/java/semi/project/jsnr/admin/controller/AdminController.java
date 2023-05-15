@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import semi.project.jsnr.admin.model.service.AdminService;
@@ -29,6 +31,19 @@ public class AdminController {
 		if(page != null) {
 			currentPage = page;
 		}
+
+		model.addAttribute("page", currentPage);
+		return "redirect:admin_Member_Manage.ad";
+	}
+	
+	
+	@GetMapping("admin_Member_Manage.ad")
+	public String admin_Member_Manage(@RequestParam(value="page", required=false) Integer page,
+									  Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
 		
 		int listCount = aService.getMemberCount();
 		
@@ -45,11 +60,42 @@ public class AdminController {
 			return "";
 		}
 	}
+
+	@GetMapping("admin_Member_Detail.ad")
+	public String admin_Member_Detail(@RequestParam(value="mId", required=true) int mId,
+									  @RequestParam(value="page", required=false) Integer page,
+									  Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		Member m = aService.selectMember(mId);
+		m.setAnimalCount(aService.getAnimalCount(mId));
+		
+		if(m != null) {
+			model.addAttribute("page", currentPage);
+			model.addAttribute("m", m);
+			return "admin_Member_Detail";
+		} else {
+			System.out.println("멤버정보 불러오기 실패함");
+			return "";
+		}
+	}
 	
-	
-	@GetMapping("admin_Member_Manage.ad")
-	public String admin_Member_Manage() {
-		return "redirect:admin_Main.ad";
+	@PostMapping("admin_Member_Update.ad")
+	public String admin_Member_Update(@ModelAttribute Member m,
+									  @RequestParam(value="page", required=false) Integer page,
+									  Model model) {
+		System.out.println(m);
+		int result = aService.updateMember(m);
+		if( result > 0 ) {
+			model.addAttribute("page", page);
+			return "redirect:admin_Member_Manage.ad";
+		} else {
+			System.out.println("멤버정보 업데이트 실패함");
+			return "";
+		}
 	}
 	
 	@GetMapping("admin_Jibsa_Manage.ad")
@@ -68,7 +114,6 @@ public class AdminController {
 		if(jList != null) {
 			model.addAttribute("pi", pi);
 			model.addAttribute("jList", jList);
-			System.out.println(jList);
 			return "admin_Jibsa_Manage";
 		} else {
 			System.out.println("집사정보 불러오기 실패함");
@@ -76,6 +121,48 @@ public class AdminController {
 		}
 	}
 	
+	@GetMapping("admin_Jibsa_Detail.ad")
+	public String admin_Jibsa_Detail(@RequestParam(value="mId", required=true) int mId,
+									 @RequestParam(value="page", required=false) Integer page,
+									 Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		Jibsa j = aService.selectJibsa(mId);
+
+		if(j != null) {
+			model.addAttribute("page", currentPage);
+			model.addAttribute("j", j);
+			return "admin_Jibsa_Detail";
+		} else {
+			System.out.println("집사정보 불러오기 실패함");
+			return "";
+		}
+	}
+	
+	@PostMapping("admin_Jibsa_Update.ad")
+	public String admin_Jibsa_Update(@ModelAttribute Jibsa j,
+									 @RequestParam(value="page", required=false) Integer page,
+									 Model model) {
+		System.out.println(j);
+		
+		Member m = new Member();
+		m.setMemberNo(j.getMemberNo());
+		m.setMemberName(j.getMemberName());
+		m.setIsJibsa(j.getIsJibsa());
+		int result1 = aService.updateMember(m);
+		
+		int result2 = aService.updateJibsa(j);
+		if( result1 > 0 && result2 > 0) {
+			model.addAttribute("page", page);
+			return "redirect:admin_Jibsa_Manage.ad";
+		} else {
+			System.out.println("집사정보 업데이트 실패함");
+			return "";
+		}
+	}
 	
 	@GetMapping("admin_FAQ.ad")
 	public String admin_FAQ(@RequestParam(value="page", required=false) Integer page,
@@ -93,13 +180,49 @@ public class AdminController {
 		if(fList != null) {
 			model.addAttribute("pi", pi);
 			model.addAttribute("fList", fList);
-			System.out.println(fList);
 			return "admin_FAQ";
 		} else {
 			System.out.println("FAQ정보 불러오기 실패함");
 			return "";
 		}
 		
+	}
+	
+	@GetMapping("admin_FAQ_Detail.ad")
+	public String admin_FAQ_Detail(@RequestParam(value="page", required=false) Integer page,
+								   @RequestParam("fId") int fId,
+								   Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		Faq f = aService.selectFaq(fId);
+		if(f != null) {
+			model.addAttribute("page", currentPage);
+			model.addAttribute("f", f);
+			return "admin_FAQ_Detail";
+		} else {
+			System.out.println("FAQ정보 불러오기 실패함");
+			return "";
+		}
+	}
+	
+	@PostMapping("admin_FAQ_Update.ad")
+	public String admin_FAQ_Update(@RequestParam(value="page", required=false) Integer page,
+								   @ModelAttribute Faq f,
+								   Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		int result = aService.updateFaq(f);
+		if(result > 0) {
+			model.addAttribute("page", currentPage);
+			return "redirect:admin_FAQ.ad";
+		} else {
+			System.out.println("FAQ정보 업데이트 실패함");
+			return "";
+		}
 	}
 	
 	@GetMapping("admin_QNA.ad")
@@ -127,23 +250,15 @@ public class AdminController {
 		
 	}
 	
-	@GetMapping("admin_Modify_Jibsa.ad")
-	public String admin_Modify_Jibsa() {
-		return "admin_Modify_Jibsa";
-	}
 	
-	@GetMapping("admin_Modify_Member.ad")
-	public String admin_Modify_Member() {
-		return "admin_Modify_Member";
-	}
 	
-	@GetMapping("admin_Modify_Schedule.ad")
-	public String admin_Modify_Schedule() {
-		return "admin_Modify_Schedule";
-	}
 	
-	@GetMapping("admin_QuestionList.ad")
-	public String admin_QuestionList() {
-		return "p_main";
-	}
+	
+	
+	
+	
+	
+	
+		
+
 }

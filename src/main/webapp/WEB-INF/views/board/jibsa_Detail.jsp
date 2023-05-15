@@ -24,11 +24,11 @@
 						<c:if test="${ jibsa.isSmoking eq 'N'}">비흡연자</c:if>
 						<c:if test="${ jibsa.isSmoking eq 'Y'}">흡연자</c:if>
 					</p>
-				<p class="col-3">매칭횟수</p><p class="col-9">${jibsa.workCount }</p>
+<%-- 				<p class="col-3">매칭횟수</p><p class="col-9">${jibsa.workCount }</p> --%>
 				<p class="col-3">경력사항</p><p class="col-9">${jibsa.workCareer }</p>
-				<p class="col-3">이동수단</p><p class="col-9">${jibsa.vehicle }</p>
+<%-- 				<p class="col-3">이동수단</p><p class="col-9">${jibsa.vehicle }</p> --%>
 				<p class="col-3">근무가능시간</p><p class="col-9">${jibsa.availableHour }</p>
-				<p class="col-3">근무가능횟수</p><p class="col-9">${jibsa.availableTime }</p>
+<%-- 				<p class="col-3">근무가능횟수</p><p class="col-9">${jibsa.availableTime }</p> --%>
 				<p class="col-3">근무가능지역</p><p class="col-9">${jibsa.availableArea }</p>
 				<p class="col-3">시급</p><p class="col-9">${jibsa.exptectedSalary }원</p>
 				

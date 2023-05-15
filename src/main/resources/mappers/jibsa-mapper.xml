@@ -17,7 +17,7 @@
 			EXPECTED_SALARY = null ,
 			IS_PRIVACY = null,
 			IS_TRUE = null,
-			CHAR_ADDRESS = null ,
+			CHAT_ADDRESS = null ,
 			IS_PRIMIUM = null,
 			PRIMIUM_PAYMENT_DATE = null ,
 			IS_TRAINER = null
