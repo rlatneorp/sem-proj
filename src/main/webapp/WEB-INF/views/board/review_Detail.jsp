@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap"  rel="stylesheet">
 <title>집사 상세후기</title>
 <style>
+	body {font-family: 'Noto Sans KR', sans-serif;}
 	.container:nth-of-type(3) {
 	  display: flex;
 	  align-items: center;
@@ -118,12 +121,12 @@
 <body>
 
 	<div class="container text-center">
-	  
+	  <c:forEach items="list" var="r">
 		<br>
-		<h1>강형욱 집사 후기</h1>
-		<h5>(서울시 강남구 / 평균 평점 : 4.52)</h5>
+		<h1>${r.jibsaName } 집사 후기</h1>
+		<h5>(${r.matchingPlace } / 평균 평점 : ${r.reviewRating })</h5>
 		
-	</div>
+	
 	
 	<div class="container" style="display: flex; align-items: center;">
 		<div class="col" style="width:50px">
@@ -131,31 +134,29 @@
            		<img src="images/arrow_back.png">
         	</div>
 		</div>
-		
 		<div class="col">
 			<div class="row" style="width:900px" >
 			  	<div class="col">
 				    <div class="review">
 						  <div class="profile">
 							  <img src="images/eunbee1.jpg">
-							  <div class="username">은비맘 회원님</div>
+							  <div class="username">${r.memberName } 회원님</div>
 						  </div>
 						  <div class="info">
-							  <h2>강형욱 집사</h2>
+							  <h2>${r.jibsaName } 집사</h2>
 						  </div>
 					</div>
 				</div>
 				<hr><br><br>
 				<textarea cols="50" rows="10" style="resize: none;" name = "content" >
-					 어쩌구 저쩌구 해서 너무 좋았어요어쩌구 저쩌구 해서 너무 좋았어요어쩌구 저쩌구 해서 너무 좋았어요어쩌구 저쩌구 해서 너무 좋았어요어쩌구 저쩌구 해서 너무 좋았어요어쩌구 저쩌구 해서 너무 좋았어요
+					 ${r.reviewContent }
 				</textarea>
 				
 				<hr><br><hr><br>
 				
 				<h3>집사 COMMENT</h3>
 				<br>
-				<p> 좋으셨다니 저도 좋아요 하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하하
-				</p>
+				<p>${ r.jibsaComment }</p>
 				<br><hr><br>
 				
 				
@@ -174,11 +175,13 @@
 			</div>
 		</div>	
 		
-		<div class="col" style="width:50px">
-			<div class="images">
-           		<img src="images/arrow_forward.png">
-        	</div>
-		</div>
+			<div class="col" style="width:50px">
+				<div class="images">
+	           		<img src="images/arrow_forward.png">
+	        	</div>
+			</div>
+			</div>
+		</c:forEach>
 	</div>
 	
 	

@@ -73,5 +73,17 @@ public class BoardDAO {
 		RowBounds rowBounds = new RowBounds((pi.getCurrentPage() - 1)*pi.getBoardLimit(), pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("boardMapper.selectSearchList", map, rowBounds);
 	}
+
+	public int reviewCount(SqlSessionTemplate sqlSession, int bId) {
+		return sqlSession.update("boardMapper.reviewCount", bId);
+	}
+
+	public Board reviewDetail(SqlSessionTemplate sqlSession, int bId) {
+		return sqlSession.selectOne("boardMapper.reviewDetail", bId);
+	}
+
+	public ArrayList<Board> reviewDetailReply(SqlSessionTemplate sqlSession, String jibsa) {
+		return (ArrayList)sqlSession.selectList("boardMapper.reviewDetailReply", jibsa);
+	}
 }
 
