@@ -221,8 +221,27 @@ public class MemberController {
 		return "member_WithDrawal";
 	}
 	
-	@RequestMapping("join.do")
+	@RequestMapping("joinNotice.do")
 	public String enroll() {
-		return "enroll/join";
+		return "enroll/join_Notice";
+	}
+	
+	@PostMapping("enrollMember.me")
+	public String enrollMember( @ModelAttribute Member m, 
+								@RequestParam("emailId") String emailId, 
+								@RequestParam("emailDomain") String emailDomain) {
+		if(!emailId.trim().equals("")) {
+			m.setMemberEmail(emailId + "@" + emailDomain);
+		}
+		
+		String encPwd = bcrypt.encode(m.getMemberPwd());
+		m.setMemberPwd(encPwd);
+		
+		int result = mService.enrollMember(m);
+		if(result>0) {
+			return "redirect:home.do";
+		} else {
+			throw new MemberException("회원가입 실패");
+		}
 	}
 }

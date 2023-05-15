@@ -73,4 +73,9 @@ public class MemberService {
 	public String foundId(Member m) {
 		return mDAO.foundId(sqlSession, m);
 	}
+
+	public int enrollMember(Member m) {
+		// TODO Auto-generated method stub
+		return mDAO.enrollMember(sqlSession, m);
+	}
 }

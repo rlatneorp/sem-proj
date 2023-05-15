@@ -20,6 +20,12 @@
 		<result column="MEMBER_PHONE" property="memberPhone"/>
 		<result column="MEMBER_ADDRESS" property="memberAddress"/>
 	</resultMap>
+	
+	<insert id="enrollMember">
+		insert into member
+		values(#{},#{},#{},#{},#{},#{},#{},#{},#{},#{},#{},#{})
+	
+	</insert>
 
 	<select id="getMemberQnaListCount" resultType="_int">
 		select count(*)

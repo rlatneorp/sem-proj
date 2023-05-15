@@ -76,7 +76,7 @@
 		<c:if test="${ empty loginUser }">
 		<div class="topRight">    
 		    <a class="menu1" href="${ contextPath }/loginView.do">로그인</a>
-		    <a class="menu1" href="${ contextPath }/join.do">회원가입</a>
+		    <a class="menu1" href="${ contextPath }/joinNotice.do">회원가입</a>
 			<button class="btjipsa menu2" type="submit" onclick="location.href='${contextPath}/enrollJibsa.js'">집사 지원</button>
 		</div>
 		</c:if>
