@@ -21,17 +21,17 @@
 		<result column="MEMBER_ADDRESS" property="memberAddress"/>
 	</resultMap>
 	
-<!-- 	<insert id="enrollMember"> -->
-<!-- 		insert into member -->
-<!-- 		values(#{},#{},#{},#{},#{},#{},#{},#{},#{},#{},#{},#{}) -->
+	<insert id="enrollMember">
+		insert into member
+		values( SEQ_MEM_ID.NEXTVAL, #{ memberId }, #{ memberPwd }, #{ memberName }, #{ memberEmail }, dafault, default, default, sysdate, default, #{ memberPhone }, #{ memberAddress })
 	
-<!-- 	</insert> -->
+	</insert>
 
-<!-- 	<select id="getMemberQnaListCount" resultType="_int"> -->
-<!-- 		select count(*) -->
-<!-- 		from qna -->
-<!-- 		where member_no = #{mId} and qna_status = 'Y' -->
-<!-- 	</select>	 -->
+	<select id="getMemberQnaListCount" resultType="_int">
+		select count(*)
+		from qna
+		where member_no = #{mId} and qna_status = 'Y'
+	</select>	
 
 	<select id="getMemberQnaList" resultMap="qnaResultSet">
 		select *

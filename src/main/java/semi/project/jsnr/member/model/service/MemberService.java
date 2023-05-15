@@ -75,7 +75,6 @@ public class MemberService {
 	}
 
 	public int enrollMember(Member m) {
-		// TODO Auto-generated method stub
 		return mDAO.enrollMember(sqlSession, m);
 	}
 }

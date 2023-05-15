@@ -226,7 +226,7 @@ public class MemberController {
 		return "enroll/join_Notice";
 	}
 	
-	@PostMapping("enrollMember.me")
+	@PostMapping("enrollMember.do")
 	public String enrollMember( @ModelAttribute Member m, 
 								@RequestParam("emailId") String emailId, 
 								@RequestParam("emailDomain") String emailDomain) {

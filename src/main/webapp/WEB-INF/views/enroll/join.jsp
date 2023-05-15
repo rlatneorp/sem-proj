@@ -25,37 +25,37 @@
 <body>
 <article style="width: 1200px; margin: 0 auto;">
 <br><br><br><br><br><br>
-	<div class="jo">
+	<form class="jo" action="${ contextPath }/enrollMember.do" method="post">
 		<ul class="uul"> 	
 			<li class="lii"><a>아이디</a></li>
-			<li class="lii"><input class="uul2" type="text" placeholder=" 사용할 아이디를 입력하세요">
+			<li class="lii"><input class="uul2" id="memberId" type="text" placeholder=" 사용할 아이디를 입력하세요">
 				<button class="joinIdBt">
 	          		<img src="resources/image/bb.png"/>
 	        	</button></li>
 			<br>
 			<li class="lii"><a>비밀번호</a></li>
-			<li class="lii"><input class="uul2" type="password" placeholder=" 사용할 비밀번호를 입력하세요"></li>
+			<li class="lii"><input class="uul2" id="membePwd" type="password" placeholder=" 사용할 비밀번호를 입력하세요"></li>
 			<br>
 			<li class="lii"><a>비밀번호 확인</a></li>
 			<li class="lii"><input class="uul2" type="password" placeholder=" 다시 한 번 비밀번호를 입력하세요"></li>
 			<br>
 			<li class="lii"><a>이름</a></li>
-			<li class="lii"><input class="uul2" type="text" placeholder=" 이름을 입력하세요"></li>
+			<li class="lii"><input class="uul2" id="memberName" type="text" placeholder=" 이름을 입력하세요"></li>
 			<br>
 			<li class="lii"><a>이메일</a></li>
-			<li class="lii"><input class="uul2" type="email" placeholder=" 이메일을 입력하세요"></li>
+			<li class="lii"><input class="uul2" id="memberEmail" type="email" placeholder=" 이메일을 입력하세요"></li>
 			<br>
 			<li class="lii"><a>연락처</a></li>
-			<li class="lii"><input class="uul2" type="number" placeholder=" 연락처를 입력하세요"></li>
+			<li class="lii"><input class="uul2" id="memberPhone" type="number" placeholder=" 연락처를 입력하세요"></li>
 			<br>
 			<li class="lii"><a>주소</a></li>
-			<li class="lii"><input class="uul2" type="text" placeholder=" 주소를 입력하세요"></li>
+			<li class="lii"><input class="uul2" id="memberAddress" type="text" placeholder=" 주소를 입력하세요"></li>
 			<br><br>
 			<div class="joinBtnDiv">
-				<input type="submit" class="joinBtn" value="가입하기">
+				<button class="joinBtn" >가입하기</button>
 			</div>
 		</ul>
-	</div>
+	</form>
 <br><br><br><br><br><br>	
 </article>		
 </body>
