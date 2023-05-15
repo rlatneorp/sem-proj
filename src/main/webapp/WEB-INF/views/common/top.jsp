@@ -127,10 +127,10 @@
 	}
 	
 	// 로드 될 때마다 drop-c 를 사라지게 하는 함수
-	window.addEventListener("load", function() {
-		  let click = document.getElementById("drop-c");
-		  click.style.display = "none";
-	});
+// 	window.addEventListener("load", function() {
+// 		  let click = document.getElementById("drop-c");
+// 		  click.style.display = "none";
+// 	});
 
 </script>
 </body>
