@@ -107,7 +107,7 @@
 		    	지원 동기 : 저는 강아지가너무 좋아요 하하하하하ㅏ하하하하하하
 		    </p>
 		  </div>
-		  <button onclick="window.open('https://openchat.example.com')">매칭하기</button>
+		  <button onclick="location.href='${contextPath}/matching_Success.mc'">매칭하기</button>
 		</div>
 	  </div>
 	  
@@ -121,7 +121,7 @@
 		    	지원 동기 : 저는 강아지가너무 좋아요 하하하하하ㅏ하하하하하하
 		    </p>
 		  </div>
-		  <button onclick="window.open('https://openchat.example.com')">매칭하기</button>
+		  <button onclick="location.href='${contextPath}/matching_Success.mc'">매칭하기</button>
 		</div>
 	  </div>
 	  
@@ -135,7 +135,7 @@
 		    	지원 동기 : 저는 강아지가너무 좋아요 하하하하하ㅏ하하하하하하
 		    </p>
 		  </div>
-		  <button onclick="window.open('https://openchat.example.com')">매칭하기</button>
+		  <button onclick="location.href='${contextPath}/matching_Success.mc'">매칭하기</button>
 		</div>
 	  </div>
 	</div>
@@ -144,7 +144,7 @@
 		<br><br>
 		<h4>마음에 드는 집사가 없다면</h4>
 		<br>
-		<button onclick="window.open('https://openchat.example.com')">다시 찾아보기</button>
+		<button onclick="location.href='${contextPath}/matching_Main.mc'">다시 찾아보기</button>
 		<br><br><br><br>
 	
 	</div>

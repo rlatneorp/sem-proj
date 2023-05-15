@@ -12,6 +12,8 @@ public interface AnimalService {
 	int updateAnimal(Animal a);
 
 	int insertAnimal(Animal a);
+
+	int deleteAnimal(Animal a);
 	
 
 }

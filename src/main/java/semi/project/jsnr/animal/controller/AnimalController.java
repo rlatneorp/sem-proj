@@ -99,6 +99,19 @@ public class AnimalController {
 		}		
 	}
 	
+	@PostMapping("deleteAnimal.me")
+	public String deleteAnimal(@ModelAttribute Animal a) {
+		
+		int result = aService.deleteAnimal(a);
+		
+		if(result > 0) {
+			return "redirect:member_User_Info.me";
+		} else {
+			throw new AnimalException("동물 정보 삭제에 실패하였습니다.");
+		}
+		
+	}
+	
 }
 
 
