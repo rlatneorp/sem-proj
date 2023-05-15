@@ -94,14 +94,20 @@
 	
 	<update id="updateInfo">
 		update member
-		set member_id = #{memberId}, member_name = #{memberName}, member_email = #{memberEmail},
+		set member_name = #{memberName}, member_email = #{memberEmail},
 			member_phone = #{memberPhone}, member_address = #{memberAddress}
-		where member_no = #{memberNo}
+		where member_id = #{memberId}
 	</update>
 	
 	<update id="updatePwd">
 		update member
 		set member_pwd = #{newPwd}
+		where member_id = #{memberId}
+	</update>
+	
+	<update id="deleteInfo">
+		update member
+		set member_status = 'N'
 		where member_id = #{memberId}
 	</update>
 
