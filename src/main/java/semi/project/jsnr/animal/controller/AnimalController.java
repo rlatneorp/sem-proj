@@ -100,7 +100,7 @@ public class AnimalController {
 		}		
 	}
 	
-	@PostMapping("")
+//	@PostMapping("")
 }
 
 

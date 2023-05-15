@@ -39,7 +39,7 @@
 				<div id="person">
 					<span class="material-symbols-outlined">person</span>
 				</div> 
-				<input type="text" placeholder=" 아이디" id="loginId" name="memberId">
+				<input type="text" placeholder=" 아이디" id="loginId" name="memberId" required>
 				
 			</div>
 			<br>
@@ -47,7 +47,7 @@
 				<div id="person">
 					<span class="material-symbols-outlined">vpn_key</span>
 				</div> 
-				<input type="password" placeholder=" 비밀번호" id="loginPwd" name="memberPwd">
+				<input type="password" placeholder=" 비밀번호" id="loginPwd" name="memberPwd" required>
 			</div> 
 		</div>
 		<br><br><br><br><br>

@@ -20,11 +20,11 @@
 #foundPwdTitle{text-align: center; font-size: 24px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; margin: 10px; text-decoration: none;}
 #foundPwdName{font-size: 18px; font-family: 'Noto Sans KR', sans-serif; font-weight: 400; margin: 10px; text-decoration: none; color: rgb(51, 51, 51);}
 #foundPwdId{font-size: 18px; font-family: 'Noto Sans KR', sans-serif; font-weight: 400; margin: 10px; text-decoration: none; color: rgb(51, 51, 51);}
-#foundPwdPhone{font-size: 18px; font-family: 'Noto Sans KR', sans-serif; font-weight: 400; margin: 10px; text-decoration: none; color: rgb(51, 51, 51);}
+#foundPwdEmail{font-size: 18px; font-family: 'Noto Sans KR', sans-serif; font-weight: 400; margin: 10px; text-decoration: none; color: rgb(51, 51, 51);}
 .foundPwdnp{text-align: left;}
 #fpnBtn{margin-left: 70px; width: 300px; height: 40px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94);}
 #fpiBtn{margin-left: 54px; width: 300px; height: 40px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94);}
-#fppBtn{border: none; border-radius: 4px; margin-left: 38px; width: 130px; height: 40px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94);}
+#fppBtn{border: none; border-radius: 4px; margin-left: 53px; width: 130px; height: 40px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94);}
 #foundPwdNext1{box-shadow:0px 0px 15px 5px rgb(224, 224, 224); border: none; border-radius: 25px; width: 168px; height: 44px; font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: 400; text-decoration: none; color: white; background: rgb(26, 188, 156);}
 </style>
 </head>
@@ -32,19 +32,29 @@
 <hr id="top_hr">
 <form> 
 	<div class="foundPwd">
-		<img src="resources/image/loginLogo.png" id="foundPwdLogo">
+		<a href="${ contextPath }/home.do"><img src="resources/image/loginLogo.png" id="foundPwdLogo"></a>
 		<br><br>
 		<div id="foundPwd"> 
 			<a id="foundPwdTitle">비밀번호 찾기</a>
 			<div class="foundPwdnp"> 
 				<br><br><br><br>
 				<a id="foundPwdName">이름</a>
-				<input type="text" id="fpnBtn" placeholder=" 이름을 입력하세요">
+				<input type="text" id="fpnBtn" placeholder=" 이름을 입력하세요" name="memberName" required>
 				<br><br>
 				<a id="foundPwdId">아이디</a>
-				<input type="text" id="fpiBtn" placeholder=" 아이디를 입력하세요">
+				<input type="text" id="fpiBtn" placeholder=" 아이디를 입력하세요" name="memberId" required>
 				<br><br>
-				<a id="foundPwdPhone">휴대전화</a>
+				<a id="foundPwdEmail">이메일</a>
+				<div class="input-group">
+					<input type="text" class="form-control" id="emailId" name="emailId" style="width: 150px;">
+					<span class="input-group-text">@</span>
+					<select name="emailDomain" style="width: 150px;">
+						<option>naver.com</option>
+						<option>gmail.com</option>
+						<option>nate.com</option>
+						<option>hanmail.net</option>
+					</select>
+				</div>
 				<button id="fppBtn">인증하기</button>
 			</div>
 			<br><br><br><br><br>

@@ -101,7 +101,7 @@
 					       <li><a class="animal">미돌이</a></li>
 					       <li><a><hr></a></li>
 					       <li><a class="myMenu" href="${ contextPath }/member_User_Info.me">마이페이지</a></li>
-					       <li><a class="myMenu" href="${ contextPath }/member_updateInfo.me">프로필 설정</a></li>
+					       <li><a class="myMenu" href="${ contextPath }/member_EditInfo.me">프로필 설정</a></li>
 				  		   <li><a href="${contextPath}/enrollJibsa.js"><button class="btjipsa menu2" id = "btjibsa_apply" >집사 지원</button></a></li>
 					       <li><a><button onclick="location.href='${contextPath}/logout.do'" id="logOut">로그아웃</button></a></li>
 				    	</c:if>
