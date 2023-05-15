@@ -47,18 +47,16 @@ public class JibsaController {
 	public String insertJibsa(@ModelAttribute Member m, 
 							Model model) {
 		
-		int result = jService.insertJibsa(m);
-		
-		if(result>0) {
-			Member insertJibsa = mService.login(m);
-			model.addAttribute("loginUser",insertJibsa);
-			return " ";
-		} else {
-			throw new JibsaException("정보 수정 실패했습니다.");
-		}
+//		int result = jService.insertJibsa(m);
+//		
+//		if(result>0) {
+//			Member insertJibsa = mService.login(m);
+//			model.addAttribute("loginUser",insertJibsa);
+			return "enrollJibsaResult";
+//		} else {
+//			throw new JibsaException("정보 수정 실패했습니다.");
+//		}
 	}
-	
-	
 	
 	@RequestMapping("jibsaMain.js")
 	public String jibsaMain() {
@@ -99,7 +97,5 @@ public class JibsaController {
 	public String review() {
 		return "review";
 	}
-	
-	
 	
 }

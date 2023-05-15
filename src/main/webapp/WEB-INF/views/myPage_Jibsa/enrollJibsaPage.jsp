@@ -73,7 +73,7 @@
 	<form class="container" style="width: 780px; 
 	max-width: none !important; 
 	margin: 0 auto; text-align: left; margin-right: 600px;" 
-	action="${ contextPath }/enrollJibsa.js" method="POST" >
+	action="${ contextPath }/insertJibsa.js" method="POST">
 	<br><br><br><br><br><br>
 		<h3>집사 지원서 작성하기</h3>
 		<hr/>
@@ -88,16 +88,16 @@
 				<input type="text" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 홍길동" style="font-size: 10px;"
 						value ="${ loginUser.memberName }" readonly><br/><br/>
 			
-				<label class ="e title"> 주민등록 번호 앞 7자리</label><br/>
+				<label class ="e title">생년월일</label><br/>
 				<span class = "add">만 18세 이상부터 지원할 수 있습니다.</span><br/>
-				<input type="number" id="jibsaPrn" class=" i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224);  font-size: 15px;  font-weight: normal;width:120px; height: 43px;"  placeholder=" 생년월일"> <input type="number" class=" i name"  style=" paddig : 40px; margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:120px; height: 43px;" placeholder=" 1자리 ******"><br/><br/>
+				<input type="number" id="jibsaRrn" class=" i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224);  font-size: 15px;  font-weight: normal;width:120px; height: 43px;"  placeholder=" 생년월일"><br/><br/>
 				
 				<label class ="title">이메일</label><br/>
 				<input type="text" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 이메일을 입력해주세요"
 						value ="${ loginUser.memberEmail }" readonly><br/><br/>
 				
 				<label class ="e title">방문가능지역</label><br/>
-				<span class = "add">시/군/구까지 입력해주세요.</span><br/>
+				<span class = "add">지역을 선택해주세요.</span><br/>
 				<input type="text" id="availableArea" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 주소를 입력해주세요"><br/><br/>
 			</div>
 			
@@ -112,10 +112,11 @@
 				
 				<label class ="e title"> 연락처 </label><br/>
 				<span class = "add">입력하신 연락처로 합격 여부를 알려드립니다.</span><br/>
-				<input type="number" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 휴대혼 번호를 입력해주세요."><br/><br/>
+				<input type="text" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 휴대혼 번호를 입력해주세요."
+						value ="${ loginUser.memberPhone }" readonly><br/><br/>
 				
 				<label class ="e title"> 흡연유무 </label><br/>
-				<span class = "add">직업 특성 상 흡연을 하시는 경우 집사 활동이 어려울 수 있습니다.</span><br/>
+				<span class = "add">거짓기재시 불이익이 있을 수 있습니다.</span><br/>
 				<label style="margin-left: 25px;"><input type="radio" name="gender" value="yes">흡연 함</label>
 				<label><input type="radio" id="isSmoking" name="gender" value="no">흡연 안함</label>
 			</div>
@@ -127,20 +128,11 @@
 		<p for="essential" &nbsp; style="padding-left: 22px;"> &nbsp;은 필수입력 항목입니다.</p>
 		
 		<div class="rounded-box">
-			<label class ="e title"> 반려동물 반려 경험</label><br/>
-			<label style="margin-left: 25px;"><input type="checkbox" name="pet" value="강아지"> 강아지</label>
-			<label style="margin-left: 15px;"><input type="checkbox" name="pet" value="고양이"> 고양이</label>
-			<label style="margin-left: 15px;"><input type="checkbox" name="pet" value="기타" id="other-checkbox"> 기타</label>
-			<label style="margin-left: 5px;" for="other-checkbox">
-  				<input type="text" name="other-pet" id="other-pet"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 동물 종류를 입력해주세요" size="25" >
-			</label>
-			<label style="margin-left: 25px;"><input type="checkbox" name="pet" value="없음"> 없음</label>
-			<br/><br/>
 			
 			<label class ="e title"> 경력사항</label><br/>
 			<textarea name="career" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 138px;" 
 				placeholder=" 관련 업종 근무 경험, 관련 학과 졸업 등 없는 경우엔 없다고 작성" 
-				rows="5"  style="width: 600px;" ></textarea>
+				rows="5"  style="width: 900px;" ></textarea>
 			<br/><br/>
 		
 		</div>
@@ -165,7 +157,7 @@
 			<br/>
 		</div>
 		<br><br>
-		<button type="button" id="finalBtn">최종 제출</button>
+		<button type="submit" id="finalBtn"  >최종 제출</button>
 		<br><br><br>
 	</form>
 	<br><br><br><br><br><br>
