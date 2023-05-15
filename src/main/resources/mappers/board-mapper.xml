@@ -12,7 +12,7 @@
 		    join animal a on(a.member_no = m.member_no)
 		    join matching ma on(ma.animal_no = a.animal_no)
 		    join jibsa_profile jp on(jp.member_no = ma.member_no)
-		    order by end_date desc
+		    order by ma.review_rating desc
 	</select>
 	
 	<resultMap type="Board" id="boardResultSet">
@@ -24,7 +24,7 @@
 		<result column="END_DATE" property="endDate"/>
 		<result column="MATCHING_PLACE" property="matchingPlace"/>
 		<result column="REVIEW_CONTENT" property="reviewContent"/>
-		<result column="REVIEW_RAITING" property="reviewRaiting"/>
+		<result column="REVIEW_RATING" property="reviewRating"/>
 		<result column="REVIEW_COUNT" property="reviewCount"/>
 		<result column="JIBSA_COMMENT" property="jibsaComment"/>
 		<result column="MEMBER_NAME" property="memberName"/>
