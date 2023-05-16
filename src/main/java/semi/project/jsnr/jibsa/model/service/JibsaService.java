@@ -33,6 +33,10 @@ public class JibsaService {
 		return jDAO.deleteInfo(sqlSession, memberNo);
 	}
 
+	public Jibsa selectJibsa(int memberNo) {
+		return jDAO.selectJibsa(sqlSession, memberNo);
+	}
+
 	
 	
 	

@@ -27,4 +27,8 @@ public class JibsaDAO {
 		return sqlSession.update("jibsaMapper.deleteJibsa", memberNo);
 	}
 
+	public Jibsa selectJibsa(SqlSessionTemplate sqlSession, int memberNo) {
+		return sqlSession.selectOne("jibsaMapper.selectJibsa", memberNo);
+	}
+
 }

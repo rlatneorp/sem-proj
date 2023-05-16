@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import semi.project.jsnr.jibsa.model.exception.JibsaException;
@@ -73,7 +74,12 @@ public class JibsaController {
 	}
 	
 	@GetMapping("jibsaModifyInfo.js")
-	public String jibsaModifyInfo() {
+	public String jibsaModifyInfo(HttpSession session) {
+		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
+		
+		Jibsa j = jService.selectJibsa(memberNo);
+		
+		session.setAttribute("jibsaInfo", j);
 		return "jibsa_Modify_Info";
 	}
 	
@@ -109,10 +115,10 @@ public class JibsaController {
 	
 	@PostMapping("jibsaUpdateInfo.js")
 	public String jibsaUpdateInfo(@ModelAttribute Jibsa j, @ModelAttribute Member m, Model model) {
-		int result1 = mService.updateInfo(m);
+		int result1 = jService.updateMemberInfo(m);
 		int result2 = jService.updateJibsaInfo(j);
 		
-		if(result1 > 0) {
+		if(result1 > 0 && result2 > 0) {
 			return "jibsaModifyInfo.js";
 		} else {
 			throw new JibsaException("정보 수정에 실패");

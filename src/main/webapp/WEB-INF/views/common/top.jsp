@@ -14,8 +14,6 @@
 
 	<!-- 이환희 css파일(추후 병합 요망) -->
 	<link rel="stylesheet" href="${ contextPath }/css/main.css"/>
-<!-- 장현지 중복확인 Ajax -->
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <title>top</title>
 <style>
 .menu1:hover:not(.active){color: rgb(51, 51, 51);}
