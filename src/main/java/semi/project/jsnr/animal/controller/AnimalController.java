@@ -138,7 +138,7 @@ public class AnimalController {
 			
 		
 		if(image != null) {
-			 deleteFile(image.getRenameName(), request);
+//			 deleteFile(image.getRenameName(), request);
 			 resultImage = aService.insertImage(image);
 		} else {
 			throw new ImageException("동물 사진 등록에 실패하였습니다.");
@@ -152,7 +152,6 @@ public class AnimalController {
 		}	
 	
 	}
-
 	
 	@GetMapping("deleteAnimal.me") // 삭제
 	public String deleteAnimal(@ModelAttribute Animal a) {
