@@ -27,14 +27,14 @@
 .logo{width: 160px;}
 .menu1{font-size: 23px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; margin: 10px; color: rgb(51, 51, 51); text-decoration: none;}
 .menu2{font-size: 23px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; margin: 10px; color: white;}
-.topLeft{margin-left: 9%; display: inline;}
+.topLeft{margin-left: 5%; display: inline;}
 .topRight{margin-left: 15%; display: inline;}
 #top_hr{border: 20px solid rgb(26, 188, 156); opacity: 1; margin: 0;}
 #top_hr2{border: 1px solid gray;}
 		.menu1:hover:not(.active){color: rgb(51, 51, 51);}
-		.menu2:hover:not(.active){color: white;}
+		.menu2:hover:not(.active){color: rgb(51, 51, 51);}
 		.myMenu:hover:not(.active){color: rgb(51, 51, 51);}
-		.btjipsa{width: 138px; height: 58px; background: rgb(26, 188, 156); border-style: none; border-radius: 4px; color: white;}
+		.btjipsa{width: 138px; height: 58px; background: rgb(26, 188, 156); border-style: none; border-radius: 4px;}
 		.topLoginCont{width: 1200px; max-width: none !important; margin: 0 auto;}
 		.logo{width: 160px;}
 		.menu1{font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; margin: 10px; color: rgb(51, 51, 51); text-decoration: none;}
