@@ -91,11 +91,11 @@ body {
 					  <h4 style="margin-right: 56%;"><b>내 반려동물</b></h4>
 					  <h6 style="margin-right: 46%;">반려동물의 정보를 수정하세요!</h6><br>
 					      	<div class="insert">
-					      		<form action="${ contextPath }/updateAnimal.me" method="POST">
+					      		<form action="${ contextPath }/updateAnimal.me" method="POST" enctype="multipart/form-data">
 					      		
 					      			<p class="sel">1. 반려동물 사진</p>
 					      			<div id="img"></div>
-    							  	<input class="form-control" type="file" accept="image/*" id="formFile">
+    							  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile" value="${ image.originalName }">
     							  	<br>
     							  	
     							  	<input type="text" name="animalName" value="${ animal.animalName }" style="width: 400px; height: 35px;"/>

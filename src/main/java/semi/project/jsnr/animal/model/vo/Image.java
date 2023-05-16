@@ -2,22 +2,22 @@ package semi.project.jsnr.animal.model.vo;
 
 public class Image {
 	private int imageNo;
-	private int memberNo;
 	private String renameName;
 	private String originalName;
 	private int imageLevel;
 	private String imagePath;
+	private int memberNo;
 	
 	public Image() {}
 
-	public Image(int imageNo, int memberNo, String renameName, String originalName, int imageLevel, String imagePath) {
+	public Image(int imageNo, String renameName, String originalName, int imageLevel, String imagePath, int memberNo) {
 		super();
 		this.imageNo = imageNo;
-		this.memberNo = memberNo;
 		this.renameName = renameName;
 		this.originalName = originalName;
 		this.imageLevel = imageLevel;
 		this.imagePath = imagePath;
+		this.memberNo = memberNo;
 	}
 
 	public int getImageNo() {
@@ -26,14 +26,6 @@ public class Image {
 
 	public void setImageNo(int imageNo) {
 		this.imageNo = imageNo;
-	}
-
-	public int getMemberNo() {
-		return memberNo;
-	}
-
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
 	}
 
 	public String getRenameName() {
@@ -68,10 +60,18 @@ public class Image {
 		this.imagePath = imagePath;
 	}
 
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
+
 	@Override
 	public String toString() {
-		return "Image [imageNo=" + imageNo + ", memberNo=" + memberNo + ", renameName=" + renameName + ", originalName="
-				+ originalName + ", imageLevel=" + imageLevel + ", imagePath=" + imagePath + "]";
+		return "Image [imageNo=" + imageNo + ", renameName=" + renameName + ", originalName=" + originalName
+				+ ", imageLevel=" + imageLevel + ", imagePath=" + imagePath + ", memberNo=" + memberNo + "]";
 	};
-
+	
 }

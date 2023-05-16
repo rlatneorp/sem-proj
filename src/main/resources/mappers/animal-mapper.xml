@@ -43,7 +43,7 @@
 	
 	<insert id="insertImage">
 		insert into image
-		values(seq_img_id.nextval, #{memberNo}, #{renameName}, #{originalName}, #{imageLevel}, #{imagePath})
+		values(seq_img_id.nextval, #{renameName}, #{originalName}, #{imageLevel}, #{imagePath}, #{memberNo})
 	</insert>
 	
 	<select id="selectImage" resultMap="imageResultSet">
@@ -53,12 +53,12 @@
 	</select>
 	
 	<resultMap type="Image" id="imageResultSet">
-		<id column="IMAGE_NO" property="imageNo"/>
-		<result column="MEMBER_NO" property="memberNo"/>
+		<id column="IMAGE_NO" property="imageNo"/>		
 		<result column="RENAME_NAME" property="renameName"/>
 		<result column="ORIGINAL_NAME" property="originalName"/>
 		<result column="IMAGE_LEVEL" property="imageLevel"/>
 		<result column="IMAGE_PATH" property="imagePath"/>
+		<result column="MEMBER_NO" property="memberNo"/>
 	</resultMap>
 
 </mapper>
