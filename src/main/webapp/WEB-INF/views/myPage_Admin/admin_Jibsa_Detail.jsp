@@ -87,8 +87,8 @@
 						</c:if>
 					</div>
 					
-					<p class="col-4">집사활동여부</p><p class="col-2">${j.isJibsa }</p>
-					<input type="hidden" name="isJibsa" value="${j.isJibsa}">
+					<p class="col-4">집사활동여부</p><p class="col-2">${j.jibsaStatus }</p>
+					<input type="hidden" name="jibsaStatus" value="${j.jibsaStatus}">
 					<button type="button" class="col-1 rounded">Y</button>
 					<button type="button" class="col-1 rounded">N</button><p class="col-4"></p>
 										

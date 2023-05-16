@@ -6,10 +6,12 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
 import semi.project.jsnr.common.model.vo.PageInfo;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
+import semi.project.jsnr.matching.model.vo.Matching;
 import semi.project.jsnr.member.model.vo.Member;
 
 @Repository
@@ -103,6 +105,31 @@ public class AdminDAO {
 		return sqlSession.update("adminMapper.updateQna", q);
 	}
 
+	public int selectApplyJibsa(SqlSessionTemplate sqlSession, int mId) {
+		return sqlSession.selectOne("adminMapper.selectApplyJibsa", mId);
+	}
 
+	public int getReviewCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("adminMapper.getReviewCount");
+	}
+
+	public ArrayList<Board> selectReviewList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("adminMapper.selectReviewList", pi, rowBounds);
+	}
+
+	public Board selectReview(SqlSessionTemplate sqlSession, int rId) {
+		return sqlSession.selectOne("adminMapper.selectReview", rId);
+	}
+
+	public int updateReview(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.update("adminMapper.updateReview", b);
+	}
+
+	public int updateMatching(SqlSessionTemplate sqlSession, Matching mc) {
+		return sqlSession.update("adminMapper.updateMatching", mc);
+	}
 
 }

@@ -71,7 +71,7 @@
 							    		</td>
 							    		<td>${j.primiumPaymentDate}</td>
 							    		<td>${j.primiumEndDate}</td>
-							    		<td>${j.isJibsa}</td>
+							    		<td>${j.jibsaStatus}</td>
 							    		<td>
 							    			<c:if test="${j.isTrainer eq 'Y'}">훈련사</c:if>
 							    			<c:if test="${j.isTrainer ne 'Y'}">집사</c:if>

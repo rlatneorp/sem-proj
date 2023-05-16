@@ -29,7 +29,7 @@
 <body>
 <article style="width: 1200px; margin: 0 auto;">
 <br><br><br><br><br><br>
-	<form class="jo" action="${ contextPath }/enrollMember.do" method="post">
+	<form class="jo" action="${ contextPath }/enrollMember.do" method="post" onsubmit="showSuccessAlert()">
 		<ul class="uul"> 	
 			<li class="lii"><a>아이디</a></li>
 			<li class="lii"><input class="uul2" id="memberId" name="memberId" type="text" placeholder=" 사용할 아이디를 입력하세요"></li>
@@ -68,6 +68,7 @@
 </article>	
 
 <script >
+	// 아이디가 중복인지 확인하는 함수
 	window.onload = () => {
 	    document.getElementById('memberId').addEventListener('change', function() {
 	        const idResult = document.getElementById('idCheckResult');
@@ -94,6 +95,7 @@
 	    });
 	};
 	
+	// 비밀번호와 비밀번화 확인이 일치하는지 확인하는 함수
 	document.getElementById('confirmPassword').addEventListener('keyup', function() {
 	    const password = document.getElementById('memberPwd').value;
 	    const confirmPassword = this.value;
@@ -107,6 +109,11 @@
 	        pwdCheckResult.style.color = 'red';
 	    }
 	});
+	
+	 // 회원가입 완료 알림창을 띄우는 함수
+    function showSuccessAlert() {
+        alert("회원가입이 완료되었습니다! 다시 로그인 해주세요");
+    }
 
 
 </script>

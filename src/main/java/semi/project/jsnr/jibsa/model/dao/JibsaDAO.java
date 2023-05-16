@@ -11,8 +11,8 @@ import semi.project.jsnr.member.model.vo.Member;
 @Repository
 public class JibsaDAO {
 
-	public int insertJibsa(SqlSessionTemplate sqlSession, Member m) {
-		return sqlSession.insert("jibsaMapper.insertJibsa", m);
+	public int insertJibsa(SqlSessionTemplate sqlSession, Jibsa j) {
+		return sqlSession.insert("jibsaMapper.insertJibsa", j);
 	}
 	
 	public int updateMemberInfo(SqlSessionTemplate sqlSession, Member m) {

@@ -17,8 +17,8 @@ public class JibsaService {
 	@Autowired
 	private JibsaDAO jDAO;
 
-	public int insertJibsa(Member m) {
-		return jDAO.insertJibsa(sqlSession, m);
+	public int insertJibsa(Jibsa j) {
+		return jDAO.insertJibsa(sqlSession, j);
 	}
 	
 	public int updateMemberInfo(Member m) {

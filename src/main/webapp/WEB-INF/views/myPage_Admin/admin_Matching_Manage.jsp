@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>매칭 관리</title>
 <style>
 	.table thead tr th{background: rgba(224, 224, 224, 0.51);}
 	.tablediv{
@@ -56,7 +56,7 @@
         <div id="page-content-wrapper">
 	    	<div class="container-fluid">
 	        	<div class="container text-center">
-					 <h4 style="margin-right: 580px;"><b>후기 게시판 관리</b></h4>
+					 <h4 style="margin-right: 580px;"><b>매칭 관리</b></h4>
 					    <br>
 					    <div id="faqbtn">
 						<br>
@@ -67,26 +67,30 @@
 							    <table class="table">
 							    	<thead>
 								    	<tr>
-								    		<th>글 번호</th>
-								    		<th>내용</th>
-								    		<th>작성자</th>
-								    		<th>작성일</th>
-								    		<th>조회수</th>
+								    		<th>매칭번호</th>
+								    		<th>이용자</th>
+								    		<th>집사</th>
+								    		<th>시작시간</th>
+								    		<th>종료시간</th>
+								    		<th>매칭장소</th>
 								    		<th>활성화여부</th>
 								    		<th>선택</th>
 								    	</tr>
 							    	</thead>
 							    	<tbody>
-							    		<c:forEach items="${rList}" var="r">
+							    		<c:forEach items="${mcList}" var="mc">
 									    	<tr>
-									    		<td>${r.matchingNo}</td>
+									    		<td>${mc.matchingNo}</td>
 									    		<td>
-									    			<a href="${contextPath}/admin_Review_Detail.ad?page=${pi.currentPage}&rId=${r.matchingNo}">${fn:substring(r.reviewContent, 0, 20)}</a>
+									    			<a href="${contextPath}/admin_Matching_Detail.ad?page=${pi.currentPage}&mcId=${mc.matchingNo}">
+									    				${mc.memberName}
+									    			</a>
 								    			</td>
-									    		<td>${r.memberName}</td>
-									    		<td>${r.startDate}</td>
-									    		<td>${r.reviewCount}</td>
-									    		<td>${r.reviewStatus}</td>
+									    		<td>${mc.jibsaName}</td>
+									    		<td>${mc.startDate}</td>
+									    		<td>${mc.endDate}</td>
+									    		<td>${mc.matchingPlace}</td>
+									    		<td>${mc.matchingStatus}</td>
 									    		<td><input type="checkbox" name="delete"></td>
 									    	</tr>
 									    </c:forEach>

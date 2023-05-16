@@ -49,18 +49,16 @@ public class JibsaController {
 	}
 	
 	@PostMapping("insertJibsa.js")
-	public String insertJibsa(@ModelAttribute Member m, 
+	public String insertJibsa(@ModelAttribute Jibsa j,  HttpSession session,
 							Model model) {
+		System.out.println(j);
+		int result = jService.insertJibsa(j);
 		
-//		int result = jService.insertJibsa(m);
-//		
-//		if(result>0) {
-//			Member insertJibsa = mService.login(m);
-//			model.addAttribute("loginUser",insertJibsa);
+		if(result>0) {
 			return "enrollJibsaResult";
-//		} else {
-//			throw new JibsaException("정보 수정 실패했습니다.");
-//		}
+		} else {
+			throw new JibsaException("정보 수정 실패했습니다.");
+		}
 	}
 	
 	@RequestMapping("jibsaMain.js")
