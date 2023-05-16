@@ -57,53 +57,24 @@ public class AnimalController {
 							   @RequestParam (value="dType") String dType,
 							   @RequestParam (value="cType") String cType,
 							   @RequestParam (value="oType") String oType,
-							   Model model, HttpSession session, HttpServletRequest request,
-							   @RequestParam("file") MultipartFile file) {
+							   Model model, HttpSession session) {
 		
 		String animalType = dType + cType + oType;
+		
 		a.setAnimalType(animalType);
 		
 		int result = aService.updateAnimal(a);
 		
-		Animal editAnimal = aService.animalList(a.getMemberNo()); 
+		Animal editAnimal = aService.animalList(a.getMemberNo());
 		
-		System.out.println(editAnimal); // 동물 정보 수정
+		System.out.println(editAnimal);
 		
-		// 사진 업로드 처리
-		a.setImageLevel(1);
-
-		if (!file.isEmpty()) { // 파일이 비어있지 않은 경우
-			String[] returnArr = saveFile(file, request);
-			if (returnArr[1] != null) { // 리턴값이 비어있지 않은 경우
-				Image image = new Image();
-				image.setOriginalName(file.getOriginalFilename());
-				image.setRenameName(returnArr[1]);
-				image.setImagePath(returnArr[0]);
-
-	            // 이전 이미지 파일 삭제 처리
-	            String delRename = request.getParameter("delRename");
-	            Integer delLevel = Integer.parseInt(request.getParameter("delLevel"));
-	            
-//	            for(String rename : deleteAttm) { // deleteAttm에 담긴 rename과 level을 쪼개줌
-//	            	if(!rename.equals("none")) { // rename 값이 비워져있을 수도 있기 때문에
-//	            		String[] split = rename.split("/");
-//	            		delRename.add(split[0]);
-//	            		delLevel.add(Integer.parseInt(split[1]));
-//	            	}
-//	            }
-	            
-	            if (delRename != null && delLevel != null) {
-	                // TODO: 이전 이미지 파일을 삭제하고 데이터베이스에서 해당 레코드를 제거합니다.
-	            }
-	        }
-	    }
-
-	    if (result > 0) {
-	        model.addAttribute("animal", editAnimal);
-	        return "redirect:member_User_Info.me";
-	    } else {
-	        throw new AnimalException("동물 정보 수정에 실패하였습니다.");
-	    }   
+		if(result > 0) {
+			model.addAttribute("animal", editAnimal);
+			return "redirect:member_User_Info.me";
+		} else {
+			throw new AnimalException("동물 정보 수정에 실패하였습니다.");
+		}		
 	}
 	
 	@RequestMapping("member_Pet_Insert.me")

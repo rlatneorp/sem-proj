@@ -77,4 +77,5 @@ public class MemberService {
 	public int enrollMember(Member m) {
 		return mDAO.enrollMember(sqlSession, m);
 	}
+
 }

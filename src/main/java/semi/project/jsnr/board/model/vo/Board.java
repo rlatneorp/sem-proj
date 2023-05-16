@@ -11,7 +11,7 @@ public class Board {
 	private Date endDate;
 	private String matchingPlace;
 	private String reviewContent;
-	private int reviewRating;
+	private Integer reviewRating;
 	private int reviewCount;
 	private String jibsaComment;
 	private String memberName;
@@ -24,7 +24,7 @@ public class Board {
 
 
 	public Board(int matchingNo, int animalNo, String animalName, String animalKind, Date startDate, Date endDate,
-			String matchingPlace, String reviewContent, int reviewRating, int reviewCount, String jibsaComment,
+			String matchingPlace, String reviewContent, Integer reviewRating, int reviewCount, String jibsaComment,
 			String memberName, int memberNo, String jibsaName, String isJibsa) {
 		super();
 		this.matchingNo = matchingNo;
@@ -125,12 +125,12 @@ public class Board {
 	}
 
 
-	public int getReviewRaiting() {
+	public Integer getReviewRating() {
 		return reviewRating;
 	}
 
 
-	public void setReviewRaiting(int reviewRating) {
+	public void setReviewRating(Integer reviewRating) {
 		this.reviewRating = reviewRating;
 	}
 
@@ -203,6 +203,8 @@ public class Board {
 				+ reviewRating + ", reviewCount=" + reviewCount + ", jibsaComment=" + jibsaComment + ", memberName="
 				+ memberName + ", memberNo=" + memberNo + ", jibsaName=" + jibsaName + ", isJibsa=" + isJibsa + "]";
 	}
+	
+	
 
 
 

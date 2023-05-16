@@ -184,6 +184,7 @@
 		select *
 		from matching
 			join jibsa_profile using(member_no)
+            join animal using(animal_no)
 		where matching_no = #{mId}
 	</select>
 	

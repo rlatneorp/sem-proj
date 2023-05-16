@@ -98,7 +98,7 @@
 			<br><br><br>
 			<div class="joinBtn"> 
 				<button onclick="location.href='${ contextPath }/home.do'" type="submit" id="joinCancel" value="cancel">취소</button>
-				<button onclick="location.href='${ contextPath }/enrollMember.do'" type="submit" id="joinCheck" value="check">확인</button>
+				<button onclick="location.href='${ contextPath }/enrollPage.do'" type="submit" id="joinCheck" value="check">확인</button>
 			</div>
 			</div>
 		</div>
