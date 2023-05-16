@@ -144,7 +144,7 @@ public class Animal {
 		return "Animal [animalNo=" + animalNo + ", animalName=" + animalName + ", animalGender=" + animalGender
 				+ ", animalKind=" + animalKind + ", animalWeight=" + animalWeight + ", animalNote=" + animalNote
 				+ ", memberNo=" + memberNo + ", animalType=" + animalType + ", animalSize=" + animalSize + ", isNeuter="
-				+ isNeuter + ", birthDate=" + birthDate + ", isStatus=" + isStatus + ", BoardType=" + imageLevel + "]";
+				+ isNeuter + ", birthDate=" + birthDate + ", isStatus=" + isStatus + ", imageLevel=" + imageLevel + "]";
 	}
 	
 }

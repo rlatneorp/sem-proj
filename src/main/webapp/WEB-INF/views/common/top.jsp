@@ -20,7 +20,7 @@
 <style>
 .menu1:hover:not(.active){color: rgb(51, 51, 51);}
 
-.btjipsa{width: 138px; height: 58px; background: rgb(26, 188, 156); border-style: none; border-radius: 4px; }
+.btjipsa{width: 138px; height: 58px; background: rgb(26, 188, 156); border-style: none; border-radius: 4px;}
 #btjibsa_apply{color: white; border-radius: 4px; width:100px; height:37px; margin-left: 45px; 
 		 font-family: 'Noto Sans KR', sans-serif; font-size : 18px}
 .topCont{width: 1200px; max-width: none !important; margin: 0 auto;}

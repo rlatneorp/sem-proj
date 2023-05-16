@@ -53,6 +53,7 @@
 			padding: 30px;
 			margin: 10px;
 			border-radius: 30px;
+			display: inline-block;
 	}
 	.reviewContent {
 	   display: -webkit-box;
@@ -91,12 +92,14 @@
     }
 	
 	body{font-family: 'Noto Sans KR', sans-serif;}
+	.marginLeft{margin-Left: 310px;}
+	.matchingNo{color:white;}
 </style>
 </head>
 <body>
 <%@ include file="../common/top.jsp" %>
-
-	<div class="container-xxl">
+<div class="marginLeft">
+	<div class="container">
 	  
 		<br><br><br>
 		<h1>이용 후기</h1>
@@ -110,7 +113,7 @@
 	</select>
 	</div>
 	  
-	<div class="container text-left" >
+	<div class="container text-left">
 	  <div class="row">
 	  <article>
 		<c:forEach items="${ list }" var="n">
@@ -123,7 +126,7 @@
 					  </div>
 					  <div class="info">
 					    <h2>${ n.jibsaName }</h2>
-					    <a class="reviewContent" href="${ contextPath }/review_Detail.bo">${ n.reviewContent }</a>
+					    <a class="reviewContent">${ n.reviewContent }</a>
 					  </div>
 					</div>
 				</div>	
@@ -132,7 +135,7 @@
 	  	</div>
 	  </div>
 	</div>
-	
+	</div>
 	  <div class="row">
 		  				
 			<div class="pagingArea" align="center">
@@ -207,7 +210,7 @@
 <%@ include file="../common/bottom.jsp" %>
 
 <script>
-	window.onload=()=>{
+	 
 		document.getElementById('searchArea').querySelector('button').addEventListener('click', function(){
 		const value = this.previousElementSibling.value;
 		const condition = this.previousElementSibling.previousElementSibling.value;
@@ -215,19 +218,17 @@
 		location.href = '${contextPath}/search.bo?value='+value+'&condition='+condition;
 		});		
 		
+	window.onload=()=>{
 		const reviewContent = document.querySelector('article');
 		const reviewDiv = reviewContent.querySelectorAll('div');
 		for(const divs of reviewDiv){
 			divs.addEventListener('click', function(){
-				const div = this;
-				const mId = div[5].innerText;
-				const writer = div[4].innerText;
-				 
+				const mId = divs.querySelector('.matchingNo').innerText;
+				const writer = divs.querySelector('.username').innerText;
 				location.href='${ contextPath }/review_Detail.bo?mId='+ mId + '&writer=' + writer + '&page=' + ${pi.currentPage}; 
-			});
-		}
+			}); 
 	}
-
+	}
 </script>
  </body>
 </html>

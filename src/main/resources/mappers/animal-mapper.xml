@@ -4,7 +4,7 @@
 	<select id="animalList" resultMap="animalResultSet">
 		select *
 		from animal
-  		where member_no = #{memberNo}
+  		where member_no = #{memberNo} and is_status = 'Y'
 	</select>
 	
 	<resultMap type="Animal" id="animalResultSet">
@@ -32,7 +32,7 @@
 	
 	<insert id="insertAnimal">
 		insert into animal
-		values(seq_ani_id, #{animalName}, #{animalGender}, #{animalKind}, #{animalWeight}, #{animalNote}, #{memberNo}, #{animalType}, #{animalSize}, #{isNeuter}, #{birthDate}, default, default)
+		values(seq_ani_id.nextval, #{animalName}, #{animalGender}, #{animalKind}, #{animalWeight}, #{animalNote}, #{memberNo}, #{animalType}, #{animalSize}, #{isNeuter}, #{birthDate}, default, default)
 	</insert>
 	
 	<update id="deleteAnimal">
@@ -40,5 +40,10 @@
 		set is_status = 'N'
 		where member_no = #{memberNo} and animal_no = #{animalNo}
 	</update>
+	
+	<insert id="insertImage">
+		insert into image
+		values(seq_img_id.nextval, #{renameName}, #{originalName}, #{imageLevel}, #{imagePath})
+	</insert>
 	
 </mapper>

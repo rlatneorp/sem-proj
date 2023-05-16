@@ -1,25 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="memberMapper">
+<mapper namespace="jibsaMapper">
+
 	<insert id="insertJibsa">
-		insert jibsa
-		set MEMBER_NO = # { memberId },
-			JIBSA_GENDER =#{ jibsaGender } ,
-			JIBSA_RRN = #{ jibsaPrn },
-			IS_SMOKING = #{ isSmoking },
-			WORK_CAREER = #{workCareer},
-			AVAILABLE_HOUR = null ,
-			AVAILABLE_AREA = #{ availableArea },
-			MOTIVE = #{motive},
-			EXPECTED_SALARY = null ,
-			CHAT_ADDRESS = null ,
-			IS_PRIMIUM = 'N',
-			PRIMIUM_PAYMENT_DATE = null ,
-			PRIMIUM_PAYMENT_DATE = null ,
-			IS_TRAINER = 'N'
+		insert into jibsa
+		VALUES (
+		    #{memberNo},
+		    #{jibsaGender},
+		    #{jibsaRrn},
+		    #{isSmoking},
+		    #{workCareer},
+		    systimestamp,
+		    #{availableArea},
+		    #{motive},
+		    #{expectedSalary},
+		    'kakao',
+		    default,
+		    sysdate,
+		    sysdate,
+		    'N'
+		)
 			
-		where ID=#{id}
 	
 	</insert>
+	
+	<update id="updateMemberInfo">
+		update member
+		set member_email = #{memberEmail},
+			member_phone = #{memberPhone}, member_address = #{memberAddress}
+		where member_no = #{memberNo}
+	</update>
+	
+	<update id="updateJibsaInfo">
+		update jibsa
+		set work_career = #{workCareer}, AVAILABLE_HOUR = #{availableHour}, 
+			AVAILABLE_AREA = #{availableArea}
+		where member_no = #{memberNo}
+	</update>
+	
+	<update id="deleteJibsa">
+		update member
+		set is_jibsa = 'N'
+		where member_no = #{memberNo}
+	</update>
 	
 </mapper>

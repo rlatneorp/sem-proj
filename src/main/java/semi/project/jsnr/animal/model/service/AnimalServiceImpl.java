@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import semi.project.jsnr.animal.model.dao.AnimalDAO;
 import semi.project.jsnr.animal.model.vo.Animal;
+import semi.project.jsnr.animal.model.vo.Image;
 
 @Service
 public class AnimalServiceImpl implements AnimalService {
@@ -37,5 +38,10 @@ public class AnimalServiceImpl implements AnimalService {
 	@Override
 	public int deleteAnimal(Animal a) {
 		return aDAO.deleteAnimal(sqlSession, a);
+	}
+	
+	@Override
+	public int insertImage(Image image) {
+		return aDAO.insertImage(sqlSession, image);
 	}
 }

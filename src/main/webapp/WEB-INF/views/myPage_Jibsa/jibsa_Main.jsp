@@ -91,7 +91,7 @@
 					
 					<div class="container px-2 mb-4 mx-0">			
 						<p class="mb-3 fs-6 fw-bold">고객센터</p>
-						<a href="${ contextPath }/personal.js" class="text-decoration-none">
+						<a href="${ contextPath }/QnA.js" class="text-decoration-none">
 						<div class="col-6 d-inline-block text-top">
 							<p class="fs-7 d-inline-block text-decoration-none align-middle text-dark">1:1 문의</p>
 						</div>
@@ -99,7 +99,7 @@
 							<span class="material-symbols-rounded d-inline-block text-decoration-none m-color">chevron_right</span>
 						</div>
 						</a>
-						<a href="${ contextPath }/#" class="text-decoration-none">
+						<a href="${ contextPath }/FAQ.js" class="text-decoration-none">
 						<div class="col-6 d-inline-block text-top">
 							<p class="fs-7 d-inline-block text-decoration-none align-middle text-dark">자주하는 질문</p>
 						</div>
@@ -122,9 +122,9 @@
 					</div>
 					
 					<div class="container px-2 mb-4 mx-0">			
-						<a href="${ contextPath }/secession.js" class="text-decoration-none">
+						<a class="text-decoration-none" id="delete" style="cursor: pointer;">
 						<div class="col-6 d-inline-block text-top">
-							<p class="fs-7 d-inline-block text-decoration-none align-middle text-dark text-opacity-50">파트너 탈퇴</p>
+							<p class="fs-7 d-inline-block text-decoration-none align-middle text-dark text-opacity-50">집사 탈퇴</p>
 						</div>
 						<div class="col-5 d-inline-block text-end h-100">
 							<span class="material-symbols-rounded d-inline-block text-decoration-none m-color">chevron_right</span>
@@ -137,7 +137,15 @@
 	
 	</div>
 	
-	
+	<script>
+		const deletea = document.getElementById('delete');
+		
+		deletea.addEventListener('click', () => {
+			if (confirm('정말로 집사를 그만두시겠습니까?')) {
+	            location.href = '${contextPath}/jibsaDeleteInfo.me';
+	        }
+		});
+	</script>
 	
 	
 	
