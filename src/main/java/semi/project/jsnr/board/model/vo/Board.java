@@ -164,6 +164,16 @@ public class Board {
 	public void setIsJibsa(String isJibsa) {
 		this.isJibsa = isJibsa;
 	}
+	
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
 
 	public String getMatchingStatus() {
 		return matchingStatus;
@@ -190,5 +200,7 @@ public class Board {
 				+ memberName + ", memberNo=" + memberNo + ", jibsaName=" + jibsaName + ", isJibsa=" + isJibsa
 				+ ", matchingStatus=" + matchingStatus + ", reviewStatus=" + reviewStatus + "]";
 	}
+
+
 	
 }

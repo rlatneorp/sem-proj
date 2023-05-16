@@ -1,18 +1,26 @@
 package semi.project.jsnr.board.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 
 import semi.project.jsnr.board.model.exception.BoardException;
 import semi.project.jsnr.board.model.service.BoardService;
@@ -129,21 +137,21 @@ public class BoardController {
 	}
 	
 	@RequestMapping("review_Detail.bo")
-	public ModelAndView reviewDetail(@RequestParam("page") int page, ModelAndView mv, HttpSession session, @RequestParam("mId") int mId, @RequestParam("writer") String writer) {
+	public ModelAndView reviewDetail(@RequestParam(value="page", required=false) Integer page, ModelAndView mv, HttpSession session, @RequestParam(value="mId", required=false) Integer mId, @RequestParam(value="userName", required=false) String userName) {
 		
 		
 		Member m = (Member)session.getAttribute("loginUser");
 		String login = null;
 		if(m != null) {
-			login = m.getMemberName();
-		}
+			login = m.getMemberId();
+		}  
 		boolean yn = false;
-		if(!writer.equals(login)) {
+		if(!userName.equals(login)) {
 			yn = true;
 		}
 		
 		Board b = bService.reviewDetail(mId, yn);	
-		ArrayList<Board> list = bService.reviewDetailReply(mId);
+		ArrayList<Board> list = bService.selectReply(mId);
 			
 		
 		if(b != null) {
@@ -155,6 +163,24 @@ public class BoardController {
 			return mv;
 		} else {
 			throw new BoardException("게시글 상세보기를 실패하였습니다.");
+		}
+		
+	}
+	
+	
+	@RequestMapping("updateReply.bo")
+	public void updateReply(@ModelAttribute Board b, HttpServletResponse response) {
+		bService.updateReply(b);
+		ArrayList<Board> list = bService.selectReply(b.getMemberNo());
+		
+		response.setContentType("application/json; charset=UTF-8");
+		
+		GsonBuilder gb = new GsonBuilder().setDateFormat("yyyy-MM-dd");
+		Gson gson = gb.create();
+		try {
+			gson.toJson(list, response.getWriter()); 
+		} catch (JsonIOException | IOException e) {
+			e.printStackTrace();
 		}
 		
 	}

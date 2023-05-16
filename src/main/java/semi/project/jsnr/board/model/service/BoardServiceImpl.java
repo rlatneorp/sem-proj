@@ -91,10 +91,22 @@ public class BoardServiceImpl implements BoardService{
 		return b;
 	}
 
+//	@Override
+//	public ArrayList<Board> reviewDetailReply(int mId) {
+//		return bDAO.reviewDetailReply(sqlSession, mId);
+//	}
+
 	@Override
-	public ArrayList<Board> reviewDetailReply(int mId) {
-		return bDAO.reviewDetailReply(sqlSession, mId);
+	public void updateReply(Board b) {
+		bDAO.updateReply(sqlSession, b);
 	}
+
+	@Override
+	public ArrayList<Board> selectReply(int mId) {
+		return bDAO.selectReply(sqlSession, mId);
+	}
+
+
 
 
 

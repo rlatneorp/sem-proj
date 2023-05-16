@@ -31,6 +31,7 @@
 		<result column="MEMBER_NO" property="memberNo"/>
 		<result column="JIBSA_NAME" property="jibsaName"/>
 		<result column="IS_JIBSA" property="isJibsa"/>
+		<result column="MEMBER_ID" property="memberId"/>
 		
 	</resultMap>
 	
@@ -175,25 +176,43 @@
 	</select>
 	
 	<update id="reviewCount">
-		update matching
+   		update matching
 		set review_count = review_count + 1
-		where matching_no = #{mId}
+		where #{mId} in (select member_no 
+                                from member
+                                join matching using(member_no))
 	</update>
 	
 	<select id="reviewDetail" resultMap="boardResultSet">
-		select *
-		from matching
-			join jibsa_profile using(member_no)
-            join animal using(animal_no)
-		where matching_no = #{mId}
-	</select>
-	
-	<select id="reviewDetailReply" resultMap="boardResultSet">
 	    select *
 	    from matching ma
 	        join animal a on(ma.animal_no = a.animal_no)
 	        join member m on(a.member_no = m.member_no)
 	        join jibsa_profile jp on(ma.member_no = jp.member_no)
-	    where ma.matching_no = #{mId} and m.member_status = 'Y'
+	    where m.member_no = #{mId} and m.member_status = 'Y'
+	</select>
+	
+<!-- 	<select id="reviewDetailReply" resultMap="boardResultSet"> -->
+<!-- 	    select * -->
+<!-- 	    from matching ma -->
+<!-- 	        join animal a on(ma.animal_no = a.animal_no) -->
+<!-- 	        join member m on(a.member_no = m.member_no) -->
+<!-- 	        join jibsa_profile jp on(ma.member_no = jp.member_no) -->
+<!-- 	    where m.member_no = #{mId} and m.member_status = 'Y' -->
+<!-- 	</select> -->
+	
+	<update id="updateReply">
+		update matching
+		set jibsa_comment = #{jibsaComment}
+		where matching_no = #{matchingNo}
+	</update>
+	
+	<select id="selectReply" resultMap="boardResultSet">
+     	select *
+		from matching
+			join member using(member_no)
+		where is_jibsa = 'Y' and matching_no = #{matchingNo} and member_no = #{mId} and member_status = 'Y'
+		order by matching_no desc
+	
 	</select>
 </mapper>

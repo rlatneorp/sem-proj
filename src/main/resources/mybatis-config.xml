@@ -6,7 +6,7 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias type="semi.project.jsnr.board.model.vo.Board" alias="board"/>
+		<typeAlias type="semi.project.jsnr.board.model.vo.Board" alias="Board"/>
 		<typeAlias type="semi.project.jsnr.board.model.vo.Qna" alias="qna"/>
 		<typeAlias type="semi.project.jsnr.board.model.vo.Faq" alias="faq"/>
 		<typeAlias type="semi.project.jsnr.member.model.vo.Member" alias="Member"/>
