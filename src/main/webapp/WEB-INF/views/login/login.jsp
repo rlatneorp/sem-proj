@@ -33,7 +33,7 @@
 	<br><br><br><br><br>
 	<div class="login1">
 		<a href="${ contextPath }"><img src="resources/image/loginLogo.png" id="loginLogo"></a>
-		<form action="login.do" method="post">
+		<form action="${ contextPath }/login.do" method="post" id="form">
 		<div id="loginBox"> 
 			<div id="userName">
 				<div id="person">
