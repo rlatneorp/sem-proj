@@ -95,8 +95,7 @@ body {
 					      		
 					      			<p class="sel">1. 반려동물 사진</p>
 					      			<div id="img"></div>
-    							  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile" value="${ image.originalName }">
-    							  	<br>
+    							  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile" value="${ image.originalName }">    							  	<br>
     							  	
     							  	<input type="text" name="animalName" value="${ animal.animalName }" style="width: 400px; height: 35px;"/>
     							  	<br><br><br>
