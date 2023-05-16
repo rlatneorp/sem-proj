@@ -96,11 +96,11 @@ public class AnimalController {
 							   @RequestParam (value="oType") String oType,
 							   Model model, HttpSession session) {
 
-		Member loginUser = (Member) session.getAttribute("loginUser"); // 로그인한 유저 정보 얻기
-		int memberNo = loginUser.getMemberNo();
+		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
 		
 		String animalType = dType + cType + oType;
 		a.setAnimalType(animalType);
+		a.setMemberNo(memberNo);
 		
 		int result = aService.insertAnimal(a);
 		

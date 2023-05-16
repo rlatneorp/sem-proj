@@ -78,7 +78,7 @@ body {
 	    	<div class="container-fluid">
 	        	<div class="container text-center">
 					  <h4 style="margin-right: 56%;"><b>내 반려동물</b></h4>
-					  <h6 style="margin-right: 46%;">반려동물의 정보를 수정하세요!</h6><br>
+					  <h6 style="margin-right: 46%;">반려동물의 정보를 등록하세요!</h6><br>
 					      	<div class="insert">
 					      		<form action="${ contextPath }/insertAnimal.me" method="POST">
 					      		
