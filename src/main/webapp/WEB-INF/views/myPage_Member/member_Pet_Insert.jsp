@@ -90,7 +90,7 @@ body {
     							  	<input type="text" name="animalName" placeholder="이름을 입력해주세요" style="width: 400px; height: 35px;"/>
     							  	<br><br><br>
     							  	
-    							  	<p class="sel">2.내 반려동물은/는</p>
+    							  	<p class="sel">2.내 반려동물은</p>
     							  	<label for="dog">
     							  		<input type="radio" name="animalKind" class="rad" value="DOG" id="dog"> 강아지
     							  	</label>
