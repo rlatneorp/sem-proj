@@ -64,6 +64,7 @@
 						<div class="container mb-4">
 							<p class="fs-5">자격증</p>
 							<button type="button" class="w-25 btn btn-outline-success" id="addFile">+ 추가</button>
+							<br><br>
 							<div id="fileArea">
 								<div class="mb-3 adddd">
 									<input type="text" name="motive" style="width: 400px;">
