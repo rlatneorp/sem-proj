@@ -32,6 +32,12 @@ public class AnimalController {
 	@Autowired
 	private AnimalService aService;
 	
+	@ModelAttribute("animal")
+    public Animal getAnimal() {
+        return new Animal();
+
+    }
+	
 	@RequestMapping("member_User_Info.me") // 조회
 	public String animalList(HttpSession session, Model model) {
 		Member loginUser = (Member) session.getAttribute("loginUser"); // 로그인한 유저 정보 얻기
@@ -89,13 +95,16 @@ public class AnimalController {
 							   @RequestParam (value="cType") String cType,
 							   @RequestParam (value="oType") String oType,
 							   Model model, HttpSession session) {
+
+		Member loginUser = (Member) session.getAttribute("loginUser"); // 로그인한 유저 정보 얻기
+		int memberNo = loginUser.getMemberNo();
 		
 		String animalType = dType + cType + oType;
 		a.setAnimalType(animalType);
 		
 		int result = aService.insertAnimal(a);
 		
-		Animal insertAnimal = aService.animalList(a.getMemberNo());
+		Animal insertAnimal = aService.animalList(memberNo);
 		
 		System.out.println(animalType);
 		System.out.println(a);
@@ -103,7 +112,7 @@ public class AnimalController {
 		System.out.println(insertAnimal);
 		
 		if(result > 0) {
-			model.addAttribute("animal", insertAnimal);	
+			model.addAttribute("animal", insertAnimal);
 			return "redirect:member_User_Info.me";
 		} else {
 			throw new AnimalException("동물 정보 등록에 실패하였습니다.");
