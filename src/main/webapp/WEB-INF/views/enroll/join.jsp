@@ -23,6 +23,7 @@
 .joinBtn{font-size: 27px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; color: white; text-decoration: none;}
 .joinIdBt{border: none; background: transparent; position: absolute; margin-left: -111px; text-align: center; z-index: 1;}
 #idCheckResult{font-size:15px;}
+#pwdCheck{font-size:15px;}
 </style>
 </head>
 <body>
@@ -35,14 +36,16 @@
 <!-- 				<button type="button" class="joinIdBt"> -->
 <!-- 	          		<img src="resources/image/bb.png"/> -->
 <!-- 	        	</button></li> -->
-			<label id="idCheckResult"> 1   </label>
+			<label id="idCheckResult">   </label>
 			<br>
 			
 			<li class="lii"><a>비밀번호</a></li>
-			<li class="lii"><input class="uul2" id="membePwd" name="memberPwd" type="password" placeholder=" 사용할 비밀번호를 입력하세요"></li>
+			<li class="lii"><input class="uul2" id="memberPwd" name="memberPwd" type="password" placeholder=" 사용할 비밀번호를 입력하세요"></li>
 			<br>
 			<li class="lii"><a>비밀번호 확인</a></li>
-			<li class="lii"><input class="uul2" type="password" placeholder=" 다시 한 번 비밀번호를 입력하세요"></li>
+			<li class="lii"><input class="uul2" id="confirmPassword" type="password" placeholder=" 다시 한 번 비밀번호를 입력하세요"></li>
+			<label id="pwdCheck">   </label>
+			
 			<br>
 			<li class="lii"><a>이름</a></li>
 			<li class="lii"><input class="uul2" id="memberName" name="memberName" type="text" placeholder=" 이름을 입력하세요"></li>
@@ -54,7 +57,7 @@
 			<li class="lii"><input class="uul2" id="memberPhone" name="memberPhone" type="number" placeholder=" 연락처를 입력하세요"></li>
 			<br>
 			<li class="lii"><a>주소</a></li>
-			<li class="lii"><input class="uul2" id="memberAddress" name="" type="text" placeholder=" 주소를 입력하세요"></li>
+			<li class="lii"><input class="uul2" id="memberAddress" name="memberAddress" type="text" placeholder=" 주소를 입력하세요"></li>
 			<br><br>
 			<div class="joinBtnDiv">
 				<button class="joinBtn" >가입하기</button>
@@ -67,8 +70,6 @@
 <script >
 	window.onload = () => {
 	    document.getElementById('memberId').addEventListener('change', function() {
-	        console.log(123);
-	        console.log(this.value);
 	        const idResult = document.getElementById('idCheckResult');
 	        if (this.value.trim() == '') {
 	            idResult.innerText = '';
@@ -77,7 +78,6 @@
 	                url: '${contextPath}/member_CheckMemberId.me',
 	                data: { memberId: this.value.trim() },
 	                success: data => {
-	                    console.log(data);
 	                    if (data == 'yes') {
 	                        idResult.innerText = '사용가능한 아이디입니다';
 	                        idResult.style.color = "green";
@@ -93,7 +93,20 @@
 	        }
 	    });
 	};
+	
+	document.getElementById('confirmPassword').addEventListener('keyup', function() {
+	    const password = document.getElementById('memberPwd').value;
+	    const confirmPassword = this.value;
+	    const pwdCheckResult = document.getElementById('pwdCheck');
 
+	    if (password === confirmPassword) {
+	        pwdCheckResult.innerText = '비밀번호가 일치합니다';
+	        pwdCheckResult.style.color = 'green';
+	    } else {
+	        pwdCheckResult.innerText = '비밀번호가 일치하지 않습니다';
+	        pwdCheckResult.style.color = 'red';
+	    }
+	});
 
 
 </script>

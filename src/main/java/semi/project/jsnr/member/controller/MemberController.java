@@ -5,6 +5,8 @@ import java.util.Base64;
 import java.util.Base64.Decoder;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -233,13 +235,15 @@ public class MemberController {
 	
 	
 	@PostMapping("enrollMember.do")
-	public String enrollMember(@ModelAttribute Member m) {
+	public String enrollMember(@ModelAttribute Member m, HttpSession session) {
 		
 		String encPwd = bcrypt.encode(m.getMemberPwd());
 		m.setMemberPwd(encPwd);
 		
 		int result = mService.enrollMember(m);
 		if(result>0) {
+			// 회원가입 성공 시 로그인 정보를 세션에 저장
+	        session.setAttribute("loggedInUser", m.getMemberId());
 			return "redirect:home.do";
 		} else {
 			throw new MemberException("회원가입 실패");
