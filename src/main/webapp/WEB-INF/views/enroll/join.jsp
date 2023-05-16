@@ -119,22 +119,22 @@
         alert("회원가입이 완료되었습니다! 다시 로그인 해주세요");
     }
 	 
-	 // 인증코드 메일로 보내는 ajax
-	 $('#sendMail').click(function() {
-		console.log('이메일 : ' + memberEmail); 
-		const checkInput = $('#emailCode') // 인증번호 입력하는곳 
+// 	 // 인증코드 메일로 보내는 ajax
+// 	 $('#sendMail').click(function() {
+// 		console.log('이메일 : ' + memberEmail); 
+// 		const checkInput = $('#emailCode') // 인증번호 입력하는곳 
 		
-		$.ajax({
-			type : 'get',
-			url : '<c:url value ="/user/mailCheck?email="/>'+memberEmail, 
-			success : function (data) {
-				console.log("data : " +  data);
-				checkInput.attr('disabled',false);
-				code =data;
-				alert('인증번호가 전송되었습니다.')
-			}			
-		}); 
-	}); 
+// 		$.ajax({
+// 			type : 'get',
+// 			url : '<c:url value ="/user/mailCheck?memberEmail="/>'+memberEmail, 
+// 			success : function (data) {
+// 				console.log("data : " +  data);
+// 				checkInput.attr('disabled',false);
+// 				code =data;
+// 				alert('인증번호가 전송되었습니다.')
+// 			}			
+// 		}); 
+// 	}); 
 
 
 </script>

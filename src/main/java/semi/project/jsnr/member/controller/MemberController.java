@@ -253,8 +253,9 @@ public class MemberController {
 //	//이메일 인증
 //	@GetMapping("/mailCheck")
 //	@ResponseBody
-//	public String mailCheck(String email) {
+//	public String mailCheck(String memberEmail) {
 //		System.out.println("이메일 인증 요청이 들어옴!");
-//		System.out.println("이메일 인증 이메일 : " + email);
+//		System.out.println("이메일 인증 이메일 : " + memberEmail);
 //	}
+	
 }
