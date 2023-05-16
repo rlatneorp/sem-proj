@@ -30,7 +30,7 @@ import semi.project.jsnr.member.model.vo.Member;
 public class MemberController {
 	
 	@Autowired
-	private MemberService mService;
+	public MemberService mService;
 	
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
