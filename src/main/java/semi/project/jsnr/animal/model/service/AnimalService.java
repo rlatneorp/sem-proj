@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import semi.project.jsnr.animal.model.vo.Animal;
+import semi.project.jsnr.animal.model.vo.Image;
 
 public interface AnimalService {
 	
@@ -14,6 +15,8 @@ public interface AnimalService {
 	int insertAnimal(Animal a);
 
 	int deleteAnimal(Animal a);
+
+	int insertImage(Image image);
 	
 
 }

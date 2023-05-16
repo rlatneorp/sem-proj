@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import semi.project.jsnr.animal.model.vo.Animal;
+import semi.project.jsnr.animal.model.vo.Image;
 
 @Repository
 public class AnimalDAO {
@@ -29,6 +30,10 @@ public class AnimalDAO {
 
 	public int deleteAnimal(SqlSessionTemplate sqlSession, Animal a) {
 		return sqlSession.update("AnimalMapper.deleteAnimal", a);
+	}
+
+	public int insertImage(SqlSessionTemplate sqlSession, Image image) {
+		return sqlSession.insert("AnimalMapper.insertImage", image);
 	}
 
 	

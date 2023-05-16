@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import semi.project.jsnr.animal.model.exception.AnimalException;
+import semi.project.jsnr.animal.model.exception.ImageException;
 import semi.project.jsnr.animal.model.service.AnimalService;
 import semi.project.jsnr.animal.model.vo.Animal;
 import semi.project.jsnr.animal.model.vo.Image;
@@ -94,7 +95,9 @@ public class AnimalController {
 							   @RequestParam (value="dType") String dType,
 							   @RequestParam (value="cType") String cType,
 							   @RequestParam (value="oType") String oType,
-							   Model model, HttpSession session) {
+							   Model model, HttpSession session,
+							   HttpServletRequest request,
+							   @RequestParam("file") MultipartFile file) {
 
 		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
 		
@@ -104,20 +107,52 @@ public class AnimalController {
 		
 		int result = aService.insertAnimal(a);
 		
-		Animal insertAnimal = aService.animalList(memberNo);
+		Animal insertAnimal = aService.animalList(memberNo); // 정보 등록
 		
-		System.out.println(animalType);
-		System.out.println(a);
-		System.out.println(result);
-		System.out.println(insertAnimal);
+		// 사진 등록
 		
+		a.setImageLevel(1);
+		
+		Image image = null;
+		
+		if(file != null && !file.isEmpty()) {
+			String[] returnArr = saveFile(file, request);
+		
+			if(returnArr[1] != null) {
+				image = new Image();
+				image.setImagePath(returnArr[0]);
+				image.setOriginalName(file.getOriginalFilename());
+				image.setRenameName(returnArr[1]);
+				image.setImageLevel(1);
+			}
+		}
+		
+		int resultImage = 0;
+		
+		System.out.println(image);
+		System.out.println(file);
+		System.out.println(image.getImagePath());
+		System.out.println(image.getOriginalName());
+		System.out.println(image.getRenameName());
+		System.out.println(image.getImageLevel());
+			
+		
+		if(image != null) {
+			 deleteFile(image.getRenameName(), request);
+			 resultImage = aService.insertImage(image);
+		} else {
+			throw new ImageException("동물 사진 등록에 실패하였습니다.");
+		}
+				
 		if(result > 0) {
 			model.addAttribute("animal", insertAnimal);
 			return "redirect:member_User_Info.me";
 		} else {
 			throw new AnimalException("동물 정보 등록에 실패하였습니다.");
-		}		
+		}	
+	
 	}
+
 	
 	@GetMapping("deleteAnimal.me") // 삭제
 	public String deleteAnimal(@ModelAttribute Animal a) {
@@ -162,6 +197,17 @@ public class AnimalController {
 		returnArr[1] = renameFileName;
 		
 		return returnArr;
+	}
+	
+	public void deleteFile(String fileName, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\uploadFiles";
+		
+		File f = new File(savePath + "\\" + fileName);
+		
+		if(f.exists()) {
+			f.delete();
+		}
 	}
 }
 

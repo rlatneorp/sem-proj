@@ -41,4 +41,9 @@
 		where member_no = #{memberNo} and animal_no = #{animalNo}
 	</update>
 	
+	<insert id="insertImage">
+		insert into image
+		values(seq_img_id.nextval, #{renameName}, #{originalName}, #{imageLevel}, #{imagePath})
+	</insert>
+	
 </mapper>
