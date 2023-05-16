@@ -24,12 +24,14 @@
 .joinIdBt{border: none; background: transparent; position: absolute; margin-left: -111px; text-align: center; z-index: 1;}
 #idCheckResult{font-size:15px;}
 #pwdCheck{font-size:15px;}
+#sendMail{width: 110px; height: 38px; border: none; background: rgb(26, 188, 156); border-radius: 4px; font-size: 15px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; color: white; text-decoration: none;}
+#auBtn{width: 110px; height: 38px; border: none; background: rgb(26, 188, 156); border-radius: 4px; font-size: 15px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; color: white; text-decoration: none;}
 </style>
 </head>
 <body>
 <article style="width: 1200px; margin: 0 auto;">
 <br><br><br><br><br><br>
-	<form class="jo" action="${ contextPath }/enrollMember.do" method="post">
+	<form class="jo" action="${ contextPath }/enrollMember.do" method="post" onsubmit="showSuccessAlert()">
 		<ul class="uul"> 	
 			<li class="lii"><a>아이디</a></li>
 			<li class="lii"><input class="uul2" id="memberId" name="memberId" type="text" placeholder=" 사용할 아이디를 입력하세요"></li>
@@ -51,7 +53,9 @@
 			<li class="lii"><input class="uul2" id="memberName" name="memberName" type="text" placeholder=" 이름을 입력하세요"></li>
 			<br>
 			<li class="lii"><a>이메일</a></li>
-			<li class="lii"><input class="uul2" id="memberEmail" name="memberEmail" type="email" placeholder=" 이메일을 입력하세요"></li>
+			<li class="lii"><input class="uul2" id="memberEmail" name="memberEmail" type="email" placeholder=" 이메일을 입력하세요">&nbsp;&nbsp;<button id="sendMail" type="button">인증코드 전송</button></li>
+			<li class="lii"><input class="uul2" id="emailCode" name="emailCode" type="text" placeholder="인증 코드를 입력해주세요." maxlength="6">&nbsp;&nbsp;<button id="auBtn" type="button">인증하기</button></li>
+			
 			<br>
 			<li class="lii"><a>연락처</a></li>
 			<li class="lii"><input class="uul2" id="memberPhone" name="memberPhone" type="number" placeholder=" 연락처를 입력하세요"></li>
@@ -68,6 +72,7 @@
 </article>	
 
 <script >
+	// 아이디가 중복인지 확인하는 ajax
 	window.onload = () => {
 	    document.getElementById('memberId').addEventListener('change', function() {
 	        const idResult = document.getElementById('idCheckResult');
@@ -94,6 +99,7 @@
 	    });
 	};
 	
+	// 비밀번호와 비밀번화 확인이 일치하는지 확인하는 함수
 	document.getElementById('confirmPassword').addEventListener('keyup', function() {
 	    const password = document.getElementById('memberPwd').value;
 	    const confirmPassword = this.value;
@@ -107,6 +113,28 @@
 	        pwdCheckResult.style.color = 'red';
 	    }
 	});
+	
+	 // 회원가입 완료 알림창을 띄우는 함수
+    function showSuccessAlert() {
+        alert("회원가입이 완료되었습니다! 다시 로그인 해주세요");
+    }
+	 
+	 // 인증코드 메일로 보내는 ajax
+	 $('#sendMail').click(function() {
+		console.log('이메일 : ' + memberEmail); 
+		const checkInput = $('#emailCode') // 인증번호 입력하는곳 
+		
+		$.ajax({
+			type : 'get',
+			url : '<c:url value ="/user/mailCheck?email="/>'+memberEmail, 
+			success : function (data) {
+				console.log("data : " +  data);
+				checkInput.attr('disabled',false);
+				code =data;
+				alert('인증번호가 전송되었습니다.')
+			}			
+		}); 
+	}); 
 
 
 </script>

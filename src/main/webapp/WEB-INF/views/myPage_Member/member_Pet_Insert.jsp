@@ -78,19 +78,19 @@ body {
 	    	<div class="container-fluid">
 	        	<div class="container text-center">
 					  <h4 style="margin-right: 56%;"><b>내 반려동물</b></h4>
-					  <h6 style="margin-right: 46%;">반려동물의 정보를 수정하세요!</h6><br>
+					  <h6 style="margin-right: 46%;">반려동물의 정보를 등록하세요!</h6><br>
 					      	<div class="insert">
-					      		<form action="${ contextPath }/insertAnimal.me" method="POST">
+					      		<form action="${ contextPath }/insertAnimal.me" method="POST" enctype="multipart/form-data">
 					      		
 					      			<p class="sel">1. 반려동물 사진</p>
 					      			<div id="img"></div>
-    							  	<input class="form-control" type="file" accept="image/*" id="formFile">
+    							  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile">
     							  	<br>
     							  	
     							  	<input type="text" name="animalName" placeholder="이름을 입력해주세요" style="width: 400px; height: 35px;"/>
     							  	<br><br><br>
     							  	
-    							  	<p class="sel">2.내 반려동물은/는</p>
+    							  	<p class="sel">2.내 반려동물은</p>
     							  	<label for="dog">
     							  		<input type="radio" name="animalKind" class="rad" value="DOG" id="dog"> 강아지
     							  	</label>

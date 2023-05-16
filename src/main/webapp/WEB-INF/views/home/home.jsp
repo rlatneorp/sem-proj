@@ -178,7 +178,7 @@
 		<div>
 		  <p>반려동물 위탁돌봄을 희망하는<br>
 		  	보호자와 전문가를<br>서로 매칭해줍니다</p>
-		  <button class="select">파트너매칭</button>
+		  <button class="select">집사매칭</button>
 		</div>
 	  <img src="resources/image/home2.jpg" alt="image description">
 	</div>

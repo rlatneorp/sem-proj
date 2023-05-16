@@ -39,22 +39,28 @@
 		where member_no = #{mId}
 	</select>
 	
+	<select id="selectApplyJibsa" resultType="_int">
+		select count(*)
+		from jibsa
+		where member_no = #{mId}
+	</select>
+	
 	<update id="updateMember">
 		update member
 		set 
-			<if test="isAdmin == null">
-				member_name = #{memberName},
-				is_jibsa = #{isJibsa}
-			</if>
-			<if test="isAdmin != null">
-				member_name = #{memberName},
-				member_email = #{memberEmail},
-				is_admin = #{isAdmin},
-				is_jibsa = #{isJibsa},
-				member_status = #{memberStatus},
-				member_phone = #{memberPhone},
-				member_address = #{memberAddress}
-			</if>
+		<if test="isAdmin == null">
+			member_name = #{memberName},
+			is_jibsa = #{isJibsa}
+		</if>
+		<if test="isAdmin != null">
+			member_name = #{memberName},
+			member_email = #{memberEmail},
+			is_admin = #{isAdmin},
+			is_jibsa = #{isJibsa},
+			member_status = #{memberStatus},
+			member_phone = #{memberPhone},
+			member_address = #{memberAddress}
+		</if>
 		where member_no = #{memberNo}
 	</update>
 
@@ -91,7 +97,7 @@
 		<result column="PRIMIUM_PAYMENT_DATE" property="primiumPaymentDate"/>
 		<result column="PRIMIUM_END_DATE" property="primiumEndDate"/>
 		<result column="IS_TRAINER" property="isTrainer"/>
-		<result column="IS_JIBSA" property="isJibsa"/>
+		<result column="IS_JIBSA" property="jibsaStatus"/>
 	</resultMap>
 	
 	<update id="updateJibsa">
@@ -206,6 +212,63 @@
 			answer_date = sysdate,
 			qna_status = #{qnaStatus}
 		where qna_no = #{qnaNo}
+	</update>
+
+	<select id="getReviewCount" resultType="_int">
+		select count(*)
+		from matching
+	</select>
+	
+	<select id="selectReviewList" resultMap="boardResultSet">
+		select *
+		from member m
+		    join animal a on(a.member_no = m.member_no)
+		    join matching ma on(ma.animal_no = a.animal_no)
+		    join jibsa_profile jp on(jp.member_no = ma.member_no)
+		    order by ma.matching_no desc
+	</select>
+	<resultMap type="Board" id="boardResultSet">
+		<id column="MATCHING_NO" property="matchingNo"/>
+		<result column="ANIMAL_NO" property="animalNo"/>
+		<result column="ANIMAL_NAME" property="animalName"/>
+		<result column="ANIMAL_KIND" property="animalKind"/>
+		<result column="START_DATE" property="startDate"/>
+		<result column="END_DATE" property="endDate"/>
+		<result column="MATCHING_PLACE" property="matchingPlace"/>
+		<result column="REVIEW_CONTENT" property="reviewContent"/>
+		<result column="REVIEW_RATING" property="reviewRating"/>
+		<result column="REVIEW_COUNT" property="reviewCount"/>
+		<result column="JIBSA_COMMENT" property="jibsaComment"/>
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="JIBSA_NAME" property="jibsaName"/>
+		<result column="IS_JIBSA" property="isJibsa"/>
+		<result column="MATCHING_STATUS" property="matchingStatus"/>
+		<result column="REVIEW_STATUS" property="reviewStatus"/>
+	</resultMap>
+	
+	<select id="selectReview" resultMap="boardResultSet">
+		select *
+		from member m
+		    join animal a on(a.member_no = m.member_no)
+		    join matching ma on(ma.animal_no = a.animal_no)
+		    join jibsa_profile jp on(jp.member_no = ma.member_no)
+		where ma.matching_no = #{rId}  
+	</select>
+	
+	<update id="updateReview">
+		update matching
+		set review_status = #{reviewStatus} 
+		where matching_no = #{matchingNo}
+	</update>
+
+	<update id="updateMatching">
+		update matching
+		set start_date = #{startDate},
+			end_date = #{endDate},
+			matching_Place = #{matchingPlace},
+			matching_status = #{matchingStatus}
+		where matching_no = #{matchingNo}
 	</update>
 	
 </mapper>

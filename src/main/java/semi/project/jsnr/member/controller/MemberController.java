@@ -32,7 +32,7 @@ import semi.project.jsnr.member.model.vo.Member;
 public class MemberController {
 	
 	@Autowired
-	private MemberService mService;
+	public MemberService mService;
 	
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
@@ -248,5 +248,13 @@ public class MemberController {
 		} else {
 			throw new MemberException("회원가입 실패");
 		}
+	}
+	
+	//이메일 인증
+	@GetMapping("/mailCheck")
+	@ResponseBody
+	public String mailCheck(String email) {
+		System.out.println("이메일 인증 요청이 들어옴!");
+		System.out.println("이메일 인증 이메일 : " + email);
 	}
 }
