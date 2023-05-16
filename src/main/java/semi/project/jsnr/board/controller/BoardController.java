@@ -129,16 +129,13 @@ public class BoardController {
 	}
 	
 	@RequestMapping("review_Detail.bo")
-	public ModelAndView reviewDetail(@RequestParam(value="page", required=false) Integer currentPage, ModelAndView mv, HttpSession session, @RequestParam(value="mId", required=false) int mId, @RequestParam("writer") String writer) {
+	public ModelAndView reviewDetail(@RequestParam("page") int page, ModelAndView mv, HttpSession session, @RequestParam("mId") int mId, @RequestParam("writer") String writer) {
 		
-		if(currentPage == null) {
-			currentPage = 1;
-		}
 		
 		Member m = (Member)session.getAttribute("loginUser");
 		String login = null;
 		if(m != null) {
-			login = m.getMemberId();
+			login = m.getMemberName();
 		}
 		boolean yn = false;
 		if(!writer.equals(login)) {
@@ -151,7 +148,7 @@ public class BoardController {
 		
 		if(b != null) {
 			mv.addObject("b", b);
-			mv.addObject("page", currentPage);
+			mv.addObject("page", page);
 			mv.addObject("list", list);
 
 			mv.setViewName("review_Detail");

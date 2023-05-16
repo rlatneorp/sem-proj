@@ -33,7 +33,7 @@ public interface BoardService {
 
 	ArrayList<Board> selectSearchList(HashMap<String, String> map, PageInfo pi);
 
-	Board reviewDetail(int bId, boolean yn);
+	Board reviewDetail(int mId, boolean yn);
 
 	ArrayList<Board> reviewDetailReply(int mId);
 }
