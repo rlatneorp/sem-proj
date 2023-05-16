@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>myPage</title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,700,0,0" />
+<style>
+	#img{
+  		width: 400px; height: 250px; border: 1px solid gray;
+  	}
+</style>
 </head>
 <body>
 	<jsp:include page="../common/top.jsp"></jsp:include>
@@ -23,64 +29,48 @@
 					</div>
 					
 					<form method="post" action="${ contextPath }/jibsaUpdateInfo.js">
-						<div class="container mb-5 mx-0">
-						<a href="#" class="d-block link-dark text-decoration-none mb-3">
-							<img src="https://github.com/mdo.png" alt="mdo" width="72" height="72" class="rounded-circle image-block me-2">
-							<span class="fs-5 fw-bold">홍길동 집사님</span>
-						</a>
-						</div>
+						<div class="container mb-4">
+						<p class="fs-5">프로필 수정</p>
+						<div id="img" style=""></div>
+    					<input type="file" class="input px-2 fs-7" style="width: 400px; color: rgba(0,0,0,0.8); cursor: pointer;" id="formFile">
+    					</div>
 						<input type="hidden" name="memberNo" value="${ loginUser.memberNo }">
 						<div class="container mb-4">
 							<p class="fs-5">이름</p>
-							<input type="text" name="name" value="${ loginUser.memberName }" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);" readonly>
+							<input type="text" name="memberName" value="${ loginUser.memberName }" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);" readonly>
 						</div>
 						<div class="container mb-4">
 							<p class="fs-5">이메일</p>
-							<input type="text" name="email" value="${ loginUser.memberEmail }" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);">
+							<input type="text" name="memberEmail" value="${ loginUser.memberEmail }" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);">
 						</div>
 						<div class="container mb-4">
 							<p class="fs-5">연락처</p>
-							<input type="text" name="phone" value="${ loginUser.memberPhone }" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);">
+							<input type="text" name="memberPhone" value="${ loginUser.memberPhone }" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);">
 						</div>
 						<div class="container mb-5">
 							<p class="fs-5">주소</p>
-							<input type="text" name="address" value="${ loginUser.memberAddress }" class="input px-2 fs-7 w-100" style="color: rgba(0,0,0,0.8);">
+							<input type="text" name="memberAddress" value="${ loginUser.memberAddress }" class="input px-2 fs-7 w-100" style="color: rgba(0,0,0,0.8);">
 						</div>
 						<hr>
 						<br>
-						
 						<div class="container mb-4">
 							<div class="mb-3">
 								<p class="fs-5">경력</p>
 								<p class="fs-6">경력사항</p>
-								<input type="number" name="careerYear" min="0" value="3" step="1" class="input me-2">
-								<span class="me-2">년</span>
-								<input type="number" name="careerMonth" min="0" value="3" step="1" class="input me-2">
-								<span>개월</span>
 							</div>
-							<textarea class="w-100 input" style="height: 200px;">KH정보교육원에서 코코와 치즈를 3년간 돌봐왔습니다. 코코와 치즈는 학생들에게 많은 사랑을 받았구요. 저는 기부니가 좋았습니다.
-							</textarea>
+							<textarea class="w-100 input" style="height: 200px;" name="workCareer">${ jibsaInfo.workCareer }</textarea>
 						</div>
 						
 						<div class="container mb-4">
 							<p class="fs-5">자격증</p>
-							<div class="d-flex justify-content-between mb-4" id="lisence">
-								<div class="rounded-5 d-flex justify-content-center align-items-center hover-cursor-pointer" style="background: rgba(0,0,0,0.1); width: 100px; height: 100px;">
-									<span class="material-symbols-rounded m-color d-flex">add_circle</span>
-								</div>
-								<div class="rounded-5 d-flex justify-content-center align-items-center hover-cursor-pointer" style="background: rgba(0,0,0,0.1); width: 100px; height: 100px;">
-									<span class="material-symbols-rounded text-white d-flex">photo_library</span>
-								</div>
-								<div class="rounded-5 d-flex justify-content-center align-items-center hover-cursor-pointer" style="background: rgba(0,0,0,0.1); width: 100px; height: 100px;">
-									<span class="material-symbols-rounded text-white d-flex">photo_library</span>
-								</div>
-								<div class="rounded-5 d-flex justify-content-center align-items-center hover-cursor-pointer" style="background: rgba(0,0,0,0.1); width: 100px; height: 100px;">
-									<span class="material-symbols-rounded text-white d-flex">photo_library</span>
-								</div>
-								<div class="rounded-5 d-flex justify-content-center align-items-center hover-cursor-pointer" style="background: rgba(0,0,0,0.1); width: 100px; height: 100px;">
-									<span class="material-symbols-rounded text-white d-flex">photo_library</span>
+							<button type="button" class="w-25 btn btn-outline-success" id="addFile">+ 추가</button>
+							<div id="fileArea">
+								<div class="mb-3 adddd">
+									<input type="text" name="motive" style="width: 400px;">
 								</div>
 							</div>
+							
+								
 						</div>
 						
 						<div class="container mb-5">
@@ -95,35 +85,42 @@
 				</div>
 		    </div>
 		</div>
-	
 	</div>
+	<script>
+		const add = document.getElementById('addFile');
+		const area = document.querySelector('#fileArea');
+		
+		add.addEventListener('click', () => {
+			// node 이용
+			const newDiv = document.createElement('div');
+			newDiv.classList.add('mb-3');
+			newDiv.innerHTML = '<input type="text" name="motive" style="width: 400px;">';
+			
+			fileArea.append(newDiv)
+		});
+		
+		const input = document.getElementById('formFile');
+		const imgDiv = document.getElementById('img');
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		input.addEventListener('change', function() {
+		  const file = this.files[0];
+		  if (!file.type.startsWith('image/')){ 
+		    alert('이미지 파일을 선택하세요.'); 
+		    return;
+		  }
+		  const reader = new FileReader();
+		  reader.onload = function() {
+		    const img = new Image();
+		    img.style.width = '400px';
+		    img.style.height = '247px';
+		    img.src = reader.result;
+		    imgDiv.innerHTML = '';
+		    imgDiv.appendChild(img);
+		  }
+		  reader.readAsDataURL(file);  
+		});
+		
+		
+	</script>
 </body>
 </html>
