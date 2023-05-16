@@ -1,20 +1,19 @@
 package semi.project.jsnr.matching.model.vo;
 
-import java.sql.Timestamp;
-
 public class Matching {
 	private int matchingNo;
 	private int animalNo;
 	private int memberNo;
-	private Timestamp startDate;
-	private Timestamp endDate;
+	private String startDate;
+	private String endDate;
 	private String matchingPlace;
 	private String reviewContent;
+	private String matchingStatus;
 	
 	public Matching() {}
 
-	public Matching(int matchingNo, int animalNo, int memberNo, Timestamp startDate, Timestamp endDate,
-			String matchingPlace, String reviewContent) {
+	public Matching(int matchingNo, int animalNo, int memberNo, String startDate, String endDate, String matchingPlace,
+			String reviewContent, String matchingStatus) {
 		super();
 		this.matchingNo = matchingNo;
 		this.animalNo = animalNo;
@@ -23,6 +22,7 @@ public class Matching {
 		this.endDate = endDate;
 		this.matchingPlace = matchingPlace;
 		this.reviewContent = reviewContent;
+		this.matchingStatus = matchingStatus;
 	}
 
 	public int getMatchingNo() {
@@ -49,19 +49,19 @@ public class Matching {
 		this.memberNo = memberNo;
 	}
 
-	public Timestamp getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Timestamp startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
-	public Timestamp getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Timestamp endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 
@@ -81,11 +81,19 @@ public class Matching {
 		this.reviewContent = reviewContent;
 	}
 
+	public String getMatchingStatus() {
+		return matchingStatus;
+	}
+
+	public void setMatchingStatus(String matchingStatus) {
+		this.matchingStatus = matchingStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "Matching [matchingNo=" + matchingNo + ", animalNo=" + animalNo + ", memberNo=" + memberNo
 				+ ", startDate=" + startDate + ", endDate=" + endDate + ", matchingPlace=" + matchingPlace
-				+ ", reviewContent=" + reviewContent + "]";
-	};
+				+ ", reviewContent=" + reviewContent + ", matchingStatus=" + matchingStatus + "]";
+	}
 	
 }

@@ -18,13 +18,13 @@ public class Jibsa {
 	private Date primiumPaymentDate;
 	private Date primiumEndDate;
 	private String isTrainer;
-	private String isJibsa;
+	private String jibsaStatus;
 
 	public Jibsa() {}
 
 	public Jibsa(int memberNo, String memberName, String jibsaGender, int jibsaRrn, String isSmoking, String workCareer,
 			String availableHour, String availableArea, String motive, int exptectedSalary, String chatAddress,
-			String isPrimium, Date primiumPaymentDate, Date primiumEndDate, String isTrainer, String isJibsa) {
+			String isPrimium, Date primiumPaymentDate, Date primiumEndDate, String isTrainer, String jibsaStatus) {
 		super();
 		this.memberNo = memberNo;
 		this.memberName = memberName;
@@ -41,10 +41,10 @@ public class Jibsa {
 		this.primiumPaymentDate = primiumPaymentDate;
 		this.primiumEndDate = primiumEndDate;
 		this.isTrainer = isTrainer;
-		this.isJibsa = isJibsa;
+		this.jibsaStatus = jibsaStatus;
 	}
 
-
+	
 	public int getMemberNo() {
 		return memberNo;
 	}
@@ -194,16 +194,13 @@ public class Jibsa {
 		this.isTrainer = isTrainer;
 	}
 
-
-	public String getIsJibsa() {
-		return isJibsa;
+	public String getJibsaStatus() {
+		return jibsaStatus;
 	}
 
-
-	public void setIsJibsa(String isJibsa) {
-		this.isJibsa = isJibsa;
+	public void setJibsaStatus(String jibsaStatus) {
+		this.jibsaStatus = jibsaStatus;
 	}
-
 
 	@Override
 	public String toString() {
@@ -212,9 +209,8 @@ public class Jibsa {
 				+ ", availableHour=" + availableHour + ", availableArea=" + availableArea + ", motive=" + motive
 				+ ", exptectedSalary=" + exptectedSalary + ", chatAddress=" + chatAddress + ", isPrimium=" + isPrimium
 				+ ", primiumPaymentDate=" + primiumPaymentDate + ", primiumEndDate=" + primiumEndDate + ", isTrainer="
-				+ isTrainer + ", isJibsa=" + isJibsa + "]";
+				+ isTrainer + ", jibsaStatus=" + jibsaStatus + "]";
 	}
-
 
 
 }

@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import semi.project.jsnr.admin.model.dao.AdminDAO;
+import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
 import semi.project.jsnr.common.model.vo.PageInfo;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
+import semi.project.jsnr.matching.model.vo.Matching;
 import semi.project.jsnr.member.model.vo.Member;
 
 @Service
@@ -97,6 +99,31 @@ public class AdminService {
 	public int updateQna(Qna q) {
 		return aDAO.updateQna(sqlSession, q);
 	}
+
+	public int selectApplyJibsa(int mId) {
+		return aDAO.selectApplyJibsa(sqlSession, mId);
+	}
+
+	public int getReviewCount() {
+		return aDAO.getReviewCount(sqlSession);
+	}
+
+	public ArrayList<Board> selectReviewList(PageInfo pi) {
+		return aDAO.selectReviewList(sqlSession, pi);
+	}
+
+	public Board selectReview(int rId) {
+		return aDAO.selectReview(sqlSession, rId);
+	}
+
+	public int updateReview(Board b) {
+		return aDAO.updateReview(sqlSession, b);
+	}
+
+	public int updateMatching(Matching mc) {
+		return aDAO.updateMatching(sqlSession, mc);
+	}
+
 
 
 	

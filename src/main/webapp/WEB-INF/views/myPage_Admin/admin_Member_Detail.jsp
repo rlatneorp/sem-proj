@@ -29,9 +29,19 @@
 					<button type="button" class="col-1 rounded">Y</button>
 					<button type="button" class="col-1 rounded">N</button><p class="col-4"></p>
 
-					<p class="col-4">집사여부</p><p class="col-2">${m.isJibsa }</p>
+					<p class="col-2">집사여부</p>
+					<div class="col-2">
+						<c:if test="${m.applyJibsa eq 'Y'}">(신청완료)</c:if>
+						<c:if test="${m.applyJibsa eq 'N'}">(신청대기)</c:if>
+					</div>
+					<p class="col-2">${m.isJibsa }</p>
 					<input type="hidden" name="isJibsa" value="${m.isJibsa }">
-					<button type="button" class="col-1 rounded">Y</button>
+					<c:if test="${m.applyJibsa eq 'Y'}">
+						<button type="button" class="col-1 rounded">Y</button>
+					</c:if>
+					<c:if test="${m.applyJibsa eq 'N'}">
+						<div class="col-1"></div>
+					</c:if>
 					<button type="button" class="col-1 rounded">N</button><p class="col-4"></p>
 
 					<p class="col-4">활동여부</p><p class="col-2">${m.memberStatus }</p>

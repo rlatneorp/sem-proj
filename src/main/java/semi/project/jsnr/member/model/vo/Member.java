@@ -17,12 +17,13 @@ public class Member {
 	private String memberPhone;
 	private String memberAddress;
 	private int animalCount;
+	private String applyJibsa;
 	
 	public Member() {}
 
 	public Member(int memberNo, String memberId, String memberPwd, String memberName, String memberEmail,
 			String isAdmin, String isJibsa, String memberStatus, Date enrollDate, Date exitDate, int blackList,
-			String memberPhone, String memberAddress, int animalCount) {
+			String memberPhone, String memberAddress, int animalCount, String applyJibsa) {
 		super();
 		this.memberNo = memberNo;
 		this.memberId = memberId;
@@ -38,6 +39,7 @@ public class Member {
 		this.memberPhone = memberPhone;
 		this.memberAddress = memberAddress;
 		this.animalCount = animalCount;
+		this.applyJibsa = applyJibsa;
 	}
 
 	public int getMemberNo() {
@@ -152,14 +154,21 @@ public class Member {
 		this.animalCount = animalCount;
 	}
 
+	public String getApplyJibsa() {
+		return applyJibsa;
+	}
+
+	public void setApplyJibsa(String applyJibsa) {
+		this.applyJibsa = applyJibsa;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [memberNo=" + memberNo + ", memberId=" + memberId + ", memberPwd=" + memberPwd + ", memberName="
 				+ memberName + ", memberEmail=" + memberEmail + ", isAdmin=" + isAdmin + ", isJibsa=" + isJibsa
 				+ ", memberStatus=" + memberStatus + ", enrollDate=" + enrollDate + ", exitDate=" + exitDate
 				+ ", blackList=" + blackList + ", memberPhone=" + memberPhone + ", memberAddress=" + memberAddress
-				+ ", animalCount=" + animalCount + "]";
+				+ ", animalCount=" + animalCount + ", applyJibsa=" + applyJibsa + "]";
 	}
 
-	
 }

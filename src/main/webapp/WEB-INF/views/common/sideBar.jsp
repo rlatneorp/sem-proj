@@ -146,14 +146,14 @@
 					<li><label class="lab" onclick="location.href='${contextPath}/member_Reservation.me';">예약 관리</label><hr></li>
 					<li><label class="lab" onclick="location.href='${contextPath}/member_ServiceCenter.me';">고객센터</label></li>
 					<c:if test="${ !empty loginUser }">
-						<c:if test="${ loginUser.isJibsa eq 'Y' }">
+						<c:if test="${ loginUser.jibsaStatus eq 'Y' }">
 							<li class="bot"><label for="inbtn1" style="cursor: pointer;" onclick="location.href='${contextPath}/jibsaMain.js'">집사로 전환하기</label>
 								<img src="resources/image/button.png" id="inbtn1"/>
 							</li>
 						</c:if>
 					</c:if>
 					<c:if test="${ !empty loginUser }">
-						<c:if test="${ loginUser.isJibsa eq 'N' }">
+						<c:if test="${ loginUser.jibsaStatus eq 'N' }">
 							<li class="bot"><label for="inbtn1" style="cursor: pointer;">집사로 전환하기</label>
 								<img src="resources/image/button.png" id="inbtn1"/>
 							</li>
