@@ -68,6 +68,18 @@ body {font-family: 'Noto Sans KR', sans-serif;}
 					location.href="${contextPath}/jibsa_Detail.bo?mId="+mId+"&page="+${pi.currentPage};
 				})
 			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		}
 	</script>
 

@@ -18,6 +18,7 @@ public class Board {
 	private int memberNo;
 	private String jibsaName;
 	private String isJibsa;
+	private String memberId;
 	
 	
 	public Board() {}
@@ -25,7 +26,7 @@ public class Board {
 
 	public Board(int matchingNo, int animalNo, String animalName, String animalKind, Date startDate, Date endDate,
 			String matchingPlace, String reviewContent, Integer reviewRating, int reviewCount, String jibsaComment,
-			String memberName, int memberNo, String jibsaName, String isJibsa) {
+			String memberName, int memberNo, String jibsaName, String isJibsa, String memberId) {
 		super();
 		this.matchingNo = matchingNo;
 		this.animalNo = animalNo;
@@ -42,6 +43,7 @@ public class Board {
 		this.memberNo = memberNo;
 		this.jibsaName = jibsaName;
 		this.isJibsa = isJibsa;
+		this.memberId = memberId;
 	}
 
 
@@ -193,6 +195,16 @@ public class Board {
 	public void setIsJibsa(String isJibsa) {
 		this.isJibsa = isJibsa;
 	}
+	
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
 
 
 	@Override
@@ -201,8 +213,11 @@ public class Board {
 				+ ", animalKind=" + animalKind + ", startDate=" + startDate + ", endDate=" + endDate
 				+ ", matchingPlace=" + matchingPlace + ", reviewContent=" + reviewContent + ", reviewRating="
 				+ reviewRating + ", reviewCount=" + reviewCount + ", jibsaComment=" + jibsaComment + ", memberName="
-				+ memberName + ", memberNo=" + memberNo + ", jibsaName=" + jibsaName + ", isJibsa=" + isJibsa + "]";
+				+ memberName + ", memberNo=" + memberNo + ", jibsaName=" + jibsaName + ", isJibsa=" + isJibsa
+				+ ", memberId=" + memberId + "]";
 	}
+
+
 	
 	
 

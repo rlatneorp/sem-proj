@@ -35,5 +35,10 @@ public interface BoardService {
 
 	Board reviewDetail(int mId, boolean yn);
 
-	ArrayList<Board> reviewDetailReply(int mId);
+//	ArrayList<Board> reviewDetailReply(int mId);
+
+	void updateReply(Board b);
+
+	ArrayList<Board> selectReply(int mId);
+
 }

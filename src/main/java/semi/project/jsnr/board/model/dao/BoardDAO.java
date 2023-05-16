@@ -85,5 +85,13 @@ public class BoardDAO {
 	public ArrayList<Board> reviewDetailReply(SqlSessionTemplate sqlSession, int mId) {
 		return (ArrayList)sqlSession.selectList("boardMapper.reviewDetailReply", mId);
 	}
+
+	public void updateReply(SqlSessionTemplate sqlSession, Board b) {
+		sqlSession.update("boardMapper.updateReply", b);
+	}
+
+	public ArrayList<Board> selectReply(SqlSessionTemplate sqlSession, int mId) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectReply", mId);
+	}
 }
 

@@ -31,11 +31,13 @@
 	  border-radius: 50%;
 	}
 	
-	.review h2 {
+	.jibsaName {
 	  font-size: 1.5rem;
 	  font-weight: bold;
 	  margin-bottom: 0; /* margin-bottom 제거 */
-	  margin-left:20px;
+	}
+	.review div{
+	  font-size: 20px;
 	}
 	
 	.review a {
@@ -65,7 +67,7 @@
 	   color: rgb(51, 51, 51); text-decoration: none; 
  	}
  	
- 	.username {
+ 	.userName {
 	  background-color: rgb(26, 188, 156);
 	  color: white;
 	  font-size: 1rem;
@@ -94,6 +96,7 @@
 	body{font-family: 'Noto Sans KR', sans-serif;}
 	.marginLeft{margin-Left: 310px;}
 	.matchingNo{color:white;}
+	.memberId{color:white;}
 </style>
 </head>
 <body>
@@ -121,12 +124,12 @@
 			    <div class="review">
 				  <div class="profile">
 					  <img src="resources/image/profile.png">
-					  	<div class="username">${ n.memberName }</div>
+					  	<div class="userName">${ n.memberName }</div>
 					  	<div class="matchingNo">${ n.matchingNo }</div>
 					  </div>
 					  <div class="info">
-					    <h2>${ n.jibsaName }</h2>
-					    <a class="reviewContent">${ n.reviewContent }</a>
+					    <div class="jibsaName">${ n.jibsaName }</div>
+					    <div class="reviewContent">${ n.reviewContent }</div>
 					  </div>
 					</div>
 				</div>	
@@ -164,7 +167,7 @@
 							
 								<c:param name="page" value="${ p }"/>
 								<c:if test="${ condition != null}">
-									<c:param name = "condition" value = "${condition	}"/>
+									<c:param name = "condition" value = "${condition}"/>
 									<c:param name = "value" value = "${value}"/>
 								</c:if>
 							</c:url>
@@ -224,8 +227,8 @@
 		for(const divs of reviewDiv){
 			divs.addEventListener('click', function(){
 				const mId = divs.querySelector('.matchingNo').innerText;
-				const writer = divs.querySelector('.username').innerText;
-				location.href='${ contextPath }/review_Detail.bo?mId='+ mId + '&writer=' + writer + '&page=' + ${pi.currentPage}; 
+				const userName = divs.querySelector('.userName').innerText;
+				location.href='${ contextPath }/review_Detail.bo?mId='+ mId + '&userName=' + userName + '&page=' + ${pi.currentPage}; 
 			}); 
 	}
 	}

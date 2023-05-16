@@ -205,22 +205,33 @@
 				
 				<h3 style="text-align: center;">집사의 댓글</h3>
 				<br>
-				<p style="text-align: center;">${ b.jibsaComment }</p>
+				<table>
+					<thead style="text-align: center;">
+						<tr>
+							<td width="130px">댓글 내용</td>
+							<td width="130px">매칭 종료일</td>
+						</tr>
+					</thead>
+					<tbody style="text-align: center;">	
+						<c:forEach items="${ list }" var="r">
+						<tr>
+							<td>${ r.jibsaComment }</td>
+							<td>${ r.endDate  }</td>
+						</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 				<br><hr><br>
 				
-				
-				
-				<form>
 				  <div id="comment" style="text-align: center;">
 				    <label>댓글 : </label>
-					<input id="replyContent"type="text" placeholder=" 댓글을 입력해주세요" name="search" >
-					<input id="replyBtn" type="submit" value = "글쓰기">
+					<input id="replyContent"type="text" placeholder=" 댓글을 입력해주세요" name="reply" >
+					<input id="replyBtn" type="submit" value ="reply" name="reply">
 				  </div>
-				</form>
 			</div>
 			<br><br>
 			<div class="col" style="text-align: center;">
-				<button id="allReviewBtn">모든 후기 보기</button>
+				<button id="allReviewBtn"onclick="location.href='${contextPath}/review_Main.bo'">모든 후기 보기</button>
 			</div>
 		</div>	
 			<div class="col">
@@ -234,12 +245,55 @@
 <%@ include file="../common/bottom.jsp" %>
 <script>
 	window.onload=()=>{
-		let username = document.querySelector('.username');
+		let usernames = document.querySelector('.username');
 		const URLSearch = new URLSearchParams(location.search);
-		const usernameChange = URLSearch.getAll('writer');
+		const usernameChange = URLSearch.getAll('userName');
 			
-			username.innerText += usernameChange;
-		}
+		usernames.innerText += usernameChange;
+		
+		
+		document.getElementById('replyBtn').addEventListener('click', ()=>{
+			$.ajax({
+				url: '${contextPath}/updateReply.bo',
+				data: {
+						jibsaComment:document.getElementById('replyContent').value,
+						memberId:'${loginUser.memberId}', 
+						matchingNo:${b.matchingNo} 
+				},
+				success: data =>{
+					console.log(data);
+					const tbody = document.querySelector('tbody');
+					
+					for(const r of data){
+						const tr = document.createElement('tr');
+						
+						const contentTd = document.createElement('td');
+						contentTd.innerText = r.jibsaComment;
+						
+						const dateTd = document.createElement('td');
+						dateTd.innerText = r.endDate;
+						
+						tr.append(contentTd);
+						tr.append(dateTd);
+						tbody.append(tr);
+						
+					}
+					document.getElementById('replyContent').value = '';
+				},
+				error: data =>{
+					console.log(data);
+				}
+			});
+		})		
+	}
 </script>
+		
+		
+		
+		
+		
+		
+		
+		
 </body>
 </html>
