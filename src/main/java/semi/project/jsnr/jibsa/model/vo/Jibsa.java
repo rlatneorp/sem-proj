@@ -12,7 +12,7 @@ public class Jibsa {
 	private String availableHour;
 	private String availableArea;
 	private String motive;
-	private int exptectedSalary;
+	private int expectedSalary;
 	private String chatAddress;
 	private String isPrimium;
 	private Date primiumPaymentDate;
@@ -23,7 +23,7 @@ public class Jibsa {
 	public Jibsa() {}
 
 	public Jibsa(int memberNo, String memberName, String jibsaGender, int jibsaRrn, String isSmoking, String workCareer,
-			String availableHour, String availableArea, String motive, int exptectedSalary, String chatAddress,
+			String availableHour, String availableArea, String motive, int expectedSalary, String chatAddress,
 			String isPrimium, Date primiumPaymentDate, Date primiumEndDate, String isTrainer, String isJibsa) {
 		super();
 		this.memberNo = memberNo;
@@ -35,7 +35,7 @@ public class Jibsa {
 		this.availableHour = availableHour;
 		this.availableArea = availableArea;
 		this.motive = motive;
-		this.exptectedSalary = exptectedSalary;
+		this.expectedSalary = expectedSalary;
 		this.chatAddress = chatAddress;
 		this.isPrimium = isPrimium;
 		this.primiumPaymentDate = primiumPaymentDate;
@@ -135,13 +135,13 @@ public class Jibsa {
 	}
 
 
-	public int getExptectedSalary() {
-		return exptectedSalary;
+	public int getexpectedSalary() {
+		return expectedSalary;
 	}
 
 
-	public void setExptectedSalary(int exptectedSalary) {
-		this.exptectedSalary = exptectedSalary;
+	public void setexpectedSalary(int expectedSalary) {
+		this.expectedSalary = expectedSalary;
 	}
 
 
@@ -210,7 +210,7 @@ public class Jibsa {
 		return "Jibsa [memberNo=" + memberNo + ", memberName=" + memberName + ", jibsaGender=" + jibsaGender
 				+ ", jibsaRrn=" + jibsaRrn + ", isSmoking=" + isSmoking + ", workCareer=" + workCareer
 				+ ", availableHour=" + availableHour + ", availableArea=" + availableArea + ", motive=" + motive
-				+ ", exptectedSalary=" + exptectedSalary + ", chatAddress=" + chatAddress + ", isPrimium=" + isPrimium
+				+ ", expectedSalary=" + expectedSalary + ", chatAddress=" + chatAddress + ", isPrimium=" + isPrimium
 				+ ", primiumPaymentDate=" + primiumPaymentDate + ", primiumEndDate=" + primiumEndDate + ", isTrainer="
 				+ isTrainer + ", isJibsa=" + isJibsa + "]";
 	}

@@ -85,20 +85,20 @@
 		<div class="rounded-box flex">
 			<div class="container">
 				<label class ="title"> 이름</label><br/>
-				<input type="text" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 홍길동" style="font-size: 10px;"
+				<input type="text" id="memberName" name="memberName" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 홍길동" style="font-size: 10px;"
 						value ="${ loginUser.memberName }" readonly><br/><br/>
 			
 				<label class ="e title">생년월일</label><br/>
 				<span class = "add">만 18세 이상부터 지원할 수 있습니다.</span><br/>
-				<input type="number" id="jibsaRrn" class=" i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224);  font-size: 15px;  font-weight: normal;width:120px; height: 43px;"  placeholder=" 생년월일"><br/><br/>
+				<input type="number" id="jibsaRrn" name="jibsaRrn" class=" i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224);  font-size: 15px;  font-weight: normal;width:120px; height: 43px;"  placeholder=" 생년월일"><br/><br/>
 				
 				<label class ="title">이메일</label><br/>
-				<input type="text" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 이메일을 입력해주세요"
+				<input type="text" id="memberEmail" name="memberEmail" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 이메일을 입력해주세요"
 						value ="${ loginUser.memberEmail }" readonly><br/><br/>
 				
 				<label class ="e title">방문가능지역</label><br/>
 				<span class = "add">지역을 선택해주세요.</span><br/>
-				<input type="text" id="availableArea" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 주소를 입력해주세요"><br/><br/>
+				<input type="text" id="availableArea" name="availableArea" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 주소를 입력해주세요"><br/><br/>
 			</div>
 			
 			<div class="container">
@@ -106,34 +106,38 @@
 				<button  style="margin-left: 25px; paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" >파일선택</button><br/><br/>
 				
 				<label class ="e title"> 성별</label><br/>
-				<label style="margin-left: 25px;"><input type="radio" name="gender" value="male">남자</label>
-				<label><input type="radio" id="jibsaGender" name="gender" value="female">여자</label>
+				<label style="margin-left: 25px;"><input type="radio" name="jibsaGender" value="m">남자</label>
+				<label><input type="radio" id="jibsaGender" name="jibsaGender" value="f">여자</label>
 				<br/><br/>
 				
 				<label class ="e title"> 연락처 </label><br/>
 				<span class = "add">입력하신 연락처로 합격 여부를 알려드립니다.</span><br/>
-				<input type="text" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 휴대혼 번호를 입력해주세요."
+				<input type="text" id="memberPhone" name="memberPhone" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 휴대혼 번호를 입력해주세요."
 						value ="${ loginUser.memberPhone }" readonly><br/><br/>
 				
 				<label class ="e title"> 흡연유무 </label><br/>
 				<span class = "add">거짓기재시 불이익이 있을 수 있습니다.</span><br/>
-				<label style="margin-left: 25px;"><input type="radio" name="gender" value="yes">흡연 함</label>
-				<label><input type="radio" id="isSmoking" name="gender" value="no">흡연 안함</label>
+				<label style="margin-left: 25px;"><input type="radio" name="isSmoking" value="y">흡연 함</label>
+				<label><input type="radio" id="isSmoking" name="isSmoking" value="n">흡연 안함</label>
 			</div>
 		</div>
 		<br/><br/>
 		
-		<h5>2. 반려 경험 및 경력</h5>
+		<h5>2. 경력사항 및 시급</h5>
 		
 		<p for="essential" &nbsp; style="padding-left: 22px;"> &nbsp;은 필수입력 항목입니다.</p>
 		
 		<div class="rounded-box">
 			
 			<label class ="e title"> 경력사항</label><br/>
-			<textarea id="workCareer" name="career" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 138px;" 
+			<textarea id="workCareer" name="workCareer" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 138px;" 
 				placeholder=" 관련 업종 근무 경험, 관련 학과 졸업 등 없는 경우엔 없다고 작성" 
 				rows="5"  style="width: 900px;" ></textarea>
 			<br/><br/>
+			
+			<label class ="e title"> 희망 시급</label><br/>
+			<input type="number" id="expectedSalary" name="expectedSalary" class=" i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224);  font-size: 15px;  font-weight: normal;width:250px; height: 43px;"  placeholder="희망하는 시급을 적어주세요"><br/><br/>
+			
 		
 		</div>
 		<br/><br/>
@@ -144,7 +148,7 @@
 		
 		<div class="rounded-box">
 			<label class ="e title"> 지원 동기</label><br/>
-			<textarea id = "motive" name="career" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 138px;" 
+			<textarea id = "motive" name="motive" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 138px;" 
 				placeholder=" 지원한 동기를 적어주세요." 
 				rows="5"  style="width: 600px;" ></textarea>
 			<br/><br/>
