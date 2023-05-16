@@ -44,4 +44,9 @@ public class AnimalServiceImpl implements AnimalService {
 	public int insertImage(Image image) {
 		return aDAO.insertImage(sqlSession, image);
 	}
+	
+	@Override
+	public Image selectImage(int memberNo) {
+		return aDAO.selectImage(sqlSession, memberNo);
+	}
 }

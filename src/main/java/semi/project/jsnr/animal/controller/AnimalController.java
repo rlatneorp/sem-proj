@@ -47,8 +47,11 @@ public class AnimalController {
 		
 		Animal animal = aService.animalList(memberNo); // 해당 유저가 등록한 동물 정보 가져오기
 		
+		Image image = aService.selectImage(memberNo);
+		
 		model.addAttribute("animal", animal);
 		model.addAttribute("loginUser", loginUser);
+		model.addAttribute("image", image);
 
 		return "member_User_Info";
 	}
@@ -73,8 +76,6 @@ public class AnimalController {
 		int result = aService.updateAnimal(a);
 		
 		Animal editAnimal = aService.animalList(a.getMemberNo());
-		
-		System.out.println(editAnimal);
 		
 		if(result > 0) {
 			model.addAttribute("animal", editAnimal);
@@ -124,6 +125,7 @@ public class AnimalController {
 				image.setOriginalName(file.getOriginalFilename());
 				image.setRenameName(returnArr[1]);
 				image.setImageLevel(1);
+				image.setMemberNo(memberNo);
 			}
 		}
 		
@@ -135,6 +137,7 @@ public class AnimalController {
 		System.out.println(image.getOriginalName());
 		System.out.println(image.getRenameName());
 		System.out.println(image.getImageLevel());
+		System.out.println(image.getMemberNo());
 			
 		
 		if(image != null) {

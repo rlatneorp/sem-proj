@@ -2,16 +2,18 @@ package semi.project.jsnr.animal.model.vo;
 
 public class Image {
 	private int imageNo;
+	private int memberNo;
 	private String renameName;
 	private String originalName;
 	private int imageLevel;
 	private String imagePath;
 	
-	public Image() {};
+	public Image() {}
 
-	public Image(int imageNo, String renameName, String originalName, int imageLevel, String imagePath) {
+	public Image(int imageNo, int memberNo, String renameName, String originalName, int imageLevel, String imagePath) {
 		super();
 		this.imageNo = imageNo;
+		this.memberNo = memberNo;
 		this.renameName = renameName;
 		this.originalName = originalName;
 		this.imageLevel = imageLevel;
@@ -24,6 +26,14 @@ public class Image {
 
 	public void setImageNo(int imageNo) {
 		this.imageNo = imageNo;
+	}
+
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 
 	public String getRenameName() {
@@ -49,7 +59,7 @@ public class Image {
 	public void setImageLevel(int imageLevel) {
 		this.imageLevel = imageLevel;
 	}
-	
+
 	public String getImagePath() {
 		return imagePath;
 	}
@@ -60,8 +70,8 @@ public class Image {
 
 	@Override
 	public String toString() {
-		return "Image [imageNo=" + imageNo + ", renameName=" + renameName + ", originalName=" + originalName
-				+ ", imageLevel=" + imageLevel + ", imagePath=" + imagePath + "]";
-	}
-	
+		return "Image [imageNo=" + imageNo + ", memberNo=" + memberNo + ", renameName=" + renameName + ", originalName="
+				+ originalName + ", imageLevel=" + imageLevel + ", imagePath=" + imagePath + "]";
+	};
+
 }

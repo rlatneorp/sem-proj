@@ -13,6 +13,7 @@
 		<typeAlias type="semi.project.jsnr.jibsa.model.vo.Jibsa" alias="Jibsa"/>
 		<typeAlias type="semi.project.jsnr.jibsa.model.vo.JibsaProfile" alias="JibsaProfile"/>
 		<typeAlias type="semi.project.jsnr.animal.model.vo.Animal" alias="Animal"/>
+		<typeAlias type="semi.project.jsnr.animal.model.vo.Image" alias="Image"/>
 	</typeAliases>
 	
 	<mappers>

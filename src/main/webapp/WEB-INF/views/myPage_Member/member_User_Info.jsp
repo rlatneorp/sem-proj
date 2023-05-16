@@ -95,7 +95,7 @@ body {
 		                    <div class="p-4"><br>
 			                    <c:if test="${ animal.isStatus eq 'Y' }">
 				                	<h6 class="h6">${ animal.animalKind } / ${ animal.animalName } / ${ animal.animalGender }</h6><br>
-				                    <img src="${ contextPath }/resources/uploadFiles/${ a.renameName }"/><br><br><br>
+				                    <img src="${ contextPath }/resources/uploadFiles/${ image.renameName }" width="90%" height="245"/><br><br><br>
 			                        <button class="inbtn" onclick="location.href='${ contextPath }/member_Pet_Insert_Edit.me'">수정하기</button>
 			                   	</c:if>
   								<c:if test="${ animal.isStatus ne 'Y' }">
