@@ -100,6 +100,7 @@
 			}
 		}
 		
+// 		timepicker 관련 스크립트
 		$('.timepicker').timepicker({
     		timeFormat: 'HH:mm',
 		    interval: 30,

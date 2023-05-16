@@ -30,7 +30,7 @@
 					<button type="button" class="col-1 rounded">N</button><p class="col-4"></p>
 
 					<p class="col-2">집사여부</p>
-					<div class="col-2">
+					<div class="col-2" id="applyCheck">
 						<c:if test="${m.applyJibsa eq 'Y'}">(신청완료)</c:if>
 						<c:if test="${m.applyJibsa eq 'N'}">(신청대기)</c:if>
 					</div>
@@ -40,7 +40,7 @@
 						<button type="button" class="col-1 rounded">Y</button>
 					</c:if>
 					<c:if test="${m.applyJibsa eq 'N'}">
-						<div class="col-1"></div>
+						<button type="button" class="col-1 rounded"></button>
 					</c:if>
 					<button type="button" class="col-1 rounded">N</button><p class="col-4"></p>
 
@@ -49,9 +49,9 @@
 					<button type="button" class="col-1 rounded">Y</button>
 					<button type="button" class="col-1 rounded">N</button><p class="col-4"></p>
 
-					<p class="col-4">가입날짜</p><p class="col-8">${m.enrollDate } DB에 컬럼 추가 필요</p>
-					<p class="col-4">탈퇴날짜</p><p class="col-8">${m.exitDate }</p>
-					<p class="col-4">신고접수</p><p class="col-8">${m.blackList }</p>
+					<p class="col-4">가입날짜</p><p class="col-8">${m.enrollDate}</p>
+					<p class="col-4">탈퇴날짜</p><p class="col-8">${m.exitDate}</p>
+					<p class="col-4">신고접수</p><p class="col-8">${m.blackList}</p>
 					<p class="col-4">전화번호</p><p class="col-8"><input type="text" name="memberPhone" value="${m.memberPhone }"></p>
 					<p class="col-4">주소</p><p class="col-8"><input type="text" name="memberAddress" value="${m.memberAddress }"></p>
 					<p class="col-4">등록 동물 수</p><p class="col-8">${m.animalCount }</p>
@@ -79,16 +79,21 @@
 
 	<script>
 		const btns = document.getElementById('divBox').querySelectorAll('button');
+		const aCk = document.getElementById('applyCheck').innerText;
 		for(const i in btns){
 			btns[i].addEventListener('click', function(){
-				if(i%2 == 0){
-					console.log(btns[i].innerText);
-					this.previousElementSibling.value = btns[i].innerText;
-					this.previousElementSibling.previousElementSibling.innerText = btns[i].innerText;
-				}else{
-					console.log(btns[i].innerText);
-					this.previousElementSibling.previousElementSibling.value = btns[i].innerText;
-					this.previousElementSibling.previousElementSibling.previousElementSibling.innerText = btns[i].innerText;
+				if(i == 2 && aCk == "(신청대기)"){
+					
+				} else{
+					if(i%2 == 0){ 
+						console.log(btns[i].innerText);
+						this.previousElementSibling.value = btns[i].innerText;
+						this.previousElementSibling.previousElementSibling.innerText = btns[i].innerText;
+					}else{
+						console.log(btns[i].innerText);
+						this.previousElementSibling.previousElementSibling.value = btns[i].innerText;
+						this.previousElementSibling.previousElementSibling.previousElementSibling.innerText = btns[i].innerText;
+					}
 				}
 			})
 		}

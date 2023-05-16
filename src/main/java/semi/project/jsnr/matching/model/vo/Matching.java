@@ -6,13 +6,18 @@ public class Matching {
 	private int memberNo;
 	private String startDate;
 	private String endDate;
+	private String animalKind;
+	private String serviceType;
+	private String wantJibsaGender;
+	private String wantMatchingPlace;
 	private String matchingPlace;
 	private String reviewContent;
 	private String matchingStatus;
 	
 	public Matching() {}
 
-	public Matching(int matchingNo, int animalNo, int memberNo, String startDate, String endDate, String matchingPlace,
+	public Matching(int matchingNo, int animalNo, int memberNo, String startDate, String endDate, String animalKind,
+			String serviceType, String wantJibsaGender, String wantMatchingPlace, String matchingPlace,
 			String reviewContent, String matchingStatus) {
 		super();
 		this.matchingNo = matchingNo;
@@ -20,6 +25,10 @@ public class Matching {
 		this.memberNo = memberNo;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.animalKind = animalKind;
+		this.serviceType = serviceType;
+		this.wantJibsaGender = wantJibsaGender;
+		this.wantMatchingPlace = wantMatchingPlace;
 		this.matchingPlace = matchingPlace;
 		this.reviewContent = reviewContent;
 		this.matchingStatus = matchingStatus;
@@ -65,6 +74,38 @@ public class Matching {
 		this.endDate = endDate;
 	}
 
+	public String getAnimalKind() {
+		return animalKind;
+	}
+
+	public void setAnimalKind(String animalKind) {
+		this.animalKind = animalKind;
+	}
+
+	public String getServiceType() {
+		return serviceType;
+	}
+
+	public void setServiceType(String serviceType) {
+		this.serviceType = serviceType;
+	}
+
+	public String getWantJibsaGender() {
+		return wantJibsaGender;
+	}
+
+	public void setWantJibsaGender(String wantJibsaGender) {
+		this.wantJibsaGender = wantJibsaGender;
+	}
+
+	public String getWantMatchingPlace() {
+		return wantMatchingPlace;
+	}
+
+	public void setWantMatchingPlace(String wantMatchingPlace) {
+		this.wantMatchingPlace = wantMatchingPlace;
+	}
+
 	public String getMatchingPlace() {
 		return matchingPlace;
 	}
@@ -92,8 +133,10 @@ public class Matching {
 	@Override
 	public String toString() {
 		return "Matching [matchingNo=" + matchingNo + ", animalNo=" + animalNo + ", memberNo=" + memberNo
-				+ ", startDate=" + startDate + ", endDate=" + endDate + ", matchingPlace=" + matchingPlace
-				+ ", reviewContent=" + reviewContent + ", matchingStatus=" + matchingStatus + "]";
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", animalKind=" + animalKind + ", serviceType="
+				+ serviceType + ", wantJibsaGender=" + wantJibsaGender + ", wantMatchingPlace=" + wantMatchingPlace
+				+ ", matchingPlace=" + matchingPlace + ", reviewContent=" + reviewContent + ", matchingStatus="
+				+ matchingStatus + "]";
 	}
 	
 }

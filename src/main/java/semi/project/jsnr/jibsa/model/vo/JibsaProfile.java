@@ -85,12 +85,12 @@ public class JibsaProfile {
 		this.exptectedSalary = exptectedSalary;
 	}
 
-
 	@Override
 	public String toString() {
 		return "JibsaProfile [memberNo=" + memberNo + ", jibsaName=" + jibsaName + ", profileTitle=" + profileTitle
 				+ ", profileTag=" + profileTag + ", jibsaAvgRating=" + jibsaAvgRating + ", availableArea="
 				+ availableArea + ", exptectedSalary=" + exptectedSalary + "]";
 	}
+
 	
 }

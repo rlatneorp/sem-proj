@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="matchingMapper">
+	<select id="selectMatchingResult" resultMap="jibsaProfileResultSet">
+		select *
+		from jibsa j
+ 			 join jibsa_Profile jp using(member_no)
+		where jibsa_gender = #{wantJibsaGender}
+			  and j.available_area like '%${wantMatchingPlace}%'
+	</select>
+	<resultMap type="JibsaProfile" id="jibsaProfileResultSet">
+		<id column="MEMBER_NO" property="memberNo"/>	
+		<result column="JIBSA_NAME" property="jibsaName"/>
+		<result column="PROFILE_TITLE" property="profileTitle"/>
+		<result column="PROFILE_TAG" property="profileTag"/>
+		<result column="JIBSA_AVG_RATING" property="jibsaAvgRating"/>
+		<result column="AVAILABLE_AREA" property="availableArea"/>
+		<result column="EXPECTED_SALARY" property="exptectedSalary"/>
+	</resultMap>	
+</mapper>

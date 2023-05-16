@@ -21,6 +21,7 @@
 		<mapper resource="mappers/board-mapper.xml"/>
 		<mapper resource="mappers/jibsa-mapper.xml"/>
 		<mapper resource="mappers/animal-mapper.xml"/>
+		<mapper resource="mappers/matching-mapper.xml"/>
 	</mappers>
 	
 </configuration>

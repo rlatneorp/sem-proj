@@ -56,7 +56,7 @@
 								    		<td><a href="${contextPath}/admin_Member_Detail.ad?page=${pi.currentPage}&mId=${m.memberNo}">${m.memberName }</a></td>
 								    		<td>${m.memberId }</td>
 								    		<td>등록동물 수(수정 필요)</td>
-								    		<td>가입날짜(수정 필요)</td>
+								    		<td>${m.enrollDate}</td>
 								    		<td>
 								    			<c:if test="${m.blackList gt 0}">${m.blackList}회</c:if>   
 								    			<c:if test="${m.blackList eq 0}"></c:if>   

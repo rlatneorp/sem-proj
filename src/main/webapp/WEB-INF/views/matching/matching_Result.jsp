@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 
@@ -77,6 +78,7 @@
 </style>
 </head>
 <body>
+	<%@ include file="../common/top.jsp" %>
 	<div class="container">
 	  
 		<br><br><br>
@@ -97,56 +99,32 @@
 	</div>
 	
 	<div class="container text-left">
-	  <div class="row">
-	    <div class="profile">
-		  <img src="images/logo.png">
-		  <div class="info">
-		    <h2>집사님 이름</h2>
-		    <p>집사님 프로필 정보<br>
-		    	나이 : 20 <br>
-		    	지원 동기 : 저는 강아지가너무 좋아요 하하하하하ㅏ하하하하하하
-		    </p>
-		  </div>
-		  <button onclick="location.href='${contextPath}/matching_Success.mc'">매칭하기</button>
-		</div>
-	  </div>
-	  
-	  <div class="row">
-	    <div class="profile">
-		  <img src="images/logo.png">
-		  <div class="info">
-		    <h2>집사님 이름</h2>
-		    <p>집사님 프로필 정보<br>
-		    	나이 : 20 <br>
-		    	지원 동기 : 저는 강아지가너무 좋아요 하하하하하ㅏ하하하하하하
-		    </p>
-		  </div>
-		  <button onclick="location.href='${contextPath}/matching_Success.mc'">매칭하기</button>
-		</div>
-	  </div>
-	  
-	  <div class="row">
-	   <div class="profile">
-		  <img src="images/logo.png">
-		  <div class="info">
-		    <h2>집사님 이름</h2>
-		    <p>집사님 프로필 정보<br>
-		    	나이 : 20 <br>
-		    	지원 동기 : 저는 강아지가너무 좋아요 하하하하하ㅏ하하하하하하
-		    </p>
-		  </div>
-		  <button onclick="location.href='${contextPath}/matching_Success.mc'">매칭하기</button>
-		</div>
-	  </div>
-	</div>
 	
-	<div class="container text-center">
-		<br><br>
-		<h4>마음에 드는 집사가 없다면</h4>
-		<br>
-		<button onclick="location.href='${contextPath}/matching_Main.mc'">다시 찾아보기</button>
-		<br><br><br><br>
+		<c:forEach items="${jpList}" var="j">
+		  <div class="row">
+		    <div class="profile">
+			  <img src="${contextPath}/resources/image/logo.png">
+			  <div class="info">
+			    <h2>${j.jibsaName}</h2>
+			    <p>${j.profileTitle}<br>
+			    	나이 : 아직모름 <br>
+			    	지원 동기 : 추가해야함<br>
+			    	평점 : ${j.jibsaAvgRating}
+			    </p>
+			  </div>
+			  <button onclick="location.href='${contextPath}/matching_Success.mc?jNo=${j.memberNo}'">매칭하기</button>
+			</div>
+		  </div>
+		</c:forEach>
 	
+		<div class="container text-center">
+			<br><br>
+			<h4>마음에 드는 집사가 없다면</h4>
+			<br>
+			<button onclick="location.href='${contextPath}/matching_Main.mc'">다시 찾아보기</button>
+			<br><br><br><br>
+		
+		</div>
 	</div>
 </body>
 </html>
