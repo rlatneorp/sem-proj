@@ -22,29 +22,29 @@
 						<p class="px-2 fs-5 fw-bold">정보 수정하기</p>
 					</div>
 					
-					<form method="post" action="${ contextPath }/jibsaMain.js">
+					<form method="post" action="${ contextPath }/jibsaUpdateInfo.js">
 						<div class="container mb-5 mx-0">
 						<a href="#" class="d-block link-dark text-decoration-none mb-3">
 							<img src="https://github.com/mdo.png" alt="mdo" width="72" height="72" class="rounded-circle image-block me-2">
 							<span class="fs-5 fw-bold">홍길동 집사님</span>
 						</a>
 						</div>
-						
+						<input type="hidden" name="memberNo" value="${ loginUser.memberNo }">
 						<div class="container mb-4">
 							<p class="fs-5">이름</p>
-							<input type="text" name="name" value="홍길동" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);">
+							<input type="text" name="name" value="${ loginUser.memberName }" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);" readonly>
 						</div>
 						<div class="container mb-4">
 							<p class="fs-5">이메일</p>
-							<input type="text" name="email" value="hoggd@gmail.com" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);">
+							<input type="text" name="email" value="${ loginUser.memberEmail }" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);">
 						</div>
 						<div class="container mb-4">
 							<p class="fs-5">연락처</p>
-							<input type="text" name="phone" value="010-1234-5678" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);">
+							<input type="text" name="phone" value="${ loginUser.memberPhone }" class="input px-2 fs-7" style="width: 200px; color: rgba(0,0,0,0.8);">
 						</div>
 						<div class="container mb-5">
 							<p class="fs-5">주소</p>
-							<input type="text" name="address" value="서울시 중구 남대문로 1 KH정보" class="input px-2 fs-7 w-100" style="color: rgba(0,0,0,0.8);">
+							<input type="text" name="address" value="${ loginUser.memberAddress }" class="input px-2 fs-7 w-100" style="color: rgba(0,0,0,0.8);">
 						</div>
 						<hr>
 						<br>
