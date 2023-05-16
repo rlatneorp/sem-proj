@@ -8,12 +8,9 @@
 	<!-- DataSource 등록 -->
 	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-<!-- 		<property name="url" value="jdbc:oracle:thin:@115.90.212.20:9999:orcl"/> -->
-<!-- 		<property name="username" value="JIBSANARA"/> -->
-<!-- 		<property name="password" value="JIBSANARA"/> -->
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
-		<property name="username" value="LOCAL_JSNR"/>
-		<property name="password" value="LOCAL_JSNR"/>
+		<property name="url" value="jdbc:oracle:thin:@115.90.212.20:9999:orcl"/>
+		<property name="username" value="JIBSANARA"/>
+		<property name="password" value="JIBSANARA"/>
 	</bean>
 	
 	<!-- SqlSession 빈 등록 -->
