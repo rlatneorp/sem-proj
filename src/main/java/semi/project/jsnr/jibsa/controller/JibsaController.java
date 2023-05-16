@@ -112,12 +112,20 @@ public class JibsaController {
 	}
 	
 	@PostMapping("jibsaUpdateInfo.js")
-	public String jibsaUpdateInfo(@ModelAttribute Jibsa j, @ModelAttribute Member m, Model model) {
+	public String jibsaUpdateInfo(@ModelAttribute Jibsa j, @ModelAttribute Member m, Model model,
+								  HttpSession session) {
 		int result1 = jService.updateMemberInfo(m);
 		int result2 = jService.updateJibsaInfo(j);
 		
 		if(result1 > 0 && result2 > 0) {
-			return "jibsaModifyInfo.js";
+			Member updatedMember = (Member) session.getAttribute("loginUser");
+	        updatedMember.setMemberEmail(m.getMemberEmail());
+	        updatedMember.setMemberPhone(m.getMemberPhone());
+	        updatedMember.setMemberAddress(m.getMemberAddress());
+	        
+	        model.addAttribute("loginUser", updatedMember);
+			
+			return "redirect:jibsaModifyInfo.js";
 		} else {
 			throw new JibsaException("정보 수정에 실패");
 		}

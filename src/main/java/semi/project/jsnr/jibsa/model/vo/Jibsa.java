@@ -23,7 +23,7 @@ public class Jibsa {
 	public Jibsa() {}
 
 	public Jibsa(int memberNo, String memberName, String jibsaGender, int jibsaRrn, String isSmoking, String workCareer,
-			String availableHour, String availableArea, String motive, int exptectedSalary, String chatAddress,
+			String availableHour, String availableArea, String motive, int expectedSalary, String chatAddress,
 			String isPrimium, Date primiumPaymentDate, Date primiumEndDate, String isTrainer, String jibsaStatus) {
 		super();
 		this.memberNo = memberNo;

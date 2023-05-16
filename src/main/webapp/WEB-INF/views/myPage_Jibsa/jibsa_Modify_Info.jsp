@@ -63,11 +63,12 @@
 						
 						<div class="container mb-4">
 							<p class="fs-5">자격증</p>
+							<p style="font-size: 12px;">ex. 반려동물 관리사 1급 - 한국 반려동물 협회</p>
 							<button type="button" class="w-25 btn btn-outline-success" id="addFile">+ 추가</button>
 							<br><br>
 							<div id="fileArea">
 								<div class="mb-3 adddd">
-									<input type="text" name="motive" style="width: 400px;">
+									<input type="text" name="motive" style="width: 400px;" value="${ jibsaInfo.motive }">
 								</div>
 							</div>
 							
@@ -76,7 +77,7 @@
 						
 						<div class="container mb-5">
 							<p class="mb-2 fs-5">오픈카톡방 등록</p>
-							<input type="text" name="openKakao" placeholder="오픈카톡방 url을 입력하세요" class="input input-text px-2 fs-7">
+							<input type="text" name="chatAddress" placeholder="오픈카톡방 url을 입력하세요" class="input input-text px-2 fs-7" value="${ jibsaInfo.chatAddress }">
 						</div>
 						
 						<div class="container text-center">
