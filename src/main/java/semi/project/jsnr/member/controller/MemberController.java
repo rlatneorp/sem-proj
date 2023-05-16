@@ -226,13 +226,14 @@ public class MemberController {
 		return "enroll/join_Notice";
 	}
 	
+	@GetMapping("enrollPage.do")
+	public String enrollPage() {
+		return "enroll/join";
+	}
+	
+	
 	@PostMapping("enrollMember.do")
-	public String enrollMember( @ModelAttribute Member m, 
-								@RequestParam("emailId") String emailId, 
-								@RequestParam("emailDomain") String emailDomain) {
-		if(!emailId.trim().equals("")) {
-			m.setMemberEmail(emailId + "@" + emailDomain);
-		}
+	public String enrollMember(@ModelAttribute Member m) {
 		
 		String encPwd = bcrypt.encode(m.getMemberPwd());
 		m.setMemberPwd(encPwd);
