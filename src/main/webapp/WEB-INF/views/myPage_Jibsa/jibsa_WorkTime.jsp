@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,9 +24,7 @@
 	            dropdown: true,
 	            scrollbar: true
 	        });
-			
 		});
-			
 		
 		
 		
@@ -50,19 +49,69 @@
 					
 					<div class="mx-0">			
 						<div class="mb-1 d-inline-block text-top">
-							<form method="post" action="jibsaMain.js">
+							<form method="post" action="jibsa_WorkTime_Update.js">
 								<div class="container mb-3">
 									<p class="mb-4 fs-6 fw-bold">근무 가능 시간</p>
 									
 									
-									<div id="cloneBox">
+									<div id="box">
+										<input type="hidden" name="memberNo" value="${j.memberNo}">
+										<input type="hidden" name="availableHour" value="">
 										<div class="d-flex d-inline-block align-items-center justify-content-start">
-											<label for="wd1" class="d-flex d-inline-block">월요일</label>
-											<input type="checkbox" id="wd1" name="workDay1" class="ms-1 me-4 checkBox d-flex" style="width: 19px; height: 19px;">
-											<label for="startTime1" class="d-flex d-inline-block me-1">시작시간</label>
-											<input id="startTime1" class="timepicker text-center col-3 d-flex rounded card me-2" value="00:00">
-											<label for="endTime1" class="d-flex d-inline-block me-1">종료시간</label>
-											<input id="endTime1" class="timepicker text-center col-3 d-flex rounded card" value="00:00">
+											<label class="d-flex d-inline-block">월요일</label>
+											<input type="checkbox" name="workDay" class="ms-1 me-4 checkBox d-flex" style="width: 19px; height: 19px;">
+											<label class="d-flex d-inline-block me-1">시작시간</label>
+											<input name="startTime" class="timepicker text-center col-3 d-flex rounded card me-2" value="${sArr[1]}">
+											<label class="d-flex d-inline-block me-1">종료시간</label>
+											<input name="endTime" class="timepicker text-center col-3 d-flex rounded card" value="${eArr[1]}">
+										</div>
+										<div class="d-flex d-inline-block align-items-center justify-content-start">
+											<label class="d-flex d-inline-block">화요일</label>
+											<input type="checkbox" name="workDay" class="ms-1 me-4 checkBox d-flex" style="width: 19px; height: 19px;">
+											<label class="d-flex d-inline-block me-1">시작시간</label>
+											<input name="startTime" class="timepicker text-center col-3 d-flex rounded card me-2" value="${sArr[2]}">
+											<label class="d-flex d-inline-block me-1">종료시간</label>
+											<input name="endTime" class="timepicker text-center col-3 d-flex rounded card" value="${eArr[2]}">
+										</div>
+										<div class="d-flex d-inline-block align-items-center justify-content-start">
+											<label class="d-flex d-inline-block">수요일</label>
+											<input type="checkbox" name="workDay" class="ms-1 me-4 checkBox d-flex" style="width: 19px; height: 19px;">
+											<label class="d-flex d-inline-block me-1">시작시간</label>
+											<input name="startTime" class="timepicker text-center col-3 d-flex rounded card me-2" value="${sArr[3]}">
+											<label class="d-flex d-inline-block me-1">종료시간</label>
+											<input name="endTime" class="timepicker text-center col-3 d-flex rounded card" value="${eArr[3]}">
+										</div>
+										<div class="d-flex d-inline-block align-items-center justify-content-start">
+											<label class="d-flex d-inline-block">목요일</label>
+											<input type="checkbox" name="workDay" class="ms-1 me-4 checkBox d-flex" style="width: 19px; height: 19px;">
+											<label class="d-flex d-inline-block me-1">시작시간</label>
+											<input name="startTime" class="timepicker text-center col-3 d-flex rounded card me-2" value="${sArr[4]}">
+											<label class="d-flex d-inline-block me-1">종료시간</label>
+											<input name="endTime" class="timepicker text-center col-3 d-flex rounded card" value="${eArr[4]}">
+										</div>
+										<div class="d-flex d-inline-block align-items-center justify-content-start">
+											<label class="d-flex d-inline-block">금요일</label>
+											<input type="checkbox" name="workDay" class="ms-1 me-4 checkBox d-flex" style="width: 19px; height: 19px;">
+											<label class="d-flex d-inline-block me-1">시작시간</label>
+											<input name="startTime" class="timepicker text-center col-3 d-flex rounded card me-2" value="${sArr[5]}">
+											<label class="d-flex d-inline-block me-1">종료시간</label>
+											<input name="endTime" class="timepicker text-center col-3 d-flex rounded card" value="${eArr[5]}">
+										</div>
+										<div class="d-flex d-inline-block align-items-center justify-content-start">
+											<label class="d-flex d-inline-block">토요일</label>
+											<input type="checkbox" name="workDay" class="ms-1 me-4 checkBox d-flex" style="width: 19px; height: 19px;">
+											<label class="d-flex d-inline-block me-1">시작시간</label>
+											<input name="startTime" class="timepicker text-center col-3 d-flex rounded card me-2" value="${sArr[6]}">
+											<label class="d-flex d-inline-block me-1">종료시간</label>
+											<input name="endTime" class="timepicker text-center col-3 d-flex rounded card" value="${eArr[6]}">
+										</div>
+										<div class="d-flex d-inline-block align-items-center justify-content-start">
+											<label class="d-flex d-inline-block">일요일</label>
+											<input type="checkbox" name="workDay" class="ms-1 me-4 checkBox d-flex" style="width: 19px; height: 19px;">
+											<label class="d-flex d-inline-block me-1">시작시간</label>
+											<input name="startTime" class="timepicker text-center col-3 d-flex rounded card me-2" value="${sArr[0]}">
+											<label class="d-flex d-inline-block me-1">종료시간</label>
+											<input name="endTime" class="timepicker text-center col-3 d-flex rounded card" value="${eArr[0]}">
 										</div>
 										<br><br>
 									</div>
@@ -79,7 +128,7 @@
 								
 								
 								<div class="container text-center">
-									<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">등록하기</button>
+									<button type="button" onclick="inputTime()" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">등록하기</button>
 								</div>
 								
 							</form>
@@ -91,40 +140,6 @@
 	</div>
 	
 	<script>
-		window.onload = function(){
-// 			const cBox = document.getElementById('cloneBox');
-			
-// 			for(i = 1; i < 7; i++){
-				
-// 				switch(i){
-// 				case 1:  a="'wd2'>화"; b="'wd2'"; c="2"; break;
-// 				case 2:  a="'wd3'>수"; b="'wd3'"; c="3"; break;
-// 				case 3:  a="'wd4'>목"; b="'wd4'"; c="4"; break;
-// 				case 4:  a="'wd5'>금"; b="'wd5'"; c="5"; break;
-// 				case 5:  a="'wd6'>토"; b="'wd6'"; c="6"; break;
-// 				default: a="'wd7'>일"; b="'wd7'"; c="7"; break;
-// 				}
-// 				cBox.innerHTML += 	"<div>"
-// 										+"<label for="+a+"요일</label>"
-// 										+"<input type='checkbox' id="+b+" name='workDay"+c+"' class='ms-1 me-4 checkBox'> "
-// 										+"<div class='d-inline-block'>"+cBox.querySelector('div').querySelector('div').innerHTML+"</div>";
-					
-// 				cSelect = cBox.querySelectorAll('div')[i].querySelectorAll('select');
-// 				cLabel = cBox.querySelectorAll('div')[i].querySelector('label');
-				
-// 				cSelect[0].name = "startHour"+(i);
-// 				cSelect[1].name = "startMinute"+(i);
-// 				cSelect[2].name = "endHour"+(i);
-// 				cSelect[3].name = "endMinute"+(i);
-// 			}
-			
-// 			console.log( cBox.querySelector('input') );
-			
-			
-			
-			
-		}
-		
 		const calBox = document.getElementById('calBox');
 		calBox.addEventListener('mouseenter', function(){
 			const cal = document.getElementById('datepicker');
@@ -140,10 +155,54 @@
 			}
 		})
 			
+		
+// 		근무 가능 시간 관련 데이터
+		window.onload = () =>{
+			const workDays = document.getElementsByName('workDay');
+			const startTimes = document.getElementsByName('startTime');
+			const endTimes = document.getElementsByName('endTime');
+
+			for(let i = 0; i < 7; i++){
+				if(startTimes[i].value != "00:00" || endTimes[i].value != "00:00"){
+					workDays[i].checked = true;
+				}else{
+					workDays[i].checked = false;
+				}
+			}
+		}
+
+		function inputTime(){
+			const workDays = document.getElementsByName('workDay');
+			const startTimes = document.getElementsByName('startTime');
+			const endTimes = document.getElementsByName('endTime');
+			
+			let t = document.getElementsByName('availableHour')[0];
+			
+// 			일요일 정보 - 0번째 순서로 입력 후 for문(월~토)
+			if(workDays[6].checked){
+				t.value = startTimes[6].value.substring(0,2)+startTimes[6].value.substring(3,5);
+				t.value += endTimes[6].value.substring(0,2)+endTimes[6].value.substring(3,5);
+			}else{
+				t.value = "00000000";
+			}
+			
+			for(let i = 0; i < 6; i++){
+				
+				if(t.value != ""){
+					t.value += ","
+				}
+				
+				if(workDays[i].checked){
+					t.value += startTimes[i].value.substring(0,2)+startTimes[i].value.substring(3,5);
+					t.value += endTimes[i].value.substring(0,2)+endTimes[i].value.substring(3,5);
+				}else{
+					t.value += "00000000";
+				}
+			}
+			
+			document.getElementsByTagName('form')[0].submit();
+		}
 	</script>
-	
-	
-	
 	
 </body>
 </html>

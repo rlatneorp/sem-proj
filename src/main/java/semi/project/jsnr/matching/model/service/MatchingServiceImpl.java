@@ -1,6 +1,7 @@
 package semi.project.jsnr.matching.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,12 @@ public class MatchingServiceImpl implements MatchingService {
 	public ArrayList<JibsaProfile> selectMatchingResult(Matching mc) {
 		return mcDAO.selectMatchingResult(sqlSession, mc);
 	}
+
+	@Override
+	public int insertMatching(Matching mc) {
+		return mcDAO.insertMatching(sqlSession, mc);
+	}
+
+
 
 }

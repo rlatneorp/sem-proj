@@ -47,11 +47,13 @@
 	<select id="selectJibsa" resultMap="jibsaResultSet">
 		select *
 		from jibsa
+			 join member using(member_no)
 		where member_no = #{memberNo}
 	</select>
 	
 	<resultMap type="Jibsa" id="jibsaResultSet">
 		<id column="MEMBER_NO" property="memberNo"/>
+		<result column="MEMBER_NAME" property="memberName"/>
 		<result column="JIBSA_GENDER" property="jibsaGender"/>
 		<result column="JIBSA_RRN" property="jibsaRrn"/>
 		<result column="IS_SMOKING" property="isSmoking"/>
@@ -65,6 +67,13 @@
 		<result column="PRIMIUM_PAYMENT_DATE" property="primiumPaymentDate"/>
 		<result column="PRIMIUM_END_DATE" property="primiumEndDate"/>
 		<result column="PRIMIUM_END_DATE" property="isTrainer"/>
+		<result column="JIBSA_STATUS" property="jibsaStatus"/>
 	</resultMap>
+	
+	<update id="updateJibsaAvailableHour">
+		update jibsa
+		set available_hour = #{availableHour}
+		where member_no = #{memberNo}
+	</update>
 	
 </mapper>

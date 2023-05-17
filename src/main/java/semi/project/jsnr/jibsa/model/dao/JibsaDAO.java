@@ -1,7 +1,5 @@
 package semi.project.jsnr.jibsa.model.dao;
 
-import java.util.HashMap;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -29,6 +27,10 @@ public class JibsaDAO {
 
 	public Jibsa selectJibsa(SqlSessionTemplate sqlSession, int memberNo) {
 		return sqlSession.selectOne("jibsaMapper.selectJibsa", memberNo);
+	}
+
+	public int updateJibsaAvailableHour(SqlSessionTemplate sqlSession, Jibsa j) {
+		return sqlSession.update("jibsaMapper.updateJibsaAvailableHour", j);
 	}
 
 }

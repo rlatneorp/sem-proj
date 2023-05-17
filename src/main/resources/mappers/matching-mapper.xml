@@ -14,7 +14,15 @@
 		<result column="PROFILE_TITLE" property="profileTitle"/>
 		<result column="PROFILE_TAG" property="profileTag"/>
 		<result column="JIBSA_AVG_RATING" property="jibsaAvgRating"/>
+		<result column="AVAILABLE_HOUR" property="availableHour"/>
 		<result column="AVAILABLE_AREA" property="availableArea"/>
 		<result column="EXPECTED_SALARY" property="exptectedSalary"/>
-	</resultMap>	
+	</resultMap>
+	
+	<insert id="insertMatching">
+		insert into matching
+		values(seq_mat_id.nextval, #{animalNo}, #{memberNo}, #{startDate}, #{endDate}, #{matchingPlace}, 
+				default, default, default, default, default, default, #{jibsaNo}  )
+	</insert>
+		
 </mapper>

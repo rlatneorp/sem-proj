@@ -9,4 +9,8 @@ public interface MatchingService {
 
 	ArrayList<JibsaProfile> selectMatchingResult(Matching mc);
 
+	int insertMatching(Matching mc);
+
+
+
 }
