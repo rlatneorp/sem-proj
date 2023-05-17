@@ -53,7 +53,6 @@ public class AnimalController {
 		model.addAttribute("loginUser", loginUser);
 		model.addAttribute("image", image);
 
-		System.out.println(image);
 		return "member_User_Info";
 	}
 	
@@ -167,10 +166,13 @@ public class AnimalController {
 	}
 	
 	@GetMapping("deleteAnimal.me") // 삭제
-	public String deleteAnimal(@ModelAttribute Animal a) {
+	public String deleteAnimal(@ModelAttribute Animal a, Model model) {
 		
+		Image image = aService.selectImage(a.getMemberNo());
+		int deleteImage = aService.deleteImage(image);	
+					
 		int result = aService.deleteAnimal(a);
-		
+		 
 		if(result > 0) {
 			return "redirect:member_User_Info.me";
 		} else {

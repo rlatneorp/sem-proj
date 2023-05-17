@@ -44,10 +44,8 @@ public class AnimalDAO {
 		return sqlSession.update("AnimalMapper.editImage", image);
 	}
 
+	public int deleteImage(SqlSessionTemplate sqlSession, Image image) {
+		return sqlSession.delete("AnimalMapper.deleteImage", image);
+	}
 
-	
-	
-
-	
-	
 }
