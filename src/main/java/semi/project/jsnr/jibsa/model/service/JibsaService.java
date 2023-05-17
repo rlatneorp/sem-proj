@@ -38,6 +38,8 @@ public class JibsaService {
 		return jDAO.selectJibsa(sqlSession, memberNo);
 	}
 
+	public int updateJibsaAvailableHour(Jibsa j) {
+		return jDAO.updateJibsaAvailableHour(sqlSession, j);
 	public int insertImage(Image image) {
 		return jDAO.insertImage(sqlSession, image);
 	}

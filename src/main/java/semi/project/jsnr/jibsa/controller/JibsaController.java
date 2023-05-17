@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,7 +22,7 @@ import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.jibsa.model.exception.JibsaException;
 import semi.project.jsnr.jibsa.model.service.JibsaService;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
-import semi.project.jsnr.member.model.service.MemberService;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.member.model.vo.Member;
 
 @SessionAttributes("loginUser")
@@ -134,6 +133,46 @@ public class JibsaController {
 		return "jibsa_Main";
 	}
 	
+	@GetMapping("jibsa_WorkTime.js")
+	public String jibsa_WorkTime(HttpSession session,
+			 					 Model model) {
+		Member m = (Member)session.getAttribute("loginUser");
+		
+		Jibsa j = jService.selectJibsa(m.getMemberNo());
+		
+		String[] sArr = new String[7];
+		String[] eArr = new String[7];
+		for(int i = 0; i < 7; i++) {
+			sArr[i] = (j.getAvailableHour().split(",")[i]).substring(0, 2)
+					 +":"+(j.getAvailableHour().split(",")[i]).substring(2, 4);
+		}
+		for(int i = 0; i < 7; i++) {
+			eArr[i] = (j.getAvailableHour().split(",")[i]).substring(4, 6)
+					+":"+(j.getAvailableHour().split(",")[i]).substring(6, 8);
+		}
+		
+		model.addAttribute("j", j);
+		model.addAttribute("sArr", sArr);
+		model.addAttribute("eArr", eArr);
+		return "jibsa_WorkTime";
+	}
+	
+	@PostMapping("jibsa_WorkTime_Update.js")
+	public String jibsa_WorkTime_Update(@ModelAttribute Jibsa j) {
+		
+		int result = jService.updateJibsaAvailableHour(j);
+
+		
+		System.out.println(j);
+		if(result > 0) {
+			return "redirect:jibsa_Main.js";
+		}else {
+			System.out.println("집사 worktime 업데이트 에러");
+			return "집사 worktime 업데이트 에러";
+		}
+		
+	}
+	
 	@GetMapping("jibsaManagementSchedule.js")
 	public String jibsaManagementSchedule() {
 		return "jibsa_Management_Schedule";
@@ -152,11 +191,6 @@ public class JibsaController {
 	@GetMapping("jibsaModifySchedule.js")
 	public String jibsaModifySchedule() {
 		return "jibsa_Modify_Schedule";
-	}
-	
-	@GetMapping("jibsaWorkTime.js")
-	public String jibsaWorkTime() {
-		return "jibsa_Work_Time";
 	}
 	
 	@GetMapping("QnA.js")
