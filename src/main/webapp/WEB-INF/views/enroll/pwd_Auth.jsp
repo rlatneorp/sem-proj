@@ -28,10 +28,11 @@
 #fpiBtn{margin-left: 54px; width: 300px; height: 40px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94);}
 #fppBtn{border: none; border-radius: 4px; margin-left: 10px; width: 80px; height: 40px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94);}
 #foundPwdNext1{box-shadow:0px 0px 15px 5px rgb(224, 224, 224); border: none; border-radius: 25px; width: 168px; height: 44px; font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: 400; text-decoration: none; color: white; background: rgb(26, 188, 156);}
-#code{
-	margin-left: 130px; width: 300px; height: 55px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94);
-}
-#emailId{margin-left: 64px; width: 300px; height: 40px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94);}
+.email{width: 130px; margin-left: 20px; border: 1px solid gray;}
+/* #code{ */
+/* 	margin-left: 130px; width: 300px; height: 55px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94); */
+/* } */
+#emailId{margin-left: 130px; width: 210px;}
 #check{border: none; border-radius: 4px; margin-left: 10px; width: 50px; height: 30px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94);}
 
 </style>
@@ -43,19 +44,17 @@
 		<br><br>
 		<div id="foundPwd"> 
 			<a id="foundPwdTitle">비밀번호 찾기</a>
-			<form action="${ contextPath }/foundPwd.do" method="post">
+			<form action="${ contextPath }/pwd_Set.do" method="post">
+			<input type="hidden" name="num" value="${ num }">
 			<div class="foundPwdnp"> 
 				<br><br><br><br>
-				<a id="foundPwdId">아이디</a>
-				<input type="text" id="fpiBtn" placeholder=" 아이디를 입력하세요" name="memberId" required>
-				<br><br>
-				<a id="foundPwdEmail">이메일</a>
-				<input type="email" id="emailId" name="memberEmail" class="email" required placeholder=" 이메일을 입력하세요">
-				<br>
+				<a id="foundPwdName">인증번호</a>
+				<input type="text" id="fpnBtn" placeholder=" 인증 번호를 입력하세요." name="emailAuth" required>
+				<div class="error"> </div>
 			</div>
 			<br><br><br><br><br>
 			<div>
-				<button type="submit" id="foundPwdNext1">다음</button>
+				<button type="submit" id="foundPwdNext1">확인</button>	
 			</div>
 			</form>
 		</div>

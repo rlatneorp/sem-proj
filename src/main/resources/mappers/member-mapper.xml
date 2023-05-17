@@ -23,7 +23,7 @@
 	
 	<insert id="enrollMember">
 		insert into member
-		values( SEQ_MEM_ID.NEXTVAL, #{ memberId }, #{ memberPwd }, #{ memberName }, #{ memberEmail }, default, default, default, sysdate, default, #{ memberPhone }, #{ memberAddress })
+		values( SEQ_MEM_ID.NEXTVAL, #{ memberId }, #{ memberPwd }, #{ memberName }, #{ memberEmail }, default, default, default, sysdate, default, default, #{ memberPhone }, #{ memberAddress })
 	
 	</insert>
 
@@ -122,5 +122,17 @@
 		from member
 		where member_name = #{memberName} and member_email = #{memberEmail}
 	</select>
+	
+	<select id="selectMember" resultMap="memberResultSet">
+		select *
+		from member
+		where member_id = #{memberId}
+	</select>
+	
+	<update id="updateNewPwd">
+		update member
+		set member_pwd = #{newPwd}
+		where member_id = #{memberId}
+	</update>
 
 </mapper>

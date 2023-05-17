@@ -15,6 +15,7 @@
 
 <title>집사나라 - 회원가입</title>
 <style>
+.joinNotice{font-size: 45px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; color: black; text-decoration: none; text-align: center;}
 .uul{font-style: bold; margin-left: 30%; font-size: 23px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; color: rgb(51, 51, 51); text-decoration: none; text-align: left;}
 .lii{display: block; margin: 0 auto; padding: 3px;}
 .uul2{padding: 3px 3px 3px 3px; width: 429px; height: 40px; font-size: 15px;}
@@ -29,8 +30,13 @@
 </style>
 </head>
 <body>
+<jsp:include page="../common/top.jsp"/>
 <article style="width: 1200px; margin: 0 auto;">
-<br><br><br><br><br><br>
+<br><br>
+	<div class="joinNotice">
+		<a>회원가입</a>
+	</div>
+<br><br>
 	<form class="jo" action="${ contextPath }/enrollMember.do" method="post" onsubmit="showSuccessAlert()">
 		<ul class="uul"> 	
 			<li class="lii"><a>아이디</a></li>
@@ -53,8 +59,10 @@
 			<li class="lii"><input class="uul2" id="memberName" name="memberName" type="text" placeholder=" 이름을 입력하세요"></li>
 			<br>
 			<li class="lii"><a>이메일</a></li>
-			<li class="lii"><input class="uul2" id="memberEmail" name="memberEmail" type="email" placeholder=" 이메일을 입력하세요">&nbsp;&nbsp;<button id="sendMail" type="button">인증코드 전송</button></li>
-			<li class="lii"><input class="uul2" id="emailCode" name="emailCode" type="text" placeholder="인증 코드를 입력해주세요." maxlength="6">&nbsp;&nbsp;<button id="auBtn" type="button">인증하기</button></li>
+			<li class="lii"><input class="uul2" id="memberEmail" name="memberEmail" type="email" placeholder=" 이메일을 입력하세요">
+<!-- 			&nbsp;&nbsp;<button id="sendMail" type="button">인증코드 전송</button></li> -->
+<!-- 			<li class="lii"><input class="uul2" id="emailCode" name="emailCode" type="text" placeholder="인증 코드를 입력해주세요." maxlength="6">&nbsp;&nbsp;<button id="auBtn" type="button">인증하기</button></li> -->
+			</li>
 			
 			<br>
 			<li class="lii"><a>연락처</a></li>
@@ -68,7 +76,8 @@
 			</div>
 		</ul>
 	</form>
-<br><br><br><br><br><br>	
+<br><br><br><br><br><br><br><br>
+<%@ include file="../common/bottom.jsp" %>
 </article>	
 
 <script >

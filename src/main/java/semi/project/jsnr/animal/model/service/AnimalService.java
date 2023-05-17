@@ -19,4 +19,10 @@ public interface AnimalService {
 	int insertImage(Image image);
 	
 	Image selectImage(int memberNo);
+
+	int editImage(Image image);
+
+	int deleteImage(Image image);
+
+
 }

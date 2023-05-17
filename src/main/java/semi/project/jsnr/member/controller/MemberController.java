@@ -243,19 +243,11 @@ public class MemberController {
 		int result = mService.enrollMember(m);
 		if(result>0) {
 			// 회원가입 성공 시 로그인 정보를 세션에 저장
-	        session.setAttribute("loggedInUser", m.getMemberId());
+	        session.setAttribute("loginUser", m.getMemberId());
 			return "redirect:home.do";
 		} else {
 			throw new MemberException("회원가입 실패");
 		}
 	}
-	
-//	//이메일 인증
-//	@GetMapping("/mailCheck")
-//	@ResponseBody
-//	public String mailCheck(String memberEmail) {
-//		System.out.println("이메일 인증 요청이 들어옴!");
-//		System.out.println("이메일 인증 이메일 : " + memberEmail);
-//	}
 	
 }
