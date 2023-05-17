@@ -93,9 +93,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping("logout.do")
-	public String logout(SessionStatus status) {
+	public String logout(SessionStatus status, HttpSession session) {
 		status.setComplete();
-//		session.setAttribute("animal", null); // 남아있는 animal 객체도 초기화해야해서 넣었습니다..
+		session.setAttribute("animal", null);
+		session.setAttribute("image", null); // animal, image 세션 초기화
 		
 		return "redirect:home.do";
 	}
