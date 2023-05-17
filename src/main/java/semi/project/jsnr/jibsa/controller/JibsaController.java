@@ -1,5 +1,11 @@
 package semi.project.jsnr.jibsa.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
+import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.jibsa.model.exception.JibsaException;
 import semi.project.jsnr.jibsa.model.service.JibsaService;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
@@ -50,19 +58,67 @@ public class JibsaController {
 	
 	@PostMapping("insertJibsa.js")
 	public String insertJibsa(@ModelAttribute Jibsa j,  HttpSession session,
-							Model model) {
+							Model model, HttpServletRequest request,
+							@RequestParam("file") MultipartFile file) {
+		
 		// session에서 멤버 넘버 가져오기
 		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
 		j.setMemberNo(memberNo);
-		System.out.println(j);
 		
 		int result = jService.insertJibsa(j);
 		
+		Image image = null;
+		
+		if(file != null && !file.isEmpty()) {
+			String[] returnArr = saveFile(file, request);
+		
+			if(returnArr[1] != null) {
+				image = new Image();
+				image.setImagePath(returnArr[0]);
+				image.setOriginalName(file.getOriginalFilename());
+				image.setRenameName(returnArr[1]);
+				image.setImageLevel(1);
+				image.setMemberNo(memberNo);
+			}
+		}
 		if(result>0) {
 			return "enrollJibsaResult";
 		} else {
 			throw new JibsaException("정보 수정 실패했습니다.");
 		}
+	}
+	
+	public String[] saveFile(MultipartFile file, HttpServletRequest request) {
+		// 파일 저장소 지정
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\uploadFiles"; 
+		File folder = new File(savePath);
+		
+		if(!folder.exists()) {
+			folder.mkdirs();
+		}
+		
+		// 파일 이름 변경 형식 지정
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+		int ranNum = (int)(Math.random()*100000);
+		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) + ranNum
+								+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+		
+		// 변경된 이름의 파일을 저장
+		String renamePath = folder + "\\" + renameFileName;
+		try {
+			file.transferTo(new File(renamePath));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		String[] returnArr = new String[2];
+		returnArr[0] = savePath;
+		returnArr[1] = renameFileName;
+		
+		return returnArr;
 	}
 	
 	@RequestMapping("jibsaMain.js")
