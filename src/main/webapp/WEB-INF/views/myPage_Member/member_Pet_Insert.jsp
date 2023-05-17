@@ -122,7 +122,7 @@ body {
     							  	<input type="radio" name="animalGender" id="F" value="F"><label for="F">&nbsp;여자</label>
     							  	<br><br><br>
     							  	
-    							  	<p class="sel">4. 내 반려동물은/는 중성화수술</p>
+    							  	<p class="sel">4. 내 반려동물은 중성화수술</p>
     							  	<input type="radio" name="isNeuter" id="ok" value="Y"><label for="ok">&nbsp;했어요</label>&nbsp;
     							  	<input type="radio" name="isNeuter" id="nok" value="N"><label for="nok">&nbsp;안했어요</label>
     							  	<br><br><br>

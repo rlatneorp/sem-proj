@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -176,13 +177,12 @@ body {
 			if(cbtn.checked){
 				div[0].style.display = 'none';
 				div[1].style.display = 'none';
-				div[0].style.display = 'block';
+				div[1].style.display = 'block';
 			}
 			
 			if(obtn.checked){
 				div[0].style.display = 'none';
 				div[1].style.display = 'none';
-				div[0].style.display = 'block';
 			}
 			
 			dbtn.addEventListener('click', () => {

@@ -93,23 +93,13 @@ public class AnimalController {
 				image.setRenameName(returnArr[1]);
 				image.setImagePath(returnArr[0]);
 				image.setImageLevel(1);
-				image.setMemberNo(a.getMemberNo());		
+				image.setMemberNo(a.getMemberNo());
 				
+				int editImage = aService.editImage(image);
+				model.addAttribute("image", editImage);
 			}
-		}
-		 
-		int editImage = aService.editImage(image);
-		
-		System.out.println(image);
-		System.out.println(image.getOriginalName());
-		System.out.println(image.getRenameName());
-		System.out.println(a.getMemberNo());
-		System.out.println(editImage);
-	
-		if(image != null) {
-			 model.addAttribute("image", editImage);
 		} else {
-			throw new ImageException("동물 사진 수정에 실패하였습니다.");
+			System.out.println("새 사진을 등록하지 않았습니다.");
 		}
 						
 		if(result > 0) {
@@ -159,15 +149,12 @@ public class AnimalController {
 				image.setRenameName(returnArr[1]);
 				image.setImageLevel(1);
 				image.setMemberNo(memberNo);
+				
+				int insertImage = aService.insertImage(image);
+				model.addAttribute("image", insertImage);
 			}
-		}
-		
-		int insertImage = aService.insertImage(image);
-		
-		if(image != null) {
-			model.addAttribute("image", insertImage);
 		} else {
-			throw new ImageException("동물 사진 등록에 실패하였습니다.");
+			System.out.println("사진을 등록하지 않았습니다.");
 		}
 				
 		if(result > 0) {
