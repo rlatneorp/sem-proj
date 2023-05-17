@@ -1,9 +1,7 @@
 package semi.project.jsnr.matching.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import semi.project.jsnr.animal.model.vo.Animal;
 import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.matching.model.service.MatchingService;
 import semi.project.jsnr.matching.model.vo.Matching;
@@ -25,17 +24,24 @@ public class MatchingController {
 	private MatchingService mcService;
 
 	@RequestMapping("matching_Main.mc")
-	public String matching_Main(HttpSession session) {
-		System.out.println(session.getAttribute("mcc"));
-		return "matching_Main";
+	public String matching_Main(HttpSession session,
+								Model model) {
+		int mNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
+		ArrayList<Animal> aList = mcService.selectAnimalList(mNo);
+		
+		if(aList != null) {
+			model.addAttribute("aList", aList);
+			return "matching_Main";
+		}else {
+			System.out.println("매칭 메인 에러");
+			return "";
+		}
 	}
 	
 	@RequestMapping("matching_Result.mc")
 	public String matching_Result(@ModelAttribute Matching mc,
 								  Model model,
 								  HttpSession session) {
-		
-		System.out.println(mc);
 		
 		ArrayList<JibsaProfile> orgJpList = mcService.selectMatchingResult(mc);
 //		System.out.println(orgJpList);
@@ -105,12 +111,13 @@ public class MatchingController {
 		mc.setMemberNo(m.getMemberNo());
 		mc.setJibsaNo(jNo);
 		
-//		멤버에 동물 등록, 매칭장소 등록을 통해 page에서 입력(선택)받아 아래의 데이터 대신 넣어줘야함.
-		mc.setAnimalNo(1);
-		mc.setMatchingPlace("성북동 10101-10");
-		
 		int result = mcService.insertMatching(mc);
-		session.removeAttribute("mc");
-		return "matching_Success";
+		if(result > 0) {
+			session.removeAttribute("mc");
+			return "matching_Success";
+		}else {
+			System.out.println("매칭 에러");
+			return "";
+		}
 	}
 }
