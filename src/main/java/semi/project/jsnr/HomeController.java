@@ -145,15 +145,20 @@ public class HomeController {
 				String content = System.getProperty("line.separator") + "안녕하세요 회원님" + // 메일 내용
 								 System.getProperty("line.separator") + "집사나라 인증번호는 " +
 								 num + " 입니다." + System.getProperty("line.separator");
+				// System.getProperty : 개행 문자를 반환해주는 메소드
+				// 개행 문자 : 줄바꿈 문자 신기쓰
 				
 				try {
 					MimeMessage message = mailSender.createMimeMessage();
 					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8"); // try catch 필요
+					// MimeMessageHelper는 MimeMessage를 생성하고 조작하는 데 사용됨
+					// MimeMessageHelper를 사용하여 MimeMessage를 조작하고, 메일의 다양한 속성 및 콘텐츠 (제목, 수신자, 본문 등)을 설정할 수 있음
 					
 					messageHelper.setFrom(setfrom);
 					messageHelper.setTo(tomail);
 					messageHelper.setSubject(title);
 					messageHelper.setText(content);
+					// 발신자, 수신자, 제목, 내용 설정
 					
 					mailSender.send(message); // 메일 보내기
 				} catch (MessagingException e) {
@@ -192,8 +197,10 @@ public class HomeController {
 	@RequestMapping("pwd_New.do")
 	public String pwd_New(@RequestParam("memberId") String memberId, @RequestParam("newPwd") String newPwd,
 						  HttpSession session, Model model) {
+		// 새로운 비번 암호화
 		String encPwd = bcrypt.encode(newPwd);
 		
+		// id랑 암호화된 비번 map에 담아서 update 하기
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("newPwd", encPwd);
 		map.put("memberId", memberId);

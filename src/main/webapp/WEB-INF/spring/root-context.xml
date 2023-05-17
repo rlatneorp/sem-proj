@@ -35,7 +35,7 @@
 		<property name="maxInMemorySize" value="100000000"/>
 	</bean>	
 	
-	<!-- 이메일 인증 -->
+	<!-- 이메일 인증 - 집사나라 이메일 계정 만듦 - 현지 -->
 	<bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />

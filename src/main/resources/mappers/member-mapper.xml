@@ -98,6 +98,7 @@
 		where member_id = #{memberId}
 	</select>
 	
+	<!-- 회원 정보 수정 -->
 	<update id="updateInfo">
 		update member
 		set member_name = #{memberName}, member_email = #{memberEmail},
@@ -105,30 +106,35 @@
 		where member_id = #{memberId}
 	</update>
 	
+	<!-- 회원 비번 변경 -->
 	<update id="updatePwd">
 		update member
 		set member_pwd = #{newPwd}
 		where member_id = #{memberId}
 	</update>
 	
+	<!-- 회원 탈퇴 -->
 	<update id="deleteInfo">
 		update member
 		set member_status = 'N'
 		where member_id = #{memberId}
 	</update>
 	
+	<!-- 아이디 찾기 -->
 	<select id="foundId" resultType="string">
 		select member_id
 		from member
 		where member_name = #{memberName} and member_email = #{memberEmail}
 	</select>
 	
+	<!-- 이메일 인증을 위한 조회 -->
 	<select id="selectMember" resultMap="memberResultSet">
 		select *
 		from member
 		where member_id = #{memberId}
 	</select>
 	
+	<!-- 이메일 인증 후 비밀번호 변경 -->
 	<update id="updateNewPwd">
 		update member
 		set member_pwd = #{newPwd}

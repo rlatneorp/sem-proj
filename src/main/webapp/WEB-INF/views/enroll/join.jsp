@@ -37,10 +37,10 @@
 		<a>회원가입</a>
 	</div>
 <br><br>
-	<form class="jo" action="${ contextPath }/enrollMember.do" method="post" onsubmit="showSuccessAlert()">
+	<form class="jo" method="post" onsubmit="showSuccessAlert()">
 		<ul class="uul"> 	
 			<li class="lii"><a>아이디</a></li>
-			<li class="lii"><input class="uul2" id="memberId" name="memberId" type="text" placeholder=" 사용할 아이디를 입력하세요"></li>
+			<li class="lii"><input class="uul2" id="memberId" name="memberId" type="text" placeholder=" 사용할 아이디를 입력하세요" required></li>
 <!-- 				<button type="button" class="joinIdBt"> -->
 <!-- 	          		<img src="resources/image/bb.png"/> -->
 <!-- 	        	</button></li> -->
@@ -48,28 +48,29 @@
 			<br>
 			
 			<li class="lii"><a>비밀번호</a></li>
-			<li class="lii"><input class="uul2" id="memberPwd" name="memberPwd" type="password" placeholder=" 사용할 비밀번호를 입력하세요"></li>
+			<li class="lii"><input class="uul2" id="memberPwd" name="memberPwd" type="password" placeholder=" 사용할 비밀번호를 입력하세요" required></li>
 			<br>
 			<li class="lii"><a>비밀번호 확인</a></li>
-			<li class="lii"><input class="uul2" id="confirmPassword" type="password" placeholder=" 다시 한 번 비밀번호를 입력하세요"></li>
+			<li class="lii"><input class="uul2" id="confirmPassword" type="password" placeholder=" 다시 한 번 비밀번호를 입력하세요" required></li>
 			<label id="pwdCheck">   </label>
 			
 			<br>
 			<li class="lii"><a>이름</a></li>
-			<li class="lii"><input class="uul2" id="memberName" name="memberName" type="text" placeholder=" 이름을 입력하세요"></li>
+			<li class="lii"><input class="uul2" id="memberName" name="memberName" type="text" placeholder=" 이름을 입력하세요" required></li>
 			<br>
 			<li class="lii"><a>이메일</a></li>
-			<li class="lii"><input class="uul2" id="memberEmail" name="memberEmail" type="email" placeholder=" 이메일을 입력하세요">
-<!-- 			&nbsp;&nbsp;<button id="sendMail" type="button">인증코드 전송</button></li> -->
-<!-- 			<li class="lii"><input class="uul2" id="emailCode" name="emailCode" type="text" placeholder="인증 코드를 입력해주세요." maxlength="6">&nbsp;&nbsp;<button id="auBtn" type="button">인증하기</button></li> -->
+			<li class="lii"><input class="uul2" id="memberEmail" name="memberEmail" type="email" placeholder=" 이메일을 입력하세요" required>
+			&nbsp;&nbsp;<button id="sendMail" type="button">인증코드 전송</button></li>
+			<li class="lii"><input class="uul2" id="emailCode" name="emailCode" type="text" placeholder="인증 코드를 입력해주세요." maxlength="6">
+			&nbsp;&nbsp;<button id="auBtn" type="button">인증하기</button></li>
 			</li>
 			
 			<br>
 			<li class="lii"><a>연락처</a></li>
-			<li class="lii"><input class="uul2" id="memberPhone" name="memberPhone" type="number" placeholder=" 연락처를 입력하세요"></li>
+			<li class="lii"><input class="uul2" id="memberPhone" name="memberPhone" type="number" placeholder=" 연락처를 입력하세요" required></li>
 			<br>
 			<li class="lii"><a>주소</a></li>
-			<li class="lii"><input class="uul2" id="memberAddress" name="memberAddress" type="text" placeholder=" 주소를 입력하세요"></li>
+			<li class="lii"><input class="uul2" id="memberAddress" name="memberAddress" type="text" placeholder=" 주소를 입력하세요" required></li>
 			<br><br>
 			<div class="joinBtnDiv">
 				<button class="joinBtn" >가입하기</button>
@@ -144,6 +145,31 @@
 // 			}			
 // 		}); 
 // 	}); 
+	
+	const send = document.getElementById('sendMail');
+	const memberEmail = document.getElementById('memberEmail');
+	const emailCode = document.getElementById('emailCode');
+	
+	send.addEventListener('click', () => {
+		$.ajax({
+			type : 'POST',
+			url : '${contextPath}/enrollAuth.do',
+			data : {memberEmail : memberEmail.value.trim()},
+			success : data => {
+				console.log(data);
+				if(data == 'yes'){
+					alert('회원가입에 성공하셨습니다. 다시 로그인 해주세요');
+					location.href = '${ contextPath }/enrollMember.do';
+				} else if(data == 'no'){
+					alert('회원가입 실패하였삼');
+				}
+			},
+			error : data => {
+				console.log(data);
+			}
+		});
+		
+	});
 
 
 </script>
