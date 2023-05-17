@@ -164,6 +164,7 @@ public class Board {
 	public void setIsJibsa(String isJibsa) {
 		this.isJibsa = isJibsa;
 	}
+	
 
 	public String getMatchingStatus() {
 		return matchingStatus;
