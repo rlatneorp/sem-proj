@@ -27,7 +27,7 @@
 		update animal
 		set animal_name = #{animalName}, animal_gender = #{animalGender}, animal_kind = #{animalKind}, animal_weight = #{animalWeight},
 			animal_note = #{animalNote}, animal_type = #{animalType}, animal_size = #{animalSize}, is_neuter = #{isNeuter}, birth_date = #{birthDate}, is_status = default, image_level = default
-		where member_no = #{memberNo}
+		where member_no = #{memberNo} and animal_no = #{animalNo}
 	</update>
 	
 	<insert id="insertAnimal">
