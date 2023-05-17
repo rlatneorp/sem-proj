@@ -60,6 +60,13 @@
 		<result column="IMAGE_PATH" property="imagePath"/>
 		<result column="MEMBER_NO" property="memberNo"/>
 	</resultMap>
+	
+	<update id="editImage">
+		update image
+		set rename_name = #{renameName}, original_name = #{originalName}, image_path = #{imagePath}
+		where member_no = #{memberNo} and image_level = #{imageLevel}
+	</update>
+
 
 </mapper>
 

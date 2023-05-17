@@ -39,6 +39,12 @@ public class AnimalDAO {
 	public Image selectImage(SqlSessionTemplate sqlSession, int memberNo) {
 		return sqlSession.selectOne("AnimalMapper.selectImage", memberNo);
 	}
+
+	public int editImage(SqlSessionTemplate sqlSession, Image image) {
+		return sqlSession.update("AnimalMapper.editImage", image);
+	}
+
+
 	
 	
 

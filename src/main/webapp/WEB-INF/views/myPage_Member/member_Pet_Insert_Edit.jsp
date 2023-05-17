@@ -94,8 +94,8 @@ body {
 					      		<form action="${ contextPath }/updateAnimal.me" method="POST" enctype="multipart/form-data">
 					      		
 					      			<p class="sel">1. 반려동물 사진</p>
-					      			<div id="img"></div>
-    							  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile" value="${ image.originalName }">    							  	<br>
+					      			<img src="${ contextPath }/resources/uploadFiles/${ image.renameName }" width="100%" height="245"/>
+    							  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile"><br>
     							  	
     							  	<input type="text" name="animalName" value="${ animal.animalName }" style="width: 400px; height: 35px;"/>
     							  	<br><br><br>
@@ -123,7 +123,7 @@ body {
     							  	<br>
     							  	<label for="other">
     							  		<input type="radio" name="animalKind" class="rad" value="other" id="other" <c:if test="${ animal.animalKind ne 'DOG' and animal.animalKind ne 'CAT'}">checked</c:if>> 기타
-    							  		<input type="text" name="oType" <c:if test="${ animal.animalKind ne 'DOG' and animal.animalKind ne 'CAT'}">value="${ animal.animalType }"</c:if>/>
+    							  		<input type="text" name="oType" placeholder="ex. 토끼 등" <c:if test="${ animal.animalKind ne 'DOG' and animal.animalKind ne 'CAT'}">value="${ animal.animalType }"</c:if>/>
     							  	</label>
     							  	<br><br><br>
     							  	
@@ -166,6 +166,24 @@ body {
 			
 			div[0].style.display = 'none';
 			div[1].style.display = 'none';
+			
+			if(dbtn.checked){
+				div[0].style.display = 'none';
+				div[1].style.display = 'none';
+				div[0].style.display = 'block';
+			}
+			
+			if(cbtn.checked){
+				div[0].style.display = 'none';
+				div[1].style.display = 'none';
+				div[0].style.display = 'block';
+			}
+			
+			if(obtn.checked){
+				div[0].style.display = 'none';
+				div[1].style.display = 'none';
+				div[0].style.display = 'block';
+			}
 			
 			dbtn.addEventListener('click', () => {
 				div[0].style.display = 'none';

@@ -53,6 +53,7 @@ public class AnimalController {
 		model.addAttribute("loginUser", loginUser);
 		model.addAttribute("image", image);
 
+		System.out.println(image);
 		return "member_User_Info";
 	}
 	
@@ -67,7 +68,9 @@ public class AnimalController {
 							   @RequestParam (value="dType") String dType,
 							   @RequestParam (value="cType") String cType,
 							   @RequestParam (value="oType") String oType,
-							   Model model, HttpSession session) {
+							   Model model, HttpSession session,
+		                       @RequestParam("file") MultipartFile file,
+		                       HttpServletRequest request) {
 		
 		String animalType = dType + cType + oType;
 		
@@ -75,14 +78,46 @@ public class AnimalController {
 		
 		int result = aService.updateAnimal(a);
 		
-		Animal editAnimal = aService.animalList(a.getMemberNo());
+		Animal editAnimal = aService.animalList(a.getMemberNo()); // 정보 수정
 		
+		// 사진 수정
+		
+		Image image = null;
+		
+		if(!file.isEmpty()) {
+			String[] returnArr = saveFile(file, request);
+			
+			if(returnArr[1] != null) {
+				image = new Image();
+				image.setOriginalName(file.getOriginalFilename());
+				image.setRenameName(returnArr[1]);
+				image.setImagePath(returnArr[0]);
+				image.setImageLevel(1);
+				image.setMemberNo(a.getMemberNo());		
+				
+			}
+		}
+		 
+		int editImage = aService.editImage(image);
+		
+		System.out.println(image);
+		System.out.println(image.getOriginalName());
+		System.out.println(image.getRenameName());
+		System.out.println(a.getMemberNo());
+		System.out.println(editImage);
+	
+		if(image != null) {
+			 model.addAttribute("image", editImage);
+		} else {
+			throw new ImageException("동물 사진 수정에 실패하였습니다.");
+		}
+						
 		if(result > 0) {
-			model.addAttribute("animal", editAnimal);
+			model.addAttribute("animal", editAnimal);			
 			return "redirect:member_User_Info.me";
 		} else {
 			throw new AnimalException("동물 정보 수정에 실패하였습니다.");
-		}		
+		}
 	}
 	
 	@RequestMapping("member_Pet_Insert.me")
@@ -112,8 +147,6 @@ public class AnimalController {
 		
 		// 사진 등록
 		
-		a.setImageLevel(1);
-		
 		Image image = null;
 		
 		if(file != null && !file.isEmpty()) {
@@ -129,20 +162,10 @@ public class AnimalController {
 			}
 		}
 		
-		int resultImage = 0;
-		
-		System.out.println(image);
-		System.out.println(file);
-		System.out.println(image.getImagePath());
-		System.out.println(image.getOriginalName());
-		System.out.println(image.getRenameName());
-		System.out.println(image.getImageLevel());
-		System.out.println(image.getMemberNo());
-			
+		int insertImage = aService.insertImage(image);
 		
 		if(image != null) {
-//			 deleteFile(image.getRenameName(), request);
-			 resultImage = aService.insertImage(image);
+			model.addAttribute("image", insertImage);
 		} else {
 			throw new ImageException("동물 사진 등록에 실패하였습니다.");
 		}
