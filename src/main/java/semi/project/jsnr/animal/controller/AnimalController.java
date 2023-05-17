@@ -53,7 +53,6 @@ public class AnimalController {
 		model.addAttribute("loginUser", loginUser);
 		model.addAttribute("image", image);
 
-		System.out.println(image);
 		return "member_User_Info";
 	}
 	
@@ -72,8 +71,7 @@ public class AnimalController {
 		                       @RequestParam("file") MultipartFile file,
 		                       HttpServletRequest request) {
 		
-		String animalType = dType + cType + oType;
-		
+		String animalType = dType + cType + oType;		
 		a.setAnimalType(animalType);
 		
 		int result = aService.updateAnimal(a);
@@ -167,11 +165,15 @@ public class AnimalController {
 	}
 	
 	@GetMapping("deleteAnimal.me") // 삭제
-	public String deleteAnimal(@ModelAttribute Animal a) {
+	public String deleteAnimal(@ModelAttribute Animal a, Model model) {
 		
+		Image image = aService.selectImage(a.getMemberNo());
+		int deleteImage = aService.deleteImage(image);	
+					
 		int result = aService.deleteAnimal(a);
-		
+		 
 		if(result > 0) {
+			a.setIsStatus("N");
 			return "redirect:member_User_Info.me";
 		} else {
 			throw new AnimalException("동물 정보 삭제에 실패하였습니다.");
