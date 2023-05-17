@@ -53,7 +53,7 @@
 			<br><br><br><br><br>
 			<div>
 				<button type="submit" id="pwdSetBtn">변경</button>
-				<input type="hidden" name="memberEmail" value="${ memberEmail }">
+				<input type="hidden" name="memberId" value="${ memberId }">
 			</div>
 		</div>
 	</div>

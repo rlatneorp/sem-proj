@@ -243,7 +243,7 @@ public class MemberController {
 		int result = mService.enrollMember(m);
 		if(result>0) {
 			// 회원가입 성공 시 로그인 정보를 세션에 저장
-	        session.setAttribute("loggedInUser", m.getMemberId());
+	        session.setAttribute("loginUser", m.getMemberId());
 			return "redirect:home.do";
 		} else {
 			throw new MemberException("회원가입 실패");

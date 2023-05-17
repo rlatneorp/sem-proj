@@ -126,13 +126,13 @@
 	<select id="selectMember" resultMap="memberResultSet">
 		select *
 		from member
-		where member_email = #{memberEmail}
+		where member_id = #{memberId}
 	</select>
 	
 	<update id="updateNewPwd">
 		update member
 		set member_pwd = #{newPwd}
-		where member_email = #{memberEmail}
+		where member_id = #{memberId}
 	</update>
 
 </mapper>

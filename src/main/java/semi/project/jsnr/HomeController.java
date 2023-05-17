@@ -51,6 +51,7 @@ public class HomeController {
 		/**
 	 * Simply selects the home view to render by returning its name.
 	 */
+	// 홈으로 가기 - 현지
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String home(HttpSession session, Model model) {
 
@@ -76,7 +77,7 @@ public class HomeController {
 //		
 //	}
 	
-	// 비번 암호화
+	// 로그인 비번 암호화 - 현지
 	@PostMapping("login.do")
 	public String login(Model model, @ModelAttribute Member m) {
 		Member loginUser = mService.login(m);
@@ -92,6 +93,7 @@ public class HomeController {
 		
 	}
 	
+	// 로그아웃 - 현지
 	@RequestMapping("logout.do")
 	public String logout(SessionStatus status) {
 		status.setComplete();
@@ -100,7 +102,7 @@ public class HomeController {
 		return "redirect:home.do";
 	}
 	
-	// 아이디 찾기
+	// 아이디 찾기 - 현지
 	@GetMapping("searchId.do")
 	public String searchId() {
 		return "enroll/found_Id";
@@ -116,16 +118,17 @@ public class HomeController {
 		return "enroll/found_Id_Result";
 	}
 	
-	// 비밀번호 찾기
+	// 비밀번호 찾기 - 현지
 	@GetMapping("searchPwd.do")
 	public String searchPwd() {
 		return "enroll/found_Pwd";
 	}
 	
+	// 비번 찾기 - 이메일 인증 - 현지
 	@RequestMapping("foundPwd.do")
 	public ModelAndView foundPwd(@RequestParam("memberId") String memberId, @RequestParam("memberEmail") String memberEmail,
 						   		 HttpSession session) {
-		Member m = mService.selectMember(memberEmail); // 이메일 일치하는 데이터 가져와서 m에 담기
+		Member m = mService.selectMember(memberId); // 아이디 일치하는 데이터 가져와서 m에 담기
 		
 		if(m != null) {
 			Random r = new Random(); // 인증번호 랜덤숫자
@@ -133,8 +136,9 @@ public class HomeController {
 			
 			if(m.getMemberId().equals(memberId)) {
 				session.setAttribute("memberEmail", m.getMemberEmail());
+				session.setAttribute("memberId", m.getMemberId());
 				
-				String setfrom = "jibsanara@naver.com"; // 보내는 주소....?
+				String setfrom = "jibsanara5@gmail.com"; // 발신자 이메일 주소
 				String tomail = memberEmail;
 				String title = "[집사나라] 비밀번호 변경 인증 이메일입니다.";  // 메일 제목
 				String content = System.getProperty("line.separator") + "안녕하세요 회원님" + // 메일 내용
@@ -150,17 +154,16 @@ public class HomeController {
 					messageHelper.setSubject(title);
 					messageHelper.setText(content);
 					
-//					System.out.println(content);
 					mailSender.send(message); // 메일 보내기
 				} catch (MessagingException e) {
 					System.out.println(e.getMessage());
 				}
-				
+				// 성공하면 mv에 담아서 인증번호 받는 뷰로 보내기
 				ModelAndView mv = new ModelAndView();
 				mv.setViewName("enroll/pwd_Auth");
 				mv.addObject("num", num);
 				return mv;
-			} else {
+			} else { // 실패하면 제자리
 				ModelAndView mv = new ModelAndView();
 				mv.setViewName("enroll/found_Pwd");
 				return mv;
@@ -172,6 +175,7 @@ public class HomeController {
 		}
 	}
 	
+	// 비밀번호 찾기 - 인증번호 받기 - 현지
 	@RequestMapping("pwd_Set.do")
 	public String pw_Set(@RequestParam("emailAuth") String emailAuth,
 						 @RequestParam("num") String num) {
@@ -183,29 +187,23 @@ public class HomeController {
 		}
 	}
 	
+	// 비번 찾기 - 새로운 비밀번호로 변경 - 현지
 	@RequestMapping("pwd_New.do")
-	public String pwd_New(@RequestParam("memberEmail") String memberEmail, @RequestParam("newPwd") String newPwd,
-						  HttpSession session) throws IOException{
-		Member m = (Member)session.getAttribute("loginUser");
+	public String pwd_New(@RequestParam("memberId") String memberId, @RequestParam("newPwd") String newPwd,
+						  HttpSession session, Model model) {
+		String encPwd = bcrypt.encode(newPwd);
 		
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("newPwd", newPwd);
-		map.put("memberEmail", memberEmail);
+		map.put("newPwd", encPwd);
+		map.put("memberId", memberId);
 		
 		int result = mService.updateNewPwd(map);
-		System.out.println(result);
-		
-		String encPwd = bcrypt.encode(newPwd);
-		m.setMemberPwd(encPwd);
-		System.out.println(encPwd);
 		
 		if(result > 0) {
-	        session.setAttribute("encPwd", encPwd);
-			
 			return "redirect:loginView.do";
 		} else {
 			System.out.println("updatePwd" + result);
-			return "enroll/pwd_New";
+			return "enroll/pwd_ReSetting";
 		}
 	}
 
