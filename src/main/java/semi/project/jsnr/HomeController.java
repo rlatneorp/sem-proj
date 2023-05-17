@@ -150,8 +150,8 @@ public class HomeController {
 					messageHelper.setSubject(title);
 					messageHelper.setText(content);
 					
-					System.out.println(content);
-//					mailSender.send(message); // 메일 보내기
+//					System.out.println(content);
+					mailSender.send(message); // 메일 보내기
 				} catch (MessagingException e) {
 					System.out.println(e.getMessage());
 				}
