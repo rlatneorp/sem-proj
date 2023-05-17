@@ -179,10 +179,12 @@ public class JibsaController {
 		return "jibsa_Management_Schedule";
 	}
 	
+	// 집사 정보수정 - 현지
 	@GetMapping("jibsaModifyInfo.js")
 	public String jibsaModifyInfo(HttpSession session) {
 		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
 		
+		// 집사 정보 세션에 담아서 뷰로 보내기
 		Jibsa j = jService.selectJibsa(memberNo);
 		
 		session.setAttribute("jibsaInfo", j);
@@ -214,26 +216,29 @@ public class JibsaController {
 		return "jibsa_Review";
 	}
 	
+	// 집사 정보수정 처리 - 현지
 	@PostMapping("jibsaUpdateInfo.js")
 	public String jibsaUpdateInfo(@ModelAttribute Jibsa j, @ModelAttribute Member m, Model model,
 								  HttpSession session) {
-		int result1 = jService.updateMemberInfo(m);
-		int result2 = jService.updateJibsaInfo(j);
+		int result1 = jService.updateMemberInfo(m); // member부분 정보수정
+		int result2 = jService.updateJibsaInfo(j);  // jibsa 부분 정보수정
 		
 		if(result1 > 0 && result2 > 0) {
 			Member updatedMember = (Member) session.getAttribute("loginUser");
 	        updatedMember.setMemberEmail(m.getMemberEmail());
 	        updatedMember.setMemberPhone(m.getMemberPhone());
 	        updatedMember.setMemberAddress(m.getMemberAddress());
+	        // 수정한 내용 설정
 	        
 	        model.addAttribute("loginUser", updatedMember);
-			
-			return "redirect:jibsaModifyInfo.js";
+			// 정보 수정하면 값이 바로 바뀌게
+			return "redirect:jibsaModifyInfo.js"; 
 		} else {
 			throw new JibsaException("정보 수정에 실패");
 		}
 	}
 	
+	// 집사 탈퇴 - 현지
 	@GetMapping("jibsaDeleteInfo.me")
 	public String jibsaDeleteInfo(@ModelAttribute Member m, HttpSession session) {
 		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
@@ -242,7 +247,7 @@ public class JibsaController {
 		
 		if(result > 0) {
 			m = (Member)session.getAttribute("loginUser");
-			m.setIsJibsa("N");
+			m.setIsJibsa("N"); // 수정한 값 설정
 			session.setAttribute("loginUser", m);
 			
 			return "redirect:member_User_Info.me";
