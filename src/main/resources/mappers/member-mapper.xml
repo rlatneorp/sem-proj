@@ -122,5 +122,17 @@
 		from member
 		where member_name = #{memberName} and member_email = #{memberEmail}
 	</select>
+	
+	<select id="selectMember" resultMap="memberResultSet">
+		select *
+		from member
+		where member_email = #{memberEmail}
+	</select>
+	
+	<update id="updateNewPwd">
+		update member
+		set member_pwd = #{newPwd}
+		where member_email = #{memberEmail}
+	</update>
 
 </mapper>

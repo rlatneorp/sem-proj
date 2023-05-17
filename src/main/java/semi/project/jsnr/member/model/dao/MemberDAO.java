@@ -69,4 +69,12 @@ public class MemberDAO {
 		return sqlSession.insert("memberMapper.enrollMember", m);
 	}
 
+	public Member seletMember(SqlSessionTemplate sqlSession, String memberEmail) {
+		return sqlSession.selectOne("memberMapper.selectMember", memberEmail);
+	}
+
+	public int updateNewPwd(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.update("memberMapper.updateNewPwd", map);
+	}
+
 }
