@@ -30,9 +30,9 @@
 #top_hr{border: 20px solid rgb(26, 188, 156); opacity: 1; margin: 0;}
 #top_hr2{border: 1px solid gray;}
 		.menu1:hover:not(.active){color: rgb(51, 51, 51);}
-		.menu2:hover:not(.active){color: rgb(51, 51, 51);}
+		.menu2:hover:not(.active){color: white;}
 		.myMenu:hover:not(.active){color: rgb(51, 51, 51);}
-		.btjipsa{width: 138px; height: 58px; background: rgb(26, 188, 156); border-style: none; border-radius: 4px;}
+		.btjipsa{width: 130px; height: 50px; background: rgb(26, 188, 156); border-style: none; border-radius: 4px;}
 		.topLoginCont{width: 1200px; max-width: none !important; margin: 0 auto;}
 		.logo{width: 160px;}
 		.menu1{font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; margin: 10px; color: rgb(51, 51, 51); text-decoration: none;}
@@ -85,7 +85,7 @@
 				<div class="dropd" style="float:right; " aria-expanded="false">
 					<button onclick="dp_menu()" class="butn"><img src="resources/image/down.png"></button>
 				    <div style="width: 230px; height: 390px; display: none;" id="drop-c">
-				    	<ul id="droul">
+				    	<ul id="droul"><br>
 				    	<c:if test="${ loginUser.isAdmin eq 'Y' }">
 					       <li><a class="name">${ loginUser.memberName }관리자</a></li>
 					       <li><a><hr></a></li>
@@ -95,8 +95,14 @@
 				    	
 				    	<c:if test="${ loginUser.isAdmin eq 'N' }">
 					       <li><a class="name">${ loginUser.memberName }님</a></li>
-					       <li><a class="animal" style="display: block; float:left;">고양이</a><a class="animal">시암</a></li>
-					       <li><a class="animal">미돌이</a></li>
+					       <c:if test="${ !empty animal.memberNo and animal.isStatus eq 'Y'}">
+						       <li><a class="animal">${ animal.animalName }</a></li>
+						       <li><a class="animal">${ animal.animalType } · <c:if test="${ animal.animalGender eq 'F' }">여아</c:if> <c:if test="${ animal.animalGender eq 'M' }">남아</c:if></a></li>
+					       </c:if>
+					       <c:if test="${ empty animal.memberNo or animal.isStatus eq 'N' }">
+					       	   <li><a class="animal">내 동물 정보를</a></li>
+					       	   <li><a class="animal">등록해보세요!</a></li>
+					       </c:if>
 					       <li><a><hr></a></li>
 					       <li><a class="myMenu" href="${ contextPath }/member_User_Info.me">마이페이지</a></li>
 					       <li><a class="myMenu" href="${ contextPath }/member_EditInfo.me">프로필 설정</a></li>

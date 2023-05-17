@@ -32,7 +32,7 @@ import semi.project.jsnr.member.model.vo.Member;
 /**
  * Handles requests for the application home page.
  */
-@SessionAttributes("loginUser")
+@SessionAttributes({"loginUser", "animal"})
 @Controller
 public class HomeController {
 	
@@ -54,7 +54,7 @@ public class HomeController {
 	// 홈으로 가기 - 현지
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String home(HttpSession session, Model model) {
-
+		
 	    return "home/home";
 	}
 	
