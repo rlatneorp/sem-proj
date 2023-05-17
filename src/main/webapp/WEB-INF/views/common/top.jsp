@@ -95,11 +95,11 @@
 				    	
 				    	<c:if test="${ loginUser.isAdmin eq 'N' }">
 					       <li><a class="name">${ loginUser.memberName }님</a></li>
-					       <c:if test="${ !empty animal.memberNo and animal.isStatus eq 'Y'}">
+					       <c:if test="${ animal.isStatus eq 'Y'}">
 						       <li><a class="animal">${ animal.animalName }</a></li>
 						       <li><a class="animal">${ animal.animalType } · <c:if test="${ animal.animalGender eq 'F' }">여아</c:if> <c:if test="${ animal.animalGender eq 'M' }">남아</c:if></a></li>
 					       </c:if>
-					       <c:if test="${ empty animal.memberNo or animal.isStatus eq 'N' }">
+					       <c:if test="${ animal.isStatus ne 'Y' }">
 					       	   <li><a class="animal">내 동물 정보를</a></li>
 					       	   <li><a class="animal">등록해보세요!</a></li>
 					       </c:if>
