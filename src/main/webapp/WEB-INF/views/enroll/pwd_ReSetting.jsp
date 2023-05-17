@@ -30,7 +30,7 @@
 </head>
 <body>
 <hr id="top_hr">
-<form> 
+<form action="pwd_New.do" method="post"> 
 	<div class="pwdSet">
 		<a href="${ contextPath }/home.do"><img src="resources/image/loginLogo.png" id="pwdSetLogo"></a>
 		<br><br>
@@ -38,18 +38,22 @@
 			<a id="pwdSetTitle">비밀번호 재설정</a>
 			<div class="pwdSetnp"> 
 				<br><br><br><br>
-				<a id="pwdSetted">현재 비밀번호</a>
-				<input type="password" id="pwdBtn" placeholder=" 현재 비밀번호를 입력하세요">
-				<br><br>
 				<a id="pwdSetteing1">새로운 비밀번호</a>
-				<input type="password" id="pwdBtn1" placeholder=" 새로운 비밀번호를 입력하세요">
+				<input type="password" id="pwdBtn1" name="newPwd" placeholder=" 새로운 비밀번호를 입력하세요">
+				<div class="error">
+		 				Invalid password
+				</div> 
 				<br><br>
 				<a id="pwdSetteing2">새로운 비밀번호 확인</a>
 				<input type="password" id="pwdBtn2" placeholder=" 한 번 더 입력하세요">
+				<div class="error">
+		 				Invalid password
+				</div> 
 			</div>
 			<br><br><br><br><br>
 			<div>
-				<button type="submit" id="pwdSetBtn">다음</button>	
+				<button type="submit" id="pwdSetBtn">변경</button>
+				<input type="hidden" name="memberEmail" value="${ memberEmail }">
 			</div>
 		</div>
 	</div>

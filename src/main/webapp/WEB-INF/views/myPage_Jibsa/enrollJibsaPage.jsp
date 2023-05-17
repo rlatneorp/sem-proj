@@ -44,7 +44,6 @@
 		
 	}
 	
-	
 	.rounded-box {
   		  border-radius: 20px;
 		  background-color: white; 
@@ -52,7 +51,7 @@
 		  top: 50%; /* 요소의 상단을 화면의 중앙에 위치시킵니다. */
 		  width: auto;
   		  height: auto; 
-  		  max-height: 500px;
+  		  max-height: 1000px;
   		  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 	}
 	.flex {
@@ -64,17 +63,17 @@
 	  background-color: rgb(26, 188, 156);
 	}
 	
-	#finalBtn{font-size:30px; font-weight:bold; border-style: none; border-radius:20px; width: 192px; height:76px; display: inline-block; margin-left: 250px; background: rgb(26, 188, 156); color: white;}
+	#finalBtn{font-size:30px; font-weight:bold; border-style: none; border-radius:20px; width: 192px; height:76px; display: inline-block; margin-left: 305px; background: rgb(26, 188, 156); color: white;}
 </style>
 </head>
 <body>
 <jsp:include page="../common/top.jsp"/>
 
-	<form class="container" style="width: 780px; 
+	<form class="container" style="width: 880px; 
 	max-width: none !important; 
-	margin: 0 auto; text-align: left; margin-right: 600px;" 
+	margin: 0 auto; text-align: left; " 
 	action="${ contextPath }/insertJibsa.js" method="POST">
-	<br><br><br><br><br><br>
+	<br/><br/><br/><br/><br/><br/>
 		<h3>집사 지원서 작성하기</h3>
 		<hr/>
 		<br/>
@@ -83,7 +82,7 @@
 		<p for="essential" &nbsp; style="padding-left: 22px;"> &nbsp;은 필수입력 항목입니다.</p>
 		
 		<div class="rounded-box flex">
-			<div class="container">
+			<div class="container" >
 				<label class ="title"> 이름</label><br/>
 				<input type="text" id="memberName" name="memberName" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 홍길동" style="font-size: 10px;"
 						value ="${ loginUser.memberName }" readonly><br/><br/>
@@ -99,26 +98,31 @@
 				<label class ="e title">방문가능지역</label><br/>
 				<span class = "add">지역을 선택해주세요.</span><br/>
 				<input type="text" id="availableArea" name="availableArea" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 주소를 입력해주세요"><br/><br/>
-			</div>
-			
-			<div class="container">
-				<label class ="e title"> 프로필 사진</label><br/>
-				<button  style="margin-left: 25px; paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" >파일선택</button><br/><br/>
 				
 				<label class ="e title"> 성별</label><br/>
 				<label style="margin-left: 25px;"><input type="radio" name="jibsaGender" value="m">남자</label>
 				<label><input type="radio" id="jibsaGender" name="jibsaGender" value="f">여자</label>
 				<br/><br/>
 				
+				<label class ="e title"> 흡연유무 </label><br/>
+				<span class = "add">거짓기재시 불이익이 있을 수 있습니다.</span><br/>
+				<label style="margin-left: 25px;"><input type="radio" name="isSmoking" value="y">흡연 함</label>
+				<label><input type="radio" id="isSmoking" name="isSmoking" value="n">흡연 안함</label>
+			</div>
+			
+			<div class="container">
+				<label class ="e title"> 프로필 사진</label><br/>
+				<img src="${ contextPath }/resources/uploadFiles/${ image.renameName }" width="100%" height="245"/>
+			  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile"><br/>
+			  	
+			  	<br/><br/><br/>
+				
 				<label class ="e title"> 연락처 </label><br/>
 				<span class = "add">입력하신 연락처로 합격 여부를 알려드립니다.</span><br/>
 				<input type="text" id="memberPhone" name="memberPhone" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 휴대혼 번호를 입력해주세요."
 						value ="${ loginUser.memberPhone }" readonly><br/><br/>
 				
-				<label class ="e title"> 흡연유무 </label><br/>
-				<span class = "add">거짓기재시 불이익이 있을 수 있습니다.</span><br/>
-				<label style="margin-left: 25px;"><input type="radio" name="isSmoking" value="y">흡연 함</label>
-				<label><input type="radio" id="isSmoking" name="isSmoking" value="n">흡연 안함</label>
+				
 			</div>
 		</div>
 		<br/><br/>
@@ -160,11 +164,11 @@
 			
 			<br/>
 		</div>
-		<br><br>
+		<br/><br/>
 		<button type="submit" id="finalBtn"  >최종 제출</button>
-		<br><br><br>
+		<br/><br/><br/>
 	</form>
-	<br><br><br><br><br><br>
+	<br/><br/><br/><br/><br/><br/>
 <jsp:include page="../common/bottom.jsp"/>
 </body>
 </html>

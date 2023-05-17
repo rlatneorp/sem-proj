@@ -78,4 +78,12 @@ public class MemberService {
 		return mDAO.enrollMember(sqlSession, m);
 	}
 
+	public Member selectMember(String memberEmail) {
+		return mDAO.seletMember(sqlSession, memberEmail);
+	}
+
+	public int updateNewPwd(HashMap<String, String> map) {
+		return mDAO.updateNewPwd(sqlSession, map);
+	}
+
 }
