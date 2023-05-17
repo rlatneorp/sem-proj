@@ -31,8 +31,8 @@
 		<result column="MEMBER_NO" property="memberNo"/>
 		<result column="JIBSA_NAME" property="jibsaName"/>
 		<result column="IS_JIBSA" property="isJibsa"/>
-		<result column="MEMBER_ID" property="memberId"/>
-		
+		<result column="MATCHING_STATUS" property="matchingStatus"/>
+		<result column="REVIEW_STATUS" property="reviewStatus"/>
 	</resultMap>
 	
 	<select id="getJibsaListCount" resultType="_int">
@@ -204,14 +204,14 @@
 	<update id="updateReply">
 		update matching
 		set jibsa_comment = #{jibsaComment}
-		where matching_no = #{matchingNo}
+		where matching_no = #{matchingNo} and matching_status = 'Y' 
 	</update>
 	
 	<select id="selectReply" resultMap="boardResultSet">
      	select *
 		from matching
 			join member using(member_no)
-		where is_jibsa = 'Y' and matching_no = #{matchingNo} and member_no = #{mId} and member_status = 'Y'
+		where is_jibsa = 'Y' and matching_no = #{matchingNo} and member_no = #{memberNo} and member_status = 'Y'
 		order by matching_no desc
 	
 	</select>

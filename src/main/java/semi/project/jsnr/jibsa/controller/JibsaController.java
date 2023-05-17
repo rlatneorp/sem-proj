@@ -51,7 +51,11 @@ public class JibsaController {
 	@PostMapping("insertJibsa.js")
 	public String insertJibsa(@ModelAttribute Jibsa j,  HttpSession session,
 							Model model) {
+		// session에서 멤버 넘버 가져오기
+		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
+		j.setMemberNo(memberNo);
 		System.out.println(j);
+		
 		int result = jService.insertJibsa(j);
 		
 		if(result>0) {

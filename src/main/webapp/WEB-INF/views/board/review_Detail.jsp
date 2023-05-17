@@ -257,7 +257,7 @@
 				url: '${contextPath}/updateReply.bo',
 				data: {
 						jibsaComment:document.getElementById('replyContent').value,
-						memberId:'${loginUser.memberId}', 
+						memberNo:'${loginUser.memberNo}', 
 						matchingNo:${b.matchingNo} 
 				},
 				success: data =>{
