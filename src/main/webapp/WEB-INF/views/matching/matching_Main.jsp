@@ -68,7 +68,8 @@
 	    <div class="col row">
 		      <h4>희망 이용 시간</h4>
 				<label for="date" class="col-3">날짜:</label>
-				<input type="date" name="startDay" class="date col-5">
+				<input type="date" class="date col-5">
+				<input type="hidden" name="startDate">
 				<div class="col-4"></div>
 				<br>
 				<label for="time" class="col-3">시간:</label>
@@ -77,7 +78,8 @@
 		      <br><br>
 		      <h4>희망 종료 시간</h4>
 				<label for="date" class="col-3">날짜:</label>
-				<input type="date" name="endDay" class="date col-5">
+				<input type="date" class="date col-5">
+				<input type="hidden" name="endDate">
 				<div class="col-4"></div>
 				<br>
 				<label for="time" class="col-3">시간:</label>
@@ -121,7 +123,7 @@
 	      
 	      <br><br>
 			  <div class="d-flex justify-content-center">
-			    <button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">찾아보기</button>
+			    <button type="button" onclick="inputTime()" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">찾아보기</button>
 			  </div>
 	    </div>
 	  </div>
@@ -130,6 +132,34 @@
 	
 	
 	<script>
+		function inputTime(){
+			const dates = document.getElementsByClassName('date');
+			const times = document.getElementsByClassName('time');
+			
+			const startDate = document.getElementsByName('startDate')[0];
+			const startTime = document.getElementsByName('startTime')[0];
+// 			시작날짜값 대입
+			startDate.value = dates[0].value;
+// 			시작요일값 대입
+			startDate.value += new Date(dates[0].value).getDay();
+// 			시작시간값 대입
+			startDate.value += times[0].value.substring(0,2) + times[0].value.substring(3,5);
+			
+					
+			const endDate = document.getElementsByName('endDate')[0];
+			const endTime = document.getElementsByName('endTime')[0];
+// 			종료날짜값 대입
+			endDate.value = dates[1].value;
+// 			종료요일값 대입
+			endDate.value += new Date(dates[1].value).getDay();
+// 			종료시간값 대입
+			endDate.value += times[1].value.substring(0,2) + times[1].value.substring(3,5);
+			
+			document.getElementsByTagName('form')[0].submit();
+		}
+	
+	
+	
 		$('.timepicker').timepicker({
 			timeFormat: 'HH:mm',
 		    interval: 30,

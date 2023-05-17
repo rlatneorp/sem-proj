@@ -4,6 +4,7 @@ public class Matching {
 	private int matchingNo;
 	private int animalNo;
 	private int memberNo;
+	private int jibsaNo;
 	private String startDate;
 	private String endDate;
 	private String animalKind;
@@ -16,13 +17,14 @@ public class Matching {
 	
 	public Matching() {}
 
-	public Matching(int matchingNo, int animalNo, int memberNo, String startDate, String endDate, String animalKind,
-			String serviceType, String wantJibsaGender, String wantMatchingPlace, String matchingPlace,
-			String reviewContent, String matchingStatus) {
+	public Matching(int matchingNo, int animalNo, int memberNo, int jibsaNo, String startDate, String endDate,
+			String animalKind, String serviceType, String wantJibsaGender, String wantMatchingPlace,
+			String matchingPlace, String reviewContent, String matchingStatus) {
 		super();
 		this.matchingNo = matchingNo;
 		this.animalNo = animalNo;
 		this.memberNo = memberNo;
+		this.jibsaNo = jibsaNo;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.animalKind = animalKind;
@@ -56,6 +58,14 @@ public class Matching {
 
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
+	}
+
+	public int getJibsaNo() {
+		return jibsaNo;
+	}
+
+	public void setJibsaNo(int jibsaNo) {
+		this.jibsaNo = jibsaNo;
 	}
 
 	public String getStartDate() {
@@ -132,11 +142,11 @@ public class Matching {
 
 	@Override
 	public String toString() {
-		return "Matching [matchingNo=" + matchingNo + ", animalNo=" + animalNo + ", memberNo=" + memberNo
-				+ ", startDate=" + startDate + ", endDate=" + endDate + ", animalKind=" + animalKind + ", serviceType="
-				+ serviceType + ", wantJibsaGender=" + wantJibsaGender + ", wantMatchingPlace=" + wantMatchingPlace
-				+ ", matchingPlace=" + matchingPlace + ", reviewContent=" + reviewContent + ", matchingStatus="
-				+ matchingStatus + "]";
+		return "Matching [matchingNo=" + matchingNo + ", animalNo=" + animalNo + ", memberNo=" + memberNo + ", jibsaNo="
+				+ jibsaNo + ", startDate=" + startDate + ", endDate=" + endDate + ", animalKind=" + animalKind
+				+ ", serviceType=" + serviceType + ", wantJibsaGender=" + wantJibsaGender + ", wantMatchingPlace="
+				+ wantMatchingPlace + ", matchingPlace=" + matchingPlace + ", reviewContent=" + reviewContent
+				+ ", matchingStatus=" + matchingStatus + "]";
 	}
-	
+
 }

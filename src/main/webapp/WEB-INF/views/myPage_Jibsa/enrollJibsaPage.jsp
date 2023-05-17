@@ -17,33 +17,26 @@
  		color: red;
  		font-size: 20px;
  	}	
- 	
  	.e:after {
     content: "*";
     color: red;
     font-size: 20px;
 	}
-	
 	.title::before {
     content: "●";
     font-size: 8px;
     margin-right: 10px;
-
 	}
-	
 	.i{
 	paddig : 40px;
  	margin-left: 30px; 
 	border-radius: 5px;
 	border-style: 1px solid gray;
 	}
-	
 	.add{
 	font-size : 10px;
 	margin-left: 20px; 
-		
 	}
-	
 	.rounded-box {
   		  border-radius: 20px;
 		  background-color: white; 
@@ -58,11 +51,12 @@
 		display : flex; 
  		justify-content:space-between; 
 	}
-	
 	input[type=radio]:checked {
 	  background-color: rgb(26, 188, 156);
 	}
-	
+	#img{
+  	width: 400px; height: 250px; border: 1px solid gray;
+  	}
 	#finalBtn{font-size:30px; font-weight:bold; border-style: none; border-radius:20px; width: 192px; height:76px; display: inline-block; margin-left: 305px; background: rgb(26, 188, 156); color: white;}
 </style>
 </head>
@@ -70,9 +64,8 @@
 <jsp:include page="../common/top.jsp"/>
 
 	<form class="container" style="width: 880px; 
-	max-width: none !important; 
-	margin: 0 auto; text-align: left; " 
-	action="${ contextPath }/insertJibsa.js" method="POST">
+	max-width: none !important; margin: 0 auto; text-align: left; " 
+	action="${ contextPath }/insertJibsa.js" method="POST" enctype="multipart/form-data">
 	<br/><br/><br/><br/><br/><br/>
 		<h3>집사 지원서 작성하기</h3>
 		<hr/>
@@ -112,8 +105,8 @@
 			
 			<div class="container">
 				<label class ="e title"> 프로필 사진</label><br/>
-				<img src="${ contextPath }/resources/uploadFiles/${ image.renameName }" width="100%" height="245"/>
-			  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile"><br/>
+				<div id="img"></div><br/>			  	
+				<input class="form-control" type="file" accept="image/*" name="file" id="formFile"><br/>
 			  	
 			  	<br/><br/><br/>
 				
@@ -121,8 +114,6 @@
 				<span class = "add">입력하신 연락처로 합격 여부를 알려드립니다.</span><br/>
 				<input type="text" id="memberPhone" name="memberPhone" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 휴대혼 번호를 입력해주세요."
 						value ="${ loginUser.memberPhone }" readonly><br/><br/>
-				
-				
 			</div>
 		</div>
 		<br/><br/>
@@ -169,6 +160,29 @@
 		<br/><br/><br/>
 	</form>
 	<br/><br/><br/><br/><br/><br/>
+	
+<script>
+	const input = document.getElementById('formFile');
+	const imgDiv = document.getElementById('img');
+	
+	input.addEventListener('change', function() {
+	  const file = this.files[0];
+	  if (!file.type.startsWith('image/')){ 
+	    alert('이미지 파일을 선택하세요.'); 
+	    return;
+	  }
+	  const reader = new FileReader();
+	  reader.onload = function() {
+	    const img = new Image();
+	    img.style.width = '400px';
+	    img.style.height = '247px';
+	    img.src = reader.result;
+	    imgDiv.innerHTML = '';
+	    imgDiv.appendChild(img);
+	  }
+	  reader.readAsDataURL(file);  
+	});	
+</script>
 <jsp:include page="../common/bottom.jsp"/>
 </body>
 </html>
