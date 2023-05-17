@@ -31,6 +31,7 @@ import semi.project.jsnr.member.model.vo.Member;
 public class JibsaController {
 	@Autowired	//의존성 주입
 	private JibsaService jService;
+	@Autowired
 	private MemberService mService;
 	
 	
@@ -65,6 +66,7 @@ public class JibsaController {
 		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
 		j.setMemberNo(memberNo);
 		
+		// 
 		int result = jService.insertJibsa(j);
 		
 		Image image = null;
@@ -79,8 +81,14 @@ public class JibsaController {
 				image.setRenameName(returnArr[1]);
 				image.setImageLevel(1);
 				image.setMemberNo(memberNo);
+				
+				int insertImage = jService.insertImage(image);
+				model.addAttribute("image", insertImage);
 			}
+		} else {
+			System.out.println("사진을 등록하지 않았습니다.");
 		}
+		
 		if(result>0) {
 			return "enrollJibsaResult";
 		} else {

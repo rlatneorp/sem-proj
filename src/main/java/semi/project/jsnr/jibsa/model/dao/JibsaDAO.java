@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
 import semi.project.jsnr.member.model.vo.Member;
 
@@ -29,6 +30,10 @@ public class JibsaDAO {
 
 	public Jibsa selectJibsa(SqlSessionTemplate sqlSession, int memberNo) {
 		return sqlSession.selectOne("jibsaMapper.selectJibsa", memberNo);
+	}
+
+	public int insertImage(SqlSessionTemplate sqlSession, Image image) {
+		return sqlSession.insert("jibsaMapper.insertImage", image);
 	}
 
 }

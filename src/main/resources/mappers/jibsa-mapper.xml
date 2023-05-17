@@ -67,4 +67,9 @@
 		<result column="PRIMIUM_END_DATE" property="isTrainer"/>
 	</resultMap>
 	
+	<insert id="insertImage">
+		insert into image
+		values(seq_img_id.nextval, #{renameName}, #{originalName}, #{imageLevel}, #{imagePath}, #{memberNo})
+	</insert>
+	
 </mapper>

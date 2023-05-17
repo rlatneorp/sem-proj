@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.jibsa.model.dao.JibsaDAO;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
 import semi.project.jsnr.member.model.vo.Member;
@@ -35,6 +36,10 @@ public class JibsaService {
 
 	public Jibsa selectJibsa(int memberNo) {
 		return jDAO.selectJibsa(sqlSession, memberNo);
+	}
+
+	public int insertImage(Image image) {
+		return jDAO.insertImage(sqlSession, image);
 	}
 
 	
