@@ -34,4 +34,8 @@ public class JibsaDAO {
 		return sqlSession.insert("jibsaMapper.insertImage", image);
 	}
 
+	public int updateJibsaAvailableHour(SqlSessionTemplate sqlSession, Jibsa j) {
+		return 0;
+	}
+
 }
