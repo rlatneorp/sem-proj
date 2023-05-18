@@ -121,16 +121,7 @@
 	  
 	}
 	
-	.material-symbols-outlined {
-	  font-variation-settings:
-	  'FILL' 0,
-	  'wght' 100,
-	  'GRAD' 200,
-	  'opsz' 48;
-	   color: rgb(26, 188, 156);
-	}
-		
-	#reviewDetailSetting{align-items: center; margin-Left: 220px;}
+	#reviewDetailSetting{align-items: center;}
 	
 	#allReviewBtn{
 		background-color: rgb(26, 188, 156);
@@ -153,6 +144,7 @@
 	border-radius: 5px;}
 	
 	#contentBox{border: 1px solid #7F8487; border-radius: 5px;}
+	 
 </style>
 
 
@@ -167,24 +159,23 @@
 		<div class="container" style="display: flex; align-items: center;">
 		<div class="col">
 			<div class="reviewLeftBtn">
-           		<span class="material-symbols-outlined" style="font-size: 70px;">arrow_circle_left</span>
+           		<span class="material-symbols-outlined" style="font-size: 70px; width: 70px; display: inline-block;">arrow_circle_left</span>
         	</div>
         </div>			
-		<input type="hidden" value="${ b.memberNo }" name="memberNo">
-		<input type="hidden" value="${ page }" name="page">
 		<div class="col">
 			<div class="row" style="width: 600px; margin-right: 170px;">
 			  	<div class="col">
 				    <div class="review">
 						  <div class="profile">
 							  <img src="resources/image/user.png">
-							  <div class="username"></div>
+							  <div class="username">${b.memberName}</div>
 						  </div>
 						  <div class="info">
 						  <table style="text-align: left;"> 
 						  	  <tr>
-						  		  <td colspan="3"><h2>${b.jibsaName} 집사</h2><h4>${b.matchingPlace}</h4></td>
-						  	 	  <td>평균평점 ${b.reviewRating }점</td>
+						  		  <td colspan="2"><h2>${b.jibsaName} 집사</h2><h4>${b.matchingPlace}</h4></td>
+						  		  <td><td>
+						  	 	  <td>평균평점 ${b.reviewRating}점</td>
 						  	  </tr>
 						  	  <tr><td colspan="3"><br></td><tr>
 						  		  <td></td>
@@ -208,85 +199,67 @@
 				<table>
 					<thead style="text-align: center;">
 						<tr>
-							<th width="130px">댓글 내용</th>
-							<th width="130px">매칭 종료일</th>
+							<td width="260px">댓글 내용</td>
 						</tr>
 					</thead>
 					<tbody class="tbody1" style="text-align: center;">	
-						<c:forEach items="${ list }" var="r">
 						<tr class="tr1">
-							<td class="td1">${ r.jibsaComment }</td>
-							<td class="td1">${ r.endDate  }</td>
+							<td class="td1">${ b.jibsaComment }</td>
 						</tr>
-						</c:forEach>
 					</tbody>
 				</table>
 				<br><hr><br>
 				  <div id="comment">
 				    <label>댓글입력 : </label>
-					<input id="replyContent"type="text" placeholder=" 댓글을 달거나 수정해주세요">
-					<input id="replyBtn" type="button" value ="댓글 수정">
+				    <textarea id="replyContent" placeholder=" 댓글을 달거나 수정해주세요" style="resize: none;"></textarea>
+					<input id="replyBtn" type="button" name="reply" value ="댓글 수정"  onclick="json_reply();">
 				  </div>
 			</div>
+			</div>
+		</div>
 			<br><br>
+		 
 			<div class="col" style="text-align: center;">
 				<button id="allReviewBtn"onclick="location.href='${contextPath}/review_Main.bo'">모든 후기 보기</button>
 			</div>
+				
 			<div class="col">
 				<div class="reviewRightBtn">
            			<span class="material-symbols-outlined" style="font-size: 70px;">arrow_circle_right</span>
-        		</div></div>
-			</div></div>
-		</div>
-	</div>
+        		</div>
+        		</div>
+			</div>
+	</div>	
 <br><br><br><br>	
 <%@ include file="../common/bottom.jsp" %>
 
 <script>
-	window.onload=()=>{
-		let usernames = document.querySelector('.username');
-		const URLSearch = new URLSearchParams(location.search);
-		const usernameChange = URLSearch.getAll('userName');
-			
-		usernames.innerText += usernameChange;
-		
-		
-		document.getElementById('replyBtn').addEventListener('click', ()=>{
+	const json_reply=()=>{  
+			const jibsaCom = document.querySelector('#replyContent').value;
+			 
 			$.ajax({
 				url: '${contextPath}/updateReply.bo',
 				data: {
-						jibsaComment:document.getElementById('replyContent').value,
-						memberNo:${loginUser.memberNo},
-						matchingNo:${b.matchingNo},
-						jibsaNo:${b.jibsaNo}
+					  jibsaComment: jibsaCom,
+					  matchingNo: ${b.matchingNo}
 				},
 				success: data =>{
 					console.log(data);
-					const tbody = document.querySelector('.tbody1');
-					tbody.innerHTML = '';
 					
-					for(const r of data){
-						const tr = document.createElement('.tr1');
-						
-						const contentTd = document.createElement('.td1');
-						contentTd.innerText = r.jibsaComment;
-						
-						const dateTd = document.createElement('.td1');
-						dateTd.innerText = r.endDate;
-						
-						tr.append(contentTd);
-						tr.append(dateTd);
-						tbody.append(tr);
-						
-					}
-					document.getElementById('replyContent').value = '';
+					const t = document.querySelector('#replyContent');
+					
+					const tr = document.querySelector('.td1');
+					tr.innerText = '';
+					tr.innerText = jibsaCom;
+					
+					document.querySelector('#replyContent').value = '';
+					
 				},
 				error: data =>{
 					console.log(data);
 				}
 			});
-		})		
-	} 
+		};		
 </script>
 		
 		

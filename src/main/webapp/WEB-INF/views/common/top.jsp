@@ -32,11 +32,12 @@
 		.menu1:hover:not(.active){color: rgb(51, 51, 51);}
 		.menu2:hover:not(.active){color: white;}
 		.myMenu:hover:not(.active){color: rgb(51, 51, 51);}
-		.btjipsa{width: 130px; height: 50px; background: rgb(26, 188, 156); border-style: none; border-radius: 4px;}
+		.btjipsa{width: 140px; height: 55px; background: rgb(26, 188, 156); border-style: none; border-radius: 5px;}
 		.topLoginCont{width: 1200px; max-width: none !important; margin: 0 auto;}
 		.logo{width: 160px;}
 		.menu1{font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; margin: 10px; color: rgb(51, 51, 51); text-decoration: none;}
-		.menu2{font-size: 23px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; color: rgb(51, 51, 51); text-decoration: none; justify-content: unset;}
+		.menu2{font-size: 25px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; color: rgb(51, 51, 51); text-decoration: none; justify-content: unset;}
+		.menu3{font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; color: rgb(51, 51, 51); text-decoration: none; justify-content: unset;}
 		.left{margin-left: 5%; display: inline;}
 		#right{margin-left: 18%; display: inline;}
 		
@@ -75,7 +76,7 @@
 		<div class="topRight">    
 		    <a class="menu1" href="${ contextPath }/loginView.do">로그인</a>
 		    <a class="menu1" href="${ contextPath }/joinNotice.do">회원가입</a>
-			<button class="btjipsa menu2" type="submit" onclick="location.href='${contextPath}/enrollJibsa.js'">집사 지원</button>
+			<button class="btjipsa menu3" type="submit" onclick="location.href='${contextPath}/enrollJibsa.js'">집사 지원</button>
 		</div>
 		</c:if>
 		<c:if test="${ !empty loginUser }"> 

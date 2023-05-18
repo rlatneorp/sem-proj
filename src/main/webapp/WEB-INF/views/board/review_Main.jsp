@@ -95,8 +95,8 @@
 	
 	body{font-family: 'Noto Sans KR', sans-serif;}
 	.marginLeft{margin-Left: 310px;}
-	.matchingNo{color:white;}
-	.memberId{color:white;}
+	.matchingNo{display:none;}
+	.jibsaNo{display:none;}
 </style>
 </head>
 <body>
@@ -121,23 +121,20 @@
 	  <article>
 		<c:forEach items="${ list }" var="n">
 		  	<div class="col" style="cursor: pointer;">
-			    <div class="review">
-				  <div class="profile">
-					  <img src="resources/image/profile.png">
-					  	<div class="userName">${ n.memberName }</div>
-					  	<div class="matchingNo">${ n.matchingNo }</div>
-					  </div>
-					  <div class="info">
+		    	<div class="review">
+					<div class="profile">
+						 <img src="resources/image/profile.png">
+						 <div class="userName">${ n.memberName }</div>
+					</div>
+					<div class="info">
 					    <div class="jibsaName">${ n.jibsaName }</div>
 					    <div class="reviewContent">${ n.reviewContent }</div>
-						<form action="${ contextPath }/review_Detail.bo" method="GET">
-							<input type="hidden" value="${ n.memberNo }" name="memberNo">
-							<input type="hidden" value="${ n.jibsaNo }" name="jibsaNo">
-						</form>
-					  </div>
+					  	<div class="jibsaNo">${ n.jibsaNo }</div>
+					  	<div class="matchingNo">${ n.matchingNo }</div>
 					</div>
-				</div>	
-			</c:forEach>
+				</div>
+			</div>	
+		</c:forEach>
 	 	</article>
 	  	</div>
 	  </div>
@@ -225,16 +222,19 @@
 		location.href = '${contextPath}/search.bo?value='+value+'&condition='+condition;
 		});		
 		
+	window.onload=()=>{
 		const reviewContent = document.querySelector('article');
 		const reviewDiv = reviewContent.querySelectorAll('.col');
+		 
 		for(const div of reviewDiv){
 			div.addEventListener('click', ()=>{
-				const mId = div.querySelector('.jibsaNo').innerText;
+				const mId = div.querySelector('.matchingNo').innerText;
 				const userName = div.querySelector('.userName').innerText;
-				location.href='${ contextPath }/review_Detail.bo?mId='+ jibsaNo + '&userName=' + userName + '&page=' + ${pi.currentPage}; 
+				location.href='${ contextPath }/review_Detail.bo?mId='+ mId + '&userName=' + userName + '&page=' + ${pi.currentPage};
 			 
 			}); 
 		}
+	}	
 </script>
  </body>
 </html>
