@@ -14,6 +14,7 @@ public class Board {
 	private String jibsaComment;
 	private String memberName;
 	private int memberNo;
+	private int jibsaNo;
 	private String jibsaName;
 	private String isJibsa;
 	private String matchingStatus;
@@ -23,7 +24,7 @@ public class Board {
 
 	public Board(int matchingNo, int animalNo, String animalName, String animalKind, String startDate, String endDate,
 			String matchingPlace, String reviewContent, Double reviewRating, int reviewCount, String jibsaComment,
-			String memberName, int memberNo, String jibsaName, String isJibsa, String matchingStatus,
+			String memberName, int memberNo, int jibsaNo, String jibsaName, String isJibsa, String matchingStatus,
 			String reviewStatus) {
 		super();
 		this.matchingNo = matchingNo;
@@ -39,6 +40,7 @@ public class Board {
 		this.jibsaComment = jibsaComment;
 		this.memberName = memberName;
 		this.memberNo = memberNo;
+		this.jibsaNo = jibsaNo;
 		this.jibsaName = jibsaName;
 		this.isJibsa = isJibsa;
 		this.matchingStatus = matchingStatus;
@@ -149,6 +151,14 @@ public class Board {
 		this.memberNo = memberNo;
 	}
 
+	public int getJibsaNo() {
+		return jibsaNo;
+	}
+
+	public void setJibsaNo(int jibsaNo) {
+		this.jibsaNo = jibsaNo;
+	}
+
 	public String getJibsaName() {
 		return jibsaName;
 	}
@@ -164,7 +174,6 @@ public class Board {
 	public void setIsJibsa(String isJibsa) {
 		this.isJibsa = isJibsa;
 	}
-	
 
 	public String getMatchingStatus() {
 		return matchingStatus;
@@ -188,10 +197,10 @@ public class Board {
 				+ ", animalKind=" + animalKind + ", startDate=" + startDate + ", endDate=" + endDate
 				+ ", matchingPlace=" + matchingPlace + ", reviewContent=" + reviewContent + ", reviewRating="
 				+ reviewRating + ", reviewCount=" + reviewCount + ", jibsaComment=" + jibsaComment + ", memberName="
-				+ memberName + ", memberNo=" + memberNo + ", jibsaName=" + jibsaName + ", isJibsa=" + isJibsa
-				+ ", matchingStatus=" + matchingStatus + ", reviewStatus=" + reviewStatus + "]";
+				+ memberName + ", memberNo=" + memberNo + ", jibsaNo=" + jibsaNo + ", jibsaName=" + jibsaName
+				+ ", isJibsa=" + isJibsa + ", matchingStatus=" + matchingStatus + ", reviewStatus=" + reviewStatus
+				+ "]";
 	}
-
 
 	
 }
