@@ -18,7 +18,9 @@
 		    default,
 		    sysdate,
 		    sysdate,
-		    'N'
+		    'N',
+		    #{license}
+		    
 		)
 			
 	
@@ -68,6 +70,7 @@
 		<result column="PRIMIUM_END_DATE" property="primiumEndDate"/>
 		<result column="PRIMIUM_END_DATE" property="isTrainer"/>
 		<result column="JIBSA_STATUS" property="jibsaStatus"/>
+		<result column="JIBSA_LICENSE" property="license"/>
 	</resultMap>
 	
 	<update id="updateJibsaAvailableHour">
