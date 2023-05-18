@@ -4,8 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap" rel="stylesheet">
 <title>반려동물 등록</title>
 <style>
+* { font-family: 'Noto Sans KR', sans-serif; }
 body {
   overflow-x: hidden;
 }
@@ -88,6 +90,7 @@ body {
     							  	<br>
     							  	
     							  	<input type="text" name="animalName" placeholder="이름을 입력해주세요" style="width: 400px; height: 35px;"/>
+    							  	<input type="checkbox" name="isLeader" value="Y"/> 대표동물로 지정
     							  	<br><br><br>
     							  	
     							  	<p class="sel">2.내 반려동물은</p>

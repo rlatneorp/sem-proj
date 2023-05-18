@@ -19,7 +19,8 @@
 		    sysdate,
 		    sysdate,
 		    'N',
-		    null
+		    #{license}
+		    
 		)
 	</insert>
 	
@@ -65,8 +66,9 @@
 		<result column="IS_PRIMIUM" property="isPrimium"/>
 		<result column="PRIMIUM_PAYMENT_DATE" property="primiumPaymentDate"/>
 		<result column="PRIMIUM_END_DATE" property="primiumEndDate"/>
-		<result column="IS_TRAINER" property="isTrainer"/>
-		<result column="IS_JIBSA" property="jibsaStatus"/>
+		<result column="PRIMIUM_END_DATE" property="isTrainer"/>
+		<result column="JIBSA_STATUS" property="jibsaStatus"/>
+		<result column="JIBSA_LICENSE" property="license"/>
 	</resultMap>
 	
 	<update id="updateJibsaAvailableHour">

@@ -66,7 +66,7 @@
 	<form class="container" style="width: 880px; 
 	max-width: none !important; margin: 0 auto; text-align: left; " 
 	action="${ contextPath }/insertJibsa.js" method="POST" enctype="multipart/form-data">
-	<br/><br/><br/><br/><br/><br/>
+	<br/><br/><br/>
 		<h3>집사 지원서 작성하기</h3>
 		<hr/>
 		<br/>
@@ -93,14 +93,14 @@
 				<input type="text" id="availableArea" name="availableArea" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 주소를 입력해주세요"><br/><br/>
 				
 				<label class ="e title"> 성별</label><br/>
-				<label style="margin-left: 25px;"><input type="radio" name="jibsaGender" value="m">남자</label>
-				<label><input type="radio" id="jibsaGender" name="jibsaGender" value="f">여자</label>
+				<label style="margin-left: 25px;"><input type="radio" name="jibsaGender" value="M">남자</label>
+				<label><input type="radio" id="jibsaGender" name="jibsaGender" value="F">여자</label>
 				<br/><br/>
 				
 				<label class ="e title"> 흡연유무 </label><br/>
 				<span class = "add">거짓기재시 불이익이 있을 수 있습니다.</span><br/>
-				<label style="margin-left: 25px;"><input type="radio" name="isSmoking" value="y">흡연 함</label>
-				<label><input type="radio" id="isSmoking" name="isSmoking" value="n">흡연 안함</label>
+				<label style="margin-left: 25px;"><input type="radio" name="isSmoking" value="Y">흡연 함</label>
+				<label><input type="radio" id="isSmoking" name="isSmoking" value="N">흡연 안함</label>
 			</div>
 			
 			<div class="container">
@@ -118,7 +118,7 @@
 		</div>
 		<br/><br/>
 		
-		<h5>2. 경력사항 및 시급</h5>
+		<h5>2. 경력사항, 자격증 및 시급</h5>
 		
 		<p for="essential" &nbsp; style="padding-left: 22px;"> &nbsp;은 필수입력 항목입니다.</p>
 		
@@ -133,7 +133,17 @@
 			<label class ="e title"> 희망 시급</label><br/>
 			<input type="number" id="expectedSalary" name="expectedSalary" class=" i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224);  font-size: 15px;  font-weight: normal;width:250px; height: 43px;"  placeholder="희망하는 시급을 적어주세요"><br/><br/>
 			
-		
+			<label class ="e title"> 훈련자격증</label><br/>
+			<label style="margin-left: 25px;"><input type="checkbox" name="license" value="훈련사 3급"> 반려견 지도사 / 훈련사 3급</label>
+			<label style="margin-left: 125px;"><input type="checkbox" name="license" value="훈련사 2급"> 반려견 지도사 / 훈련사 2급</label><br>
+			<label style="margin-left: 25px;"><input type="checkbox" name="license" value="훈련사 1급"> 반려견 지도사 / 훈련사 1급</label>
+			<label style="margin-left: 125px;"><input type="checkbox" name="license" value="행동교정사"> 반려동물 관리사 / 행동교정사</label><br>
+			<label style="margin-left: 25px;"><input type="checkbox" name="license" value="KPA 수료증"> KPA 수료증 (CTP, Foundation 등)</label>
+			<label style="margin-left: 75px;"><input type="checkbox" name="directInput" onclick="toggleDirectInput(this)"> 직접입력</label><br>
+			<label style="margin-left: 320px;" for="other-checkbox">
+			    <input type="text" name="license" id="directLicense" style="padding: 40px; margin-left: 23px; margin-top: 10px; border-radius: 5px; border-style: none; box-shadow: 0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width: 284px; height: 43px;" placeholder="이곳에 입력해주세요" size="25" disabled>
+			</label>
+			
 		</div>
 		<br/><br/>
 		
@@ -162,6 +172,14 @@
 	<br/><br/><br/><br/><br/><br/>
 	
 <script>
+	function toggleDirectInput(checkbox) {
+	    const directInputField = document.getElementById("directLicense");
+	    directInputField.disabled = !checkbox.checked;
+	    if (!checkbox.checked) {
+	        directInputField.value = "";
+	    }
+	}
+
 	const input = document.getElementById('formFile');
 	const imgDiv = document.getElementById('img');
 	
