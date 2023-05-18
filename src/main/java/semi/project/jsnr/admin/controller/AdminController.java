@@ -56,6 +56,11 @@ public class AdminController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
 		
 		ArrayList<Member> mList = aService.selectMemberList(pi);
+		for(int i = 0; i < mList.size(); i++) {
+			int mNo = mList.get(i).getMemberNo();
+			int aCount = aService.getAnimalCount(mNo);
+			mList.get(i).setAnimalCount(aCount);
+		}
 		
 		if(mList != null) {
 			model.addAttribute("pi", pi);
@@ -100,7 +105,6 @@ public class AdminController {
 	public String admin_Member_Update(@ModelAttribute Member m,
 									  @RequestParam(value="page", required=false) Integer page,
 									  Model model) {
-		System.out.println(m);
 		int result = aService.updateMember(m);
 		if( result > 0 ) {
 			model.addAttribute("page", page);
@@ -142,12 +146,24 @@ public class AdminController {
 		if(page != null) {
 			currentPage = page;
 		}
-		
 		Jibsa j = aService.selectJibsa(mId);
 
+		String[] sArr = new String[7];
+		String[] eArr = new String[7];
+		for(int i = 0; i < 7; i++) {
+			sArr[i] = (j.getAvailableHour().split(",")[i]).substring(0, 2)
+					 +":"+(j.getAvailableHour().split(",")[i]).substring(2, 4);
+		}
+		for(int i = 0; i < 7; i++) {
+			eArr[i] = (j.getAvailableHour().split(",")[i]).substring(4, 6)
+					+":"+(j.getAvailableHour().split(",")[i]).substring(6, 8);
+		}
+		
 		if(j != null) {
 			model.addAttribute("page", currentPage);
 			model.addAttribute("j", j);
+			model.addAttribute("sArr", sArr);
+			model.addAttribute("eArr", eArr);
 			return "admin_Jibsa_Detail";
 		} else {
 			System.out.println("집사정보 불러오기 실패함");
@@ -466,7 +482,6 @@ public class AdminController {
 		if(mc != null) {
 			model.addAttribute("page", currentPage);
 			model.addAttribute("mc", mc);
-//			model.addAttribute("ex", "12:30");
 			return "admin_Matching_Detail";
 		} else {
 			System.out.println("Matching LIST정보 불러오기 실패함");
@@ -477,19 +492,13 @@ public class AdminController {
 	@PostMapping("admin_Matching_Update.ad")
 	public String admin_Matching_Update(@RequestParam(value="page", required=false) Integer page,
 										@ModelAttribute Matching mc,
-										@RequestParam("startDay") String sD,
-										@RequestParam("startTime") String sT,
-										@RequestParam("endDay") String eD,
-										@RequestParam("endTime") String eT,
 										Model model) {
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
 		}
-		mc.setStartDate(sD+"_"+sT);
-		mc.setEndDate(eD+"_"+eT);
-		
-		System.out.println(mc);
+		System.out.println(mc.getStartDate());
+		System.out.println(mc.getEndDate());
 		
 		int result = aService.updateMatching(mc);
 		if(result > 0) {
@@ -501,11 +510,6 @@ public class AdminController {
 		}
 	}
 	
-//	임시페이지(삭제예정)
-//	@GetMapping("admin.ad")
-//	public String admin() {
-//		return "admin";
-//	}
 	
 		
 

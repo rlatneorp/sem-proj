@@ -91,7 +91,7 @@
 		<result column="AVAILABLE_HOUR" property="availableHour"/>
 		<result column="AVAILABLE_AREA" property="availableArea"/>
 		<result column="MOTIVE" property="motive"/>
-		<result column="EXPECTED_SALARY" property="exptectedSalary"/>
+		<result column="EXPECTED_SALARY" property="expectedSalary"/>
 		<result column="CHAT_ADDRESS" property="chatAddress"/>
 		<result column="IS_PRIMIUM" property="isPrimium"/>
 		<result column="PRIMIUM_PAYMENT_DATE" property="primiumPaymentDate"/>
@@ -112,10 +112,10 @@
 			jibsa_rrn = #{jibsaRrn},
 			is_smoking = #{isSmoking},
 			work_career = #{workCareer},
-<!-- 			available_hour = #{availableHour}, -->
+			available_hour = #{availableHour},
 			available_area = #{availableArea},
  			motive = #{motive},
-			expected_salary = #{exptectedSalary},
+			expected_salary = #{expectedSalary},
 			chat_address = #{chatAddress},
 			is_primium = #{isPrimium},
 			

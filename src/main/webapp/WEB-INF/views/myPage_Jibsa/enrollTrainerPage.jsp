@@ -52,7 +52,7 @@
 		  top: 50%; /* 요소의 상단을 화면의 중앙에 위치시킵니다. */
 		  width: auto;
   		  height: auto; 
-  		  max-height: 500px;
+  		  max-height: 1000px;
   		  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 	}
 	.flex {
@@ -63,17 +63,19 @@
 	input[type=radio]:checked {
 	  background-color: rgb(26, 188, 156);
 	}
-	
-	#finalBtn{font-size:30px; font-weight:bold; border-style: none; border-radius:20px; width: 192px; height:76px; display: inline-block; margin-left: 250px; background: rgb(26, 188, 156); color: white;}
+	#img{
+  	width: 400px; height: 250px; border: 1px solid gray;
+  	}
+	#finalBtn{font-size:30px; font-weight:bold; border-style: none; border-radius:20px; width: 192px; height:76px; display: inline-block; margin-left: 305px; background: rgb(26, 188, 156); color: white;}
 </style>
 </head>
 <body>
 <jsp:include page="../common/top.jsp"/>
 
-	<div class="container" style="width: 780px; 
-	max-width: none !important; 
-	margin: 0 auto; text-align: left; margin-right: 600px;">
-	<br><br><br><br><br><br>
+	<form class="container" style="width: 880px; 
+	max-width: none !important; margin: 0 auto; text-align: left; " 
+	action="${ contextPath }/insertTrainer.js" method="POST" enctype="multipart/form-data">
+	<br/><br/><br/>
 		<h3>훈련사 지원서 작성하기</h3>
 		<hr/>
 		<br/>
@@ -82,55 +84,64 @@
 		<p for="essential" &nbsp; style="padding-left: 22px;"> &nbsp;은 필수입력 항목입니다.</p>
 		
 		<div class="rounded-box flex">
-			<div class="container">
-				<label class ="e title"> 이름</label><br/>
-				<input type="text" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 홍길동" style="font-size: 10px;"><br/><br/><br/>
+			<div class="container" >
+				<label class ="title"> 이름</label><br/>
+				<input type="text" id="memberName" name="memberName" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 홍길동" style="font-size: 10px;"
+						value ="${ loginUser.memberName }" readonly><br/><br/>
 			
-			
-				<label class ="e title"> 주민등록 번호 앞 7자리</label><br/>
+				<label class ="e title">생년월일</label><br/>
 				<span class = "add">만 18세 이상부터 지원할 수 있습니다.</span><br/>
-				<input type="number" class=" i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224);  font-size: 15px;  font-weight: normal;width:120px; height: 43px;"  placeholder=" 생년월일"> <input type="number" class=" i name"  style=" paddig : 40px; margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:120px; height: 43px;" placeholder=" 1자리 ******"><br/><br/>
+				<input type="number" id="jibsaRrn" name="jibsaRrn" class=" i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224);  font-size: 15px;  font-weight: normal;width:120px; height: 43px;"  placeholder=" 생년월일"><br/><br/>
+				
+				<label class ="title">이메일</label><br/>
+				<input type="text" id="memberEmail" name="memberEmail" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 이메일을 입력해주세요"
+						value ="${ loginUser.memberEmail }" readonly><br/><br/>
+				
+				<label class ="e title">방문가능지역</label><br/>
+				<span class = "add">지역을 선택해주세요.</span><br/>
+				<input type="text" id="availableArea" name="availableArea" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 주소를 입력해주세요"><br/><br/>
+				
+				<label class ="e title"> 성별</label><br/>
+				<label style="margin-left: 25px;"><input type="radio" name="jibsaGender" value="m">남자</label>
+				<label><input type="radio" id="jibsaGender" name="jibsaGender" value="f">여자</label>
 				<br/><br/>
 				
-				<label class ="e title"> 거주지 주소</label><br/>
-				<span class = "add">시/군/구까지 입력해주세요.</span><br/>
-				<input type="text" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 주소를 입력해주세요"><br/><br/>
+				<label class ="e title"> 흡연유무 </label><br/>
+				<span class = "add">거짓기재시 불이익이 있을 수 있습니다.</span><br/>
+				<label style="margin-left: 25px;"><input type="radio" name="isSmoking" value="y">흡연 함</label>
+				<label><input type="radio" id="isSmoking" name="isSmoking" value="n">흡연 안함</label>
 			</div>
 			
 			<div class="container">
 				<label class ="e title"> 프로필 사진</label><br/>
-				<button  style="margin-left: 25px; paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" >파일선택</button><br/><br/>
+				<div id="img"></div><br/>			  	
+				<input class="form-control" type="file" accept="image/*" name="file" id="formFile"><br/>
+			  	
+			  	<br/><br/><br/>
 				
-				<label class ="e title"> 성별</label><br/>
-				<label style="margin-left: 25px;"><input type="radio" name="gender" value="male">남자</label>
-				<label><input type="radio" name="gender" value="female">여자</label>
-				<br/><br/>
-				
-				<label class ="e title"> 연락처</label><br/>
+				<label class ="e title"> 연락처 </label><br/>
 				<span class = "add">입력하신 연락처로 합격 여부를 알려드립니다.</span><br/>
-				<input type="number" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 휴대혼 번호를 입력해주세요."><br/><br/>
-				
-				<label class ="e title"> 흡연유무</label><br/>
-				<span class = "add">직업 특성 상 흡연을 하시는 경우 집사 활동이 어려울 수 있습니다.</span><br/>
-				<label style="margin-left: 25px;"><input type="radio" name="gender" value="yes">흡연 함</label>
-				<label><input type="radio" name="gender" value="no">흡연 안함</label>
+				<input type="text" id="memberPhone" name="memberPhone" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 휴대혼 번호를 입력해주세요."
+						value ="${ loginUser.memberPhone }" readonly><br/><br/>
 			</div>
 		</div>
 		<br/><br/>
 		
-		<h5>2. 경력 사항</h5>
+		<h5>2. 경력 사항, 자격증 및 시급</h5>
 		
 		<p for="essential" &nbsp; style="padding-left: 22px;"> &nbsp;은 필수입력 항목입니다.</p>
 		
 		<div class="rounded-box">
-			<label class ="e title"> 진행해본 훈련 횟수</label><br/>
 			
-			<label style="margin-left: 25px;"><input type="checkbox" name="career" value="없음"> 없음</label>
-			<label style="margin-left: 15px;"><input type="checkbox" name="career" value="1_15"> 1회~15회</label>
-			<label style="margin-left: 15px;"><input type="checkbox" name="career" value="15_35"> 15회~35회</label>
-			<label style="margin-left: 15px;"><input type="checkbox" name="career" value="35_50"> 35회~50회</label>
+			<label class ="e title"> 경력사항</label><br/>
+			<textarea id="workCareer" name="workCareer" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 138px;" 
+				placeholder=" 관련 업종 근무 경험, 관련 학과 졸업 등 없는 경우엔 없다고 작성" 
+				rows="5"  style="width: 900px;" ></textarea>
 			<br/><br/>
 			
+			<label class ="e title"> 희망 시급</label><br/>
+			<input type="number" id="expectedSalary" name="expectedSalary" class=" i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224);  font-size: 15px;  font-weight: normal;width:250px; height: 43px;"  placeholder="희망하는 시급을 적어주세요"><br/><br/>
+		
 			<label class ="e title"> 훈련자격증</label><br/>
 			<label style="margin-left: 25px;"><input type="checkbox" name="license" value="3"> 반려견 지도사 / 훈련사 3급</label>
 			<label style="margin-left: 125px;"><input type="checkbox" name="license" value="2"> 반려견 지도사 / 훈련사 2급</label><br>
@@ -141,63 +152,21 @@
 			<label style="margin-left: 320px;" for="other-checkbox">
   				<input type="text" name="other-pet" id="other-pet"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 이곳에 입력해주세요" size="25" >
 			</label>
-			<label class ="e title"> 경력사항</label><br/>
-			<textarea name="career" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 138px;" 
-				placeholder=" 지원한 동기를 적어주세요." 
-				rows="5"  style="width: 600px;" ></textarea>
-			<br/><br/>
-		</div><br><br>
 			
-		<h5>3. 활동 정보</h5>
-		
-		<p for="essential" &nbsp; style="padding-left: 22px;"> &nbsp;은 필수입력 항목입니다.</p>
-		
-		<div class="rounded-box">
-			<label class ="e title"> 훈련 시 이동 수단수</label><br/>
-			<p style="padding-left: 22px;"> &nbsp; 자차 보유자 우대</p>
-			<label style="margin-left: 25px;"><input type="checkbox" name="transfer" value="car"> 자차 이동</label>
-			<label style="margin-left: 240px;"><input type="checkbox" name="transfer" value="bus"> 대중교통 이용</label><br>
-			<label style="margin-left: 25px;"><input type="checkbox" name="transfer" value="cycle"> 자전거 이용</label>
-			<label style="margin-left: 225px;"><input type="checkbox" name="transfer" value="inpt"> 직접입력</label><br>
-			<label style="margin-left: 320px;" for="other-checkbox">
-  				<input type="text" name="other-pet" id="other-pet"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 이곳에 입력해주세요" size="25" >
-			</label>
-			<br/><br/>
-			
-			<label class ="e title"> 활동 가능한 횟수</label><br/>
-			<label style="margin-left: 25px;"><input type="checkbox" name="transfer" value="car"> 주말 포함한 30일 모두 가능</label>
-			<label style="margin-left: 122px;"><input type="checkbox" name="transfer" value="bus"> 평균 20일 이상 가능</label><br>
-			<label style="margin-left: 25px;"><input type="checkbox" name="transfer" value="cycle"> 평균 20 이하 가능</label>
-			<label style="margin-left: 184px;"><input type="checkbox" name="transfer" value="inpt"> 주말만 가능</label><br>
-			<br/><br/>
-			
-			<label class ="e title"> 방문 가능 지역</label><br/>
-			<label style="margin-left: 25px;"><input type="checkbox" name="transfer" value="car"> 서울 지역</label>
-			<label style="margin-left: 240px;"><input type="checkbox" name="transfer" value="bus"> 경기 지역</label><br>
-			<label style="margin-left: 25px;"><input type="checkbox" name="transfer" value="cycle"> 인천 지역</label>
-			<label style="margin-left: 240px;"><input type="checkbox" name="transfer" value="inpt"> 수도권 외 지역</label><br>
-			<label style="margin-left: 320px;" for="other-checkbox">
-  				<input type="text" name="other-pet" id="other-pet"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 이곳에 입력해주세요" size="25" >
-			</label>
-			<br/><br/>
-		
 		</div>
 		<br/><br/>
 		
-		<h5>4. 기타 정보</h5>
+		
+		
+		<h5>3. 기타 정보</h5>
 		
 		<p for="essential" &nbsp; style="padding-left: 22px;"> &nbsp;은 필수입력 항목입니다.</p>
 		
 		<div class="rounded-box">
 			<label class ="e title"> 지원 동기</label><br/>
-			<textarea name="career" class="i name"  style="paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 138px;" 
+			<textarea id = "motive" name="motive" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 138px;" 
 				placeholder=" 지원한 동기를 적어주세요." 
-				rows="5"></textarea>
-			<br/><br/>
-			<label class ="e title"> 희망 시급</label><br/>
-			<textarea name="career" class="i name"  style="paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:250px; height: 50px;" 
-				placeholder=" 희망하는 시급을 적어주세요." 
-				rows="5"></textarea>
+				rows="5"  style="width: 600px;" ></textarea>
 			<br/><br/>
 			
 			<label class ="e title"> 동의사항</label><br/>
@@ -207,12 +176,33 @@
 			
 			<br/>
 		</div>
-		<br><br>
-		<button type="button" id="finalBtn">최종 제출</button>
-		<br><br><br>
-	</div>
+		<br/><br/>
+		<button type="submit" id="finalBtn"  >최종 제출</button>
+		<br/><br/><br/>
+	</form>
 	<br><br><br><br><br><br>
+<script>
+	const input = document.getElementById('formFile');
+	const imgDiv = document.getElementById('img');
 	
+	input.addEventListener('change', function() {
+	  const file = this.files[0];
+	  if (!file.type.startsWith('image/')){ 
+	    alert('이미지 파일을 선택하세요.'); 
+	    return;
+	  }
+	  const reader = new FileReader();
+	  reader.onload = function() {
+	    const img = new Image();
+	    img.style.width = '400px';
+	    img.style.height = '247px';
+	    img.src = reader.result;
+	    imgDiv.innerHTML = '';
+	    imgDiv.appendChild(img);
+	  }
+	  reader.readAsDataURL(file);  
+	});	
+</script>
 <jsp:include page="../common/bottom.jsp"/>
 
 </body>

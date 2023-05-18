@@ -25,9 +25,6 @@
 	            scrollbar: true
 	        });
 		});
-		
-		
-		
 	</script>
 	
 </head>
@@ -157,6 +154,8 @@
 			
 		
 // 		근무 가능 시간 관련 데이터
+
+//		페이지 열릴 때 데이터		
 		window.onload = () =>{
 			const workDays = document.getElementsByName('workDay');
 			const startTimes = document.getElementsByName('startTime');

@@ -44,12 +44,14 @@
 				            <label class="col-2 mb-2">집사</label><b class="col-10">${mc.jibsaName}</b><br>
 				            <label class="col-2 mb-2">매칭동물</label><b class="col-10">${mc.animalName}(${r.animalKind})</b><br>
 				            
-				            <label class="col-2 mb-2">매칭시작</label><input type="date" name="startDay" class="col-3 date">
-				            	<input class="timepicker text-center col-2 d-flex rounded card time" name="startTime">
+				            <input type="hidden" name="startDate">
+				            <label class="col-2 mb-2">매칭시작</label><input type="date" name="startDay" class="col-3 date" value="${fn:substring(mc.startDate, 0, 10) }">
+				            	<input class="timepicker text-center col-2 d-flex rounded card time" name="startTime" value="${fn:substring(mc.startDate, 11, 13)}:${fn:substring(mc.startDate, 13, 15)}">
 				            	<div class="col-5"></div>
 				            	
-				            <label class="col-2 mb-2">매칭시작</label><input type="date" name="endDay" class="col-3 date">
-				            	<input class="timepicker text-center col-2 d-flex rounded card time" name="endTime">
+				            <input type="hidden" name="endDate">
+				            <label class="col-2 mb-2">매칭종료</label><input type="date" name="endDay" class="col-3 date" value="${fn:substring(mc.endDate, 0, 10) }">
+				            	<input class="timepicker text-center col-2 d-flex rounded card time" name="endTime" value="${fn:substring(mc.endDate, 11, 13)}:${fn:substring(mc.endDate, 13, 15)}">
 				            	<div class="col-5"></div>
 				            
 				            <label class="col-2 mb-2">매칭장소</label><input type="text" name="matchingPlace" class="col-5" value="${mc.matchingPlace}"><div class="col-5"></div>
@@ -63,7 +65,7 @@
 						</div>
 						
 						<div class="container text-center">
-							<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">수정하기</button>
+							<button type="button" onclick="inputTime()" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">수정하기</button>
 							<button type="button" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;" onclick="history.back()">뒤로가기</button>
 <%-- 							<a href="${contextPath}/admin.ad">임시링크</a> --%>
 						</div>						
@@ -79,20 +81,18 @@
 	
 	<script>
 		window.onload = () =>{
-			document.getElementsByClassName('date')[0].value = "${fn:substring(mc.startDate, 0, 10) }";
-			document.getElementsByClassName('time')[0].value = "${fn:substring(mc.startDate, 11, 16) }";
-			document.getElementsByClassName('date')[1].value = "${fn:substring(mc.endDate, 0, 10) }";
-			document.getElementsByClassName('time')[1].value = "${fn:substring(mc.endDate, 11, 16) }";
+// 			document.getElementsByClassName('date')[0].value = "${fn:substring(mc.startDate, 0, 10) }";
+// 			document.getElementsByClassName('time')[0].value = "${fn:substring(mc.startDate, 11, 16) }";
+// 			document.getElementsByClassName('date')[1].value = "${fn:substring(mc.endDate, 0, 10) }";
+// 			document.getElementsByClassName('time')[1].value = "${fn:substring(mc.endDate, 11, 16) }";
 			
 			const btns = document.getElementById('divBox').querySelectorAll('button');
 			for(const i in btns){
 				btns[i].addEventListener('click', function(){
 					if(i%2 == 0){
-						console.log(btns[i].innerText);
 						this.previousElementSibling.value = btns[i].innerText;
 						this.previousElementSibling.previousElementSibling.innerText = btns[i].innerText;
 					}else{
-						console.log(btns[i].innerText);
 						this.previousElementSibling.previousElementSibling.value = btns[i].innerText;
 						this.previousElementSibling.previousElementSibling.previousElementSibling.innerText = btns[i].innerText;
 					}
@@ -112,6 +112,24 @@
 		    dropdown: true,
 		    scrollbar: true
 		});
+		
+		function inputTime(){
+// 			시작시간 대입 (startDate)
+			const startDay = document.getElementsByName('startDay')[0].value;
+			const sDay = new Date(document.getElementsByName('startDay')[0].value).getDay();
+			const startTime = document.getElementsByName('startTime')[0].value.substring(0,2)+document.getElementsByName('startTime')[0].value.substring(3,5);
+			
+			document.getElementsByName('startDate')[0].value = startDay + sDay + startTime; 
+			
+// 			종료시간 대입 (endDate)
+			const endDay = document.getElementsByName('endDay')[0].value;
+			const eDay = new Date(document.getElementsByName('endDay')[0].value).getDay();
+			const endTime = document.getElementsByName('endTime')[0].value.substring(0,2)+document.getElementsByName('endTime')[0].value.substring(3,5);
+			
+			document.getElementsByName('endDate')[0].value = startDay + sDay + startTime; 
+			
+			document.getElementsByTagName('form')[0].submit();
+		}
 		
 	</script>
 	

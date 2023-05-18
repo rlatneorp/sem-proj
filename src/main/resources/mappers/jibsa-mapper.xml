@@ -10,7 +10,7 @@
 		    #{jibsaRrn},
 		    #{isSmoking},
 		    #{workCareer},
-		    systimestamp,
+		    '00000000,00000000,00000000,00000000,00000000,00000000,00000000',
 		    #{availableArea},
 		    #{motive},
 		    #{expectedSalary},
@@ -18,10 +18,10 @@
 		    default,
 		    sysdate,
 		    sysdate,
-		    'N'
+		    'N',
+		    #{license}
+		    
 		)
-			
-	
 	</insert>
 	
 	<update id="updateMemberInfo">
@@ -68,6 +68,7 @@
 		<result column="PRIMIUM_END_DATE" property="primiumEndDate"/>
 		<result column="PRIMIUM_END_DATE" property="isTrainer"/>
 		<result column="JIBSA_STATUS" property="jibsaStatus"/>
+		<result column="JIBSA_LICENSE" property="license"/>
 	</resultMap>
 	
 	<update id="updateJibsaAvailableHour">

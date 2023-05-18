@@ -9,7 +9,7 @@
 <style>
 	.table thead tr th{background: rgba(224, 224, 224, 0.51);}
 	.tablediv{
-		width: 800px;
+		width: 900px;
 		text-align: center;
 		display: block;
 		margin: 0 auto;
@@ -87,9 +87,9 @@
 									    			</a>
 								    			</td>
 									    		<td>${mc.jibsaName}</td>
-									    		<td>${mc.startDate}</td>
-									    		<td>${mc.endDate}</td>
-									    		<td>${mc.matchingPlace}</td>
+									    		<td>${fn:substring(mc.startDate,0,10)} ${fn:substring(mc.startDate,11,13)}:${fn:substring(mc.startDate,13,15)}</td>
+									    		<td>${fn:substring(mc.endDate,0,10)} ${fn:substring(mc.endDate,11,13)}:${fn:substring(mc.endDate,13,15)}</td>
+									    		<td>${fn:substring(mc.matchingPlace,0,20)}</td>
 									    		<td>${mc.matchingStatus}</td>
 									    		<td><input type="checkbox" name="delete"></td>
 									    	</tr>

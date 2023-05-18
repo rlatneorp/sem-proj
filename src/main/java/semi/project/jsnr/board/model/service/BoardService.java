@@ -14,7 +14,7 @@ public interface BoardService {
 	
 	int getListCount(int i);
 
-	ArrayList<Board> reviewBoardList(PageInfo pi, int i);
+	ArrayList<Board> reviewBoardList(PageInfo pi);
 
 	int getJibsaListCount();
 

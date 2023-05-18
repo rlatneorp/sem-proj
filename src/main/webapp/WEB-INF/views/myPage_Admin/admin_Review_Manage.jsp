@@ -70,7 +70,6 @@
 								    		<th>글 번호</th>
 								    		<th>내용</th>
 								    		<th>작성자</th>
-								    		<th>작성일</th>
 								    		<th>조회수</th>
 								    		<th>활성화여부</th>
 								    		<th>선택</th>
@@ -81,10 +80,9 @@
 									    	<tr>
 									    		<td>${r.matchingNo}</td>
 									    		<td>
-									    			<a href="${contextPath}/admin_Review_Detail.ad?page=${pi.currentPage}&rId=${r.matchingNo}">${fn:substring(r.reviewContent, 0, 20)}</a>
+									    			<a href="${contextPath}/admin_Review_Detail.ad?page=${pi.currentPage}&rId=${r.matchingNo}">${fn:substring(r.reviewContent, 0, 30)}</a>
 								    			</td>
 									    		<td>${r.memberName}</td>
-									    		<td>${r.startDate}</td>
 									    		<td>${r.reviewCount}</td>
 									    		<td>${r.reviewStatus}</td>
 									    		<td><input type="checkbox" name="delete"></td>

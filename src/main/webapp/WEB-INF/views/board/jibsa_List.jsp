@@ -55,7 +55,7 @@
 			    			</div>
 			    			<div class="row px-0 text-start">
 				    			<span class="col-4 ps-3">시급</span>
-				    			<span class="col-8 px-0">${ l.exptectedSalary }</span>
+				    			<span class="col-8 px-0">${ l.expectedSalary }</span>
 			    			</div>
 <!-- 			    			보류 -->
 <!-- 			    			<div class="row px-0 text-start"> -->

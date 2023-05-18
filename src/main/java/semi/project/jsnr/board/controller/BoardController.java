@@ -48,7 +48,7 @@ public class BoardController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 6);
 		
-		ArrayList<Board> list = bService.reviewBoardList(pi, 1);
+		ArrayList<Board> list = bService.reviewBoardList(pi);
 		
 		if(list != null) {
 			model.addAttribute("pi", pi);

@@ -45,7 +45,7 @@
 				        <div class="form-group mb-5">
 				            <label>답변내용</label>
 				            <label>
-					            <c:if test="${answerDate ne ''}">&nbsp&nbsp${q.answerDate}</c:if>
+					            <c:if test="${answerDate ne null}">&nbsp&nbsp${q.answerDate}</c:if>
 				            </label><br><br>
 				            <textarea class="form-control" name="qnaAnswer" rows="10" style="resize: none">${q.qnaAnswer}</textarea>
 				        </div>

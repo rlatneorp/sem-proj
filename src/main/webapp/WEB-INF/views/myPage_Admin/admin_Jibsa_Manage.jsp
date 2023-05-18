@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +11,7 @@
 <style>
 	.table thead tr th{background: rgba(224, 224, 224, 0.51);}
 	.tablediv{
-		width: 800px;
+		width: 1000px;
 		text-align: center;
 		display: block;
 		margin: 0 auto;
@@ -64,7 +66,11 @@
 							    			<c:if test="${j.motive eq null}"></c:if>
 							    			<c:if test="${j.motive ne null}">제출완료</c:if>
 							    		</td>
-							    		<td>${j.exptectedSalary}</td>
+							    		<td>
+											<c:if test="${j.expectedSalary gt 999 }">
+												<fmt:formatNumber type="number" pattern="###,###,###" value="${j.expectedSalary}"/>원
+											</c:if>
+										</td>
 							    		<td>
 							    			<c:if test="${j.isPrimium eq 'Y'}">가입</c:if>
 							    			<c:if test="${j.isPrimium eq 'Y'}"></c:if>

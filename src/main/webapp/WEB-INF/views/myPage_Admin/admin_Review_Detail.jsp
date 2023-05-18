@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,8 +32,8 @@
 				            <label class="col-2 mb-2">매칭번호</label><b class="col-10">${r.matchingNo}</b>
 				            <label class="col-2 mb-2">작성자</label><b class="col-10">${r.memberName}</b><br>
 				            <label class="col-2 mb-2">매칭동물</label><b class="col-10">${r.animalName}(${r.animalKind})</b><br>
-				            <label class="col-2 mb-2">매칭시작</label><b class="col-10">${r.startDate}</b><br>
-				            <label class="col-2 mb-2">매칭종료</label><b class="col-10">${r.endDate}</b><br>
+				            <label class="col-2 mb-2">매칭시작</label><b class="col-10">${fn:substring(r.startDate,0,10)} ${fn:substring(r.startDate,11,13)}:${fn:substring(r.startDate,13,15)}</b><br>
+				            <label class="col-2 mb-2">매칭종료</label><b class="col-10">${fn:substring(r.endDate,0,10)} ${fn:substring(r.endDate,11,13)}:${fn:substring(r.endDate,13,15)}</b><br>
 				            <label class="col-2 mb-2">리뷰평점</label><b class="col-10">${r.reviewRating}</b><br>
 				            <label class="col-2 mb-2">조회수</label><b class="col-10">${r.reviewCount}</b><br>
 				        </div>

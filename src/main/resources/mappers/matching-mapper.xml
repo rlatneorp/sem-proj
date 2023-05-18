@@ -4,7 +4,7 @@
 	<select id="selectMatchingResult" resultMap="jibsaProfileResultSet">
 		select *
 		from jibsa j
- 			 join jibsa_Profile jp using(member_no)
+ 			 left join jibsa_Profile jp using(member_no)
 		where jibsa_gender = #{wantJibsaGender}
 			  and j.available_area like '%${wantMatchingPlace}%'
 	</select>
@@ -16,7 +16,7 @@
 		<result column="JIBSA_AVG_RATING" property="jibsaAvgRating"/>
 		<result column="AVAILABLE_HOUR" property="availableHour"/>
 		<result column="AVAILABLE_AREA" property="availableArea"/>
-		<result column="EXPECTED_SALARY" property="exptectedSalary"/>
+		<result column="EXPECTED_SALARY" property="expectedSalary"/>
 	</resultMap>
 	
 	<insert id="insertMatching">
@@ -46,5 +46,34 @@
 		<result column="IMAGE_LEVEL" property="imageLevel" />
 	</resultMap>
 	
-		
+	<select id="selectJibsa" resultMap="jibsaResultSet">
+		select *
+		from jibsa
+			 join member using(member_no)
+		where member_no = #{jNo}
+	</select>
+	<resultMap type="Jibsa" id="jibsaResultSet">
+		<id column="MEMBER_NO" property="memberNo"/>
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="JIBSA_GENDER" property="jibsaGender"/>
+		<result column="JIBSA_RRN" property="jibsaRrn"/>
+		<result column="IS_SMOKING" property="isSmoking"/>
+		<result column="WORK_CAREER" property="workCareer"/>
+		<result column="AVAILABLE_HOUR" property="availableHour"/>
+		<result column="AVAILABLE_AREA" property="availableArea"/>
+		<result column="MOTIVE" property="motive"/>
+		<result column="EXPECTED_SALARY" property="expectedSalary"/>
+		<result column="CHAT_ADDRESS" property="chatAddress"/>
+		<result column="IS_PRIMIUM" property="isPrimium"/>
+		<result column="PRIMIUM_PAYMENT_DATE" property="primiumPaymentDate"/>
+		<result column="PRIMIUM_END_DATE" property="primiumEndDate"/>
+		<result column="IS_TRAINER" property="isTrainer"/>
+		<result column="IS_JIBSA" property="jibsaStatus"/>
+	</resultMap>
+	
+	<select id="selectAnimal" resultMap="animalResultSet">
+		select *
+		from animal
+		where animal_no = #{aNo}
+	</select>
 </mapper>

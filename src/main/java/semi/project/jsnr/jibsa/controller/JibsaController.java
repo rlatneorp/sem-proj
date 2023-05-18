@@ -128,8 +128,8 @@ public class JibsaController {
 		return returnArr;
 	}
 	
-	@RequestMapping("jibsaMain.js")
-	public String jibsaMain() {
+	@RequestMapping("jibsa_Main.js")
+	public String jibsa_Main() {
 		return "jibsa_Main";
 	}
 	
@@ -151,10 +151,15 @@ public class JibsaController {
 					+":"+(j.getAvailableHour().split(",")[i]).substring(6, 8);
 		}
 		
-		model.addAttribute("j", j);
-		model.addAttribute("sArr", sArr);
-		model.addAttribute("eArr", eArr);
-		return "jibsa_WorkTime";
+		if(j != null) {
+			model.addAttribute("j", j);
+			model.addAttribute("sArr", sArr);
+			model.addAttribute("eArr", eArr);
+			return "jibsa_WorkTime";
+		}else {
+			System.out.println("집사workTime 불러오기 실패");
+			return "";
+		}
 	}
 	
 	@PostMapping("jibsa_WorkTime_Update.js")
