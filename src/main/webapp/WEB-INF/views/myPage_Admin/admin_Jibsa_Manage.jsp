@@ -64,7 +64,7 @@
 							    			<c:if test="${j.motive eq null}"></c:if>
 							    			<c:if test="${j.motive ne null}">제출완료</c:if>
 							    		</td>
-							    		<td>${j.exptectedSalary}</td>
+							    		<td>${j.expectedSalary}</td>
 							    		<td>
 							    			<c:if test="${j.isPrimium eq 'Y'}">가입</c:if>
 							    			<c:if test="${j.isPrimium eq 'Y'}"></c:if>

@@ -129,8 +129,8 @@ public class JibsaController {
 		return returnArr;
 	}
 	
-	@RequestMapping("jibsaMain.js")
-	public String jibsaMain() {
+	@RequestMapping("jibsa_Main.js")
+	public String jibsa_Main() {
 		return "jibsa_Main";
 	}
 	

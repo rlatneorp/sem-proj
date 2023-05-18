@@ -49,9 +49,9 @@ public class MatchingController {
 			
 		
 			for(JibsaProfile j: orgJpList) {
-				int[] arr = new int[7];
+				String[] arr = new String[7];
 				for(int i = 0; i < 7; i++) {
-					arr[i] = Integer.parseInt(j.getAvailableHour().split(",")[i]);
+					arr[i] = j.getAvailableHour().split(",")[i];
 				}
 				j.setAvailableHourArr(arr);
 			}
@@ -64,23 +64,20 @@ public class MatchingController {
 			int endTime = Integer.parseInt(mc.getEndDate().substring(11));
 			int endDay = Integer.parseInt(mc.getEndDate().substring(10,11));
 			
-	//		int jStartTime =  (int)Math.floor(  Double.parseDouble(  jpList.get(0).getAvailableHourArr()[startDay]+""  )*0.0001  );
 			
 			for(JibsaProfile j: orgJpList) {
 	//													┌ String -> Double			┌ int -> String				 ┌뒤의 4자리를 버리기 위함
-				int jStartTime =  (int)Math.floor(  Double.parseDouble(j.getAvailableHourArr()[startDay]+""  )*0.0001  );
+				int jStartTime =  (int)Math.floor(  Double.parseDouble(j.getAvailableHourArr()[startDay]  )*0.0001  );
 				int jEndTime = 0;
 				if(jStartTime <= startTime) {
-	//													┌ String -> Double			┌ int -> String				 ┌뒤의 4자리를 버리기 위함
-//					int jEndTime =  (int)Math.floor(  Double.parseDouble(j.getAvailableHourArr()[endDay]+""  )*0.0001  );
 					
-					int endD = j.getAvailableHourArr()[endDay];
+					int endD = Integer.parseInt(j.getAvailableHourArr()[endDay]);
 					
 					if(endD == 0) {
 						jEndTime = 0;
 					}else if(endD < 10000 ) {
-						jEndTime = Integer.parseInt((j.getAvailableHourArr()[endDay]+"").substring(0, 4)); 
-					}else {
+						jEndTime = Integer.parseInt((j.getAvailableHourArr()[endDay]+"").substring(0, 4));
+					}else{
 						jEndTime = Integer.parseInt((j.getAvailableHourArr()[endDay]+"").substring(4, 8));
 					}
 					

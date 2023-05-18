@@ -16,7 +16,7 @@
 		<result column="JIBSA_AVG_RATING" property="jibsaAvgRating"/>
 		<result column="AVAILABLE_HOUR" property="availableHour"/>
 		<result column="AVAILABLE_AREA" property="availableArea"/>
-		<result column="EXPECTED_SALARY" property="exptectedSalary"/>
+		<result column="EXPECTED_SALARY" property="expectedSalary"/>
 	</resultMap>
 	
 	<insert id="insertMatching">

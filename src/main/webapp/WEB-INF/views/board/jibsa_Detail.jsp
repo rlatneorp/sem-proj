@@ -34,7 +34,7 @@ body {font-family: 'Noto Sans KR', sans-serif;}
 				<p class="col-3">근무가능시간</p><p class="col-9">${jibsa.availableHour }</p>
 <%-- 				<p class="col-3">근무가능횟수</p><p class="col-9">${jibsa.availableTime }</p> --%>
 				<p class="col-3">근무가능지역</p><p class="col-9">${jibsa.availableArea }</p>
-				<p class="col-3">시급</p><p class="col-9">${jibsa.exptectedSalary }원</p>
+				<p class="col-3">시급</p><p class="col-9">${jibsa.expectedSalary }원</p>
 				
 			</div>
 		</div>

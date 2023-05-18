@@ -52,7 +52,7 @@
 					
 					<p class="col-4">희망시급</p>
 					<div class="col-8 px-0">
-						<input type="number" name="exptectedSalary" value="${j.exptectedSalary}">
+						<input type="number" name="expectedSalary" value="${j.expectedSalary}">
 					</div>
 					
 					<p class="col-4">오픈카톡방</p>

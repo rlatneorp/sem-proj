@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 
@@ -11,64 +12,12 @@
 <title>검색 결과</title>
 
 <style>
-	.profile {
-	  display: flex;
-	  align-items: center;
-	  justify-content: space-between;
-	  position: relative;
-	}
-	
-	.profile img {
-	  width: 100px;
-	  height: 100px;
-	  object-fit: cover;
-	  margin-right: 20px;
-	}
-	
-	.profile h2 {
-	  font-size: 1.5rem;
-	  font-weight: bold;
-	  margin-bottom: 0; /* margin-bottom 제거 */
-	}
-	
-	.profile p {
-	  font-size: 1rem;
-	  margin-bottom: 10px;
-	}
-	
-	.profile .info {
-	  display: flex;
-	  flex-direction: column;
-	  justify-content: center;
-	  position: absolute;
-	  left: 120px;
-	  top: 0;
-	  bottom: 0;
-	  margin-left: 30px;
-	}
-	
-	.profile .button {
-	  background-color: rgb(26, 188, 156);
-	  color: white;
-	  border: none;
-	  border-radius: 20px;
-	  font-size: 1rem;
-	  padding: 10px 20px;
-	  position: absolute;
-	  right: 0; /* 버튼 오른쪽에 위치시키기 */
-	  bottom: 0;
-	}
 
-	
-	.row.parent {
- 		 padding: 10px;
-	}
-	.row {
+	.profile {
 			border: 0.5px solid rgb(26, 188, 156);
-			padding: 40px;
-			margin: 30px;
 			border-radius: 30px;
 	}
+	
 	button {
 	  background-color: rgb(26, 188, 156);
 	  color: white;
@@ -102,28 +51,91 @@
 	
 	<div class="container text-left">
 	
-		<c:forEach items="${jpList}" var="j">
+		<c:forEach items="${jpList}" var="jp">
 		<c:set value="${mc}" var="mc" scope="session"/>
-		  <div class="row">
-		    <div class="profile">
-			  <img src="${contextPath}/resources/image/logo.png">
-			  <div class="info">
-			    <h2>${j.jibsaName}</h2>
-			    <p>${j.profileTitle}<br>
-			    	나이 : 아직모름 <br>
-			    	지원 동기 : 추가해야함<br>
-			    	평점 : ${j.jibsaAvgRating}
-			    </p>
-			  </div>
-			  
-			  <button onclick="location.href='${contextPath}/matching_Success.mc?jNo=${j.memberNo}'" class="shadow m-bg-color rounded-2 border-0 fs-7 fw-bold text-white me-2" style="width: 100px; height: 40px;">매칭하기</button>
+		  <div class="row mb-5">
+		    <div class="profile row py-5 px-5">
+		    	<div class="col-3">
+					<img src="${contextPath}/resources/image/logo.png" class="w-100">
+		    	</div>
+				<div class="info col-3">
+					<h4>${jp.jibsaName}</h4>
+					<p>${jp.profileTitle}<br>
+						나이 : 아직모름 <br>
+						지원 동기 : 추가해야함<br>
+						평점 : ${jp.jibsaAvgRating}
+					</p>
+				</div>
+				<div class="col-3 row workTimeBox">
+					<h4 class="col-12">근무 가능시간</h4>
+					<p class="col-4 my-0">월요일</p><c:set var="t" value="${jp.availableHourArr[1]}"/>
+					<c:if test="${t eq '00000000' }">
+						<span class="col-8">휴무</span>
+					</c:if>
+					<c:if test="${t ne '00000000' }">
+						<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
+					</c:if>
+
+					<p class="col-4 my-0">화요일</p><c:set var="t" value="${jp.availableHourArr[2]}"/>
+					<c:if test="${t eq '00000000' }">
+						<span class="col-8">휴무</span>
+					</c:if>
+					<c:if test="${t ne '00000000' }">
+						<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
+					</c:if>
+					
+					<p class="col-4 my-0">수요일</p><c:set var="t" value="${jp.availableHourArr[3]}"/>
+					<c:if test="${t eq '00000000' }">
+						<span class="col-8">휴무</span>
+					</c:if>
+					<c:if test="${t ne '00000000' }">
+						<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
+					</c:if>
+
+					<p class="col-4 my-0">목요일</p><c:set var="t" value="${jp.availableHourArr[4]}"/>
+					<c:if test="${t eq '00000000' }">
+						<span class="col-8">휴무</span>
+					</c:if>
+					<c:if test="${t ne '00000000' }">
+						<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
+					</c:if>
+
+					<p class="col-4 my-0">금요일</p><c:set var="t" value="${jp.availableHourArr[5]}"/>
+					<c:if test="${t eq '00000000' }">
+						<span class="col-8">휴무</span>
+					</c:if>
+					<c:if test="${t ne '00000000' }">
+						<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
+					</c:if>
+
+					<p class="col-4 my-0">토요일</p><c:set var="t" value="${jp.availableHourArr[6]}"/>
+					<c:if test="${t eq '00000000' }">
+						<span class="col-8">휴무</span>
+					</c:if>
+					<c:if test="${t ne '00000000' }">
+						<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
+					</c:if>
+
+					<p class="col-4 my-0">일요일</p><c:set var="t" value="${jp.availableHourArr[0]}"/>
+					<c:if test="${t eq '00000000' }">
+						<span class="col-8">휴무</span>
+					</c:if>
+					<c:if test="${t ne '00000000' }">
+						<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
+					</c:if>
+
+				</div>
+				<div class="col-1"></div>
+				<div class="col-2 d-flex justify-content-end align-items-center">
+					<button onclick="location.href='${contextPath}/matching_Success.mc?jNo=${j.memberNo}'" class="shadow m-bg-color rounded-2 border-0 fs-7 fw-bold text-white me-2" style="width: 100px; height: 40px;">매칭하기</button>
+				</div>
 			</div>
 		  </div>
 		</c:forEach>
 	
 		<div class="container text-center">
 			<br><br>
-			<h4>마음에 드는 집사가 없다면${mc}</h4>
+			<h4>마음에 드는 집사가 없다면</h4>
 			<br>
 			
 			<button onclick="location.href='${contextPath}/matching_Main.mc'" class="shadow m-bg-color rounded-2 border-0 fs-7 fw-bold text-white me-2" style="width: 120px; height: 40px;">다시 찾기</button>
@@ -131,6 +143,20 @@
 		
 		</div>
 	</div>
+	<script>
+		window.onload = () =>{
+			const wTBs = document.getElementsByClassName('workTimeBox');
+			for(const wTB of wTBs){
+				const spans = wTB.querySelectorAll('span')
+				for(const i in spans){
+					if(spans[i].innerText == "00:00~00:00"){
+						spans[i].innerText = "휴무";
+					}
+				}
+				
+			}
+		}
 	
+	</script>
 </body>
 </html>

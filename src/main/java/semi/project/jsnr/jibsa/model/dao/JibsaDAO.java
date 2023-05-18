@@ -35,7 +35,7 @@ public class JibsaDAO {
 	}
 
 	public int updateJibsaAvailableHour(SqlSessionTemplate sqlSession, Jibsa j) {
-		return 0;
+		return sqlSession.update("jibsaMapper.updateJibsaAvailableHour", j);
 	}
 
 }
