@@ -241,7 +241,7 @@ public class MemberController {
 	}
 	
 	
-	@PostMapping("enrollMember.do")
+	@RequestMapping("enrollMember.do")
 	public String enrollMember(@ModelAttribute Member m, HttpSession session) {
 		
 		String encPwd = bcrypt.encode(m.getMemberPwd());
@@ -249,8 +249,6 @@ public class MemberController {
 		
 		int result = mService.enrollMember(m);
 		if(result>0) {
-			// 회원가입 성공 시 로그인 정보를 세션에 저장
-	        session.setAttribute("loginUser", m.getMemberId());
 			return "redirect:home.do";
 		} else {
 			throw new MemberException("회원가입 실패");

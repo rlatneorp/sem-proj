@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -143,9 +144,13 @@ public class HomeController {
 				String setfrom = "jibsanara5@gmail.com"; // 발신자 이메일 주소
 				String tomail = memberEmail;
 				String title = "[집사나라] 비밀번호 변경 인증 이메일입니다.";  // 메일 제목
-				String content = System.getProperty("line.separator") + "안녕하세요 회원님" + // 메일 내용
-								 System.getProperty("line.separator") + "집사나라 인증번호는 " +
-								 num + " 입니다." + System.getProperty("line.separator");
+				String content = "<div style='margin:100px; text-align: center;'><h1>" + "안녕하세요" + "</h1>" +
+								 "<h1>집사나라 입니다</h1>" + "<br><p>" + 
+								 "아래 코드를 비밀번호 변경 창으로 돌아가 입력해주세요" + "</p><br><p>" +
+								 "감사합니다!" + "</p><br>" +
+								 "<div align='center' style='border:1px solid black; font-family:verdana';>" +
+								 "<h3 style='color:blue;'>" + "비밀번호 변경 인증 코드입니다." + "</h3><div style='font-size:130%'>" +
+								 "CODE : " + "<strong>" + num + "</strong><div><br/></div></div>";
 				// System.getProperty : 개행 문자를 반환해주는 메소드
 				// 개행 문자 : 줄바꿈 문자 신기쓰
 				
@@ -158,7 +163,7 @@ public class HomeController {
 					messageHelper.setFrom(setfrom);
 					messageHelper.setTo(tomail);
 					messageHelper.setSubject(title);
-					messageHelper.setText(content);
+					messageHelper.setText(content, true); // true : html코드적용
 					// 발신자, 수신자, 제목, 내용 설정
 					
 					mailSender.send(message); // 메일 보내기
@@ -215,5 +220,60 @@ public class HomeController {
 			return "enroll/pwd_ReSetting";
 		}
 	}
+	
+	@RequestMapping("enrollAuth.do")
+	@ResponseBody
+	public String enrollAuth(@RequestParam("memberEmail") String memberEmail, HttpSession session) {
+		if(memberEmail != null) {
+			Random r = new Random();
+			int num = r.nextInt(999999);
+			
+			String setfrom = "jibsanara5@gmail.com";
+			String tomail = memberEmail;
+			String title = "[집사나라] 회원 가입 인증 이메일입니다.";
+			String content = "<div style='margin:100px; text-align: center;'><h1>" + "안녕하세요" + "</h1>" +
+					 "<h1>집사나라 입니다</h1>" + "<br><p>" + 
+					 "아래 코드를 회원가입 창으로 돌아가 입력해주세요" + "</p><br><p>" +
+					 "집사나라에 오신걸 환영합니다!" + "</p><br>" +
+					 "<div align='center' style='border:1px solid black; font-family:verdana;'>" +
+					 "<h3 style='color:blue;'>" + "회원가입 인증 코드입니다." + "</h3><div style='font-size:130%'>" +
+					 "CODE : " + "<strong>" + num + "</strong></div><br/></div></div>";
+			
+			try {
+				MimeMessage message = mailSender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
+				
+				messageHelper.setFrom(setfrom);
+				messageHelper.setTo(tomail);
+				messageHelper.setSubject(title);
+				messageHelper.setText(content, true);
+				
+				mailSender.send(message);
+			} catch (MessagingException e) {
+				System.out.println(e.getMessage());
+			}
+			return Integer.toString(num); // 인증번호를 문자열로 변환해서 리턴하기
+		} else {
+			return "no";
+		}
+	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
