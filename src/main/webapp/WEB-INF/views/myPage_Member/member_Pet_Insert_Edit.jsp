@@ -10,7 +10,7 @@
 body {
   overflow-x: hidden;
 }
-  label{cursor: pointer;}
+  label{cursor: pointer;
   }
   #h3{margin-right: 300px;}
   .insert{
@@ -102,11 +102,13 @@ body {
 					      				등록된 사진이 없습니다.<br><br>
 					      			</c:if>
     							  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile"><br>
-    							  	현재 등록된 사진 : <c:if test="${ !empty image.originalName }">${ image.originalName }</c:if><c:if test="${ empty image.originalName }">없음</c:if>
+    							  	현재 등록된 사진 : <c:if test="${ !empty image.originalName }"><a href="${ contextPath }/resources/uploadFiles/${ image.renameName }" download="${ image.originalName }">${ image.originalName }</a></c:if>
+    							  				  <c:if test="${ empty image.originalName }">없음</c:if>
     							  	<button type="button" class="btn btn-outline-dark btn-sm deleteAttm" id="delete-${ image.renameName }/${ image.imageLevel }">삭제</button>
 									<input type="hidden" name='deleteAttm' value='none'><br><br>
     							  	
     							  	<input type="text" name="animalName" value="${ animal.animalName }" style="width: 400px; height: 35px;"/>
+    							  	<input type="checkbox" name="isLeader" value="Y"/> 대표동물로 지정
     							  	<br><br><br>
     							  	
     							  	<p class="sel">2. ${ animal.animalName }은/는</p>

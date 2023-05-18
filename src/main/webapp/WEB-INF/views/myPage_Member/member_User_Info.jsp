@@ -162,7 +162,7 @@ body {
 							    		<td>${ animal.animalName }</td>
 							    		<td>${ animal.animalType }</td>
 							    		<td>${ animal.animalGender }</td>
-							    		<td>Y</td>
+							    		<td>${ animal.isLeader }</td>
 							    		<td onclick="location.href='${ contextPath }/member_Pet_Insert_Edit.me'">수정하기</a></td>
 							    	</tr>
 						    	</tbody>
