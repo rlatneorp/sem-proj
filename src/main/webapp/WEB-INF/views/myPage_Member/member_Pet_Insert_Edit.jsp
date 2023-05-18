@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,11 +92,19 @@ body {
 					  <h4 style="margin-right: 56%;"><b>내 반려동물</b></h4>
 					  <h6 style="margin-right: 46%;">반려동물의 정보를 수정하세요!</h6><br>
 					      	<div class="insert">
-					      		<form action="${ contextPath }/updateAnimal.me" method="POST" enctype="multipart/form-data">
+					      		<form action="${ contextPath }/updateAnimal.me" method="POST" enctype="multipart/form-data" id="attmForm">
 					      		
 					      			<p class="sel">1. 반려동물 사진</p>
-					      			<div id="img"></div>
-    							  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile" value="${ image.originalName }">    							  	<br>
+					      			<c:if test="${ !empty image.originalName }">
+					      				<img src="${ contextPath }/resources/uploadFiles/${ image.renameName }" width="100%" height="245"/>
+					      			</c:if>
+					      			<c:if test="${ empty image.originalName }">
+					      				등록된 사진이 없습니다.<br><br>
+					      			</c:if>
+    							  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile"><br>
+    							  	현재 등록된 사진 : <c:if test="${ !empty image.originalName }">${ image.originalName }</c:if><c:if test="${ empty image.originalName }">없음</c:if>
+    							  	<button type="button" class="btn btn-outline-dark btn-sm deleteAttm" id="delete-${ image.renameName }/${ image.imageLevel }">삭제</button>
+									<input type="hidden" name='deleteAttm' value='none'><br><br>
     							  	
     							  	<input type="text" name="animalName" value="${ animal.animalName }" style="width: 400px; height: 35px;"/>
     							  	<br><br><br>
@@ -123,7 +132,7 @@ body {
     							  	<br>
     							  	<label for="other">
     							  		<input type="radio" name="animalKind" class="rad" value="other" id="other" <c:if test="${ animal.animalKind ne 'DOG' and animal.animalKind ne 'CAT'}">checked</c:if>> 기타
-    							  		<input type="text" name="oType" <c:if test="${ animal.animalKind ne 'DOG' and animal.animalKind ne 'CAT'}">value="${ animal.animalType }"</c:if>/>
+    							  		<input type="text" name="oType" placeholder="ex. 토끼 등" <c:if test="${ animal.animalKind ne 'DOG' and animal.animalKind ne 'CAT'}">value="${ animal.animalType }"</c:if>/>
     							  	</label>
     							  	<br><br><br>
     							  	
@@ -167,6 +176,23 @@ body {
 			div[0].style.display = 'none';
 			div[1].style.display = 'none';
 			
+			if(dbtn.checked){
+				div[0].style.display = 'none';
+				div[1].style.display = 'none';
+				div[0].style.display = 'block';
+			}
+			
+			if(cbtn.checked){
+				div[0].style.display = 'none';
+				div[1].style.display = 'none';
+				div[1].style.display = 'block';
+			}
+			
+			if(obtn.checked){
+				div[0].style.display = 'none';
+				div[1].style.display = 'none';
+			}
+			
 			dbtn.addEventListener('click', () => {
 				div[0].style.display = 'none';
 				div[1].style.display = 'none';
@@ -204,6 +230,58 @@ body {
 			  }
 			  reader.readAsDataURL(file);  
 			});
+			
+			// 삭제 OFF 버튼을 누르면, 배경은 검은색 글자는 하얀색으로 버튼이 바뀌며 삭제 ON으로 뜨게끔 만들기
+			// 버튼을 눌렀을 때 파라미터 deleteAttm 안에 삭제한 파일의 정보(리네임/레벨)가 들어가게 하시오
+			
+			 const deleteOn = document.getElementsByClassName('deleteAttm');
+				
+	         for(const btn of deleteOn){
+	            btn.addEventListener('click', function(){
+	            	const nextHidden = this.nextElementSibling;
+	            	if(nextHidden.value == 'none'){
+	            		this.style.background = "black";
+	              		this.style.color = "white";
+	              		this.innerHTML = "삭제";
+	            		nextHidden.value = this.id.split('-')[1];
+	            	} else {
+	            		this.style.background = "none";
+	              		this.style.color = "black";
+	              		this.innerHTML = "유지";
+	            		nextHidden.value = 'none';
+	            	}
+	                              
+	            })   
+	        }
+	   
+	         
+	        const form = document.getElementById('attmForm');
+				
+			document.getElementById('btn').addEventListener('click', ()=>{
+				const files = document.getElementsByName('file');
+				let isEmpty = true;
+				for(const f of files){
+					if(f.value != ''){
+						isEmpty = false;
+					}
+				}
+					
+				let isAllRemove = true;
+				for(const btn of deleteOn){
+					if(btn.innerText == '삭제 OFF'){
+						isAllRemove = false;
+					}
+				}
+					
+				if(isEmpty && isAllRemove){
+					$('#modalChoice').modal('show');
+				} else {
+					form.submit();
+				}
+			})
+			
+			
+			
 		</script>
 		<br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<footer>

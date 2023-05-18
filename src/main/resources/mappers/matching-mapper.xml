@@ -14,7 +14,37 @@
 		<result column="PROFILE_TITLE" property="profileTitle"/>
 		<result column="PROFILE_TAG" property="profileTag"/>
 		<result column="JIBSA_AVG_RATING" property="jibsaAvgRating"/>
+		<result column="AVAILABLE_HOUR" property="availableHour"/>
 		<result column="AVAILABLE_AREA" property="availableArea"/>
 		<result column="EXPECTED_SALARY" property="exptectedSalary"/>
-	</resultMap>	
+	</resultMap>
+	
+	<insert id="insertMatching">
+		insert into matching
+		values(seq_mat_id.nextval, #{animalNo}, #{memberNo}, #{startDate}, #{endDate}, #{matchingPlace}, 
+				default, default, default, default, default, default, #{jibsaNo}  )
+	</insert>
+	
+	<select id="selectAnimalList" resultMap="animalResultSet">
+		select *
+		from animal
+		where member_no = #{mId}
+	</select> 
+	<resultMap type="Animal" id="animalResultSet">
+		<id column="ANIMAL_NO" property="animalNo" />
+		<result column="ANIMAL_NAME" property="animalName" />
+		<result column="ANIMAL_GENDER" property="animalGender" />
+		<result column="ANIMAL_KIND" property="animalKind" />
+		<result column="ANIMAL_WEIGHT" property="animalWeight" />
+		<result column="ANIMAL_NOTE" property="animalNote" />
+		<result column="MEMBER_NO" property="memberNo" />
+		<result column="ANIMAL_TYPE" property="animalType" />
+		<result column="ANIMAL_SIZE" property="animalSize" />
+		<result column="IS_NEUTER" property="isNeuter" />
+		<result column="BIRTH_DATE" property="birthDate" />
+		<result column="IS_STATUS" property="isStatus" />
+		<result column="IMAGE_LEVEL" property="imageLevel" />
+	</resultMap>
+	
+		
 </mapper>

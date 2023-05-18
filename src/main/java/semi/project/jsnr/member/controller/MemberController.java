@@ -153,11 +153,13 @@ public class MemberController {
 		}
 	}
 	
+	// 회원 정보수정 뷰로
 	@GetMapping("member_EditInfo.me")
 	public String member_editInfo() {
 		return "member_Edit";
 	}
 	
+	// 회원 회원가입 시 아이디 중복 체크
 	@GetMapping("member_CheckMemberId.me")
 	@ResponseBody
 	public String member_checkMemberId(@RequestParam("memberId") String memberId) {
@@ -168,6 +170,7 @@ public class MemberController {
 		return result;
 	}
 	
+	// 회원 정보 수정 처리 - 현지
 	@RequestMapping("member_UpdateInfo.me")
 	public String member_updateInfo(@ModelAttribute Member m, Model model) {
 		int result = mService.updateInfo(m);
@@ -182,9 +185,12 @@ public class MemberController {
 		}
 	}
 	
+	// 회원 마이페이지 - 정보수정에서 비번 재설정 - 현지
 	@RequestMapping("member_UpdatePwd.me")
 	public String member_updatePwd(@RequestParam("memberPwd") String pwd, 
 								   @RequestParam("memberNewPwd") String newpwd, Model model) {
+		
+		// 세션에 있는 loginUser 정보 m에 담기
 		Member m = (Member)model.getAttribute("loginUser");
 		
 		if(bcrypt.matches(pwd, m.getMemberPwd())) {
@@ -205,6 +211,7 @@ public class MemberController {
 		} 
 	} 
 	
+	// 회원 탈퇴 - 현지
 	@GetMapping("member_DeleteInfo.do")
 	public String member_deleteInfo(Model model) {
 		String memberId = ((Member)model.getAttribute("loginUser")).getMemberId();
@@ -243,19 +250,11 @@ public class MemberController {
 		int result = mService.enrollMember(m);
 		if(result>0) {
 			// 회원가입 성공 시 로그인 정보를 세션에 저장
-	        session.setAttribute("loggedInUser", m.getMemberId());
+	        session.setAttribute("loginUser", m.getMemberId());
 			return "redirect:home.do";
 		} else {
 			throw new MemberException("회원가입 실패");
-		}  
-	}  
-	 
-//	//이메일 인증
-//	@GetMapping("/mailCheck")
-//	@ResponseBody
-//	public String mailCheck(String memberEmail) {
-//		System.out.println("이메일 인증 요청이 들어옴!");
-//		System.out.println("이메일 인증 이메일 : " + memberEmail);
-//	}
+		}
+	}
 	
 }

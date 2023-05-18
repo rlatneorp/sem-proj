@@ -57,33 +57,99 @@ public class AnimalController {
 	}
 	
 	@RequestMapping("member_Pet_Insert_Edit.me")
-	public String member_Pet_Insert_Edit() {
+	public String member_Pet_Insert_Edit(HttpSession session, Model model) {
+		
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		int memberNo = loginUser.getMemberNo();
+		Image image = aService.selectImage(memberNo);
+		model.addAttribute("image", image);
 
 		return "member_Pet_Insert_Edit";
 	}
 	
 	@PostMapping("updateAnimal.me") // 수정
-	public String updateAnimal(@ModelAttribute Animal a,
+	public String updateAnimal(@ModelAttribute Animal a, @ModelAttribute Image i,
 							   @RequestParam (value="dType") String dType,
 							   @RequestParam (value="cType") String cType,
 							   @RequestParam (value="oType") String oType,
-							   Model model, HttpSession session) {
+							   Model model, HttpSession session,
+		                       @RequestParam("file") MultipartFile file,
+		                       @RequestParam("deleteAttm") String[] deleteAttm,
+		                       HttpServletRequest request) {
 		
-		String animalType = dType + cType + oType;
-		
+		String animalType = dType + cType + oType;		
 		a.setAnimalType(animalType);
 		
 		int result = aService.updateAnimal(a);
 		
 		Animal editAnimal = aService.animalList(a.getMemberNo());
+		System.out.println("정보 수정");// 정보 수정
 		
-		if(result > 0) {
-			model.addAttribute("animal", editAnimal);
-			return "redirect:member_User_Info.me";
-		} else {
-			throw new AnimalException("동물 정보 수정에 실패하였습니다.");
-		}		
-	}
+		// 사진 수정
+		
+		Image image = null;
+		
+		if(file != null && !file.isEmpty()) { // 새 파일이 들어왔을 때
+			String[] returnArr = saveFile(file, request);
+			// returnArr[0] : 저장된 파일의 경로 - returnArr[1] : 저장된 파일의 새로운 이름
+			
+			if(returnArr[1] != null) { // 새 파일 저장 성공
+				image = new Image();
+				image.setOriginalName(file.getOriginalFilename());
+				image.setRenameName(returnArr[1]);
+				image.setImagePath(returnArr[0]);
+				image.setImageLevel(1);
+				image.setMemberNo(a.getMemberNo());
+
+	            Image existingImage = aService.selectImage(a.getMemberNo());
+	            if (existingImage == null) { // 기존 파일이 없을 때
+	                int insertImage = aService.insertImage(image);
+	                model.addAttribute("image", insertImage);
+	                System.out.println("삽입");
+	                
+	            } else { // 기존 파일이 있을 때
+	                int editImage = aService.editImage(image);
+	                model.addAttribute("image", editImage);
+	                System.out.println("수정");
+	            }
+	        }
+	    }
+		
+		if(file.isEmpty()) { // 새 파일이 안 들어왔을 때
+			Image existingImage = aService.selectImage(a.getMemberNo());
+            if (existingImage != null) { // 기존 파일이 있을 때 (삭제 버튼을 눌렀을 때)
+            	String delRename = "";
+            	Integer delLevel = 0;
+
+            	for(String rename : deleteAttm) { // deleteAttm에 담긴 rename과 level을 쪼개줌
+            		if(!rename.equals("none")) { // rename 값이 비워져있을 수도 있기 때문에
+            			String[] split = rename.split("/");
+            			delRename += split[0];
+            			delLevel += Integer.parseInt(split[1]);
+            			
+            			if(!delRename.isEmpty()) { // 삭제하려고 넘겨준 파일의 대한 rename이 존재할 때
+            				int deleteImage = aService.deleteImage(existingImage);
+        	                System.out.println(deleteImage);
+        	                System.out.println(existingImage);
+            				System.out.println("삭제");
+            				
+            				if(deleteImage > 0) { // 삭제된게 있는 상황에
+            					deleteFile(rename, request);
+            					System.out.println("파일 저장소 삭제");
+            				}
+            			}
+            		}
+            	}
+            }
+		}
+		
+		    if (result > 0) {
+		        model.addAttribute("animal", editAnimal);
+		        return "redirect:member_User_Info.me";
+		    } else {
+		        throw new AnimalException("동물 정보 수정에 실패하였습니다.");
+		    }
+		}
 	
 	@RequestMapping("member_Pet_Insert.me")
 	public String member_Pet_Insert() {
@@ -112,8 +178,6 @@ public class AnimalController {
 		
 		// 사진 등록
 		
-		a.setImageLevel(1);
-		
 		Image image = null;
 		
 		if(file != null && !file.isEmpty()) {
@@ -126,25 +190,12 @@ public class AnimalController {
 				image.setRenameName(returnArr[1]);
 				image.setImageLevel(1);
 				image.setMemberNo(memberNo);
+				
+				int insertImage = aService.insertImage(image);
+				model.addAttribute("image", insertImage);
 			}
-		}
-		
-		int resultImage = 0;
-		
-		System.out.println(image);
-		System.out.println(file);
-		System.out.println(image.getImagePath());
-		System.out.println(image.getOriginalName());
-		System.out.println(image.getRenameName());
-		System.out.println(image.getImageLevel());
-		System.out.println(image.getMemberNo());
-			
-		
-		if(image != null) {
-//			 deleteFile(image.getRenameName(), request);
-			 resultImage = aService.insertImage(image);
 		} else {
-			throw new ImageException("동물 사진 등록에 실패하였습니다.");
+			System.out.println("사진을 등록하지 않았습니다.");
 		}
 				
 		if(result > 0) {
@@ -157,11 +208,15 @@ public class AnimalController {
 	}
 	
 	@GetMapping("deleteAnimal.me") // 삭제
-	public String deleteAnimal(@ModelAttribute Animal a) {
+	public String deleteAnimal(@ModelAttribute Animal a, Model model) {
 		
+		Image image = aService.selectImage(a.getMemberNo());
+		int deleteImage = aService.deleteImage(image);	
+					
 		int result = aService.deleteAnimal(a);
-		
+		 
 		if(result > 0) {
+			a.setIsStatus("N");
 			return "redirect:member_User_Info.me";
 		} else {
 			throw new AnimalException("동물 정보 삭제에 실패하였습니다.");

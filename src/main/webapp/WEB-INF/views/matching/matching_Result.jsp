@@ -1,3 +1,5 @@
+<%@page import="org.springframework.web.bind.annotation.RequestAttribute"%>
+<%@page import="semi.project.jsnr.matching.model.vo.Matching" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -90,7 +92,7 @@
 	
 	</div>
 	
-	<div class="container">
+	<div class="container text-end mb-5">
 	<select>
 	  <option selected>평점순으로 보기</option>
 	  <option value="1">후기 많은 순으로 보기</option>
@@ -101,6 +103,7 @@
 	<div class="container text-left">
 	
 		<c:forEach items="${jpList}" var="j">
+		<c:set value="${mc}" var="mc" scope="session"/>
 		  <div class="row">
 		    <div class="profile">
 			  <img src="${contextPath}/resources/image/logo.png">
@@ -112,19 +115,22 @@
 			    	평점 : ${j.jibsaAvgRating}
 			    </p>
 			  </div>
-			  <button onclick="location.href='${contextPath}/matching_Success.mc?jNo=${j.memberNo}'">매칭하기</button>
+			  
+			  <button onclick="location.href='${contextPath}/matching_Success.mc?jNo=${j.memberNo}'" class="shadow m-bg-color rounded-2 border-0 fs-7 fw-bold text-white me-2" style="width: 100px; height: 40px;">매칭하기</button>
 			</div>
 		  </div>
 		</c:forEach>
 	
 		<div class="container text-center">
 			<br><br>
-			<h4>마음에 드는 집사가 없다면</h4>
+			<h4>마음에 드는 집사가 없다면${mc}</h4>
 			<br>
-			<button onclick="location.href='${contextPath}/matching_Main.mc'">다시 찾아보기</button>
+			
+			<button onclick="location.href='${contextPath}/matching_Main.mc'" class="shadow m-bg-color rounded-2 border-0 fs-7 fw-bold text-white me-2" style="width: 120px; height: 40px;">다시 찾기</button>
 			<br><br><br><br>
 		
 		</div>
 	</div>
+	
 </body>
 </html>

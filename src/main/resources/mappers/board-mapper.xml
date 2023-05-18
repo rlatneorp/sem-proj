@@ -29,6 +29,7 @@
 		<result column="JIBSA_COMMENT" property="jibsaComment"/>
 		<result column="MEMBER_NAME" property="memberName"/>
 		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="JIBSA_NO" property="jibsaNo"/>
 		<result column="JIBSA_NAME" property="jibsaName"/>
 		<result column="IS_JIBSA" property="isJibsa"/>
 		<result column="MATCHING_STATUS" property="matchingStatus"/>

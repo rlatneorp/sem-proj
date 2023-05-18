@@ -38,10 +38,10 @@
         border-radius: 10px; /* 둥근 모서리 크기 */
     }
     
-	.col.parent {
+	.colbox.parent {
  		 padding: 10px;
 	}
-	.col {
+	.colbox {
 			border: 0.5px solid rgb(26, 188, 156);
 			padding: 40px;
 			margin: 30px;
@@ -65,64 +65,71 @@
 	<form method="get" action="${contextPath}/matching_Result.mc">
 	<div class="container text-left">
 	  <div class="row">
-	    <div class="col row">
+	    <div class="col-3 row colbox mx-3">
 		      <h4>희망 이용 시간</h4>
 				<label for="date" class="col-3">날짜:</label>
-				<input type="date" name="startDay" class="date col-5">
-				<div class="col-4"></div>
+				<input type="date" class="date col-6 rounded" style="height:30px;" required>
+				<input type="hidden" name="startDate">
+				<div class="col-3"></div>
 				<br>
 				<label for="time" class="col-3">시간:</label>
-	          	<input class="timepicker text-center d-flex rounded card time col-5" style="height:30px;" name="startTime" value="00:00">
-				<div class="col-4"></div>
+	          	<input class="timepicker text-center d-flex rounded card time col-6" style="height:30px;" name="startTime" value="00:00">
+				<div class="col-3"></div>
 		      <br><br>
 		      <h4>희망 종료 시간</h4>
 				<label for="date" class="col-3">날짜:</label>
-				<input type="date" name="endDay" class="date col-5">
-				<div class="col-4"></div>
+				<input type="date" class="date col-6 rounded" style="height:30px;" required>
+				<input type="hidden" name="endDate">
+				<div class="col-3"></div>
 				<br>
 				<label for="time" class="col-3">시간:</label>
-	          	<input class="timepicker text-center d-flex rounded card time col-5" style="height:30px;" name="endTime" value="00:00">
-				<div class="col-4"></div>
+	          	<input class="timepicker text-center d-flex rounded card time col-6" style="height:30px;" name="endTime" value="00:00">
+				<div class="col-3"></div>
 		      <br><br>
 	    </div>
-	    <div class="col">
+	    <div class="col-3 row colbox mx-3">
 	      <h4>매칭을 원하는 동물</h4>
-	      <input class="form-check-input" type="radio" name="animalKind" id="exampleRadios1" value="강아지" >
-	      <label class="form-check-label" for="exampleRadios1">강아지</label><br>
-	      
-	      <input class="form-check-input" type="radio" name="animalKind" id="exampleRadios2" value="고양이">
-		  <label class="form-check-label" for="exampleRadios2">고양이</label><br>
-		  
-		  <input class="form-check-input" type="radio" name="animalKind" id="exampleRadios3" value="기타">
-		  <label class="form-check-label" for="exampleRadios3">기타</label><br><br><br>
-		  
-	      <h4>원하는 서비스</h4>
-			<select name="serviceType">
-			<option value="care">방문 돌봄</option>
-			<option value="training">방문 훈련</option>
-			</select>
-	      
+	      <c:if test="${aList == null}"><h6>먼저 동물을 등록해주세요</h6><br><br></c:if>
+	      <c:if test="${aList != null}">
+	      	<div class="mb-4">
+				<c:forEach items="${aList}" var="a" varStatus="i">
+					
+					<div class="d-flex align-items-center" style="height: 40px;">
+						<input class="d-flex form-check-input me-2 my-0" type="radio" name="animalNo" id="${a.animalNo}" value="${a.animalNo}" <c:if test="${i.index eq 0}">checked</c:if>>
+						<label class="d-flex form-check-label" for="${a.animalNo}">${a.animalName}(${a.animalKind})</label>
+			    	</div>
+			  	</c:forEach>
+		  	</div>
+		  </c:if>
+			<div class="mb-4">
+				<h4>원하는 서비스</h4>
+				<select name="serviceType" class="rounded" style="height:30px;">
+					<option value="care">방문 돌봄</option>
+					<option value="training">방문 훈련</option>
+				</select>
+		    </div>
+	      	<div>
+				<h4>매칭 장소</h4>
+				<textarea placeholder="정확한 주소를 입력하세요" name="matchingPlace" rows="4" class="w-100 rounded" required></textarea>
+	    	</div>
 	    </div>
-	    <div class="col">
-	      <h4>원하는 집사님 성별</h4>
-	      <input class="form-check-input" type="radio" name="wantJibsaGender" id="male" value="M" >
-	      <label class="form-check-label" for="male">
-	          남성
-	      </label><br>
-	      <input class="form-check-input" type="radio" name="wantJibsaGender" id="female" value="F">
-		  <label class="form-check-label" for="female">
-		      여성
-		  </label><br><br>
-	      <h4>매칭할 지역</h4>
-	      <div class="search-container">
-			<input type="text" placeholder="지역을 입력하세요" name="wantMatchingPlace">
-			<button class="search-button" type="button">검색</button>
+	    <div class="col-3 row colbox mx-3">
+			<div>
+				<h4>원하는 집사님 성별</h4>
+				<input class="form-check-input" type="radio" name="wantJibsaGender" id="male" value="M" required>
+				<label class="form-check-label" for="male">남성</label><br>
+				<input class="form-check-input" type="radio" name="wantJibsaGender" id="female" value="F" checked required>
+				<label class="form-check-label" for="female">여성</label><br><br>
+				<h4>매칭 지역</h4>
+				<div class="search-container">
+				<input type="text" placeholder="지역을 입력하세요" name="wantMatchingPlace" class="rounded">
+				<button class="search-button" type="button">검색</button>
 			</div>
-	      
-	      <br><br>
-			  <div class="d-flex justify-content-center">
-			    <button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">찾아보기</button>
-			  </div>
+		</div>
+	    <br><br>
+		<div class="d-flex justify-content-center">
+		    <button type="button" onclick="inputTime()" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">찾아보기</button>
+		</div>
 	    </div>
 	  </div>
 	</div>
@@ -130,6 +137,61 @@
 	
 	
 	<script>
+	
+		window.onload = () =>{
+			const dates = document.getElementsByClassName('date');
+			const times = document.getElementsByClassName('time');
+			const d = new Date(Date.now());
+			for(let i = 0; i < 2; i++){
+				if(d.getMonth() < 9){
+					dates[i].value = d.getFullYear()+"-0"+(parseInt(d.getMonth())+1)+"-"+d.getDate();
+				}else{
+					dates[i].value = d.getFullYear()+"-"+(parseInt(d.getMonth())+1)+"-"+d.getDate();
+				}
+			}
+			if(d.getHours() < 9){
+				times[0].value = "0"+(d.getHours()+1)+":00"
+				times[1].value = "0"+(d.getHours()+2)+":00"
+			}else if(d.getHours() < 10){
+				times[0].value = "0"+(d.getHours()+1)+":00"
+				times[1].value = (d.getHours()+2)+":00"
+			}else if(d.getHours() < 22){
+				times[0].value = (d.getHours()+1)+":00"
+				times[1].value = (d.getHours()+2)+":00"
+			}else{
+				times[0].value = "00:00"
+				times[1].value = "00:00"
+			}
+		}
+		
+		function inputTime(){
+			const dates = document.getElementsByClassName('date');
+			const times = document.getElementsByClassName('time');
+			
+			const startDate = document.getElementsByName('startDate')[0];
+			const startTime = document.getElementsByName('startTime')[0];
+// 			시작날짜값 대입
+			startDate.value = dates[0].value;
+// 			시작요일값 대입
+			startDate.value += new Date(dates[0].value).getDay();
+// 			시작시간값 대입
+			startDate.value += times[0].value.substring(0,2) + times[0].value.substring(3,5);
+			
+					
+			const endDate = document.getElementsByName('endDate')[0];
+			const endTime = document.getElementsByName('endTime')[0];
+// 			종료날짜값 대입
+			endDate.value = dates[1].value;
+// 			종료요일값 대입
+			endDate.value += new Date(dates[1].value).getDay();
+// 			종료시간값 대입
+			endDate.value += times[1].value.substring(0,2) + times[1].value.substring(3,5);
+			
+			document.getElementsByTagName('form')[0].submit();
+		}
+	
+	
+	
 		$('.timepicker').timepicker({
 			timeFormat: 'HH:mm',
 		    interval: 30,
