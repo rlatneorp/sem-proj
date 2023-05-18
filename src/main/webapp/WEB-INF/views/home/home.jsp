@@ -200,10 +200,10 @@
 `	<%@ include file="../common/bottom.jsp" %>
 	<script>
 		const images = [
-			{src: 'resources/image/logo.png', link: 'https://www.naver.com'},
-			{src: 'resources/image/cat1.jpg', link: 'https://www.google.com'},
-			{src: 'resources/image/dog1.jpg', link: 'https://www.naver.com'},
-			{src: 'resources/image/dog2.jpg', link: 'https://www.naver.com'}
+			{src: 'resources/image/광고(1).png', link: 'https://www.naver.com'},
+			{src: 'resources/image/광고(2).png', link: 'https://www.google.com'},
+			{src: 'resources/image/광고(3).png', link: 'https://www.naver.com'},
+			{src: 'resources/image/광고(4).png', link: 'https://www.google.com'},
 			
 		];
 
