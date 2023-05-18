@@ -87,7 +87,6 @@ public class HomeController {
 		
 		if(bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd())) {
 			model.addAttribute("loginUser", loginUser);
-			System.out.println("loginUser");
 			return "redirect:home.do";
 		} else {
 			return "login/login";
@@ -122,12 +121,24 @@ public class HomeController {
 	}
 	
 	// 비밀번호 찾기 - 현지
-	@GetMapping("searchPwd.do")
+	@RequestMapping("searchPwd.do")
 	public String searchPwd(HttpSession session) {
-		Member m = new Member();
-		session.setAttribute("Member", m);
-		
 		return "enroll/found_Pwd";
+	}
+	
+	// 비밀번호 찾기 - 아이디, 이메일 확인 - 현지
+	@RequestMapping("checkInfo.do")
+	@ResponseBody
+	public String checkInfo(@RequestParam("memberId") String memberId, @RequestParam("memberEmail") String memberEmail) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("memberId", memberId);
+		map.put("memberEmail", memberEmail);
+		
+		int count = mService.checkInfo(map);
+		
+		String result = count == 1 ? "yes" : "no";
+		
+		return result;
 	}
 	
 	// 비번 찾기 - 이메일 인증 - 현지

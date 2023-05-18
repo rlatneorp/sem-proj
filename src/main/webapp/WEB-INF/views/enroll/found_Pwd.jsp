@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <title>집사나라 - 비밀번호 찾기</title>
 <style>
 #top_hr{border: 20px solid rgb(26, 188, 156); opacity: 1; margin: 0;}
@@ -43,7 +44,7 @@
 		<br><br>
 		<div id="foundPwd"> 
 			<a id="foundPwdTitle">비밀번호 찾기</a>
-			<form action="${ contextPath }/foundPwd.do" method="post" id="form">
+			<form method="post" id="form">
 			<div class="foundPwdnp"> 
 				<br><br><br><br>
 				<a id="foundPwdId">아이디</a>
@@ -51,9 +52,8 @@
 				<br><br>
 				<a id="foundPwdEmail">이메일</a>
 				<input type="email" id="emailId" name="memberEmail" class="email" required placeholder=" 이메일을 입력하세요">
-				<br>
-				<input type="hidden" value="${ memberId }" id="checkId">
-				<input type="hidden" value="${ memberEmail }" id="checkEmail">
+				<div id="check" style="margin-left: 130px;"></div>
+<!-- 				<br> -->
 			</div>
 			<br><br><br><br><br>
 			<div>
@@ -64,17 +64,47 @@
 	</div>
 	<br><br><br><br><br><br><br><br><br>
 	<script>
+		// 아이디, 이메일 정보 확인
 		const form = document.getElementById('form');
-		const id = document.getElementById('checkId');
-		const email = document.getElementById('checkEmail');
-		console.log(id.value);
-		console.log(email.value);
+		const memberId = document.getElementById('fpiBtn');
+		const memberEmail = document.getElementById('emailId');
+		const btn = document.getElementById('foundPwdNext1');
+		const check = document.getElementById('check');
+
+		const checkInfo = () => {
+		    $.ajax({
+		        type: 'POST',
+		        url: '${contextPath}/checkInfo.do',
+		        data: { memberId: memberId.value.trim(), memberEmail: memberEmail.value.trim() },
+		        success: data => {
+		            console.log(data);
+		            if (data === 'yes') {
+		                check.innerText = 'OK';
+		                check.style.color = 'white';
+		            } else if (data === 'no') {
+		                check.innerText = 'NOPE';
+		                check.style.color = 'white';
+		            }
+		        },
+		        error: data => {
+		            console.log(data);
+		            alert('에러발생');
+		        }
+		    });
+		};
+
+		memberEmail.addEventListener('keyup', checkInfo);
+		memberId.addEventListener('keyup', checkInfo);
 		
-		form.addEventListener('submit', e => {
-	        e.preventDefault();
-	        alert('인증번호가 발송되었습니다.');
-	        form.submit();
-	    });
+		btn.addEventListener('click', () => {
+			if(check.innerText == 'OK'){
+				alert('인증번호가 발송되었습니다.');
+				form.action = '${contextPath}/foundPwd.do';
+				form.submit();
+			} else {
+				alert('정보를 다시 확인해주세요.');
+			}
+		});
 	</script>
 </body>
 </html>
