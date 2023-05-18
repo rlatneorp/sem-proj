@@ -11,15 +11,6 @@
 <!--  상단 -->
 <%-- 	<%@ include file="WEB-INF/views/common/top.jsp"%> --%>
 	
-	<!-- 로그인 기능 구현 전 임시 링크 -->
-	<div style="margin: 50px; border: 1px solid gray;">
-		<h3>로그인 기능 구현 전 임시 링크</h3>
-		<ul>
-			<li><a href="myPage.me">회원 마이페이지</a></li>
-			<li><a href="jibsaMain.js">집사 마이페이지</a></li>
-			<li><a href="admin_Main.ad">관리자 마이페이지</a></li>
-		</ul>
-	</div>
 <!-- 로그인 이후 상단 -->
 <%-- 	<%@ include file="WEB-INF/views/login/afterLogin.jsp"%> --%>
 <!--                       상단 필요한 부분            -->

@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 
@@ -51,20 +52,36 @@
 	
 	<div class="container text-left">
 	
-		<c:forEach items="${jpList}" var="jp">
+		<c:forEach items="${jpList}" var="jp" varStatus="s">
 		<c:set value="${mc}" var="mc" scope="session"/>
 		  <div class="row mb-5">
 		    <div class="profile row py-5 px-5">
 		    	<div class="col-3">
 					<img src="${contextPath}/resources/image/logo.png" class="w-100">
 		    	</div>
-				<div class="info col-3">
-					<h4>${jp.jibsaName}</h4>
-					<p>${jp.profileTitle}<br>
-						나이 : 아직모름 <br>
-						지원 동기 : 추가해야함<br>
-						평점 : ${jp.jibsaAvgRating}
-					</p>
+				<div class="info col-4 row">
+					<h4 class="col-12">${jList[s.index].memberName}</h4>
+					<p class="col-12 mb-1"><b>- ${fn:substring(jp.profileTitle,0,20)} -</b></p>	
+					<span class="col-4">나이</span>
+					<span class="col-8 age">${fn:substring(jList[s.index].jibsaRrn,0,4)}</span>
+					<span class="col-4">평점</span>
+					<span class="col-8">${jp.jibsaAvgRating}</span>
+					<span class="col-4">희망시급</span>
+					<span class="col-8">
+						<fmt:formatNumber type="number" pattern="###,###,###" value="${jList[s.index].expectedSalary}"/>원
+					</span>
+					<span class="col-4">예상비용</span>
+					<span class="col-8">
+						<fmt:formatNumber type="number" pattern="###,###,###" value=
+							"${(fn:substring(mc.endDate,11,13)-fn:substring(mc.startDate,11,13))*jList[s.index].expectedSalary}"/>원
+					</span>
+					<span class="col-4">흡연여부</span>
+					<span class="col-8">
+						<c:if test="${jList[s.index].isSmoking eq 'Y'}">O</c:if>
+						<c:if test="${jList[s.index].isSmoking eq 'N'}">X</c:if>
+					</span>
+					
+					<div class="col-12" style="height:50px;"></div>
 				</div>
 				<div class="col-3 row workTimeBox">
 					<h4 class="col-12">근무 가능시간</h4>
@@ -125,9 +142,8 @@
 					</c:if>
 
 				</div>
-				<div class="col-1"></div>
 				<div class="col-2 d-flex justify-content-end align-items-center">
-					<button onclick="location.href='${contextPath}/matching_Success.mc?jNo=${j.memberNo}'" class="shadow m-bg-color rounded-2 border-0 fs-7 fw-bold text-white me-2" style="width: 100px; height: 40px;">매칭하기</button>
+					<button onclick="location.href='${contextPath}/matching_Success.mc?jNo=${jp.memberNo}'" class="shadow m-bg-color rounded-2 border-0 fs-7 fw-bold text-white me-2" style="width: 100px; height: 40px;">매칭하기</button>
 				</div>
 			</div>
 		  </div>
@@ -153,9 +169,15 @@
 						spans[i].innerText = "휴무";
 					}
 				}
-				
+			}
+			const age = document.getElementsByClassName('age');
+			const year = new Date().getFullYear();
+			
+			for(const i in age){
+				age[i].innerText = year - age[i].innerText+1+"세";
 			}
 		}
+		
 	
 	</script>
 </body>

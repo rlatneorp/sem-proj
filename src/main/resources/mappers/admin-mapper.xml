@@ -112,7 +112,7 @@
 			jibsa_rrn = #{jibsaRrn},
 			is_smoking = #{isSmoking},
 			work_career = #{workCareer},
-<!-- 			available_hour = #{availableHour}, -->
+			available_hour = #{availableHour},
 			available_area = #{availableArea},
  			motive = #{motive},
 			expected_salary = #{expectedSalary},
