@@ -12,8 +12,8 @@ import semi.project.jsnr.animal.model.vo.Image;
 @Repository
 public class AnimalDAO {
 	
-	public Animal animalList(SqlSessionTemplate sqlSession, int memberNo) {
-		return sqlSession.selectOne("AnimalMapper.animalList", memberNo);
+	public ArrayList<Animal> animalList(SqlSessionTemplate sqlSession, int memberNo) {
+		return (ArrayList)sqlSession.selectList("AnimalMapper.animalList", memberNo);
 	}
 	
 	public Animal animalEditList(SqlSessionTemplate sqlSession, Animal a) {
@@ -47,5 +47,15 @@ public class AnimalDAO {
 	public int deleteImage(SqlSessionTemplate sqlSession, Image image) {
 		return sqlSession.delete("AnimalMapper.deleteImage", image);
 	}
+
+	public Animal selectLeader(SqlSessionTemplate sqlSession, int memberNo) {
+		return sqlSession.selectOne("AnimalMapper.selectLeader", memberNo);
+	}
+
+	public Animal selectAnimal(SqlSessionTemplate sqlSession, int animalNo) {
+		return sqlSession.selectOne("AnimalMapper.selectAnimal", animalNo);
+	}
+
+	
 
 }
