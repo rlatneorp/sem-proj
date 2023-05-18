@@ -77,4 +77,8 @@ public class MemberDAO {
 		return sqlSession.update("memberMapper.updateNewPwd", map);
 	}
 
+	public int checkInfo(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("memberMapper.checkInfo", map);
+	}
+
 }

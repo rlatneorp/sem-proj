@@ -72,6 +72,18 @@
 		delete from image
 		where member_no = #{memberNo} and image_level = '1'
 	</delete>
+	
+	<select id="selectLeader" resultMap="animalResultSet">
+		select *
+		from animal
+		where member_no = #{memberNo} and is_status = 'Y' and is_leader ='Y'
+	</select>
+	
+	<select id="selectAnimal" resultMap="animalResultSet">
+		select *
+		from animal
+		where animal_no = #{animalNo} and is_status = 'Y'
+	</select>
 
 </mapper>
 

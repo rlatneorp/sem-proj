@@ -140,5 +140,11 @@
 		set member_pwd = #{newPwd}
 		where member_id = #{memberId}
 	</update>
+	
+	<select id="checkInfo" resultType="_int">
+		select count(*)
+		from member
+		where member_id = #{memberId} and member_email = #{memberEmail}
+	</select>
 
 </mapper>

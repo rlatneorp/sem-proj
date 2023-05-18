@@ -29,12 +29,8 @@
 #fppBtn{border: none; border-radius: 4px; margin-left: 10px; width: 80px; height: 40px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94);}
 #foundPwdNext1{box-shadow:0px 0px 15px 5px rgb(224, 224, 224); border: none; border-radius: 25px; width: 168px; height: 44px; font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: 400; text-decoration: none; color: white; background: rgb(26, 188, 156);}
 .email{width: 130px; margin-left: 20px; border: 1px solid gray;}
-/* #code{ */
-/* 	margin-left: 130px; width: 300px; height: 55px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94); */
-/* } */
 #emailId{margin-left: 130px; width: 210px;}
-#check{border: none; border-radius: 4px; margin-left: 10px; width: 50px; height: 30px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94);}
-
+#check{width: 300px; margin-left: 162px; height: 30px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; text-decoration: none;}
 </style>
 </head>
 <body>
@@ -50,8 +46,7 @@
 				<br><br><br><br>
 				<a id="foundPwdName">인증번호</a>
 				<input type="text" id="fpnBtn" placeholder=" 인증 번호를 입력하세요." name="emailAuth" required>
-				<div id="check"> </div>
-				
+				<div id="check"></div>
 			</div>
 			<br><br><br><br><br>
 			<div>
@@ -68,6 +63,7 @@
 		const btn = document.getElementById('foundPwdNext1');
 		
 		emailCode.addEventListener('keyup', () => {
+			console.log(num.value);
 			if(emailCode.value == num.value){
 				check.innerText = '인증번호가 일치합니다. 다음 단계를 진행해주세요.';
 				check.style.color = 'green';

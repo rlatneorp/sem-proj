@@ -86,4 +86,8 @@ public class MemberService {
 		return mDAO.updateNewPwd(sqlSession, map);
 	}
 
+	public int checkInfo(HashMap<String, String> map) {
+		return mDAO.checkInfo(sqlSession, map);
+	}
+
 }

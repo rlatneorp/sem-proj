@@ -101,14 +101,17 @@ body {
 					      			<c:if test="${ empty image.originalName }">
 					      				등록된 사진이 없습니다.<br><br>
 					      			</c:if>
+					      			
     							  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile"><br>
+    							  	
     							  	현재 등록된 사진 : <c:if test="${ !empty image.originalName }"><a href="${ contextPath }/resources/uploadFiles/${ image.renameName }" download="${ image.originalName }">${ image.originalName }</a></c:if>
     							  				  <c:if test="${ empty image.originalName }">없음</c:if>
     							  	<button type="button" class="btn btn-outline-dark btn-sm deleteAttm" id="delete-${ image.renameName }/${ image.imageLevel }">삭제</button>
 									<input type="hidden" name='deleteAttm' value='none'><br><br>
     							  	
     							  	<input type="text" name="animalName" value="${ animal.animalName }" style="width: 400px; height: 35px;"/>
-    							  	<input type="checkbox" name="isLeader" value="Y"/> 대표동물로 지정
+    							  	<input type="checkbox" name="isLeader" value="Y" id="input_check"/> 대표동물로 지정
+    							  	<input type="hidden" name="isLeader" value="N" id="input_check_hidden"/>
     							  	<br><br><br>
     							  	
     							  	<p class="sel">2. ${ animal.animalName }은/는</p>
@@ -270,7 +273,7 @@ body {
 					
 				let isAllRemove = true;
 				for(const btn of deleteOn){
-					if(btn.innerText == '삭제 OFF'){
+					if(btn.innerText == '삭제'){
 						isAllRemove = false;
 					}
 				}
