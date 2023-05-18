@@ -36,8 +36,8 @@ public class BoardServiceImpl implements BoardService{
 //	}
 	
 	@Override
-	public ArrayList<Board> reviewBoardList(PageInfo pi, int i) {
-		return bDAO.reviewBoardList(sqlSession, pi, i);
+	public ArrayList<Board> reviewBoardList(PageInfo pi) {
+		return bDAO.reviewBoardList(sqlSession, pi);
 	}
 
 	@Override
