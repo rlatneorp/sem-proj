@@ -45,12 +45,13 @@
 		<div id="foundPwd"> 
 			<a id="foundPwdTitle">비밀번호 찾기</a>
 			<form action="${ contextPath }/pwd_Set.do" method="post">
-			<input type="hidden" name="num" value="${ num }">
+			<input type="hidden" name="num" value="${ num }" id="num">
 			<div class="foundPwdnp"> 
 				<br><br><br><br>
 				<a id="foundPwdName">인증번호</a>
 				<input type="text" id="fpnBtn" placeholder=" 인증 번호를 입력하세요." name="emailAuth" required>
-				<div class="error"> </div>
+				<div id="check"> </div>
+				
 			</div>
 			<br><br><br><br><br>
 			<div>
@@ -60,5 +61,25 @@
 		</div>
 	</div>
 	<br><br><br><br><br><br><br><br><br>
+	<script>
+		const emailCode = document.getElementById('fpnBtn');
+		const check = document.getElementById('check');
+		const num = document.getElementById('num');
+		const btn = document.getElementById('foundPwdNext1');
+		
+		emailCode.addEventListener('keyup', () => {
+			if(emailCode.value == num.value){
+				check.innerText = '인증번호가 일치합니다. 다음 단계를 진행해주세요.';
+				check.style.color = 'green';
+				btn.disabled = false;
+				btn.style.background = 'rgb(26, 188, 156)';
+			} else {
+				check.innerText = '인증번호가 불일치합니다. 다시 한번 확인해주세요.';
+				check.style.color = 'red';
+				btn.disabled = true;
+				btn.style.background = 'gray';
+			}
+		});
+	</script>
 </body>
 </html>

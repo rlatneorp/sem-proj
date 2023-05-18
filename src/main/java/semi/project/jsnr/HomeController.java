@@ -123,7 +123,10 @@ public class HomeController {
 	
 	// 비밀번호 찾기 - 현지
 	@GetMapping("searchPwd.do")
-	public String searchPwd() {
+	public String searchPwd(HttpSession session) {
+		Member m = new Member();
+		session.setAttribute("Member", m);
+		
 		return "enroll/found_Pwd";
 	}
 	
@@ -221,6 +224,7 @@ public class HomeController {
 		}
 	}
 	
+	// 회원가입시 이메일 인증 - ajax 현지
 	@RequestMapping("enrollAuth.do")
 	@ResponseBody
 	public String enrollAuth(@RequestParam("memberEmail") String memberEmail, HttpSession session) {
@@ -257,23 +261,4 @@ public class HomeController {
 			return "no";
 		}
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

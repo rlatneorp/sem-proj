@@ -105,8 +105,8 @@
 	            });
 	        }
 	    });
-	    const pwdCheckResult = document.getElementById('pwdCheck');
 	// 비밀번호와 비밀번화 확인이 일치하는지 확인하는 함수
+	const pwdCheckResult = document.getElementById('pwdCheck');
 	document.getElementById('confirmPassword').addEventListener('keyup', function() {
 	    const password = document.getElementById('memberPwd').value;
 	    const confirmPassword = this.value;
@@ -183,7 +183,7 @@
 				form.action = '${contextPath}/enrollMember.do';
 				form.submit();
 			} else {
-				alert('회원가입 실패 정보를 다시 확인해주세요.');
+				alert('회원가입 실패! 정보를 다시 확인해주세요.');
 			}
 		});
 

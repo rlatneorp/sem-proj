@@ -30,7 +30,7 @@
 </head>
 <body>
 <hr id="top_hr">
-<form action="pwd_New.do" method="post"> 
+<form method="post" id="form"> 
 	<div class="pwdSet">
 		<a href="${ contextPath }/home.do"><img src="resources/image/loginLogo.png" id="pwdSetLogo"></a>
 		<br><br>
@@ -40,15 +40,10 @@
 				<br><br><br><br>
 				<a id="pwdSetteing1">새로운 비밀번호</a>
 				<input type="password" id="pwdBtn1" name="newPwd" placeholder=" 새로운 비밀번호를 입력하세요">
-				<div class="error">
-		 				Invalid password
-				</div> 
 				<br><br>
 				<a id="pwdSetteing2">새로운 비밀번호 확인</a>
 				<input type="password" id="pwdBtn2" placeholder=" 한 번 더 입력하세요">
-				<div class="error">
-		 				Invalid password
-				</div> 
+				<div id="check" style="margin-left: 215px;"></div> 
 			</div>
 			<br><br><br><br><br>
 			<div>
@@ -58,6 +53,37 @@
 		</div>
 	</div>
 	<br><br><br><br><br><br><br><br><br>
+	<script>
+		const check = document.getElementById('check');
+		const pwd = document.getElementById('pwdBtn1');
+		const npwd = document.getElementById('pwdBtn2');
+		const change = document.getElementById('pwdSetBtn');
+		const form = document.getElementById('form');
+		
+		
+		npwd.addEventListener('keyup', () => {
+			if(pwd.value == '' || npwd.value == ''){
+				check.innerText = '';
+			} else if (pwd.value == npwd.value){
+				check.innerText = '비밀번호가 일치합니다.';
+				check.style.color = 'green';
+			} else {
+				check.innerText = '비밀번호가 불일치합니다.';
+				check.style.color = 'red';
+			}
+		});
+		
+		change.addEventListener('click', (e) => {
+		    if (check.innerText == '비밀번호가 일치합니다.') {
+		        alert('비밀번호가 변경되었습니다.');
+		        form.action = '${contextPath}/pwd_New.do';
+		        form.submit();
+		    } else {
+		        alert('비밀번호를 다시 확인해주세요.');
+		        e.preventDefault();
+		    }
+		});
+	</script>
 </form>
 </body>
 </html>

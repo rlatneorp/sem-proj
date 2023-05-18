@@ -43,7 +43,7 @@
 		<br><br>
 		<div id="foundPwd"> 
 			<a id="foundPwdTitle">비밀번호 찾기</a>
-			<form action="${ contextPath }/foundPwd.do" method="post">
+			<form action="${ contextPath }/foundPwd.do" method="post" id="form">
 			<div class="foundPwdnp"> 
 				<br><br><br><br>
 				<a id="foundPwdId">아이디</a>
@@ -52,14 +52,29 @@
 				<a id="foundPwdEmail">이메일</a>
 				<input type="email" id="emailId" name="memberEmail" class="email" required placeholder=" 이메일을 입력하세요">
 				<br>
+				<input type="hidden" value="${ memberId }" id="checkId">
+				<input type="hidden" value="${ memberEmail }" id="checkEmail">
 			</div>
 			<br><br><br><br><br>
 			<div>
-				<button type="submit" id="foundPwdNext1">다음</button>
+				<button type="submit" id="foundPwdNext1">메일 전송</button>
 			</div>
 			</form>
 		</div>
 	</div>
 	<br><br><br><br><br><br><br><br><br>
+	<script>
+		const form = document.getElementById('form');
+		const id = document.getElementById('checkId');
+		const email = document.getElementById('checkEmail');
+		console.log(id.value);
+		console.log(email.value);
+		
+		form.addEventListener('submit', e => {
+	        e.preventDefault();
+	        alert('인증번호가 발송되었습니다.');
+	        form.submit();
+	    });
+	</script>
 </body>
 </html>
