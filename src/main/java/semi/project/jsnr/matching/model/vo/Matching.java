@@ -4,7 +4,6 @@ public class Matching {
 	private int matchingNo;
 	private int animalNo;
 	private int memberNo;
-	private int jibsaNo;
 	private String startDate;
 	private String endDate;
 	private String animalKind;
@@ -62,14 +61,6 @@ public class Matching {
 
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
-	}
-
-	public int getJibsaNo() {
-		return jibsaNo;
-	}
-
-	public void setJibsaNo(int jibsaNo) {
-		this.jibsaNo = jibsaNo;
 	}
 
 	public String getStartDate() {

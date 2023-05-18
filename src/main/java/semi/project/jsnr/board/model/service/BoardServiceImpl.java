@@ -30,15 +30,15 @@ public class BoardServiceImpl implements BoardService{
 		return bDAO.getListCount(sqlSession, i);
 	}
 
-	@Override
-	public ArrayList<Board> reviewBoardList(PageInfo pi) {
-		return bDAO.reviewBoardList(sqlSession, pi);
-	}
-	
 //	@Override
-//	public ArrayList<Board> reviewBoardList(PageInfo pi, int i) {
-//		return bDAO.reviewBoardList(sqlSession, pi, i);
+//	public ArrayList<Board> reviewBoardList(PageInfo pi) {
+//		return bDAO.reviewBoardList(sqlSession, pi);
 //	}
+	
+	@Override
+	public ArrayList<Board> reviewBoardList(PageInfo pi, int i) {
+		return bDAO.reviewBoardList(sqlSession, pi, i);
+	}
 
 	@Override
 	public int getJibsaListCount() {

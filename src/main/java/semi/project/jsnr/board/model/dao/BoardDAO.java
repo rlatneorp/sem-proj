@@ -21,11 +21,11 @@ public class BoardDAO {
 		return sqlSession.selectOne("boardMapper.getListCount", i);
 	}
 
-	public ArrayList<Board> reviewBoardList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<Board> reviewBoardList(SqlSessionTemplate sqlSession, PageInfo pi, int i) {
 		int offset = (pi.getCurrentPage() -1 ) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("boardMapper.reviewBoardList", pi, rowBounds);
+		return (ArrayList)sqlSession.selectList("boardMapper.reviewBoardList", i, rowBounds);
 	}
 
 	public int getJibsaListCount(SqlSessionTemplate sqlSession) {

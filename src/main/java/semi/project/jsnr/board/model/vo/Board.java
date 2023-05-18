@@ -14,7 +14,6 @@ public class Board {
 	private String jibsaComment;
 	private String memberName;
 	private int memberNo;
-	private int jibsaNo;
 	private String jibsaName;
 	private String isJibsa;
 	private String matchingStatus;
@@ -41,7 +40,6 @@ public class Board {
 		this.jibsaComment = jibsaComment;
 		this.memberName = memberName;
 		this.memberNo = memberNo;
-		this.jibsaNo = jibsaNo;
 		this.jibsaName = jibsaName;
 		this.isJibsa = isJibsa;
 		this.matchingStatus = matchingStatus;
@@ -153,13 +151,6 @@ public class Board {
 		this.memberNo = memberNo;
 	}
 
-	public int getJibsaNo() {
-		return jibsaNo;
-	}
-
-	public void setJibsaNo(int jibsaNo) {
-		this.jibsaNo = jibsaNo;
-	}
 
 	public String getJibsaName() {
 		return jibsaName;
