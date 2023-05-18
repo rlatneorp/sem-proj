@@ -22,6 +22,7 @@ body {
   border-radius: 10px;
   box-shadow: 0px 0px 14px gray;
   margin-left: 80px;
+  display: inline-block;
 }
 .h4{
   margin-right: 300px;
@@ -59,11 +60,23 @@ body {
   border-radius: 10px;
 }
 
+ .table thead tr th{
+ 	background: rgba(224, 224, 224, 0.51);}
+ .table {margin-left: 100px;}
+ .tablediv{
+	width: 50%;
+	text-align: center;
+	display: block;
+	margin: 0 auto;
+	margin-left: 10px;
+  }
+  
 @media (max-width: 768px) {
   .p-4 {
-    width: 100%;
+    width: 50%;
     margin-left: 0;
   }
+  
   .h4 {
     margin-right: 0;
   }
@@ -91,7 +104,7 @@ body {
 	        	<div class="container text-center">
 				  <div class="row align-items-center">
 				    <div class="col">
-				      	<div class="p-2">내 반려동물</div><br>
+				      	<div class="p-2">대표 반려동물</div><br><br>
 		                    <div class="p-4"><br>
 			                    <c:if test="${ animal.isStatus eq 'Y' }">
 				                	<h6 class="h6">${ animal.animalKind } / ${ animal.animalName } / ${ animal.animalGender }</h6><br>
@@ -108,7 +121,7 @@ body {
 			                        <button class="inbtn" onclick="location.href='${ contextPath }/member_Pet_Insert.me'">등록하기</button>
 			                    </c:if>
 		                    </div>
-				    	</div>
+				    	</div>				 
 				    <div class="col">
 				      	<div class="p-2">내 정보</div><br>
 		                    <div class="p-4">
@@ -128,6 +141,33 @@ body {
 		                        </table><br>
 		                        <button class="inbtn" onclick="location.href='${contextPath}/member_EditInfo.me'">수정하기</button>
 		                    </div>
+				    </div><br><br>
+				    <div class="col">
+				        <div class="tablediv"><br><br><br><br>
+				        <div class="p-2">내 반려동물 전체 조회</div><br><br>
+						    <table class="table">
+						    	<thead>
+							    	<tr>
+							    		<th>번호</th>
+							    		<th>이름</th>
+							    		<th>타입</th>
+							    		<th>성별</th>
+							    		<th>대표여부</th>
+							    		<th>세부정보</th>
+							    	</tr>
+						    	</thead>
+						    	<tbody>
+							    	<tr>
+							    		<td>${ animal.animalNo }</td>
+							    		<td>${ animal.animalName }</td>
+							    		<td>${ animal.animalType }</td>
+							    		<td>${ animal.animalGender }</td>
+							    		<td>Y</td>
+							    		<td onclick="location.href='${ contextPath }/member_Pet_Insert_Edit.me'">수정하기</a></td>
+							    	</tr>
+						    	</tbody>
+						    </table>
+						 </div>
 				    </div>
 				  </div>
 				</div>
