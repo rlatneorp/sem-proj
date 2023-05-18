@@ -120,7 +120,7 @@
 	  <div class="row">
 	  <article>
 		<c:forEach items="${ list }" var="n">
-		  	<div class="col">
+		  	<div class="col" style="cursor: pointer;">
 			    <div class="review">
 				  <div class="profile">
 					  <img src="resources/image/profile.png">
@@ -130,6 +130,10 @@
 					  <div class="info">
 					    <div class="jibsaName">${ n.jibsaName }</div>
 					    <div class="reviewContent">${ n.reviewContent }</div>
+						<form action="${ contextPath }/review_Detail.bo" method="GET">
+							<input type="hidden" value="${ n.memberNo }" name="memberNo">
+							<input type="hidden" value="${ n.jibsaNo }" name="jibsaNo">
+						</form>
 					  </div>
 					</div>
 				</div>	
@@ -139,8 +143,8 @@
 	  </div>
 	</div>
 	</div>
+	
 	  <div class="row">
-		  				
 			<div class="pagingArea" align="center">
 		<!-- 		이전 버튼-->
 					<br>
@@ -194,7 +198,7 @@
 				</div>
 			
 			<br>
-			
+		
 			<div id = "searchArea" align = "center">
 			
 				<label>검색조건</label>
@@ -221,17 +225,16 @@
 		location.href = '${contextPath}/search.bo?value='+value+'&condition='+condition;
 		});		
 		
-	window.onload=()=>{
 		const reviewContent = document.querySelector('article');
-		const reviewDiv = reviewContent.querySelectorAll('div');
-		for(const divs of reviewDiv){
-			divs.addEventListener('click', function(){
-				const mId = divs.querySelector('.matchingNo').innerText;
-				const userName = divs.querySelector('.userName').innerText;
-				location.href='${ contextPath }/review_Detail.bo?mId='+ mId + '&userName=' + userName + '&page=' + ${pi.currentPage}; 
+		const reviewDiv = reviewContent.querySelectorAll('.col');
+		for(const div of reviewDiv){
+			div.addEventListener('click', ()=>{
+				const mId = div.querySelector('.jibsaNo').innerText;
+				const userName = div.querySelector('.userName').innerText;
+				location.href='${ contextPath }/review_Detail.bo?mId='+ jibsaNo + '&userName=' + userName + '&page=' + ${pi.currentPage}; 
+			 
 			}); 
-	}
-	}
+		}
 </script>
  </body>
 </html>

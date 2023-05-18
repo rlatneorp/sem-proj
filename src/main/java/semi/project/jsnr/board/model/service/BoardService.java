@@ -13,7 +13,7 @@ import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 public interface BoardService {
 	int getListCount(int i);
 
-	ArrayList<Board> reviewBoardList(PageInfo pi);
+	ArrayList<Board> reviewBoardList(PageInfo pi, int i);
 
 	int getJibsaListCount();
 
@@ -33,12 +33,17 @@ public interface BoardService {
 
 	ArrayList<Board> selectSearchList(HashMap<String, String> map, PageInfo pi);
 
-	Board reviewDetail(int mId, boolean yn);
+//	Board reviewDetail(int mId, boolean yn);
 
 //	ArrayList<Board> reviewDetailReply(int mId);
+	Board reviewDetail(int mId, boolean yn);
+
+	ArrayList<Board> selectReply(int mId);
 
 	void updateReply(Board b);
 
-	ArrayList<Board> selectReply(int mId);
+
+
+
 
 }

@@ -66,7 +66,6 @@ public class JibsaController {
 		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
 		j.setMemberNo(memberNo);
 		
-		// 
 		int result = jService.insertJibsa(j);
 		
 		Image image = null;
@@ -79,7 +78,7 @@ public class JibsaController {
 				image.setImagePath(returnArr[0]);
 				image.setOriginalName(file.getOriginalFilename());
 				image.setRenameName(returnArr[1]);
-				image.setImageLevel(1);
+				image.setImageLevel(2);
 				image.setMemberNo(memberNo);
 				
 				int insertImage = jService.insertImage(image);
@@ -162,7 +161,6 @@ public class JibsaController {
 	public String jibsa_WorkTime_Update(@ModelAttribute Jibsa j) {
 		
 		int result = jService.updateJibsaAvailableHour(j);
-
 		
 		System.out.println(j);
 		if(result > 0) {
