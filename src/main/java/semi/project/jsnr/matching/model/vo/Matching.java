@@ -13,12 +13,14 @@ public class Matching {
 	private String matchingPlace;
 	private String reviewContent;
 	private String matchingStatus;
+	private int jibsaNo;
+	private int jibsaComNo;
 	
 	public Matching() {}
 
 	public Matching(int matchingNo, int animalNo, int memberNo, String startDate, String endDate, String animalKind,
 			String serviceType, String wantJibsaGender, String wantMatchingPlace, String matchingPlace,
-			String reviewContent, String matchingStatus) {
+			String reviewContent, String matchingStatus, int jibsaNo, int jibsaComNo) {
 		super();
 		this.matchingNo = matchingNo;
 		this.animalNo = animalNo;
@@ -32,6 +34,8 @@ public class Matching {
 		this.matchingPlace = matchingPlace;
 		this.reviewContent = reviewContent;
 		this.matchingStatus = matchingStatus;
+		this.jibsaNo = jibsaNo;
+		this.jibsaComNo = jibsaComNo;
 	}
 
 	public int getMatchingNo() {
@@ -130,13 +134,32 @@ public class Matching {
 		this.matchingStatus = matchingStatus;
 	}
 
+	public int getJibsaNo() {
+		return jibsaNo;
+	}
+
+	public void setJibsaNo(int jibsaNo) {
+		this.jibsaNo = jibsaNo;
+	}
+
+	public int getJibsaComNo() {
+		return jibsaComNo;
+	}
+
+	public void setJibsaComNo(int jibsaComNo) {
+		this.jibsaComNo = jibsaComNo;
+	}
+
 	@Override
 	public String toString() {
 		return "Matching [matchingNo=" + matchingNo + ", animalNo=" + animalNo + ", memberNo=" + memberNo
 				+ ", startDate=" + startDate + ", endDate=" + endDate + ", animalKind=" + animalKind + ", serviceType="
 				+ serviceType + ", wantJibsaGender=" + wantJibsaGender + ", wantMatchingPlace=" + wantMatchingPlace
 				+ ", matchingPlace=" + matchingPlace + ", reviewContent=" + reviewContent + ", matchingStatus="
-				+ matchingStatus + "]";
+				+ matchingStatus + ", jibsaNo=" + jibsaNo + ", jibsaComNo=" + jibsaComNo + "]";
 	}
+
+	
+	
 	
 }

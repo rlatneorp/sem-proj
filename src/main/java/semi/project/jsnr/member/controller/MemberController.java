@@ -202,8 +202,8 @@ public class MemberController {
 			}
 		} else {
 			throw new MemberException("비밀번호 수정에 실패하였습니다");
-		}
-	}
+		} 
+	} 
 	
 	@GetMapping("member_DeleteInfo.do")
 	public String member_deleteInfo(Model model) {
@@ -247,9 +247,9 @@ public class MemberController {
 			return "redirect:home.do";
 		} else {
 			throw new MemberException("회원가입 실패");
-		}
-	}
-	
+		}  
+	}  
+	 
 //	//이메일 인증
 //	@GetMapping("/mailCheck")
 //	@ResponseBody
