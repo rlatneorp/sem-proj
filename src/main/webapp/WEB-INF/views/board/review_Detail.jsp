@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap"  rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <title>집사 상세후기</title>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <style>
 	* {font-family: 'Noto Sans KR', sans-serif;}
 	
@@ -105,8 +106,8 @@
 	  padding-right: 1px;
 	}
 	
-	#comment input[name="search"] {
-	  width: 300px; /* 늘리고자 하는 너비 값 입력 */
+	#comment {
+	  text-align: center;
 	}
 	
 	.material-symbols-outlined {
@@ -158,19 +159,19 @@
 </head>
 <body>
 <%@ include file="../common/top.jsp" %>
+
 <div id="reviewDetailSetting">
 	<div class="container">
 		<br>
 		<h1 class="text-left">집사 후기</h1>
-	
-	<div class="container" style="display: flex; align-items: center;">
+		<div class="container" style="display: flex; align-items: center;">
 		<div class="col">
 			<div class="reviewLeftBtn">
            		<span class="material-symbols-outlined" style="font-size: 70px;">arrow_circle_left</span>
         	</div>
-        </div>
-
-		 
+        </div>			
+		<input type="hidden" value="${ b.memberNo }" name="memberNo">
+		<input type="hidden" value="${ page }" name="page">
 		<div class="col">
 			<div class="row" style="width: 600px; margin-right: 170px;">
 			  	<div class="col">
@@ -202,47 +203,45 @@
 				<textarea readonly cols="50" rows="10" style="resize: none; padding: 20px;" name="content" id="contentBox">  ${b.reviewContent }</textarea>
 				
 				<hr><br><hr><br>
-				
 				<h3 style="text-align: center;">집사의 댓글</h3>
 				<br>
 				<table>
 					<thead style="text-align: center;">
 						<tr>
-							<td width="130px">댓글 내용</td>
-							<td width="130px">매칭 종료일</td>
+							<th width="130px">댓글 내용</th>
+							<th width="130px">매칭 종료일</th>
 						</tr>
 					</thead>
-					<tbody style="text-align: center;">	
+					<tbody class="tbody1" style="text-align: center;">	
 						<c:forEach items="${ list }" var="r">
-						<tr>
-							<td>${ r.jibsaComment }</td>
-							<td>${ r.endDate  }</td>
+						<tr class="tr1">
+							<td class="td1">${ r.jibsaComment }</td>
+							<td class="td1">${ r.endDate  }</td>
 						</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 				<br><hr><br>
-				
-				  <div id="comment" style="text-align: center;">
-				    <label>댓글 : </label>
-					<input id="replyContent"type="text" placeholder=" 댓글을 입력해주세요" name="reply" >
-					<input id="replyBtn" type="submit" value ="reply" name="reply">
+				  <div id="comment">
+				    <label>댓글입력 : </label>
+					<input id="replyContent"type="text" placeholder=" 댓글을 달거나 수정해주세요">
+					<input id="replyBtn" type="button" value ="댓글 수정">
 				  </div>
 			</div>
 			<br><br>
 			<div class="col" style="text-align: center;">
 				<button id="allReviewBtn"onclick="location.href='${contextPath}/review_Main.bo'">모든 후기 보기</button>
 			</div>
-		</div>	
 			<div class="col">
 				<div class="reviewRightBtn">
            			<span class="material-symbols-outlined" style="font-size: 70px;">arrow_circle_right</span>
-        		</div>
-			</div>
+        		</div></div>
+			</div></div>
 		</div>
 	</div>
-</div><br><br><br><br>	
+<br><br><br><br>	
 <%@ include file="../common/bottom.jsp" %>
+
 <script>
 	window.onload=()=>{
 		let usernames = document.querySelector('.username');
@@ -257,20 +256,22 @@
 				url: '${contextPath}/updateReply.bo',
 				data: {
 						jibsaComment:document.getElementById('replyContent').value,
-						memberNo:'${loginUser.memberNo}', 
-						matchingNo:${b.matchingNo} 
+						memberNo:${loginUser.memberNo},
+						matchingNo:${b.matchingNo},
+						jibsaNo:${b.jibsaNo}
 				},
 				success: data =>{
 					console.log(data);
-					const tbody = document.querySelector('tbody');
+					const tbody = document.querySelector('.tbody1');
+					tbody.innerHTML = '';
 					
 					for(const r of data){
-						const tr = document.createElement('tr');
+						const tr = document.createElement('.tr1');
 						
-						const contentTd = document.createElement('td');
+						const contentTd = document.createElement('.td1');
 						contentTd.innerText = r.jibsaComment;
 						
-						const dateTd = document.createElement('td');
+						const dateTd = document.createElement('.td1');
 						dateTd.innerText = r.endDate;
 						
 						tr.append(contentTd);
@@ -285,7 +286,7 @@
 				}
 			});
 		})		
-	}
+	} 
 </script>
 		
 		

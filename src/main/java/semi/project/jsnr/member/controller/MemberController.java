@@ -208,8 +208,8 @@ public class MemberController {
 			}
 		} else {
 			throw new MemberException("비밀번호 수정에 실패하였습니다");
-		}
-	}
+		} 
+	} 
 	
 	// 회원 탈퇴 - 현지
 	@GetMapping("member_DeleteInfo.do")

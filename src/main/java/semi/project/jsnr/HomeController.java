@@ -86,6 +86,7 @@ public class HomeController {
 		
 		if(bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd())) {
 			model.addAttribute("loginUser", loginUser);
+			System.out.println("loginUser");
 			return "redirect:home.do";
 		} else {
 			return "login/login";

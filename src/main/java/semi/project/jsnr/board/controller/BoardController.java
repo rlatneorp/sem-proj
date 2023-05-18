@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -38,7 +37,7 @@ public class BoardController {
 	private BoardService bService;
 	
 	@GetMapping("review_Main.bo")
-	public String reviewBoardList(@RequestParam(value="page", required=false) Integer currentPage, Model model) {
+	public String reviewBoardList(@RequestParam(value="page", required=false) Integer currentPage, Model model, @RequestParam(value="memberNo", required=false) Integer memberNo) {
 		
 		if(currentPage == null) {
 			currentPage = 1;
@@ -137,13 +136,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping("review_Detail.bo")
-	public ModelAndView reviewDetail(@RequestParam(value="page", required=false) Integer page, ModelAndView mv, HttpSession session, @RequestParam(value="mId", required=false) Integer mId, @RequestParam(value="userName", required=false) String userName) {
-		
+	public ModelAndView reviewDetail(@RequestParam(value="page", required=false) Integer page,@RequestParam(value="matchingNo", required=false) int matchingNo, ModelAndView mv, HttpSession session, @RequestParam(value="mId", required=false) int mId, @RequestParam(value="memberNo", required=false) Integer memberNo, @RequestParam(value="userName", required=false) String userName) {
 		
 		Member m = (Member)session.getAttribute("loginUser");
 		String login = null;
 		if(m != null) {
-			login = m.getMemberId();
+			login = m.getMemberName();
 		}  
 		boolean yn = false;
 		if(!userName.equals(login)) {
@@ -152,13 +150,11 @@ public class BoardController {
 		
 		Board b = bService.reviewDetail(mId, yn);	
 		ArrayList<Board> list = bService.selectReply(mId);
-			
-		
 		if(b != null) {
-			mv.addObject("b", b);
 			mv.addObject("page", page);
+			mv.addObject("b", b);
 			mv.addObject("list", list);
-
+				
 			mv.setViewName("review_Detail");
 			return mv;
 		} else {
@@ -169,19 +165,19 @@ public class BoardController {
 	
 	
 	@RequestMapping("updateReply.bo")
-	public void updateReply(@ModelAttribute Board b, HttpServletResponse response) {
+	public void updateReply(@ModelAttribute Board b, HttpServletResponse response, @RequestParam(value="mId", required=false) Integer mId, @RequestParam(value="memberNo", required=false) Integer memberNo) {
 		bService.updateReply(b);
-		ArrayList<Board> list = bService.selectReply(b.getMemberNo());
-		
+		ArrayList<Board> list = bService.selectReply(b.getJibsaNo());
 		response.setContentType("application/json; charset=UTF-8");
-		
 		GsonBuilder gb = new GsonBuilder().setDateFormat("yyyy-MM-dd");
 		Gson gson = gb.create();
 		try {
 			gson.toJson(list, response.getWriter()); 
+			 
 		} catch (JsonIOException | IOException e) {
 			e.printStackTrace();
 		}
+		
 		
 	}
 }

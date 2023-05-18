@@ -7,12 +7,12 @@
 	</select>
 
 	<select id="reviewBoardList" resultMap="boardResultSet">
-		select *
-		from member m
-		    join animal a on(a.member_no = m.member_no)
-		    join matching ma on(ma.animal_no = a.animal_no)
-		    join jibsa_profile jp on(jp.member_no = ma.member_no)
-		    order by ma.review_rating desc
+        select *
+		from matching ma
+        join animal a on(a.animal_no = ma.animal_no)
+        join jibsa_profile jp on(ma.member_no = jp.member_no)
+        join member m on(a.member_no = m.member_no)
+        order by ma.matching_no desc
 	</select>
 	
 	<resultMap type="Board" id="boardResultSet">
@@ -34,6 +34,7 @@
 		<result column="IS_JIBSA" property="isJibsa"/>
 		<result column="MATCHING_STATUS" property="matchingStatus"/>
 		<result column="REVIEW_STATUS" property="reviewStatus"/>
+		<result column="JIBSA_NO" property="jibsaNo"/>
 	</resultMap>
 	
 	<select id="getJibsaListCount" resultType="_int">
@@ -83,6 +84,8 @@
 		<result column="PRIMIUM_PAYMENT_DATE" property="primiumPaymentDate"/>
 		<result column="PRIMIUM_END_DATE" property="primiumEndDate"/>
 		<result column="IS_TRAINER" property="isTrainer"/>
+		<result column="MATCHING_STATUS" property="matchingStatus"/>
+		<result column="REVIEW_STATUS" property="reviewStatus"/>
 	</resultMap>
 	
 	<select id="getJibsaProfile" resultMap="jibsaProfileResultSet">
@@ -179,9 +182,7 @@
 	<update id="reviewCount">
    		update matching
 		set review_count = review_count + 1
-		where #{mId} in (select member_no 
-                                from member
-                                join matching using(member_no))
+		where matching_no = #{mId}  
 	</update>
 	
 	<select id="reviewDetail" resultMap="boardResultSet">
@@ -190,7 +191,7 @@
 	        join animal a on(ma.animal_no = a.animal_no)
 	        join member m on(a.member_no = m.member_no)
 	        join jibsa_profile jp on(ma.member_no = jp.member_no)
-	    where m.member_no = #{mId} and m.member_status = 'Y'
+	    where ma.matching_no = #{mId} and m.member_status = 'Y'
 	</select>
 	
 <!-- 	<select id="reviewDetailReply" resultMap="boardResultSet"> -->
@@ -205,15 +206,14 @@
 	<update id="updateReply">
 		update matching
 		set jibsa_comment = #{jibsaComment}
-		where matching_no = #{matchingNo} and matching_status = 'Y' 
+		where matching_no = #{jibsaNo}
 	</update>
 	
 	<select id="selectReply" resultMap="boardResultSet">
-     	select *
+        select *
 		from matching
 			join member using(member_no)
-		where is_jibsa = 'Y' and matching_no = #{matchingNo} and member_no = #{memberNo} and member_status = 'Y'
-		order by matching_no desc
+		where matching_no = #{mId}
 	
 	</select>
 </mapper>

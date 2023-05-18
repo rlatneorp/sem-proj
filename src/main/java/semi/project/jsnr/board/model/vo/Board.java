@@ -19,13 +19,14 @@ public class Board {
 	private String isJibsa;
 	private String matchingStatus;
 	private String reviewStatus;
+	private int jibsaNo;
 	
 	public Board() {}
 
 	public Board(int matchingNo, int animalNo, String animalName, String animalKind, String startDate, String endDate,
 			String matchingPlace, String reviewContent, Double reviewRating, int reviewCount, String jibsaComment,
-			String memberName, int memberNo, int jibsaNo, String jibsaName, String isJibsa, String matchingStatus,
-			String reviewStatus) {
+			String memberName, int memberNo, String jibsaName, String isJibsa, String matchingStatus,
+			String reviewStatus, int jibsaNo) {
 		super();
 		this.matchingNo = matchingNo;
 		this.animalNo = animalNo;
@@ -45,6 +46,7 @@ public class Board {
 		this.isJibsa = isJibsa;
 		this.matchingStatus = matchingStatus;
 		this.reviewStatus = reviewStatus;
+		this.jibsaNo = jibsaNo;
 	}
 
 	public int getMatchingNo() {
@@ -191,16 +193,25 @@ public class Board {
 		this.reviewStatus = reviewStatus;
 	}
 
+	public int getJibsaNo() {
+		return jibsaNo;
+	}
+
+	public void setJibsaNo(int jibsaNo) {
+		this.jibsaNo = jibsaNo;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [matchingNo=" + matchingNo + ", animalNo=" + animalNo + ", animalName=" + animalName
 				+ ", animalKind=" + animalKind + ", startDate=" + startDate + ", endDate=" + endDate
 				+ ", matchingPlace=" + matchingPlace + ", reviewContent=" + reviewContent + ", reviewRating="
 				+ reviewRating + ", reviewCount=" + reviewCount + ", jibsaComment=" + jibsaComment + ", memberName="
-				+ memberName + ", memberNo=" + memberNo + ", jibsaNo=" + jibsaNo + ", jibsaName=" + jibsaName
-				+ ", isJibsa=" + isJibsa + ", matchingStatus=" + matchingStatus + ", reviewStatus=" + reviewStatus
+				+ memberName + ", memberNo=" + memberNo + ", jibsaName=" + jibsaName + ", isJibsa=" + isJibsa
+				+ ", matchingStatus=" + matchingStatus + ", reviewStatus=" + reviewStatus + ", jibsaNo=" + jibsaNo
 				+ "]";
 	}
 
+	
 	
 }
