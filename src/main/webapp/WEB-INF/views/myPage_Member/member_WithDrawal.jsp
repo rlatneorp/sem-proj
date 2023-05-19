@@ -43,7 +43,7 @@
 					 <hr>
 					 <div id="box">
 					 	<img src="resources/image/logo.png" id="img"><br><br><br>
-					 	<h4>홍길동님이 홍길동님께서 집사나라를 탈퇴 하신다니 아쉽네요!</h4>
+					 	<h4>${ loginUser.memberName }님께서 집사나라를 탈퇴 하신다니 아쉽네요!</h4>
 						<h4>항상 행복하시길 바라며 나중에 다시 뵙길 바라요!</h4>
 					 </div>
 					 <br><br>

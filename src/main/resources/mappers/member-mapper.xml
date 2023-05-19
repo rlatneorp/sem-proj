@@ -146,5 +146,11 @@
 		from member
 		where member_id = #{memberId} and member_email = #{memberEmail}
 	</select>
+	
+	<select id="foundCheckId" resultType="_int">
+		select count(*)
+		from member
+		where member_name = #{memberName} and member_email = #{memberEmail}
+	</select>
 
 </mapper>

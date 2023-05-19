@@ -30,7 +30,7 @@
 #top_hr{border: 20px solid rgb(26, 188, 156); opacity: 1; margin: 0;}
 #top_hr2{border: 1px solid gray;}
 		.menu1:hover:not(.active){color: rgb(51, 51, 51);}
-		.menu2:hover:not(.active){color: white;}
+		.menu2:hover:not(.active){color: black;}
 		.myMenu:hover:not(.active){color: rgb(51, 51, 51);}
 		.btjipsa{width: 130px; height: 50px; background: rgb(26, 188, 156); border-style: none; border-radius: 4px;}
 		.topLoginCont{width: 1200px; max-width: none !important; margin: 0 auto;}
@@ -80,11 +80,18 @@
 		</c:if>
 		<c:if test="${ !empty loginUser }"> 
 			<div id="right">
-				<a class="menu1"><img src="resources/image/profile.png" alt="profile" id="profile"></a>
+				<a class="menu1">
+					<c:if test="${ empty image.memberNo }">
+						<img src="resources/image/bowl.png" alt="profile" id="profile">
+					</c:if>
+					<c:if test="${ !empty image.memberNo and image.imageLevel == '1' }">
+						<img src="${ contextPath }/resources/uploadFiles/${ image.renameName }" alt="profile" id="profile">
+					</c:if>
+				</a>
 				<a class="menu2">${ loginUser.memberName }</a>
 				<div class="dropd" style="float:right; " aria-expanded="false">
 					<button onclick="dp_menu()" class="butn"><img src="resources/image/down.png"></button>
-				    <div style="width: 230px; height: 390px; display: none;" id="drop-c">
+				    <div style="width: 230px; height: 410px; display: none;" id="drop-c">
 				    	<ul id="droul"><br>
 				    	<c:if test="${ loginUser.isAdmin eq 'Y' }">
 					       <li><a class="name">${ loginUser.memberName }관리자</a></li>
@@ -97,11 +104,13 @@
 					       <li><a class="name">${ loginUser.memberName }님</a></li>
 					       <c:if test="${ animal.isStatus eq 'Y'}">
 						       <li><a class="animal">${ animal.animalName }</a></li>
-						       <li><a class="animal">${ animal.animalType } · <c:if test="${ animal.animalGender eq 'F' }">여아</c:if> <c:if test="${ animal.animalGender eq 'M' }">남아</c:if></a></li>
+						       <li><a class="animal">
+						       	   <c:if test="${ empty animal.animalType }">${ animal.animalKind }</c:if>
+						       	   <c:if test="${ !empty animal.animalType }">${ animal.animalType }</c:if> · <c:if test="${ animal.animalGender eq 'F' }">여아</c:if> <c:if test="${ animal.animalGender eq 'M' }">남아</c:if></a></li>
 					       </c:if>
 					       <c:if test="${ animal.isStatus ne 'Y' }">
-					       	   <li><a class="animal">내 동물 정보를</a></li>
-					       	   <li><a class="animal">등록해보세요!</a></li>
+					       	   <li><a class="animal" href="${ contextPath }/member_Pet_Insert.me">내 동물 정보를</a></li>
+					       	   <li><a class="animal" href="${ contextPath }/member_Pet_Insert.me">등록해보세요!</a></li>
 					       </c:if>
 					       <li><a><hr></a></li>
 					       <li><a class="myMenu" href="${ contextPath }/member_User_Info.me">마이페이지</a></li>

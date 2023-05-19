@@ -82,17 +82,17 @@ public class HomeController {
 	@PostMapping("login.do")
 	public String login(Model model, @ModelAttribute Member m) {
 		Member loginUser = mService.login(m);
-		
 		bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd());
-		
+		System.out.println(loginUser);
 		if(bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd())) {
 			model.addAttribute("loginUser", loginUser);
+			
 			return "redirect:home.do";
 		} else {
 			return "login/login";
 		}
 		
-	}
+	}  
 	
 	// 로그아웃 - 현지
 	@RequestMapping("logout.do")
@@ -135,6 +135,20 @@ public class HomeController {
 		map.put("memberEmail", memberEmail);
 		
 		int count = mService.checkInfo(map);
+		
+		String result = count == 1 ? "yes" : "no";
+		
+		return result;
+	}
+	
+	@RequestMapping("foundCheckId.do")
+	@ResponseBody
+	public String foundCheckId(@RequestParam("memberName") String memberName, @RequestParam("memberEmail") String memberEmail) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("memberName", memberName);
+		map.put("memberEmail", memberEmail);
+		
+		int count = mService.foundCheckId(map);
 		
 		String result = count == 1 ? "yes" : "no";
 		
@@ -263,7 +277,8 @@ public class HomeController {
 				messageHelper.setSubject(title);
 				messageHelper.setText(content, true);
 				
-				mailSender.send(message);
+//				mailSender.send(message);
+				System.out.println(num);
 			} catch (MessagingException e) {
 				System.out.println(e.getMessage());
 			}

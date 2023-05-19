@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <title>집사나라 - 아이디 찾기</title>
 <style>
 #top_hr{border: 20px solid rgb(26, 188, 156); opacity: 1; margin: 0;}
@@ -49,6 +50,43 @@
 		</div>
 	</div>
 	<br><br><br><br><br><br><br><br><br>
+	<script>
+		const memberName = document.getElementById('finBtn');
+		const memberEmail = document.getElementById('fipBtn');
+		const next = document.getElementById('foundIdNext1');
+		
+		const foundCheckId = () => {
+		    $.ajax({
+		        type: 'POST',
+		        url: '${contextPath}/foundCheckId.do',
+		        data: { memberName: memberName.value.trim(), memberEmail: memberEmail.value.trim() },
+		        success: data => {
+		            console.log(data);
+		            if (data == 'yes') {
+		                next.disabled = false;
+		                next.style.background = 'rgb(26, 188, 156)';
+		            } else if (data == 'no') {
+		                next.disabled = true;
+		                next.style.background = 'gray';
+		            }
+		        },
+		        error: data => {
+		            console.log(data);
+		            alert('에러발생');
+		        }
+		    });
+		};
+
+		memberEmail.addEventListener('change', foundCheckId);
+		memberName.addEventListener('change', foundCheckId);
+	</script>
+	
+	
+	
+	
+	
+	
+	
 </form>
 </body>
 </html>
