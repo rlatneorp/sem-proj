@@ -148,7 +148,7 @@
 		    join jibsa_profile jp on(jp.member_no = ma.member_no)
 		where    
 		<if test="condition == 'petsitter'">
-				jp.jibsa_name = upper(#{value})
+				jp.jibsa_name like '%' || #{value} || '%'
 		</if> 
 		<if test="condition == 'animalCategory'">
 				a.animal_kind like '%' || upper(#{value}) || '%'
@@ -166,7 +166,7 @@
 		    join jibsa_profile jp on(jp.member_no = ma.member_no)
 		where 
 		<if test="condition == 'petsitter'">
-				jp.jibsa_name = upper(#{value})
+				jp.jibsa_name like '%' || #{value} || '%'
 		</if> 
 		<if test="condition == 'animalCategory'">
 				a.animal_kind like '%' || upper(#{value}) || '%'

@@ -197,24 +197,20 @@
 			<br>
 		
 			<div id = "searchArea" align = "center">
-			
 				<label>검색조건</label>
 				<select >
 					<option value ="petsitter"<c:if test="${condition == 'petsitter' }">selected</c:if>>집사이름</option>
 					<option value="animalCategory"<c:if test="${condition == 'animalCategory' }">selected</c:if>>동물종류</option>
-					
 				</select>
 				<input  type="search" value = "<c:if test='${!empty value }'>${ value }</c:if>">
 				<button class="search-button">검색하기</button>
 				<br><br><br>
 			</div>	
-			
-	
 	  </div>
 <%@ include file="../common/bottom.jsp" %>
 
 <script>
-	 
+window.onload=()=>{
 		document.getElementById('searchArea').querySelector('button').addEventListener('click', function(){
 		const value = this.previousElementSibling.value;
 		const condition = this.previousElementSibling.previousElementSibling.value;
@@ -222,7 +218,7 @@
 		location.href = '${contextPath}/search.bo?value='+value+'&condition='+condition;
 		});		
 		
-	window.onload=()=>{
+	 
 		const reviewContent = document.querySelector('article');
 		const reviewDiv = reviewContent.querySelectorAll('.col');
 		 

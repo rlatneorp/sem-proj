@@ -145,7 +145,7 @@ public class BoardController {
 		Member m = (Member)session.getAttribute("loginUser");
 		String login = null;
 		if(m != null) {
-			login = m.getMemberId();
+			login = m.getMemberName();
 		}  
 		boolean yn = false;
 		if(!userName.equals(login)) {
@@ -154,7 +154,7 @@ public class BoardController {
 		
 		Board b = bService.reviewDetail(mId, yn);	
 		Board list = bService.selectReply(mId);
-		
+		System.out.println(b);
 		
 		if(b != null) {
 			mv.addObject("page", page);

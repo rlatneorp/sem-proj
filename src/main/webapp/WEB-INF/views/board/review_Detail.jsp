@@ -65,7 +65,7 @@
 	  width: 100%;
 	}
 	
-	.row {
+	#reviewBoxContainer {
 		border: 0.5px solid rgb(26, 188, 156);
 		padding: 18px;
 		margin: 10px;
@@ -106,9 +106,9 @@
 	  padding-right: 1px;
 	}
 	
-	#comment {
-	  text-align: center;
-	}
+ 	#comment {
+ 	  text-align: center; 
+ 	} 
 	
 	.material-symbols-outlined {
 	  font-variation-settings:
@@ -132,10 +132,17 @@
 		border: none; 
 		margin-right: 170px;}
 		
-	#replyBtn{border: none;
-	background-color: rgb(239, 245, 245);
-	color: rgb(67, 154, 151);
-	border-radius: 5px;}
+	#replyBtn{
+	border: none;
+	background-color: rgb(184,184,184);
+	color: white;
+	cursor: pointer;
+	width: 430px;
+	font-size: 20px;
+	border-radius: 5px;
+	border: none; 
+	}
+	
 	
 	#replyContent{
 	border: 1px solid #7F8487;
@@ -144,7 +151,7 @@
 	border-radius: 5px;}
 	
 	#contentBox{border: 1px solid #7F8487; border-radius: 5px;}
-	 
+	#td1{font-size: 22px;}
 </style>
 
 
@@ -155,15 +162,11 @@
 <div id="reviewDetailSetting">
 	<div class="container">
 		<br>
-		<h1 class="text-left">집사 후기</h1>
-		<div class="container" style="display: flex; align-items: center;">
+		<h1 class="text-left" style="width: 600px; text-align: center; margin-right: -500px; font-weight: bolder;">집사 후기</h1>
+		<br>
+		<div class="container" style="display: flex; align-items: center; width: 600px; text-align: center;">
 		<div class="col">
-			<div class="reviewLeftBtn">
-           		<span class="material-symbols-outlined" style="font-size: 70px; width: 70px; display: inline-block;">arrow_circle_left</span>
-        	</div>
-        </div>			
-		<div class="col">
-			<div class="row" style="width: 600px; margin-right: 170px;">
+			<div class="row" id="reviewBoxContainer">
 			  	<div class="col">
 				    <div class="review">
 						  <div class="profile">
@@ -194,14 +197,9 @@
 				<textarea readonly cols="50" rows="10" style="resize: none; padding: 20px;" name="content" id="contentBox">  ${b.reviewContent }</textarea>
 				
 				<hr><br><hr><br>
-				<h3 style="text-align: center;">집사의 댓글</h3>
+				<h4 style="text-align: center;">집사의 댓글</h4>
 				<br>
 				<table>
-					<thead style="text-align: center;">
-						<tr>
-							<td width="260px">댓글 내용</td>
-						</tr>
-					</thead>
 					<tbody class="tbody1" style="text-align: center;">	
 						<tr class="tr1">
 							<td class="td1">${ b.jibsaComment }</td>
@@ -209,34 +207,32 @@
 					</tbody>
 				</table>
 				<br><hr><br>
-				  <div id="comment">
-				    <label>댓글입력 : </label>
-				    <textarea id="replyContent" placeholder=" 댓글을 달거나 수정해주세요" style="resize: none;"></textarea>
-					<input id="replyBtn" type="button" name="reply" value ="댓글 수정"  onclick="json_reply();">
-				  </div>
+				  <div id="comment" style="display: none;">
+				    <textarea id="replyContent" placeholder=" 댓글을 달거나 수정해주세요" style="resize: none; width:430px; height: 100px; display: inline-block;"></textarea>
+					<input type="button" name="reply" id="replyBtn" value="댓글작성" onclick="json_reply();">
+				</div>
+			<br><br>
 			</div>
+			<br><br>
+			<div class="col" style="margin-left: 160px;">
+				<button id="allReviewBtn"onclick="location.href='${contextPath}/review_Main.bo'">모든 후기 보기</button>
 			</div>
 		</div>
 			<br><br>
-		 
-			<div class="col" style="text-align: center;">
-				<button id="allReviewBtn"onclick="location.href='${contextPath}/review_Main.bo'">모든 후기 보기</button>
-			</div>
-				
-			<div class="col">
-				<div class="reviewRightBtn">
-           			<span class="material-symbols-outlined" style="font-size: 70px;">arrow_circle_right</span>
-        		</div>
-        		</div>
-			</div>
+	</div>			
 	</div>	
+	</div>
 <br><br><br><br>	
 <%@ include file="../common/bottom.jsp" %>
 
 <script>
-	const json_reply=()=>{  
+	const t = document.querySelector('#comment');
+		if(${loginUser.memberName == b.jibsaName}){
+			t.style.display = "block";
+		};	
+		const json_reply=()=>{
 			const jibsaCom = document.querySelector('#replyContent').value;
-			 
+			
 			$.ajax({
 				url: '${contextPath}/updateReply.bo',
 				data: {
@@ -245,10 +241,9 @@
 				},
 				success: data =>{
 					console.log(data);
-					
-					const t = document.querySelector('#replyContent');
-					
+										
 					const tr = document.querySelector('.td1');
+					
 					tr.innerText = '';
 					tr.innerText = jibsaCom;
 					
@@ -259,7 +254,11 @@
 					console.log(data);
 				}
 			});
-		};		
+		}; 
+				
+        
+	
+		
 </script>
 		
 		
