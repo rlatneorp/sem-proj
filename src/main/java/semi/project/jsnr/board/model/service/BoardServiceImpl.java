@@ -30,11 +30,6 @@ public class BoardServiceImpl implements BoardService{
 		return bDAO.getListCount(sqlSession, i);
 	}
 
-//	@Override
-//	public ArrayList<Board> reviewBoardList(PageInfo pi) {
-//		return bDAO.reviewBoardList(sqlSession, pi);
-//	}
-	
 	@Override
 	public ArrayList<Board> reviewBoardList(PageInfo pi) {
 		return bDAO.reviewBoardList(sqlSession, pi);
@@ -97,7 +92,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public ArrayList<Board> selectReply(int mId) {
+	public Board selectReply(int mId) {
 		return bDAO.selectReply(sqlSession, mId);
 	}
 

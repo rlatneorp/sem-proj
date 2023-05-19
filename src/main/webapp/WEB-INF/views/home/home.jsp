@@ -194,7 +194,7 @@
 	</div>
 	
 	<div class="video-container">
-	  <video id="videoStyle" width="720" height="405" src="resources/video/short.mp4" loop="loop" title="YouTube video player" autoplay="autoplay" muted="muted"></video>
+	  <video id="videoStyle" width="720" height="405" src="resources/video/video.mp4" loop="loop" title="YouTube Copyrights video player" autoplay="autoplay" muted="muted"></video>
 	</div>
 	
 `	<%@ include file="../common/bottom.jsp" %>

@@ -78,12 +78,9 @@ public class BoardDAO {
 		return sqlSession.update("boardMapper.reviewCount", mId);
 	}
 
-	public Board reviewDetail(SqlSessionTemplate sqlSession, int mId) {
-		return sqlSession.selectOne("boardMapper.reviewDetail", mId);
-	}
 
-	public ArrayList<Board> reviewDetailReply(SqlSessionTemplate sqlSession, int mId) {
-		return (ArrayList)sqlSession.selectList("boardMapper.reviewDetailReply", mId);
+	public Board selectReply(SqlSessionTemplate sqlSession, int mId) {
+		return sqlSession.selectOne("boardMapper.selectReply", mId);
 	}
 
 	public void updateReply(SqlSessionTemplate sqlSession, Board b) {
@@ -92,6 +89,10 @@ public class BoardDAO {
 
 	public ArrayList<Board> selectReply(SqlSessionTemplate sqlSession, int mId) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectReply", mId);
+	}
+
+	public Board reviewDetail(SqlSessionTemplate sqlSession, int mId) {
+		return sqlSession.selectOne("boardMapper.reviewDetail", mId);
 	}
 }
 

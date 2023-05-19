@@ -148,7 +148,7 @@
 		    join jibsa_profile jp on(jp.member_no = ma.member_no)
 		where    
 		<if test="condition == 'petsitter'">
-				jp.jibsa_name = upper(#{value})
+				jp.jibsa_name like '%' || #{value} || '%'
 		</if> 
 		<if test="condition == 'animalCategory'">
 				a.animal_kind like '%' || upper(#{value}) || '%'
@@ -166,7 +166,7 @@
 		    join jibsa_profile jp on(jp.member_no = ma.member_no)
 		where 
 		<if test="condition == 'petsitter'">
-				jp.jibsa_name = upper(#{value})
+				jp.jibsa_name like '%' || #{value} || '%'
 		</if> 
 		<if test="condition == 'animalCategory'">
 				a.animal_kind like '%' || upper(#{value}) || '%'
@@ -203,17 +203,18 @@
 <!-- 	    where m.member_no = #{mId} and m.member_status = 'Y' -->
 <!-- 	</select> -->
 	
-	<update id="updateReply">
-		update matching
-		set jibsa_comment = #{jibsaComment}
-		where matching_no = #{jibsaNo}
-	</update>
 	
 	<select id="selectReply" resultMap="boardResultSet">
         select *
 		from matching
 			join member using(member_no)
-		where matching_no = #{mId}
-	
+		where matching_no = #{mId} and matching_status = 'Y'
 	</select>
+	
+	<update id="updateReply">
+		update matching
+		set jibsa_comment = #{jibsaComment}
+		where matching_no = #{matchingNo}
+	</update>
+	
 </mapper>
