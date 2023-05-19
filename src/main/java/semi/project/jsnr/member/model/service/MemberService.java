@@ -89,5 +89,13 @@ public class MemberService {
 	public int checkInfo(HashMap<String, String> map) {
 		return mDAO.checkInfo(sqlSession, map);
 	}
+	
+	public int foundCheckId(HashMap<String, String> map) {
+		return mDAO.foundCheckId(sqlSession, map);
+	}
+
+	public int loginCheckInfo(HashMap<String, String> map) {
+		return mDAO.loginCheckInfo(sqlSession, map);
+	}
 
 }

@@ -26,7 +26,7 @@ import semi.project.jsnr.animal.model.vo.Animal;
 import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.member.model.vo.Member;
 
-@SessionAttributes("animal")
+@SessionAttributes({"animal", "image"})
 @Controller
 public class AnimalController {
 	
@@ -38,6 +38,11 @@ public class AnimalController {
         return new Animal();
 
     }
+	
+	@ModelAttribute("image")
+	public Image getImage() {
+		return new Image();
+	}
 	
 	@RequestMapping("member_User_Info.me") // 조회
 	public String animalList(HttpSession session, Model model) {
@@ -148,7 +153,8 @@ public class AnimalController {
             		}
             	}
             }
-		}		
+		}
+		
 		    if (result > 0) {
 		        model.addAttribute("animal", editAnimal);
 		        return "redirect:member_User_Info.me";

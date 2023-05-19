@@ -80,7 +80,14 @@
 		</c:if>
 		<c:if test="${ !empty loginUser }"> 
 			<div id="right">
-				<a class="menu1"><img src="resources/image/profile.png" alt="profile" id="profile"></a>
+				<a class="menu1">
+					<c:if test="${ empty image.memberNo }">
+						<img src="resources/image/bowl.png" alt="profile" id="profile">
+					</c:if>
+					<c:if test="${ !empty image.memberNo and image.imageLevel == '1' }">
+						<img src="${ contextPath }/resources/uploadFiles/${ image.renameName }" alt="profile" id="profile">
+					</c:if>
+				</a>
 				<a class="menu2">${ loginUser.memberName }</a>
 				<div class="dropd" style="float:right; " aria-expanded="false">
 					<button onclick="dp_menu()" class="butn"><img src="resources/image/down.png"></button>

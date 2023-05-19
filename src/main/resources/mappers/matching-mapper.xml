@@ -46,6 +46,12 @@
 		<result column="IMAGE_LEVEL" property="imageLevel" />
 	</resultMap>
 	
+	<select id="getAnimalCount" resultType="_int">
+		select count(*)
+		from animal
+		where member_no = #{mId}
+	</select>
+	
 	<select id="selectJibsa" resultMap="jibsaResultSet">
 		select *
 		from jibsa

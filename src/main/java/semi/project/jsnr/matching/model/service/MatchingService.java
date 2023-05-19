@@ -15,6 +15,8 @@ public interface MatchingService {
 
 	ArrayList<Animal> selectAnimalList(int mNo);
 
+	int getAnimalCount(int mNo);
+	
 	Jibsa selectJibsa(int jNo);
 
 	Animal selectAnimal(int aNo);

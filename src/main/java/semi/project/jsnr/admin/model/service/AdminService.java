@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import semi.project.jsnr.admin.model.dao.AdminDAO;
+import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
@@ -72,6 +73,10 @@ public class AdminService {
 		return aDAO.selectJibsa(sqlSession, mId);
 	}
 
+	public Image selectJibsaImage(int jNo) {
+		return aDAO.selectJibsaImage(sqlSession, jNo);
+	}
+	
 	public int updateJibsa(Jibsa j) {
 		return aDAO.updateJibsa(sqlSession, j);
 	}
@@ -123,6 +128,7 @@ public class AdminService {
 	public int updateMatching(Matching mc) {
 		return aDAO.updateMatching(sqlSession, mc);
 	}
+
 
 
 

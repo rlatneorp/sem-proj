@@ -23,14 +23,19 @@
 #foundPwdEmail{font-size: 18px; font-family: 'Noto Sans KR', sans-serif; font-weight: 400; margin-left: 10px; text-decoration: none; color: rgb(51, 51, 51);
  			   margin-top: 500px;
 }
-.foundPwdnp{text-align: left;}
-#fpnBtn{margin-left: 70px; width: 300px; height: 40px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94);}
+.foundPwdnp{text-align: left; display: inline-block;}
+#fpnBtn{
+	margin-left: 70px; width: 300px; height: 40px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; 
+	font-weight: 300; text-decoration: none; color: rgb(94, 94, 94); position: relative; padding: 8px;
+}
 #fpiBtn{margin-left: 54px; width: 300px; height: 40px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94);}
 #fppBtn{border: none; border-radius: 4px; margin-left: 10px; width: 80px; height: 40px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; text-decoration: none; color: rgb(94, 94, 94);}
 #foundPwdNext1{box-shadow:0px 0px 15px 5px rgb(224, 224, 224); border: none; border-radius: 25px; width: 168px; height: 44px; font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: 400; text-decoration: none; color: white; background: rgb(26, 188, 156);}
 .email{width: 130px; margin-left: 20px; border: 1px solid gray;}
 #emailId{margin-left: 130px; width: 210px;}
-#check{width: 300px; margin-left: 162px; height: 30px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; text-decoration: none;}
+#check{width: 300px; margin-left: 150px; height: 30px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; text-decoration: none;}
+#timer{position: absolute; right: 16px; top:16px;}
+.input_container{position: relative; display: inline-block;}
 </style>
 </head>
 <body>
@@ -42,12 +47,13 @@
 			<a id="foundPwdTitle">비밀번호 찾기</a>
 			<form action="${ contextPath }/pwd_Set.do" method="post">
 			<input type="hidden" name="num" value="${ num }" id="num">
-			<div class="foundPwdnp"> 
-				<br><br><br><br>
-				<a id="foundPwdName">인증번호</a>
-				<input type="text" id="fpnBtn" placeholder=" 인증 번호를 입력하세요." name="emailAuth" required>
-				<div id="check"></div>
-			</div>
+			<br><br><br><br>
+			<div class="input_container">
+				<label style="font-weight: bold; font-size: 18px;">인증번호</label>
+                <input type="text" id="fpnBtn" placeholder=" 인증 번호를 입력하세요." name="emailAuth" required>
+                <span id="timer"></span>
+	            <div id="check"></div>
+            </div>
 			<br><br><br><br><br>
 			<div>
 				<button type="submit" id="foundPwdNext1">확인</button>	
@@ -62,6 +68,7 @@
 		const num = document.getElementById('num');
 		const btn = document.getElementById('foundPwdNext1');
 		
+		// 인증번호 확인
 		emailCode.addEventListener('keyup', () => {
 			console.log(num.value);
 			if(emailCode.value == num.value){
@@ -76,6 +83,35 @@
 				btn.style.background = 'gray';
 			}
 		});
+		
+// 		const timer = document.getElementById('timer');
+		
+// 		// 인증번호 유효시간 카운트다운
+// 		function timer_start() {
+// 			code_valid = true; // 인증번호 유효성
+// 			current_time = 0;  // 현재 발송 시간 초기화
+// 			let count = 20;    // 카운트다운 시간 설정
+			
+// 			timer.innerHTML = "00:20";
+			
+// 			// 1초 마다 실행
+// 			timer_thread = set
+// 		}
 	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

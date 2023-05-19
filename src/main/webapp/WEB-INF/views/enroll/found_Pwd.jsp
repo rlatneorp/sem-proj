@@ -53,7 +53,6 @@
 				<a id="foundPwdEmail">이메일</a>
 				<input type="email" id="emailId" name="memberEmail" class="email" required placeholder=" 이메일을 입력하세요">
 				<div id="check" style="margin-left: 130px;"></div>
-<!-- 				<br> -->
 			</div>
 			<br><br><br><br><br>
 			<div>
