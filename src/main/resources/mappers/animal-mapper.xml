@@ -21,24 +21,23 @@
 		<result column="BIRTH_DATE" property="birthDate" />
 		<result column="IS_STATUS" property="isStatus" />
 		<result column="IMAGE_LEVEL" property="imageLevel" />
-		<result column="IS_LEADER" property="isLeader" />
 	</resultMap>
 
 	<update id="updateAnimal">
 		update animal
 		set animal_name = #{animalName}, animal_gender = #{animalGender}, animal_kind = #{animalKind}, animal_weight = #{animalWeight},
-			animal_note = #{animalNote}, animal_type = #{animalType}, animal_size = #{animalSize}, is_neuter = #{isNeuter}, birth_date = #{birthDate}, is_status = default, image_level = default, is_leader = #{isLeader}
+			animal_note = #{animalNote}, animal_type = #{animalType}, animal_size = #{animalSize}, is_neuter = #{isNeuter}, birth_date = #{birthDate}, is_status = default, image_level = default
 		where member_no = #{memberNo} and animal_no = #{animalNo}
 	</update>
 	
 	<insert id="insertAnimal">
 		insert into animal
-		values(seq_ani_id.nextval, #{animalName}, #{animalGender}, #{animalKind}, #{animalWeight}, #{animalNote}, #{memberNo}, #{animalType}, #{animalSize}, #{isNeuter}, #{birthDate}, default, default, #{isLeader})
+		values(seq_ani_id.nextval, #{animalName}, #{animalGender}, #{animalKind}, #{animalWeight}, #{animalNote}, #{memberNo}, #{animalType}, default, #{isNeuter}, #{birthDate}, default, default)
 	</insert>
 	
 	<update id="deleteAnimal">
 		update animal
-		set is_status = 'N', is_Leader = 'N'
+		set is_status = 'N'
 		where member_no = #{memberNo} and animal_no = #{animalNo}
 	</update>
 	
@@ -72,18 +71,6 @@
 		delete from image
 		where member_no = #{memberNo} and image_level = '1'
 	</delete>
-	
-	<select id="selectLeader" resultMap="animalResultSet">
-		select *
-		from animal
-		where member_no = #{memberNo} and is_status = 'Y' and is_leader ='Y'
-	</select>
-	
-	<select id="selectAnimal" resultMap="animalResultSet">
-		select *
-		from animal
-		where animal_no = #{animalNo} and is_status = 'Y'
-	</select>
 
 </mapper>
 

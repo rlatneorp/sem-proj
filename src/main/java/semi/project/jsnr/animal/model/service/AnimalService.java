@@ -8,7 +8,7 @@ import semi.project.jsnr.animal.model.vo.Image;
 
 public interface AnimalService {
 	
-	ArrayList<Animal> animalList(int memberNo);
+	Animal animalList(int memberNo);
 
 	int updateAnimal(Animal a);
 
@@ -23,10 +23,6 @@ public interface AnimalService {
 	int editImage(Image image);
 
 	int deleteImage(Image image);
-
-	Animal selectLeader(int memberNo);
-
-	Animal selectAnimal(int animalNo);
 
 
 }
