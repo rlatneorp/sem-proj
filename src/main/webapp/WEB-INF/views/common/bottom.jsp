@@ -56,8 +56,7 @@ a:hover:not(.active){color: rgb(127, 127, 127);}
 			  	</ul>
 		  	</div>
 		  	<div class="right">
-	  			<a class="infoKakao">카카오톡 문의</a>
-	  			<a><img src="resources/image/kakao.png" id="kakao"></a>
+	  			
 	  			<pre>	  			</pre>
 		  	</div>
 	  	</div>

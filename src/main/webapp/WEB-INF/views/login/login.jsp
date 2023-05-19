@@ -54,7 +54,7 @@
 		<div id="btnDiv"><button id="loginBtn" name="login">로그인</button></div>
 		</form>
 		<br>
-		<div id="loginBot"><a href="${ contextPath }/searchId.do"> 아이디 찾기 </a> | <a href="${ contextPath }/searchPwd.do"> 비밀번호 찾기 </a> | <a href="${ contextPath }/enroll.do"> 회원가입 </a></div>
+		<div id="loginBot"><a href="${ contextPath }/searchId.do"> 아이디 찾기 </a> | <a href="${ contextPath }/searchPwd.do"> 비밀번호 찾기 </a> | <a href="${ contextPath }/joinNotice.do"> 회원가입 </a></div>
 		<br><br>
 	</div>
 	<br><br><br><br><br><br><br><br><br><br>
