@@ -46,6 +46,10 @@ public class JibsaService {
 		return jDAO.insertImage(sqlSession, image);
 	}
 
+	public int insertJibsaProfile(Jibsa j) {
+		return jDAO.insertJibsaProfile(sqlSession, j);
+	}
+
 	
 	
 	

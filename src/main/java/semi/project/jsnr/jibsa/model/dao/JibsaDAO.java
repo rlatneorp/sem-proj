@@ -38,4 +38,8 @@ public class JibsaDAO {
 		return sqlSession.update("jibsaMapper.updateJibsaAvailableHour", j);
 	}
 
+	public int insertJibsaProfile(SqlSessionTemplate sqlSession, Jibsa j) {
+		return sqlSession.insert("jibsaMapper.insertJibsaProfile");
+	}
+
 }

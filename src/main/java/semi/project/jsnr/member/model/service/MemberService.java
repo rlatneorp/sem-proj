@@ -94,4 +94,8 @@ public class MemberService {
 		return mDAO.foundCheckId(sqlSession, map);
 	}
 
+	public int loginCheckInfo(HashMap<String, String> map) {
+		return mDAO.loginCheckInfo(sqlSession, map);
+	}
+
 }

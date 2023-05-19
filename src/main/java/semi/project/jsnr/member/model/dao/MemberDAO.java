@@ -85,4 +85,8 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.foundCheckId", map);
 	}
 
+	public int loginCheckInfo(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("memberMapper.loginCheckInfo", map);
+	}
+
 }
