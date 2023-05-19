@@ -141,6 +141,20 @@ public class HomeController {
 		return result;
 	}
 	
+	@RequestMapping("foundCheckId.do")
+	@ResponseBody
+	public String foundCheckId(@RequestParam("memberName") String memberName, @RequestParam("memberEmail") String memberEmail) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("memberName", memberName);
+		map.put("memberEmail", memberEmail);
+		
+		int count = mService.foundCheckId(map);
+		
+		String result = count == 1 ? "yes" : "no";
+		
+		return result;
+	}
+	
 	// 비번 찾기 - 이메일 인증 - 현지
 	@RequestMapping("foundPwd.do")
 	public ModelAndView foundPwd(@RequestParam("memberId") String memberId, @RequestParam("memberEmail") String memberEmail,
@@ -263,7 +277,8 @@ public class HomeController {
 				messageHelper.setSubject(title);
 				messageHelper.setText(content, true);
 				
-				mailSender.send(message);
+//				mailSender.send(message);
+				System.out.println(num);
 			} catch (MessagingException e) {
 				System.out.println(e.getMessage());
 			}

@@ -30,7 +30,7 @@
 #top_hr{border: 20px solid rgb(26, 188, 156); opacity: 1; margin: 0;}
 #top_hr2{border: 1px solid gray;}
 		.menu1:hover:not(.active){color: rgb(51, 51, 51);}
-		.menu2:hover:not(.active){color: white;}
+		.menu2:hover:not(.active){color: black;}
 		.myMenu:hover:not(.active){color: rgb(51, 51, 51);}
 		.btjipsa{width: 130px; height: 50px; background: rgb(26, 188, 156); border-style: none; border-radius: 4px;}
 		.topLoginCont{width: 1200px; max-width: none !important; margin: 0 auto;}
