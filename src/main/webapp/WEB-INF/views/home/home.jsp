@@ -142,7 +142,6 @@
 		  display: flex;
 		  justify-content: center;
 		  align-items: center;
-		  height: 100vh;
 		  padding: 20px;
 		}
 		
