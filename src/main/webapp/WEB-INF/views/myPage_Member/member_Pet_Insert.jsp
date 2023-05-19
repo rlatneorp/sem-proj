@@ -83,8 +83,8 @@ body {
 					      		<form action="${ contextPath }/insertAnimal.me" method="POST" enctype="multipart/form-data">
 					      		
 					      			<p class="sel">1. 반려동물 사진</p>
-					      			<div id="img"></div>
-    							  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile">
+					      			<img id="preview" width="100%" height="245"/>
+    							  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile" onchange="previewImage(event)"><br>
     							  	<br>
     							  	
     							  	<input type="text" name="animalName" placeholder="이름을 입력해주세요" style="width: 400px; height: 35px;" required/>
@@ -193,6 +193,24 @@ body {
 			  }
 			  reader.readAsDataURL(file);  
 			});
+			
+			const previewImage = (event) => {
+				const input = event.target;
+				const preview = document.getElementById('preview');
+				
+				  if (input.files && input.files[0]) {
+				    const reader = new FileReader();
+				
+				    reader.onload = (e) => {
+				      preview.src = e.target.result;
+				    };
+				
+				    reader.readAsDataURL(input.files[0]);
+				  }
+				};
+			
+			
+			
 		</script>
 		<br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<footer>
