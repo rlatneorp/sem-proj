@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
@@ -28,15 +29,15 @@ public class BoardDAO {
 		return (ArrayList)sqlSession.selectList("boardMapper.reviewBoardList", pi, rowBounds);
 	}
 
-	public int getJibsaListCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("boardMapper.getJibsaListCount");
+	public int getJibsaListCount(SqlSessionTemplate sqlSession, int selectType) {
+		return sqlSession.selectOne("boardMapper.getJibsaListCount", selectType);
 	}
 
-	public ArrayList<JibsaProfile> selectJibsaProfileList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<JibsaProfile> selectJibsaProfileList(SqlSessionTemplate sqlSession, PageInfo pi, int selectType) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("boardMapper.selectJibsaProfileList", pi, rowBounds);
+		return (ArrayList)sqlSession.selectList("boardMapper.selectJibsaProfileList", selectType, rowBounds);
 	}
 
 	public Jibsa getJibsaInfo(SqlSessionTemplate sqlSession, int mId) {
@@ -87,12 +88,16 @@ public class BoardDAO {
 		sqlSession.update("boardMapper.updateReply", b);
 	}
 
-	public ArrayList<Board> selectReply(SqlSessionTemplate sqlSession, int mId) {
-		return (ArrayList)sqlSession.selectList("boardMapper.selectReply", mId);
-	}
+//	public ArrayList<Board> selectReply(SqlSessionTemplate sqlSession, int mId) {
+//		return (ArrayList)sqlSession.selectList("boardMapper.selectReply", mId);
+//	}
 
 	public Board reviewDetail(SqlSessionTemplate sqlSession, int mId) {
 		return sqlSession.selectOne("boardMapper.reviewDetail", mId);
+	}
+
+	public ArrayList<Image> selectJibsaImageList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectJibsaImageList");
 	}
 }
 

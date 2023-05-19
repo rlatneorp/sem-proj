@@ -176,9 +176,10 @@
 				<div class="card mb-5" style="border: 5px solid rgb(26, 188, 156); border-radius: 20px;">
 					<c:if test="${image eq null }">
 						<img src="${ contextPath }/resources/image/logo.png">
+						사진없음
 					</c:if>
 					<c:if test="${image ne null }">
-						<img src="${image.imagePath}/${originalName}">
+						<img src="${image.imagePath}/${image.renameName}">
 					</c:if>
 					
 				</div>

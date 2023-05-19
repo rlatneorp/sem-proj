@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.board.model.dao.BoardDAO;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
@@ -36,13 +37,13 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int getJibsaListCount() {
-		return bDAO.getJibsaListCount(sqlSession);
+	public int getJibsaListCount(int selectType) {
+		return bDAO.getJibsaListCount(sqlSession, selectType);
 	}
 
 	@Override
-	public ArrayList<JibsaProfile> selectJibsaProfileList(PageInfo pi) {
-		return bDAO.selectJibsaProfileList(sqlSession, pi);
+	public ArrayList<JibsaProfile> selectJibsaProfileList(PageInfo pi, int selectType) {
+		return bDAO.selectJibsaProfileList(sqlSession, pi, selectType);
 	}
 
 	@Override
@@ -100,6 +101,12 @@ public class BoardServiceImpl implements BoardService{
 	public void updateReply(Board b) {
 		bDAO.updateReply(sqlSession, b);
 	}
+
+	@Override
+	public ArrayList<Image> selectJibsaImageList() {
+		return bDAO.selectJibsaImageList(sqlSession);
+	}
+
 
 
 

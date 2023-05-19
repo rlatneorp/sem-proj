@@ -90,28 +90,8 @@
 					</div>
 					
 					<div class="container px-2 mb-4 mx-0">			
-						<p class="mb-3 fs-6 fw-bold">고객센터</p>
-						<a href="${ contextPath }/QnA.js" class="text-decoration-none">
-						<div class="col-6 d-inline-block text-top">
-							<p class="fs-7 d-inline-block text-decoration-none align-middle text-dark">1:1 문의</p>
-						</div>
-						<div class="col-5 d-inline-block text-end">
-							<span class="material-symbols-rounded d-inline-block text-decoration-none m-color">chevron_right</span>
-						</div>
-						</a>
-						<a href="${ contextPath }/FAQ.js" class="text-decoration-none">
-						<div class="col-6 d-inline-block text-top">
-							<p class="fs-7 d-inline-block text-decoration-none align-middle text-dark">자주하는 질문</p>
-						</div>
-						<div class="col-5 d-inline-block text-end">
-							<span class="material-symbols-rounded d-inline-block text-decoration-none m-color">chevron_right</span>
-						</div>
-						</a>
-					</div>
-	
-					<div class="container px-2 mb-4 mx-0">			
 						<p class="mb-3 fs-6 fw-bold">집사에서 회원으로</p>
-						<a href="${ contextPath }/#" class="text-decoration-none">
+						<a href="${ contextPath }/member_User_Info.me" class="text-decoration-none">
 						<div class="col-6 d-inline-block text-top">
 							<p class="fs-7 d-inline-block text-decoration-none align-middle text-dark">회원으로 전환</p>
 						</div>

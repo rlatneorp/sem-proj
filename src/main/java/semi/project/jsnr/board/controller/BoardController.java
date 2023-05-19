@@ -19,8 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonIOException;
 
+import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.board.model.exception.BoardException;
 import semi.project.jsnr.board.model.service.BoardService;
 import semi.project.jsnr.board.model.vo.Board;
@@ -61,21 +61,41 @@ public class BoardController {
 	
 	@GetMapping("jibsa_List.bo")
 	public String jibsaList(@RequestParam(value="page", required=false) Integer page,
+							@RequestParam(value="type", required=false) Integer type,
 							Model model) {
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
 		}
-		
-		int listCount = bService.getJibsaListCount();
+		int selectType = 0;
+		if(type != null) {
+			selectType = type;
+		}
+
+		int listCount = bService.getJibsaListCount(selectType);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 6);
 		
-		ArrayList<JibsaProfile> pList = bService.selectJibsaProfileList(pi);
-				
-		if(pList != null) {
+		ArrayList<JibsaProfile> jpList = bService.selectJibsaProfileList(pi, selectType);
+		for(int i = 0; i < jpList.size(); i++) {
+			System.out.println(jpList.get(i));
+		}
+		
+		ArrayList<Image> iList = bService.selectJibsaImageList();
+		for(int i = 0; i < iList.size(); i++) {
+			for(int j = 0; j < jpList.size(); j++) {
+				if(iList.get(i).getMemberNo() == jpList.get(j).getMemberNo()) {
+					jpList.get(j).setImage(iList.get(i));
+				}
+			}
+		}
+//		for(int i = 0; i < jpList.size(); i++) {
+//			System.out.println(jpList.get(i));
+//		}
+		
+		if(jpList != null) {
 			model.addAttribute("pi", pi);
-			model.addAttribute("pList", pList);
+			model.addAttribute("jpList", jpList);
 		}
 		return "jibsa_List";
 	}

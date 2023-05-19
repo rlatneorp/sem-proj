@@ -22,7 +22,7 @@
 		<div class="card shadow mb-4 d-inline-block mainBox">
 			<div class="card-body text-start p-5">
 				<div>
-					<p class="fs-2 mb-5 fw-bold">마이페이지</p>
+					<p class="fs-2 mb-5 fw-bold">집사 마이페이지</p>
 					
 					<div class="container px-0 mb-3 mx-0">
 						<p class="px-2 fs-5 fw-bold">정보 수정하기</p>

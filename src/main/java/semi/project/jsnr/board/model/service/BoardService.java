@@ -3,6 +3,7 @@ package semi.project.jsnr.board.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
@@ -16,9 +17,9 @@ public interface BoardService {
 
 	ArrayList<Board> reviewBoardList(PageInfo pi);
 
-	int getJibsaListCount();
+	int getJibsaListCount(int selectType);
 
-	ArrayList<JibsaProfile> selectJibsaProfileList(PageInfo pi);
+	ArrayList<JibsaProfile> selectJibsaProfileList(PageInfo pi, int selectType);
 
 	Jibsa getJibsaInfo(int mId);
 
@@ -39,6 +40,9 @@ public interface BoardService {
 	Board selectReply(int mId);
 
 	void updateReply(Board b);
+
+	ArrayList<Image> selectJibsaImageList();
+
 
 
 }
