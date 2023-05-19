@@ -87,7 +87,7 @@ body {
     							  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile">
     							  	<br>
     							  	
-    							  	<input type="text" name="animalName" placeholder="이름을 입력해주세요" style="width: 400px; height: 35px;"/>
+    							  	<input type="text" name="animalName" placeholder="이름을 입력해주세요" style="width: 400px; height: 35px;" required/>
     							  	<br><br><br>
     							  	
     							  	<p class="sel">2.내 반려동물은</p>
@@ -132,7 +132,7 @@ body {
     							  	<br><br><br>
     							  	
     							  	<p class="sel">6. 내 반려동물의 몸무게</p>
-    							  	<input type="text" name="animalWeight" placeholder="몸무게 입력"> kg
+    							  	<input type="text" name="animalWeight" placeholder="몸무게 입력" required> kg
     							  	<br><br><br>
     							  	
     							  	<p class="sel">7. 참고사항</p>

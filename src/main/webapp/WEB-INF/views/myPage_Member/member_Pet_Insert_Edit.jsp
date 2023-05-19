@@ -94,14 +94,9 @@ body {
 					      	<div class="insert">
 					      		<form action="${ contextPath }/updateAnimal.me" method="POST" enctype="multipart/form-data" id="attmForm">
 					      		
-					      			<p class="sel">1. 반려동물 사진</p>
-					      			<c:if test="${ !empty image.originalName }">
-					      				<img src="${ contextPath }/resources/uploadFiles/${ image.renameName }" width="100%" height="245"/>
-					      			</c:if>
-					      			<c:if test="${ empty image.originalName }">
-					      				등록된 사진이 없습니다.<br><br>
-					      			</c:if>
-    							  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile"><br>
+					      			<p class="sel">1. 반려동물 사진</p>					  
+					      			<img id="preview" width="100%" height="245"/>
+    							  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile" onchange="previewImage(event)"><br>
     							  	현재 등록된 사진 : <c:if test="${ !empty image.originalName }">${ image.originalName }</c:if><c:if test="${ empty image.originalName }">없음</c:if>
     							  	<button type="button" class="btn btn-outline-dark btn-sm deleteAttm" id="delete-${ image.renameName }/${ image.imageLevel }">삭제</button>
 									<input type="hidden" name='deleteAttm' value='none'><br><br>
@@ -280,7 +275,20 @@ body {
 				}
 			})
 			
+			const previewImage = (event) => {
+			const input = event.target;
+			const preview = document.getElementById('preview');
 			
+			  if (input.files && input.files[0]) {
+			    const reader = new FileReader();
+			
+			    reader.onload = (e) => {
+			      preview.src = e.target.result;
+			    };
+			
+			    reader.readAsDataURL(input.files[0]);
+			  }
+			};
 			
 		</script>
 		<br><br><br><br><br><br><br><br><br><br><br><br><br>
