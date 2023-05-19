@@ -62,11 +62,11 @@
 				<c:if test="${j.jibsaGender eq 'F'}">여성</c:if>
 				<c:if test="${j.jibsaGender eq 'M'}">남성</c:if>
 			</p>
-			<p class="col-4 text-start">예상 비용</p>
-			<p class="col-8 text-start">
-				<fmt:formatNumber type="number" pattern="###,###,###" value=
-					"${(fn:substring(mc.endDate,11,13)-fn:substring(mc.startDate,11,13))*j.expectedSalary}"/>원
-			</p>
+<!-- 			<p class="col-4 text-start">예상 비용</p> -->
+<!-- 			<p class="col-8 text-start"> -->
+<%-- 				<fmt:formatNumber type="number" pattern="###,###,###" value= --%>
+<%-- 					"${(fn:substring(mc.endDate,11,13)-fn:substring(mc.startDate,11,13))*j.expectedSalary}"/>원 --%>
+<!-- 			</p> -->
 			<p class="col-4 text-start">시작시간</p>
 			<p class="col-8 text-start">${fn:substring(mc.startDate,0,10)} ${fn:substring(mc.startDate,11,13)}:${fn:substring(mc.startDate,13,15)}</p>
 			<p class="col-4 text-start">종료시간</p>

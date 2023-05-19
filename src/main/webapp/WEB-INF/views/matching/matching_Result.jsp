@@ -70,11 +70,11 @@
 					<span class="col-8">
 						<fmt:formatNumber type="number" pattern="###,###,###" value="${jList[s.index].expectedSalary}"/>원
 					</span>
-					<span class="col-4">예상비용</span>
-					<span class="col-8">
-						<fmt:formatNumber type="number" pattern="###,###,###" value=
-							"${(fn:substring(mc.endDate,11,13)-fn:substring(mc.startDate,11,13))*jList[s.index].expectedSalary}"/>원
-					</span>
+<!-- 					<span class="col-4">예상비용</span> -->
+<!-- 					<span class="col-8"> -->
+<%-- 						<fmt:formatNumber type="number" pattern="###,###,###" value= --%>
+<%-- 							"${(fn:substring(mc.endDate,11,13)-fn:substring(mc.startDate,11,13))*jList[s.index].expectedSalary}"/>원 --%>
+<!-- 					</span> -->
 					<span class="col-4">흡연여부</span>
 					<span class="col-8">
 						<c:if test="${jList[s.index].isSmoking eq 'Y'}">O</c:if>

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
@@ -75,6 +76,10 @@ public class AdminDAO {
 	
 	public Jibsa selectJibsa(SqlSessionTemplate sqlSession, int mId) {
 		return sqlSession.selectOne("adminMapper.selectJibsa", mId);
+	}
+
+	public Image selectJibsaImage(SqlSessionTemplate sqlSession, int jNo) {
+		return sqlSession.selectOne("adminMapper.selectJibsaImage", jNo);
 	}
 
 	public int updateJibsa(SqlSessionTemplate sqlSession, Jibsa j) {
