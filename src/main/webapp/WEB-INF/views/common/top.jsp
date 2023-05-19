@@ -84,7 +84,7 @@
 				<a class="menu2">${ loginUser.memberName }</a>
 				<div class="dropd" style="float:right; " aria-expanded="false">
 					<button onclick="dp_menu()" class="butn"><img src="resources/image/down.png"></button>
-				    <div style="width: 230px; height: 390px; display: none;" id="drop-c">
+				    <div style="width: 230px; height: 410px; display: none;" id="drop-c">
 				    	<ul id="droul"><br>
 				    	<c:if test="${ loginUser.isAdmin eq 'Y' }">
 					       <li><a class="name">${ loginUser.memberName }관리자</a></li>

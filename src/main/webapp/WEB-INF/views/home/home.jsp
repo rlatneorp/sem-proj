@@ -83,43 +83,43 @@
 			right: 20px;
 		}
 		
-		.container:nth-of-type(3) img {
+		.container:nth-of-type(2) img {
 		  max-width: 700px;
 		  height: auto;
 		  object-fit: cover;
 		}
 		
-		.container:nth-of-type(4) p {
+		.container:nth-of-type(3) p {
 		  font-size: 25px
 		}
 		
-		.container:nth-of-type(5) {
+		.container:nth-of-type(4) {
 		  display: flex;
 		  align-items: center;
 		}
-		.container:nth-of-type(5) p {
+		.container:nth-of-type(4) p {
 		  margin: 0;
 		  font-size: 1.2rem;
 		  order: 1;
 		}
-		.container:nth-of-type(5) .image-container {
+		.container:nth-of-type(4) .image-container {
 		  order: 2;
 		}
-		.container:nth-of-type(5) .button-container {
+		.container:nth-of-type(4) .button-container {
 		  order: 3;
 		  display: flex;
 		  justify-content: center;
 		  width: 100%;
 		}
 		
-		.container:nth-of-type(5) img {
+		.container:nth-of-type(4) img {
 		  max-width: 500px;
 		  height: auto;
 		  object-fit: cover;
 		  order: 4;
 		}
 		
-		.container:nth-of-type(6) img {
+		.container:nth-of-type(5) img {
 		  max-width: 500px;
 		  height: auto;
 		  object-fit: cover;
@@ -202,8 +202,8 @@
 		const images = [
 			{src: 'resources/image/광고(1).png', link: 'https://www.naver.com'},
 			{src: 'resources/image/광고(2).png', link: 'https://www.google.com'},
-			{src: 'resources/image/광고(3).png', link: 'https://www.naver.com'},
-			{src: 'resources/image/광고(4).png', link: 'https://www.google.com'},
+			{src: 'resources/image/광고(3).png', link: 'https://www.daum.net'},
+			{src: 'resources/image/광고(4).png', link: 'https://www.nate.com'},
 			
 		];
 
