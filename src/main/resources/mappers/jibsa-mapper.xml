@@ -3,26 +3,27 @@
 <mapper namespace="jibsaMapper">
 
 	<insert id="insertJibsa">
-		insert into jibsa
-		VALUES (
-		    #{memberNo},
-		    #{jibsaGender},
-		    #{jibsaRrn},
-		    #{isSmoking},
-		    #{workCareer},
-		    '00000000,00000000,00000000,00000000,00000000,00000000,00000000',
-		    #{availableArea},
-		    #{motive},
-		    #{expectedSalary},
-		    'kakao',
-		    default,
-		    sysdate,
-		    sysdate,
-		    'N',
-		    #{license}
-		    
-		)
+		INSERT INTO jibsa (MEMBER_NO, JIBSA_GENDER, JIBSA_RRN, IS_SMOKING, WORK_CAREER, AVAILABLE_HOUR, AVAILABLE_AREA, MOTIVE,
+							EXPECTED_SALARY, CHAT_ADDRESS, PRIMIUM_PAYMENT_DATE, PRIMIUM_END_DATE,  JIBSA_LICENSE  )
+	    SELECT #{memberNo}, #{jibsaGender}, #{jibsaRrn}, #{isSmoking}, #{workCareer}, '00000000,00000000,00000000,00000000,00000000,00000000,00000000',
+		    #{availableArea}, #{motive}, #{expectedSalary}, 'kakao', sysdate, sysdate, #{license}
+	    FROM dual;
+	
+	    INSERT INTO jibsa_profile (MEMBER_NO, JIBSA_NAME, PROFILE_TITLE, PROFILE_TAG )
+	    SELECT #{memberNo}, #{memberName}, #{profileTitle}, #{profileTag}
+	    FROM dual;
 	</insert>
+		
+<!-- 	<insert id="insertJibsaProfile">	 -->
+<!-- 		insert into jibsa_profile -->
+<!-- 		values ( -->
+<!-- 			#{memberNo}, -->
+<!-- 			#{memberName}, -->
+<!-- 			#{jibsaTitle}, -->
+<!-- 			#{jibsaTag}, -->
+<!-- 			default		 -->
+<!-- 		) -->
+<!-- 	</insert> -->
 	
 	<update id="updateMemberInfo">
 		update member

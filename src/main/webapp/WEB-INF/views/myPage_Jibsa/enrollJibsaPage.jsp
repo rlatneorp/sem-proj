@@ -133,7 +133,7 @@
 			<label class ="e title"> 희망 시급</label><br/>
 			<input type="number" id="expectedSalary" name="expectedSalary" class=" i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224);  font-size: 15px;  font-weight: normal;width:250px; height: 43px;"  placeholder="희망하는 시급을 적어주세요"><br/><br/>
 			
-			<label class ="e title"> 훈련자격증</label><br/>
+			<label class ="title"> 훈련자격증</label><br/>
 			<label style="margin-left: 25px;"><input type="checkbox" name="license" value="훈련사 3급"> 반려견 지도사 / 훈련사 3급</label>
 			<label style="margin-left: 125px;"><input type="checkbox" name="license" value="훈련사 2급"> 반려견 지도사 / 훈련사 2급</label><br>
 			<label style="margin-left: 25px;"><input type="checkbox" name="license" value="훈련사 1급"> 반려견 지도사 / 훈련사 1급</label>
@@ -152,6 +152,18 @@
 		<p for="essential" &nbsp; style="padding-left: 22px;"> &nbsp;은 필수입력 항목입니다.</p>
 		
 		<div class="rounded-box">
+			<label class ="title">본인의 타이틀</label><br/>
+			<span class = "add">간략한 자기소개를 1줄로 적어주세요</span><br/>
+			<input type="text" id = "profileTitle" name="profileTitle" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 43px;" 
+				placeholder=" 본인의 타이틀을 적어주세요." style="width: 600px;" ></input>
+			<br/><br/>
+			
+			<label class ="title">태그</label><br/>
+			<span class = "add">본인을 보충 설명하는 낱말 혹은 키워드</span><br/>
+			<input type="text" id = "profileTag" name="profileTag" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 43px;" 
+				placeholder=" 태그를 적어주세요." style="width: 600px;" ></input>
+			<br/><br/>
+		
 			<label class ="e title"> 지원 동기</label><br/>
 			<textarea id = "motive" name="motive" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 138px;" 
 				placeholder=" 지원한 동기를 적어주세요." 
