@@ -82,17 +82,17 @@ public class HomeController {
 	@PostMapping("login.do")
 	public String login(Model model, @ModelAttribute Member m) {
 		Member loginUser = mService.login(m);
-		
 		bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd());
-		
+		System.out.println(loginUser);
 		if(bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd())) {
 			model.addAttribute("loginUser", loginUser);
+			
 			return "redirect:home.do";
 		} else {
 			return "login/login";
 		}
 		
-	}
+	}  
 	
 	// 로그아웃 - 현지
 	@RequestMapping("logout.do")

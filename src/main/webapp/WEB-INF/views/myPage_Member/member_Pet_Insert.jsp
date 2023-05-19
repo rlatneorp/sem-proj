@@ -7,8 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap" rel="stylesheet">
 <title>반려동물 등록</title>
 <style>
-* { font-family: 'Noto Sans KR', sans-serif; }
-
+*{font-family: 'Noto Sans KR', sans-serif;}
 body {
   overflow-x: hidden;
 }
@@ -83,25 +82,23 @@ body {
 					  <h4 style="margin-right: 56%;"><b>내 반려동물</b></h4>
 					  <h6 style="margin-right: 46%;">반려동물의 정보를 등록하세요!</h6><br>
 					      	<div class="insert">
-					      		<form action="${ contextPath }/insertAnimal.me" method="POST" enctype="multipart/form-data" id="myForm">
+					      		<form action="${ contextPath }/insertAnimal.me" method="POST" enctype="multipart/form-data">
 					      		
 					      			<p class="sel">1. 반려동물 사진</p>
-	    							  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile" style="width:402px;"><br>
+					      			<img id="preview" width="100%" height="245"/>
+    							  	<input class="form-control" type="file" accept="image/*" name="file" id="formFile" onchange="previewImage(event)"><br>
     							  	<br>
     							  	
-    							  	<p class="sel">2. 내 반려동물의 이름</p>
-    							  	<input type="text" name="animalName" placeholder="이름을 입력해주세요" style="width: 400px; height: 35px;"/>
-    							  	<input type="checkbox" name="isLeader" value="Y" id="input_check" checked/> 대표동물로 지정
-    							  	<input type="hidden" name="isLeader" value="N" id="input_check_hidden"/>
+    							  	<input type="text" name="animalName" placeholder="이름을 입력해주세요" style="width: 400px; height: 35px;" required/>
     							  	<br><br><br>
     							  	
-    							  	<p class="sel">3. 내 반려동물은</p>
+    							  	<p class="sel">2.내 반려동물은</p>
     							  	<label for="dog">
-    							  		<input type="radio" name="animalKind" class="rad" value="DOG" id="dog"> 강아지
+    							  		<input type="radio" name="animalKind" class="rad" value="DOG" id="dog" required> 강아지
     							  	</label>
     							  	<div class="hide">
     							  		&nbsp;&nbsp;<input type="text" name="dType" placeholder="품종">이에요<br>
-    							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="ds" value="small"><label for="ds">&nbsp;소형</label>
+    							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="ds" value="small" required><label for="ds">&nbsp;소형</label>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="dm" value="medium"><label for="dm">&nbsp;중형</label>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="dl" value="large"><label for="dl">&nbsp;대형</label>
     							  	</div>
@@ -122,25 +119,25 @@ body {
     							  	</label>
     							  	<br><br><br>
     							  	
-    							  	<p class="sel">4. 내 반려동물의 성별</p>
-    							  	<input type="radio" name="animalGender" id="M" value="M"><label for="M">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;&nbsp;
+    							  	<p class="sel">3. 내 반려동물의 성별</p>
+    							  	<input type="radio" name="animalGender" id="M" value="M" required><label for="M">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;&nbsp;
     							  	<input type="radio" name="animalGender" id="F" value="F"><label for="F">&nbsp;여자</label>
     							  	<br><br><br>
     							  	
-    							  	<p class="sel">5. 내 반려동물은 중성화수술</p>
-    							  	<input type="radio" name="isNeuter" id="ok" value="Y"><label for="ok">&nbsp;했어요</label>&nbsp;
+    							  	<p class="sel">4. 내 반려동물은 중성화수술</p>
+    							  	<input type="radio" name="isNeuter" id="ok" value="Y" required><label for="ok">&nbsp;했어요</label>&nbsp;
     							  	<input type="radio" name="isNeuter" id="nok" value="N"><label for="nok">&nbsp;안했어요</label>
     							  	<br><br><br>
     							  	
-    							  	<p class="sel">6. 내 반려동물의 생일</p>
+    							  	<p class="sel">5. 내 반려동물의 생일</p>
     							  	<input type="date" name="birthDate" style="width: 120px;">
     							  	<br><br><br>
     							  	
-    							  	<p class="sel">7. 내 반려동물의 몸무게</p>
-    							  	<input type="text" name="animalWeight" placeholder="몸무게"> kg
+    							  	<p class="sel">6. 내 반려동물의 몸무게</p>
+    							  	<input type="text" name="animalWeight" placeholder="몸무게 입력" required> kg
     							  	<br><br><br>
     							  	
-    							  	<p class="sel">8. 참고사항</p>
+    							  	<p class="sel">7. 참고사항</p>
     							  	<textarea cols="50" rows="10" style="resize: none" name="animalNote"></textarea>
     							  	<br><br><br>
     							  	
@@ -199,10 +196,23 @@ body {
 			  reader.readAsDataURL(file);  
 			});
 			
-			if(document.getElementById("input_check").checked) {
-			    document.getElementById("input_check_hidden").disabled = true;
-			}
-					
+			const previewImage = (event) => {
+				const input = event.target;
+				const preview = document.getElementById('preview');
+				
+				  if (input.files && input.files[0]) {
+				    const reader = new FileReader();
+				
+				    reader.onload = (e) => {
+				      preview.src = e.target.result;
+				    };
+				
+				    reader.readAsDataURL(input.files[0]);
+				  }
+				};
+			
+			
+			
 		</script>
 		<br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<footer>

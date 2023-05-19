@@ -8,7 +8,7 @@ public class Image {
 	private String imagePath;
 	private int memberNo;
 	
-	public Image() {}
+	public Image() {};
 
 	public Image(int imageNo, String renameName, String originalName, int imageLevel, String imagePath, int memberNo) {
 		super();

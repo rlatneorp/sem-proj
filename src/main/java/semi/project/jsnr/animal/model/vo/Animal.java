@@ -14,13 +14,11 @@ public class Animal {
 	private String birthDate;
 	private String isStatus;
 	private int imageLevel;
-	private String isLeader;
 	
-	public Animal() {}
+	public Animal() {};
 
 	public Animal(int animalNo, String animalName, String animalGender, String animalKind, double animalWeight,
-			String animalNote, int memberNo, String animalType, String animalSize, String isNeuter, String birthDate,
-			String isStatus, int imageLevel, String isLeader) {
+			String animalNote, int memberNo, String animalType, String animalSize, String isNeuter, String birthDate, String isStatus, int imageLevel) {
 		super();
 		this.animalNo = animalNo;
 		this.animalName = animalName;
@@ -35,7 +33,6 @@ public class Animal {
 		this.birthDate = birthDate;
 		this.isStatus = isStatus;
 		this.imageLevel = imageLevel;
-		this.isLeader = isLeader;
 	}
 
 	public int getAnimalNo() {
@@ -93,7 +90,7 @@ public class Animal {
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
-
+	
 	public String getAnimalType() {
 		return animalType;
 	}
@@ -142,21 +139,12 @@ public class Animal {
 		this.imageLevel = imageLevel;
 	}
 
-	public String getIsLeader() {
-		return isLeader;
-	}
-
-	public void setIsLeader(String isLeader) {
-		this.isLeader = isLeader;
-	}
-
 	@Override
 	public String toString() {
 		return "Animal [animalNo=" + animalNo + ", animalName=" + animalName + ", animalGender=" + animalGender
 				+ ", animalKind=" + animalKind + ", animalWeight=" + animalWeight + ", animalNote=" + animalNote
 				+ ", memberNo=" + memberNo + ", animalType=" + animalType + ", animalSize=" + animalSize + ", isNeuter="
-				+ isNeuter + ", birthDate=" + birthDate + ", isStatus=" + isStatus + ", imageLevel=" + imageLevel
-				+ ", isLeader=" + isLeader + "]";
+				+ isNeuter + ", birthDate=" + birthDate + ", isStatus=" + isStatus + ", imageLevel=" + imageLevel + "]";
 	}
-
+	
 }

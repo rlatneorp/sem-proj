@@ -11,6 +11,7 @@ import semi.project.jsnr.jibsa.model.vo.Jibsa;
 import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 
 public interface BoardService {
+	
 	int getListCount(int i);
 
 	ArrayList<Board> reviewBoardList(PageInfo pi);
@@ -35,10 +36,9 @@ public interface BoardService {
 
 	Board reviewDetail(int mId, boolean yn);
 
-//	ArrayList<Board> reviewDetailReply(int mId);
+	Board selectReply(int mId);
 
 	void updateReply(Board b);
 
-	ArrayList<Board> selectReply(int mId);
 
 }

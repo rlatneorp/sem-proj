@@ -36,8 +36,9 @@ public class BoardController {
 	@Autowired
 	private BoardService bService;
 	
-	@GetMapping("review_Main.bo")
-	public String reviewBoardList(@RequestParam(value="page", required=false) Integer currentPage, Model model, @RequestParam(value="memberNo", required=false) Integer memberNo) {
+	@RequestMapping("review_Main.bo")
+	public String reviewBoardList(@RequestParam(value="page", required=false) Integer currentPage, 
+			Model model) {
 		
 		if(currentPage == null) {
 			currentPage = 1;
@@ -48,7 +49,6 @@ public class BoardController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 6);
 		
 		ArrayList<Board> list = bService.reviewBoardList(pi);
-		
 		
 		if(list != null) {
 			model.addAttribute("pi", pi);
@@ -100,7 +100,8 @@ public class BoardController {
 
 	
 	@RequestMapping("search.bo")
-	public String searchListCount(@RequestParam(value="page", required=false) Integer currentPage, HttpServletRequest request, Model model) {
+	public String searchListCount(@RequestParam(value="page", required=false) Integer currentPage, 
+			HttpServletRequest request, Model model) {
 		
 		if(currentPage == null) {
 			currentPage = 1;
@@ -136,7 +137,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping("review_Detail.bo")
-	public ModelAndView reviewDetail(@RequestParam(value="page", required=false) Integer page,@RequestParam(value="matchingNo", required=false) int matchingNo, ModelAndView mv, HttpSession session, @RequestParam(value="mId", required=false) int mId, @RequestParam(value="memberNo", required=false) Integer memberNo, @RequestParam(value="userName", required=false) String userName) {
+	public ModelAndView reviewDetail(@RequestParam(value="page", required=false) int page,
+			ModelAndView mv, HttpSession session, 
+			@RequestParam(value="mId", required=false) int mId, 
+			@RequestParam(value="userName", required=false) String userName) {
 		
 		Member m = (Member)session.getAttribute("loginUser");
 		String login = null;
@@ -149,7 +153,9 @@ public class BoardController {
 		}
 		
 		Board b = bService.reviewDetail(mId, yn);	
-		ArrayList<Board> list = bService.selectReply(mId);
+		Board list = bService.selectReply(mId);
+		System.out.println(b);
+		
 		if(b != null) {
 			mv.addObject("page", page);
 			mv.addObject("b", b);
@@ -165,20 +171,22 @@ public class BoardController {
 	
 	
 	@RequestMapping("updateReply.bo")
-	public void updateReply(@ModelAttribute Board b, HttpServletResponse response, @RequestParam(value="mId", required=false) Integer mId, @RequestParam(value="memberNo", required=false) Integer memberNo) {
+	public void updateReply(@ModelAttribute Board b, 
+			HttpServletResponse response) {
 		bService.updateReply(b);
-		ArrayList<Board> list = bService.selectReply(b.getJibsaNo());
+		Board list = bService.selectReply(b.getMemberNo());
+		
 		response.setContentType("application/json; charset=UTF-8");
+		
 		GsonBuilder gb = new GsonBuilder().setDateFormat("yyyy-MM-dd");
 		Gson gson = gb.create();
-		try {
-			gson.toJson(list, response.getWriter()); 
-			 
-		} catch (JsonIOException | IOException e) {
-			e.printStackTrace();
+		String json = gson.toJson(b);
+
+		    try {
+		        response.getWriter().write(json);
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
 		}
-		
-		
-	}
 }
-	
+

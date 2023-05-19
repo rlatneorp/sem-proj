@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -27,7 +26,7 @@ import semi.project.jsnr.animal.model.vo.Animal;
 import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.member.model.vo.Member;
 
-@SessionAttributes({"animal", "aList", "image"})
+@SessionAttributes("animal")
 @Controller
 public class AnimalController {
 	
@@ -46,30 +45,25 @@ public class AnimalController {
 		
 		int memberNo = loginUser.getMemberNo(); // 로그인한 유저의 memberNo 가져오기
 		
-		ArrayList<Animal> aList = aService.animalList(memberNo); // 해당 유저가 등록한 동물 정보 가져오기
-		Animal aLeader = aService.selectLeader(memberNo);
-		
-		System.out.println(aLeader);
+		Animal animal = aService.animalList(memberNo); // 해당 유저가 등록한 동물 정보 가져오기
 		
 		Image image = aService.selectImage(memberNo);
 		
-		model.addAttribute("aList", aList);
-		model.addAttribute("animal", aLeader);
+		model.addAttribute("animal", animal);
 		model.addAttribute("loginUser", loginUser);
 		model.addAttribute("image", image);
 
 		return "member_User_Info";
 	}
 	
-	@GetMapping("member_Pet_Insert_Edit.me")
-	public String member_Pet_Insert_Edit(HttpSession session, Model model,
-										 @ModelAttribute ArrayList<Animal> aList) {
+	@RequestMapping("member_Pet_Insert_Edit.me")
+	public String member_Pet_Insert_Edit(HttpSession session, Model model) {
 		
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		int memberNo = loginUser.getMemberNo();
 		Image image = aService.selectImage(memberNo);
 		model.addAttribute("image", image);
-		
+
 		return "member_Pet_Insert_Edit";
 	}
 	
@@ -88,7 +82,7 @@ public class AnimalController {
 		
 		int result = aService.updateAnimal(a);
 		
-		ArrayList<Animal> editAnimal = aService.animalList(a.getMemberNo());
+		Animal editAnimal = aService.animalList(a.getMemberNo());
 		System.out.println("정보 수정");// 정보 수정
 		
 		// 사진 수정
@@ -114,13 +108,20 @@ public class AnimalController {
 	                System.out.println("삽입");
 	                
 	            } else { // 기존 파일이 있을 때
-	                int editImage = aService.editImage(image);
-	                model.addAttribute("image", editImage);
-	                System.out.println("수정");
-	            }
-	        }
-	    }
-		
+	            	int deleteImage = aService.deleteImage(existingImage);
+    				System.out.println("삭제");
+	            	
+	            	String rename = existingImage.getRenameName();
+	       			deleteFile(rename, request);
+	            	System.out.println("파일 저장소 삭제");
+	            	
+	            	int insertImage = aService.insertImage(image);
+		            model.addAttribute("image", insertImage);
+		            System.out.println("삭제 후 삽입");
+	            }	            				         	
+	         }
+	      }
+	    		
 		if(file.isEmpty()) { // 새 파일이 안 들어왔을 때
 			Image existingImage = aService.selectImage(a.getMemberNo());
             if (existingImage != null) { // 기존 파일이 있을 때 (삭제 버튼을 눌렀을 때)
@@ -147,8 +148,7 @@ public class AnimalController {
             		}
             	}
             }
-		}
-		
+		}		
 		    if (result > 0) {
 		        model.addAttribute("animal", editAnimal);
 		        return "redirect:member_User_Info.me";
@@ -158,8 +158,8 @@ public class AnimalController {
 		}
 	
 	@RequestMapping("member_Pet_Insert.me")
-	public String member_Pet_Insert(@ModelAttribute Image image) {
-		
+	public String member_Pet_Insert() {
+
 		return "member_Pet_Insert";
 	}
 	
@@ -175,15 +175,13 @@ public class AnimalController {
 		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
 		
 		String animalType = dType + cType + oType;
-		
+				
 		a.setAnimalType(animalType);
 		a.setMemberNo(memberNo);
 		
 		int result = aService.insertAnimal(a);
 		
-		ArrayList<Animal> insertAnimal = aService.animalList(memberNo); // 정보 등록
-		System.out.println(a);
-		System.out.println(insertAnimal);
+		Animal insertAnimal = aService.animalList(memberNo); // 정보 등록
 		
 		// 사진 등록
 		
@@ -214,40 +212,6 @@ public class AnimalController {
 			throw new AnimalException("동물 정보 등록에 실패하였습니다.");
 		}	
 	
-	}
-	
-	@RequestMapping("member_Pet_Insert_More.me")
-	public String member_Pet_Insert_More(@ModelAttribute Image image) {
-		
-		return "member_Pet_Insert_More";
-	}
-	
-	@PostMapping("insertMoreAnimal.me") // 추가 등록
-	public String insertMoreAnimal(@ModelAttribute Animal a,
-							   @RequestParam (value="dType") String dType,
-							   @RequestParam (value="cType") String cType,
-							   @RequestParam (value="oType") String oType,
-							   Model model, HttpSession session) {
-
-		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
-		
-		String animalType = dType + cType + oType;
-		
-		a.setAnimalType(animalType);
-		a.setMemberNo(memberNo);
-		
-		int result = aService.insertAnimal(a);
-		
-		ArrayList<Animal> insertAnimal = aService.animalList(memberNo); // 정보 등록
-		System.out.println(a);
-		System.out.println(insertAnimal);
-		
-		if(result > 0) {
-			model.addAttribute("animal", insertAnimal);
-			return "redirect:member_User_Info.me";
-		} else {
-			throw new AnimalException("동물 정보 등록에 실패하였습니다.");
-		}			
 	}
 	
 	@GetMapping("deleteAnimal.me") // 삭제
