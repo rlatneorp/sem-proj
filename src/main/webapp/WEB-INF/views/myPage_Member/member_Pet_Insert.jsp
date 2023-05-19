@@ -4,8 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap" rel="stylesheet">
 <title>반려동물 등록</title>
 <style>
+*{font-family: 'Noto Sans KR', sans-serif;}
 body {
   overflow-x: hidden;
 }

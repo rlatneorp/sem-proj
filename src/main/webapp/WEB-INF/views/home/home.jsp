@@ -4,9 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap" rel="stylesheet">
 	<title>광고 페이지</title>
 	<meta charset="UTF-8">
 	<style>
+	*{font-family: 'Noto Sans KR', sans-serif;}
 		body {
 			margin: 0;
 			padding: 0;
@@ -177,7 +179,7 @@
 		<div>
 		  <p>반려동물 위탁돌봄을 희망하는<br>
 		  	보호자와 전문가를<br>서로 매칭해줍니다</p>
-		  <button class="select">집사매칭</button>
+		  <button class="select" onclick="location.href='${ contextPath }/matching_Main.mc'">집사매칭</button>
 		</div>
 	  <img src="resources/image/home2.jpg" alt="image description">
 	</div>
@@ -188,7 +190,7 @@
 		  <p>다양한 이용후기를 보면서 <br>
 		  	어떤 서비스를 받을지 결정하세요 
 		  </p>
-		  <button class="select">이용후기</button>
+		  <button class="select" onclick="location.href='${ contextPath }/review_Main.bo'">이용후기</button>
 	  </div>
 	</div>
 	

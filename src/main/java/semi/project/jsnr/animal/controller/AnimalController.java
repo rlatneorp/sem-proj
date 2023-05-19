@@ -148,8 +148,7 @@ public class AnimalController {
             		}
             	}
             }
-		}
-		
+		}		
 		    if (result > 0) {
 		        model.addAttribute("animal", editAnimal);
 		        return "redirect:member_User_Info.me";
