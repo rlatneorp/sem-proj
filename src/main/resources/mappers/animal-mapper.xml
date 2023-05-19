@@ -32,7 +32,7 @@
 	
 	<insert id="insertAnimal">
 		insert into animal
-		values(seq_ani_id.nextval, #{animalName}, #{animalGender}, #{animalKind}, #{animalWeight}, #{animalNote}, #{memberNo}, #{animalType}, default, #{isNeuter}, #{birthDate}, default, default)
+		values(seq_ani_id.nextval, #{animalName}, #{animalGender}, #{animalKind}, #{animalWeight}, #{animalNote}, #{memberNo}, #{animalType}, #{animalSize}, #{isNeuter}, #{birthDate}, default, default)
 	</insert>
 	
 	<update id="deleteAnimal">

@@ -108,13 +108,20 @@ public class AnimalController {
 	                System.out.println("삽입");
 	                
 	            } else { // 기존 파일이 있을 때
-	                int editImage = aService.editImage(image);
-	                model.addAttribute("image", editImage);
-	                System.out.println("수정");
-	            }
-	        }
-	    }
-		
+	            	int deleteImage = aService.deleteImage(existingImage);
+    				System.out.println("삭제");
+	            	
+	            	String rename = existingImage.getRenameName();
+	       			deleteFile(rename, request);
+	            	System.out.println("파일 저장소 삭제");
+	            	
+	            	int insertImage = aService.insertImage(image);
+		            model.addAttribute("image", insertImage);
+		            System.out.println("삭제 후 삽입");
+	            }	            				         	
+	         }
+	      }
+	    		
 		if(file.isEmpty()) { // 새 파일이 안 들어왔을 때
 			Image existingImage = aService.selectImage(a.getMemberNo());
             if (existingImage != null) { // 기존 파일이 있을 때 (삭제 버튼을 눌렀을 때)
@@ -169,6 +176,7 @@ public class AnimalController {
 		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
 		
 		String animalType = dType + cType + oType;
+				
 		a.setAnimalType(animalType);
 		a.setMemberNo(memberNo);
 		

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>반려동물 등록</title>
+<title>반려동물 정보 수정</title>
 <style>
 body {
   overflow-x: hidden;

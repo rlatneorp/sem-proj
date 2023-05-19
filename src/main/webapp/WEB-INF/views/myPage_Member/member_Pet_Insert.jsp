@@ -92,11 +92,11 @@ body {
     							  	
     							  	<p class="sel">2.내 반려동물은</p>
     							  	<label for="dog">
-    							  		<input type="radio" name="animalKind" class="rad" value="DOG" id="dog"> 강아지
+    							  		<input type="radio" name="animalKind" class="rad" value="DOG" id="dog" required> 강아지
     							  	</label>
     							  	<div class="hide">
     							  		&nbsp;&nbsp;<input type="text" name="dType" placeholder="품종">이에요<br>
-    							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="ds" value="small"><label for="ds">&nbsp;소형</label>
+    							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="ds" value="small" required><label for="ds">&nbsp;소형</label>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="dm" value="medium"><label for="dm">&nbsp;중형</label>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="dl" value="large"><label for="dl">&nbsp;대형</label>
     							  	</div>
@@ -118,12 +118,12 @@ body {
     							  	<br><br><br>
     							  	
     							  	<p class="sel">3. 내 반려동물의 성별</p>
-    							  	<input type="radio" name="animalGender" id="M" value="M"><label for="M">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;&nbsp;
+    							  	<input type="radio" name="animalGender" id="M" value="M" required><label for="M">&nbsp;남자</label>&nbsp;&nbsp;&nbsp;&nbsp;
     							  	<input type="radio" name="animalGender" id="F" value="F"><label for="F">&nbsp;여자</label>
     							  	<br><br><br>
     							  	
     							  	<p class="sel">4. 내 반려동물은 중성화수술</p>
-    							  	<input type="radio" name="isNeuter" id="ok" value="Y"><label for="ok">&nbsp;했어요</label>&nbsp;
+    							  	<input type="radio" name="isNeuter" id="ok" value="Y" required><label for="ok">&nbsp;했어요</label>&nbsp;
     							  	<input type="radio" name="isNeuter" id="nok" value="N"><label for="nok">&nbsp;안했어요</label>
     							  	<br><br><br>
     							  	
