@@ -64,6 +64,21 @@ public class HomeController {
 		return "login/login";
 	}
 	
+	@RequestMapping("loginCheckInfo.do")
+	@ResponseBody
+	public String loginCheckInfo(@RequestParam("memberId") String memberId, @RequestParam("memberPwd") String memberPwd) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("memberId", memberId);
+		map.put("memberPwd", memberPwd);
+		
+		int count = mService.loginCheckInfo(map);
+		System.out.println(count);
+		
+		String result = count == 1 ? "yes" : "no";
+		
+		return result;
+	}
+	
 	// 암호화 X 혹시 몰라서 안 지움
 //	@PostMapping("login.do")
 //	public String login(@ModelAttribute Member m, Model model) {
@@ -83,13 +98,13 @@ public class HomeController {
 	public String login(Model model, @ModelAttribute Member m) {
 		Member loginUser = mService.login(m);
 		bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd());
-		System.out.println(loginUser);
+		
 		if(bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd())) {
 			model.addAttribute("loginUser", loginUser);
 			
 			return "redirect:home.do";
 		} else {
-			return "login/login";
+			return "login/loginFail";
 		}
 		
 	}  
@@ -277,8 +292,7 @@ public class HomeController {
 				messageHelper.setSubject(title);
 				messageHelper.setText(content, true);
 				
-//				mailSender.send(message);
-				System.out.println(num);
+				mailSender.send(message);
 			} catch (MessagingException e) {
 				System.out.println(e.getMessage());
 			}

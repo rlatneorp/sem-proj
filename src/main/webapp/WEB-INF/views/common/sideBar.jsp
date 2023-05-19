@@ -147,15 +147,15 @@
 					<li><label class="lab" onclick="location.href='${contextPath}/member_ServiceCenter.me';">고객센터</label></li>
 					<c:if test="${ !empty loginUser }">
 						<c:if test="${ loginUser.isJibsa eq 'Y' }">
-							<li class="bot"><label for="inbtn1" style="cursor: pointer;" onclick="location.href='${contextPath}/jibsa_Main.js'">집사로 전환하기</label>
-								<img src="resources/image/button.png" id="inbtn1"/>
+							<li class="bot"><a for="inbtn1" style="cursor: pointer; margin-left: 20px;" href="${contextPath}/jibsa_Main.js">집사로 전환하기
+								<img src="resources/image/button.png" id="inbtn1"/></a>
 							</li>
 						</c:if>
 					</c:if>
 					<c:if test="${ !empty loginUser }">
 						<c:if test="${ loginUser.isJibsa eq 'N' }">
-							<li class="bot"><label for="inbtn1" style="cursor: pointer;">집사로 전환하기</label>
-								<img src="resources/image/button.png" id="inbtn1"/>
+							<li class="bot"><a for="inbtn1" style="cursor: pointer; margin-left: 20px;" id="jib">집사로 전환하기
+								<img src="resources/image/button.png" id="inbtn1"/></a>
 							</li>
 							<div id="modal">
 								<h5>${ loginUser.memberName }님은 집사나라의 집사가 아닙니다!</h5><br>
@@ -169,7 +169,7 @@
 			</div>
 		</div>
 		<script>
-			const btn = document.getElementById('inbtn1');
+			const btn = document.getElementById('jib');
 			const btn4 = document.getElementById('btn4');
 			const modal = document.getElementById('modal');
 			

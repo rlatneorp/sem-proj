@@ -95,7 +95,7 @@
 	<select id="checkMemberId" resultType="_int">
 		select count(*)
 		from member
-		where member_id = #{memberId}
+		where member_id = #{memberId} and member_status = 'Y'
 	</select>
 	
 	<!-- 회원 정보 수정 -->
@@ -124,14 +124,14 @@
 	<select id="foundId" resultType="string">
 		select member_id
 		from member
-		where member_name = #{memberName} and member_email = #{memberEmail}
+		where member_name = #{memberName} and member_email = #{memberEmail} and member_status = 'Y'
 	</select>
 	
 	<!-- 이메일 인증을 위한 조회 -->
 	<select id="selectMember" resultMap="memberResultSet">
 		select *
 		from member
-		where member_id = #{memberId}
+		where member_id = #{memberId} and member_status = 'Y'
 	</select>
 	
 	<!-- 이메일 인증 후 비밀번호 변경 -->
@@ -141,16 +141,25 @@
 		where member_id = #{memberId}
 	</update>
 	
+	<!-- 비밀번호 찾기 시 아이디, 이메일 정보 확인 -->
 	<select id="checkInfo" resultType="_int">
 		select count(*)
 		from member
-		where member_id = #{memberId} and member_email = #{memberEmail}
+		where member_id = #{memberId} and member_email = #{memberEmail} and member_status = 'Y'
 	</select>
 	
+	<!-- 아이디 찾기 시 이름, 이메일 정보 확인 -->
 	<select id="foundCheckId" resultType="_int">
 		select count(*)
 		from member
-		where member_name = #{memberName} and member_email = #{memberEmail}
+		where member_name = #{memberName} and member_email = #{memberEmail} and member_status = 'Y'
+	</select>
+	
+	<!-- 로그인 시 정보 확인 -->
+	<select id="loginCheckInfo" resultType="_int">
+		select count(*)
+		from member
+		where member_id = #{memberId} and member_status = 'Y'
 	</select>
 
 </mapper>

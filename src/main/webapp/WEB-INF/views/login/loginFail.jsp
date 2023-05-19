@@ -60,6 +60,10 @@
 	</div>
 	<br><br><br><br><br><br><br><br><br><br>
 	<script>
+		window.onload = () => {
+			alert('로그인에 실패하였습니다. 다시 입력해주세요.');
+			loginId.focus();
+		}
 		const loginId = document.getElementById('loginId');
 		const loginPwd = document.getElementById('loginPwd');
 		const id = document.getElementById('id');

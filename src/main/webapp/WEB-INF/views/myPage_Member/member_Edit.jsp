@@ -152,7 +152,7 @@
 						const cPwd = document.getElementById('pwd');
 						
 						// 비밀번호 칸
-						pwd.addEventListener('change', (e) => {
+						pwd.addEventListener('keyup', (e) => {
 							if(pwd.value != '' && pwdc.value != ''){
 								if(pwd.value == pwdc.value) {
 									pwdDiv.innerText = '비밀번호가 일치합니다.';
@@ -166,7 +166,7 @@
 						});
 						
 						// 비밀번호 확인 칸
-						pwdc.addEventListener('change', (e) => {
+						pwdc.addEventListener('keyup', (e) => {
 							if(pwd.value != '' && pwdc.value != ''){
 								if(pwd.value == pwdc.value) {
 									pwdDiv.innerText = '비밀번호가 일치합니다.';
