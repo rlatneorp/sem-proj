@@ -116,13 +116,14 @@
 				<div id="changeModal">
 					<form action="${ contextPath }/member_UpdatePwd.me" method="post">
 						<p class="sel">1. 현재 비밀번호</p>
-	    				<input type="password" name="memberPwd" class="pwd"/>
+	    				<input type="password" name="memberPwd" class="pwd" id="pwd"/>
 	    				<br><br>
 						<p class="sel">2. 변경할 비밀번호</p>
 	    				<input type="password" name="memberNewPwd" id="newPwd" class="pwd"/>
 	    				<br><br>
 						<p class="sel">3. 비밀번호 확인</p>
 	    				<input type="password" id="pwdConfirm" class="pwd"/>
+	    				<input type="hidden" value="${ loginUser.memberPwd }" id="currentPwd">
 	    				<div style="height: 30px; font-size: 12px;" id="pwdDiv"></div>
 						<button id="btn5">변경하기</button>&nbsp;&nbsp;&nbsp;
 						<button type="button" id="btn6">취소하기</button>
@@ -147,9 +148,11 @@
 						const pwdDiv = document.getElementById('pwdDiv');
 						const btn5 = document.getElementById('btn5');
 						const form = document.getElementById('editForm');
+						const cuPwd = document.getElementById('currentPwd');
+						const cPwd = document.getElementById('pwd');
 						
 						// 비밀번호 칸
-						pwd.addEventListener('focusout', (e) => {
+						pwd.addEventListener('change', (e) => {
 							if(pwd.value != '' && pwdc.value != ''){
 								if(pwd.value == pwdc.value) {
 									pwdDiv.innerText = '비밀번호가 일치합니다.';
@@ -163,7 +166,7 @@
 						});
 						
 						// 비밀번호 확인 칸
-						pwdc.addEventListener('focusout', (e) => {
+						pwdc.addEventListener('change', (e) => {
 							if(pwd.value != '' && pwdc.value != ''){
 								if(pwd.value == pwdc.value) {
 									pwdDiv.innerText = '비밀번호가 일치합니다.';
@@ -180,6 +183,10 @@
 							if(pwdDiv.innerText == '비밀번호가 일치하지 않습니다.'){
 								alert('비밀번호가 일치하지 않습니다.');
 								pwdc.focus();
+								e.preventDefault();
+							} else if(cuPwd.value != cPwd.value){
+								alert('현재 비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
+								cPwd.focus();
 								e.preventDefault();
 							} else if(pwdDiv.innerText == '비밀번호가 일치합니다.') {
 								form.submit();
