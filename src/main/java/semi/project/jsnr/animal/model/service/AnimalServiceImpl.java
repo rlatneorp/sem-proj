@@ -21,7 +21,7 @@ public class AnimalServiceImpl implements AnimalService {
 	private AnimalDAO aDAO;
 	
 	@Override
-	public ArrayList<Animal> animalList(int memberNo) {
+	public Animal animalList(int memberNo) {
 		return aDAO.animalList(sqlSession, memberNo);
 	}
 	
@@ -58,16 +58,6 @@ public class AnimalServiceImpl implements AnimalService {
 	@Override
 	public int deleteImage(Image image) {
 		return aDAO.deleteImage(sqlSession, image);
-	}
-	
-	@Override
-	public Animal selectLeader(int memberNo) {
-		return aDAO.selectLeader(sqlSession, memberNo);
-	}
-	
-	@Override
-	public Animal selectAnimal(int animalNo) {
-		return aDAO.selectAnimal(sqlSession, animalNo);
 	}
 
 }

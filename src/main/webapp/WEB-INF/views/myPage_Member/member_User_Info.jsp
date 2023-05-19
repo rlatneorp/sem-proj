@@ -5,11 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap" rel="stylesheet">
 <title>마이페이지</title>
 <style>
-* { font-family: 'Noto Sans KR', sans-serif; }
-
 body {
   overflow-x: hidden;
 }
@@ -109,7 +106,6 @@ body {
 				    <div class="col">
 				      	<div class="p-2">대표 반려동물</div><br><br>
 		                    <div class="p-4"><br>
-		                    
 			                    <c:if test="${ animal.isStatus eq 'Y' }">
 				                	<h6 class="h6">${ animal.animalKind } / ${ animal.animalName } / ${ animal.animalGender }</h6><br>
 				                	<c:if test="${ !empty image.memberNo }">
@@ -118,14 +114,12 @@ body {
 				                    <c:if test="${ empty image.memberNo }">
 				                    	<br><br><br>내 반려동물의 사진을 등록해주세요<br><br><br>
 				                    </c:if>
-			                        <button class="inbtn" onclick="location.href='${ contextPath }/member_Pet_Insert_More.me'">더 추가하기</button>
+			                        <button class="inbtn" onclick="location.href='${ contextPath }/member_Pet_Insert_Edit.me'">수정하기</button>
 			                   	</c:if>
-			                   	
   								<c:if test="${ animal.isStatus ne 'Y' }">
 				                	<h4 class="h6">본인의 반려동물 정보를 등록해주세요</h4><br><br>
 			                        <button class="inbtn" onclick="location.href='${ contextPath }/member_Pet_Insert.me'">등록하기</button>
 			                    </c:if>
-			                    
 		                    </div>
 				    	</div>				 
 				    <div class="col">
@@ -148,34 +142,6 @@ body {
 		                        <button class="inbtn" onclick="location.href='${contextPath}/member_EditInfo.me'">수정하기</button>
 		                    </div>
 				    </div><br><br>
-				    <div class="col">
-				        <div class="tablediv"><br><br><br><br>
-				        <div class="p-2">내 반려동물 전체 조회</div><br><br>
-						    <table class="table">
-						    	<thead>
-							    	<tr>
-							    		<th>번호</th>
-							    		<th>이름</th>
-							    		<th>타입</th>
-							    		<th>성별</th>
-							    		<th>대표여부</th>
-							    		<th>세부정보</th>
-							    	</tr>
-						    	</thead>
-						    	<tbody>
-							    	<c:forEach items="${ aList }" var="a">
-							    		<tr>
-								    		<td>${ a.animalNo }</td>
-								    		<td>${ a.animalName }</td>
-								    		<td>${ a.animalType }</td>
-								    		<td>${ a.animalGender }</td>
-								    		<td>${ a.isLeader }</td>
-								    		<td><a href="${ contextPath }/member_Pet_Insert_Edit.me">수정하기</a></td>
-								    	</tr>							    		
-							    	</c:forEach>
-						    	</tbody>
-						    </table>
-						 </div>
 				    </div>
 				  </div>
 				</div>
@@ -185,8 +151,5 @@ body {
 <footer>
 <%@ include file="../common/bottom.jsp" %>
 </footer>
-<script>
-
-</script>
 </body>
 </html>
