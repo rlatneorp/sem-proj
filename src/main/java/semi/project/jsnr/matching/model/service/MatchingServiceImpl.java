@@ -36,6 +36,11 @@ public class MatchingServiceImpl implements MatchingService {
 	public ArrayList<Animal> selectAnimalList(int mId) {
 		return mcDAO.selectAnimalList(sqlSession, mId);
 	}
+	
+	@Override
+	public int getAnimalCount(int mNo) {
+		return mcDAO.getAnimalCount(sqlSession, mNo);
+	}
 
 	@Override
 	public Jibsa selectJibsa(int jNo) {

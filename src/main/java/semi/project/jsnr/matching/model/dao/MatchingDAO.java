@@ -25,6 +25,10 @@ public class MatchingDAO {
 	public ArrayList<Animal> selectAnimalList(SqlSessionTemplate sqlSession, int mId) {
 		return (ArrayList)sqlSession.selectList("matchingMapper.selectAnimalList", mId);
 	}
+	
+	public int getAnimalCount(SqlSessionTemplate sqlSession, int mNo) {
+		return sqlSession.selectOne("matchingMapper.getAnimalCount", mNo);
+	}
 
 	public Jibsa selectJibsa(SqlSessionTemplate sqlSession, int jNo) {
 		return sqlSession.selectOne("matchingMapper.selectJibsa", jNo);

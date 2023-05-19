@@ -27,15 +27,22 @@ public class MatchingController {
 	@RequestMapping("matching_Main.mc")
 	public String matching_Main(HttpSession session,
 								Model model) {
-		int mNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
-		ArrayList<Animal> aList = mcService.selectAnimalList(mNo);
+		Member m = (Member)(session.getAttribute("loginUser"));
 		
-		if(aList != null) {
-			model.addAttribute("aList", aList);
-			return "matching_Main";
+		if(m != null){
+			int mNo = m.getMemberNo();
+			ArrayList<Animal> aList = mcService.selectAnimalList(mNo);
+			m.setAnimalCount(mcService.getAnimalCount(mNo));
+
+			if(aList != null) {
+				model.addAttribute("aList", aList);
+				return "matching_Main";
+			}else {
+				System.out.println("aList 호출 에러");
+				return "";
+			}
 		}else {
-			System.out.println("매칭 메인 에러");
-			return "";
+			return "matching_Main";
 		}
 	}
 	
@@ -47,7 +54,6 @@ public class MatchingController {
 		ArrayList<JibsaProfile> orgJpList = mcService.selectMatchingResult(mc);
 		if(orgJpList != null) {
 			
-		
 			for(JibsaProfile j: orgJpList) {
 				String[] arr = new String[7];
 				for(int i = 0; i < 7; i++) {
@@ -66,26 +72,32 @@ public class MatchingController {
 			
 			
 			for(JibsaProfile j: orgJpList) {
-				int jStartTime = 0;
-				if(!j.getAvailableHourArr()[startDay].equals("0")) {
-//													┌ String -> Double			┌ int -> String				 ┌뒤의 4자리를 버리기 위함
-					jStartTime =  (int)Math.floor(  Double.parseDouble(j.getAvailableHourArr()[startDay]  )*0.0001  );
-				}
-				int jEndTime = 0;
-				if(jStartTime <= startTime) {
-					
-					int endD = Integer.parseInt(j.getAvailableHourArr()[endDay]);
-					
-					if(endD == 0) {
-						jEndTime = 0;
-					}else if(endD < 10000 ) {
-						jEndTime = Integer.parseInt((j.getAvailableHourArr()[endDay]+"").substring(0, 4));
-					}else{
-						jEndTime = Integer.parseInt((j.getAvailableHourArr()[endDay]+"").substring(4, 8));
+				if(j.getMemberNo() == ((Member)session.getAttribute("loginUser")).getMemberNo()) {
+//					나-나 매칭 제외
+					System.out.println("제외"+j.getJibsaName());
+				}else {
+					int jStartTime = 0;
+					if(!j.getAvailableHourArr()[startDay].equals("0")) {
+	//													┌ String -> Double			┌ int -> String				 ┌뒤의 4자리를 버리기 위함
+						jStartTime =  (int)Math.floor(  Double.parseDouble(j.getAvailableHourArr()[startDay]  )*0.0001  );
 					}
-					
-					if(jEndTime >= endTime) {
-						jpList.add(j);
+					int jEndTime = 0;
+					if(jStartTime <= startTime) {
+						
+						int endD = Integer.parseInt(j.getAvailableHourArr()[endDay]);
+						
+						if(endD == 0) {
+							jEndTime = 0;
+						}else if(endD < 10000 ) {
+							jEndTime = Integer.parseInt((j.getAvailableHourArr()[endDay]+"").substring(0, 4));
+						}else{
+							jEndTime = Integer.parseInt((j.getAvailableHourArr()[endDay]+"").substring(4, 8));
+						}
+						
+						if(jEndTime >= endTime) {
+							jpList.add(j);
+							System.out.println("추가"+j.getJibsaName());
+						}
 					}
 				}
 			}
@@ -110,7 +122,7 @@ public class MatchingController {
 	public String matching_Success(@RequestParam("jNo") int jNo,
 								   HttpSession session,
 								   Model model) {
-
+		System.out.println(jNo);
 		Matching mc = (Matching)session.getAttribute("mc");
 		
 		Member m = (Member)session.getAttribute("loginUser");

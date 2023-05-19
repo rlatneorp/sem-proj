@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import semi.project.jsnr.admin.model.service.AdminService;
+import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
@@ -159,7 +160,11 @@ public class AdminController {
 					+":"+(j.getAvailableHour().split(",")[i]).substring(6, 8);
 		}
 		
+		Image image = aService.selectJibsaImage(j.getMemberNo());
+		System.out.println(image);
+		
 		if(j != null) {
+			model.addAttribute("image", image);
 			model.addAttribute("page", currentPage);
 			model.addAttribute("j", j);
 			model.addAttribute("sArr", sArr);
@@ -192,6 +197,141 @@ public class AdminController {
 			return "";
 		}
 	}
+	
+	
+	@GetMapping("admin_Review_Manage.ad")
+	public String admin_Review_Manage(@RequestParam(value="page", required=false) Integer page,
+									  Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		int listCount = aService.getReviewCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
+		
+		ArrayList<Board> rList = aService.selectReviewList(pi);
+		if(rList != null) {
+			model.addAttribute("pi", pi);
+			model.addAttribute("rList", rList);
+			return "admin_Review_Manage";
+		} else {
+			System.out.println("Review LIST정보 불러오기 실패함");
+			return "";
+		}
+	}
+	
+	@GetMapping("admin_Review_Detail.ad")
+	public String admin_Review_Detail(@RequestParam(value="page", required=false) Integer page,
+									  @RequestParam("rId") int rId,
+			  						  Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		Board r = aService.selectReview(rId);
+		if(r != null) {
+			model.addAttribute("page", currentPage);
+			model.addAttribute("r", r);
+			System.out.println(r);
+			return "admin_Review_Detail";
+		} else {
+			System.out.println("Review LIST정보 불러오기 실패함");
+			return "";
+		}
+	}
+	
+	@PostMapping("admin_Review_Update.ad")
+	public String admin_Review_Update(@RequestParam(value="page", required=false) Integer page,
+								   	  @ModelAttribute Board b,
+								   	  Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int result = aService.updateReview(b);
+		if(result > 0) {
+			model.addAttribute("page", currentPage);
+			return "redirect:admin_Review_Manage.ad";
+		} else {
+			System.out.println("Review정보 update 실패함");
+			return "";
+		}
+		
+	}
+	
+	@GetMapping("admin_Matching_Manage.ad")
+	public String admin_Matching_Manage(@RequestParam(value="page", required=false) Integer page,
+										Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+//		Board라는 객체로 review정보와 매칭정보를 모두 가지고 있으므로, 
+//		일단 같은 메소드를 사용.
+//		추후 값이 달라질 경우, 생성할것.
+		int listCount = aService.getReviewCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
+		
+		ArrayList<Board> mcList = aService.selectReviewList(pi);
+		if(mcList != null) {
+			model.addAttribute("pi", pi);
+			model.addAttribute("mcList", mcList);
+			return "admin_Matching_Manage";
+		} else {
+			System.out.println("Matching LIST정보 불러오기 실패함");
+			return "";
+		}
+	}
+
+	@GetMapping("admin_Matching_Detail.ad")
+	public String admin_Matching_Detail(@RequestParam(value="page", required=false) Integer page,
+									  	@RequestParam("mcId") int mcId,
+									  	Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+//		Board라는 객체로 review정보와 매칭정보를 모두 가지고 있으므로, 
+//		일단 같은 메소드를 사용.
+//		추후 값이 달라질 경우, 생성할것.
+		Board mc = aService.selectReview(mcId);
+		if(mc != null) {
+			model.addAttribute("page", currentPage);
+			model.addAttribute("mc", mc);
+			return "admin_Matching_Detail";
+		} else {
+			System.out.println("Matching LIST정보 불러오기 실패함");
+			return "";
+		}
+	}
+	
+	@PostMapping("admin_Matching_Update.ad")
+	public String admin_Matching_Update(@RequestParam(value="page", required=false) Integer page,
+										@ModelAttribute Matching mc,
+										Model model) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		System.out.println(mc.getStartDate());
+		System.out.println(mc.getEndDate());
+		
+		int result = aService.updateMatching(mc);
+		if(result > 0) {
+			model.addAttribute("page", currentPage);
+			return "redirect:admin_Matching_Manage.ad";
+		} else {
+			System.out.println("Matching update 실패함");
+			return "";
+		}
+	}	
+	
+	
+	
 	
 	@GetMapping("admin_FAQ_Manage.ad")
 	public String admin_FAQ_Manage(@RequestParam(value="page", required=false) Integer page,
@@ -378,137 +518,7 @@ public class AdminController {
 		}
 		
 	}
-	
-	@GetMapping("admin_Review_Manage.ad")
-	public String admin_Review_Manage(@RequestParam(value="page", required=false) Integer page,
-									  Model model) {
-		int currentPage = 1;
-		if(page != null) {
-			currentPage = page;
-		}
-		int listCount = aService.getReviewCount();
-		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
-		
-		ArrayList<Board> rList = aService.selectReviewList(pi);
-		if(rList != null) {
-			model.addAttribute("pi", pi);
-			model.addAttribute("rList", rList);
-			return "admin_Review_Manage";
-		} else {
-			System.out.println("Review LIST정보 불러오기 실패함");
-			return "";
-		}
-	}
-	
-	@GetMapping("admin_Review_Detail.ad")
-	public String admin_Review_Detail(@RequestParam(value="page", required=false) Integer page,
-									  @RequestParam("rId") int rId,
-			  						  Model model) {
-		int currentPage = 1;
-		if(page != null) {
-			currentPage = page;
-		}
-		Board r = aService.selectReview(rId);
-		if(r != null) {
-			model.addAttribute("page", currentPage);
-			model.addAttribute("r", r);
-			System.out.println(r);
-			return "admin_Review_Detail";
-		} else {
-			System.out.println("Review LIST정보 불러오기 실패함");
-			return "";
-		}
-	}
-	
-	@PostMapping("admin_Review_Update.ad")
-	public String admin_Review_Update(@RequestParam(value="page", required=false) Integer page,
-								   	  @ModelAttribute Board b,
-								   	  Model model) {
-		int currentPage = 1;
-		if(page != null) {
-			currentPage = page;
-		}
-		
-		int result = aService.updateReview(b);
-		if(result > 0) {
-			model.addAttribute("page", currentPage);
-			return "redirect:admin_Review_Manage.ad";
-		} else {
-			System.out.println("Review정보 update 실패함");
-			return "";
-		}
-		
-	}
-	
-	@GetMapping("admin_Matching_Manage.ad")
-	public String admin_Matching_Manage(@RequestParam(value="page", required=false) Integer page,
-										Model model) {
-		int currentPage = 1;
-		if(page != null) {
-			currentPage = page;
-		}
-//		Board라는 객체로 review정보와 매칭정보를 모두 가지고 있으므로, 
-//		일단 같은 메소드를 사용.
-//		추후 값이 달라질 경우, 생성할것.
-		int listCount = aService.getReviewCount();
-		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
-		
-		ArrayList<Board> mcList = aService.selectReviewList(pi);
-		if(mcList != null) {
-			model.addAttribute("pi", pi);
-			model.addAttribute("mcList", mcList);
-			return "admin_Matching_Manage";
-		} else {
-			System.out.println("Matching LIST정보 불러오기 실패함");
-			return "";
-		}
-	}
 
-	@GetMapping("admin_Matching_Detail.ad")
-	public String admin_Matching_Detail(@RequestParam(value="page", required=false) Integer page,
-									  	@RequestParam("mcId") int mcId,
-									  	Model model) {
-		int currentPage = 1;
-		if(page != null) {
-			currentPage = page;
-		}
-		
-//		Board라는 객체로 review정보와 매칭정보를 모두 가지고 있으므로, 
-//		일단 같은 메소드를 사용.
-//		추후 값이 달라질 경우, 생성할것.
-		Board mc = aService.selectReview(mcId);
-		if(mc != null) {
-			model.addAttribute("page", currentPage);
-			model.addAttribute("mc", mc);
-			return "admin_Matching_Detail";
-		} else {
-			System.out.println("Matching LIST정보 불러오기 실패함");
-			return "";
-		}
-	}
-	
-	@PostMapping("admin_Matching_Update.ad")
-	public String admin_Matching_Update(@RequestParam(value="page", required=false) Integer page,
-										@ModelAttribute Matching mc,
-										Model model) {
-		int currentPage = 1;
-		if(page != null) {
-			currentPage = page;
-		}
-		System.out.println(mc.getStartDate());
-		System.out.println(mc.getEndDate());
-		
-		int result = aService.updateMatching(mc);
-		if(result > 0) {
-			model.addAttribute("page", currentPage);
-			return "redirect:admin_Matching_Manage.ad";
-		} else {
-			System.out.println("Matching update 실패함");
-			return "";
-		}
-	}
 	
 	
 		

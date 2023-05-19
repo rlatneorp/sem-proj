@@ -80,7 +80,12 @@
 									    	<tr>
 									    		<td>${r.matchingNo}</td>
 									    		<td>
-									    			<a href="${contextPath}/admin_Review_Detail.ad?page=${pi.currentPage}&rId=${r.matchingNo}">${fn:substring(r.reviewContent, 0, 30)}</a>
+									    			<c:if test="${r.reviewContent eq null }">
+									    				<a href="${contextPath}/admin_Review_Detail.ad?page=${pi.currentPage}&rId=${r.matchingNo}">미작성</a>
+									    			</c:if>
+									    			<c:if test="${r.reviewContent ne null }">
+									    				<a href="${contextPath}/admin_Review_Detail.ad?page=${pi.currentPage}&rId=${r.matchingNo}">${fn:substring(r.reviewContent, 0, 30)}</a>
+									    			</c:if>
 								    			</td>
 									    		<td>${r.memberName}</td>
 									    		<td>${r.reviewCount}</td>
