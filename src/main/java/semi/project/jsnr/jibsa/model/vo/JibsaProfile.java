@@ -2,6 +2,8 @@ package semi.project.jsnr.jibsa.model.vo;
 
 import java.util.Arrays;
 
+import semi.project.jsnr.animal.model.vo.Image;
+
 public class JibsaProfile {
 	private int memberNo;
 	private String jibsaName;
@@ -12,11 +14,12 @@ public class JibsaProfile {
 	private String[] availableHourArr;
 	private String availableArea;
 	private int expectedSalary;
+	private Image image;
 	
 	public JibsaProfile() {}
 
 	public JibsaProfile(int memberNo, String jibsaName, String profileTitle, String profileTag, double jibsaAvgRating,
-			String availableHour, String[] availableHourArr, String availableArea, int expectedSalary) {
+			String availableHour, String[] availableHourArr, String availableArea, int expectedSalary, Image image) {
 		super();
 		this.memberNo = memberNo;
 		this.jibsaName = jibsaName;
@@ -27,6 +30,7 @@ public class JibsaProfile {
 		this.availableHourArr = availableHourArr;
 		this.availableArea = availableArea;
 		this.expectedSalary = expectedSalary;
+		this.image = image;
 	}
 
 	public int getMemberNo() {
@@ -101,13 +105,21 @@ public class JibsaProfile {
 		this.expectedSalary = expectedSalary;
 	}
 
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
 	@Override
 	public String toString() {
 		return "JibsaProfile [memberNo=" + memberNo + ", jibsaName=" + jibsaName + ", profileTitle=" + profileTitle
 				+ ", profileTag=" + profileTag + ", jibsaAvgRating=" + jibsaAvgRating + ", availableHour="
 				+ availableHour + ", availableHourArr=" + Arrays.toString(availableHourArr) + ", availableArea="
-				+ availableArea + ", expectedSalary=" + expectedSalary + "]";
+				+ availableArea + ", expectedSalary=" + expectedSalary + ", image=" + image + "]";
 	}
 
-	
+		
 }

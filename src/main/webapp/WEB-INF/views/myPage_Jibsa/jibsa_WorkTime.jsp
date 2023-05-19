@@ -115,15 +115,6 @@
 								</div>
 								
 								
-								<div class="d-flex mx-2">
-									<div id="calBox" class="d-inline-block me-2">
-										<div id="datepicker"></div>
-									</div>
-									
-									<div id="resultBox" class="d-inline-block overflow-auto mb-5 border rounded-2 py-1 px-2" style="width: 250px; height: 300px;"></div>
-								</div>
-								
-								
 								<div class="container text-center">
 									<button type="button" onclick="inputTime()" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">등록하기</button>
 								</div>
@@ -137,20 +128,6 @@
 	</div>
 	
 	<script>
-		const calBox = document.getElementById('calBox');
-		calBox.addEventListener('mouseenter', function(){
-			const cal = document.getElementById('datepicker');
-			const aArr = cal.querySelectorAll('table')[0].querySelectorAll('a');
-			for(var i of aArr){
-				i.addEventListener('click', function() {
-					const resultBox = document.getElementById('resultBox');
-					const date = this.parentElement;
-					
-		 			resultBox.innerText += date.getAttribute('data-year')+"년 "+date.getAttribute('data-month')+"월 "+this.innerText+"일\n";
-		 			
-		 		});
-			}
-		})
 			
 		
 // 		근무 가능 시간 관련 데이터

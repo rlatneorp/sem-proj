@@ -64,9 +64,12 @@ public class JibsaController {
 		
 		// session에서 멤버 넘버 가져오기
 		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
+		String memberName = ((Member)session.getAttribute("loginUser")).getMemberName();
 		j.setMemberNo(memberNo);
+		j.setMemberName(memberName);
 		
-		int result = jService.insertJibsa(j);
+		int result1 = jService.insertJibsa(j);
+//		int result2 = jService.insertJibsaProfile(j);
 		
 		Image image = null;
 		
@@ -88,7 +91,7 @@ public class JibsaController {
 			System.out.println("사진을 등록하지 않았습니다.");
 		}
 		
-		if(result>0) {
+		if(result1>0 ) {
 			return "enrollJibsaResult";
 		} else {
 			throw new JibsaException("정보 수정 실패했습니다.");
