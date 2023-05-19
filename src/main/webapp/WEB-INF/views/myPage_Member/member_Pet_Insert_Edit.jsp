@@ -17,9 +17,9 @@ body {
   #h3{margin-right: 300px;}
   .insert{
   	width: 750px;
-  	height: 1600px;
+  	height: 1800px;
   	border-radius: 10px;
-  	box-shadow: 0px 0px 14px gray;
+  	box-shadow: 0px 0px 14px lightgray;
   	margin-left: 200px;
   	display: flex;
     justify-content: center;
@@ -61,7 +61,7 @@ body {
 	  padding: 10px;
 	  border: none;
 	  border-radius: 10px;
-	  margin-left: 95px;
+	  margin-left: 110px;
 	  width: 85px;
 	  cursor: pointer;
   }
@@ -87,12 +87,14 @@ body {
 <body>
 	<%@ include file="../common/top.jsp" %>
 	<%@ include file="../common/sideBar.jsp" %>
+	
 	<div id="wrapper" class="toggled">
         <div id="page-content-wrapper">
 	    	<div class="container-fluid">
 	        	<div class="container text-center">
-					  <h4 style="margin-right: 56%;"><b>내 반려동물</b></h4>
-					  <h6 style="margin-right: 46%;">반려동물의 정보를 수정하세요!</h6><br>
+	        	<br>
+					  <h3 style="margin-right: 56%;"><b>내 반려동물</b></h3>
+					  <h6 style="margin-right: 50%;">반려동물의 정보를 수정하세요!</h6><br><br>
 					      	<div class="insert">
 					      		<form action="${ contextPath }/updateAnimal.me" method="POST" enctype="multipart/form-data" id="attmForm">
 					      		

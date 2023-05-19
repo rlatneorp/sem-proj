@@ -14,7 +14,7 @@ body {
 }
 .p-2{
   font-weight: bold;
-  font-size: 18px;
+  font-size: 24px;
   margin-left: 80px;
   text-align: left;
 }
@@ -23,7 +23,7 @@ body {
   height: 480px;
   border-radius: 10px;
   box-shadow: 0px 0px 14px gray;
-  margin-left: 80px;
+  margin-left: 20px;
   display: inline-block;
 }
 .h4{
@@ -31,6 +31,7 @@ body {
 }
 .h6{
   margin-right: 200px;
+  font-size: 18px;
 }
 .petImg{
   width: 350px;
@@ -105,11 +106,11 @@ body {
 	    	<div id="page-content-wrapper">
 	        	<div class="container text-center">
 				  <div class="row align-items-center">
-				    <div class="col">
-				      	<div class="p-2">대표 반려동물</div><br><br>
+				    <div class="col"><br>
+				      	<div class="p-2">내 반려동물</div><br><br>
 		                    <div class="p-4"><br>
 			                    <c:if test="${ animal.isStatus eq 'Y' }">
-				                	<h6 class="h6">${ animal.animalKind } / ${ animal.animalName } / ${ animal.animalGender }</h6><br>
+				                	<h5 class="h5">${ animal.animalKind } &nbsp; · &nbsp; ${ animal.animalName } &nbsp; · &nbsp; ${ animal.animalGender }</h5><br>
 				                	<c:if test="${ !empty image.memberNo }">
 				                    	<img src="${ contextPath }/resources/uploadFiles/${ image.renameName }" width="90%" height="245"/><br><br><br>
 				                    </c:if>
