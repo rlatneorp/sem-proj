@@ -48,7 +48,7 @@
 					<span class="material-symbols-outlined d-inline-block">vpn_key</span>
 				</div> 
 				<input type="password" placeholder=" 비밀번호" id="loginPwd" name="memberPwd" required>
-				<div style="color: white;" id="check"></div>
+				<div style="color: white; display: none;" id="check"></div>
 			</div> 
 		</div>
 		<br><br><br><br><br>
@@ -68,37 +68,47 @@
 		const form = document.getElementById('form');
 		const check = document.getElementById('check');
 		
-		loginPwd.addEventListener('keyup', () => {
-			if(loginId.value == '' && loginPwd.value == ''){
-				alert('정보 입력을 해주세요.');
-				loginId.focus();
-			} else {
-				$.ajax({
-					type : 'POST',
-					url : '${contextPath}/loginCheckInfo.do',
-					data : {memberId : loginId.value.trim(), memberPwd : loginPwd.value.trim()},
-					success : data => {
-						console.log(data);
-						if(data == 'no') {
-							alert('로그인에 실패하였습니다. 다시 시도해주세요.');
-						} else if(data == 'yes'){
-							check.innerText = 'OK';
-						}
-					},
-					error : data => {
-						alert('로그인 중 에러 발생');
-					}
-				});
-			}
-		});
-		btn.addEventListener('click', () => {
-			if(check.innerText == 'OK'){
-				form.action = '${contextPath}/login.do';
-				form.submit();
-			} else {
-				alert('로그인에 실패하였습니다. 다시 시도해주세요.')
-			}
-		})
+		const loginHandler = (e) => {
+		    e.preventDefault();
+		
+		    if (loginId.value === '' && loginPwd.value === '') {
+		        alert('정보를 입력해주세요.');
+		        loginId.focus();
+		    } else {
+		        $.ajax({
+		            type: 'POST',
+		            url: '${contextPath}/loginCheckInfo.do',
+		            data: { memberId: loginId.value.trim(), memberPwd: loginPwd.value.trim() },
+		            success: (data) => {
+		                console.log(data);
+		                if (data === 'no') {
+		                    alert('로그인에 실패하였습니다. 다시 시도해주세요.');
+		                } else if (data === 'yes') {
+		                    check.innerText = 'OK';
+		                    form.action = '${contextPath}/login.do';
+		                    form.submit();
+		                }
+		            },
+		            error: (data) => {
+		                alert('로그인 중 에러 발생');
+		            },
+		        });
+		    }
+		};
+		
+		// 로그인 버튼 클릭 이벤트 등록
+		btn.addEventListener('click', loginHandler);
+		
+		// 엔터 키 이벤트 핸들러
+		const enterHandler = (e) => {
+		    if (e.key === 'Enter') {
+		        loginHandler(e); // 로그인 처리 실행
+		    }
+		};
+		
+		// 엔터 키 이벤트 등록
+		loginId.addEventListener('keydown', enterHandler);
+		loginPwd.addEventListener('keydown', enterHandler);
 	</script>
 </body>
 </html>
