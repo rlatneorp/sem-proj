@@ -226,15 +226,17 @@
 				<hr><br><hr><br>
 				<h4 style="text-align: center;">집사의 댓글</h4>
 				<br>
-				<table>
+				<table id="reviewId">
 					<tbody class="tbody1" style="text-align: center;">	
 						<tr class="tr1">
 							<td><textarea class="td1" readonly placeholder=" ${ b.jibsaName}님 댓글을 달아주세요!">${ b.jibsaComment }</textarea></td>
+						<c:if test="${ loginUser.memberName eq b.jibsaName }">
 						<c:if test="${ b.jibsaComment ne null }">
 							<td>
 								<button class="td2" type="button" id="reBtn">삭제</button>
 							</td>
-						</c:if>								
+						</c:if>	
+						</c:if>							
 						</tr>
 					</tbody>
 				</table>
@@ -291,7 +293,7 @@
 	};
 	function json_reply(){
 		const jibsaCom = document.querySelector('#replyContent').value;
-		$.ajax({
+		var ajax1 = $.ajax({
 			url: '${contextPath}/updateReply.bo',
 			data: {
 				  jibsaComment: jibsaCom,
@@ -311,6 +313,9 @@
 			},
 			error: function(data){
 				console.log(data);
+			},
+			complete: function() {
+				location.reload();
 			}
 		});
 		
@@ -318,8 +323,7 @@
 	
 	function deletedReply(){
 		const jibsaCom = document.querySelector('#replyContent').value;
-		const td1 = document.querySelector('.td1').value;
-		$.ajax({
+		var ajax2 = $.ajax({
 			url: '${contextPath}/deleteReply.bo',
 			data: {
 				  jibsaComment: jibsaCom,
@@ -329,12 +333,13 @@
 				console.log(data);
 				modal.style.display = 'none';
 				const tr1 = document.querySelector('.tr1');
-				const tr = tr1.nextAll();
-				tr.innerHTML = '';
-				
+				tr1.innerHTML = '';
 			},
 			error: function(data){
 				console.log(data);
+			},
+			complete: function() {
+				location.reload(); 
 			}
 		});
 		
