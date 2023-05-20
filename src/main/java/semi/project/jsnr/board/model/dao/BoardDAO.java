@@ -99,5 +99,9 @@ public class BoardDAO {
 	public ArrayList<Image> selectJibsaImageList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectJibsaImageList");
 	}
+
+	public void deleteReply(SqlSessionTemplate sqlSession, Board b) {
+		sqlSession.update("boardMapper.deleteReply", b);
+	}
 }
 

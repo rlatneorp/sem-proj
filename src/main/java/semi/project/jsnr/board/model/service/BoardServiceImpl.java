@@ -107,8 +107,10 @@ public class BoardServiceImpl implements BoardService{
 		return bDAO.selectJibsaImageList(sqlSession);
 	}
 
-
-
+	@Override
+	public void deleteReply(Board b) {
+		bDAO.deleteReply(sqlSession, b);
+	}
 
 
 

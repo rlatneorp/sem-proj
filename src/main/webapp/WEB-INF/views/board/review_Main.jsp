@@ -123,7 +123,7 @@
 		  	<div class="col" style="cursor: pointer;">
 		    	<div class="review">
 					<div class="profile">
-						 <img src="resources/image/profile.png">
+						 <img src="resources/image/profile.png"> 
 						 <div class="userName">${ n.memberName }</div>
 					</div>
 					<div class="info">
@@ -218,7 +218,7 @@ window.onload=()=>{
 		location.href = '${contextPath}/search.bo?value='+value+'&condition='+condition;
 		});		
 		
-	 
+	  
 		const reviewContent = document.querySelector('article');
 		const reviewDiv = reviewContent.querySelectorAll('.col');
 		 

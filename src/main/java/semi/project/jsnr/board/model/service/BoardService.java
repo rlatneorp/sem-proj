@@ -43,6 +43,9 @@ public interface BoardService {
 
 	ArrayList<Image> selectJibsaImageList();
 
+	void deleteReply(Board b);
+
+
 
 
 }

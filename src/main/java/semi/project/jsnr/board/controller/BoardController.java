@@ -174,7 +174,6 @@ public class BoardController {
 		
 		Board b = bService.reviewDetail(mId, yn);	
 		Board list = bService.selectReply(mId);
-		System.out.println(b);
 		
 		if(b != null) {
 			mv.addObject("page", page);
@@ -201,12 +200,32 @@ public class BoardController {
 		GsonBuilder gb = new GsonBuilder().setDateFormat("yyyy-MM-dd");
 		Gson gson = gb.create();
 		String json = gson.toJson(b);
-
+		System.out.println(json);
+		
 		    try {
 		        response.getWriter().write(json);
 		    } catch (IOException e) {
 		        e.printStackTrace();
 		    }
 		}
+	@RequestMapping("deleteReply.bo")
+	public void  deleteReply(@ModelAttribute Board b, 
+			HttpServletResponse response) {
+		bService.deleteReply(b);
+		Board list = bService.selectReply(b.getMemberNo());
+		
+		response.setContentType("application/json; charset=UTF-8");
+		
+		GsonBuilder gb = new GsonBuilder().setDateFormat("yyyy-MM-dd");
+		Gson gson = gb.create();
+		String json = gson.toJson(b);
+		System.out.println(b);
+		    try {
+		        response.getWriter().write(json);
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+		
+	}	
 }
 
