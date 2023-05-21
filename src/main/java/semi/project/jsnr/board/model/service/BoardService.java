@@ -55,6 +55,10 @@ public interface BoardService {
 
 	List<Object> jibsaPageReviewCount2(HashMap<String, String> map);
 
+	ArrayList<Board> reviewList(HashMap<String, String> map, PageInfo pi);
+
+	int sortListCount(HashMap<String, String> map);
+
 
 //	ArrayList<Board> jibsaReview(String jibsaName);
 

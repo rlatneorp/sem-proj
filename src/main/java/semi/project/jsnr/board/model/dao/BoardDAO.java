@@ -130,5 +130,16 @@ public class BoardDAO {
 	public ArrayList<Board> jibsaReviewDateSearch(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
 		return (ArrayList)sqlSession.selectList("boardMapper.jibsaReviewDateSearch", map);
 	}
+
+	public ArrayList<Board> reviewList(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("boardMapper.reviewList", map, rowBounds);
+	}
+
+	public int sortListCount(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("boardMapper.sortListCount", map);
+	}
 }
 

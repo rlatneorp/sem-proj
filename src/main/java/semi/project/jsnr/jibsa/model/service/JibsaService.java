@@ -60,6 +60,9 @@ public class JibsaService {
 	public Jibsa selectJibsaChat(int jibsaNo) {
 		return jDAO.selectJibsaChat(sqlSession, jibsaNo);
 	}
+	public Jibsa jibsa_Main(int memberNo) {
+		return jDAO.selectJibsa(sqlSession, memberNo);
+	}
 
 	
 }

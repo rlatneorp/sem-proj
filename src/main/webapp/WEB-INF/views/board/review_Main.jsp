@@ -109,16 +109,17 @@
 		
 	
 	<div class="container">
-	<select>
-	  <option selected>평점순으로 보기</option>
-	  <option value="1">후기 많은 순으로 보기</option>
-	  <option value="2">이름 순으로 보기</option>
+	<select name="sortBy" id="sort">>
+	  <option selected>---------------------------</option>
+	  <option value="1">평점 높은 순으로 보기</option>
+	  <option value="2">조회수 많은 순으로 보기</option>
+	  <option value="3">이름 순으로 보기</option>
 	</select>
 	</div>
 	  
 	<div class="container text-left">
 	  <div class="row">
-	  <article>
+	  <article id="reviewList">
 		<c:forEach items="${ list }" var="n">
 		  	<div class="col" style="cursor: pointer;">
 		    	<div class="review">
@@ -144,81 +145,70 @@
 	  <div class="row">
 			<div class="pagingArea" align="center">
 		<!-- 		이전 버튼-->
-					<br>
-					<c:if test="${ pi.currentPage <= 1 }">
-						<span class = 'disable'>[이전]</span>
-					</c:if>
-					<c:if test="${ pi.currentPage > 1 }">
-						<c:url value = "${loc }" var="blistBack">
-							<c:param name="page" value="${ pi.currentPage -1 }"/>
-							<c:if test="${ condition != null}">
-								<c:param name = "condition" value = "${condition}"/>
-								<c:param name = "value" value = "${value}"/>
-							</c:if>
-						</c:url>
-						<a href="${ blistBack }">[이전]</a>
-					</c:if>
+				<c:url value="${loc}" var="blistBack">
+				  <c:param name="sortBy" value="${sortBy}" />
+				  <c:param name="page" value="${pi.currentPage - 1}" />
+				  <c:if test="${condition != null}">
+				    <c:param name="condition" value="${condition}" />
+				    <c:param name="value" value="${value}" />
+				  </c:if>
+				</c:url>
+				<a href="${blistBack}">[이전]</a>
+
 		<!-- 		숫자 버튼-->
-					<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-						<c:if test="${ p eq pi.currentPage }">
-							<font color ="red" size = "4"><b>[${p }]</b></font>
-						</c:if>
-						<c:if test="${ p ne pi.currentPage }">
-							<c:url value="${loc }" var="blistNum">
-							
-								<c:param name="page" value="${ p }"/>
-								<c:if test="${ condition != null}">
-									<c:param name = "condition" value = "${condition}"/>
-									<c:param name = "value" value = "${value}"/>
-								</c:if>
-							</c:url>
-							<a href = "${ blistNum }">${ p }</a>
-						</c:if>
+					<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage}">
+					  <c:url value="${loc}" var="blistNum">
+					    <c:param name="sortBy" value="${sortBy}" />
+					    <c:param name="page" value="${p}" />
+					    <c:if test="${condition != null}">
+					      <c:param name="condition" value="${condition}" />
+					      <c:param name="value" value="${value}" />
+					    </c:if>
+					  </c:url>
+					  <a href="${blistNum}">${p}</a>
 					</c:forEach>
+
 		
 		
 		
 		<!-- 		다음 버튼-->
-					<c:if test="${ pi.currentPage >=  pi.maxPage }">
-						<span class = 'disable'>[다음]</span>
-					</c:if>
-					<c:if test="${ pi.currentPage <  pi.maxPage }">
-						<c:url value = "${loc }" var="blistNext">
-							<c:param name="page" value="${ pi.currentPage +1}"/>
-							<c:if test="${ condition != null}">
-								<c:param name = "condition" value = "${condition}"/>
-								<c:param name = "value" value = "${value}"/>
-							</c:if>
-						</c:url>
-						<a href="${ blistNext }">[다음]</a>
-					</c:if>
+			<c:url value="${loc}" var="blistNext">
+			  <c:param name="sortBy" value="${sortBy}" />
+			  <c:param name="page" value="${pi.currentPage + 1}" />
+			  <c:if test="${condition != null}">
+			    <c:param name="condition" value="${condition}" />
+			    <c:param name="value" value="${value}" />
+			  </c:if>
+			</c:url>
+			<a href="${blistNext}">[다음]</a>
+
+			<div id="searchArea" align="center">
+			  <label>검색조건</label>
+				  <select id="searchCondition">
+				    <option value="petsitter" <c:if test="${condition == 'petsitter'}">selected</c:if>>집사이름</option>
+				    <option value="animalCategory" <c:if test="${condition == 'animalCategory'}">selected</c:if>>동물종류</option>
+				  </select>
+				  <input type="search" id="searchValue" value="<c:if test='${!empty value}'>${value}</c:if>">
+				  <button class="search-button">검색하기</button>
+				  <br><br><br>
 				</div>
-			
-			<br>
-		
-			<div id = "searchArea" align = "center">
-				<label>검색조건</label>
-				<select >
-					<option value ="petsitter"<c:if test="${condition == 'petsitter' }">selected</c:if>>집사이름</option>
-					<option value="animalCategory"<c:if test="${condition == 'animalCategory' }">selected</c:if>>동물종류</option>
-				</select>
-				<input  type="search" value = "<c:if test='${!empty value }'>${ value }</c:if>">
-				<button class="search-button">검색하기</button>
-				<br><br><br>
-			</div>	
+
 	  </div>
 <%@ include file="../common/bottom.jsp" %>
 
 <script>
 window.onload=()=>{
-		document.getElementById('searchArea').querySelector('button').addEventListener('click', function(){
-		const value = this.previousElementSibling.value;
-		const condition = this.previousElementSibling.previousElementSibling.value;
+	
+		const searchButton = document.querySelector('.search-button');
+	 	searchButton.addEventListener('click', () => {
+		    const searchCondition = document.querySelector('#searchCondition').value;
+		    const searchValue = document.querySelector('#searchValue').value;
+		    const sortBy = document.querySelector('#sort').value;
+	
+		    location.href = `${contextPath}/reviewList.bo?sortBy=${sortBy}&condition=${searchCondition}&value=${searchValue}`;
+		});
+	
 		
-		location.href = '${contextPath}/search.bo?value='+value+'&condition='+condition;
-		});		
-		
-	  
 		const reviewContent = document.querySelector('article');
 		const reviewDiv = reviewContent.querySelectorAll('.col');
 		 
@@ -230,7 +220,13 @@ window.onload=()=>{
 			 
 			}); 
 		}
-	}	
+		const sort = document.querySelector('#sort');
+		sort.addEventListener('change', () => {
+			const sortBy = sort.options[sort.selectedIndex].value;
+		    location.href = '${contextPath}/reviewList.bo?sortBy=' + sortBy;
+		});
+		
+}
 </script>
  </body>
 </html>

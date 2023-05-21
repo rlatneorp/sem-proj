@@ -308,5 +308,40 @@
         	 and mc.end_date <= #{to}
         ]]>
 	</select>
+		
+	<select id="sortListCount" resultType="_int">
+	    select count(*)
+		from matching mc
+		     join animal a on(a.animal_no = mc.animal_no)
+		     join jibsa_profile jp on(mc.jibsa_no = jp.member_no)
+		     join member m on(mc.member_no = m.member_no)
+	    <if test="sortBy == '1'">
+	      order by mc.review_rating desc
+	    </if>
+	    <if test="sortBy == '2'">
+	      order by mc.review_count desc
+	    </if>
+	    <if test="sortBy == '3'">
+	      order by m.member_name desc
+	    </if>
+	</select>
 	
+	<select id="reviewList" resultMap="boardResultSet">
+	    select mc.matching_no, mc.animal_no, a.animal_name, a.animal_kind, mc.start_date, mc.end_date, mc.matching_place,
+    		  mc.review_content, mc.review_rating, mc.review_count, mc.jibsa_comment, m.member_name, m.member_no, jp.jibsa_name, 
+    		  jp.member_no, mc.matching_status, mc.review_status
+		from matching mc
+		     join animal a on(a.animal_no = mc.animal_no)
+		     join jibsa_profile jp on(mc.jibsa_no = jp.member_no)
+		     join member m on(mc.member_no = m.member_no)
+	    <if test="sortBy == '1'">
+	      order by mc.review_rating desc
+	    </if>
+	    <if test="sortBy == '2'">
+	      order by mc.review_count desc
+	    </if>
+	    <if test="sortBy == '3'">
+	      order by m.member_name desc
+	    </if>
+	</select>
 </mapper>

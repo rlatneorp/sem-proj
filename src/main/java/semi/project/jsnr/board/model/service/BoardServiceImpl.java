@@ -150,6 +150,17 @@ public class BoardServiceImpl implements BoardService{
 	public List<Object> jibsaPageReviewCount2(HashMap<String, String> map) {
 		return bDAO.jibsaPageReviewCount2(sqlSession, map);
 	}
+
+
+	@Override
+	public ArrayList<Board> reviewList(HashMap<String, String> map, PageInfo pi) {
+		return bDAO.reviewList(sqlSession, map,pi);
+	}
+
+	@Override
+	public int sortListCount(HashMap<String, String> map) {
+		return bDAO.sortListCount(sqlSession, map);
+	}
 		
 
 }

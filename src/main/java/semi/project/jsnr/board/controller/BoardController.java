@@ -1,8 +1,6 @@
 package semi.project.jsnr.board.controller;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -300,5 +298,35 @@ public class BoardController {
 			throw new BoardException("리뷰 검색을 실패하였습니다.");
 		}
 	}
+	@RequestMapping("reviewList.bo")
+	public String reviewList(@RequestParam("sortBy") String sortBy, @RequestParam(value="page", required=false) Integer currentPage, 
+			HttpServletRequest request, Model model) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("sortBy", sortBy);
+	 
+		if(currentPage == null) {
+			currentPage = 1;
+		}
+		if(request.getParameter("page") != null) {
+			currentPage = Integer.parseInt(request.getParameter("page"));
+		}
+		
+		int listCount = bService.sortListCount(map); 
+		
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 6);
+	 
+		ArrayList<Board> list = bService.reviewList(map, pi);
+		if(list != null) {
+			model.addAttribute("list", list);
+			model.addAttribute("pi", pi);
+			model.addAttribute("sortBy", sortBy);
+			return "review_Main";
+		} else {
+			throw new BoardException("리뷰 정렬을 실패하였습니다.");
+		}
+	  
+	}
+
 }
 
