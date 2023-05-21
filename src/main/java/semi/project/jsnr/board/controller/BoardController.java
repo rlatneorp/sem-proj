@@ -89,11 +89,9 @@ public class BoardController {
 				}
 			}
 		}
-//		for(int i = 0; i < jpList.size(); i++) {
-//			System.out.println(jpList.get(i));
-//		}
 		
 		if(jpList != null) {
+			model.addAttribute("type", type);
 			model.addAttribute("pi", pi);
 			model.addAttribute("jpList", jpList);
 		}
@@ -107,6 +105,14 @@ public class BoardController {
 								Model model) {
 		Jibsa jibsa = bService.getJibsaInfo(mId);
 		JibsaProfile jp = bService.getJibsaProfile(mId);
+		
+		String[] arr = new String[7];
+		for(int i = 0; i < 7; i++) {
+			arr[i] = jibsa.getAvailableHour().split(",")[i];
+		}
+		jp.setAvailableHourArr(arr);
+		
+		System.out.println(jp);
 		
 		if(jibsa != null) {
 			model.addAttribute("page", page);

@@ -3,6 +3,7 @@ package semi.project.jsnr.admin.controller;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Base64.Decoder;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -46,17 +47,24 @@ public class AdminController {
 	
 	@GetMapping("admin_Member_Manage.ad")
 	public String admin_Member_Manage(@RequestParam(value="page", required=false) Integer page,
+									  @RequestParam(value="searchType", required=false) String searchType,
+									  @RequestParam(value="searchText", required=false) String searchText,
 									  Model model) {
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
 		}
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("searchType", searchType);
+		map.put("searchText", searchText);
 		
-		int listCount = aService.getMemberCount();
-		
+		int listCount = aService.getMemberCount(map);
+				
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
 		
-		ArrayList<Member> mList = aService.selectMemberList(pi);
+		ArrayList<Member> mList = aService.selectMemberList(pi, map);
+		
 		for(int i = 0; i < mList.size(); i++) {
 			int mNo = mList.get(i).getMemberNo();
 			int aCount = aService.getAnimalCount(mNo);
@@ -64,6 +72,8 @@ public class AdminController {
 		}
 		
 		if(mList != null) {
+			model.addAttribute("searchType", searchType);
+			model.addAttribute("searchText", searchText);
 			model.addAttribute("pi", pi);
 			model.addAttribute("mList", mList);
 			return "admin_Member_Manage";
@@ -116,20 +126,55 @@ public class AdminController {
 		}
 	}
 	
+	@PostMapping("admin_Members_update.ad")
+	public String admin_Members_update(@RequestParam(value="page", required=false) Integer page,
+									   @RequestParam(value="select", required=false) ArrayList<String> selArr,
+									   @RequestParam("selectType") String selectType,
+									   Model model) {
+		if(selArr != null) {
+			int result = 0;
+			if(selectType.equals("delete")) {
+				result = aService.deletesMember(selArr);  
+			}else {
+				result = aService.activesMember(selArr);  
+			}
+			
+			if( result > 0) {
+				model.addAttribute("page", page);
+				return "redirect:admin_Member_Manage.ad";
+			} else {
+				System.out.println("멤버정보 업데이트 실패함");
+				return "";
+			}
+		}else {
+			model.addAttribute("page", page);
+			return "redirect:admin_Member_Manage.ad";
+		}
+	}
+			
 	@GetMapping("admin_Jibsa_Manage.ad")
 	public String admin_Jibsa_Manage(@RequestParam(value="page", required=false) Integer page,
+								     @RequestParam(value="searchType", required=false) String searchType,
+								     @RequestParam(value="searchText", required=false) String searchText,
 			 						 Model model) {
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
 		}
 		
-		int listCount = aService.getJibsaCount();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("searchType", searchType);
+		map.put("searchText", searchText);
+		
+		int listCount = aService.getJibsaCount(map);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
 		
-		ArrayList<Jibsa> jList = aService.selectJibsaList(pi);
+		ArrayList<Jibsa> jList = aService.selectJibsaList(pi, map);
+		
 		if(jList != null) {
+			model.addAttribute("searchType", searchType);
+			model.addAttribute("searchText", searchText);
 			model.addAttribute("pi", pi);
 			model.addAttribute("jList", jList);
 			return "admin_Jibsa_Manage";
@@ -161,7 +206,6 @@ public class AdminController {
 		}
 		
 		Image image = aService.selectJibsaImage(j.getMemberNo());
-		System.out.println(image);
 		
 		if(j != null) {
 			model.addAttribute("image", image);
@@ -198,20 +242,53 @@ public class AdminController {
 		}
 	}
 	
+	@PostMapping("admin_Jibsas_update.ad")
+	public String admin_Jibsas_update(@RequestParam(value="page", required=false) Integer page,
+									  @RequestParam(value="select", required=false) ArrayList<String> selArr,
+									  @RequestParam("selectType") String selectType,
+									  Model model) {
+		if(selArr != null) {
+			int result = 0;
+			if(selectType.equals("delete")) {
+				result = aService.deletesJibsa(selArr);  
+			}else {
+				result = aService.activesJibsa(selArr);  
+			}
+			if( result > 0) {
+				model.addAttribute("page", page);
+				return "redirect:admin_Jibsa_Manage.ad";
+			} else {
+				System.out.println("집사정보 업데이트 실패함");
+				return "";
+			}
+		}else {
+			model.addAttribute("page", page);
+			return "redirect:admin_Jibsa_Manage.ad";
+		}
+	}
 	
 	@GetMapping("admin_Review_Manage.ad")
 	public String admin_Review_Manage(@RequestParam(value="page", required=false) Integer page,
+									  @RequestParam(value="searchType", required=false) String searchType,
+								      @RequestParam(value="searchText", required=false) String searchText,
 									  Model model) {
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
 		}
-		int listCount = aService.getReviewCount();
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("searchType", searchType);
+		map.put("searchText", searchText);
+		
+		int listCount = aService.getReviewCount(map);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
 		
-		ArrayList<Board> rList = aService.selectReviewList(pi);
+		ArrayList<Board> rList = aService.selectReviewList(pi, map);
 		if(rList != null) {
+			model.addAttribute("searchType", searchType);
+			model.addAttribute("searchText", searchText);
 			model.addAttribute("pi", pi);
 			model.addAttribute("rList", rList);
 			return "admin_Review_Manage";
@@ -261,22 +338,55 @@ public class AdminController {
 		
 	}
 	
+	@PostMapping("admin_Reviews_Update.ad")
+	public String admin_Reviews_Update(@RequestParam(value="page", required=false) Integer page,
+									   @RequestParam(value="select", required=false) ArrayList<String> selArr,
+									   @RequestParam("selectType") String selectType,
+									   Model model) {
+		if(selArr != null) {
+			int result = 0;
+			if(selectType.equals("delete")) {
+				result = aService.deletesReview(selArr);  
+			}else {
+				result = aService.activesReview(selArr);  
+			}
+			if( result > 0) {
+				model.addAttribute("page", page);
+				return "redirect:admin_Review_Manage.ad";
+			} else {
+				System.out.println("리뷰정보 업데이트 실패함");
+				return "";
+			}
+		}else {
+			model.addAttribute("page", page);
+			return "redirect:admin_Review_Manage.ad";
+		}
+	}
+	
 	@GetMapping("admin_Matching_Manage.ad")
 	public String admin_Matching_Manage(@RequestParam(value="page", required=false) Integer page,
+										@RequestParam(value="searchType", required=false) String searchType,
+									    @RequestParam(value="searchText", required=false) String searchText,
 										Model model) {
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
 		}
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("searchType", searchType);
+		map.put("searchText", searchText);
+		
 //		Board라는 객체로 review정보와 매칭정보를 모두 가지고 있으므로, 
-//		일단 같은 메소드를 사용.
+//		일단 Review와 같은 메소드를 사용.
 //		추후 값이 달라질 경우, 생성할것.
-		int listCount = aService.getReviewCount();
+		int listCount = aService.getReviewCount(map);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
 		
-		ArrayList<Board> mcList = aService.selectReviewList(pi);
+		ArrayList<Board> mcList = aService.selectReviewList(pi, map);
 		if(mcList != null) {
+			model.addAttribute("searchType", searchType);
+			model.addAttribute("searchText", searchText);
 			model.addAttribute("pi", pi);
 			model.addAttribute("mcList", mcList);
 			return "admin_Matching_Manage";
@@ -330,23 +440,52 @@ public class AdminController {
 		}
 	}	
 	
-	
-	
+	@PostMapping("admin_Matchings_Update.ad")
+	public String admin_Matchings_Update(@RequestParam(value="page", required=false) Integer page,
+										 @RequestParam(value="select", required=false) ArrayList<String> selArr,
+										 @RequestParam("selectType") String selectType,
+										 Model model) {
+		if(selArr != null) {
+			int result = 0;
+			if(selectType.equals("delete")) {
+				result = aService.deletesMatching(selArr);  
+			}else {
+				result = aService.activesMatching(selArr);  
+			}
+			if( result > 0) {
+				model.addAttribute("page", page);
+				return "redirect:admin_Matching_Manage.ad";
+			} else {
+				System.out.println("매칭정보 업데이트 실패함");
+				return "";
+			}
+		}else {
+			model.addAttribute("page", page);
+			return "redirect:admin_Matching_Manage.ad";
+		}
+	}
 	
 	@GetMapping("admin_FAQ_Manage.ad")
 	public String admin_FAQ_Manage(@RequestParam(value="page", required=false) Integer page,
-							Model model) {
+								   @RequestParam(value="searchType", required=false) String searchType,
+								   @RequestParam(value="searchText", required=false) String searchText,
+								   Model model) {
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
 		}
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("searchType", searchType);
+		map.put("searchText", searchText);
 		
-		int listCount = aService.getFaqCount();
+		int listCount = aService.getFaqCount(map);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
 		
-		ArrayList<Faq> fList = aService.selectFaqList(pi);
+		ArrayList<Faq> fList = aService.selectFaqList(pi, map);
 		if(fList != null) {
+			model.addAttribute("searchType", searchType);
+			model.addAttribute("searchText", searchText);
 			model.addAttribute("pi", pi);
 			model.addAttribute("fList", fList);
 			return "admin_FAQ_Manage";
@@ -354,7 +493,6 @@ public class AdminController {
 			System.out.println("FAQ정보 불러오기 실패함");
 			return "";
 		}
-		
 	}
 	
 	@GetMapping("admin_FAQ_Detail.ad")
@@ -391,6 +529,31 @@ public class AdminController {
 		} else {
 			System.out.println("FAQ정보 업데이트 실패함");
 			return "";
+		}
+	}
+	
+	@PostMapping("admin_FAQs_Update.ad")
+	public String admin_FAQs_Update(@RequestParam(value="page", required=false) Integer page,
+									@RequestParam(value="select", required=false) ArrayList<String> selArr,
+									@RequestParam("selectType") String selectType,
+									Model model) {
+		if(selArr != null) {
+			int result = 0;
+			if(selectType.equals("delete")) {
+				result = aService.deletesFAQ(selArr);  
+			}else {
+				result = aService.activesFAQ(selArr);  
+			}
+			if( result > 0) {
+				model.addAttribute("page", page);
+				return "redirect:admin_FAQ_Manage.ad";
+			} else {
+				System.out.println("FAQ정보 업데이트 실패함");
+				return "";
+			}
+		}else {
+			model.addAttribute("page", page);
+			return "redirect:admin_FAQ_Manage.ad";
 		}
 	}
 	
@@ -456,18 +619,25 @@ public class AdminController {
 	
 	@GetMapping("admin_QNA_Manage.ad")
 	public String admin_QNA_Manage(@RequestParam(value="page", required=false) Integer page,
-							Model model) {
+								   @RequestParam(value="searchType", required=false) String searchType,
+								   @RequestParam(value="searchText", required=false) String searchText,
+								   Model model) {
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
 		}
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("searchType", searchType);
+		map.put("searchText", searchText);
 		
-		int listCount = aService.getQnaCount();
+		int listCount = aService.getQnaCount(map);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
 		
-		ArrayList<Qna> qList = aService.selectQnaList(pi);
+		ArrayList<Qna> qList = aService.selectQnaList(pi, map);
 		if(qList != null) {
+			model.addAttribute("searchType", searchType);
+			model.addAttribute("searchText", searchText);
 			model.addAttribute("pi", pi);
 			model.addAttribute("qList", qList);
 			System.out.println(qList);
@@ -518,7 +688,31 @@ public class AdminController {
 		}
 		
 	}
-
+	
+	@PostMapping("admin_QNAs_Update.ad")
+	public String admin_QNAs_Update(@RequestParam(value="page", required=false) Integer page,
+									@RequestParam(value="select", required=false) ArrayList<String> selArr,
+									@RequestParam("selectType") String selectType,
+									Model model) {
+		if(selArr != null) {
+			int result = 0;
+			if(selectType.equals("delete")) {
+				result = aService.deletesQNA(selArr);  
+			}else {
+				result = aService.activesQNA(selArr);  
+			}
+			if( result > 0) {
+				model.addAttribute("page", page);
+				return "redirect:admin_QNA_Manage.ad";
+			} else {
+				System.out.println("QNA정보 업데이트 실패함");
+				return "";
+			}
+		}else {
+			model.addAttribute("page", page);
+			return "redirect:admin_QNA_Manage.ad";
+		}
+	}
 	
 	
 		

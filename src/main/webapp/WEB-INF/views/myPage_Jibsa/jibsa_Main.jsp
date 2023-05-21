@@ -19,10 +19,8 @@
 					<p class="fs-2 fw-bold">마이페이지</p>
 					
 					<div class="container px-0 mb-5 mx-0">
-					<a href="#" class="d-block link-dark text-decoration-none mb-4">
-						<img src="https://github.com/mdo.png" alt="mdo" width="48" height="48" class="rounded-circle image-block me-2">
-						<span class="text-small fw-bold">홍길동 집사님</span>
-					</a>
+						<img src="${imagePath}/${img.renameName}" alt="로딩실패" width="48" height="48" class="rounded-circle image-block me-2">
+						<span class="text-small fw-bold">${j.memberName} 집사님</span>
 					</div>
 					
 					
@@ -40,7 +38,7 @@
 					
 					<div class="container px-2 mb-4 mx-0">			
 						<p class="mb-3 fs-6 fw-bold">스케줄 관리</p>
-						<a href="${ contextPath }/jibsaManagementSchedule.js" class="text-decoration-none">
+						<a href="${ contextPath }/jibsa_Manage_Schedule.js" class="text-decoration-none">
 						<div class="col-6 d-inline-block text-top">
 							<p class="fs-7 d-inline-block text-decoration-none align-middle text-dark">회원 스케줄 관리</p>
 						</div>

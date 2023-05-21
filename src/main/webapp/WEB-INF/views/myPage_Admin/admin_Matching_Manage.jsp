@@ -9,44 +9,15 @@
 <style>
 	.table thead tr th{background: rgba(224, 224, 224, 0.51);}
 	.tablediv{
-		width: 900px;
+		width: 1000px;
 		text-align: center;
 		display: block;
 		margin: 0 auto;
-	}
-	.pagination { display: flex; justify-content: center; align-items: center; }
-
-	.pagination a { color: #1abc9c; }
-
-	.pagination a:hover {color: black;}
-	.faqbtn{
-		background: rgb(26, 188, 156);
-	 	color: white;
-	 	border: none;
-	 	border-radius: 10px;
-	 	padding: 10px;
-	}
-	#faqbtn{text-align: left; width: 800px; margin: 0 auto;}
-	#box{padding: 3px 4px;}
-	.search{
-		
 	}
 	button{
 		width: 60px; height: 33px;
 		background-color: white;
 	}
-	#img {margin-left: 6.5px; margin-top: 6px; width: 27px; height: 27px;}
-	.trash {display:inline-block; border: 1px solid lightgray; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
- 			margin-left: 94%; width: 42px; height: 42px;}
- 	.write{
- 		display:inline-block; margin-left: 94%; width: 60px; height: 50px; justify-content: center; align-items: center;
- 	}
- 	#write{
- 		border: 1px solid gray; margin-left: 92%; width: 65px; height: 40px; border-radius: 10px;
- 		margin-bottom: -90px;
- 	}
- 	#detail{cursor: pointer;}
- 	#detail:hover {text-decoration: underline;}
 </style>
 </head>
 <body>
@@ -56,63 +27,76 @@
         <div id="page-content-wrapper">
 	    	<div class="container-fluid">
 	        	<div class="container text-center">
-					 <h4 style="margin-right: 580px;"><b>매칭 관리</b></h4>
+					 <h4 class="text-start"><b>매칭 관리</b></h4>
 					    <br>
-					    <div id="faqbtn">
-						<br>
-						<span class="trash">
-							<img src="../../img/trash.png" id="img"/>
-						</span>
 				    		<div class="tablediv" id="faqD">
 							    <table class="table">
-							    	<thead>
-								    	<tr>
-								    		<th>매칭번호</th>
-								    		<th>이용자</th>
-								    		<th>집사</th>
-								    		<th>시작시간</th>
-								    		<th>종료시간</th>
-								    		<th>매칭장소</th>
-								    		<th>활성화여부</th>
-								    		<th>선택</th>
-								    	</tr>
-							    	</thead>
-							    	<tbody>
-							    		<c:forEach items="${mcList}" var="mc">
+								    <form method="post" action="admin_Matchings_Update.ad">
+							    		<input type="hidden" name="selectType" value="">
+								    	<div class="d-flex justify-content-end mb-2 me-1">
+								    		<span onclick="matchingActive()" class="material-symbols-outlined me-3" style="font-size: 40px; cursor:pointer;">refresh</span>
+								    		<span onclick="matchingDelete()" class="material-symbols-outlined" style="font-size: 40px; cursor:pointer;">delete</span>	
+								    	</div>
+								    	<thead>
 									    	<tr>
-									    		<td>${mc.matchingNo}</td>
-									    		<td>
-									    			<a href="${contextPath}/admin_Matching_Detail.ad?page=${pi.currentPage}&mcId=${mc.matchingNo}">
-									    				${mc.memberName}
-									    			</a>
-								    			</td>
-									    		<td>${mc.jibsaName}</td>
-									    		<td>${fn:substring(mc.startDate,0,10)} ${fn:substring(mc.startDate,11,13)}:${fn:substring(mc.startDate,13,15)}</td>
-									    		<td>${fn:substring(mc.endDate,0,10)} ${fn:substring(mc.endDate,11,13)}:${fn:substring(mc.endDate,13,15)}</td>
-									    		<td>${fn:substring(mc.matchingPlace,0,20)}</td>
-									    		<td>${mc.matchingStatus}</td>
-									    		<td><input type="checkbox" name="delete"></td>
+									    		<th>매칭번호</th>
+									    		<th>이용자</th>
+									    		<th>집사</th>
+									    		<th>시작시간</th>
+									    		<th>종료시간</th>
+									    		<th>매칭장소</th>
+									    		<th>상태여부</th>
+									    		<th><label for="allSelect">모두선택 &nbsp</label><input type="checkbox" name="allSelect" id="allSelect"></th>
 									    	</tr>
-									    </c:forEach>
-							    	
-							    	</tbody>
+								    	</thead>
+								    	<tbody>
+								    		<c:forEach items="${mcList}" var="mc">
+										    	<tr>
+										    		<td>${mc.matchingNo}</td>
+										    		<td>
+										    			<a href="${contextPath}/admin_Matching_Detail.ad?page=${pi.currentPage}&mcId=${mc.matchingNo}">
+										    				${mc.memberName}
+										    			</a>
+									    			</td>
+										    		<td>${mc.jibsaName}</td>
+										    		<td>${fn:substring(mc.startDate,0,10)} ${fn:substring(mc.startDate,11,13)}:${fn:substring(mc.startDate,13,15)}</td>
+										    		<td>${fn:substring(mc.endDate,0,10)} ${fn:substring(mc.endDate,11,13)}:${fn:substring(mc.endDate,13,15)}</td>
+										    		<td class="w-25">${fn:substring(mc.matchingPlace,0,18)}</td>
+										    		<td>${mc.matchingStatus}</td>
+										    		<td><label for="s${mc.matchingNo}">선택&nbsp</label><input type="checkbox" id="s${mc.matchingNo}" name="select" value="${mc.matchingNo}"></td>
+										    	</tr>
+										    </c:forEach>
+								    	
+								    	</tbody>
+							    	</form>
 						    	</table>
+							    
+							    <%@ include file="../common/paging.jsp" %>
+								
+								<br>
+								<form>
+									<div>
+										<input type="hidden" name="page" value="${pi.currentPage}"> 
+										<select name="searchType" class="search" style="padding: 3px 4px;">
+											<c:if test="${searchType eq null}">
+												<option value="user">이용자</option>
+												<option value="jibsa">집사</option>
+											</c:if>
+											<c:if test="${searchType eq 'user'}">
+												<option value="user" selected>이용자</option>
+												<option value="jibsa">집사</option>
+											</c:if>
+											<c:if test="${searchType eq 'jibsa'}">
+												<option value="user">이용자</option>
+												<option value="jibsa" selected>집사</option>
+											</c:if>
+										</select>
+										<input type="text" name="searchText" style="border-radius: 8px; padding: 3px 3px; border: 1px solid gray; margin-right: 5px;" value="${searchText}">
+										<button onclick="location.href='${contextPath}/admin_Matching_Manage.ad'"  style="border-radius: 8px; padding: 3px 3px; border: 1px solid gray; margin-right: 5px;">검색</button>
+									</div>
+								</form>
 						    </div>
 					    </div>
-					    <br>
-					    
-					    <%@ include file="../common/paging.jsp" %>
-						
-						<br>
-						<div>
-							<select class="search" style="padding: 3px 4px;">
-								<option>제목</option>
-								<option>작성자</option>
-							</select>
-							<input type="text" style="border-radius: 8px; padding: 3px 3px; border: 1px solid gray; margin-right: 5px;">
-							<button onclick="location.href='';"  style="border-radius: 8px; padding: 3px 3px; border: 1px solid gray; margin-right: 5px;">조회</button>
-							<button onclick="location.href='QnA_main.jsp';"  style="border-radius: 8px; padding: 3px 3px; border: 1px solid gray; margin-right: 5px;">목록</button>
-						</div>
 					</div>
 	            </div>
 	        </div>
@@ -121,5 +105,56 @@
 		<footer>
 			<%@ include file="../common/bottom.jsp" %>
 		</footer>
+		
+		<script>
+			const allSelect = document.getElementById('allSelect');
+			const selectBoxs = document.getElementsByName('select');
+			
+			window.onload = () =>{
+				let count = 0;
+				allSelect.addEventListener('click', ()=>{
+					if(allSelect.checked){
+						count = selectBoxs.length;
+						for(const sel of selectBoxs){
+							sel.checked = true;
+						}
+					}else if(!allSelect.checked){
+						count = 0;
+						for(const sel of selectBoxs){
+							sel.checked = false;
+							
+						}
+					}
+				});
+				for(const sel of selectBoxs){
+					sel.addEventListener('click', ()=>{
+						if(!sel.checked){
+							allSelect.checked = false;
+							count--;
+						}else if(sel.checked){
+							count++;
+							for(const del of selectBoxs){
+								if(sel.checked){
+									if(count == selectBoxs.length){
+										allSelect.checked = true;
+									}
+								}
+							}
+						}
+					})
+				};
+			}
+			
+			function matchingActive(){
+				document.getElementsByName('selectType')[0].value="active";
+				document.getElementsByTagName('form')[0].submit();
+			}
+			function matchingDelete(){
+				document.getElementsByName('selectType')[0].value="delete";
+				document.getElementsByTagName('form')[0].submit();
+			}
+		
+		</script>
+		
 </body>
 </html>

@@ -339,7 +339,7 @@
 				}
 			}
 			
-// 				값을 대입하고, form을 submit()하는 함수
+// 			값을 대입하고, form을 submit()하는 함수
 			function formSubmit(){
 				
 // 				시작날짜값 대입
@@ -356,7 +356,6 @@
 // 				종료시간값 대입
 				endDate.value += times[1].value.substring(0,2) + times[1].value.substring(3,5);
 				
-				console.log("폼 넘긴다!");
 				document.getElementsByTagName('form')[0].submit();
 			}
 	

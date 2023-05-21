@@ -28,14 +28,14 @@
 	<div class="container text-center mb-5">
 		<div class="filter d-flex justify-content-end mb-5">
 			<div class="filter-group d-flex">
-				<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">집사</button>
-				<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">훈련사</button>
+				<button onclick="location.href='${contextPath}/jibsa_List.bo?type=1'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">집사</button>
+				<button onclick="location.href='${contextPath}/jibsa_List.bo?type=2'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">훈련사</button>
 			</div>
 			<div class="filter-group d-flex">
-				<select id="sort-select">
-			   		<option value="price-low">금액 낮은 순</option>
-			   		<option value="reviews-high">후기 많은 순</option>
-			 	</select>
+<!-- 				<select id="sort-select"> -->
+<!-- 			   		<option value="price-low">금액 낮은 순</option> -->
+<!-- 			   		<option value="reviews-high">후기 많은 순</option> -->
+<!-- 			 	</select> -->
 			</div>
 		</div>
 		
@@ -87,9 +87,11 @@
           				<c:url var="goBack" value="${ loc }">
           					<c:if test="${ pi.currentPage-1 lt 1 }">
 	          					<c:param name="page" value="1"></c:param>
+	          					<c:param name="type" value="${type}"></c:param>
           					</c:if>
           					<c:if test="${ pi.currentPage-1 gt 0 }">
 	          					<c:param name="page" value="${ pi.currentPage-1 }"></c:param>
+	          					<c:param name="type" value="${type}"></c:param>
           					</c:if>
           				</c:url>
           				<a class="page-link" href="${ goBack }" aria-label="Previous">
@@ -99,6 +101,7 @@
           			<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
          				<c:url var="goNum" value="${ loc }">
          					<c:param name="page" value="${ p }"></c:param>
+          					<c:param name="type" value="${type}"></c:param>
          				</c:url>
           				<li class="page-item"><a class="page-link" href="${ goNum }">${ p }</a></li>
           			</c:forEach>
@@ -106,9 +109,11 @@
           				<c:url var="goNext" value="${ loc }">
           					<c:if test="${ pi.currentPage+1 gt pi.endPage }">
 	          					<c:param name="page" value="${ pi.endPage }"></c:param>
+	          					<c:param name="type" value="${type}"></c:param>
           					</c:if>
           					<c:if test="${ pi.currentPage+1 le pi.endPage }">
 	          					<c:param name="page" value="${ pi.currentPage+1 }"></c:param>
+	          					<c:param name="type" value="${type}"></c:param>
           					</c:if>
           				</c:url>
           				<a class="page-link" href="${ goNext }" aria-label="Next">

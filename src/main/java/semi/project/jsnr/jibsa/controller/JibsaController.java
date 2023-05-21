@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,9 +22,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import semi.project.jsnr.animal.model.vo.Image;
+import semi.project.jsnr.board.model.vo.Board;
+import semi.project.jsnr.common.Pagination;
+import semi.project.jsnr.common.model.vo.PageInfo;
 import semi.project.jsnr.jibsa.model.exception.JibsaException;
 import semi.project.jsnr.jibsa.model.service.JibsaService;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
+import semi.project.jsnr.matching.model.vo.Matching;
 import semi.project.jsnr.member.model.service.MemberService;
 import semi.project.jsnr.member.model.vo.Member;
 
@@ -132,8 +138,24 @@ public class JibsaController {
 	}
 	
 	@RequestMapping("jibsa_Main.js")
-	public String jibsa_Main() {
-		return "jibsa_Main";
+	public String jibsa_Main(Model model,
+							 HttpSession session) {
+		Jibsa j = jService.selectJibsa(((Member)session.getAttribute("loginUser")).getMemberNo());
+		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("mNo", j.getMemberNo());
+		map.put("type", 2);
+		Image img = jService.selectImage(map);
+		
+		if(j != null) {
+			model.addAttribute("img", img);
+			model.addAttribute("j", j);
+			return "jibsa_Main";
+		}else {
+			System.out.println("집사정보 로드 실패");
+			return "";
+		}
+		
 	}
 	
 	@GetMapping("jibsa_WorkTime.js")
@@ -180,9 +202,45 @@ public class JibsaController {
 		
 	}
 	
-	@GetMapping("jibsaManagementSchedule.js")
-	public String jibsaManagementSchedule() {
-		return "jibsa_Management_Schedule";
+	@GetMapping("jibsa_Manage_Schedule.js")
+	public String jibsa_Manage_Schedule(@RequestParam(value="page", required=false)Integer page,
+										Model model,
+										HttpSession session) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		int mNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
+		
+		int listCount = jService.getMatchingCount(mNo);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
+		
+		ArrayList<Board> matchingList = jService.selectMatchingList(pi, mNo);
+		
+		if(matchingList != null) {
+			model.addAttribute("pi", pi);
+			model.addAttribute("matchingList", matchingList);
+			return "jibsa_Manage_Schedule";
+		}else {
+			System.out.println("매칭정보 불러오기 에러");
+			return "";
+		}
+	}
+	
+	@GetMapping("jibsa_Cancel_Matching.js")
+	public String jibsa_Cancel_Matching(@RequestParam(value="page", required=false)Integer page,
+										@RequestParam("mcNo")Integer mcNo,
+										Model model) {
+		int result = jService.cancelMatching(mcNo);
+		
+		if(result > 0) {
+			model.addAttribute("page", page);
+			return "redirect:jibsa_Manage_Schedule.js";
+		}else {
+			System.out.println("매칭취소 실패");
+			return "";
+		}
 	}
 	
 	// 집사 정보수정 - 현지
@@ -197,9 +255,39 @@ public class JibsaController {
 		return "jibsa_Modify_Info";
 	}
 	
-	@GetMapping("jibsaModifySchedule.js")
-	public String jibsaModifySchedule() {
-		return "jibsa_Modify_Schedule";
+	@GetMapping("jibsa_Modify_Schedule.js")
+	public String jibsa_Modify_Schedule(@RequestParam(value="page", required=false) Integer page,
+										@RequestParam("mcNo") String mcNo,
+										Model model) {
+		
+		Board matching = jService.selectMatching(mcNo);
+		
+		if(matching != null) {
+			model.addAttribute("page", page);
+			model.addAttribute("mc", matching);
+			return "jibsa_Modify_Schedule";
+		}else {
+			System.out.println("스케쥴 상세보기 실패");
+			return "";
+		}
+		
+	}
+	
+	@PostMapping("jibsa_Schedule_Update.js")
+	public String jibsa_Schedule_Update(@RequestParam(value="page", required=false) Integer page,
+										@ModelAttribute Matching mc,
+										Model model) {
+		
+		System.out.println(mc);
+		int result = jService.updateMatching(mc);
+		
+		if(result > 0) {
+			model.addAttribute("page", page);
+			return "redirect:jibsa_Manage_Schedule.js";
+		}else {
+			System.out.println("집사-스케줄 변경 실패");
+			return "";
+		}
 	}
 	
 	@GetMapping("QnA.js")
