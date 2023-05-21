@@ -19,27 +19,84 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
 import semi.project.jsnr.common.Pagination;
 import semi.project.jsnr.common.model.vo.PageInfo;
+import semi.project.jsnr.jibsa.model.service.JibsaService;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.member.model.exception.MemberException;
 import semi.project.jsnr.member.model.service.MemberService;
 import semi.project.jsnr.member.model.vo.Member;
 
-@SessionAttributes("loginUser")
+@SessionAttributes({"loginUser", "animal"})
 @Controller
 public class MemberController {
 	
 	@Autowired
-	public MemberService mService;
+	private MemberService mService;
+	
+	@Autowired
+	private JibsaService jService;
 	
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 	
 	@GetMapping("member_Reservation.me")
-	public String reservation() {
-		return "member_Reservation_Main";
+	public String reservation(@RequestParam(value="page", required=false) Integer page,
+							  Model model, @ModelAttribute Board b) {
+		Member m = (Member)model.getAttribute("loginUser");
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int listCount = mService.reservationListCount(m.getMemberNo());
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
+		
+		ArrayList<Board> rList = mService.selectReserList(m.getMemberNo(), pi);
+		
+		if(rList != null) {
+			model.addAttribute("rList", rList);
+			model.addAttribute("pi", pi);
+			
+			return "member_Reservation_Main";
+		} else {
+			throw new MemberException("예약 조회 실패");
+		}
+	}
+	
+	@GetMapping("reservationDetail.me")
+	public String reservationDetail(@RequestParam("matchingNo") int matchingNo, Model model) {
+		model.addAttribute("matchingNo", matchingNo);
+		Member m = (Member)model.getAttribute("loginUser");
+		
+		ArrayList<JibsaProfile> jList = mService.selectReserJibsa();
+		
+		ArrayList<Board> rList = mService.selectReserList(m.getMemberNo());
+		
+		if(!jList.isEmpty()) {
+			model.addAttribute("jList", jList);
+			model.addAttribute("rList", rList);
+			
+			return "member_Reservation_Detail";
+		} else {
+			throw new MemberException("상세보기 실패");
+		}
+	}
+	
+	@RequestMapping("cancelMatching.me")
+	public String cancelMatching(@RequestParam("matchingNo") int matchingNo, Model model) {
+		int result = mService.cancelMatching(matchingNo);
+		
+		if(result > 0) {
+			return "redirect:member_Reservation.me";
+		} else {
+			throw new MemberException("매칭 취소 실패");
+		}
 	}
 	
 	@GetMapping("member_ServiceCenter.me")

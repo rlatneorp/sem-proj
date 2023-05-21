@@ -1,5 +1,7 @@
 package semi.project.jsnr.jibsa.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +51,11 @@ public class JibsaService {
 	public int insertJibsaProfile(Jibsa j) {
 		return jDAO.insertJibsaProfile(sqlSession, j);
 	}
+
+//	public ArrayList<Jibsa> selectReserJibsa() {
+//		return jDAO.selectReserJibsa(sqlSession);
+//	}
+
 
 	
 	

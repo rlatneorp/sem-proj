@@ -19,13 +19,14 @@ public class Board {
 	private String matchingStatus;
 	private String reviewStatus;
 	private int jibsaNo;
+	private String serviceType;
 	
 	public Board() {}
 
 	public Board(int matchingNo, int animalNo, String animalName, String animalKind, String startDate, String endDate,
 			String matchingPlace, String reviewContent, Double reviewRating, int reviewCount, String jibsaComment,
 			String memberName, int memberNo, String jibsaName, String isJibsa, String matchingStatus,
-			String reviewStatus, int jibsaNo) {
+			String reviewStatus, int jibsaNo, String serviceType) {
 		super();
 		this.matchingNo = matchingNo;
 		this.animalNo = animalNo;
@@ -45,6 +46,7 @@ public class Board {
 		this.matchingStatus = matchingStatus;
 		this.reviewStatus = reviewStatus;
 		this.jibsaNo = jibsaNo;
+		this.serviceType = serviceType;
 	}
 
 	public int getMatchingNo() {
@@ -192,6 +194,14 @@ public class Board {
 		this.jibsaNo = jibsaNo;
 	}
 
+	public String getServiceType() {
+		return serviceType;
+	}
+
+	public void setServiceType(String serviceType) {
+		this.serviceType = serviceType;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [matchingNo=" + matchingNo + ", animalNo=" + animalNo + ", animalName=" + animalName
@@ -200,9 +210,10 @@ public class Board {
 				+ reviewRating + ", reviewCount=" + reviewCount + ", jibsaComment=" + jibsaComment + ", memberName="
 				+ memberName + ", memberNo=" + memberNo + ", jibsaName=" + jibsaName + ", isJibsa=" + isJibsa
 				+ ", matchingStatus=" + matchingStatus + ", reviewStatus=" + reviewStatus + ", jibsaNo=" + jibsaNo
-				+ "]";
+				+ ", serviceType=" + serviceType + "]";
 	}
 
+	
 	
 	
 }

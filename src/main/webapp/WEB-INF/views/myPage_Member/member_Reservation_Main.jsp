@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +18,6 @@
 	.detail{
 		cursor: pointer;
 	}
-	.detail:hover{text-decoration: underline;}
 	#reviewbtn{
 		background: rgb(26, 188, 156);
 	 	color: white;
@@ -36,7 +37,7 @@
 	        	<div class="container text-center">
 					 <h4 style="margin-right: 58%;"><b>예약 관리</b></h4>
 					 <h6 style="margin-right: 48%;">나의 예약 현황을 살펴보세요!</h6><br>
-					    <br><br>
+					    <br>
 					    <div class="tablediv">
 						    <table class="table">
 						    	<thead>
@@ -50,49 +51,86 @@
 						    	</tr>
 						    	</thead>
 						    	<tbody>
-						    	<tr>
-						    		<td>1255</td>
-						    		<td onclick="location.href='reserDetail.jsp';" class="detail">방문 돌봄</td>
-						    		<td>2023-04-17(월)</td>
-						    		<td>10:00~18:00</td>
-						    		<td>치즈</td>
-						    		<td>예약중</td>
-						    	</tr>
-						    	<tr>
-						    		<td>1187</td>
-						    		<td>훈련</td>
-						    		<td>2023-04-16(토)</td>
-						    		<td>10:00~18:00</td>
-						    		<td>코코</td>
-						    		<td><button id="reviewbtn" onclick="location.href='review.jsp';">작성하기</button></td>
-						    	</tr>
-						    	<tr>
-						    		<td>1125</td>
-						    		<td>산책</td>
-						    		<td>2023-04-15(금)</td>
-						    		<td>10:00~18:00</td>
-						    		<td>코코</td>
-						    		<td class="detail" onclick="location.href='reviewDetail.jsp';">후기수정</td>
-						    	</tr>
-						    	<tr>
-						    		<td>1112</td>
-						    		<td>산책</td>
-						    		<td>2023-04-06(토)</td>
-						    		<td>10:00~18:00</td>
-						    		<td>코코</td>
-						    		<td class="detail">후기수정</td>
-						    	</tr>
-						    	<tr>
-						    		<td>1110</td>
-						    		<td>훈련</td>
-						    		<td>2023-04-01(화)</td>
-						    		<td>10:00~18:00</td>
-						    		<td>코코</td>
-						    		<td class="detail">후기수정</td>
-						    	</tr>
+						    	<c:choose>
+						    		<%-- 예약 내역 없을 때 --%>
+								    <c:when test="${empty rList}">
+								        <tr>
+								            <td colspan="6">아직 예약 내역이 없습니다.</td>
+								        </tr>
+								    </c:when>
+								    <c:otherwise>
+								    	<%-- 예약 내역 있을 때 --%>
+								        <c:forEach items="${rList}" var="r">
+								            <tr onclick="location.href='${contextPath}/reservationDetail.me?matchingNo=${ r.matchingNo }'" class="detail">
+								                <td>${r.matchingNo}</td>
+								                <td>${r.serviceType}</td>
+								                <td>${fn:substring(r.startDate, 0, 10)}</td>
+								                <td>${fn:substring(r.startDate, 11, 13)}:${fn:substring(r.startDate, 13, 14)}0~${fn:substring(r.endDate, 11, 13)}:${fn:substring(r.endDate, 13, 14)}0</td>
+								                <td>${animal.animalName}</td>
+								                <td id="td-${r.matchingNo}">
+								                    <script>
+								                        (function() {
+								                            const td${r.matchingNo} = document.getElementById('td-${r.matchingNo}');
+								                            const endDate${r.matchingNo} = new Date('${fn:substring(r.endDate, 0, 10)}');
+								                            const matchingStatus = '${r.matchingStatus}';
+								                            
+								                            // matchingStatus가 Y, 현재시간이 매칭 시간보다 크면 후기 작성에대한 내용
+								                            // Y, 작으면 예약중 / N 이면 예약취소로 뜨게함
+								                            if (matchingStatus === 'Y') {
+								                                if (new Date().getTime() > endDate${r.matchingNo}.getTime()) {
+								                                    if (${r.reviewContent != null}) {
+								                                        td${r.matchingNo}.innerText = '작성 완료';
+								                                    } else {
+								                                        td${r.matchingNo}.innerText = '미작성';
+								                                    }
+								                                } else {
+								                                    td${r.matchingNo}.innerText = '예약중';
+								                                }
+								                            } else {
+								                                td${r.matchingNo}.innerText = '예약 취소';
+								                            }
+								                        })();
+								                    </script>
+								                </td>
+								            </tr>
+								        </c:forEach>
+								    </c:otherwise>
+								</c:choose>
 						    	</tbody>
 					    	</table>
 					    </div>
+					    <br>
+					    <!-- 예약 내역이 없으면 페이징 숨김 -->
+					    <c:if test="${ !empty rList }">
+					    <div>
+							<nav aria-label="Standard pagination example" style="float: center; margin-left: 400px;">
+								<ul class="pagination">
+									<li class="page-item">
+										<c:url var="goBack" value="${ loc }">
+											<c:param name="page" value="${ pi.currentPage-1 }"></c:param>
+										</c:url>
+										<a class="page-link" href="${ goBack }" aria-label="Previous">
+											<span aria-hidden="true">&laquo;</span>
+										</a>
+									</li>
+									<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+										<c:url var="goNum" value="${ loc }">
+											<c:param name="page" value="${ p }"></c:param>
+										</c:url>
+										<li class="page-item"><a class="page-link" href="${ goNum }">${ p }</a></li>
+									</c:forEach>
+									<li class="page-item">
+										<c:url var="goNext" value="${ loc }">
+											<c:param name="page" value="${ pi.currentPage+1 }"></c:param>
+										</c:url>
+										<a class="page-link" href="${ goNext }" aria-label="Next">
+											<span aria-hidden="true">&raquo;</span>
+										</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+						</c:if>
 					    </div>
 					</div>
 	            </div>

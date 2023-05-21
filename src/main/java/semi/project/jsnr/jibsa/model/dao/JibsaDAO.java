@@ -1,5 +1,7 @@
 package semi.project.jsnr.jibsa.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -41,5 +43,10 @@ public class JibsaDAO {
 	public int insertJibsaProfile(SqlSessionTemplate sqlSession, Jibsa j) {
 		return sqlSession.insert("jibsaMapper.insertJibsaProfile");
 	}
+
+//	public ArrayList<Jibsa> selectReserJibsa(SqlSessionTemplate sqlSession) {
+//		return (ArrayList)sqlSession.selectList("jibsaMapper.selectReserJibsa");
+//	}
+
 
 }
