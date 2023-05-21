@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.jibsa.model.dao.JibsaDAO;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.member.model.vo.Member;
 
 @Service
@@ -50,6 +51,14 @@ public class JibsaService {
 
 	public int insertJibsaProfile(Jibsa j) {
 		return jDAO.insertJibsaProfile(sqlSession, j);
+	}
+
+	public JibsaProfile selectJibsaProfile(int memberNo) {
+		return jDAO.selectJibsaProfile(sqlSession, memberNo);
+	}
+
+	public Jibsa selectJibsaChat(int jibsaNo) {
+		return jDAO.selectJibsaChat(sqlSession, jibsaNo);
 	}
 
 	

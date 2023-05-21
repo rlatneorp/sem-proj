@@ -23,6 +23,9 @@ import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.jibsa.model.exception.JibsaException;
 import semi.project.jsnr.jibsa.model.service.JibsaService;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.member.model.service.MemberService;
 import semi.project.jsnr.member.model.vo.Member;
 
@@ -132,7 +135,13 @@ public class JibsaController {
 	}
 	
 	@RequestMapping("jibsa_Main.js")
-	public String jibsa_Main() {
+	public String jibsa_Main(HttpSession session) {
+		Member m = (Member)session.getAttribute("loginUser");
+		
+		JibsaProfile j = jService.selectJibsaProfile(m.getMemberNo());
+		
+		session.setAttribute("jibsaProfile", j);
+		
 		return "jibsa_Main";
 	}
 	

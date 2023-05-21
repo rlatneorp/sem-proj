@@ -53,7 +53,7 @@
         <h4 style="margin-right: 620px;"><b>예약 상세페이지</b></h4>
         <h6 style="margin-right: 570px;">나의 예약 현황을 살펴보세요!</h6>
         <p style="font-size: 12px; text-align: left; margin-left: 70px;">*매칭 취소는 후기 작성 상태를 클릭해서 진행할 수 있습니다.</p>
-        <br><br>
+        <br>
         <div class="tablediv">
           <table class="table">
             <thead>
@@ -117,14 +117,15 @@
         </div>
         <br><br>
         <div class="jibsa">
-		  <h4><b>매칭 집사</b></h4> <br>
+		  <h4><b>매칭 집사</b></h4><hr>
 		  <c:forEach items="${rList}" var="r">
 			  <c:if test="${r.matchingNo == param.matchingNo}">
 			    <c:set var="found" value="false" /> <!-- 매칭에 해당하는 집사 정보를 아직 찾지 못했음을 표시 -->
 			    <c:forEach items="${jList}" var="jibsa">
 			      <c:if test="${jibsa.memberNo eq r.jibsaNo}">
 			        <c:if test="${!found}"> <!-- 매칭에 해당하는 집사 정보를 아직 찾지 못한 경우에만 출력 -->
-			          <span>${jibsa.jibsaName}</span><br><br>
+			          <span><b>[${jibsa.jibsaName}집사님]</b></span><br><br><br>
+			          <b>간단 자기소개</b><hr>
 			          <span>${jibsa.profileTitle}</span>
 			          <c:set var="found" value="true" /> <!-- 매칭에 해당하는 집사 정보를 찾았음을 표시 -->
 			        </c:if>
@@ -135,7 +136,7 @@
 		</div>
 		<br><br>
 		<div class="jibsa">
-		  <h4><b>매칭 장소</b></h4><br>
+		  <h4><b>매칭 장소</b></h4><hr>
 		  <c:forEach items="${rList}" var="r">
 		    <c:if test="${r.matchingNo == param.matchingNo}">
 		      <span>${r.matchingPlace}</span>
@@ -144,9 +145,13 @@
 		</div>
         <br><br>
         <div class="jibsa">
-          <h4><b>상담하기</b></h4><br>
-          <span id="connect"><a href="${ chat }" id="chat">카카오톡 오픈채팅방 연결하기</a></span>
-        </div>
+  <h4><b>상담하기</b></h4><hr>
+  <c:forEach items="${rList}" var="r">
+    <c:if test="${r.matchingNo == param.matchingNo}">
+      <span id="connect"><a href="${chat}" id="chat">카카오톡 오픈채팅방 연결하기</a></span>
+    </c:if>
+  </c:forEach>
+</div>
         <br><br>
         <button onclick="location.href='javascript:history.back()'" style="margin-left: 750px;" id="listbtn">목록</button>
       </div>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.member.model.vo.Member;
 
 @Repository
@@ -42,6 +43,14 @@ public class JibsaDAO {
 
 	public int insertJibsaProfile(SqlSessionTemplate sqlSession, Jibsa j) {
 		return sqlSession.insert("jibsaMapper.insertJibsaProfile");
+	}
+
+	public JibsaProfile selectJibsaProfile(SqlSessionTemplate sqlSession, int memberNo) {
+		return sqlSession.selectOne("jibsaMapper.selectJibsaProfile", memberNo);
+	}
+
+	public Jibsa selectJibsaChat(SqlSessionTemplate sqlSession, int jibsaNo) {
+		return sqlSession.selectOne("jibsaMapper.selectJibsaChat", jibsaNo);
 	}
 
 

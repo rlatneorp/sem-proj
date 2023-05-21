@@ -61,7 +61,7 @@
 								    <c:otherwise>
 								    	<%-- 예약 내역 있을 때 --%>
 								        <c:forEach items="${rList}" var="r">
-								            <tr onclick="location.href='${contextPath}/reservationDetail.me?matchingNo=${ r.matchingNo }'" class="detail">
+								            <tr onclick="location.href='${contextPath}/reservationDetail.me?matchingNo=${ r.matchingNo }&jibsaNo=${ r.jibsaNo }'" class="detail">
 								                <td>${r.matchingNo}</td>
 								                <td>${r.serviceType}</td>
 								                <td>${fn:substring(r.startDate, 0, 10)}</td>

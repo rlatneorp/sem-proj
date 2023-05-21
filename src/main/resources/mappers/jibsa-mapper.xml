@@ -82,4 +82,24 @@
 		values(seq_img_id.nextval, #{renameName}, #{originalName}, #{imageLevel}, #{imagePath}, #{memberNo})
 	</insert>
 	
+	<select id="selectJibsaProfile" resultMap="jibsaPResultMap">
+		select *
+		from jibsa_profile
+		where member_no = #{memberNo}
+	</select>
+	
+	<resultMap type="JibsaProfile" id="jibsaPResultMap">
+		<id column="MEMBER_NO" property="memberNo"/>
+	    <result column="JIBSA_NAME" property="jibsaName"/>
+	    <result column="PROFILE_TITLE" property="profileTitle"/>
+	    <result column="PROFILE_TAG" property="profileTag"/>
+	    <result column="JIBSA_AVG_RATING" property="jibsaAvgRating"/>
+	</resultMap>
+	
+	<select id="selectJibsaChat" resultMap="jibsaResultSet">
+		select chat_address
+		from jibsa
+		where member_no = #{jibsaNo}
+	</select>
+	
 </mapper>

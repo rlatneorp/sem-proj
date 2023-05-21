@@ -44,6 +44,7 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 	
+	// 예약 관리
 	@GetMapping("member_Reservation.me")
 	public String reservation(@RequestParam(value="page", required=false) Integer page,
 							  Model model, @ModelAttribute Board b) {
@@ -70,8 +71,10 @@ public class MemberController {
 		}
 	}
 	
-	@GetMapping("reservationDetail.me")
-	public String reservationDetail(@RequestParam("matchingNo") int matchingNo, Model model,
+	// 매칭 취소
+	@RequestMapping("reservationDetail.me")
+	public String reservationDetail(@RequestParam("matchingNo") int matchingNo,
+									@RequestParam("jibsaNo") int jibsaNo, Model model,
 									HttpSession session) {
 		model.addAttribute("matchingNo", matchingNo);
 		Member m = (Member)model.getAttribute("loginUser");
@@ -80,7 +83,7 @@ public class MemberController {
 		
 		ArrayList<Board> rList = mService.selectReserList(m.getMemberNo());
 		
-		Jibsa j = jService.selectJibsa(m.getMemberNo());
+		Jibsa j = jService.selectJibsaChat(jibsaNo);
 		
 		if(!jList.isEmpty()) {
 			model.addAttribute("jList", jList);
@@ -114,14 +117,14 @@ public class MemberController {
 			currentPage = page;
 		}
 		
-//		int listCount = mService.getMemberQnaListCount(m.getMemberNo());
-		int listCount = mService.getMemberQnaListCount(1);
+		int listCount = mService.getMemberQnaListCount(m.getMemberNo());
+//		int listCount = mService.getMemberQnaListCount(1);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
 		
 		ArrayList<Faq> fList = mService.getMemberFaqList();
-//		ArrayList<Qna> qList = mService.getMemberQnaList(m.getMemberNo());
-		ArrayList<Qna> qList = mService.getMemberQnaList(1);
+		ArrayList<Qna> qList = mService.getMemberQnaList(m.getMemberNo());
+//		ArrayList<Qna> qList = mService.getMemberQnaList(1);
 		
 //		Faq는 페이징처리하지 않을 것이기 때문에, Qna에 대한 PageInfo만 넘김
 		if(fList != null && qList != null) {
@@ -188,7 +191,7 @@ public class MemberController {
 		int result = mService.deleteQna(qId);
 		
 		if(result > 0) {
-			return "redirect:serviceCenter.me";
+			return "redirect:member_ServiceCenter.me";
 		}else {
 			System.out.println("에러 페이지로 연결");
 			return "";
@@ -208,7 +211,7 @@ public class MemberController {
 		
 		System.out.println(q);
 		if(result > 0) {
-			return "redirect:serviceCenter.me";
+			return "redirect:member_ServiceCenter.me";
 		}else {
 			System.out.println("에러 페이지로 연결");
 			return "";
