@@ -4,11 +4,27 @@
 	<select id="getMemberCount" resultType="_int">
 		select count(*)
 		from member
+		<if test="searchText != ''">
+			<if test="searchType == 'name'">
+				where member_name like '%${searchText}%'
+			</if>
+			<if test="searchType == 'id'">
+				where member_id like '%${searchText}%'
+			</if>
+		</if>
 	</select>
 
 	<select id="selectMemberList" resultMap="memberResultSet">
 		select *
 		from member
+		<if test="searchText != ''">
+			<if test="searchType == 'name'">
+				where member_name like '%${searchText}%'
+			</if>
+			<if test="searchType == 'id'">
+				where member_id like '%${searchText}%'
+			</if>
+		</if>
 		order by member_no desc
 	</select>
 	<select id="selectMember" resultMap="memberResultSet">
@@ -63,16 +79,44 @@
 		</if>
 		where member_no = #{memberNo}
 	</update>
+	
+	<update id="deletesMember">
+		update member
+		set member_status = 'N'
+		where member_no in
+		<foreach item="no" collection="list" open="(" separator="," close=")">
+			#{no}
+		</foreach>
+	</update>
+	<update id="activesMember">
+		update member
+		set member_status = 'Y'
+		where member_no in
+		<foreach item="no" collection="list" open="(" separator="," close=")">
+			#{no}
+		</foreach>
+	</update>
 
 	<select id="getJibsaCount" resultType="_int">
 		select count(*)
 		from jibsa
+			 join member using(member_no)
+			<if test="searchText != ''">
+				<if test="searchType == 'name'">
+					where member_name like '%${searchText}%'
+				</if>
+			</if>
 	</select>
 	
 	<select id="selectJibsaList" resultMap="jibsaResultSet">
 		select *
 		from jibsa
 			 join member using(member_no)
+			<if test="searchText != ''">
+				<if test="searchType == 'name'">
+					where member_name like '%${searchText}%'
+				</if>
+			</if>
 		order by member_no desc
 	</select>
 	<select id="selectJibsa" resultMap="jibsaResultSet">
@@ -142,11 +186,43 @@
 			is_trainer = #{isTrainer}
 		where member_no = #{memberNo}
 	</update>
-	
+		
+	<update id="deletesJibsa">
+		update member
+		set is_jibsa = 'N'
+		where member_no in
+		<foreach item="no" collection="list" open="(" separator="," close=")">
+			#{no}
+		</foreach>
+	</update>
+	<update id="activesJibsa">
+		update member
+		set is_jibsa = 'Y'
+		where member_no in
+		<foreach item="no" collection="list" open="(" separator="," close=")">
+			#{no}
+		</foreach>
+	</update>
 	
 	<select id="getReviewCount" resultType="_int">
 		select count(*)
-		from matching
+		from matching mc
+			 join member m using(member_no)
+			 join member jm on(jibsa_no = jm.member_no) 
+		<if test="searchText != ''">
+			<if test="searchType == 'content'">
+				where review_content like '%${searchText}%'
+			</if>
+			<if test="searchType == 'writer'">
+				where m.member_name like '%${searchText}%'
+			</if>
+			<if test="searchType == 'user'">
+				where m.member_name like '%${searchText}%'
+			</if>
+			<if test="searchType == 'jibsa'">
+				where jm.member_name like '%${searchText}%'
+			</if>
+		</if>
 	</select>
 	
 	<select id="selectReviewList" resultMap="boardResultSet">
@@ -157,6 +233,20 @@
 		     join animal a on(a.animal_no = mc.animal_no)
 		     join jibsa_profile jp on(mc.jibsa_no = jp.member_no)
 		     join member m on(mc.member_no = m.member_no)
+		<if test="searchText != ''">
+			<if test="searchType == 'content'">
+				where mc.review_content like '%${searchText}%'
+			</if>
+			<if test="searchType == 'writer'">
+				where m.member_name like '%${searchText}%'
+			</if>
+			<if test="searchType == 'user'">
+				where m.member_name like '%${searchText}%'
+			</if>
+			<if test="searchType == 'jibsa'">
+				where jp.jibsa_name like '%${searchText}%'
+			</if>
+		</if>
 		order by mc.matching_no desc
 	</select>
 	<resultMap type="Board" id="boardResultSet">
@@ -194,7 +284,24 @@
 		set review_status = #{reviewStatus} 
 		where matching_no = #{matchingNo}
 	</update>
-
+	
+	<update id="deletesReview">
+		update matching
+		set review_status = 'N'
+		where matching_no in
+		<foreach item="no" collection="list" open="(" separator="," close=")">
+			#{no}
+		</foreach>
+	</update>
+	<update id="activesReview">
+		update matching
+		set review_status = 'Y'
+		where matching_no in
+		<foreach item="no" collection="list" open="(" separator="," close=")">
+			#{no}
+		</foreach>
+	</update>
+	
 	<update id="updateMatching">
 		update matching
 		set start_date = #{startDate},
@@ -203,17 +310,48 @@
 			matching_status = #{matchingStatus}
 		where matching_no = #{matchingNo}
 	</update>
-	
+	<update id="deletesMatching">
+		update matching
+		set matching_status = 'N'
+		where matching_no in
+		<foreach item="no" collection="list" open="(" separator="," close=")">
+			#{no}
+		</foreach>
+	</update>
+	<update id="activesMatching">
+		update matching
+		set matching_status = 'Y'
+		where matching_no in
+		<foreach item="no" collection="list" open="(" separator="," close=")">
+			#{no}
+		</foreach>
+	</update>
 	
 	<select id="getFaqCount" resultType="_int">
 		select count(*)
 		from faq
+		<if test="searchText != ''">
+			<if test="searchType == 'title'">
+				where faq_title like '%${searchText}%'
+			</if>
+			<if test="searchType == 'content'">
+				where faq_content like '%${searchText}%'
+			</if>
+		</if>
 	</select>
 	
 	<select id="selectFaqList" resultMap="faqResultSet">
 		select *
 		from faq
 			 join member on(member_no = faq_writer)
+		<if test="searchText != ''">
+			<if test="searchType == 'title'">
+				where faq_title like '%${searchText}%'
+			</if>
+			<if test="searchType == 'content'">
+				where faq_content like '%${searchText}%'
+			</if>
+		</if>
 		order by faq_no desc
 	</select>
 	<select id="selectFaq" resultMap="faqResultSet">
@@ -239,6 +377,23 @@
 		where faq_no = #{faqNo}
 	</update>
 	
+	<update id="deletesFAQ">
+		update faq
+		set faq_status = 'N'
+		where faq_no in
+		<foreach item="no" collection="list" open="(" separator="," close=")">
+			#{no}
+		</foreach>
+	</update>
+	<update id="activesFAQ">
+		update faq
+		set faq_status = 'Y'
+		where faq_no in
+		<foreach item="no" collection="list" open="(" separator="," close=")">
+			#{no}
+		</foreach>
+	</update>
+	
 	<insert id="insertFaq">
 		insert into faq
 		values(seq_b_id.nextval, #{faqWriter}, #{faqTitle}, #{faqContent}, sysdate, #{faqStatus})
@@ -249,17 +404,31 @@
 		where faq_no = #{faqNo}
 	</delete> 
 	
-	
-	
 	<select id="getQnaCount" resultType="_int">
 		select count(*)
 		from qna
+		<if test="searchText != ''">
+			<if test="searchType == 'title'">
+				where qna_title like '%${searchText}%'
+			</if>
+			<if test="searchType == 'content'">
+				where qna_content like '%${searchText}%'
+			</if>
+		</if>
 	</select>
 	
 	<select id="selectQnaList" resultMap="qnaResultSet">
 		select *
 		from qna
 			 join member using(member_no)
+		<if test="searchText != ''">
+			<if test="searchType == 'title'">
+				where qna_title like '%${searchText}%'
+			</if>
+			<if test="searchType == 'content'">
+				where qna_content like '%${searchText}%'
+			</if>
+		</if>
 		order by qna_no desc
 	</select>
 	<select id="selectQna" resultMap="qnaResultSet">
@@ -289,6 +458,21 @@
 			qna_status = #{qnaStatus}
 		where qna_no = #{qnaNo}
 	</update>
-
+	<update id="deletesQNA">
+		update qna
+		set qna_status = 'N'
+		where qna_no in
+		<foreach item="no" collection="list" open="(" separator="," close=")">
+			#{no}
+		</foreach>
+	</update>
+	<update id="activesQNA">
+		update qna
+		set qna_status = 'Y'
+		where qna_no in
+		<foreach item="no" collection="list" open="(" separator="," close=")">
+			#{no}
+		</foreach>
+	</update>
 	
 </mapper>

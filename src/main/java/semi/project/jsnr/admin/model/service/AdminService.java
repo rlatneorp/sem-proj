@@ -1,6 +1,7 @@
 package semi.project.jsnr.admin.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,36 +26,12 @@ public class AdminService {
 	@Autowired
 	private AdminDAO aDAO;
 
-	public int getMemberCount() {
-		return aDAO.getMemberCount(sqlSession);
+	public int getMemberCount(HashMap<String, String> map) {
+		return aDAO.getMemberCount(sqlSession, map);
 	}
 	
-	public ArrayList<Member> selectMemberList(PageInfo pi) {
-		return aDAO.selectMemberList(sqlSession, pi);
-	}
-
-	public int getJibsaCount() {
-		return aDAO.getJibsaCount(sqlSession);
-	}
-	
-	public ArrayList<Jibsa> selectJibsaList(PageInfo pi) {
-		return aDAO.selectJibsaList(sqlSession, pi);
-	}
-
-	public int getFaqCount() {
-		return aDAO.getFaqCount(sqlSession);
-	}
-
-	public ArrayList<Faq> selectFaqList(PageInfo pi) {
-		return aDAO.selectFaqList(sqlSession, pi);
-	}
-
-	public int getQnaCount() {
-		return aDAO.getQnaCount(sqlSession);
-	}
-
-	public ArrayList<Qna> selectQnaList(PageInfo pi) {
-		return aDAO.selectQnaList(sqlSession, pi);
+	public ArrayList<Member> selectMemberList(PageInfo pi, HashMap<String, String> map) {
+		return aDAO.selectMemberList(sqlSession, pi, map);
 	}
 
 	public Member selectMember(int mId) {
@@ -67,6 +44,22 @@ public class AdminService {
 
 	public int updateMember(Member m) {
 		return aDAO.updateMember(sqlSession, m);
+	}
+	
+	public int deletesMember(ArrayList<String> selArr) {
+		return aDAO.deletesMember(sqlSession, selArr);
+	}
+
+	public int activesMember(ArrayList<String> selArr) {
+		return aDAO.activesMember(sqlSession, selArr);
+	}
+	
+	public int getJibsaCount(HashMap<String, String> map) {
+		return aDAO.getJibsaCount(sqlSession, map);
+	}
+	
+	public ArrayList<Jibsa> selectJibsaList(PageInfo pi, HashMap<String, String> map) {
+		return aDAO.selectJibsaList(sqlSession, pi, map);
 	}
 
 	public Jibsa selectJibsa(int mId) {
@@ -81,6 +74,22 @@ public class AdminService {
 		return aDAO.updateJibsa(sqlSession, j);
 	}
 
+	public int deletesJibsa(ArrayList<String> selArr) {
+		return aDAO.deletesJibsa(sqlSession, selArr);
+	}
+
+	public int activesJibsa(ArrayList<String> selArr) {
+		return aDAO.activesJibsa(sqlSession, selArr);
+	}
+	
+	public int getFaqCount(HashMap<String, String> map) {
+		return aDAO.getFaqCount(sqlSession, map);
+	}
+
+	public ArrayList<Faq> selectFaqList(PageInfo pi, HashMap<String, String> map) {
+		return aDAO.selectFaqList(sqlSession, pi, map);
+	}
+	
 	public Faq selectFaq(int fId) {
 		return aDAO.selectFaq(sqlSession, fId);
 	}
@@ -97,6 +106,14 @@ public class AdminService {
 		return aDAO.deleteFaq(sqlSession, fId);
 	}
 
+	public int getQnaCount(HashMap<String, String> map) {
+		return aDAO.getQnaCount(sqlSession, map);
+	}
+
+	public ArrayList<Qna> selectQnaList(PageInfo pi, HashMap<String, String> map) {
+		return aDAO.selectQnaList(sqlSession, pi, map);
+	}
+
 	public Qna selectQna(int qId) {
 		return aDAO.selectQna(sqlSession, qId);
 	}
@@ -109,12 +126,12 @@ public class AdminService {
 		return aDAO.selectApplyJibsa(sqlSession, mId);
 	}
 
-	public int getReviewCount() {
-		return aDAO.getReviewCount(sqlSession);
+	public int getReviewCount(HashMap<String, String> map) {
+		return aDAO.getReviewCount(sqlSession, map);
 	}
 
-	public ArrayList<Board> selectReviewList(PageInfo pi) {
-		return aDAO.selectReviewList(sqlSession, pi);
+	public ArrayList<Board> selectReviewList(PageInfo pi, HashMap<String, String> map) {
+		return aDAO.selectReviewList(sqlSession, pi, map);
 	}
 
 	public Board selectReview(int rId) {
@@ -129,6 +146,37 @@ public class AdminService {
 		return aDAO.updateMatching(sqlSession, mc);
 	}
 
+	public int deletesReview(ArrayList<String> selArr) {
+		return aDAO.deletesReview(sqlSession, selArr);
+	}
+
+	public int activesReview(ArrayList<String> selArr) {
+		return aDAO.activesReview(sqlSession, selArr);
+	}
+
+	public int deletesMatching(ArrayList<String> selArr) {
+		return aDAO.deletesMatching(sqlSession, selArr);
+	}
+
+	public int activesMatching(ArrayList<String> selArr) {
+		return aDAO.activesMatching(sqlSession, selArr);
+	}
+
+	public int deletesFAQ(ArrayList<String> selArr) {
+		return aDAO.deletesFAQ(sqlSession, selArr);
+	}
+
+	public int activesFAQ(ArrayList<String> selArr) {
+		return aDAO.activesFAQ(sqlSession, selArr);
+	}
+
+	public int deletesQNA(ArrayList<String> selArr) {
+		return aDAO.deletesQNA(sqlSession, selArr);
+	}
+
+	public int activesQNA(ArrayList<String> selArr) {
+		return aDAO.activesQNA(sqlSession,selArr);
+	}
 
 
 

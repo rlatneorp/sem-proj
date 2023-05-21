@@ -82,24 +82,82 @@
 		values(seq_img_id.nextval, #{renameName}, #{originalName}, #{imageLevel}, #{imagePath}, #{memberNo})
 	</insert>
 	
-	<select id="selectJibsaProfile" resultMap="jibsaPResultMap">
-		select *
-		from jibsa_profile
-		where member_no = #{memberNo}
+	<select id="getMatchingCount" resultType="_int">
+		select count(*)
+		from matching
+		where jibsa_no = #{mNo}
+			  and matching_status = 'Y'
 	</select>
 	
-	<resultMap type="JibsaProfile" id="jibsaPResultMap">
-		<id column="MEMBER_NO" property="memberNo"/>
-	    <result column="JIBSA_NAME" property="jibsaName"/>
-	    <result column="PROFILE_TITLE" property="profileTitle"/>
-	    <result column="PROFILE_TAG" property="profileTag"/>
-	    <result column="JIBSA_AVG_RATING" property="jibsaAvgRating"/>
+	<select id="selectMatchingList" resultMap="boardResultSet">
+        select mc.matching_no, mc.animal_no, a.animal_name, a.animal_kind, mc.start_date, mc.end_date, mc.matching_place,
+    		  mc.review_content, mc.review_rating, mc.review_count, mc.jibsa_comment, m.member_name, m.member_no, jp.jibsa_name, 
+    		  jp.member_no, mc.matching_status, mc.review_status
+		from matching mc
+		     join animal a on(a.animal_no = mc.animal_no)
+		     join jibsa_profile jp on(mc.jibsa_no = jp.member_no)
+		     join member m on(mc.member_no = m.member_no)
+		where mc.jibsa_no = #{mNo}
+			  and mc.matching_status = 'Y'
+		order by mc.matching_no desc
+	</select>
+	<resultMap type="Board" id="boardResultSet">
+		<id column="MATCHING_NO" property="matchingNo"/>
+		<result column="ANIMAL_NO" property="animalNo"/>
+		<result column="ANIMAL_NAME" property="animalName"/>
+		<result column="ANIMAL_KIND" property="animalKind"/>
+		<result column="START_DATE" property="startDate"/>
+		<result column="END_DATE" property="endDate"/>
+		<result column="MATCHING_PLACE" property="matchingPlace"/>
+		<result column="REVIEW_CONTENT" property="reviewContent"/>
+		<result column="REVIEW_RATING" property="reviewRating"/>
+		<result column="REVIEW_COUNT" property="reviewCount"/>
+		<result column="JIBSA_COMMENT" property="jibsaComment"/>
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="JIBSA_NAME" property="jibsaName"/>
+		<result column="JIBSA_NO" property="jibsaNo"/>
+		<result column="IS_JIBSA" property="isJibsa"/>
+		<result column="MATCHING_STATUS" property="matchingStatus"/>
+		<result column="REVIEW_STATUS" property="reviewStatus"/>
 	</resultMap>
 	
-	<select id="selectJibsaChat" resultMap="jibsaResultSet">
-		select chat_address
-		from jibsa
-		where member_no = #{jibsaNo}
+	<select id="selectImage" resultMap="imageResultSet">
+		select *
+		from image
+		where image_level = #{type}
+			  and member_no = #{mNo}
 	</select>
+	<resultMap type="Image" id="imageResultSet">
+		<id column="IMAGE_NO" property="imageNo"/>		
+		<result column="RENAME_NAME" property="renameName"/>
+		<result column="ORIGINAL_NAME" property="originalName"/>
+		<result column="IMAGE_LEVEL" property="imageLevel"/>
+		<result column="IMAGE_PATH" property="imagePath"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+	</resultMap>
+	
+	<update id="cancelMatching">
+		update matching
+		set matching_status = 'N'
+		where matching_no = #{mcNo}
+	</update>
+	
+	<select id="selectMatching" resultMap="boardResultSet">
+        select mc.matching_no, mc.animal_no, a.animal_name, a.animal_kind, mc.start_date, mc.end_date, mc.matching_place,
+    		  mc.review_content, mc.review_rating, mc.review_count, mc.jibsa_comment, m.member_name, m.member_no, jp.jibsa_name, 
+    		  jp.member_no, mc.matching_status, mc.review_status
+		from matching mc
+		     join animal a on(a.animal_no = mc.animal_no)
+		     join jibsa_profile jp on(mc.jibsa_no = jp.member_no)
+		     join member m on(mc.member_no = m.member_no)
+		where mc.matching_no = #{mcNo}
+	</select>
+	<update id="updateMatching">
+		update matching
+		set start_date = #{startDate},
+			end_date = #{endDate}
+		where matching_no = #{matchingNo}
+	</update>
 	
 </mapper>

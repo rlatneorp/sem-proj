@@ -1,15 +1,18 @@
 package semi.project.jsnr.jibsa.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import semi.project.jsnr.animal.model.vo.Image;
+import semi.project.jsnr.board.model.vo.Board;
+import semi.project.jsnr.common.model.vo.PageInfo;
 import semi.project.jsnr.jibsa.model.dao.JibsaDAO;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
-import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
+import semi.project.jsnr.matching.model.vo.Matching;
 import semi.project.jsnr.member.model.vo.Member;
 
 @Service
@@ -53,16 +56,34 @@ public class JibsaService {
 		return jDAO.insertJibsaProfile(sqlSession, j);
 	}
 
-	public JibsaProfile selectJibsaProfile(int memberNo) {
-		return jDAO.selectJibsaProfile(sqlSession, memberNo);
+	public ArrayList<Board> selectMatchingList(PageInfo pi, int mNo) {
+		return jDAO.selectMatchingList(sqlSession, pi, mNo);
 	}
 
-	public Jibsa selectJibsaChat(int jibsaNo) {
-		return jDAO.selectJibsaChat(sqlSession, jibsaNo);
+	public Image selectImage(HashMap<String, Integer> map) {
+		return jDAO.selectImage(sqlSession, map);
+	}
+
+	public int cancelMatching(Integer mcNo) {
+		return jDAO.cancelMatching(sqlSession, mcNo);
+	}
+
+	public Board selectMatching(String mcNo) {
+		return jDAO.selectMatching(sqlSession, mcNo);
+	}
+
+	public int updateMatching(Matching mc) {
+		return jDAO.updateMatching(sqlSession, mc);
+	}
+
+	public int getMatchingCount(int mNo) {
+		return jDAO.getMatchingCount(sqlSession, mNo);
 	}
 	public Jibsa jibsa_Main(int memberNo) {
 		return jDAO.selectJibsa(sqlSession, memberNo);
 	}
 
+	
+	
 	
 }

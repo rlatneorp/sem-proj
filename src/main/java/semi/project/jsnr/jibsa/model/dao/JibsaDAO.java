@@ -1,13 +1,17 @@
 package semi.project.jsnr.jibsa.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import semi.project.jsnr.animal.model.vo.Image;
+import semi.project.jsnr.board.model.vo.Board;
+import semi.project.jsnr.common.model.vo.PageInfo;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
-import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
+import semi.project.jsnr.matching.model.vo.Matching;
 import semi.project.jsnr.member.model.vo.Member;
 
 @Repository
@@ -45,13 +49,31 @@ public class JibsaDAO {
 		return sqlSession.insert("jibsaMapper.insertJibsaProfile");
 	}
 
-	public JibsaProfile selectJibsaProfile(SqlSessionTemplate sqlSession, int memberNo) {
-		return sqlSession.selectOne("jibsaMapper.selectJibsaProfile", memberNo);
+	public ArrayList<Board> selectMatchingList(SqlSessionTemplate sqlSession, PageInfo pi, int mNo) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("jibsaMapper.selectMatchingList", mNo, rowBounds);
 	}
 
-	public Jibsa selectJibsaChat(SqlSessionTemplate sqlSession, int jibsaNo) {
-		return sqlSession.selectOne("jibsaMapper.selectJibsaChat", jibsaNo);
+	public Image selectImage(SqlSessionTemplate sqlSession, HashMap<String, Integer> map) {
+		return sqlSession.selectOne("jibsaMapper.selectImage", map);
 	}
 
+	public int cancelMatching(SqlSessionTemplate sqlSession, Integer mcNo) {
+		return sqlSession.update("jibsaMapper.cancelMatching", mcNo);
+	}
+
+	public Board selectMatching(SqlSessionTemplate sqlSession, String mcNo) {
+		return sqlSession.selectOne("jibsaMapper.selectMatching", mcNo);
+	}
+
+	public int updateMatching(SqlSessionTemplate sqlSession, Matching mc) {
+		return sqlSession.update("jibsaMapper.updateMatching", mc);
+	}
+
+	public int getMatchingCount(SqlSessionTemplate sqlSession, int mNo) {
+		return sqlSession.selectOne("jibsaMapper.getMatchingCount", mNo);
+	}
 
 }

@@ -1,6 +1,7 @@
 package semi.project.jsnr.admin.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,48 +19,48 @@ import semi.project.jsnr.member.model.vo.Member;
 @Repository
 public class AdminDAO {
 
-	public int getMemberCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("adminMapper.getMemberCount");
+	public int getMemberCount(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("adminMapper.getMemberCount", map);
 	}
 
-	public ArrayList<Member> selectMemberList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<Member> selectMemberList(SqlSessionTemplate sqlSession, PageInfo pi, HashMap<String, String> map) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("adminMapper.selectMemberList", pi, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.selectMemberList", map, rowBounds);
 	}
 
-	public int getJibsaCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("adminMapper.getJibsaCount");
+	public int getJibsaCount(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("adminMapper.getJibsaCount", map);
 	}
 
-	public ArrayList<Jibsa> selectJibsaList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<Jibsa> selectJibsaList(SqlSessionTemplate sqlSession, PageInfo pi, HashMap<String, String> map) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("adminMapper.selectJibsaList", pi, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.selectJibsaList", map, rowBounds);
 	}
 
-	public int getFaqCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("adminMapper.getFaqCount");
+	public int getFaqCount(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("adminMapper.getFaqCount", map);
 	}
 
-	public ArrayList<Faq> selectFaqList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<Faq> selectFaqList(SqlSessionTemplate sqlSession, PageInfo pi, HashMap<String, String> map) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("adminMapper.selectFaqList", pi, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.selectFaqList", map, rowBounds);
 	}
 
-	public int getQnaCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("adminMapper.getQnaCount");
+	public int getQnaCount(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("adminMapper.getQnaCount", map);
 	}
 
-	public ArrayList<Qna> selectQnaList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<Qna> selectQnaList(SqlSessionTemplate sqlSession, PageInfo pi, HashMap<String, String> map) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("adminMapper.selectQnaList", pi, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.selectQnaList", map, rowBounds);
 	}
 
 	public Member selectMember(SqlSessionTemplate sqlSession, int mId) {
@@ -114,15 +115,15 @@ public class AdminDAO {
 		return sqlSession.selectOne("adminMapper.selectApplyJibsa", mId);
 	}
 
-	public int getReviewCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("adminMapper.getReviewCount");
+	public int getReviewCount(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("adminMapper.getReviewCount", map);
 	}
 
-	public ArrayList<Board> selectReviewList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<Board> selectReviewList(SqlSessionTemplate sqlSession, PageInfo pi, HashMap<String, String> map) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("adminMapper.selectReviewList", pi, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.selectReviewList", map, rowBounds);
 	}
 
 	public Board selectReview(SqlSessionTemplate sqlSession, int rId) {
@@ -135,6 +136,54 @@ public class AdminDAO {
 
 	public int updateMatching(SqlSessionTemplate sqlSession, Matching mc) {
 		return sqlSession.update("adminMapper.updateMatching", mc);
+	}
+
+	public int deletesMember(SqlSessionTemplate sqlSession, ArrayList<String> selArr) {
+		return sqlSession.update("adminMapper.deletesMember", selArr);
+	}
+
+	public int activesMember(SqlSessionTemplate sqlSession, ArrayList<String> selArr) {
+		return sqlSession.update("adminMapper.activesMember", selArr);
+	}
+
+	public int deletesJibsa(SqlSessionTemplate sqlSession, ArrayList<String> selArr) {
+		return sqlSession.update("adminMapper.deletesJibsa", selArr);
+	}
+
+	public int activesJibsa(SqlSessionTemplate sqlSession, ArrayList<String> selArr) {
+		return sqlSession.update("adminMapper.activesJibsa", selArr);
+	}
+
+	public int deletesReview(SqlSessionTemplate sqlSession, ArrayList<String> selArr) {
+		return sqlSession.update("adminMapper.deletesReview", selArr);
+	}
+
+	public int activesReview(SqlSessionTemplate sqlSession, ArrayList<String> selArr) {
+		return sqlSession.update("adminMapper.activesReview", selArr);
+	}
+
+	public int deletesMatching(SqlSessionTemplate sqlSession, ArrayList<String> selArr) {
+		return sqlSession.update("adminMapper.deletesMatching", selArr);
+	}
+
+	public int activesMatching(SqlSessionTemplate sqlSession, ArrayList<String> selArr) {
+		return sqlSession.update("adminMapper.activesMatching", selArr);
+	}
+
+	public int deletesFAQ(SqlSessionTemplate sqlSession, ArrayList<String> selArr) {
+		return sqlSession.update("adminMapper.deletesFAQ", selArr);
+	}
+
+	public int activesFAQ(SqlSessionTemplate sqlSession, ArrayList<String> selArr) {
+		return sqlSession.update("adminMapper.activesFAQ", selArr);
+	}
+
+	public int deletesQNA(SqlSessionTemplate sqlSession, ArrayList<String> selArr) {
+		return sqlSession.update("adminMapper.deletesQNA", selArr);
+	}
+
+	public int activesQNA(SqlSessionTemplate sqlSession, ArrayList<String> selArr) {
+		return sqlSession.update("adminMapper.activesQNA", selArr);
 	}
 
 }
