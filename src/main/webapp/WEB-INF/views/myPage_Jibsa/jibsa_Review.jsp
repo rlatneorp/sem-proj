@@ -1,18 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
-
+	#reviewMain{width: 1200px; max-width: none !important; margin: 0 auto;}
+ 	
+ 	.reBtn {color: #1abc9c; border: 1px solid #1abc9c; background-color: white; width:60px; height: 30px; border-radius: 20px;}		
+		
+ 	.mo {width: 600px; height: 400px; border: 1px solid #eee; padding: 20px; margin: auto; display: none; 
+			border-radius: 20px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);  text-align: center; background-color: white;
+			 position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1;}
+			 
+ 	.xB {border: none; background-color: transparent; float: right;}	 
+	
+/*     .mo img { display: inline-block; float: left; z-index: 2;} */
+ 	
 	* {font-family: 'Noto Sans KR', sans-serif;}
 	
-	body {text-align: center; margin-left: auto; margin-right: auto;}
+	body { max-width: none !important; margin: 0 auto; text-align: center; margin-left: auto; margin-right: auto;}
 	
-	.title {margin-left: 450px; font-weight: 700;}
+	.title {margin-left: 200px; font-weight: 700;}
 	
 	.area {border: 1px solid lightgray; padding: 20px;
 			border-radius: 20px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);  text-align: center;}
@@ -21,184 +36,212 @@
 	
 	.subtitle {font-size: 20px; text-align: left; font-weight: 500;}
 
-	#area1 {display: inline-block; width: 380px; height: 340px; margin-left: 570px; align-items: center; justify-content: center;
+	#area1 {display: inline-block; width: 380px; height: 340px; margin-left: 218px;  align-items: center; justify-content: center;
 			top: 100px;}
-	#area2 {display: inline-block; width: 380px; height: 340px; align-items: center; padding-top: 81px;}
-	#area3 {margin-left: auto; margin-right: auto; width: 765px; height: 340px; margin-top: 20px;}
+	#area2 {display: inline-block; width: 380px; height: 340px; align-items: center; padding-top: 81px; vertical-align: top;}
+	#area3 {margin-left: auto; margin-right: auto; width: 765px; height: 500px; margin-top: 20px;}
 	
 	.check {background-color: #1abc9c; color: white; border: none; width:85px; height: 33px;
 			border-radius: 20px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);}
-			
-	#user { display: inline-block; float: left; margin-left: 20px;}
-			
- 	#reBtn {color: #1abc9c; border: 1px solid #1abc9c; background-color: white; width:60px; height: 30px; border-radius: 20px;}		
-		
-	#modal {width: 600px; height: 400px; border: 1px solid #eee; padding: 20px; margin: auto; display: none;
-			border-radius: 20px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);  text-align: center; background-color: white;
-			 position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;}
-			 
-	#xBtn {border: none; background-color: transparent; float: right;}	
-		
-	#modal h3, #modal h5 { display: inline-block; float: left; margin-top: 7px;}
-	
-	#modal span { display: inline-block; text-align: center; color: gray; }
-	
-	.star { display: inline-block; float: left; margin-top: 8px; }
  	
+	#reviewId{font-family: 'Noto Sans KR', sans-serif;  font-weight: 500; list-style: none; position: relative; }
+ 	#btnX{float:right; margin-left: -60px;}
+ 	#li1{ float:left; margin-top:30px; margin-left:30px; display:inline-block;}
+ 	#li2{ float:left; margin-top:38px; margin-left: 20px; display:inline-block;}
+ 	#li2{ font-size: 30px; font-weight: 500;}
+ 	#li3{ float:right; margin-top:45px; display:inline-block; }
+ 	#li4{ text-align: left; vertical-align: text-top;}
+ 	#li4{ font-size: 20px; font-weight: 400;}
+ 	#li5{ margin-top: 130px; }
+ 	
+
+	.material-symbols-outlined {
+	  font-variation-settings:
+	  'FILL' 1,
+	  'wght' 700,
+	  'GRAD' 200,
+	  'opsz' 48;
+	 color: rgb(98, 182, 183);
+	 font-size: 40px;  
+	}
 </style>
 </head>
 <body>
 	<jsp:include page="../common/top.jsp"/>
 	
+	<div id="reviewMain">
 	<br>
 	<h2 class="title">마이페이지</h2><br>
 	<h4 class="title">후기 현황</h4><br><br>
-
-	<form>
-		<div class="area" id="area1">
-			최대 3개월 범위 내에서 조회가 가능합니다.<br><br>
-			<span class="subtitle">시작일</span><br><br>
-			<select class="year" aria-label=".form-select-sm example">
-				<option value="2023" selected>2023년</option>
-				<option value="2022">2022년</option>
-				<option value="2021">2021년</option>
-			</select>  
-			<select class="month" aria-label=".form-select-sm example">
-				<option value="1">1월</option>
-				<option value="2">2월</option>
-				<option value="3">3월</option>
-				<option value="4" selected>4월</option>
-				<option value="5">5월</option>
-				<option value="6">6월</option>
-				<option value="6">6월</option>
-				<option value="7">7월</option>
-				<option value="8">8월</option>
-				<option value="9">9월</option>
-				<option value="10">10월</option>
-				<option value="11">11월</option>
-				<option value="12">12월</option>
-			</select><br><br>
-			
-			<span class="subtitle">종료일</span><br><br>
-			<select class="year" aria-label=".form-select-sm example">
-				<option value="2023" selected>2023년</option>
-				<option value="2022">2022년</option>
-				<option value="2021">2021년</option>
-			</select>
-			<select class="month" aria-label=".form-select-sm example">
-				<option value="1">1월</option>
-				<option value="2">2월</option>
-				<option value="3">3월</option>
-				<option value="4" selected>4월</option>
-				<option value="5">5월</option>
-				<option value="6">6월</option>
-				<option value="6">6월</option>
-				<option value="7">7월</option>
-				<option value="8">8월</option>
-				<option value="9">9월</option>
-				<option value="10">10월</option>
-				<option value="11">11월</option>
-				<option value="12">12월</option>
-			</select><br><br>
+	<form id="searchForm" action="${ contextPath }/jibsaReviewDateSearch.js" method="GET">
+		<div class="area" id="area1"><br><br><h4>날짜로 검색하기</h4>
+		<br>
+			모든 범위를 검색하실 수 있습니다<br><br>
+			<div id="dateType">
+  				<input type="date" id="dateFrom" name="from">
+  				~ <input type="date" id="dateTo" name="to">
+			</div><br><br>
 			<button class="check">조회</button>
 		</div>
-		
 		<div class="area" id="area2">
-			<span class="subtitle">평점</span><br><br>
-			<img src="resources/image/star1.png"/>
-			<img src="resources/image/star1.png"/>
-			<img src="resources/image/star1.png"/>
-			<img src="resources/image/star1.png"/>
-			<img src="resources/image/star1.png"/><br>
-			<span><h2 class="avg">5.0</h2></span><br>
-			
+	    <span class="subtitle">평점</span><br>
+		    <div>
+		        <c:forEach var="item" items="${b}" begin="0" end="0">
+		            <c:forEach var="i" begin="1" end="${item.jibsaAvgRating}">
+		                <span class="material-symbols-outlined" style="font-size: 40px;">star</span>
+		            </c:forEach>
+		        </c:forEach>
+		    </div>
+		    <span>
+			    <c:forEach var="item" items="${b}" begin="0" end="0">
+   				 ${item.jibsaAvgRating}점
+  				</c:forEach>
+			</span>
+			<br><br>
 			<span class="subtitle">후기건수</span><br>
-			<span>33건</span><br>	
+			<span>${fn:length(b)}</span><br>	
 		</div>
 	</form>
-
-		<div class="area" id="area3">
+		<div class="area" id="area3" style="overflow:scroll; overflow-x:hidden; ">
 			<span class="subtitle">조회결과</span><br>
-			<span>2023년 01월 - 2023년 04월</span><br><br>
-			
-			<table class="table">
-			  <thead>
-			    <tr>
-			      <th scope="col">글번호</th>
-			      <th scope="col">이름</th>
-			      <th scope="col">날짜</th>
-			      <th scope="col">애완동물</th>
-			      <th scope="col">후기보기</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			    <tr>
-			      <th scope="row">001</th>
-			      <td>강건강</td>
-			      <td>2023 - 04 - 22</td>
-			      <td>강아지</td>
-			      <td><button id="reBtn">후기</button></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">002</th>
-			      <td>남나눔</td>
-			      <td>2023 - 04 - 22</td>
-			      <td>강아지</td>
-			      <td>후기</td>
-			    </tr>
-			    <tr>
-			      <th scope="row">003</th>
-			      <td>도대담</td>
-			      <td>2023 - 04 - 22</td>
-			      <td>강아지</td>
-			      <td>후기</td>
-			    </tr>
-			    <tr>
-			      <th scope="row">004</th>
-			      <td>류라라</td>
-			      <td>2023 - 04 - 22</td>
-			      <td>강아지</td>
-			      <td>후기</td>
-			    </tr>
-			  </tbody>
-			</table>		
-		</div>
+			<span>${ from } - ${ to }</span><br><br>
+			<table class="table" id="scrollTable">
+				<thead>
+					<tr>
+						<th scope="col">글번호</th>
+						<th scope="col">이름</th>
+						<th scope="col">날짜</th>
+						<th scope="col">애완동물</th>
+						<th scope="col">후기보기</th>
+					</tr>
+				</thead>
+			<tbody> 
+			<c:forEach items="${ b }" var="i" varStatus="status">
+				<tr id="scrollReview">
+					<th scope="row">${ status.index + 1 }</th>
+					<td>${ i.memberName }</td>
+					<td>${ i.endDate }</td>
+					<td>${ i.animalName }</td>
+					<td>
+						<button class="reBtn${ status.index+1}" style="color: #1abc9c; border: 1px solid #1abc9c; background-color: white; width:60px; height: 30px; border-radius: 20px;">후기</button>
+					</td>
+				</tr>
+				<div class="mo modal${status.index + 1}">
+		    		<button class="xB xBtn${status.index + 1}">
+		    			<img src="resources/image/x.png"/>
+		    		</button>
+				    <div id="li1"><img src="resources/image/user.png" width="70px" height="70px"/></div>
+				    <div id="li2"><a>${ i.memberName }</a></div>
+				    <div id="li3">
+				            <c:forEach begin="1" end="${i.reviewRating}">
+				                <span class="material-symbols-outlined" style="font-size: 40px;">star</span>
+				            </c:forEach>
+				    </div>
+				   	<div id="li4"><a>　　${ i.animalName }</a></div>
+					<div id="li5"><hr><br><a>${ i.reviewContent }</a></div>
+				</div>	 
+			</c:forEach>
+		</tbody>
 		
-		<div id="modal">
-		<button id="xBtn"><img src="resources/image/x.png"/></button><br>
-		<img src="resources/image/user.png" width="50px" height="50px" id="user"/>
-		<h3>&nbsp;&nbsp;강건강&nbsp;&nbsp;</h3>
-		<img src="resources/image/star1.png" width="30px" height="30px" class="star"/>
-		<img src="resources/image/star1.png" width="30px" height="30px" class="star"/>
-		<img src="resources/image/star1.png" width="30px" height="30px" class="star"/>
-		<img src="resources/image/star1.png" width="30px" height="30px" class="star"/>
-		<img src="resources/image/star2.png" width="30px" height="30px" class="star"/><br><br><br>
-		
-		<span>고양이 - 코코 - 매칭일 2023년 04월 26일</span> <br><br>
-		
-		오늘 훈련사님이 저희 강아지를 잘 훈련시켜주셨습니다 정말 감사해요 ^_^
-		</div>
-		
-		<br><br><br><br>
-		<br><br><br><br>
-		<br><br><br><br>
-		<br><br><br><br>
-		<br><br><br><br>
-		<br><br><br><br>	
-		
+	</table> 
+	</div>
+	</div>
+	<br><br><br>
+<jsp:include page="../common/bottom.jsp"/>
 
-	
-	
-		<script>
-		
-		document.getElementById('reBtn').addEventListener('click', () => {
-			document.getElementById('modal').style.display = 'block';
+	<script>
+		window.onload = () =>{ 
+			const reBtns = document.querySelectorAll('[class^="reBtn"]');
+			const modals = document.querySelectorAll('[class^="mo modal"]');
+			const xBtns = document.querySelectorAll('[class^="xB xBtn"]')
+			for(let i = 0; i < reBtns.length; i++) {
+				const reBtn = reBtns[i];
+				const modal = modals[i];
+				const xBtn = xBtns[i];
+				  
+				reBtn.addEventListener('click', ()=>{	
+				   modal.style.display = 'block';
+				});
+				xBtn.addEventListener('click', ()=>{	
+				   modal.style.display = 'none';
+				});
+				  
+			    window.addEventListener('click', e => {
+			       if(!modal.contains(e.target) && !reBtn.contains(e.target)) {
+			         modal.style.display = 'none';
+			         }
+			    });
+			 }   
+	 	 }
+		$('#btnSearch').click(function() {
+		    var dateFrom = document.getElementById('dateFrom').value;
+		    var dateTo = document.getElementById('dateTo').value;
+		    var today = new Date();
+
+		    var fromYear = 0;
+		    var fromMonth = 0;
+		    var fromDay = 0;
+
+		    if (dateFrom !== '') {
+		        dateFrom = new Date(dateFrom);
+		        fromYear = dateFrom.getFullYear();
+		        fromMonth = dateFrom.getMonth() + 1;
+		        fromDay = dateFrom.getDate();
+		    }
+
+		    var toYear = 0;
+		    var toMonth = 0;
+		    var toDay = 0;
+
+		    if (dateTo !== '') {
+		        dateTo = new Date(dateTo);
+		        toYear = dateTo.getFullYear();
+		        toMonth = dateTo.getMonth() + 1;
+		        toDay = dateTo.getDate();
+		    }
+
+		    var todayYear = today.getFullYear();
+		    var todayMonth = today.getMonth() + 1;
+		    var todayDay = today.getDate();
+
+		    var todayString = todayYear + '-' + todayMonth + '-' + todayDay;
+
+		    if (fromYear === 0 || fromMonth === 0 || fromDay === 0 || isNaN(fromYear) || isNaN(fromMonth) || isNaN(fromDay)) {
+		        fromYear = 0;
+		        fromMonth = 0;
+		        fromDay = 0;
+		    }
+
+		    if (toYear === 0 || toMonth === 0 || toDay === 0 || isNaN(toYear) || isNaN(toMonth) || isNaN(toDay)) {
+		        toYear = 0;
+		        toMonth = 0;
+		        toDay = 0;
+		    }
+
+		    var from = fromYear + '-' + fromMonth + '-' + fromDay;
+		    var to = toYear + '-' + toMonth + '-' + toDay;
+
+		    
+		    if (from <= todayString && to >= from) {
+		        var searchUrl = '${contextPath}/jibsa_Review.js?from=' + from + '&to=' + to;
+		        window.location.href = searchUrl;
+		    } else {
+		        alert("해당 기간의 조회가 불가능합니다.");
+		    }
+			     
 		});
-		
-		document.getElementById('xBtn').addEventListener('click', () => {
-			document.getElementById('modal').style.display = 'none';
-		});
-		
+	    $(document).ready(function() {
+	        var urlParams = new URLSearchParams(window.location.search);
+	        var from = urlParams.get('from');
+	        var to = urlParams.get('to');
+	        
+	        if (from === '' && to === '') {
+	            alert("검색할 날짜를 지정해주세요.");
+	        }
+	    });
+
+
 	</script>
+
 </body>
 </html>

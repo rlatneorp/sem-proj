@@ -1,8 +1,11 @@
 package semi.project.jsnr.board.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -202,12 +205,12 @@ public class BoardController {
 		String json = gson.toJson(b);
 		System.out.println(json);
 		
-		    try {
-		        response.getWriter().write(json);
-		    } catch (IOException e) {
-		        e.printStackTrace();
-		    }
-		}
+	    try {
+	        response.getWriter().write(json);
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
 	@RequestMapping("deleteReply.bo")
 	public void  deleteReply(@ModelAttribute Board b, 
 			HttpServletResponse response) {
@@ -219,7 +222,6 @@ public class BoardController {
 		GsonBuilder gb = new GsonBuilder().setDateFormat("yyyy-MM-dd");
 		Gson gson = gb.create();
 		String json = gson.toJson(b);
-		System.out.println(b);
 		    try {
 		        response.getWriter().write(json);
 		    } catch (IOException e) {
@@ -227,5 +229,76 @@ public class BoardController {
 		    }
 		
 	}	
+	
+	@RequestMapping("jibsa_Review.js")
+	public String jibsaReview(@RequestParam(value="page", required=false) Integer currentPage, 
+			Model model, HttpSession session, HttpServletResponse response) {
+		
+		if(currentPage == null) {
+			currentPage = 1;
+		}
+		Member m = (Member)session.getAttribute("loginUser");
+		String jibsaName = m.getMemberName();
+		String login = null;
+		if(m != null) {
+			login = jibsaName;
+		}  
+		boolean yn = false;
+		if(!jibsaName.equals(login)) {
+			yn = true;
+		}
+		ArrayList<Board> b = bService.jibsaReview(jibsaName, yn);
+//		
+//		int listCount = bService.jibsaReviewCount(jibsaName, 1);
+		
+//		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5);
+		
+//		ArrayList<Board> list = bService.jibsaReview(jibsaName);
+		 
+		if(b != null) {
+//			model.addAttribute("pi", pi);
+			model.addAttribute("b", b);
+//			model.addAttribute("list", list);
+			return "jibsa_Review";
+		} else {
+			throw new BoardException("게시글 조회를 실패하였습니다.");
+		}
+	}
+	
+	@GetMapping("jibsaReviewDateSearch.js")
+	public String jibsaReviewDateSearch(HttpServletRequest request, HttpSession session, Model model, @RequestParam("from") String from,
+	@RequestParam("to") String to){
+		
+		Member m = (Member)session.getAttribute("loginUser");
+		String jibsaName = m.getMemberName();
+		
+		String login = null;
+		if(m != null) {
+			login = jibsaName;
+		}  
+		boolean yn = false;
+		if(!jibsaName.equals(login)) {
+			yn = true;
+		}
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("from", from);
+		map.put("to", to);
+		map.put("jibsaName", jibsaName);
+		
+		List<Object> count = bService.jibsaPageReviewCount2(map);
+		ArrayList<Board> b = bService.jibsaReviewDateSearch(map, yn);
+		
+		
+		if(b != null) {
+			model.addAttribute("from", from);
+			model.addAttribute("to", to);
+			model.addAttribute("count", count);
+			model.addAttribute("b", b);
+			return "jibsa_Review";
+		} else {
+			throw new BoardException("리뷰 검색을 실패하였습니다.");
+		}
+	}
 }
 

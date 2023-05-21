@@ -2,6 +2,7 @@ package semi.project.jsnr.board.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -102,6 +103,32 @@ public class BoardDAO {
 
 	public void deleteReply(SqlSessionTemplate sqlSession, Board b) {
 		sqlSession.update("boardMapper.deleteReply", b);
+	}
+
+//	public ArrayList<Board> jibsaReview(SqlSessionTemplate sqlSession, String jibsaName, PageInfo pi) {
+//		int offset = (pi.getCurrentPage() -1 ) * pi.getBoardLimit();
+//		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+//		
+//		return (ArrayList)sqlSession.selectList("boardMapper.jibsaReview", pi, rowBounds);
+//	}
+//
+//	public int jibsaReviewCount(SqlSessionTemplate sqlSession, String jibsaName, int i) {
+//		return sqlSession.selectOne("boardMapper.jibsaReviewCount", i);
+//	}
+
+	public int jibsaPageReviewCount(SqlSessionTemplate sqlSession, String jibsaName) {
+		return sqlSession.selectOne("boardMapper.jibsaPageReviewCount", jibsaName);
+	}
+	public List<Object> jibsaPageReviewCount2(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectList("boardMapper.jibsaPageReviewCount2", map);
+	}
+
+	public ArrayList<Board> jibsaPageReviewDetail(SqlSessionTemplate sqlSession, String jibsaName) {
+		return (ArrayList)sqlSession.selectList("boardMapper.jibsaPageReviewDetail", jibsaName);
+	}
+
+	public ArrayList<Board> jibsaReviewDateSearch(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return (ArrayList)sqlSession.selectList("boardMapper.jibsaReviewDateSearch", map);
 	}
 }
 

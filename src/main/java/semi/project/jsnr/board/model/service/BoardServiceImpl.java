@@ -2,6 +2,7 @@ package semi.project.jsnr.board.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,8 +113,49 @@ public class BoardServiceImpl implements BoardService{
 		bDAO.deleteReply(sqlSession, b);
 	}
 
+//	@Override
+//	public ArrayList<Board> jibsaReview(String jibsaName, PageInfo pi) {
+//		return bDAO.jibsaReview(sqlSession, jibsaName, pi);
+//	}
+//
+//	@Override
+//	public int jibsaReviewCount(String jibsaName, int i) {
+//		return bDAO.jibsaReviewCount(sqlSession,jibsaName, i);
+//	}
+
+	@Override
+	public ArrayList<Board> jibsaReview(String jibsaName, boolean yn) {
+		int result = 0;
+		if(yn) {
+			result = bDAO.jibsaPageReviewCount(sqlSession, jibsaName);
+		}
+		ArrayList<Board> b = bDAO.jibsaPageReviewDetail(sqlSession, jibsaName);
+			
+		return b;
+	}
 
 
+	@Override
+	public ArrayList<Board> jibsaReviewDateSearch(HashMap<String, String> map, boolean yn) {
+		List<Object> result = null;
+		if(yn) {
+			result = bDAO.jibsaPageReviewCount2(sqlSession, map);
+		}
+		ArrayList<Board> b = bDAO.jibsaReviewDateSearch(sqlSession, map);
+			
+		return b;
+	}
 
+	@Override
+	public List<Object> jibsaPageReviewCount2(HashMap<String, String> map) {
+		return bDAO.jibsaPageReviewCount2(sqlSession, map);
+	}
+		
 
 }
+
+
+
+
+
+

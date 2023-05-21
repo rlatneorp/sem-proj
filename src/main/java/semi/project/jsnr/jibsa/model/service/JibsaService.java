@@ -50,6 +50,10 @@ public class JibsaService {
 		return jDAO.insertJibsaProfile(sqlSession, j);
 	}
 
+	public Jibsa jibsa_Main(int memberNo) {
+		return jDAO.selectJibsa(sqlSession, memberNo);
+	}
+
 	
 	
 	

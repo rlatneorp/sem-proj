@@ -132,8 +132,19 @@ public class JibsaController {
 	}
 	
 	@RequestMapping("jibsa_Main.js")
-	public String jibsa_Main() {
-		return "jibsa_Main";
+	public String jibsa_Main(HttpSession session, Model model) {
+		
+		Member m = (Member)session.getAttribute("loginUser");
+		
+		Jibsa j = jService.jibsa_Main(m.getMemberNo());
+		
+		if(j != null) {
+			model.addAttribute("j", j);
+			return "jibsa_Main";
+		}else {
+			System.out.println("집사메인 불러오기 실패");
+			return ""; 
+		}
 	}
 	
 	@GetMapping("jibsa_WorkTime.js")

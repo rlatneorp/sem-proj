@@ -61,10 +61,13 @@
 						</div>
 						</a>
 					</div>
-					
+					<form action="${ contextPath }/jibsa_Review.js" method="get">
+						<input type="hidden" value="${ m.memberName }" name="memberName">
+					</form>
+				
 					<div class="container px-2 mb-4 mx-0">			
 						<p class="mb-3 fs-6 fw-bold">후기현황</p>
-						<a href="${ contextPath }/review.js" class="text-decoration-none">
+						<a href="${ contextPath }/jibsa_Review.js" class="text-decoration-none">
 						<div class="col-6 d-inline-block text-top">
 							<p class="fs-7 d-inline-block text-decoration-none align-middle text-dark">후기 조회</p>
 						</div>
