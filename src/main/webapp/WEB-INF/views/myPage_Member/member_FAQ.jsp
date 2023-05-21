@@ -114,12 +114,6 @@
 					 	<br><br>
 						<div class="tablediv" id="faqD">
 							<h2 style="text-align: left">자주하는 질문</h2><br><br>
-							
-							<div class="search">
-						  		<input type="text" placeholder=" 검색어를 입력해주세요">
-						  		<img src="../../img/search.png" id="search-icon">
-							</div><br><br><br>
-						
 							<c:forEach items="${fList }" var="f" varStatus="st">
 								<button class="accordion">${st.count}. ${f.faqTitle }</button>
 								<div class="panel">

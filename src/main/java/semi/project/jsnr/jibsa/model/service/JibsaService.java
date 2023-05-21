@@ -1,5 +1,7 @@
 package semi.project.jsnr.jibsa.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.jibsa.model.dao.JibsaDAO;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.member.model.vo.Member;
 
 @Service
@@ -50,11 +53,13 @@ public class JibsaService {
 		return jDAO.insertJibsaProfile(sqlSession, j);
 	}
 
-	public Jibsa jibsa_Main(int memberNo) {
-		return jDAO.selectJibsa(sqlSession, memberNo);
+	public JibsaProfile selectJibsaProfile(int memberNo) {
+		return jDAO.selectJibsaProfile(sqlSession, memberNo);
 	}
 
-	
-	
+	public Jibsa selectJibsaChat(int jibsaNo) {
+		return jDAO.selectJibsaChat(sqlSession, jibsaNo);
+	}
+
 	
 }

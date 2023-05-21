@@ -23,6 +23,9 @@ import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.jibsa.model.exception.JibsaException;
 import semi.project.jsnr.jibsa.model.service.JibsaService;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.member.model.service.MemberService;
 import semi.project.jsnr.member.model.vo.Member;
 

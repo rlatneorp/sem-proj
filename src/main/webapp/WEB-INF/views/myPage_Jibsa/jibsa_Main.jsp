@@ -16,12 +16,12 @@
 		<div class="card shadow mb-4 d-inline-block mainBox">
 			<div class="card-body text-start p-5">
 				<div>
-					<p class="fs-2 fw-bold">마이페이지</p>
+					<p class="fs-2 fw-bold">집사 마이페이지</p>
 					
 					<div class="container px-0 mb-5 mx-0">
 					<a href="#" class="d-block link-dark text-decoration-none mb-4">
 						<img src="https://github.com/mdo.png" alt="mdo" width="48" height="48" class="rounded-circle image-block me-2">
-						<span class="text-small fw-bold">홍길동 집사님</span>
+						<span class="text-small fw-bold">${ jibsaProfile.jibsaName } 집사님</span>
 					</a>
 					</div>
 					

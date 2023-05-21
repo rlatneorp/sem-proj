@@ -20,6 +20,7 @@ public class Board {
 	private String reviewStatus;
 	private int jibsaNo;
 	private int jibsaAvgRating;
+	private String serviceType;
 	
 	public Board() {}
 
@@ -27,6 +28,7 @@ public class Board {
 			String matchingPlace, String reviewContent, Double reviewRating, int reviewCount, String jibsaComment,
 			String memberName, int memberNo, String jibsaName, String isJibsa, String matchingStatus,
 			String reviewStatus, int jibsaNo, int jibsaAvgRating) {
+			String reviewStatus, int jibsaNo, String serviceType) {
 		super();
 		this.matchingNo = matchingNo;
 		this.animalNo = animalNo;
@@ -199,6 +201,12 @@ public class Board {
 
 	public void setJibsaAvgRating(int jibsaAvgRating) {
 		this.jibsaAvgRating = jibsaAvgRating;
+	public String getServiceType() {
+		return serviceType;
+	}
+
+	public void setServiceType(String serviceType) {
+		this.serviceType = serviceType;
 	}
 
 	@Override
@@ -210,6 +218,7 @@ public class Board {
 				+ memberName + ", memberNo=" + memberNo + ", jibsaName=" + jibsaName + ", isJibsa=" + isJibsa
 				+ ", matchingStatus=" + matchingStatus + ", reviewStatus=" + reviewStatus + ", jibsaNo=" + jibsaNo
 				+ ", jibsaAvgRating=" + jibsaAvgRating + "]";
+				+ ", serviceType=" + serviceType + "]";
 	}
 
 	

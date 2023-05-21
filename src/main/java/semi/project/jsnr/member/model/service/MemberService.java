@@ -8,8 +8,12 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
+import semi.project.jsnr.common.model.vo.PageInfo;
+import semi.project.jsnr.jibsa.model.vo.Jibsa;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.member.model.dao.MemberDAO;
 import semi.project.jsnr.member.model.vo.Member;
 
@@ -96,6 +100,26 @@ public class MemberService {
 
 	public int loginCheckInfo(HashMap<String, String> map) {
 		return mDAO.loginCheckInfo(sqlSession, map);
+	}
+
+	public int reservationListCount(int memberNo) {
+		return mDAO.reservationListCount(sqlSession, memberNo);
+	}
+
+	public ArrayList<Board> selectReserList(int memberNo, PageInfo pi) {
+		return mDAO.selectReserList(sqlSession, memberNo, pi);
+	}
+
+	public ArrayList<Board> selectReserList(int memberNo) {
+		return mDAO.selectReserList(sqlSession, memberNo);
+	}
+
+	public ArrayList<JibsaProfile> selectReserJibsa() {
+		return mDAO.selectReserJibsa(sqlSession);
+	}
+
+	public int cancelMatching(int matchingNo) {
+		return mDAO.cancelMatching(sqlSession, matchingNo);
 	}
 
 }

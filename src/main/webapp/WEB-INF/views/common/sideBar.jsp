@@ -135,6 +135,8 @@
 						
 				#btn4 { background-color: lightgray; color:white; border: none; width: 100px; height: 35px;
 						border-radius: 20px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);}
+				#jib{color: black; cursor: pointer; margin-left: 20px; text-decoration: none;}
+				#jib:hover{color: black;}
 </style>
 </head>
 <body>
@@ -147,14 +149,14 @@
 					<li><label class="lab" onclick="location.href='${contextPath}/member_ServiceCenter.me';">고객센터</label></li>
 					<c:if test="${ !empty loginUser }">
 						<c:if test="${ loginUser.isJibsa eq 'Y' }">
-							<li class="bot"><a style="cursor: pointer; margin-left: 20px; text-decoration: none;" href="${contextPath}/jibsa_Main.js">집사로 전환하기
+							<li class="bot"><a id="jib" href="${contextPath}/jibsa_Main.js">집사로 전환하기
 								<img src="resources/image/button.png" id="inbtn1"/></a>
 							</li>
 						</c:if>
 					</c:if>
 					<c:if test="${ !empty loginUser }">
 						<c:if test="${ loginUser.isJibsa eq 'N' }">
-							<li class="bot"><a style="cursor: pointer; margin-left: 20px;" id="jib">집사로 전환하기
+							<li class="bot"><a id="jib">집사로 전환하기
 								<img src="resources/image/button.png" id="inbtn1"/></a>
 							</li>
 							<div id="modal">
