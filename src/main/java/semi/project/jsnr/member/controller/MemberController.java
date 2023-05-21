@@ -25,6 +25,7 @@ import semi.project.jsnr.board.model.vo.Qna;
 import semi.project.jsnr.common.Pagination;
 import semi.project.jsnr.common.model.vo.PageInfo;
 import semi.project.jsnr.jibsa.model.service.JibsaService;
+import semi.project.jsnr.jibsa.model.vo.Jibsa;
 import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.member.model.exception.MemberException;
 import semi.project.jsnr.member.model.service.MemberService;
@@ -70,7 +71,8 @@ public class MemberController {
 	}
 	
 	@GetMapping("reservationDetail.me")
-	public String reservationDetail(@RequestParam("matchingNo") int matchingNo, Model model) {
+	public String reservationDetail(@RequestParam("matchingNo") int matchingNo, Model model,
+									HttpSession session) {
 		model.addAttribute("matchingNo", matchingNo);
 		Member m = (Member)model.getAttribute("loginUser");
 		
@@ -78,9 +80,12 @@ public class MemberController {
 		
 		ArrayList<Board> rList = mService.selectReserList(m.getMemberNo());
 		
+		Jibsa j = jService.selectJibsa(m.getMemberNo());
+		
 		if(!jList.isEmpty()) {
 			model.addAttribute("jList", jList);
 			model.addAttribute("rList", rList);
+			model.addAttribute("chat", j.getChatAddress());
 			
 			return "member_Reservation_Detail";
 		} else {

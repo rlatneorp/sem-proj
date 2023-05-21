@@ -52,12 +52,5 @@ public class JibsaService {
 		return jDAO.insertJibsaProfile(sqlSession, j);
 	}
 
-//	public ArrayList<Jibsa> selectReserJibsa() {
-//		return jDAO.selectReserJibsa(sqlSession);
-//	}
-
-
-	
-	
 	
 }

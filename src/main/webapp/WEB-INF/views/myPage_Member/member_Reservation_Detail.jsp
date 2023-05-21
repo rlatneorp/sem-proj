@@ -39,6 +39,8 @@
 	 	text-decoration: none;
 	}
 	#cancel:hover{color: black; text-decoration: underline; cursor: pointer;}
+	#chat{color: black; text-decoration: none;}
+	#chat:hover{color: black; text-decoration: underline; cursor: pointer;}
 </style>
 </head>
 <body>
@@ -122,7 +124,6 @@
 			    <c:forEach items="${jList}" var="jibsa">
 			      <c:if test="${jibsa.memberNo eq r.jibsaNo}">
 			        <c:if test="${!found}"> <!-- 매칭에 해당하는 집사 정보를 아직 찾지 못한 경우에만 출력 -->
-			          <img src="https://github.com/mdo.png" alt="mdo" width="48" height="48" class="rounded-circle image-block" />
 			          <span>${jibsa.jibsaName}</span><br><br>
 			          <span>${jibsa.profileTitle}</span>
 			          <c:set var="found" value="true" /> <!-- 매칭에 해당하는 집사 정보를 찾았음을 표시 -->
@@ -144,7 +145,7 @@
         <br><br>
         <div class="jibsa">
           <h4><b>상담하기</b></h4><br>
-          <span id="connect">카카오톡 오픈채팅방 연결하기</span>
+          <span id="connect"><a href="${ chat }" id="chat">카카오톡 오픈채팅방 연결하기</a></span>
         </div>
         <br><br>
         <button onclick="location.href='javascript:history.back()'" style="margin-left: 750px;" id="listbtn">목록</button>
