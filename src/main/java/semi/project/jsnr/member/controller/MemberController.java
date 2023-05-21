@@ -19,27 +19,92 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
 import semi.project.jsnr.common.Pagination;
 import semi.project.jsnr.common.model.vo.PageInfo;
+import semi.project.jsnr.jibsa.model.service.JibsaService;
+import semi.project.jsnr.jibsa.model.vo.Jibsa;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.member.model.exception.MemberException;
 import semi.project.jsnr.member.model.service.MemberService;
 import semi.project.jsnr.member.model.vo.Member;
 
-@SessionAttributes("loginUser")
+@SessionAttributes({"loginUser", "animal"})
 @Controller
 public class MemberController {
 	
 	@Autowired
-	public MemberService mService;
+	private MemberService mService;
+	
+	@Autowired
+	private JibsaService jService;
 	
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 	
+	// 예약 관리
 	@GetMapping("member_Reservation.me")
-	public String reservation() {
-		return "member_Reservation_Main";
+	public String reservation(@RequestParam(value="page", required=false) Integer page,
+							  Model model, @ModelAttribute Board b) {
+		Member m = (Member)model.getAttribute("loginUser");
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int listCount = mService.reservationListCount(m.getMemberNo());
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
+		
+		ArrayList<Board> rList = mService.selectReserList(m.getMemberNo(), pi);
+		
+		if(rList != null) {
+			model.addAttribute("rList", rList);
+			model.addAttribute("pi", pi);
+			
+			return "member_Reservation_Main";
+		} else {
+			throw new MemberException("예약 조회 실패");
+		}
+	}
+	
+	// 매칭 취소
+	@RequestMapping("reservationDetail.me")
+	public String reservationDetail(@RequestParam("matchingNo") int matchingNo,
+									@RequestParam("jibsaNo") int jibsaNo, Model model,
+									HttpSession session) {
+		model.addAttribute("matchingNo", matchingNo);
+		Member m = (Member)model.getAttribute("loginUser");
+		
+		ArrayList<JibsaProfile> jList = mService.selectReserJibsa();
+		
+		ArrayList<Board> rList = mService.selectReserList(m.getMemberNo());
+		
+		Jibsa j = jService.selectJibsaChat(jibsaNo);
+		
+		if(!jList.isEmpty()) {
+			model.addAttribute("jList", jList);
+			model.addAttribute("rList", rList);
+			model.addAttribute("chat", j.getChatAddress());
+			
+			return "member_Reservation_Detail";
+		} else {
+			throw new MemberException("상세보기 실패");
+		}
+	}
+	
+	@RequestMapping("cancelMatching.me")
+	public String cancelMatching(@RequestParam("matchingNo") int matchingNo, Model model) {
+		int result = mService.cancelMatching(matchingNo);
+		
+		if(result > 0) {
+			return "redirect:member_Reservation.me";
+		} else {
+			throw new MemberException("매칭 취소 실패");
+		}
 	}
 	
 	@GetMapping("member_ServiceCenter.me")
@@ -52,14 +117,14 @@ public class MemberController {
 			currentPage = page;
 		}
 		
-//		int listCount = mService.getMemberQnaListCount(m.getMemberNo());
-		int listCount = mService.getMemberQnaListCount(1);
+		int listCount = mService.getMemberQnaListCount(m.getMemberNo());
+//		int listCount = mService.getMemberQnaListCount(1);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
 		
 		ArrayList<Faq> fList = mService.getMemberFaqList();
-//		ArrayList<Qna> qList = mService.getMemberQnaList(m.getMemberNo());
-		ArrayList<Qna> qList = mService.getMemberQnaList(1);
+		ArrayList<Qna> qList = mService.getMemberQnaList(m.getMemberNo());
+//		ArrayList<Qna> qList = mService.getMemberQnaList(1);
 		
 //		Faq는 페이징처리하지 않을 것이기 때문에, Qna에 대한 PageInfo만 넘김
 		if(fList != null && qList != null) {
@@ -126,7 +191,7 @@ public class MemberController {
 		int result = mService.deleteQna(qId);
 		
 		if(result > 0) {
-			return "redirect:serviceCenter.me";
+			return "redirect:member_ServiceCenter.me";
 		}else {
 			System.out.println("에러 페이지로 연결");
 			return "";
@@ -146,7 +211,7 @@ public class MemberController {
 		
 		System.out.println(q);
 		if(result > 0) {
-			return "redirect:serviceCenter.me";
+			return "redirect:member_ServiceCenter.me";
 		}else {
 			System.out.println("에러 페이지로 연결");
 			return "";

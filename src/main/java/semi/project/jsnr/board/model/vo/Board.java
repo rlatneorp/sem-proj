@@ -19,13 +19,16 @@ public class Board {
 	private String matchingStatus;
 	private String reviewStatus;
 	private int jibsaNo;
+	private int jibsaAvgRating;
+	private String serviceType;
 	
 	public Board() {}
 
 	public Board(int matchingNo, int animalNo, String animalName, String animalKind, String startDate, String endDate,
 			String matchingPlace, String reviewContent, Double reviewRating, int reviewCount, String jibsaComment,
 			String memberName, int memberNo, String jibsaName, String isJibsa, String matchingStatus,
-			String reviewStatus, int jibsaNo) {
+			String reviewStatus, int jibsaNo, int jibsaAvgRating) {
+			String reviewStatus, int jibsaNo, String serviceType) {
 		super();
 		this.matchingNo = matchingNo;
 		this.animalNo = animalNo;
@@ -45,6 +48,7 @@ public class Board {
 		this.matchingStatus = matchingStatus;
 		this.reviewStatus = reviewStatus;
 		this.jibsaNo = jibsaNo;
+		this.jibsaAvgRating = jibsaAvgRating;
 	}
 
 	public int getMatchingNo() {
@@ -151,7 +155,6 @@ public class Board {
 		this.memberNo = memberNo;
 	}
 
-
 	public String getJibsaName() {
 		return jibsaName;
 	}
@@ -192,6 +195,20 @@ public class Board {
 		this.jibsaNo = jibsaNo;
 	}
 
+	public int getJibsaAvgRating() {
+		return jibsaAvgRating;
+	}
+
+	public void setJibsaAvgRating(int jibsaAvgRating) {
+		this.jibsaAvgRating = jibsaAvgRating;
+	public String getServiceType() {
+		return serviceType;
+	}
+
+	public void setServiceType(String serviceType) {
+		this.serviceType = serviceType;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [matchingNo=" + matchingNo + ", animalNo=" + animalNo + ", animalName=" + animalName
@@ -200,9 +217,11 @@ public class Board {
 				+ reviewRating + ", reviewCount=" + reviewCount + ", jibsaComment=" + jibsaComment + ", memberName="
 				+ memberName + ", memberNo=" + memberNo + ", jibsaName=" + jibsaName + ", isJibsa=" + isJibsa
 				+ ", matchingStatus=" + matchingStatus + ", reviewStatus=" + reviewStatus + ", jibsaNo=" + jibsaNo
-				+ "]";
+				+ ", jibsaAvgRating=" + jibsaAvgRating + "]";
+				+ ", serviceType=" + serviceType + "]";
 	}
 
+	
 	
 	
 }

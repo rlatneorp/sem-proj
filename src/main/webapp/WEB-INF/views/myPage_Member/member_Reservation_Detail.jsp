@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,77 +34,133 @@
 	 	padding: 5px;
 	 	width: 50px;
 	}
-	#cancelbtn{
-		background: rgb(26, 188, 156);
-	 	color: white;
-	 	border: none;
-	 	border-radius: 10px;
-	 	padding: 10px;
-	 	width: 130px;
+	#cancel{
+	 	color: black;
+	 	text-decoration: none;
 	}
+	#cancel:hover{color: black; text-decoration: underline; cursor: pointer;}
+	#chat{color: black; text-decoration: none;}
+	#chat:hover{color: black; text-decoration: underline; cursor: pointer;}
 </style>
 </head>
 <body>
-	<%@ include file="../common/top.jsp" %>
-	<%@ include file="../common/sideBar.jsp" %>
-	<div id="wrapper" class="toggled">
-        <div id="page-content-wrapper">
-	    	<div class="container-fluid">
-	        	<div class="container text-center">
-					 <h4 style="margin-right: 620px;"><b>예약 상세페이지</b></h4>
-					 <h6 style="margin-right: 570px;">나의 예약 현황을 살펴보세요!</h6><br>
-					    <br><br>
-					    <div class="tablediv">
-						    <table class="table">
-						    	<thead>
-						    	<tr>
-						    		<th>예약 번호</th>
-						    		<th>예약 서비스</th>
-						    		<th>예약 날짜</th>
-						    		<th>예약 시간</th>
-						    		<th>매칭 반려동물</th>
-						    		<th>후기 작성</th>
-						    	</tr>
-						    	</thead>
-						    	<tbody>
-						    	<tr>
-						    		<td>1255</td>
-						    		<td>방문 돌봄</td>
-						    		<td>2023-04-17(월)</td>
-						    		<td>10:00~18:00</td>
-						    		<td>치즈</td>
-						    		<td>예약중</td>
-						    	</tr>
-						    	</tbody>
-					    	</table>
-					    </div>
-					    <br><br>
-					    <div class="jibsa">
-						    <h4><b>매칭 집사</b></h4> <br>
-						    <img src="https://github.com/mdo.png" alt="mdo" width="48" height="48" class="rounded-circle image-block">
-						    <span>강건강 집사님</span><br><br>
-						    <span>
-						    	안녕하세요. 저는 현재 웰시코기 두 아이를 반려중인 보호자입니다. 두 아이들과 함께한지는 6년입니다.
-						    	노견인 아이도 있어 케어하는 방법을 잘 알고 있으며 일전에 지인의 강아지를 돌봐준 경험이 있어 아이들 특성에
-						    	맞게 케어가 가능합니다. 분리불안이나 하울링이 있는 아이는 추가비용이 있을 수 있고, 입질있는 아이는 불가합니다.
-						    	읽어주셔서 감사합니다.
-						    </span>
-					    </div>
-					    <br><br>
-					    <div class="jibsa">
-					    	<h4><b>상담하기</b></h4><br>
-					    	<span id="connect">카카오톡 오픈채팅방 연결하기</span>
-					    </div>
-					    <br><br>
-					    <button onclick="location.href='reservation.jsp';" id="cancelbtn">매칭 취소하기</button><br><br>
-					    <button onclick="location.href='reservation.jsp';" style="margin-left: 750px;" id="listbtn">목록</button>
-					    </div>
-					</div>
-	            </div>
-	        </div>
-	        <br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<footer>
-			<%@ include file="../common/bottom.jsp" %>
-		</footer>
+<%@ include file="../common/top.jsp" %>
+<%@ include file="../common/sideBar.jsp" %>
+<div id="wrapper" class="toggled">
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <div class="container text-center">
+        <h4 style="margin-right: 620px;"><b>예약 상세페이지</b></h4>
+        <h6 style="margin-right: 570px;">나의 예약 현황을 살펴보세요!</h6>
+        <p style="font-size: 12px; text-align: left; margin-left: 70px;">*매칭 취소는 후기 작성 상태를 클릭해서 진행할 수 있습니다.</p>
+        <br>
+        <div class="tablediv">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>예약 번호</th>
+                <th>예약 서비스</th>
+                <th>예약 날짜</th>
+                <th>예약 시간</th>
+                <th>매칭 반려동물</th>
+                <th>후기 작성</th>
+              </tr>
+            </thead>
+            <tbody>
+              <c:forEach items="${rList}" var="r">
+                <c:if test="${r.matchingNo == param.matchingNo}">
+                  <tr>
+                    <td>${r.matchingNo}</td>
+                    <td>${r.serviceType}</td>
+                    <td>${fn:substring(r.startDate, 0, 10)}</td>
+                    <td>${fn:substring(r.startDate, 11, 13)}:${fn:substring(r.startDate, 13, 14)}0~${fn:substring(r.endDate, 11, 13)}:${fn:substring(r.endDate, 13, 14)}0</td>
+                    <td>${animal.animalName}</td>
+                    <td id="td-${r.matchingNo}">
+                      <script>
+                        (function() {
+                          const td${r.matchingNo} = document.getElementById('td-${r.matchingNo}');
+                          const endDate${r.matchingNo} = new Date('${fn:substring(r.endDate, 0, 10)}');
+                          const matchingStatus = '${r.matchingStatus}';
+                                                    
+                          // matchingStatus가 Y, 현재시간이 매칭 시간보다 크면 후기 작성에 대한 내용
+                          // Y, 작으면 예약중 / N 이면 예약취소로 뜨게 함
+                          if (matchingStatus === 'Y') {
+                            if (new Date().getTime() > endDate${r.matchingNo}.getTime()) {
+                              if (${empty r.reviewContent}) {
+                                td${r.matchingNo}.innerText = '미작성';
+                              } else {
+                                td${r.matchingNo}.innerText = '작성 완료';
+                              }
+                            } else {
+                              td${r.matchingNo}.innerHTML = '<a id="cancel">예약중</a>';
+                            }
+                          } else {
+                            td${r.matchingNo}.innerText = '예약 취소';
+                          }
+	                      	
+                        })();
+                        
+                        const cancel = document.getElementById('cancel');
+                        
+                        cancel.addEventListener('click', () => {
+                        	const confirmed = confirm('매칭을 취소하시겠습니까?');
+                            if (confirmed) {
+                            	location.href = '${contextPath}/cancelMatching.me?matchingNo=${param.matchingNo}';
+                            }
+                        });
+                      </script>
+                  </tr>
+                </c:if>
+              </c:forEach>
+            </tbody>
+          </table>
+        </div>
+        <br><br>
+        <div class="jibsa">
+		  <h4><b>매칭 집사</b></h4><hr>
+		  <c:forEach items="${rList}" var="r">
+			  <c:if test="${r.matchingNo == param.matchingNo}">
+			    <c:set var="found" value="false" /> <!-- 매칭에 해당하는 집사 정보를 아직 찾지 못했음을 표시 -->
+			    <c:forEach items="${jList}" var="jibsa">
+			      <c:if test="${jibsa.memberNo eq r.jibsaNo}">
+			        <c:if test="${!found}"> <!-- 매칭에 해당하는 집사 정보를 아직 찾지 못한 경우에만 출력 -->
+			          <span><b>[${jibsa.jibsaName}집사님]</b></span><br><br><br>
+			          <b>간단 자기소개</b><hr>
+			          <span>${jibsa.profileTitle}</span>
+			          <c:set var="found" value="true" /> <!-- 매칭에 해당하는 집사 정보를 찾았음을 표시 -->
+			        </c:if>
+			      </c:if>
+			    </c:forEach>
+			  </c:if>
+			</c:forEach>
+		</div>
+		<br><br>
+		<div class="jibsa">
+		  <h4><b>매칭 장소</b></h4><hr>
+		  <c:forEach items="${rList}" var="r">
+		    <c:if test="${r.matchingNo == param.matchingNo}">
+		      <span>${r.matchingPlace}</span>
+		    </c:if>
+		  </c:forEach>
+		</div>
+        <br><br>
+        <div class="jibsa">
+  <h4><b>상담하기</b></h4><hr>
+  <c:forEach items="${rList}" var="r">
+    <c:if test="${r.matchingNo == param.matchingNo}">
+      <span id="connect"><a href="${chat}" id="chat">카카오톡 오픈채팅방 연결하기</a></span>
+    </c:if>
+  </c:forEach>
+</div>
+        <br><br>
+        <button onclick="location.href='javascript:history.back()'" style="margin-left: 750px;" id="listbtn">목록</button>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<footer>
+  <%@ include file="../common/bottom.jsp" %>
+</footer>
 </body>
 </html>

@@ -2,6 +2,7 @@ package semi.project.jsnr.board.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.board.model.vo.Board;
@@ -42,6 +43,23 @@ public interface BoardService {
 	void updateReply(Board b);
 
 	ArrayList<Image> selectJibsaImageList();
+
+	void deleteReply(Board b);
+
+
+//	int jibsaReviewCount(String jibsaName, int i);
+
+	ArrayList<Board> jibsaReview(String jibsaName, boolean yn);
+
+	ArrayList<Board> jibsaReviewDateSearch(HashMap<String, String> map, boolean yn);
+
+	List<Object> jibsaPageReviewCount2(HashMap<String, String> map);
+
+
+//	ArrayList<Board> jibsaReview(String jibsaName);
+
+
+
 
 
 

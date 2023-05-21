@@ -9,8 +9,20 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <title>집사 상세후기</title>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
 <style>
 	* {font-family: 'Noto Sans KR', sans-serif;}
+	 	
+		
+	#modal {width: 300px; height: 150px; border: 1px solid #eee; padding: 20px; margin: auto; display: none;
+			border-radius: 20px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);  text-align: center; background-color: white;
+			 position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;}
+			 
+	#xBtn {display: inline; width: 100px; border: none; border-radius: 5px;}	
+	#oBtn {display: inline; width: 100px; border: none; border-radius: 5px;}	
+		
+	#modalTitle { display: inline-block;  margin-top: 7px; text-align: center;}
+	
 	
 	.container:nth-of-type(3) {
 	  display: flex;
@@ -137,10 +149,13 @@
 	background-color: rgb(184,184,184);
 	color: white;
 	cursor: pointer;
-	width: 430px;
+	width: 30px;
+	height: 100px; display: inline-block; 
 	font-size: 20px;
 	border-radius: 5px;
 	border: none; 
+	vertical-align: top;
+	writing-mode: vertical-lr;
 	}
 	
 	
@@ -148,14 +163,26 @@
 	border: 1px solid #7F8487;
 	background-color: white;
 	color: rgb(67, 154, 151);
-	border-radius: 5px;}
+	border-radius: 5px;
+	}
 	
-	#contentBox{border: 1px solid #7F8487; border-radius: 5px;}
-	#td1{font-size: 22px;}
+	#contentBox{border: 1px solid #7F8487; border-radius: 5px; }
+	.td1{text-align:center; font-size: 22px; width: 430px; height: 100px; resize: none; display:inline-block; border:none;}
+	#reBtn {border: none;
+	background-color: rgb(184,184,184);
+	color: white;
+	cursor: pointer;
+	width: 30px;
+	height: 100px; display: inline-block; 
+	font-size: 20px;
+	border-radius: 5px;
+	vertical-align: top; writing-mode: vertical-lr;
+	text-align: center;}
+	.td2{margin-left: -56px; margin-top: -55px; position: absolute;}
 </style>
 
 
-</head>
+ 
 <body>
 <%@ include file="../common/top.jsp" %>
 
@@ -199,18 +226,28 @@
 				<hr><br><hr><br>
 				<h4 style="text-align: center;">집사의 댓글</h4>
 				<br>
-				<table>
+				<table id="reviewId">
 					<tbody class="tbody1" style="text-align: center;">	
 						<tr class="tr1">
-							<td class="td1">${ b.jibsaComment }</td>
+							<td><textarea class="td1" readonly placeholder=" ${ b.jibsaName}님 댓글을 달아주세요!">${ b.jibsaComment }</textarea></td>
+						<c:if test="${ loginUser.memberName eq b.jibsaName }">
+						<c:if test="${ b.jibsaComment ne null }">
+							<td>
+								<button class="td2" type="button" id="reBtn">삭제</button>
+							</td>
+						</c:if>	
+						</c:if>							
 						</tr>
 					</tbody>
 				</table>
+				
 				<br><hr><br>
-				  <div id="comment" style="display: none;">
+				<c:if test="${ loginUser.memberName eq b.jibsaName }">
+				  <div id="comment">
 				    <textarea id="replyContent" placeholder=" 댓글을 달거나 수정해주세요" style="resize: none; width:430px; height: 100px; display: inline-block;"></textarea>
-					<input type="button" name="reply" id="replyBtn" value="댓글작성" onclick="json_reply();">
+					<button type="button" name="reply" id="replyBtn" onclick="json_reply();">저장</button>
 				</div>
+				</c:if>
 			<br><br>
 			</div>
 			<br><br>
@@ -223,50 +260,92 @@
 	</div>	
 	</div>
 <br><br><br><br>	
+
+		<div id="modal">
+		<h5 id="modalTitle">댓글을 삭제하시겠습니까?</h5>
+		<br><hr>
+		<button id="xBtn" onclick="deletedReply();">예</button>
+		<button id="oBtn">아니요</button><br>
+		</div>
+
+
 <%@ include file="../common/bottom.jsp" %>
 
 <script>
-	const t = document.querySelector('#comment');
-		if(${loginUser.memberName == b.jibsaName}){
-			t.style.display = "block";
-		};	
-		const json_reply=()=>{
-			const jibsaCom = document.querySelector('#replyContent').value;
-			
-			$.ajax({
-				url: '${contextPath}/updateReply.bo',
-				data: {
-					  jibsaComment: jibsaCom,
-					  matchingNo: ${b.matchingNo}
-				},
-				success: data =>{
-					console.log(data);
-										
-					const tr = document.querySelector('.td1');
-					
-					tr.innerText = '';
-					tr.innerText = jibsaCom;
-					
-					document.querySelector('#replyContent').value = '';
-					
-				},
-				error: data =>{
-					console.log(data);
-				}
-			});
-		}; 
-				
-        
+	const reBtn = document.querySelector('#reBtn');
+	const modal = document.querySelector('#modal');
+	const xBtn = document.querySelector('#xBtn');
+	const oBtn = document.querySelector('#oBtn');
 	
+	if(reBtn != null){ 
+	reBtn.addEventListener('click', ()=>{	
+		   modal.style.display = 'block';
+		});
+	oBtn.addEventListener('click', ()=>{	
+		   modal.style.display = 'none';
+		});
+		  
+	window.addEventListener('click', e => {
+	    if(!modal.contains(e.target) && !reBtn.contains(e.target)) {
+	      modal.style.display = 'none';
+	      }
+	 })
+	};
+	function json_reply(){
+		const jibsaCom = document.querySelector('#replyContent').value;
+		var ajax1 = $.ajax({
+			url: '${contextPath}/updateReply.bo',
+			data: {
+				  jibsaComment: jibsaCom,
+				  matchingNo: ${b.matchingNo}
+			},
+			success: function(data){
+				console.log(data);
+									
+				const td1 = document.querySelector('.td1');
+				
+				td1.innerText = '';
+				td1.innerText = jibsaCom;
+				
+				
+				document.querySelector('#replyContent').value = '';
+				
+			},
+			error: function(data){
+				console.log(data);
+			},
+			complete: function() {
+				location.reload();
+			}
+		});
+		
+	}
+	
+	function deletedReply(){
+		const jibsaCom = document.querySelector('#replyContent').value;
+		var ajax2 = $.ajax({
+			url: '${contextPath}/deleteReply.bo',
+			data: {
+				  jibsaComment: jibsaCom,
+				  matchingNo: ${b.matchingNo}
+			},
+			success: function(data){
+				console.log(data);
+				modal.style.display = 'none';
+				const tr1 = document.querySelector('.tr1');
+				tr1.innerHTML = '';
+			},
+			error: function(data){
+				console.log(data);
+			},
+			complete: function() {
+				location.reload(); 
+			}
+		});
+		
+	};	
+		
 		
 </script>
-		
-		
-		
-		
-		
-		
-		
-		
 </body>
 </html>

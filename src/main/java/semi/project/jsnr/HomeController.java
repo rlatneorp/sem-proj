@@ -52,7 +52,7 @@ public class HomeController {
 		/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	// 홈으로 가기 - 현지
+	// 홈으로 가기
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String home(HttpSession session, Model model) {
 		

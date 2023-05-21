@@ -36,6 +36,7 @@
 		<result column="IS_JIBSA" property="isJibsa"/>
 		<result column="MATCHING_STATUS" property="matchingStatus"/>
 		<result column="REVIEW_STATUS" property="reviewStatus"/>
+		<result column="JIBSA_AVG_RATING" property="jibsaAvgRating"/>
 	</resultMap>
 	
 	<select id="getJibsaListCount" resultType="_int">
@@ -204,7 +205,7 @@
 	    from matching ma
 	        join animal a on(ma.animal_no = a.animal_no)
 	        join member m on(a.member_no = m.member_no)
-	        join jibsa_profile jp on(ma.member_no = jp.member_no)
+	        join jibsa_profile jp on(ma.jibsa_no = jp.member_no)
 	    where ma.matching_no = #{mId} and m.member_status = 'Y'
 	</select>
 	
@@ -244,4 +245,68 @@
 		<result column="IMAGE_PATH" property="imagePath"/>
 		<result column="MEMBER_NO" property="memberNo"/>
 	</resultMap>
+	
+	<update id="deleteReply">
+		update matching
+		set jibsa_comment = ''
+		where matching_no = #{matchingNo}
+	</update>
+	
+<!-- 	<select id="jibsaReviewCount" resultType="_int"> -->
+<!-- 		select count(*) -->
+<!-- 		from matching -->
+<!-- 			join member using(member_no) -->
+<!-- 		where member_name= #{jibsaName} -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="jibsaReview" resultMap="boardResultSet"> -->
+<!-- 	    select mc.matching_no, mc.animal_no, a.animal_name, a.animal_kind, mc.start_date, mc.end_date, mc.matching_place, -->
+<!--     		  mc.review_content, mc.review_rating, mc.review_count, mc.jibsa_comment, m.member_name, m.member_no, jp.jibsa_name,  -->
+<!--     		  jp.member_no, mc.matching_status, mc.review_status -->
+<!-- 		from matching mc -->
+<!-- 		     join animal a on(a.animal_no = mc.animal_no) -->
+<!-- 		     join jibsa_profile jp on(mc.jibsa_no = jp.member_no) -->
+<!-- 		     join member m on(mc.member_no = m.member_no) -->
+<!-- 		order by mc.matching_no desc -->
+<!-- 	</select> -->
+	
+	<select id="jibsaPageReviewCount" resultType="_int">
+		select count(*)
+		from matching
+			join member using(member_no)
+		where member_name = #{jibsaName}
+	</select>
+	
+	<select id="jibsaPageReviewCount2" resultType="_int">
+		select count(*)
+		from matching
+			join member using(member_no)
+		where member_name = #{jibsaName}
+	</select>
+	
+	<select id="jibsaPageReviewDetail" resultMap="boardResultSet">
+	    select mc.matching_no, mc.animal_no, a.animal_name, a.animal_kind, mc.start_date, mc.end_date, mc.matching_place,
+    		  mc.review_content, mc.review_rating, mc.review_count, mc.jibsa_comment, m.member_name, m.member_no, jp.jibsa_name, 
+    		  jp.member_no, mc.matching_status, mc.review_status, jp.jibsa_avg_rating
+		from matching mc
+		     join animal a on(a.animal_no = mc.animal_no)
+		     join jibsa_profile jp on(mc.jibsa_no = jp.member_no)
+		     join member m on(mc.member_no = m.member_no)
+		where jp.jibsa_name = #{jibsaName}
+		order by mc.matching_no desc
+	</select>
+	
+	<select id="jibsaReviewDateSearch" resultMap="boardResultSet">
+       <![CDATA[
+        select *
+		from matching mc
+		     join animal a on(a.animal_no = mc.animal_no)
+		     join jibsa_profile jp on(mc.jibsa_no = jp.member_no)
+		     join member m on(mc.member_no = m.member_no)
+        where jp.jibsa_name = #{jibsaName}
+       		 and mc.start_date >= #{from}
+        	 and mc.end_date <= #{to}
+        ]]>
+	</select>
+	
 </mapper>

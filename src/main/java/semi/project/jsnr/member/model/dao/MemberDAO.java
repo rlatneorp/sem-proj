@@ -3,11 +3,16 @@ package semi.project.jsnr.member.model.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
+import semi.project.jsnr.common.model.vo.PageInfo;
+import semi.project.jsnr.jibsa.model.vo.Jibsa;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.member.model.vo.Member;
 
 @Repository
@@ -87,6 +92,29 @@ public class MemberDAO {
 
 	public int loginCheckInfo(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
 		return sqlSession.selectOne("memberMapper.loginCheckInfo", map);
+	}
+
+	public int reservationListCount(SqlSessionTemplate sqlSession, int memberNo) {
+		return sqlSession.selectOne("memberMapper.reservationListCount", memberNo);
+	}
+
+	public ArrayList<Board> selectReserList(SqlSessionTemplate sqlSession, int memberNo, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("memberMapper.selectReserList", memberNo, rowBounds);
+	}
+
+	public ArrayList<Board> selectReserList(SqlSessionTemplate sqlSession, int memberNo) {
+		return (ArrayList)sqlSession.selectList("memberMapper.selectReser", memberNo);
+	}
+
+	public ArrayList<JibsaProfile> selectReserJibsa(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("memberMapper.selectReserJibsa");
+	}
+
+	public int cancelMatching(SqlSessionTemplate sqlSession, int matchingNo) {
+		return sqlSession.update("memberMapper.cancelMatching", matchingNo);
 	}
 
 }
