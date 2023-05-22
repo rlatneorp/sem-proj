@@ -31,7 +31,7 @@ import semi.project.jsnr.member.model.exception.MemberException;
 import semi.project.jsnr.member.model.service.MemberService;
 import semi.project.jsnr.member.model.vo.Member;
 
-@SessionAttributes({"loginUser", "animal"})
+@SessionAttributes({"loginUser", "animal", "rList"})
 @Controller
 public class MemberController {
 	
@@ -129,7 +129,48 @@ public class MemberController {
 	public String editReview(@RequestParam("matchingNo") int matchingNo, Model model) {
 		model.addAttribute("matchingNo", matchingNo);
 		
-		return "member_Review_Detail";
+		ArrayList<Board> reviewList = (ArrayList<Board>) model.getAttribute("rList");
+		Board review = null;
+
+		for (Board board : reviewList) {
+		    if (board.getMatchingNo() == matchingNo) {
+		        review = board;
+		        break;
+		    }
+		}
+
+		if (review != null) {
+			model.addAttribute("b", review);
+		    
+		    return "member_Review_Detail";
+		} else {
+			throw new MemberException("리뷰 조회 실패");
+		}
+		
+	}
+	
+	@RequestMapping("updateReview.me")
+	public String updateReview(@ModelAttribute Board b, Model model) {
+		int result = mService.updateReview(b);
+		
+		if(result > 0) {
+			model.addAttribute("matchingNo", b.getMatchingNo());
+			
+			return "redirect:member_Reservation.me";
+		} else {
+			throw new MemberException("리뷰 수정 실패");
+		}
+	}
+	
+	@RequestMapping("deleteReview.me")
+	public String deleteReview(@ModelAttribute Board b, Model model) {
+		int result = mService.deleteReview(b);
+		
+		if(result > 0) {
+			return "redirect:member_Reservation.me";
+		} else {
+			throw new MemberException("후기 삭제 실패");
+		}
 	}
 	
 	@GetMapping("member_ServiceCenter.me")

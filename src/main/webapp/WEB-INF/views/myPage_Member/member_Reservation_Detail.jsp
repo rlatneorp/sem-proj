@@ -45,7 +45,7 @@
       <div class="container text-center">
         <h4 style="margin-right: 620px;"><b>예약 상세페이지</b></h4>
         <h6 style="margin-right: 570px;">나의 예약 현황을 살펴보세요!</h6>
-        <p style="font-size: 12px; text-align: left; margin-left: 70px;">*매칭 취소는 후기 작성 상태를 클릭해서 진행할 수 있습니다.</p>
+        <p style="font-size: 12px; text-align: left; margin-left: 230px;">*매칭 취소는 후기 작성 상태를 클릭해서 진행할 수 있습니다.</p>
         <br>
         <div class="tablediv">
           <table class="table">
@@ -71,56 +71,73 @@
                     <td id="td-${r.matchingNo}">
                       <script>
                         (function() {
-                          const td${r.matchingNo} = document.getElementById('td-${r.matchingNo}');
-                          const endDate${r.matchingNo} = new Date('${fn:substring(r.endDate, 0, 10)}');
-                          const matchingStatus = '${r.matchingStatus}';
-                                                    
-                          // matchingStatus가 Y, 현재시간이 매칭 시간보다 크면 후기 작성에 대한 내용
-                          // Y, 작으면 예약중 / N 이면 예약취소로 뜨게 함
-                          if (matchingStatus === 'Y') {
-                            if (new Date().getTime() > endDate${r.matchingNo}.getTime()) {
-                              if (${empty r.reviewContent}) {
-                                td${r.matchingNo}.innerHTML = '<a id="write" href="${contextPath}/writeReview.me?matchingNo=${param.matchingNo}">작성하기</a>';
-                              } else {
-                            	  td${r.matchingNo}.innerHTML = '<a id="edit">작성완료</a>';
-                                  td${r.matchingNo}.addEventListener('mouseover', () => {
-                                    td${r.matchingNo}.style.textDecoration = 'underline';
-                                    td${r.matchingNo}.style.cursor = 'pointer';
-                                    td${r.matchingNo}.innerHTML = '<a id="edit">수정하기</a>';
-                                  });
-                                  td${r.matchingNo}.addEventListener('mouseout', () => {
-                                    td${r.matchingNo}.style.textDecoration = 'none';
-                                    td${r.matchingNo}.style.cursor = 'auto';
-                                    td${r.matchingNo}.innerHTML = '<a id="edit">작성완료</a>';
-                                  });
-                                  td${r.matchingNo}.addEventListener('click', () => {
-                                    location.href = '${contextPath}/editReview.me?matchingNo=${param.matchingNo}';
-                                  });
-                              }
-                            } else {
-                            	td${r.matchingNo}.innerHTML = '<a id="cancel">예약중</a>';
-                                td${r.matchingNo}.addEventListener('mouseover', () => {
-                                  td${r.matchingNo}.style.textDecoration = 'underline';
-                                  td${r.matchingNo}.style.cursor = 'pointer';
-                                  td${r.matchingNo}.innerHTML = '<a id="cancel">매칭 취소</a>';
-                                });
-                                td${r.matchingNo}.addEventListener('mouseout', () => {
-                                  td${r.matchingNo}.style.textDecoration = 'none';
-                                  td${r.matchingNo}.style.cursor = 'auto';
-                                  td${r.matchingNo}.innerHTML = '<a id="cancel">예약중</a>';
-                                });
-                                td${r.matchingNo}.addEventListener('click', () => {
-                                	const confirmed = confirm('매칭을 취소하시겠습니까?');
-                                    if (confirmed) {
-                                    	location.href = '${contextPath}/cancelMatching.me?matchingNo=${param.matchingNo}';
-                                    }
-                                });
-                            }
-                          } else {
-                            td${r.matchingNo}.innerText = '예약 취소';
-                          }
-	                      	
-                        })();
+                        	const td${r.matchingNo} = document.getElementById('td-${r.matchingNo}');
+                        	  const endDate${r.matchingNo} = new Date('${fn:substring(r.endDate, 0, 10)}');
+                        	  const matchingStatus = '${r.matchingStatus}';
+                        	  const reviewStatus = '${r.reviewStatus}';
+                        	  
+                        	  // matchingStatus가 Y, 현재시간이 매칭 시간보다 크면 후기 작성에 대한 내용
+                        	  // Y, 작으면 예약중 / N 이면 예약취소로 뜨게 함
+                        	  if (matchingStatus === 'Y') {
+								  if (new Date().getTime() > endDate${r.matchingNo}.getTime()) {
+								    if (${empty r.reviewContent}) {
+								      if (reviewStatus === 'Y') {
+								        td${r.matchingNo}.innerHTML = '<a id="write" href="${contextPath}/writeReview.me?matchingNo=${param.matchingNo}">작성하기</a>';
+								      } else if(reviewStatus === 'N') {
+								        td${r.matchingNo}.innerHTML = '<a id="write">삭제됨</a>';
+								        td${r.matchingNo}.addEventListener('mouseover', () => {
+								          td${r.matchingNo}.style.textDecoration = 'underline';
+								          td${r.matchingNo}.style.cursor = 'pointer';
+								          td${r.matchingNo}.innerHTML = '<a id="write">다시 쓰기</a>';
+								        });
+								        td${r.matchingNo}.addEventListener('mouseout', () => {
+								          td${r.matchingNo}.style.textDecoration = 'none';
+								          td${r.matchingNo}.style.cursor = 'auto';
+								          td${r.matchingNo}.innerHTML = '<a id="write">삭제됨</a>';
+								        });
+								        td${r.matchingNo}.addEventListener('click', () => {
+									        location.href = '${contextPath}/writeReview.me?matchingNo=${param.matchingNo}';
+									      });
+								      }
+								    } else {
+								      td${r.matchingNo}.innerHTML = '<a id="edit">작성완료</a>';
+								      td${r.matchingNo}.addEventListener('mouseover', () => {
+								        td${r.matchingNo}.style.textDecoration = 'underline';
+								        td${r.matchingNo}.style.cursor = 'pointer';
+								        td${r.matchingNo}.innerHTML = '<a id="edit">수정하기</a>';
+								      });
+								      td${r.matchingNo}.addEventListener('mouseout', () => {
+								        td${r.matchingNo}.style.textDecoration = 'none';
+								        td${r.matchingNo}.style.cursor = 'auto';
+								        td${r.matchingNo}.innerHTML = '<a id="edit">작성완료</a>';
+								      });
+								      td${r.matchingNo}.addEventListener('click', () => {
+								        location.href = '${contextPath}/editReview.me?matchingNo=${param.matchingNo}';
+								      });
+								    }
+								  } else {
+								    td${r.matchingNo}.innerHTML = '<a id="cancel">예약중</a>';
+								    td${r.matchingNo}.addEventListener('mouseover', () => {
+								      td${r.matchingNo}.style.textDecoration = 'underline';
+								      td${r.matchingNo}.style.cursor = 'pointer';
+								      td${r.matchingNo}.innerHTML = '<a id="cancel">매칭 취소</a>';
+								    });
+								    td${r.matchingNo}.addEventListener('mouseout', () => {
+								      td${r.matchingNo}.style.textDecoration = 'none';
+								      td${r.matchingNo}.style.cursor = 'auto';
+								      td${r.matchingNo}.innerHTML = '<a id="cancel">예약중</a>';
+								    });
+								    td${r.matchingNo}.addEventListener('click', () => {
+								      const confirmed = confirm('매칭을 취소하시겠습니까?');
+								      if (confirmed) {
+								        location.href = '${contextPath}/cancelMatching.me?matchingNo=${param.matchingNo}';
+								      }
+								    });
+								  }
+								} else {
+								  td${r.matchingNo}.innerText = '예약 취소';
+								}
+                        	})();
                       </script>
                   </tr>
                 </c:if>

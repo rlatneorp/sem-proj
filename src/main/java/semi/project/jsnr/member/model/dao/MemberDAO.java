@@ -121,4 +121,12 @@ public class MemberDAO {
 		return sqlSession.insert("memberMapper.insertReview", b);
 	}
 
+	public int updateReview(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.update("memberMapper.updateReview", b);
+	}
+
+	public int deleteReview(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.update("memberMapper.deleteReview", b);
+	}
+
 }

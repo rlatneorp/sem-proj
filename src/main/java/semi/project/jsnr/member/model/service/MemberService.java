@@ -126,4 +126,12 @@ public class MemberService {
 		return mDAO.insertReview(sqlSession, b);
 	}
 
+	public int updateReview(Board b) {
+		return mDAO.updateReview(sqlSession, b);
+	}
+
+	public int deleteReview(Board b) {
+		return mDAO.deleteReview(sqlSession, b);
+	}
+
 }

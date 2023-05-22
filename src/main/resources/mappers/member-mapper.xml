@@ -224,8 +224,22 @@
 	<!-- 후기 작성 -->
 	<insert id="insertReview">
 		update matching
-		set review_content = #{reviewContent}, review_rating = #{reviewRating}
+		set review_content = #{reviewContent}, review_rating = #{reviewRating}, review_status = 'Y'
 		where matching_no = #{matchingNo}	
 	</insert>
+	
+	<!-- 후기 수정 -->
+	<update id="updateReview">
+		update matching
+		set review_content = #{reviewContent}, review_rating = #{reviewRating}
+		where matching_no = #{matchingNo}
+	</update>
+	
+	<!-- 후기 삭제 -->
+	<update id="deleteReview">
+		update matching
+		set review_status = 'N', review_content = '', review_rating = 0, jibsa_comment = ''
+		where matching_no = #{matchingNo}
+	</update>
 	
 </mapper>
