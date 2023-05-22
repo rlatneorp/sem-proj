@@ -106,6 +106,31 @@ public class MemberController {
 			throw new MemberException("매칭 취소 실패");
 		}
 	}
+
+	@RequestMapping("writeReview.me")
+	public String writeReview(@RequestParam("matchingNo") int matchingNo, Model model) {
+		model.addAttribute("matchingNo", matchingNo);
+		return "member_Review";
+	}
+	
+	@RequestMapping("insertReview.me")
+	public String insertReview(@ModelAttribute Board b, Model model) {
+		int result = mService.insertReview(b);
+		
+		if(result > 0) {
+			model.addAttribute("matchingNo", b.getMatchingNo());
+			return "redirect:member_Reservation.me";
+		} else {
+			throw new MemberException("리뷰 작성 중 에러 발생");
+		}
+	}
+	
+	@RequestMapping("editReview.me")
+	public String editReview(@RequestParam("matchingNo") int matchingNo, Model model) {
+		model.addAttribute("matchingNo", matchingNo);
+		
+		return "member_Review_Detail";
+	}
 	
 	@GetMapping("member_ServiceCenter.me")
 	public String serviceCenter(@RequestParam(value="page", required=false) Integer page,

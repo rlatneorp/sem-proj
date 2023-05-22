@@ -15,17 +15,11 @@
 		display: block;
 		margin: 0 auto;
 	}
-	.detail{
-		cursor: pointer;
-	}
-	.detail:hover{text-decoration: underline;}
 	.jibsa{
 		 width: 800px;
 		 margin: 0 auto;
 		 text-align: left;
 	}
-	#connect{cursor: pointer;}
-	#connect:hover{text-decoration: underline;}
 	#listbtn{
 		background: rgb(26, 188, 156);
 	 	color: white;
@@ -34,13 +28,12 @@
 	 	padding: 5px;
 	 	width: 50px;
 	}
-	#cancel{
-	 	color: black;
-	 	text-decoration: none;
-	}
-	#cancel:hover{color: black; text-decoration: underline; cursor: pointer;}
-	#chat{color: black; text-decoration: none;}
-	#chat:hover{color: black; text-decoration: underline; cursor: pointer;}
+ 	#cancel:hover{color: black; text-decoraZtion: underline; cursor: pointer;}
+ 	#write{color: black; text-decoration: none;}
+ 	#write:hover{text-decoration: underline;}
+ 	#chat{color: black; text-decoration: none;}
+ 	#chat:hover{color: black; text-decoration: underline; cursor: pointer;}
+ 	#edit{color: black; text-decoration: none;}
 </style>
 </head>
 <body>
@@ -87,27 +80,47 @@
                           if (matchingStatus === 'Y') {
                             if (new Date().getTime() > endDate${r.matchingNo}.getTime()) {
                               if (${empty r.reviewContent}) {
-                                td${r.matchingNo}.innerText = '미작성';
+                                td${r.matchingNo}.innerHTML = '<a id="write" href="${contextPath}/writeReview.me?matchingNo=${param.matchingNo}">작성하기</a>';
                               } else {
-                                td${r.matchingNo}.innerText = '작성 완료';
+                            	  td${r.matchingNo}.innerHTML = '<a id="edit">작성완료</a>';
+                                  td${r.matchingNo}.addEventListener('mouseover', () => {
+                                    td${r.matchingNo}.style.textDecoration = 'underline';
+                                    td${r.matchingNo}.style.cursor = 'pointer';
+                                    td${r.matchingNo}.innerHTML = '<a id="edit">수정하기</a>';
+                                  });
+                                  td${r.matchingNo}.addEventListener('mouseout', () => {
+                                    td${r.matchingNo}.style.textDecoration = 'none';
+                                    td${r.matchingNo}.style.cursor = 'auto';
+                                    td${r.matchingNo}.innerHTML = '<a id="edit">작성완료</a>';
+                                  });
+                                  td${r.matchingNo}.addEventListener('click', () => {
+                                    location.href = '${contextPath}/editReview.me?matchingNo=${param.matchingNo}';
+                                  });
                               }
                             } else {
-                              td${r.matchingNo}.innerHTML = '<a id="cancel">예약중</a>';
+                            	td${r.matchingNo}.innerHTML = '<a id="cancel">예약중</a>';
+                                td${r.matchingNo}.addEventListener('mouseover', () => {
+                                  td${r.matchingNo}.style.textDecoration = 'underline';
+                                  td${r.matchingNo}.style.cursor = 'pointer';
+                                  td${r.matchingNo}.innerHTML = '<a id="cancel">매칭 취소</a>';
+                                });
+                                td${r.matchingNo}.addEventListener('mouseout', () => {
+                                  td${r.matchingNo}.style.textDecoration = 'none';
+                                  td${r.matchingNo}.style.cursor = 'auto';
+                                  td${r.matchingNo}.innerHTML = '<a id="cancel">예약중</a>';
+                                });
+                                td${r.matchingNo}.addEventListener('click', () => {
+                                	const confirmed = confirm('매칭을 취소하시겠습니까?');
+                                    if (confirmed) {
+                                    	location.href = '${contextPath}/cancelMatching.me?matchingNo=${param.matchingNo}';
+                                    }
+                                });
                             }
                           } else {
                             td${r.matchingNo}.innerText = '예약 취소';
                           }
 	                      	
                         })();
-                        
-                        const cancel = document.getElementById('cancel');
-                        
-                        cancel.addEventListener('click', () => {
-                        	const confirmed = confirm('매칭을 취소하시겠습니까?');
-                            if (confirmed) {
-                            	location.href = '${contextPath}/cancelMatching.me?matchingNo=${param.matchingNo}';
-                            }
-                        });
                       </script>
                   </tr>
                 </c:if>

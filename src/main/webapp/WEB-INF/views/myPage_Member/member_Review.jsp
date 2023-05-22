@@ -18,6 +18,7 @@
 	 	border-radius: 10px;
 	 	padding: 10px;
 	 	width: 100px;
+	 	margin: 0 auto;
 	}
 </style>
 </head>
@@ -30,20 +31,22 @@
 	        	<div class="container text-center">
 	        		<h4 style="margin-right: 560px;"><b>후기 작성하기</b></h4>
 	        		<br><br>
-		        	<form method="post" id="reviewForm">
+		        	<form method="post" id="reviewForm" action="${ contextPath }/insertReview.me">
 		        		<br>
 				        <div class="form-group">
-				              <label for="exampleFormControlInput1">제목</label><br><br>
-				            <input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="제목을 작성해주세요.">
+				            <label for="exampleFormControlInput1">평점</label><br><br>
+				            <input type="range" min="0" max="5" oninput="updateRangeValue(this.value)" step="0.5" name="reviewRating" value="0">
+				            &nbsp;&nbsp;&nbsp;<span id="range"></span>
 				        </div>
 				        <br>
 				        <div class="form-group">
 				            <label for="exampleFormControlTextarea1">내용</label><br><br>
-				            <textarea class="form-control" id="exampleFormControlTextarea1" name="contents" rows="10" style="resize: none"></textarea>
+				            <textarea class="form-control" id="exampleFormControlTextarea1" name="reviewContent" rows="10" style="resize: none"></textarea>
 				        </div>
+				        <input type="hidden" value="${ matchingNo }" name="matchingNo">
 				        <br><br>
+				    <button id="subbtn">등록하기</button>
 				    </form>
-				    <button id="subbtn" onclick="location.href='reservation.jsp';">등록하기</button>
 	        	</div>
 			</div>
 	    </div>
@@ -52,5 +55,10 @@
 		<footer>
 			<%@ include file="../common/bottom.jsp" %>
 		</footer>
+		<script>
+		  function updateRangeValue(value) {
+		    document.getElementById("range").textContent = value;
+		  }
+		</script>
 </body>
 </html>

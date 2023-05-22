@@ -79,8 +79,13 @@ public class JibsaService {
 	public int getMatchingCount(int mNo) {
 		return jDAO.getMatchingCount(sqlSession, mNo);
 	}
+	
 	public Jibsa jibsa_Main(int memberNo) {
 		return jDAO.selectJibsa(sqlSession, memberNo);
+	}
+
+	public Jibsa selectJibsaChat(int jibsaNo) {
+		return jDAO.selectJibsaChat(sqlSession, jibsaNo);
 	}
 
 	

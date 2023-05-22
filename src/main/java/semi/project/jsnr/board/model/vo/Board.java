@@ -27,7 +27,7 @@ public class Board {
 	public Board(int matchingNo, int animalNo, String animalName, String animalKind, String startDate, String endDate,
 			String matchingPlace, String reviewContent, Double reviewRating, int reviewCount, String jibsaComment,
 			String memberName, int memberNo, String jibsaName, String isJibsa, String matchingStatus,
-			String reviewStatus, int jibsaNo, int jibsaAvgRating,String serviceType) {
+			String reviewStatus, int jibsaNo, int jibsaAvgRating, String serviceType) {
 		super();
 		this.matchingNo = matchingNo;
 		this.animalNo = animalNo;
@@ -48,6 +48,7 @@ public class Board {
 		this.reviewStatus = reviewStatus;
 		this.jibsaNo = jibsaNo;
 		this.jibsaAvgRating = jibsaAvgRating;
+		this.serviceType = serviceType;
 	}
 
 	public int getMatchingNo() {
@@ -200,7 +201,8 @@ public class Board {
 
 	public void setJibsaAvgRating(int jibsaAvgRating) {
 		this.jibsaAvgRating = jibsaAvgRating;
-	}	
+	}
+	
 	public String getServiceType() {
 		return serviceType;
 	}
@@ -217,8 +219,7 @@ public class Board {
 				+ reviewRating + ", reviewCount=" + reviewCount + ", jibsaComment=" + jibsaComment + ", memberName="
 				+ memberName + ", memberNo=" + memberNo + ", jibsaName=" + jibsaName + ", isJibsa=" + isJibsa
 				+ ", matchingStatus=" + matchingStatus + ", reviewStatus=" + reviewStatus + ", jibsaNo=" + jibsaNo
-				+ ", jibsaAvgRating=" + jibsaAvgRating + "]"
-				+ ", serviceType=" + serviceType + "]";
+				+ ", jibsaAvgRating=" + jibsaAvgRating +  ", serviceType=" + serviceType + "]";
 	}
 
 	

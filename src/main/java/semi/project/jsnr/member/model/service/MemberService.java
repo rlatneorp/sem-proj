@@ -122,4 +122,8 @@ public class MemberService {
 		return mDAO.cancelMatching(sqlSession, matchingNo);
 	}
 
+	public int insertReview(Board b) {
+		return mDAO.insertReview(sqlSession, b);
+	}
+
 }

@@ -76,4 +76,8 @@ public class JibsaDAO {
 		return sqlSession.selectOne("jibsaMapper.getMatchingCount", mNo);
 	}
 
+	public Jibsa selectJibsaChat(SqlSessionTemplate sqlSession, int jibsaNo) {
+		return sqlSession.selectOne("jibsaMapper.selectJibsaChat", jibsaNo);
+	}
+
 }
