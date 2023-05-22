@@ -78,13 +78,11 @@
 		        $.ajax({
 		            type: 'POST',
 		            url: '${contextPath}/loginCheckInfo.do',
-		            data: { memberId: loginId.value.trim(), memberPwd: loginPwd.value.trim() },
+		            data: { memberId: loginId.value.trim() },
 		            success: (data) => {
-		                console.log(data);
 		                if (data === 'no') {
 		                    alert('로그인에 실패하였습니다. 다시 시도해주세요.');
 		                } else if (data === 'yes') {
-		                    check.innerText = 'OK';
 		                    form.action = '${contextPath}/login.do';
 		                    form.submit();
 		                }
@@ -96,7 +94,6 @@
 		    }
 		};
 		
-		// 로그인 버튼 클릭 이벤트 등록
 		btn.addEventListener('click', loginHandler);
 		
 		// 엔터 키 이벤트 핸들러

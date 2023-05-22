@@ -98,10 +98,6 @@ public class MemberService {
 		return mDAO.foundCheckId(sqlSession, map);
 	}
 
-	public int loginCheckInfo(HashMap<String, String> map) {
-		return mDAO.loginCheckInfo(sqlSession, map);
-	}
-
 	public int reservationListCount(int memberNo) {
 		return mDAO.reservationListCount(sqlSession, memberNo);
 	}
@@ -120,6 +116,18 @@ public class MemberService {
 
 	public int cancelMatching(int matchingNo) {
 		return mDAO.cancelMatching(sqlSession, matchingNo);
+	}
+
+	public int insertReview(Board b) {
+		return mDAO.insertReview(sqlSession, b);
+	}
+
+	public int updateReview(Board b) {
+		return mDAO.updateReview(sqlSession, b);
+	}
+
+	public int deleteReview(Board b) {
+		return mDAO.deleteReview(sqlSession, b);
 	}
 
 }

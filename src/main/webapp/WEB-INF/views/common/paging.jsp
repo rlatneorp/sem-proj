@@ -13,7 +13,7 @@
 <body>
 	<div>
 		<nav aria-label="Standard pagination example">
-			<ul class="pagination justify-content-start">
+			<ul class="pagination justify-content-center">
 				<li class="page-item">
 					<c:url var="goBack" value="${ loc }">
 	       				<c:if test="${ pi.currentPage-1 lt 1 }">

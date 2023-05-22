@@ -143,8 +143,8 @@
 				<div class="mb-4">
 					<h4>원하는 서비스</h4>
 					<select name="serviceType" class="rounded" style="height:30px;">
-						<option value="care">방문 돌봄</option>
-						<option value="training">방문 훈련</option>
+						<option value="방문 돌봄">방문 돌봄</option>
+						<option value="방문 훈련">방문 훈련</option>
 					</select>
 			    </div>
 		      	<div>
@@ -159,8 +159,8 @@
 				<div>
 					<h4>매칭 지역</h4>
 					<div class="search-container">
-					<input type="text" placeholder="지역을 입력하세요" name="wantMatchingPlace" class="rounded">
-					<button class="search-button mb-4" type="button">검색</button>
+					<input type="text" placeholder="지역을 입력하세요" name="wantMatchingPlace" class="rounded mb-4">
+<!-- 					<button class="search-button mb-4" type="button">검색</button> -->
 					<h4>매칭 장소<b>*</b></h4>
 					<div class="col-12 errorBox" style="display: none">x</div>
 					<textarea placeholder="정확한 주소를 입력하세요" name="matchingPlace" rows="4" class="w-100 rounded" required></textarea>
@@ -201,10 +201,10 @@
 			}
 			
 // 			로드시 시간 설정
-			if(d.getHours() < 9){
+			if(d.getHours() < 8){
 				times[0].value = "0"+(d.getHours()+1)+":00"
 				times[1].value = "0"+(d.getHours()+2)+":00"
-			}else if(d.getHours() < 10){
+			}else if(d.getHours() < 9){
 				times[0].value = "0"+(d.getHours()+1)+":00"
 				times[1].value = (d.getHours()+2)+":00"
 			}else if(d.getHours() < 22){

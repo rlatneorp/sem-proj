@@ -90,10 +90,6 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.foundCheckId", map);
 	}
 
-	public int loginCheckInfo(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
-		return sqlSession.selectOne("memberMapper.loginCheckInfo", map);
-	}
-
 	public int reservationListCount(SqlSessionTemplate sqlSession, int memberNo) {
 		return sqlSession.selectOne("memberMapper.reservationListCount", memberNo);
 	}
@@ -115,6 +111,18 @@ public class MemberDAO {
 
 	public int cancelMatching(SqlSessionTemplate sqlSession, int matchingNo) {
 		return sqlSession.update("memberMapper.cancelMatching", matchingNo);
+	}
+
+	public int insertReview(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.insert("memberMapper.insertReview", b);
+	}
+
+	public int updateReview(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.update("memberMapper.updateReview", b);
+	}
+
+	public int deleteReview(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.update("memberMapper.deleteReview", b);
 	}
 
 }

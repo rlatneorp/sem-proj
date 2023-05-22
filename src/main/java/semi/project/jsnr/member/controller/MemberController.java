@@ -19,8 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import semi.project.jsnr.board.model.exception.BoardException;
-import semi.project.jsnr.board.model.service.BoardService;
+import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
@@ -33,7 +32,7 @@ import semi.project.jsnr.member.model.exception.MemberException;
 import semi.project.jsnr.member.model.service.MemberService;
 import semi.project.jsnr.member.model.vo.Member;
 
-@SessionAttributes({"loginUser", "animal"})
+@SessionAttributes({"loginUser", "animal", "rList"})
 @Controller
 public class MemberController {
 	
@@ -76,7 +75,7 @@ public class MemberController {
 		}
 	}
 	
-	// 매칭 취소
+	// 매칭 상세
 	@RequestMapping("reservationDetail.me")
 	public String reservationDetail(@RequestParam("matchingNo") int matchingNo,
 									@RequestParam("jibsaNo") int jibsaNo, Model model,
@@ -88,12 +87,19 @@ public class MemberController {
 		
 		ArrayList<Board> rList = mService.selectReserList(m.getMemberNo());
 		
-//		Jibsa j = jService.selectJibsaChat(jibsaNo);
+		// 해당 집사의 오픈 카톡방 주소 가져오기
+		Jibsa jChat = jService.selectJibsaChat(jibsaNo);
+		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("mNo", jibsaNo);
+		map.put("type", 2);
+		Image img = jService.selectImage(map);
 		
 		if(!jList.isEmpty()) {
 			model.addAttribute("jList", jList);
 			model.addAttribute("rList", rList);
-//			model.addAttribute("chat", j.getChatAddress());
+			model.addAttribute("chat", jChat.getChatAddress());
+			model.addAttribute("image", img);
 			
 			return "member_Reservation_Detail";
 		} else {
@@ -101,6 +107,7 @@ public class MemberController {
 		}
 	}
 	
+	// 매칭 취소
 	@RequestMapping("cancelMatching.me")
 	public String cancelMatching(@RequestParam("matchingNo") int matchingNo, Model model) {
 		int result = mService.cancelMatching(matchingNo);
@@ -109,6 +116,72 @@ public class MemberController {
 			return "redirect:member_Reservation.me";
 		} else {
 			throw new MemberException("매칭 취소 실패");
+		}
+	}
+
+	@RequestMapping("writeReview.me")
+	public String writeReview(@RequestParam("matchingNo") int matchingNo, Model model) {
+		model.addAttribute("matchingNo", matchingNo);
+		return "member_Review";
+	}
+	
+	@RequestMapping("insertReview.me")
+	public String insertReview(@ModelAttribute Board b, Model model) {
+		int result = mService.insertReview(b);
+		
+		if(result > 0) {
+			model.addAttribute("matchingNo", b.getMatchingNo());
+			return "redirect:member_Reservation.me";
+		} else {
+			throw new MemberException("리뷰 작성 중 에러 발생");
+		}
+	}
+	
+	@RequestMapping("editReview.me")
+	public String editReview(@RequestParam("matchingNo") int matchingNo, Model model) {
+		model.addAttribute("matchingNo", matchingNo);
+		
+		ArrayList<Board> reviewList = (ArrayList<Board>) model.getAttribute("rList");
+		Board review = null;
+
+		for (Board board : reviewList) {
+		    if (board.getMatchingNo() == matchingNo) {
+		        review = board;
+		        break;
+		    }
+		}
+
+		if (review != null) {
+			model.addAttribute("b", review);
+		    
+		    return "member_Review_Detail";
+		} else {
+			throw new MemberException("리뷰 조회 실패");
+		}
+		
+	}
+	
+	@RequestMapping("updateReview.me")
+	public String updateReview(@ModelAttribute Board b, Model model) {
+		int result = mService.updateReview(b);
+		
+		if(result > 0) {
+			model.addAttribute("matchingNo", b.getMatchingNo());
+			
+			return "redirect:member_Reservation.me";
+		} else {
+			throw new MemberException("리뷰 수정 실패");
+		}
+	}
+	
+	@RequestMapping("deleteReview.me")
+	public String deleteReview(@ModelAttribute Board b, Model model) {
+		int result = mService.deleteReview(b);
+		
+		if(result > 0) {
+			return "redirect:member_Reservation.me";
+		} else {
+			throw new MemberException("후기 삭제 실패");
 		}
 	}
 	

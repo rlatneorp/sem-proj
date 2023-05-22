@@ -38,16 +38,7 @@
 		<br>
 		<h5>원하는 조건과 딱 맞는 집사님들을 소개합니다!</h5>
 		<br>
-		
 	
-	</div>
-	
-	<div class="container text-end mb-5">
-	<select>
-	  <option selected>평점순으로 보기</option>
-	  <option value="1">후기 많은 순으로 보기</option>
-	  <option value="2">이름 순으로 보기</option>
-	</select>
 	</div>
 	
 	<div class="container text-left">
@@ -64,24 +55,28 @@
 					<p class="col-12 mb-1"><b>- ${fn:substring(jp.profileTitle,0,20)} -</b></p>	
 					<span class="col-4">나이</span>
 					<span class="col-8 age">${fn:substring(jList[s.index].jibsaRrn,0,4)}</span>
+					<span class="col-4">성별</span>
+					<span class="col-8">
+						<c:if test="${jList[s.index].jibsaGender eq 'F'}">여성</c:if>
+						<c:if test="${jList[s.index].jibsaGender eq 'M'}">남성</c:if>
+					</span>
+					<span class="col-4">자격증</span>
+					<span class="col-8">
+						<c:if test="${jList[s.index].license eq null}">-</c:if>
+						<c:if test="${jList[s.index].license ne null}">${jList[s.index].license}</c:if>
+					</span>
 					<span class="col-4">평점</span>
 					<span class="col-8">${jp.jibsaAvgRating}</span>
 					<span class="col-4">희망시급</span>
 					<span class="col-8">
 						<fmt:formatNumber type="number" pattern="###,###,###" value="${jList[s.index].expectedSalary}"/>원
 					</span>
-<!-- 					<span class="col-4">예상비용</span> -->
-<!-- 					<span class="col-8"> -->
-<%-- 						<fmt:formatNumber type="number" pattern="###,###,###" value= --%>
-<%-- 							"${(fn:substring(mc.endDate,11,13)-fn:substring(mc.startDate,11,13))*jList[s.index].expectedSalary}"/>원 --%>
-<!-- 					</span> -->
 					<span class="col-4">흡연여부</span>
 					<span class="col-8">
-						<c:if test="${jList[s.index].isSmoking eq 'Y'}">O</c:if>
-						<c:if test="${jList[s.index].isSmoking eq 'N'}">X</c:if>
+						<c:if test="${jList[s.index].isSmoking eq 'Y'}">흡연자</c:if>
+						<c:if test="${jList[s.index].isSmoking eq 'N'}">비흡연자</c:if>
 					</span>
 					
-					<div class="col-12" style="height:50px;"></div>
 				</div>
 				<div class="col-3 row workTimeBox">
 					<h4 class="col-12">근무 가능시간</h4>

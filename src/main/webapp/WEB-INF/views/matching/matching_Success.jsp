@@ -74,10 +74,7 @@
 			<p class="col-4 text-start">매칭 장소</p>
 			<p class="col-8 text-start">${mc.matchingPlace}</p>
 			<p class="col-4 text-start">서비스 종류</p>
-			<p class="col-8 text-start">
-				<c:if test="${mc.serviceType eq 'care' }">방문 돌봄</c:if>
-				<c:if test="${mc.serviceType eq 'training' }">방문 훈련</c:if>
-			</p>
+			<p class="col-8 text-start">${mc.serviceType}</p>
 		</div>
 		<br>
 		<button onclick="window.open('${j.chatAddress}')" class="shadow m-bg-color rounded-2 border-0 fs-7 fw-bold text-white me-2" style="width: 120px; height: 40px;">오픈채팅 연결</button>

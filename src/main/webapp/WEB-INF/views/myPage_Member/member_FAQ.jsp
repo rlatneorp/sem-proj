@@ -133,17 +133,24 @@
 						    	</tr>
 					    	</thead>
 					    	<tbody>
-						    	<c:forEach items="${qList}" var="q">
-							    	<tr>
-							    		<td>${q.qnaNo}</td>
-							    		<td onclick="location.href='${contextPath}/member_QnA_Detail.me?qId=${q.qnaNo }'" class="detail">${q.qnaTitle }</td>
-							    		<td>${q.questionDate }</td>
-							    		<td>
-							    			<c:if test="${q.qnaAnswer eq null }">답변 중</c:if>
-							    			<c:if test="${q.qnaAnswer ne null }">답변 완료</c:if>
-							    		</td>
-							    	</tr>
-							    </c:forEach>	
+					    		<c:if test="${ empty qList }">
+					    			<tr>
+					    				<td colspan="6">문의 내역이 없습니다.</td>
+					    			</tr>
+					    		</c:if>
+					    		<c:if test="${ !empty qList }">
+							    	<c:forEach items="${qList}" var="q">
+								    	<tr>
+								    		<td>${q.qnaNo}</td>
+								    		<td onclick="location.href='${contextPath}/member_QnA_Detail.me?qId=${q.qnaNo }'" class="detail">${q.qnaTitle }</td>
+								    		<td>${q.questionDate }</td>
+								    		<td>
+								    			<c:if test="${q.qnaAnswer eq null }">답변 중</c:if>
+								    			<c:if test="${q.qnaAnswer ne null }">답변 완료</c:if>
+								    		</td>
+								    	</tr>
+								    </c:forEach>
+							    </c:if>	
 						    </tbody>
 				    	</table>
 				    	<button id="write" onclick="location.href='${contextPath}/member_QnA_Write.me'">문의하기</button>

@@ -7,6 +7,12 @@
  			 left join jibsa_Profile jp using(member_no)
 		where jibsa_gender = #{wantJibsaGender}
 			  and j.available_area like '%${wantMatchingPlace}%'
+			  <if test="serviceType == '방문 돌봄'">
+			  and j.is_trainer = 'N'
+			  </if>
+			  <if test="serviceType == '방문 훈련'">
+			  and j.is_trainer = 'Y'
+			  </if>
 	</select>
 	<resultMap type="JibsaProfile" id="jibsaProfileResultSet">
 		<id column="MEMBER_NO" property="memberNo"/>	
@@ -22,7 +28,7 @@
 	<insert id="insertMatching">
 		insert into matching
 		values(seq_mat_id.nextval, #{animalNo}, #{memberNo}, #{startDate}, #{endDate}, #{matchingPlace}, 
-				default, default, default, default, default, default, #{jibsaNo}  )
+				default, default, default, default, default, default, #{jibsaNo}, #{serviceType}  )
 	</insert>
 	
 	<select id="selectAnimalList" resultMap="animalResultSet">
