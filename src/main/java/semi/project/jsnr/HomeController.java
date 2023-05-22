@@ -66,13 +66,8 @@ public class HomeController {
 	
 	@RequestMapping("loginCheckInfo.do")
 	@ResponseBody
-	public String loginCheckInfo(@RequestParam("memberId") String memberId, @RequestParam("memberPwd") String memberPwd) {
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("memberId", memberId);
-		map.put("memberPwd", memberPwd);
-		
-		int count = mService.loginCheckInfo(map);
-		System.out.println(count);
+	public String loginCheckInfo(@RequestParam("memberId") String memberId) {
+		int count = mService.checkMemberId(memberId);
 		
 		String result = count == 1 ? "yes" : "no";
 		
@@ -174,13 +169,13 @@ public class HomeController {
 	@RequestMapping("foundPwd.do")
 	public ModelAndView foundPwd(@RequestParam("memberId") String memberId, @RequestParam("memberEmail") String memberEmail,
 						   		 HttpSession session) {
-		Member m = mService.selectMember(memberId); // 아이디 일치하는 데이터 가져와서 m에 담기
+		Member m = mService.selectMember(memberEmail); // 이메일 일치하는 데이터 가져와서 m에 담기
 		
 		if(m != null) {
 			Random r = new Random(); // 인증번호 랜덤숫자
 			int num = r.nextInt(999999);
 			
-			if(m.getMemberId().equals(memberId)) {
+			if(m.getMemberEmail().equals(memberEmail)) { // 서버에 저장된 회원의 이메일과 입력한 이메일이 같으면 
 				session.setAttribute("memberEmail", m.getMemberEmail());
 				session.setAttribute("memberId", m.getMemberId());
 				
@@ -194,14 +189,14 @@ public class HomeController {
 								 "<div align='center' style='border:1px solid black; font-family:verdana';>" +
 								 "<h3 style='color:blue;'>" + "비밀번호 변경 인증 코드입니다." + "</h3><div style='font-size:130%'>" +
 								 "CODE : " + "<strong>" + num + "</strong><div><br/></div></div>";
-				// System.getProperty : 개행 문자를 반환해주는 메소드
-				// 개행 문자 : 줄바꿈 문자 신기쓰
 				
 				try {
 					MimeMessage message = mailSender.createMimeMessage();
 					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8"); // try catch 필요
-					// MimeMessageHelper는 MimeMessage를 생성하고 조작하는 데 사용됨
+					// mailSende의 createMimeMessage 메소드를 이용하여 MimeMessage객체를 만듬
+					// MimeMessageHelper는 MimeMessage를 조작하는 데 사용됨
 					// MimeMessageHelper를 사용하여 MimeMessage를 조작하고, 메일의 다양한 속성 및 콘텐츠 (제목, 수신자, 본문 등)을 설정할 수 있음
+					// true -> 멀티파트 메세지를 사용하겠다는 의미
 					
 					messageHelper.setFrom(setfrom);
 					messageHelper.setTo(tomail);
