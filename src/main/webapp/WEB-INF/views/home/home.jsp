@@ -8,7 +8,8 @@
 	<title>광고 페이지</title>
 	<meta charset="UTF-8">
 	<style>
-	*{font-family: 'Noto Sans KR', sans-serif;}
+		*{font-family: 'Noto Sans KR', sans-serif;}
+		
 		body {
 			margin: 0;
 			padding: 0;
@@ -21,6 +22,14 @@
 			align-items: center;
 			gap : 20px;
 			padding: 20px;
+			font-size: 25px;
+		}
+		#matchingNotice{
+			font-size: 25px;
+		}
+		#matchingMain{
+			font-size: 30px;
+			font-weight: 700;
 		}
 
 		.ad {
@@ -86,7 +95,7 @@
 		}
 		
 		.container:nth-of-type(2) img {
-		  max-width: 700px;
+		  max-width: 750px;
 		  height: auto;
 		  object-fit: cover;
 		}
@@ -111,18 +120,17 @@
 		  order: 3;
 		  display: flex;
 		  justify-content: center;
-		  width: 100%;
 		}
 		
 		.container:nth-of-type(4) img {
-		  max-width: 500px;
+		  max-width: 400px;
 		  height: auto;
 		  object-fit: cover;
 		  order: 4;
 		}
 		
 		.container:nth-of-type(5) img {
-		  max-width: 500px;
+		  max-width: 400px;
 		  height: auto;
 		  object-fit: cover;
 		}
@@ -165,27 +173,26 @@
 			</div>
 		</div>
 	</div>
-
+<br><br>
 
 	<div class="container">
-	  <img src="resources/image/home1.png" alt="image description">
+	  <img src="resources/image/home1.png" style=" border-radius: 20px;" alt="image description">
 	</div>
-	
 	<div class="container">  
-	  <p>더욱더 발전하는 반려동물 파트너 문화를 만드는 집사나라</p>
+	  <p id="matchingMain">더욱더 발전하는 반려동물 파트너 문화를 만드는 집사나라</p>
 	</div>
-	
+	<br><br>
 	<div class="container">
 		<div>
-		  <p>반려동물 위탁돌봄을 희망하는<br>
+		  <p id="matchingNotice">반려동물 위탁돌봄을 희망하는<br>
 		  	보호자와 전문가를<br>서로 매칭해줍니다</p>
 		  <button class="select" onclick="location.href='${ contextPath }/matching_Main.mc'">집사매칭</button>
 		</div>
-	  <img src="resources/image/home2.jpg" alt="image description">
+	  <img src="resources/image/home2.jpg"  style=" border-radius: 20px;" alt="image description">
 	</div>
-	
+	<br><br>
 	<div class="container">
-	  <img src="resources/image/home3.jpg" alt="image description">
+	  <img src="resources/image/home3.jpg"  style=" border-radius: 20px;" alt="image description">
 	  <div>
 		  <p>다양한 이용후기를 보면서 <br>
 		  	어떤 서비스를 받을지 결정하세요 
@@ -193,11 +200,11 @@
 		  <button class="select" onclick="location.href='${ contextPath }/review_Main.bo'">이용후기</button>
 	  </div>
 	</div>
-	
+	<br><br>
 	<div class="video-container">
 	  <video id="videoStyle" width="720" height="405" src="resources/video/video.mp4" loop="loop" title="YouTube Copyrights video player" autoplay="autoplay" muted="muted"></video>
 	</div>
-	
+	<br><br>
 `	<%@ include file="../common/bottom.jsp" %>
 	<script>
 		// 각각의 이미지와 링크를 등록하는 함수
