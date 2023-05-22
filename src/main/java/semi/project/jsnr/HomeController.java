@@ -269,7 +269,7 @@ public class HomeController {
 	@ResponseBody
 	public String enrollAuth(@RequestParam("memberEmail") String memberEmail, HttpSession session) {
 		if(memberEmail != null) {
-			Random r = new Random();
+			Random r = new Random(); // 랜덤 번호
 			int num = r.nextInt(999999);
 			
 			String setfrom = "jibsanara5@gmail.com";

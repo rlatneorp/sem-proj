@@ -34,6 +34,7 @@
  	#chat{color: black; text-decoration: none;}
  	#chat:hover{color: black; text-decoration: underline; cursor: pointer;}
  	#edit{color: black; text-decoration: none;}
+ 	#profile{width: 53px; height: 53px; border-radius: 100%; margin: 5px;}
 </style>
 </head>
 <body>
@@ -154,8 +155,9 @@
 			    <c:forEach items="${jList}" var="jibsa">
 			      <c:if test="${jibsa.memberNo eq r.jibsaNo}">
 			        <c:if test="${!found}"> <!-- 매칭에 해당하는 집사 정보를 아직 찾지 못한 경우에만 출력 -->
-			          <span><b>[${jibsa.jibsaName}집사님]</b></span><br><br><br>
-			          <b>간단 자기소개</b><hr>
+					  <img src="${ contextPath }/resources/uploadFiles/${ image.renameName }" alt="profile" id="profile">
+			          <span style="font-size: 17px;"><b>${jibsa.jibsaName}집사님</b></span><br><br><br>
+			          <b style="font-size: 17px;">간단 자기소개</b><hr>
 			          <span>${jibsa.profileTitle}</span>
 			          <c:set var="found" value="true" /> <!-- 매칭에 해당하는 집사 정보를 찾았음을 표시 -->
 			        </c:if>

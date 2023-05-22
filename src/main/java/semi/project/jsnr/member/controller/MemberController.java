@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
@@ -71,7 +72,7 @@ public class MemberController {
 		}
 	}
 	
-	// 매칭 취소
+	// 매칭 상세
 	@RequestMapping("reservationDetail.me")
 	public String reservationDetail(@RequestParam("matchingNo") int matchingNo,
 									@RequestParam("jibsaNo") int jibsaNo, Model model,
@@ -83,12 +84,19 @@ public class MemberController {
 		
 		ArrayList<Board> rList = mService.selectReserList(m.getMemberNo());
 		
-//		Jibsa j = jService.selectJibsaChat(jibsaNo);
+		// 해당 집사의 오픈 카톡방 주소 가져오기
+		Jibsa jChat = jService.selectJibsaChat(jibsaNo);
+		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("mNo", jibsaNo);
+		map.put("type", 2);
+		Image img = jService.selectImage(map);
 		
 		if(!jList.isEmpty()) {
 			model.addAttribute("jList", jList);
 			model.addAttribute("rList", rList);
-//			model.addAttribute("chat", j.getChatAddress());
+			model.addAttribute("chat", jChat.getChatAddress());
+			model.addAttribute("image", img);
 			
 			return "member_Reservation_Detail";
 		} else {
@@ -96,6 +104,7 @@ public class MemberController {
 		}
 	}
 	
+	// 매칭 취소
 	@RequestMapping("cancelMatching.me")
 	public String cancelMatching(@RequestParam("matchingNo") int matchingNo, Model model) {
 		int result = mService.cancelMatching(matchingNo);
