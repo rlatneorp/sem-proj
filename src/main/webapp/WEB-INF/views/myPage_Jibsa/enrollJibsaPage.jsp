@@ -41,7 +41,7 @@
   		  border-radius: 20px;
 		  background-color: white; 
 		  padding: 20px;
-		  top: 50%; /* 요소의 상단을 화면의 중앙에 위치시킵니다. */
+		  top: 50%; 
 		  width: auto;
   		  height: auto; 
   		  max-height: 1000px;

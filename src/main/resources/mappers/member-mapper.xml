@@ -214,10 +214,18 @@
 	    <result column="JIBSA_AVG_RATING" property="jibsaAvgRating"/>
 	</resultMap>
 	
+	<!-- 매칭 취소 -->
 	<update id="cancelMatching">
 		update matching
 		set matching_status = 'N'
 		where matching_no = #{matchingNo}
 	</update>
+	
+	<!-- 후기 작성 -->
+	<insert id="insertReview">
+		update matching
+		set review_content = #{reviewContent}, review_rating = #{reviewRating}
+		where matching_no = #{matchingNo}	
+	</insert>
 	
 </mapper>

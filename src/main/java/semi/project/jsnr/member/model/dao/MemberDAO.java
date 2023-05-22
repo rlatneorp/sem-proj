@@ -117,4 +117,8 @@ public class MemberDAO {
 		return sqlSession.update("memberMapper.cancelMatching", matchingNo);
 	}
 
+	public int insertReview(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.insert("memberMapper.insertReview", b);
+	}
+
 }

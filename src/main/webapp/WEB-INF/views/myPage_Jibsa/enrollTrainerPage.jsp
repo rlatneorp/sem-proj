@@ -49,7 +49,7 @@
   		  border-radius: 20px;
 		  background-color: white; 
 		  padding: 20px;
-		  top: 50%; /* 요소의 상단을 화면의 중앙에 위치시킵니다. */
+		  top: 50%; 
 		  width: auto;
   		  height: auto; 
   		  max-height: 1000px;
@@ -163,10 +163,22 @@
 		<p for="essential" &nbsp; style="padding-left: 22px;"> &nbsp;은 필수입력 항목입니다.</p>
 		
 		<div class="rounded-box">
+			<label class ="title">본인의 타이틀</label><br/>
+			<span class = "add">간략한 자기소개를 1줄로 적어주세요</span><br/>
+			<input type="text" id = "profileTitle" name="profileTitle" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 43px;" 
+				placeholder=" 본인의 타이틀을 적어주세요." style="width: 600px;" ></input>
+			<br/><br/>
+			
+			<label class ="title">태그</label><br/>
+			<span class = "add">본인을 보충 설명하는 낱말 혹은 키워드</span><br/>
+			<input type="text" id = "profileTag" name="profileTag" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 43px;" 
+				placeholder=" 태그를 적어주세요." style="width: 600px;" ></input>
+			<br/><br/>
+		
 			<label class ="e title"> 지원 동기</label><br/>
 			<textarea id = "motive" name="motive" class="i name"  style="	paddig : 40px; 	margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:678px; height: 138px;" 
 				placeholder=" 지원한 동기를 적어주세요." 
-				rows="5"  style="width: 600px;" required></textarea>
+				rows="5"  style="width: 600px;" ></textarea>
 			<br/><br/>
 			
 			<label class ="e title"> 동의사항</label><br/>
@@ -182,6 +194,14 @@
 	</form>
 	<br><br><br><br><br><br>
 <script>
+	function toggleDirectInput(checkbox) {
+	    const directInputField = document.getElementById("directLicense");
+	    directInputField.disabled = !checkbox.checked;
+	    if (!checkbox.checked) {
+	        directInputField.value = "";
+	    }
+	}
+
 	const input = document.getElementById('formFile');
 	const imgDiv = document.getElementById('img');
 	
