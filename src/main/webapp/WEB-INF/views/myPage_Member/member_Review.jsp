@@ -15,6 +15,12 @@
 	 	width: 100px;
 	 	margin-left: 300px;
 	}
+	
+		#reviewForm{
+		width: 700px;
+		margin: 0 auto;
+		text-align: left;
+	}
 </style>
 </head> 
 <body>
@@ -36,7 +42,7 @@
 				        <br>
 				        <div class="form-group">
 				            <label for="exampleFormControlTextarea1">내용</label><br><br>
-				            <textarea class="form-control" id="exampleFormControlTextarea1" name="reviewContent" rows="10" style="resize: none"></textarea>
+				            <textarea class="form-control" id="exampleFormControlTextarea1" name="reviewContent" rows="10" style="resize: non;"></textarea>
 				        </div>
 				        <input type="hidden" value="${ matchingNo }" name="matchingNo">
 				        <br><br>

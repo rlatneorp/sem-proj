@@ -152,11 +152,11 @@
 		  <c:forEach items="${rList}" var="r">
 			  <c:if test="${r.matchingNo == param.matchingNo}">
 			    <c:forEach items="${jList}" var="jibsa">
-			      <c:if test="${jList.memberNo eq r.jibsaNo}">
+			      <c:if test="${jibsa.memberNo eq r.jibsaNo}">
 					  <img src="${ contextPath }/resources/uploadFiles/${ image.renameName }" alt="profile" id="profile">
-			          <span style="font-size: 17px;"><b>${jList.jibsaName}집사님</b></span><br><br><br>
+			          <span style="font-size: 17px;"><b>${jibsa.jibsaName}집사님</b></span><br><br><br>
 			          <b style="font-size: 17px;">간단 자기소개</b><hr>
-			          <span>${jList.profileTitle}</span>
+			          <span>${jibsa.profileTitle}</span>
 			      </c:if>
 			    </c:forEach>
 			  </c:if>
@@ -192,10 +192,10 @@
 </footer>
 
 <!-- <script> -->
-// 	const unReview = document.querySelector('#unReview');
-// 	unReview.addEventListener('click', ()=>{
-// 		location.href='${contextPath}/member_Review.me';
-// 	});
+<!-- // 	const unReview = document.querySelector('#unReview'); -->
+<!-- // 	unReview.addEventListener('click', ()=>{ -->
+<%-- // 		location.href='${contextPath}/member_Review.me'; --%>
+<!-- // 	}); -->
 <!-- </script> -->
 </body>
 </html>
