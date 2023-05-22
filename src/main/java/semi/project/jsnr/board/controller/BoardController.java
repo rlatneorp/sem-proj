@@ -78,9 +78,6 @@ public class BoardController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 6);
 		
 		ArrayList<JibsaProfile> jpList = bService.selectJibsaProfileList(pi, selectType);
-		for(int i = 0; i < jpList.size(); i++) {
-			System.out.println(jpList.get(i));
-		}
 		
 		ArrayList<Image> iList = bService.selectJibsaImageList();
 		for(int i = 0; i < iList.size(); i++) {

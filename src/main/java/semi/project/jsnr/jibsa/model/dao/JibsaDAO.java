@@ -47,7 +47,7 @@ public class JibsaDAO {
 	}
 
 	public int insertJibsaProfile(SqlSessionTemplate sqlSession, JibsaProfile jp) {
-		return sqlSession.insert("jibsaMapper.insertJibsaProfile");
+		return sqlSession.insert("jibsaMapper.insertJibsaProfile", jp);
 	}
 
 	public ArrayList<Board> selectMatchingList(SqlSessionTemplate sqlSession, PageInfo pi, int mNo) {

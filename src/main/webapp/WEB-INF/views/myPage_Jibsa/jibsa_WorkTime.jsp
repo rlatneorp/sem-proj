@@ -14,8 +14,6 @@
 	
 	<script>
 		$(document).ready(function(){
-			$( "#datepicker" ).datepicker();
-
 			$('input.timepicker').timepicker({
 	            timeFormat: 'HH:mm',
 	            interval: 30,

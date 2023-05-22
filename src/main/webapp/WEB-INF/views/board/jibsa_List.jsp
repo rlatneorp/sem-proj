@@ -40,10 +40,9 @@
 			</div>
 		</div>
 		
-		
 		<div class="row d-flex justify-content-center">
 			<c:forEach items="${ jpList }" var="jp">
-				<div class="card col-3 mx-3 mb-4" style="width: 350px;">
+				<div class="card col-3 mx-3 mb-4" style="width: 350px; height: 400px;">
 					<input type="hidden" value="${ jp.memberNo }">
 			  		<div class="card-body row d-flex justify-content-center">
 			  			<div class="col-12">
@@ -51,7 +50,7 @@
 				    			<img src="${ contextPath }/resources/image/logo.png" class="w-75">
 			  				</c:if>
 			  				<c:if test="${jp.image ne null}">
-				    			<img src="${ jp.image.imagePath}/${ jp.image.renameName}" class="w-75">
+				    			<img src="${contextPath}/resources/uploadFiles/${ jp.image.renameName}" class="w-75">
 			  				</c:if>
 			    		</div>
 			    		<p class="name mb-2">${ jp.jibsaName } 집사님</p>
@@ -67,11 +66,6 @@
 				    				원
 				    			</span>
 			    			</div>
-<!-- 			    			보류 -->
-<!-- 			    			<div class="row px-0 text-start"> -->
-<!-- 				    			<span class="col-4 ps-3">매칭횟수</span> -->
-<%-- 				    			<span class="col-8 px-0">${ l.workCount }번 </span> --%>
-<!-- 			    			</div> -->
 			    			<div class="text-end">
 				    			<span class="px-0">평점 ${ jp.jibsaAvgRating }점</span>
 			    			</div>

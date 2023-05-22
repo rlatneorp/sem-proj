@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import semi.project.jsnr.animal.model.vo.Animal;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
@@ -119,6 +120,10 @@ public class MemberDAO {
 
 	public int insertReview(SqlSessionTemplate sqlSession, Board b) {
 		return sqlSession.insert("memberMapper.insertReview", b);
+	}
+
+	public Animal selectAnimal(SqlSessionTemplate sqlSession, int mNo) {
+		return sqlSession.selectOne("memberMapper.selectAnimal", mNo);
 	}
 
 }

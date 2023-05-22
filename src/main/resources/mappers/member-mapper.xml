@@ -228,4 +228,25 @@
 		where matching_no = #{matchingNo}	
 	</insert>
 	
+	<select id="selectAnimal" resultMap="animalResultSet">
+		select *
+		from animal
+		where member_no = #{mNo}
+			  and rownum = 1
+	</select>
+	<resultMap type="Animal" id="animalResultSet">
+		<id column="ANIMAL_NO" property="animalNo" />
+		<result column="ANIMAL_NAME" property="animalName" />
+		<result column="ANIMAL_GENDER" property="animalGender" />
+		<result column="ANIMAL_KIND" property="animalKind" />
+		<result column="ANIMAL_WEIGHT" property="animalWeight" />
+		<result column="ANIMAL_NOTE" property="animalNote" />
+		<result column="MEMBER_NO" property="memberNo" />
+		<result column="ANIMAL_TYPE" property="animalType" />
+		<result column="ANIMAL_SIZE" property="animalSize" />
+		<result column="IS_NEUTER" property="isNeuter" />
+		<result column="BIRTH_DATE" property="birthDate" />
+		<result column="IS_STATUS" property="isStatus" />
+		<result column="IMAGE_LEVEL" property="imageLevel" />
+	</resultMap>
 </mapper>

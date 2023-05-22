@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import semi.project.jsnr.animal.model.vo.Animal;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
@@ -124,6 +125,10 @@ public class MemberService {
 
 	public int insertReview(Board b) {
 		return mDAO.insertReview(sqlSession, b);
+	}
+
+	public Animal selectAnimal(int mNo) {
+		return mDAO.selectAnimal(sqlSession, mNo);
 	}
 
 }

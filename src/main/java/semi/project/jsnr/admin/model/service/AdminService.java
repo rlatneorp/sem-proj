@@ -26,6 +26,7 @@ public class AdminService {
 	@Autowired
 	private AdminDAO aDAO;
 
+//	멤버
 	public int getMemberCount(HashMap<String, String> map) {
 		return aDAO.getMemberCount(sqlSession, map);
 	}
@@ -53,7 +54,8 @@ public class AdminService {
 	public int activesMember(ArrayList<String> selArr) {
 		return aDAO.activesMember(sqlSession, selArr);
 	}
-	
+
+//	집사
 	public int getJibsaCount(HashMap<String, String> map) {
 		return aDAO.getJibsaCount(sqlSession, map);
 	}
@@ -82,6 +84,7 @@ public class AdminService {
 		return aDAO.activesJibsa(sqlSession, selArr);
 	}
 	
+//	Faq
 	public int getFaqCount(HashMap<String, String> map) {
 		return aDAO.getFaqCount(sqlSession, map);
 	}
@@ -106,6 +109,15 @@ public class AdminService {
 		return aDAO.deleteFaq(sqlSession, fId);
 	}
 
+	public int deletesFAQ(ArrayList<String> selArr) {
+		return aDAO.deletesFAQ(sqlSession, selArr);
+	}
+
+	public int activesFAQ(ArrayList<String> selArr) {
+		return aDAO.activesFAQ(sqlSession, selArr);
+	}
+
+//	Qna
 	public int getQnaCount(HashMap<String, String> map) {
 		return aDAO.getQnaCount(sqlSession, map);
 	}
@@ -126,6 +138,14 @@ public class AdminService {
 		return aDAO.selectApplyJibsa(sqlSession, mId);
 	}
 
+	public int deletesQNA(ArrayList<String> selArr) {
+		return aDAO.deletesQNA(sqlSession, selArr);
+	}
+
+	public int activesQNA(ArrayList<String> selArr) {
+		return aDAO.activesQNA(sqlSession,selArr);
+	}
+//	리뷰
 	public int getReviewCount(HashMap<String, String> map) {
 		return aDAO.getReviewCount(sqlSession, map);
 	}
@@ -142,16 +162,17 @@ public class AdminService {
 		return aDAO.updateReview(sqlSession, b);
 	}
 
-	public int updateMatching(Matching mc) {
-		return aDAO.updateMatching(sqlSession, mc);
-	}
-
 	public int deletesReview(ArrayList<String> selArr) {
 		return aDAO.deletesReview(sqlSession, selArr);
 	}
 
 	public int activesReview(ArrayList<String> selArr) {
 		return aDAO.activesReview(sqlSession, selArr);
+	}
+	
+//	매칭
+	public int updateMatching(Matching mc) {
+		return aDAO.updateMatching(sqlSession, mc);
 	}
 
 	public int deletesMatching(ArrayList<String> selArr) {
@@ -162,21 +183,7 @@ public class AdminService {
 		return aDAO.activesMatching(sqlSession, selArr);
 	}
 
-	public int deletesFAQ(ArrayList<String> selArr) {
-		return aDAO.deletesFAQ(sqlSession, selArr);
-	}
 
-	public int activesFAQ(ArrayList<String> selArr) {
-		return aDAO.activesFAQ(sqlSession, selArr);
-	}
-
-	public int deletesQNA(ArrayList<String> selArr) {
-		return aDAO.deletesQNA(sqlSession, selArr);
-	}
-
-	public int activesQNA(ArrayList<String> selArr) {
-		return aDAO.activesQNA(sqlSession,selArr);
-	}
 
 
 

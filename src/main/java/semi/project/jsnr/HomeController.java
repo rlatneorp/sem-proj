@@ -1,6 +1,5 @@
 package semi.project.jsnr;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -20,13 +19,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import semi.project.jsnr.animal.model.vo.Animal;
 import semi.project.jsnr.member.model.service.MemberService;
 import semi.project.jsnr.member.model.vo.Member;
 
@@ -53,9 +52,8 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	// 홈으로 가기
-	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
+	@RequestMapping("home.do")
 	public String home(HttpSession session, Model model) {
-		
 	    return "home/home";
 	}
 	
@@ -97,9 +95,12 @@ public class HomeController {
 	@PostMapping("login.do")
 	public String login(Model model, @ModelAttribute Member m) {
 		Member loginUser = mService.login(m);
+		Animal animal = mService.selectAnimal(loginUser.getMemberNo());
+		
 		bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd());
 		
 		if(bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd())) {
+			model.addAttribute("animal", animal);
 			model.addAttribute("loginUser", loginUser);
 			
 			return "redirect:home.do";

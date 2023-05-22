@@ -30,7 +30,7 @@
 				    <div class="tablediv">
 						<h4 class="text-start"><b>집사 관리</b></h4>
 					    <table class="table">
-						    <form method="post" action="admin_Jibsas_update.ad">
+						    <form method="post" action="admin_Jibsas_Update.ad">
 					    		<input type="hidden" name="selectType" value="">
 						    	<div class="d-flex justify-content-end mb-2 me-1">
 						    		<span onclick="jibsaActive()" class="material-symbols-outlined me-3" style="font-size: 40px; cursor:pointer;">refresh</span>
