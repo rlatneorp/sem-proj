@@ -4,8 +4,7 @@
 	<select id="animalList" resultMap="animalResultSet">
 		select *
 		from animal
-  		where member_no = #{memberNo} and is_status = 'Y'
-  			  and rownum = 1
+  		where member_no = #{memberNo} and is_status = 'Y' and rownum = 1
 	</select>
 	
 	<resultMap type="Animal" id="animalResultSet">

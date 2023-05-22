@@ -136,8 +136,8 @@ public class JibsaController {
 				image.setImageLevel(2);
 				image.setMemberNo(memberNo);
 				
-				int insertImage = jService.insertImage(image);
-				model.addAttribute("image", insertImage);
+				int insertImageResult = jService.insertImage(image);
+				model.addAttribute("image", image);
 			}
 		} else {
 			throw new JibsaException("사진 등록에 실패했습니다.");
@@ -179,7 +179,6 @@ public class JibsaController {
 		String[] returnArr = new String[2];
 		returnArr[0] = savePath;
 		returnArr[1] = renameFileName;
-		
 		return returnArr;
 	}
 	

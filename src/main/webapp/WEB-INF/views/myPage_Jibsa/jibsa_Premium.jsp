@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -46,31 +48,73 @@
 	
 	<div class="area">
 		<h4>1개월 12000원</h4>
-		<button class="purchase purchase2">구매하기</button>
+		<button id="card1" class="purchase purchase2" onclick="12000won">구매하기</button>
 	</div><br>
 	
 	<div class="area">
 		<h4>3개월 35000원</h4>
-		<button class="purchase purchase2">구매하기</button>
+		<button id="card2" class="purchase purchase2" onclick="35000won">구매하기</button>
 	</div><br>
 	
 	<div class="area">
 		<h4>6개월 68000원</h4>
-		<button class="purchase purchase2">구매하기</button><br>
+		<button  id="card3" class="purchase purchase2" onclick="68000won">구매하기</button><br>
 	</div><br><br>
 	
 	<h4 class="subtitle">결제수단</h4><br><br>
 	
 	<div class="area" id="payment">
-		<input type="radio" name="method" id="card"/>&nbsp;<label> 신용 / 체크카드 </label>&nbsp; &nbsp; 
-  		<input type="radio" name="method" id="account"/>&nbsp;<label> 계좌이체 </label>
-  		<button class="purchase" id="btn">결제하기</button><br>
+  		<button onclick="requestPay()">결제하기</button><br>
 	</div><br>
 	
 	<br><br><br>
 	<br><br><br>
 	<br><br><br>
 
+<script>
+const card1 = document.querySelector('#card1');
+	card1.addEventListener('click', ()=>{
+	 
+	})
 
+const userCode = "imp14397622";
+IMP.init(userCode);
+
+function 12000won() {
+  IMP.request_pay({
+    pg: "tosspayments",
+    pay_method: "card",
+    merchant_uid: "test_lhyeosfv",
+    name: "집사나라 결제창",
+    amount: 12000,
+    buyer_tel: "010-0000-0000",
+    m_redirect_url: "http://localhost:8085/jsnr/",
+  });
+}
+
+function 35000won() {
+	  IMP.request_pay({
+	    pg: "tosspayments",
+	    pay_method: "card",
+	    merchant_uid: "test_lhyeosfv",
+	    name: "집사나라 결제창",
+	    amount: 35000,
+	    buyer_tel: "010-0000-0000",
+	    m_redirect_url: "http://localhost:8085/jsnr/",
+	  });
+	}
+	
+function 68000won() {
+	  IMP.request_pay({
+	    pg: "tosspayments",
+	    pay_method: "card",
+	    merchant_uid: "test_lhyeosfv",
+	    name: "집사나라 결제창",
+	    amount: 68000,
+	    buyer_tel: "010-0000-0000",
+	    m_redirect_url: "http://localhost:8085/jsnr/",
+	  });
+	}	
+</script>
 </body>
 </html>

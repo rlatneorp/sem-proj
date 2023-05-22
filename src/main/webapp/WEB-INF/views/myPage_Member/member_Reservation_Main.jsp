@@ -26,6 +26,7 @@
 	 	padding: 5px;
 	}
 	td{height: 50px;}
+	
 </style>
 </head>
 <body>
@@ -69,27 +70,32 @@
 								                <td>${animal.animalName}</td>
 								                <td id="td-${r.matchingNo}">
 								                    <script>
-								                        (function() {
-								                            const td${r.matchingNo} = document.getElementById('td-${r.matchingNo}');
-								                            const endDate${r.matchingNo} = new Date('${fn:substring(r.endDate, 0, 10)}');
-								                            const matchingStatus = '${r.matchingStatus}';
-								                            
-								                            // matchingStatus가 Y, 현재시간이 매칭 시간보다 크면 후기 작성에대한 내용
-								                            // Y, 작으면 예약중 / N 이면 예약취소로 뜨게함
-								                            if (matchingStatus === 'Y') {
-								                                if (new Date().getTime() > endDate${r.matchingNo}.getTime()) {
-								                                    if (${r.reviewContent != null}) {
-								                                        td${r.matchingNo}.innerText = '작성 완료';
-								                                    } else {
-								                                        td${r.matchingNo}.innerText = '미작성';
-								                                    }
-								                                } else {
-								                                    td${r.matchingNo}.innerText = '예약중';
-								                                }
-								                            } else {
-								                                td${r.matchingNo}.innerText = '예약 취소';
-								                            }
-								                        })();
+								                    (function() {
+							                        	const td${r.matchingNo} = document.getElementById('td-${r.matchingNo}');
+							                        	  const endDate${r.matchingNo} = new Date('${fn:substring(r.endDate, 0, 10)}');
+							                        	  const matchingStatus = '${r.matchingStatus}';
+							                        	  const reviewStatus = '${r.reviewStatus}';
+							                        	  
+							                        	  // matchingStatus가 Y, 현재시간이 매칭 시간보다 크면 후기 작성에 대한 내용
+							                        	  // Y, 작으면 예약중 / N 이면 예약취소로 뜨게 함
+							                        	  if (matchingStatus === 'Y') {
+															  if (new Date().getTime() > endDate${r.matchingNo}.getTime()) {
+															    if (${empty r.reviewContent}) {
+															      if (reviewStatus === 'Y') {
+															        td${r.matchingNo}.innerText = '미작성';
+															      } else if(reviewStatus === 'N') {
+															        td${r.matchingNo}.innerText = '삭제됨';
+															      }
+															    } else {
+															      td${r.matchingNo}.innerText = '작성완료';
+															    }
+															  } else {
+															    td${r.matchingNo}.innerText = '예약중';
+															  }
+															} else {
+															  td${r.matchingNo}.innerText = '예약 취소';
+															}
+							                        	})();
 								                    </script>
 								                </td>
 								            </tr>
@@ -103,7 +109,7 @@
 					    <!-- 예약 내역이 없으면 페이징 숨김 -->
 					    <c:if test="${ !empty rList }">
 					    <div>
-							<nav aria-label="Standard pagination example" style="float: center; margin-left: 400px;">
+							<nav aria-label="Standard pagination example" style="float: center; margin-left: 550px;">
 								<ul class="pagination">
 									<li class="page-item">
 										<c:url var="goBack" value="${ loc }">

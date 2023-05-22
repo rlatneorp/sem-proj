@@ -107,15 +107,16 @@
 		<br><br><br>
 		<h1>이용 후기</h1>
 		
-	
+	<c:if test="${value eq null}">
 	<div class="container">
-	<select name="sortBy" id="sort">>
-	  <option selected>---------------------------</option>
+	<select name="sortBy" id="sort">
+	  <option selected value="0">---------------------------</option>
 	  <option value="1">평점 높은 순으로 보기</option>
 	  <option value="2">조회수 많은 순으로 보기</option>
 	  <option value="3">이름 순으로 보기</option>
 	</select>
 	</div>
+	</c:if>
 	  
 	<div class="container text-left">
 	  <div class="row">
@@ -144,7 +145,7 @@
 	
 	  <div class="row">
 			<div class="pagingArea" align="center">
-		<!-- 		이전 버튼-->
+		<!-- 		이전 버튼 -->
 				<c:url value="${loc}" var="blistBack">
 				  <c:param name="sortBy" value="${sortBy}" />
 				  <c:param name="page" value="${pi.currentPage - 1}" />
@@ -155,7 +156,7 @@
 				</c:url>
 				<a href="${blistBack}">[이전]</a>
 
-		<!-- 		숫자 버튼-->
+		<!-- 		숫자 버튼 -->
 					<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage}">
 					  <c:url value="${loc}" var="blistNum">
 					    <c:param name="sortBy" value="${sortBy}" />
@@ -168,10 +169,7 @@
 					  <a href="${blistNum}">${p}</a>
 					</c:forEach>
 
-		
-		
-		
-		<!-- 		다음 버튼-->
+		<!-- 		다음 버튼 -->
 			<c:url value="${loc}" var="blistNext">
 			  <c:param name="sortBy" value="${sortBy}" />
 			  <c:param name="page" value="${pi.currentPage + 1}" />
@@ -192,8 +190,8 @@
 				  <button class="search-button">검색하기</button>
 				  <br><br><br>
 				</div>
-
-	  </div>
+			</div>
+			</div>
 <%@ include file="../common/bottom.jsp" %>
 
 <script>
@@ -201,11 +199,10 @@ window.onload=()=>{
 	
 		const searchButton = document.querySelector('.search-button');
 	 	searchButton.addEventListener('click', () => {
-		    const searchCondition = document.querySelector('#searchCondition').value;
-		    const searchValue = document.querySelector('#searchValue').value;
-		    const sortBy = document.querySelector('#sort').value;
-	
-		    location.href = `${contextPath}/reviewList.bo?sortBy=${sortBy}&condition=${searchCondition}&value=${searchValue}`;
+		    const condition = document.querySelector('#searchCondition').value;
+		    const value = document.querySelector('#searchValue').value;
+		    	location.href = '${contextPath}/search.bo?condition='+condition+ '&value=' +value;
+			
 		});
 	
 		
@@ -217,13 +214,16 @@ window.onload=()=>{
 				const mId = div.querySelector('.matchingNo').innerText;
 				const userName = div.querySelector('.userName').innerText;
 				location.href='${ contextPath }/review_Detail.bo?mId='+ mId + '&userName=' + userName + '&page=' + ${pi.currentPage};
-			 
+			 	
 			}); 
 		}
 		const sort = document.querySelector('#sort');
 		sort.addEventListener('change', () => {
 			const sortBy = sort.options[sort.selectedIndex].value;
-		    location.href = '${contextPath}/reviewList.bo?sortBy=' + sortBy;
+			const condition = document.querySelector('#searchCondition').value;
+		    const value = document.querySelector('#searchValue').value;
+		    	location.href = '${contextPath}/reviewList.bo?sortBy=' + sortBy;
+		    
 		});
 		
 }

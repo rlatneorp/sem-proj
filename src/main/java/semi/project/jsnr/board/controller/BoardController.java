@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,6 +40,7 @@ public class BoardController {
 	
 	@RequestMapping("review_Main.bo")
 	public String reviewBoardList(@RequestParam(value="page", required=false) Integer currentPage, 
+			@RequestParam(value="value", required=false) String value,
 			Model model) {
 		
 		if(currentPage == null) {
@@ -54,6 +56,7 @@ public class BoardController {
 		if(list != null) {
 			model.addAttribute("pi", pi);
 			model.addAttribute("list", list);
+			model.addAttribute("value", value);
 			return "review_Main";
 		} else {
 			throw new BoardException("게시글 조회를 실패하였습니다.");
@@ -143,6 +146,7 @@ public class BoardController {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("condition", condition);
 		map.put("value", value);
+		
 		int listCount = bService.getSearchListCount(map);
 		
 		
@@ -331,6 +335,51 @@ public class BoardController {
 		}
 	  
 	}
+	
+//	@RequestMapping("member_Review_Detail.me")
+//	public String member_Review_Detail(HttpSession session, Model model, @RequestParam(value="matchingNo", required=false) Integer matchingNo) {
+//		
+//		Member m = (Member)session.getAttribute("loginUser");
+//		String userName = m.getMemberName();
+//		String login = null;
+//		if(m != null) {
+//			login = userName;
+//		}  
+//		boolean yn = false;
+//		if(!userName.equals(login)) {
+//			yn = true;
+//		}
+//		
+//		ArrayList<Board> b = bService.member_Review_Detail(userName);
+//		
+//		if(b != null) {
+//			model.addAttribute("b", b);
+//			model.addAttribute("matchingNo", matchingNo);
+//			return "member_Review_Detail";
+//		} else {
+//			throw new BoardException("게시글 조회를 실패하였습니다.");
+//		}
+//		
+//	}
+//	
+	
+//	@PostMapping("member_Review_Detail.me")
+//	public String member_Review_Detail(HttpSession session, @ModelAttribute Board b, @RequestParam("page") int page, Model model) {
+//		
+//		int result = bService.member_Review_Detail(b);
+//		if(result > 0) {
+//			model.addAttribute("mId", b.getMatchingNo());
+//			model.addAttribute("writer", ((Member)session.getAttribute("loginUser")).getMemberName());
+//			model.addAttribute("page", page);
+//			return "member_Review_Detail";
+//		} else {
+//			throw new BoardException("게시글 수정을 실패하였습니다.");
+//		}	
+//		
+//	}
+//		
+	
+	
 
 }
 
