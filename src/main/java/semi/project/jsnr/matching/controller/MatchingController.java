@@ -32,8 +32,8 @@ public class MatchingController {
 		if(m != null){
 			int mNo = m.getMemberNo();
 			ArrayList<Animal> aList = mcService.selectAnimalList(mNo);
-			m.setAnimalCount(mcService.getAnimalCount(mNo));
-
+			m.setAnimalCount(aList.size());
+			
 			if(aList != null) {
 				model.addAttribute("aList", aList);
 				return "matching_Main";
@@ -62,50 +62,53 @@ public class MatchingController {
 				j.setAvailableHourArr(arr);
 			}
 			
-	//		시간 비교하기 / 리턴리스트에 넣기
+//			시간 비교하기 / 리턴리스트에 넣기
 			ArrayList<JibsaProfile> jpList = new ArrayList<JibsaProfile>();
 			
+//			이용자가 입력한 값 변수에 Integer타입으로 초기화
 			int startTime = Integer.parseInt(mc.getStartDate().substring(11));
 			int startDay = Integer.parseInt(mc.getStartDate().substring(10,11));
 			int endTime = Integer.parseInt(mc.getEndDate().substring(11));
 			int endDay = Integer.parseInt(mc.getEndDate().substring(10,11));
 			
-			
 			for(JibsaProfile j: orgJpList) {
 				if(j.getMemberNo() == ((Member)session.getAttribute("loginUser")).getMemberNo()) {
 //					나-나 매칭 제외
-					System.out.println("제외"+j.getJibsaName());
 				}else {
 					int jStartTime = 0;
-					if(!j.getAvailableHourArr()[startDay].equals("0")) {
-	//													┌ String -> Double			┌ int -> String				 ┌뒤의 4자리를 버리기 위함
-						jStartTime =  (int)Math.floor(  Double.parseDouble(j.getAvailableHourArr()[startDay]  )*0.0001  );
+					if(!j.getAvailableHourArr()[startDay].equals("00000000")) {
+//															┌ String -> Double			┌ int -> String				 ┌뒤의 4자리를 버리기 위함
+						jStartTime = (int)Math.floor(  Double.parseDouble(j.getAvailableHourArr()[startDay]  )*0.0001  );
 					}
 					int jEndTime = 0;
 					if(jStartTime <= startTime) {
 						
 						int endD = Integer.parseInt(j.getAvailableHourArr()[endDay]);
 						
+//						ex) 00000000 ->    0		-> 0
 						if(endD == 0) {
 							jEndTime = 0;
+							
+//						ex) 00002000 -> 2000		-> 2000
 						}else if(endD < 10000 ) {
-							jEndTime = Integer.parseInt((j.getAvailableHourArr()[endDay]+"").substring(0, 4));
+							jEndTime = Integer.parseInt((j.getAvailableHourArr()[endDay]));
+							
+//						ex) 10002000 -> 10002000	-> 2000
 						}else{
-							jEndTime = Integer.parseInt((j.getAvailableHourArr()[endDay]+"").substring(4, 8));
+							jEndTime = Integer.parseInt((j.getAvailableHourArr()[endDay]).substring(4, 8));
 						}
 						
 						if(jEndTime >= endTime) {
 							jpList.add(j);
-							System.out.println("추가"+j.getJibsaName());
 						}
 					}
 				}
 			}
+			
 			ArrayList<Jibsa> jList = new ArrayList<Jibsa>();
 			for(int i = 0; i < jpList.size(); i++) {
 				Jibsa j = mcService.selectJibsa(jpList.get(i).getMemberNo());
 				jList.add(j);
-				System.out.println(j);
 			}
 			
 			model.addAttribute("mc", mc);

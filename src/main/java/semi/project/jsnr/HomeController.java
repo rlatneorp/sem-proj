@@ -1,6 +1,5 @@
 package semi.project.jsnr;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -20,13 +19,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import semi.project.jsnr.animal.model.vo.Animal;
 import semi.project.jsnr.member.model.service.MemberService;
 import semi.project.jsnr.member.model.vo.Member;
 
@@ -53,9 +52,8 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	// 홈으로 가기
-	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
+	@RequestMapping("home.do")
 	public String home(HttpSession session, Model model) {
-		
 	    return "home/home";
 	}
 	
@@ -66,13 +64,8 @@ public class HomeController {
 	
 	@RequestMapping("loginCheckInfo.do")
 	@ResponseBody
-	public String loginCheckInfo(@RequestParam("memberId") String memberId, @RequestParam("memberPwd") String memberPwd) {
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("memberId", memberId);
-		map.put("memberPwd", memberPwd);
-		
-		int count = mService.loginCheckInfo(map);
-		System.out.println(count);
+	public String loginCheckInfo(@RequestParam("memberId") String memberId) {
+		int count = mService.checkMemberId(memberId);
 		
 		String result = count == 1 ? "yes" : "no";
 		
@@ -97,9 +90,12 @@ public class HomeController {
 	@PostMapping("login.do")
 	public String login(Model model, @ModelAttribute Member m) {
 		Member loginUser = mService.login(m);
+		Animal animal = mService.selectAnimal(loginUser.getMemberNo());
+		
 		bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd());
 		
 		if(bcrypt.matches(m.getMemberPwd(), loginUser.getMemberPwd())) {
+			model.addAttribute("animal", animal);
 			model.addAttribute("loginUser", loginUser);
 			
 			return "redirect:home.do";
@@ -174,13 +170,13 @@ public class HomeController {
 	@RequestMapping("foundPwd.do")
 	public ModelAndView foundPwd(@RequestParam("memberId") String memberId, @RequestParam("memberEmail") String memberEmail,
 						   		 HttpSession session) {
-		Member m = mService.selectMember(memberId); // 아이디 일치하는 데이터 가져와서 m에 담기
+		Member m = mService.selectMember(memberEmail); // 이메일 일치하는 데이터 가져와서 m에 담기
 		
 		if(m != null) {
 			Random r = new Random(); // 인증번호 랜덤숫자
 			int num = r.nextInt(999999);
 			
-			if(m.getMemberId().equals(memberId)) {
+			if(m.getMemberEmail().equals(memberEmail)) { // 서버에 저장된 회원의 이메일과 입력한 이메일이 같으면 
 				session.setAttribute("memberEmail", m.getMemberEmail());
 				session.setAttribute("memberId", m.getMemberId());
 				
@@ -194,14 +190,14 @@ public class HomeController {
 								 "<div align='center' style='border:1px solid black; font-family:verdana';>" +
 								 "<h3 style='color:blue;'>" + "비밀번호 변경 인증 코드입니다." + "</h3><div style='font-size:130%'>" +
 								 "CODE : " + "<strong>" + num + "</strong><div><br/></div></div>";
-				// System.getProperty : 개행 문자를 반환해주는 메소드
-				// 개행 문자 : 줄바꿈 문자 신기쓰
 				
 				try {
 					MimeMessage message = mailSender.createMimeMessage();
 					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8"); // try catch 필요
-					// MimeMessageHelper는 MimeMessage를 생성하고 조작하는 데 사용됨
+					// mailSende의 createMimeMessage 메소드를 이용하여 MimeMessage객체를 만듬
+					// MimeMessageHelper는 MimeMessage를 조작하는 데 사용됨
 					// MimeMessageHelper를 사용하여 MimeMessage를 조작하고, 메일의 다양한 속성 및 콘텐츠 (제목, 수신자, 본문 등)을 설정할 수 있음
+					// true -> 멀티파트 메세지를 사용하겠다는 의미
 					
 					messageHelper.setFrom(setfrom);
 					messageHelper.setTo(tomail);
@@ -269,7 +265,7 @@ public class HomeController {
 	@ResponseBody
 	public String enrollAuth(@RequestParam("memberEmail") String memberEmail, HttpSession session) {
 		if(memberEmail != null) {
-			Random r = new Random();
+			Random r = new Random(); // 랜덤 번호
 			int num = r.nextInt(999999);
 			
 			String setfrom = "jibsanara5@gmail.com";

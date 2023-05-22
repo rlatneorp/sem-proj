@@ -116,7 +116,7 @@
 	<!-- 회원 탈퇴 -->
 	<update id="deleteInfo">
 		update member
-		set member_status = 'N'
+		set member_status = 'N', exit_date = sysdate
 		where member_id = #{memberId}
 	</update>
 	
@@ -131,7 +131,7 @@
 	<select id="selectMember" resultMap="memberResultSet">
 		select *
 		from member
-		where member_id = #{memberId} and member_status = 'Y'
+		where member_email = #{memberEmail} and member_status = 'Y'
 	</select>
 	
 	<!-- 이메일 인증 후 비밀번호 변경 -->
@@ -153,13 +153,6 @@
 		select count(*)
 		from member
 		where member_name = #{memberName} and member_email = #{memberEmail} and member_status = 'Y'
-	</select>
-	
-	<!-- 로그인 시 정보 확인 -->
-	<select id="loginCheckInfo" resultType="_int">
-		select count(*)
-		from member
-		where member_id = #{memberId} and member_status = 'Y'
 	</select>
 	
 	<select id="reservationListCount" resultType="_int">
@@ -224,8 +217,43 @@
 	<!-- 후기 작성 -->
 	<insert id="insertReview">
 		update matching
-		set review_content = #{reviewContent}, review_rating = #{reviewRating}
+		set review_content = #{reviewContent}, review_rating = #{reviewRating}, review_status = 'Y'
 		where matching_no = #{matchingNo}	
 	</insert>
 	
+	<!-- 후기 수정 -->
+	<update id="updateReview">
+		update matching
+		set review_content = #{reviewContent}, review_rating = #{reviewRating}
+		where matching_no = #{matchingNo}
+	</update>
+	
+	<!-- 후기 삭제 -->
+	<update id="deleteReview">
+		update matching
+		set review_status = 'N', review_content = '', review_rating = 0, jibsa_comment = ''
+		where matching_no = #{matchingNo}
+	</update>
+	
+	<select id="selectAnimal" resultMap="animalResultSet">
+		select *
+		from animal
+		where member_no = #{mNo}
+			  and rownum = 1
+	</select>
+	<resultMap type="Animal" id="animalResultSet">
+		<id column="ANIMAL_NO" property="animalNo" />
+		<result column="ANIMAL_NAME" property="animalName" />
+		<result column="ANIMAL_GENDER" property="animalGender" />
+		<result column="ANIMAL_KIND" property="animalKind" />
+		<result column="ANIMAL_WEIGHT" property="animalWeight" />
+		<result column="ANIMAL_NOTE" property="animalNote" />
+		<result column="MEMBER_NO" property="memberNo" />
+		<result column="ANIMAL_TYPE" property="animalType" />
+		<result column="ANIMAL_SIZE" property="animalSize" />
+		<result column="IS_NEUTER" property="isNeuter" />
+		<result column="BIRTH_DATE" property="birthDate" />
+		<result column="IS_STATUS" property="isStatus" />
+		<result column="IMAGE_LEVEL" property="imageLevel" />
+	</resultMap>
 </mapper>

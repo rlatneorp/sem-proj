@@ -36,7 +36,7 @@
 		.topLoginCont{width: 1200px; max-width: none !important; margin: 0 auto;}
 		.logo{width: 160px;}
 		.menu1{font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; margin: 10px; color: rgb(51, 51, 51); text-decoration: none;}
-		.menu2{font-size: 23px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; color: rgb(51, 51, 51); text-decoration: none; justify-content: unset;}
+		.menu2{font-size: 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; color: rgb(51, 51, 51); text-decoration: none; justify-content: unset;}
 		.left{margin-left: 5%; display: inline;}
 		#right{margin-left: 18%; display: inline;}
 		

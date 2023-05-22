@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,12 @@
 					<p class="fs-2 fw-bold">집사 마이페이지</p>
 					
 					<div class="container px-0 mb-5 mx-0">
-						<img src="${img.imagePath}/${img.renameName}" alt="로딩실패" width="48" height="48" class="rounded-circle image-block me-2">
+						<c:if test="${empty img}">
+							<img src="${contextPath}/resources/image/logo.png" alt="로딩실패" width="72" height="72" class="rounded-circle image-block me-2">
+						</c:if>
+						<c:if test="${!empty img}">
+							<img src="${contextPath}/resources/uploadFiles/${img.renameName}" alt="로딩실패" width="48" height="48" class="rounded-circle image-block me-2">
+						</c:if>
 						<span class="text-small fw-bold">${j.memberName} 집사님</span>
 					</div>
 					

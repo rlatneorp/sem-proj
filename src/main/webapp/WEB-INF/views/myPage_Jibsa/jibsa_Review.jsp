@@ -149,99 +149,99 @@
 	<br><br><br>
 <jsp:include page="../common/bottom.jsp"/>
 
-	<script>
-		window.onload = () =>{ 
-			const reBtns = document.querySelectorAll('[class^="reBtn"]');
-			const modals = document.querySelectorAll('[class^="mo modal"]');
-			const xBtns = document.querySelectorAll('[class^="xB xBtn"]')
-			for(let i = 0; i < reBtns.length; i++) {
-				const reBtn = reBtns[i];
-				const modal = modals[i];
-				const xBtn = xBtns[i];
-				  
-				reBtn.addEventListener('click', ()=>{	
-				   modal.style.display = 'block';
-				});
-				xBtn.addEventListener('click', ()=>{	
-				   modal.style.display = 'none';
-				});
-				  
-			    window.addEventListener('click', e => {
-			       if(!modal.contains(e.target) && !reBtn.contains(e.target)) {
-			         modal.style.display = 'none';
-			         }
-			    });
-			 }   
-	 	 }
-		$('#btnSearch').click(function() {
-		    var dateFrom = document.getElementById('dateFrom').value;
-		    var dateTo = document.getElementById('dateTo').value;
-		    var today = new Date();
+<script>
+	window.onload = () =>{ 
+		const reBtns = document.querySelectorAll('[class^="reBtn"]');
+		const modals = document.querySelectorAll('[class^="mo modal"]');
+		const xBtns = document.querySelectorAll('[class^="xB xBtn"]')
+		for(let i = 0; i < reBtns.length; i++) {
+			const reBtn = reBtns[i];
+			const modal = modals[i];
+			const xBtn = xBtns[i];
+			  
+			reBtn.addEventListener('click', ()=>{	
+			   modal.style.display = 'block';
+			});
+			xBtn.addEventListener('click', ()=>{	
+			   modal.style.display = 'none';
+			});
+			  
+		    window.addEventListener('click', e => {
+		       if(!modal.contains(e.target) && !reBtn.contains(e.target)) {
+		         modal.style.display = 'none';
+		         }
+		    });
+		 }   
+ 	 }
+	$('#btnSearch').click(function() {
+	    var dateFrom = document.getElementById('dateFrom').value;
+	    var dateTo = document.getElementById('dateTo').value;
+	    var today = new Date();
 
-		    var fromYear = 0;
-		    var fromMonth = 0;
-		    var fromDay = 0;
+	    var fromYear = 0;
+	    var fromMonth = 0;
+	    var fromDay = 0;
 
-		    if (dateFrom !== '') {
-		        dateFrom = new Date(dateFrom);
-		        fromYear = dateFrom.getFullYear();
-		        fromMonth = dateFrom.getMonth() + 1;
-		        fromDay = dateFrom.getDate();
-		    }
+	    if (dateFrom !== '') {
+	        dateFrom = new Date(dateFrom);
+	        fromYear = dateFrom.getFullYear();
+	        fromMonth = dateFrom.getMonth() + 1;
+	        fromDay = dateFrom.getDate();
+	    }
 
-		    var toYear = 0;
-		    var toMonth = 0;
-		    var toDay = 0;
+	    var toYear = 0;
+	    var toMonth = 0;
+	    var toDay = 0;
 
-		    if (dateTo !== '') {
-		        dateTo = new Date(dateTo);
-		        toYear = dateTo.getFullYear();
-		        toMonth = dateTo.getMonth() + 1;
-		        toDay = dateTo.getDate();
-		    }
+	    if (dateTo !== '') {
+	        dateTo = new Date(dateTo);
+	        toYear = dateTo.getFullYear();
+	        toMonth = dateTo.getMonth() + 1;
+	        toDay = dateTo.getDate();
+	    }
 
-		    var todayYear = today.getFullYear();
-		    var todayMonth = today.getMonth() + 1;
-		    var todayDay = today.getDate();
+	    var todayYear = today.getFullYear();
+	    var todayMonth = today.getMonth() + 1;
+	    var todayDay = today.getDate();
 
-		    var todayString = todayYear + '-' + todayMonth + '-' + todayDay;
+	    var todayString = todayYear + '-' + todayMonth + '-' + todayDay;
 
-		    if (fromYear === 0 || fromMonth === 0 || fromDay === 0 || isNaN(fromYear) || isNaN(fromMonth) || isNaN(fromDay)) {
-		        fromYear = 0;
-		        fromMonth = 0;
-		        fromDay = 0;
-		    }
+	    if (fromYear === 0 || fromMonth === 0 || fromDay === 0 || isNaN(fromYear) || isNaN(fromMonth) || isNaN(fromDay)) {
+	        fromYear = 0;
+	        fromMonth = 0;
+	        fromDay = 0;
+	    }
 
-		    if (toYear === 0 || toMonth === 0 || toDay === 0 || isNaN(toYear) || isNaN(toMonth) || isNaN(toDay)) {
-		        toYear = 0;
-		        toMonth = 0;
-		        toDay = 0;
-		    }
+	    if (toYear === 0 || toMonth === 0 || toDay === 0 || isNaN(toYear) || isNaN(toMonth) || isNaN(toDay)) {
+	        toYear = 0;
+	        toMonth = 0;
+	        toDay = 0;
+	    }
 
-		    var from = fromYear + '-' + fromMonth + '-' + fromDay;
-		    var to = toYear + '-' + toMonth + '-' + toDay;
+	    var from = fromYear + '-' + fromMonth + '-' + fromDay;
+	    var to = toYear + '-' + toMonth + '-' + toDay;
 
-		    
-		    if (from <= todayString && to >= from) {
-		        var searchUrl = '${contextPath}/jibsa_Review.js?from=' + from + '&to=' + to;
-		        window.location.href = searchUrl;
-		    } else {
-		        alert("해당 기간의 조회가 불가능합니다.");
-		    }
-			     
-		});
-	    $(document).ready(function() {
-	        var urlParams = new URLSearchParams(window.location.search);
-	        var from = urlParams.get('from');
-	        var to = urlParams.get('to');
-	        
-	        if (from === '' && to === '') {
-	            alert("검색할 날짜를 지정해주세요.");
-	        }
-	    });
+	    
+	    if (from <= todayString && to >= from) {
+	        var searchUrl = '${contextPath}/jibsa_Review.js?from=' + from + '&to=' + to;
+	        window.location.href = searchUrl;
+	    } else {
+	        alert("해당 기간의 조회가 불가능합니다.");
+	    }
+		     
+	});
+    $(document).ready(function() {
+        var urlParams = new URLSearchParams(window.location.search);
+        var from = urlParams.get('from');
+        var to = urlParams.get('to');
+        
+        if (from === '' && to === '') {
+            alert("검색할 날짜를 지정해주세요.");
+        }
+    });
 
 
-	</script>
+</script>
 
 </body>
 </html>

@@ -75,10 +75,13 @@ public class JibsaController {
 		String memberName = ((Member)session.getAttribute("loginUser")).getMemberName();
 		j.setMemberNo(memberNo);
 		j.setMemberName(memberName);
+		jp.setMemberNo(memberNo);
+		jp.setJibsaName(memberName);
+		System.out.println(jp);
 		
 		int result1 = jService.insertJibsa(j);
-//		int result2 = jService.insertJibsaProfile(jp);
-		
+		int result2 = jService.insertJibsaProfile(jp);
+		System.out.println(result2);
 		Image image = null;
 		
 		if(file != null && !file.isEmpty()) {
@@ -188,7 +191,6 @@ public class JibsaController {
 		map.put("mNo", j.getMemberNo());
 		map.put("type", 2);
 		Image img = jService.selectImage(map);
-		
 		if(j != null) {
 			model.addAttribute("img", img);
 			model.addAttribute("j", j);
@@ -208,15 +210,16 @@ public class JibsaController {
 		
 		Jibsa j = jService.selectJibsa(m.getMemberNo());
 		
+		String[] jTime = j.getAvailableHour().split(",");
 		String[] sArr = new String[7];
 		String[] eArr = new String[7];
 		for(int i = 0; i < 7; i++) {
-			sArr[i] = (j.getAvailableHour().split(",")[i]).substring(0, 2)
-					 +":"+(j.getAvailableHour().split(",")[i]).substring(2, 4);
+			sArr[i] = jTime[i].substring(0, 2)
+					 +":"+jTime[i].substring(2, 4);
 		}
 		for(int i = 0; i < 7; i++) {
-			eArr[i] = (j.getAvailableHour().split(",")[i]).substring(4, 6)
-					+":"+(j.getAvailableHour().split(",")[i]).substring(6, 8);
+			eArr[i] = jTime[i].substring(4, 6)
+					+":"+jTime[i].substring(6, 8);
 		}
 		
 		if(j != null) {
@@ -235,7 +238,6 @@ public class JibsaController {
 		
 		int result = jService.updateJibsaAvailableHour(j);
 		
-		System.out.println(j);
 		if(result > 0) {
 			return "redirect:jibsa_Main.js";
 		}else {
@@ -304,9 +306,14 @@ public class JibsaController {
 										Model model) {
 		
 		Board matching = jService.selectMatching(mcNo);
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("mNo", matching.getMemberNo());
+		map.put("type", 1);
+		Image image = jService.selectImage(map);
 		
 		if(matching != null) {
 			model.addAttribute("page", page);
+			model.addAttribute("image", image);
 			model.addAttribute("mc", matching);
 			return "jibsa_Modify_Schedule";
 		}else {

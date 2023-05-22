@@ -6,11 +6,6 @@
 <meta charset="UTF-8">
 <title>후기 작성</title>
 <style>
-	#reviewForm{
-		width: 700px;
-		margin: 0 auto;
-		text-align: left;
-	}
 	#subbtn{
 		background: rgb(26, 188, 156);
 	 	color: white;
@@ -18,10 +13,10 @@
 	 	border-radius: 10px;
 	 	padding: 10px;
 	 	width: 100px;
-	 	margin: 0 auto;
+	 	margin-left: 300px;
 	}
 </style>
-</head>
+</head> 
 <body>
 	<%@ include file="../common/top.jsp" %>
 	<%@ include file="../common/sideBar.jsp" %>

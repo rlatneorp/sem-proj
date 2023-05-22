@@ -48,7 +48,6 @@ public class AdminController {
 		return "redirect:admin_Member_Manage.ad";
 	}
 	
-	
 	@GetMapping("admin_Member_Manage.ad")
 	public String admin_Member_Manage(@RequestParam(value="page", required=false) Integer page,
 									  @RequestParam(value="searchType", required=false) String searchType,
@@ -68,7 +67,7 @@ public class AdminController {
 		map.put("searchText", searchText);
 		
 		int listCount = aService.getMemberCount(map);
-				
+		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
 		
 		ArrayList<Member> mList = aService.selectMemberList(pi, map);
@@ -142,8 +141,8 @@ public class AdminController {
 		}
 	}
 	
-	@PostMapping("admin_Members_update.ad")
-	public String admin_Members_update(@RequestParam(value="page", required=false) Integer page,
+	@PostMapping("admin_Members_Update.ad")
+	public String admin_Members_Update(@RequestParam(value="page", required=false) Integer page,
 									   @RequestParam(value="select", required=false) ArrayList<String> selArr,
 									   @RequestParam("selectType") String selectType,
 									   Model model,
@@ -209,7 +208,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("admin_Jibsa_Detail.ad")
-	public String admin_Jibsa_Detail(@RequestParam(value="mId", required=true) int mId,
+	public String admin_Jibsa_Detail(@RequestParam(value="mId", required=true) Integer mId,
 									 @RequestParam(value="page", required=false) Integer page,
 									 Model model,
 									 HttpSession session) {
@@ -222,15 +221,16 @@ public class AdminController {
 		}
 		Jibsa j = aService.selectJibsa(mId);
 
+		String[] jTime = j.getAvailableHour().split(",");
 		String[] sArr = new String[7];
 		String[] eArr = new String[7];
 		for(int i = 0; i < 7; i++) {
-			sArr[i] = (j.getAvailableHour().split(",")[i]).substring(0, 2)
-					 +":"+(j.getAvailableHour().split(",")[i]).substring(2, 4);
+			sArr[i] = jTime[i].substring(0, 2)
+					 +":"+jTime[i].substring(2, 4);
 		}
 		for(int i = 0; i < 7; i++) {
-			eArr[i] = (j.getAvailableHour().split(",")[i]).substring(4, 6)
-					+":"+(j.getAvailableHour().split(",")[i]).substring(6, 8);
+			eArr[i] = jTime[i].substring(4, 6)
+					+":"+jTime[i].substring(6, 8);
 		}
 		
 		Image image = aService.selectJibsaImage(j.getMemberNo());
@@ -273,8 +273,8 @@ public class AdminController {
 		}
 	}
 	
-	@PostMapping("admin_Jibsas_update.ad")
-	public String admin_Jibsas_update(@RequestParam(value="page", required=false) Integer page,
+	@PostMapping("admin_Jibsas_Update.ad")
+	public String admin_Jibsas_Update(@RequestParam(value="page", required=false) Integer page,
 									  @RequestParam(value="select", required=false) ArrayList<String> selArr,
 									  @RequestParam("selectType") String selectType,
 									  Model model,
@@ -490,8 +490,6 @@ public class AdminController {
 		if(page != null) {
 			currentPage = page;
 		}
-		System.out.println(mc.getStartDate());
-		System.out.println(mc.getEndDate());
 		
 		int result = aService.updateMatching(mc);
 		if(result > 0) {

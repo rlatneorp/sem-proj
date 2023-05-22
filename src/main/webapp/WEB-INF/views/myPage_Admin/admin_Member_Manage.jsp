@@ -27,7 +27,7 @@
 					    <br>
 					    <div class="tablediv">
 							<h4 class="text-start"><b>회원 관리</b></h4>
-					    	<form method="post" action="admin_Members_update.ad">
+					    	<form method="post" action="admin_Members_Update.ad">
 								<table class="table">
 						    		<input type="hidden" name="selectType" value="">
 							    	<div class="d-flex justify-content-end mb-2 me-1">

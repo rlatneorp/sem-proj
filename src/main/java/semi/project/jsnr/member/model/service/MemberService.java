@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import semi.project.jsnr.animal.model.vo.Animal;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
@@ -98,10 +99,6 @@ public class MemberService {
 		return mDAO.foundCheckId(sqlSession, map);
 	}
 
-	public int loginCheckInfo(HashMap<String, String> map) {
-		return mDAO.loginCheckInfo(sqlSession, map);
-	}
-
 	public int reservationListCount(int memberNo) {
 		return mDAO.reservationListCount(sqlSession, memberNo);
 	}
@@ -124,6 +121,16 @@ public class MemberService {
 
 	public int insertReview(Board b) {
 		return mDAO.insertReview(sqlSession, b);
+	}
+
+	public int updateReview(Board b) {
+		return mDAO.updateReview(sqlSession, b);
+	}
+
+	public int deleteReview(Board b) {
+		return mDAO.deleteReview(sqlSession, b);
+	public Animal selectAnimal(int mNo) {
+		return mDAO.selectAnimal(sqlSession, mNo);
 	}
 
 }

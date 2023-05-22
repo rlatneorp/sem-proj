@@ -19,12 +19,11 @@
 		        sysdate, 
 		        'N',
 		        #{license})
-	  
 	</insert>
 	
 	<insert id="insertJibsaProfile" >
-	    INSERT INTO jibsa_profile 
-	    VALUES (#{memberNo}, #{memberName}, #{profileTitle}, #{profileTag}, 'null')
+	    INSERT INTO jibsa_profile
+	    VALUES (#{memberNo}, #{jibsaName}, #{profileTitle}, #{profileTag}, null)
 	</insert>
 
 		

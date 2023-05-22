@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +31,12 @@
 					</div>
 					
 					<div class="container px-2 mb-5 mx-0">
-						<img src="https://github.com/mdo.png" alt="mdo" width="72" height="72" class="rounded-circle image-block me-3">
+						<c:if test="${empty image}">
+							<img src="${contextPath}/resources/image/logo.png" alt="로딩실패" width="72" height="72" class="rounded-circle image-block me-2">
+						</c:if>
+						<c:if test="${!empty image}">
+							<img src="${contextPath}/resources/uploadFiles/${image.renameName}" alt="로딩실패" width="48" height="48" class="rounded-circle image-block me-2">
+						</c:if>
 						<div class="d-inline-block align-middle">
 							<div class="row">
 								<span class="fs-5 fw-bold">${mc.memberName}</span>
@@ -102,6 +108,7 @@
 							
 							<div class="container text-center">
 								<button type="button" onclick="formSubmit()" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 120px; height: 40px;">변경요청하기</button>
+								<button onclick="location.href='${contextPath}/jibsa_Manage_Schedule.js'" type="button" class="cancelModal shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 120px; height: 40px;">뒤로가기</button>
 							</div>
 						</form>
 						

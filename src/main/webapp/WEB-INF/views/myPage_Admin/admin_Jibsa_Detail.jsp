@@ -174,12 +174,11 @@
 			
 			<div class="col-2">
 				<div class="card mb-5" style="border: 5px solid rgb(26, 188, 156); border-radius: 20px;">
-					<c:if test="${image eq null }">
+					<c:if test="${empty image}">
 						<img src="${ contextPath }/resources/image/logo.png">
-						사진없음
 					</c:if>
-					<c:if test="${image ne null }">
-						<img src="${image.imagePath}/${image.renameName}" alt="load 실패">
+					<c:if test="${!empty image}">
+						<img src="${ contextPath}/resources/uploadFiles/${image.renameName}" alt="load 실패">
 					</c:if>
 					
 				</div>

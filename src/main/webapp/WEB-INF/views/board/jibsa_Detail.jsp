@@ -18,8 +18,8 @@ body {font-family: 'Noto Sans KR', sans-serif;}
 <body>
 	<jsp:include page="../common/top.jsp"/>
 	<br><br>
-	<div class="row d-flex mb-5">
-		<div class="col-4 d-flex mx-auto">
+	<div class="row d-flex mb-5 justify-content-center">
+		<div class="col-4 d-flex">
 			<div class="row d-flex py-3 fs-6">
 				<p class="col-12 fs-4 mb-5 fw-bold">${jp.jibsaName} 집사님</p>
 				<p class="col-3">성별</p><p class="col-9">
@@ -106,7 +106,7 @@ body {font-family: 'Noto Sans KR', sans-serif;}
 					<img src="${ contextPath }/resources/image/logo.png">
 				</c:if>
 				<c:if test="${image ne null}">
-					<img src="${image.imagePath}/${image.renameName}">
+					<img src="${contextPath}/resources/uploadFiles/${image.renameName}">
 				</c:if>
 			</div>
 <!-- 			<div class="container text-center mt-5"> -->
