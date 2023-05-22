@@ -69,16 +69,11 @@
 		const btn = document.getElementById('foundPwdNext1');
 		
 		// 인증번호 확인
-		emailCode.addEventListener('keyup', () => {
-			console.log(num.value);
+		emailCode.addEventListener('change', () => {
 			if(emailCode.value == num.value){
-				check.innerText = '인증번호가 일치합니다. 다음 단계를 진행해주세요.';
-				check.style.color = 'green';
 				btn.disabled = false;
 				btn.style.background = 'rgb(26, 188, 156)';
 			} else {
-				check.innerText = '인증번호가 불일치합니다. 다시 한번 확인해주세요.';
-				check.style.color = 'red';
 				btn.disabled = true;
 				btn.style.background = 'gray';
 			}

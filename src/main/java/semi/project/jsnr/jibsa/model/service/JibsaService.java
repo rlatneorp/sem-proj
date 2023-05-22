@@ -85,14 +85,13 @@ public class JibsaService {
 		return jDAO.selectJibsa(sqlSession, memberNo);
 	}
 
-	public Jibsa selectJibsaChat(int jibsaNo) {
-		return jDAO.selectJibsaChat(sqlSession, jibsaNo);
-	}
-
 	public int insertTrainer(Jibsa j) {
 		return jDAO.insertTrainer(sqlSession, j);
 	}
 
+	public ArrayList<JibsaProfile> selectReserJibsa() {
+		return jDAO.selectReserJibsa(sqlSession);
+	}
 	
 	
 	

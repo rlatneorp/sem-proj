@@ -7,7 +7,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -47,7 +46,7 @@ public class HomeController {
 	private JavaMailSender mailSender;
 	
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+//	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 		/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -176,7 +175,7 @@ public class HomeController {
 			Random r = new Random(); // 인증번호 랜덤숫자
 			int num = r.nextInt(999999);
 			
-			if(m.getMemberEmail().equals(memberEmail)) { // 서버에 저장된 회원의 이메일과 입력한 이메일이 같으면 
+			if(m.getMemberId().equals(memberId)) { // 서버에 저장된 회원의 이메일과 입력한 이메일이 같으면 
 				session.setAttribute("memberEmail", m.getMemberEmail());
 				session.setAttribute("memberId", m.getMemberId());
 				

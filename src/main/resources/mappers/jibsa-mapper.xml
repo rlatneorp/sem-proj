@@ -207,11 +207,4 @@
 	    <result column="JIBSA_AVG_RATING" property="jibsaAvgRating"/>
 	</resultMap>
 	
-	<!-- 오픈카톡주소 -->
-	<select id="selectJibsaChat" resultMap="jibsaResultSet">
-		select chat_address
-		from jibsa
-		where member_no = #{jibsaNo}
-	</select>
-	
 </mapper>

@@ -77,12 +77,13 @@ public class JibsaDAO {
 		return sqlSession.selectOne("jibsaMapper.getMatchingCount", mNo);
 	}
 
-	public Jibsa selectJibsaChat(SqlSessionTemplate sqlSession, int jibsaNo) {
-		return sqlSession.selectOne("jibsaMapper.selectJibsaChat", jibsaNo);
-	}
-
 	public int insertTrainer(SqlSessionTemplate sqlSession, Jibsa j) {
 		return sqlSession.insert("jibsaMapper.insertTrainer", j);
 	}
+
+	public ArrayList<JibsaProfile> selectReserJibsa(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("jibsaMapper.selectReserJibsa");
+	}
+
 
 }

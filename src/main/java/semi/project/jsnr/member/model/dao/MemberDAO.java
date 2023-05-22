@@ -106,10 +106,6 @@ public class MemberDAO {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectReser", memberNo);
 	}
 
-	public ArrayList<JibsaProfile> selectReserJibsa(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("memberMapper.selectReserJibsa");
-	}
-
 	public int cancelMatching(SqlSessionTemplate sqlSession, int matchingNo) {
 		return sqlSession.update("memberMapper.cancelMatching", matchingNo);
 	}
@@ -124,6 +120,8 @@ public class MemberDAO {
 
 	public int deleteReview(SqlSessionTemplate sqlSession, Board b) {
 		return sqlSession.update("memberMapper.deleteReview", b);
+	}
+	
 	public Animal selectAnimal(SqlSessionTemplate sqlSession, int mNo) {
 		return sqlSession.selectOne("memberMapper.selectAnimal", mNo);
 	}

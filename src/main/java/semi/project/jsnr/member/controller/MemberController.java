@@ -84,12 +84,12 @@ public class MemberController {
 		model.addAttribute("matchingNo", matchingNo);
 		Member m = (Member)model.getAttribute("loginUser");
 		
-		ArrayList<JibsaProfile> jList = mService.selectReserJibsa();
+		ArrayList<JibsaProfile> jList = jService.selectReserJibsa();
 		
 		ArrayList<Board> rList = mService.selectReserList(m.getMemberNo());
 		
 		// 해당 집사의 오픈 카톡방 주소 가져오기
-		Jibsa jChat = jService.selectJibsaChat(jibsaNo);
+		String jChat = ((Jibsa)jService.selectJibsa(jibsaNo)).getChatAddress();
 		
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("mNo", jibsaNo);
@@ -99,7 +99,7 @@ public class MemberController {
 		if(!jList.isEmpty()) {
 			model.addAttribute("jList", jList);
 			model.addAttribute("rList", rList);
-			model.addAttribute("chat", jChat.getChatAddress());
+			model.addAttribute("chat", jChat);
 			model.addAttribute("image", img);
 			
 			return "member_Reservation_Detail";
