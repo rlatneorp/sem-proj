@@ -28,6 +28,7 @@
 	<div class="container text-center mb-5">
 		<div class="filter d-flex justify-content-end mb-5">
 			<div class="filter-group d-flex">
+				<button onclick="location.href='${contextPath}/jibsa_List.bo'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">전체</button>
 				<button onclick="location.href='${contextPath}/jibsa_List.bo?type=1'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">집사</button>
 				<button onclick="location.href='${contextPath}/jibsa_List.bo?type=2'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">훈련사</button>
 			</div>
@@ -79,51 +80,51 @@
 				</div>
 				
 			</c:forEach>
-			
-			
-			<nav aria-label="Standard pagination example" style="float: center;">
-				<ul class="pagination">
-          			<li class="page-item">
-          				<c:url var="goBack" value="${ loc }">
-          					<c:if test="${ pi.currentPage-1 lt 1 }">
-	          					<c:param name="page" value="1"></c:param>
-	          					<c:param name="type" value="${type}"></c:param>
-          					</c:if>
-          					<c:if test="${ pi.currentPage-1 gt 0 }">
-	          					<c:param name="page" value="${ pi.currentPage-1 }"></c:param>
-	          					<c:param name="type" value="${type}"></c:param>
-          					</c:if>
-          				</c:url>
-          				<a class="page-link" href="${ goBack }" aria-label="Previous">
-          					<span aria-hidden="true">&laquo;</span>
-           				</a>
-          			</li>
-          			<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-         				<c:url var="goNum" value="${ loc }">
-         					<c:param name="page" value="${ p }"></c:param>
-          					<c:param name="type" value="${type}"></c:param>
-         				</c:url>
-          				<li class="page-item"><a class="page-link" href="${ goNum }">${ p }</a></li>
-          			</c:forEach>
-          			<li class="page-item">
-          				<c:url var="goNext" value="${ loc }">
-          					<c:if test="${ pi.currentPage+1 gt pi.endPage }">
-	          					<c:param name="page" value="${ pi.endPage }"></c:param>
-	          					<c:param name="type" value="${type}"></c:param>
-          					</c:if>
-          					<c:if test="${ pi.currentPage+1 le pi.endPage }">
-	          					<c:param name="page" value="${ pi.currentPage+1 }"></c:param>
-	          					<c:param name="type" value="${type}"></c:param>
-          					</c:if>
-          				</c:url>
-          				<a class="page-link" href="${ goNext }" aria-label="Next">
-          					<span aria-hidden="true">&raquo;</span>
-          				</a>
-          			</li>
-   				</ul>
-     		</nav>
-			
 		</div>
+		<%@ include file="../common/paging.jsp" %>
+		
+<!-- 			<nav aria-label="Standard pagination example" style="float: center;"> -->
+<!-- 				<ul class="pagination"> -->
+<!--           			<li class="page-item"> -->
+<%--           				<c:url var="goBack" value="${ loc }"> --%>
+<%--           					<c:if test="${ pi.currentPage-1 lt 1 }"> --%>
+<%-- 	          					<c:param name="page" value="1"></c:param> --%>
+<%-- 	          					<c:param name="type" value="${type}"></c:param> --%>
+<%--           					</c:if> --%>
+<%--           					<c:if test="${ pi.currentPage-1 gt 0 }"> --%>
+<%-- 	          					<c:param name="page" value="${ pi.currentPage-1 }"></c:param> --%>
+<%-- 	          					<c:param name="type" value="${type}"></c:param> --%>
+<%--           					</c:if> --%>
+<%--           				</c:url> --%>
+<%--           				<a class="page-link" href="${ goBack }" aria-label="Previous"> --%>
+<!--           					<span aria-hidden="true">&laquo;</span> -->
+<!--            				</a> -->
+<!--           			</li> -->
+<%--           			<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p"> --%>
+<%--          				<c:url var="goNum" value="${ loc }"> --%>
+<%--          					<c:param name="page" value="${ p }"></c:param> --%>
+<%--           					<c:param name="type" value="${type}"></c:param> --%>
+<%--          				</c:url> --%>
+<%--           				<li class="page-item"><a class="page-link" href="${ goNum }">${ p }</a></li> --%>
+<%--           			</c:forEach> --%>
+<!--           			<li class="page-item"> -->
+<%--           				<c:url var="goNext" value="${ loc }"> --%>
+<%--           					<c:if test="${ pi.currentPage+1 gt pi.endPage }"> --%>
+<%-- 	          					<c:param name="page" value="${ pi.endPage }"></c:param> --%>
+<%-- 	          					<c:param name="type" value="${type}"></c:param> --%>
+<%--           					</c:if> --%>
+<%--           					<c:if test="${ pi.currentPage+1 le pi.endPage }"> --%>
+<%-- 	          					<c:param name="page" value="${ pi.currentPage+1 }"></c:param> --%>
+<%-- 	          					<c:param name="type" value="${type}"></c:param> --%>
+<%--           					</c:if> --%>
+<%--           				</c:url> --%>
+<%--           				<a class="page-link" href="${ goNext }" aria-label="Next"> --%>
+<!--           					<span aria-hidden="true">&raquo;</span> -->
+<!--           				</a> -->
+<!--           			</li> -->
+<!--    				</ul> -->
+<!--      		</nav> -->
+		
 	</div>
 	
 	<%@ include file="../common/bottom.jsp"%>

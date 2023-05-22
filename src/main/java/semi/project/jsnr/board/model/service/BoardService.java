@@ -46,9 +46,6 @@ public interface BoardService {
 
 	void deleteReply(Board b);
 
-
-//	int jibsaReviewCount(String jibsaName, int i);
-
 	ArrayList<Board> jibsaReview(String jibsaName, boolean yn);
 
 	ArrayList<Board> jibsaReviewDateSearch(HashMap<String, String> map, boolean yn);
@@ -59,11 +56,7 @@ public interface BoardService {
 
 	int sortListCount(HashMap<String, String> map);
 
-
-//	ArrayList<Board> jibsaReview(String jibsaName);
-
-
-
+	Image selectJibsaImage(int mId);
 
 
 

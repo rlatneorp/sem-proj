@@ -344,4 +344,10 @@
 	      order by m.member_name desc
 	    </if>
 	</select>
+	<select id="selectJibsaImage" resultMap="imageResultSet">
+		select *
+		from image
+		where image_level = '2'
+			  and member_no = #{mId}
+	</select>	
 </mapper>
