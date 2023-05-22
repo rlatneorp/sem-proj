@@ -11,6 +11,7 @@ import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.common.model.vo.PageInfo;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.matching.model.vo.Matching;
 import semi.project.jsnr.member.model.vo.Member;
 
@@ -45,7 +46,7 @@ public class JibsaDAO {
 		return sqlSession.update("jibsaMapper.updateJibsaAvailableHour", j);
 	}
 
-	public int insertJibsaProfile(SqlSessionTemplate sqlSession, Jibsa j) {
+	public int insertJibsaProfile(SqlSessionTemplate sqlSession, JibsaProfile jp) {
 		return sqlSession.insert("jibsaMapper.insertJibsaProfile");
 	}
 
@@ -78,6 +79,10 @@ public class JibsaDAO {
 
 	public Jibsa selectJibsaChat(SqlSessionTemplate sqlSession, int jibsaNo) {
 		return sqlSession.selectOne("jibsaMapper.selectJibsaChat", jibsaNo);
+	}
+
+	public int insertTrainer(SqlSessionTemplate sqlSession, Jibsa j) {
+		return sqlSession.insert("jibsaMapper.insertTrainer", j);
 	}
 
 }
