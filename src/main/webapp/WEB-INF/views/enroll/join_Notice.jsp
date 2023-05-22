@@ -133,7 +133,6 @@
 
 <script>
 	const checkAgree = document.getElementsByName('checkAgree');
-	
 	const checkAllCheckbox = document.getElementById('agreeAll');
 	// 전체 동의하게 하는 함수, 전체 해제도 가능
 	checkAllCheckbox.onclick = function() {
@@ -186,8 +185,6 @@
 		  
 		  location.href= "${ contextPath }/enrollPage.do"
 	}
-	
-	
 </script>
 
 <%@ include file="../common/bottom.jsp" %>

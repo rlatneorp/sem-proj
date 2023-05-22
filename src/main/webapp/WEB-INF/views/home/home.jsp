@@ -200,12 +200,12 @@
 	
 `	<%@ include file="../common/bottom.jsp" %>
 	<script>
+		// 각각의 이미지와 링크를 등록하는 함수
 		const images = [
 			{src: 'resources/image/광고(1).png', link: 'https://www.naver.com'},
 			{src: 'resources/image/광고(2).png', link: 'https://www.google.com'},
 			{src: 'resources/image/광고(3).png', link: 'https://www.daum.net'},
 			{src: 'resources/image/광고(4).png', link: 'https://www.nate.com'},
-			
 		];
 
 		const ad = document.querySelector('.ad');
@@ -250,7 +250,6 @@
 			const link = images[currentImageIndex].link;
 			window.open(link);
 		});
-		
 		
 	</script>
 	
