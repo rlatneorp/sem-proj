@@ -342,4 +342,22 @@
 		where image_level = '2'
 			  and member_no = #{mId}
 	</select>	
+	
+	
+<!-- 	<select id="member_Review" resultMap="boardResultSet"> -->
+<!-- 		select mc.matching_no, mc.animal_no, a.animal_name, a.animal_kind, mc.start_date, mc.end_date, mc.matching_place, -->
+<!--     		  mc.review_content, mc.review_rating, mc.review_count, mc.jibsa_comment, m.member_name, m.member_no, jp.jibsa_name,  -->
+<!--     		  jp.member_no, mc.matching_status, mc.review_status -->
+<!-- 		from matching mc -->
+<!-- 		     join animal a on(a.animal_no = mc.animal_no) -->
+<!-- 		     join jibsa_profile jp on(mc.jibsa_no = jp.member_no) -->
+<!-- 		     join member m on(mc.member_no = m.member_no) -->
+<!-- 	</select> -->
+	
+<!-- 	<update id="member_Review_Detail"> -->
+<!-- 		update matching -->
+<!-- 		set review_content = #{reviewContent}, review_status = 'Y' -->
+<!-- 		where review_status = 'N' and matching_no = #{matchingNo} -->
+<!-- 	</update> -->
+	
 </mapper>

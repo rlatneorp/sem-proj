@@ -158,6 +158,16 @@ public class BoardServiceImpl implements BoardService{
 		return bDAO.selectJibsaImage(sqlSession, mId);
 	}
 		
+//	@Override
+//	public ArrayList<Board> member_Review(String userName) {
+//		return bDAO.member_Review(sqlSession, userName);
+//	}
+//
+//	@Override
+//	public ArrayList<Board> member_Review_Detail(String userName) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 }
 

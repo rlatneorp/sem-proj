@@ -339,31 +339,32 @@ public class BoardController {
 	  
 	}
 	
-	@RequestMapping("member_Review_Detail.me")
-	public String member_Review_Detail(HttpSession session, Model model, @RequestParam(value="matchingNo", required=false) Integer matchingNo) {
-		
-		Member m = (Member)session.getAttribute("loginUser");
-		String userName = m.getMemberName();
-		String login = null;
-		if(m != null) {
-			login = userName;
-		}  
-		boolean yn = false;
-		if(!userName.equals(login)) {
-			yn = true;
-		}
-		
-		ArrayList<Board> b = bService.member_Review_Detail(userName);
-		
-		if(b != null) {
-			model.addAttribute("b", b);
-			model.addAttribute("matchingNo", matchingNo);
-			return "member_Review_Detail";
-		} else {
-			throw new BoardException("게시글 조회를 실패하였습니다.");
-		}
-		
-	}
+//	@RequestMapping("member_Review_Detail.me")
+//	public String member_Review_Detail(HttpSession session, Model model, @RequestParam(value="matchingNo", required=false) Integer matchingNo) {
+//		
+//		Member m = (Member)session.getAttribute("loginUser");
+//		String userName = m.getMemberName();
+//		String login = null;
+//		if(m != null) {
+//			login = userName;
+//		}  
+//		boolean yn = false;
+//		if(!userName.equals(login)) {
+//			yn = true;
+//		}
+//		
+//		ArrayList<Board> b = bService.member_Review_Detail(userName);
+//		
+//		if(b != null) {
+//			model.addAttribute("b", b);
+//			model.addAttribute("matchingNo", matchingNo);
+//			return "member_Review_Detail";
+//		} else {
+//			throw new BoardException("게시글 조회를 실패하였습니다.");
+//		}
+//		
+//	}
+//	
 	
 //	@PostMapping("member_Review_Detail.me")
 //	public String member_Review_Detail(HttpSession session, @ModelAttribute Board b, @RequestParam("page") int page, Model model) {

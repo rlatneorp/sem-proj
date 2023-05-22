@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import semi.project.jsnr.animal.model.vo.Image;
+import semi.project.jsnr.board.model.service.BoardService;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
