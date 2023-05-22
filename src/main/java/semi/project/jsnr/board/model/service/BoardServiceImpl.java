@@ -161,6 +161,11 @@ public class BoardServiceImpl implements BoardService{
 	public int sortListCount(HashMap<String, String> map) {
 		return bDAO.sortListCount(sqlSession, map);
 	}
+
+	@Override
+	public Image selectJibsaImage(int mId) {
+		return bDAO.selectJibsaImage(sqlSession, mId);
+	}
 		
 
 }

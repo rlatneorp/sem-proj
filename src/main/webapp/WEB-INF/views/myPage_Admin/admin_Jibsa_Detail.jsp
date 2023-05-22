@@ -24,7 +24,7 @@
 			<input type="hidden" name="page" value="${page}">
 			<input type="hidden" name="memberNo" value="${j.memberNo }">
 <!-- 			<div class="col-3"></div> -->
-			<div class="col-4 d-flex">
+			<div class="col-5 d-flex">
 				<div class="row d-flex py-3 fs-6" id="divBox">
 					<p class="col-12 fs-4 mb-5 fw-bold">${j.memberName } 집사님</p>
 					<p class="col-4">이름</p>
@@ -172,14 +172,14 @@
 				</div>
 			</div>
 			
-			<div class="col-3">
+			<div class="col-2">
 				<div class="card mb-5" style="border: 5px solid rgb(26, 188, 156); border-radius: 20px;">
 					<c:if test="${image eq null }">
 						<img src="${ contextPath }/resources/image/logo.png">
 						사진없음
 					</c:if>
 					<c:if test="${image ne null }">
-						<img src="${image.imagePath}/${image.renameName}">
+						<img src="${image.imagePath}/${image.renameName}" alt="load 실패">
 					</c:if>
 					
 				</div>

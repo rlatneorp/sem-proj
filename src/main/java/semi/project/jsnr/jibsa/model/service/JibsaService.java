@@ -12,6 +12,7 @@ import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.common.model.vo.PageInfo;
 import semi.project.jsnr.jibsa.model.dao.JibsaDAO;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.matching.model.vo.Matching;
 import semi.project.jsnr.member.model.vo.Member;
 
@@ -52,8 +53,8 @@ public class JibsaService {
 		return jDAO.insertImage(sqlSession, image);
 	}
 
-	public int insertJibsaProfile(Jibsa j) {
-		return jDAO.insertJibsaProfile(sqlSession, j);
+	public int insertJibsaProfile(JibsaProfile jp) {
+		return jDAO.insertJibsaProfile(sqlSession, jp);
 	}
 
 	public ArrayList<Board> selectMatchingList(PageInfo pi, int mNo) {
@@ -86,6 +87,10 @@ public class JibsaService {
 
 	public Jibsa selectJibsaChat(int jibsaNo) {
 		return jDAO.selectJibsaChat(sqlSession, jibsaNo);
+	}
+
+	public int insertTrainer(Jibsa j) {
+		return jDAO.insertTrainer(sqlSession, j);
 	}
 
 	

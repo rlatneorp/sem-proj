@@ -34,7 +34,11 @@ public class AdminController {
 	
 	@GetMapping("admin_Main.ad")
 	public String admin_Main(@RequestParam(value="page", required=false) Integer page,
-							 Model model) {
+							 Model model,
+							 HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -49,7 +53,11 @@ public class AdminController {
 	public String admin_Member_Manage(@RequestParam(value="page", required=false) Integer page,
 									  @RequestParam(value="searchType", required=false) String searchType,
 									  @RequestParam(value="searchText", required=false) String searchText,
-									  Model model) {
+									  Model model,
+									  HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -86,7 +94,11 @@ public class AdminController {
 	@GetMapping("admin_Member_Detail.ad")
 	public String admin_Member_Detail(@RequestParam(value="mId", required=true) int mId,
 									  @RequestParam(value="page", required=false) Integer page,
-									  Model model) {
+									  Model model,
+									  HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -115,7 +127,11 @@ public class AdminController {
 	@PostMapping("admin_Member_Update.ad")
 	public String admin_Member_Update(@ModelAttribute Member m,
 									  @RequestParam(value="page", required=false) Integer page,
-									  Model model) {
+									  Model model,
+									  HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int result = aService.updateMember(m);
 		if( result > 0 ) {
 			model.addAttribute("page", page);
@@ -130,7 +146,11 @@ public class AdminController {
 	public String admin_Members_update(@RequestParam(value="page", required=false) Integer page,
 									   @RequestParam(value="select", required=false) ArrayList<String> selArr,
 									   @RequestParam("selectType") String selectType,
-									   Model model) {
+									   Model model,
+									   HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		if(selArr != null) {
 			int result = 0;
 			if(selectType.equals("delete")) {
@@ -156,7 +176,11 @@ public class AdminController {
 	public String admin_Jibsa_Manage(@RequestParam(value="page", required=false) Integer page,
 								     @RequestParam(value="searchType", required=false) String searchType,
 								     @RequestParam(value="searchText", required=false) String searchText,
-			 						 Model model) {
+			 						 Model model,
+			 						 HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -187,7 +211,11 @@ public class AdminController {
 	@GetMapping("admin_Jibsa_Detail.ad")
 	public String admin_Jibsa_Detail(@RequestParam(value="mId", required=true) int mId,
 									 @RequestParam(value="page", required=false) Integer page,
-									 Model model) {
+									 Model model,
+									 HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -223,8 +251,11 @@ public class AdminController {
 	@PostMapping("admin_Jibsa_Update.ad")
 	public String admin_Jibsa_Update(@ModelAttribute Jibsa j,
 									 @RequestParam(value="page", required=false) Integer page,
-									 Model model) {
-		System.out.println(j);
+									 Model model,
+									 HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		
 		Member m = new Member();
 		m.setMemberNo(j.getMemberNo());
@@ -246,7 +277,11 @@ public class AdminController {
 	public String admin_Jibsas_update(@RequestParam(value="page", required=false) Integer page,
 									  @RequestParam(value="select", required=false) ArrayList<String> selArr,
 									  @RequestParam("selectType") String selectType,
-									  Model model) {
+									  Model model,
+									  HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		if(selArr != null) {
 			int result = 0;
 			if(selectType.equals("delete")) {
@@ -271,7 +306,11 @@ public class AdminController {
 	public String admin_Review_Manage(@RequestParam(value="page", required=false) Integer page,
 									  @RequestParam(value="searchType", required=false) String searchType,
 								      @RequestParam(value="searchText", required=false) String searchText,
-									  Model model) {
+									  Model model,
+									  HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -301,7 +340,11 @@ public class AdminController {
 	@GetMapping("admin_Review_Detail.ad")
 	public String admin_Review_Detail(@RequestParam(value="page", required=false) Integer page,
 									  @RequestParam("rId") int rId,
-			  						  Model model) {
+			  						  Model model,
+			  						  HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -321,7 +364,11 @@ public class AdminController {
 	@PostMapping("admin_Review_Update.ad")
 	public String admin_Review_Update(@RequestParam(value="page", required=false) Integer page,
 								   	  @ModelAttribute Board b,
-								   	  Model model) {
+								   	  Model model,
+								   	  HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -342,7 +389,11 @@ public class AdminController {
 	public String admin_Reviews_Update(@RequestParam(value="page", required=false) Integer page,
 									   @RequestParam(value="select", required=false) ArrayList<String> selArr,
 									   @RequestParam("selectType") String selectType,
-									   Model model) {
+									   Model model,
+									   HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		if(selArr != null) {
 			int result = 0;
 			if(selectType.equals("delete")) {
@@ -367,7 +418,11 @@ public class AdminController {
 	public String admin_Matching_Manage(@RequestParam(value="page", required=false) Integer page,
 										@RequestParam(value="searchType", required=false) String searchType,
 									    @RequestParam(value="searchText", required=false) String searchText,
-										Model model) {
+										Model model,
+										HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -399,7 +454,11 @@ public class AdminController {
 	@GetMapping("admin_Matching_Detail.ad")
 	public String admin_Matching_Detail(@RequestParam(value="page", required=false) Integer page,
 									  	@RequestParam("mcId") int mcId,
-									  	Model model) {
+									  	Model model,
+									  	HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -422,7 +481,11 @@ public class AdminController {
 	@PostMapping("admin_Matching_Update.ad")
 	public String admin_Matching_Update(@RequestParam(value="page", required=false) Integer page,
 										@ModelAttribute Matching mc,
-										Model model) {
+										Model model,
+									  	HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -444,7 +507,11 @@ public class AdminController {
 	public String admin_Matchings_Update(@RequestParam(value="page", required=false) Integer page,
 										 @RequestParam(value="select", required=false) ArrayList<String> selArr,
 										 @RequestParam("selectType") String selectType,
-										 Model model) {
+										 Model model,
+									  	 HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		if(selArr != null) {
 			int result = 0;
 			if(selectType.equals("delete")) {
@@ -469,7 +536,11 @@ public class AdminController {
 	public String admin_FAQ_Manage(@RequestParam(value="page", required=false) Integer page,
 								   @RequestParam(value="searchType", required=false) String searchType,
 								   @RequestParam(value="searchText", required=false) String searchText,
-								   Model model) {
+								   Model model,
+								   HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -498,7 +569,11 @@ public class AdminController {
 	@GetMapping("admin_FAQ_Detail.ad")
 	public String admin_FAQ_Detail(@RequestParam(value="page", required=false) Integer page,
 								   @RequestParam("fId") int fId,
-								   Model model) {
+								   Model model,
+								   HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -517,7 +592,11 @@ public class AdminController {
 	@PostMapping("admin_FAQ_Update.ad")
 	public String admin_FAQ_Update(@RequestParam(value="page", required=false) Integer page,
 								   @ModelAttribute Faq f,
-								   Model model) {
+								   Model model,
+								   HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -536,7 +615,11 @@ public class AdminController {
 	public String admin_FAQs_Update(@RequestParam(value="page", required=false) Integer page,
 									@RequestParam(value="select", required=false) ArrayList<String> selArr,
 									@RequestParam("selectType") String selectType,
-									Model model) {
+									Model model,
+									HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		if(selArr != null) {
 			int result = 0;
 			if(selectType.equals("delete")) {
@@ -559,7 +642,11 @@ public class AdminController {
 	
 	@GetMapping("admin_FAQ_Write.ad")
 	public String admin_FAQ_Write(@RequestParam(value="page", required=false) Integer page,
-			   					  Model model) {
+			   					  Model model,
+			   					  HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -573,6 +660,9 @@ public class AdminController {
 								   @ModelAttribute Faq f,
 								   HttpSession session,
 				 				   Model model) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 		currentPage = page;
@@ -594,7 +684,11 @@ public class AdminController {
 	@GetMapping("admin_FAQ_Delete.ad")
 	public String admin_FAQ_Delete(@RequestParam(value="page", required=false) Integer page,
 								   @RequestParam("fId") String encodeFId,
-								   Model model) {
+								   Model model,
+								   HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -621,7 +715,11 @@ public class AdminController {
 	public String admin_QNA_Manage(@RequestParam(value="page", required=false) Integer page,
 								   @RequestParam(value="searchType", required=false) String searchType,
 								   @RequestParam(value="searchText", required=false) String searchText,
-								   Model model) {
+								   Model model,
+								   HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -652,7 +750,11 @@ public class AdminController {
 	@GetMapping("admin_QNA_Detail.ad")
 	public String admin_QNA_Detail(@RequestParam(value="page", required=false) Integer page,
 								   @RequestParam("qId") int qId,
-								   Model model) {
+								   Model model,
+								   HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -672,7 +774,11 @@ public class AdminController {
 	@PostMapping("admin_QNA_Update.ad")
 	public String admin_QNA_Update(@RequestParam(value="page", required=false) Integer page,
 								   @ModelAttribute Qna q,
-								   Model model) {
+								   Model model,
+								   HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -693,7 +799,11 @@ public class AdminController {
 	public String admin_QNAs_Update(@RequestParam(value="page", required=false) Integer page,
 									@RequestParam(value="select", required=false) ArrayList<String> selArr,
 									@RequestParam("selectType") String selectType,
-									Model model) {
+									Model model,
+									HttpSession session) {
+		if(((Member)session.getAttribute("loginUser")).getIsAdmin().equals("N")) {
+			return "admin_Reject_Page";
+		}
 		if(selArr != null) {
 			int result = 0;
 			if(selectType.equals("delete")) {
@@ -713,8 +823,4 @@ public class AdminController {
 			return "redirect:admin_QNA_Manage.ad";
 		}
 	}
-	
-	
-		
-
 }

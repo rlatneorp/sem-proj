@@ -83,12 +83,12 @@ public class MemberController {
 		
 		ArrayList<Board> rList = mService.selectReserList(m.getMemberNo());
 		
-		Jibsa j = jService.selectJibsaChat(jibsaNo);
+//		Jibsa j = jService.selectJibsaChat(jibsaNo);
 		
 		if(!jList.isEmpty()) {
 			model.addAttribute("jList", jList);
 			model.addAttribute("rList", rList);
-			model.addAttribute("chat", j.getChatAddress());
+//			model.addAttribute("chat", j.getChatAddress());
 			
 			return "member_Reservation_Detail";
 		} else {

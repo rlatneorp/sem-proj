@@ -21,7 +21,7 @@
 	</div>
 	
 	<div class="text-center">
-		<div class="card shadow mb-4 mainBox">
+		<div class="card shadow mb-4 mainBox" style="width: 1000px">
 			<div class="card-body text-start p-5">
 				<div>
 					<p class="fs-2 mb-5 fw-bold">마이페이지</p>
@@ -45,10 +45,13 @@
 									<span class="fs-6">${mc.animalKind}</span>
 								</div>
 							</div>
-							<div class="col-5 row">
+							<div class="col-4 row">
 								<span class="fs-6 col-12">${fn:substring(mc.startDate,0,10)} ${fn:substring(mc.startDate,11,13)}:${fn:substring(mc.startDate,13,15)}</span>
 								<span class="fs-6 col-12">~${fn:substring(mc.endDate,0,10)} ${fn:substring(mc.endDate,11,13)}:${fn:substring(mc.endDate,13,15)}</span>
 								<span class="fs-6 col-12">${fn:substring(mc.matchingPlace,0,16)}</span>
+							</div>
+							<div class="col-1 d-flex align-items-center">
+								<p class="isEnd"></p>
 							</div>
 							
 							<div class="col-2 d-flex align-items-center px-0">
@@ -88,7 +91,9 @@
 					
 					<!-- 페이징 -->
 					<%@ include file="../common/paging.jsp" %>
-					
+					<div class="text-center">
+						<button type="button" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;" onclick="location.href='${contextPath}/jibsa_Main.js'">뒤로가기</button>
+					</div>
 			    </div>
 			</div>
 		</div>

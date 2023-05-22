@@ -106,6 +106,7 @@ public class BoardController {
 								Model model) {
 		Jibsa jibsa = bService.getJibsaInfo(mId);
 		JibsaProfile jp = bService.getJibsaProfile(mId);
+		Image image = bService.selectJibsaImage(mId);
 		
 		String[] arr = new String[7];
 		for(int i = 0; i < 7; i++) {
@@ -113,9 +114,9 @@ public class BoardController {
 		}
 		jp.setAvailableHourArr(arr);
 		
-		System.out.println(jp);
 		
 		if(jibsa != null) {
+			model.addAttribute("image", image);
 			model.addAttribute("page", page);
 			model.addAttribute("jibsa", jibsa);
 			model.addAttribute("jp", jp);

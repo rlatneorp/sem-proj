@@ -141,5 +141,9 @@ public class BoardDAO {
 	public int sortListCount(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
 		return sqlSession.selectOne("boardMapper.sortListCount", map);
 	}
+
+	public Image selectJibsaImage(SqlSessionTemplate sqlSession, int mId) {
+		return sqlSession.selectOne("boardMapper.selectJibsaImage", mId);
+	}
 }
 

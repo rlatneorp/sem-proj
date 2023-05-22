@@ -19,7 +19,7 @@
 					<p class="fs-2 fw-bold">집사 마이페이지</p>
 					
 					<div class="container px-0 mb-5 mx-0">
-						<img src="${imagePath}/${img.renameName}" alt="로딩실패" width="48" height="48" class="rounded-circle image-block me-2">
+						<img src="${img.imagePath}/${img.renameName}" alt="로딩실패" width="48" height="48" class="rounded-circle image-block me-2">
 						<span class="text-small fw-bold">${j.memberName} 집사님</span>
 					</div>
 					

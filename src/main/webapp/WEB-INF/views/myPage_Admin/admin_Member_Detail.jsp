@@ -20,17 +20,17 @@
 			<div class="col-4 d-flex">
 				<div class="row d-flex py-3 fs-6" id="divBox">
 					<p class="col-12 fs-4 mb-5 fw-bold">${m.memberName } 회원님</p>
-					<p class="col-4">아이디</p><p class="col-8">${m.memberId }</p>
-					<p class="col-4">이름</p><p class="col-8"><input type="text" name="memberName" value="${m.memberName }"></p>
-					<p class="col-4">이메일</p><p class="col-8"><input type="text" name="memberEmail" value="${m.memberEmail }"></p>
+					<p class="col-6">아이디</p><p class="col-6">${m.memberId }</p>
+					<p class="col-6">이름</p><p class="col-6"><input type="text" class="w-100" name="memberName" value="${m.memberName }"></p>
+					<p class="col-6">이메일</p><p class="col-6"><input type="text" class="w-100" name="memberEmail" value="${m.memberEmail }"></p>
 
-					<p class="col-4">관리자여부</p><p class="col-2">${m.isAdmin }</p>
+					<p class="col-6">관리자여부</p><p class="col-2">${m.isAdmin }</p>
 					<input type="hidden" name="isAdmin" value="${m.isAdmin }">
 					<button type="button" class="col-1 rounded">Y</button>
-					<button type="button" class="col-1 rounded">N</button><p class="col-4"></p>
+					<button type="button" class="col-1 rounded">N</button><p class="col-2"></p>
 
-					<p class="col-2">집사여부</p>
-					<div class="col-2" id="applyCheck">
+					<p class="col-3">집사여부</p>
+					<div class="col-3" id="applyCheck">
 						<c:if test="${m.applyJibsa eq 'Y'}">(신청완료)</c:if>
 						<c:if test="${m.applyJibsa eq 'N'}">(신청대기)</c:if>
 					</div>
@@ -42,19 +42,23 @@
 					<c:if test="${m.applyJibsa eq 'N'}">
 						<button type="button" class="col-1 rounded"></button>
 					</c:if>
-					<button type="button" class="col-1 rounded">N</button><p class="col-4"></p>
+					<button type="button" class="col-1 rounded">N</button><p class="col-2"></p>
 
-					<p class="col-4">활동여부</p><p class="col-2">${m.memberStatus }</p>
+					<p class="col-6">활동여부</p><p class="col-2">${m.memberStatus }</p>
 					<input type="hidden" name="memberStatus" value="${m.memberStatus }">
 					<button type="button" class="col-1 rounded">Y</button>
-					<button type="button" class="col-1 rounded">N</button><p class="col-4"></p>
+					<button type="button" class="col-1 rounded">N</button><p class="col-2"></p>
 
-					<p class="col-4">가입날짜</p><p class="col-8">${m.enrollDate}</p>
-					<p class="col-4">탈퇴날짜</p><p class="col-8">${m.exitDate}</p>
-					<p class="col-4">신고접수</p><p class="col-8">${m.blackList}</p>
-					<p class="col-4">전화번호</p><p class="col-8"><input type="text" name="memberPhone" value="${m.memberPhone }"></p>
-					<p class="col-4">주소</p><p class="col-8"><input type="text" name="memberAddress" value="${m.memberAddress }"></p>
-					<p class="col-4">등록 동물 수</p><p class="col-8">${m.animalCount }</p>
+					<p class="col-6">가입날짜</p><p class="col-6">${m.enrollDate}</p>
+					<p class="col-6">탈퇴날짜</p><p class="col-6">${m.exitDate}</p>
+					<p class="col-6">신고접수</p><p class="col-6">${m.blackList}</p>
+					<p class="col-6">전화번호</p><p class="col-6"><input type="text" class="w-100" name="memberPhone" value="${m.memberPhone }"></p>
+					<p class="col-6">등록 동물 수</p><p class="col-6">${m.animalCount }</p>
+					<p class="col-3">주소</p>
+					<p class="col-9">
+						<textarea class="w-100" name="memberAddress" rows="4">${m.memberAddress }</textarea>
+					</p>
+<%-- 					<input type="text" name="memberAddress" value="${m.memberAddress }"></p> --%>
 				</div>
 			</div>
 			

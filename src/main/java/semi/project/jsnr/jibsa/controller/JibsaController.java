@@ -28,6 +28,7 @@ import semi.project.jsnr.common.model.vo.PageInfo;
 import semi.project.jsnr.jibsa.model.exception.JibsaException;
 import semi.project.jsnr.jibsa.model.service.JibsaService;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
+import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.matching.model.vo.Matching;
 import semi.project.jsnr.member.model.service.MemberService;
 import semi.project.jsnr.member.model.vo.Member;
@@ -64,7 +65,8 @@ public class JibsaController {
 	}
 	
 	@PostMapping("insertJibsa.js")
-	public String insertJibsa(@ModelAttribute Jibsa j,  HttpSession session,
+	public String insertJibsa(@ModelAttribute Jibsa j,  
+							@ModelAttribute JibsaProfile jp , HttpSession session,
 							Model model, HttpServletRequest request,
 							@RequestParam("file") MultipartFile file) {
 		
@@ -75,7 +77,7 @@ public class JibsaController {
 		j.setMemberName(memberName);
 		
 		int result1 = jService.insertJibsa(j);
-//		int result2 = jService.insertJibsaProfile(j);
+//		int result2 = jService.insertJibsaProfile(jp);
 		
 		Image image = null;
 		
@@ -91,10 +93,51 @@ public class JibsaController {
 				image.setMemberNo(memberNo);
 				
 				int insertImage = jService.insertImage(image);
-				model.addAttribute("image", insertImage);
+				model.addAttribute("image", image);
 			}
 		} else {
-			System.out.println("사진을 등록하지 않았습니다.");
+			throw new JibsaException("사진 등록에 실패했습니다.");
+		}
+		
+		if(result1>0 ) {
+			return "enrollJibsaResult";
+		} else {
+			throw new JibsaException("정보 수정 실패했습니다.");
+		}
+	}
+	
+	@PostMapping("insertTrainer.js")
+	public String insertTrainer(@ModelAttribute Jibsa j,  HttpSession session,
+							Model model, HttpServletRequest request,
+							@RequestParam("file") MultipartFile file) {
+		
+		// session에서 멤버 넘버 가져오기
+		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
+		String memberName = ((Member)session.getAttribute("loginUser")).getMemberName();
+		j.setMemberNo(memberNo);
+		j.setMemberName(memberName);
+		
+		int result1 = jService.insertTrainer(j);
+//		int result2 = jService.insertJibsaProfile(j);
+		
+		Image image = null;
+		
+		if(file != null && !file.isEmpty()) {
+			String[] returnArr = saveFile(file, request);
+		
+			if(returnArr[1] != null) {
+				image = new Image();
+				image.setImagePath(returnArr[0]);
+				image.setOriginalName(file.getOriginalFilename());
+				image.setRenameName(returnArr[1]);
+				image.setImageLevel(2);
+				image.setMemberNo(memberNo);
+				
+				int insertImageResult = jService.insertImage(image);
+				model.addAttribute("image", image);
+			}
+		} else {
+			throw new JibsaException("사진 등록에 실패했습니다.");
 		}
 		
 		if(result1>0 ) {
@@ -133,7 +176,6 @@ public class JibsaController {
 		String[] returnArr = new String[2];
 		returnArr[0] = savePath;
 		returnArr[1] = renameFileName;
-		
 		return returnArr;
 	}
 	
