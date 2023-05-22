@@ -41,6 +41,12 @@
 	#cancel:hover{color: black; text-decoration: underline; cursor: pointer;}
 	#chat{color: black; text-decoration: none;}
 	#chat:hover{color: black; text-decoration: underline; cursor: pointer;}
+		
+	#unReview{color: #1abc9c; 
+	border: 1px solid #1abc9c; 
+	background-color: white; 
+	width:100px; height: 30px; 
+	border-radius: 20px;}
 </style>
 </head>
 <body>
@@ -87,7 +93,8 @@
                           if (matchingStatus === 'Y') {
                             if (new Date().getTime() > endDate${r.matchingNo}.getTime()) {
                               if (${empty r.reviewContent}) {
-                                td${r.matchingNo}.innerText = '미작성';
+//                                 td${r.matchingNo}.innerText = '미작성';
+                               		 td${r.matchingNo}.innerHTML = '<button type="button" id="unReview" name="unReview">미작성</button>';
                               } else {
                                 td${r.matchingNo}.innerText = '작성 완료';
                               }
@@ -162,5 +169,12 @@
 <footer>
   <%@ include file="../common/bottom.jsp" %>
 </footer>
+
+<script>
+	const unReview = document.querySelector('#unReview');
+	unReview.addEventListener('click', ()=>{
+		location.href='${contextPath}/member_Review.me';
+	});
+</script>
 </body>
 </html>

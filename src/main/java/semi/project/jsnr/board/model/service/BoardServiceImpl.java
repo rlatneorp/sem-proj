@@ -113,15 +113,6 @@ public class BoardServiceImpl implements BoardService{
 		bDAO.deleteReply(sqlSession, b);
 	}
 
-//	@Override
-//	public ArrayList<Board> jibsaReview(String jibsaName, PageInfo pi) {
-//		return bDAO.jibsaReview(sqlSession, jibsaName, pi);
-//	}
-//
-//	@Override
-//	public int jibsaReviewCount(String jibsaName, int i) {
-//		return bDAO.jibsaReviewCount(sqlSession,jibsaName, i);
-//	}
 
 	@Override
 	public ArrayList<Board> jibsaReview(String jibsaName, boolean yn) {
@@ -161,7 +152,21 @@ public class BoardServiceImpl implements BoardService{
 	public int sortListCount(HashMap<String, String> map) {
 		return bDAO.sortListCount(sqlSession, map);
 	}
-		
+
+	@Override
+	public ArrayList<Board> member_Review(String userName) {
+		return bDAO.member_Review(sqlSession, userName);
+	}
+
+	@Override
+	public ArrayList<Board> member_Review_Detail(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
 
 }
 

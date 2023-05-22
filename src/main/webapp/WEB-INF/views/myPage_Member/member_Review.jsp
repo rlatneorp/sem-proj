@@ -6,11 +6,6 @@
 <meta charset="UTF-8">
 <title>후기 작성</title>
 <style>
-	#reviewForm{
-		width: 700px;
-		margin: 0 auto;
-		text-align: left;
-	}
 	#subbtn{
 		background: rgb(26, 188, 156);
 	 	color: white;
@@ -18,9 +13,15 @@
 	 	border-radius: 10px;
 	 	padding: 10px;
 	 	width: 100px;
+	 	margin-left: 300px;
+	}
+	#memberReviewInput{
+		width: 700px;
+		margin: 0 auto;
+		text-align: left;
 	}
 </style>
-</head>
+</head> 
 <body>
 	<%@ include file="../common/top.jsp" %>
 	<%@ include file="../common/sideBar.jsp" %>
@@ -30,20 +31,18 @@
 	        	<div class="container text-center">
 	        		<h4 style="margin-right: 560px;"><b>후기 작성하기</b></h4>
 	        		<br><br>
-		        	<form method="post" id="reviewForm">
 		        		<br>
 				        <div class="form-group">
-				              <label for="exampleFormControlInput1">제목</label><br><br>
-				            <input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="제목을 작성해주세요.">
+				              <label for="exampleFormControlInput1">평점</label><br><br>
+				            <input type="number" class="form-control" id="exampleFormControlInput1" name="score" placeholder=" 원하는 점수를 입력하세요">
 				        </div>
 				        <br>
 				        <div class="form-group">
 				            <label for="exampleFormControlTextarea1">내용</label><br><br>
-				            <textarea class="form-control" id="exampleFormControlTextarea1" name="contents" rows="10" style="resize: none"></textarea>
+				            <textarea class="form-control" id="exampleFormControlTextarea1" name="reviewContent" rows="10" style="resize: none"></textarea>
 				        </div>
 				        <br><br>
-				    </form>
-				    <button id="subbtn" onclick="location.href='reservation.jsp';">등록하기</button>
+				    <button type="submit" name="review" id="subbtn">등록하기</button>
 	        	</div>
 			</div>
 	    </div>

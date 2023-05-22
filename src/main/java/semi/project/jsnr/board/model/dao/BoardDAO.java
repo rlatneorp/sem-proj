@@ -141,5 +141,15 @@ public class BoardDAO {
 	public int sortListCount(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
 		return sqlSession.selectOne("boardMapper.sortListCount", map);
 	}
+
+	public ArrayList<Board> member_Review(SqlSessionTemplate sqlSession, String userName) {
+		return (ArrayList)sqlSession.selectList("boardMapper.member_Review", userName);
+	}
+
+
+	public int member_Review_Detail(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.update("boardMapper.member_Review_Detail", b);
+	}
+
 }
 

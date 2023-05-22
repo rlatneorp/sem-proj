@@ -31,10 +31,10 @@
 	        		<h4 style="margin-right: 560px;"><b>후기 작성하기</b></h4>
 	        		<br><br>
 		        	<form method="post" id="reviewForm">
-				        <div class="form-group">
-				              <label for="exampleFormControlInput1">제목</label><br><br>
-				            <input type="text" class="form-control" id="exampleFormControlInput1" name="title" value="저희 코코가 너무 좋아해요">
-				        </div>
+<!-- 				        <div class="form-group"> -->
+<!-- 				              <label for="exampleFormControlInput1">제목</label><br><br> -->
+<!-- 				            <input type="text" class="form-control" id="exampleFormControlInput1" name="title" value="저희 코코가 너무 좋아해요"> -->
+<!-- 				        </div> -->
 				        <br>
 				        <div class="form-group">
 				            <label for="exampleFormControlTextarea1">내용</label><br><br>

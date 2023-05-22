@@ -59,8 +59,13 @@ public interface BoardService {
 
 	int sortListCount(HashMap<String, String> map);
 
+	ArrayList<Board> member_Review(String userName);
 
-//	ArrayList<Board> jibsaReview(String jibsaName);
+	ArrayList<Board> member_Review_Detail(String userName);
+
+
+
+
 
 
 

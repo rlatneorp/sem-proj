@@ -26,6 +26,7 @@
 	 	padding: 5px;
 	}
 	td{height: 50px;}
+	
 </style>
 </head>
 <body>

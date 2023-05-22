@@ -156,11 +156,11 @@
 	</resultMap>	
 	
 	<select id="getSearchListCount" resultType="_int"> 
-		select count(*)
-		from member m
-		    join animal a on(a.member_no = m.member_no)
-		    join matching ma on(ma.animal_no = a.animal_no)
-		    join jibsa_profile jp on(jp.member_no = ma.member_no)
+        select count(*)
+		from matching mc
+		     join animal a on(a.animal_no = mc.animal_no)
+		     join jibsa_profile jp on(mc.jibsa_no = jp.member_no)
+		     join member m on(mc.member_no = m.member_no)
 		where    
 		<if test="condition == 'petsitter'">
 				jp.jibsa_name like '%' || #{value} || '%'
@@ -168,17 +168,14 @@
 		<if test="condition == 'animalCategory'">
 				a.animal_kind like '%' || upper(#{value}) || '%'
 		</if>
-<!-- 		<if test="condition != 'petsitter' and condition != 'animalCategory'"> -->
-<!-- 				(jp.jibsa_name = #{value}  -->
-<!-- 				or a.animal_kind like '%' || #{value} || '%') -->
-<!-- 		</if>  -->
+ 
 	</select>
 	<select id="selectSearchList" resultMap="boardResultSet">
-		select *
-		from member m
-		    join animal a on(a.member_no = m.member_no)
-		    join matching ma on(ma.animal_no = a.animal_no)
-		    join jibsa_profile jp on(jp.member_no = ma.member_no)
+        select *
+		from matching mc
+		     join animal a on(a.animal_no = mc.animal_no)
+		     join jibsa_profile jp on(mc.jibsa_no = jp.member_no)
+		     join member m on(mc.member_no = m.member_no)
 		where 
 		<if test="condition == 'petsitter'">
 				jp.jibsa_name like '%' || #{value} || '%'
@@ -186,12 +183,7 @@
 		<if test="condition == 'animalCategory'">
 				a.animal_kind like '%' || upper(#{value}) || '%'
 		</if>
-<!-- 		<if test="condition != 'petsitter' and condition != 'animalCategory'"> -->
-<!-- 				(jp.jibsa_name = #{value}  -->
-<!-- 				or a.animal_kind like '%' || #{value} || '%') -->
-<!-- 		</if>  -->
-		
-		order by ma.matching_no desc
+		order by m.member_name desc
 	</select>
 	
 	<update id="reviewCount">
@@ -344,4 +336,21 @@
 	      order by m.member_name desc
 	    </if>
 	</select>
+	
+	<select id="member_Review" resultMap="boardResultSet">
+		select mc.matching_no, mc.animal_no, a.animal_name, a.animal_kind, mc.start_date, mc.end_date, mc.matching_place,
+    		  mc.review_content, mc.review_rating, mc.review_count, mc.jibsa_comment, m.member_name, m.member_no, jp.jibsa_name, 
+    		  jp.member_no, mc.matching_status, mc.review_status
+		from matching mc
+		     join animal a on(a.animal_no = mc.animal_no)
+		     join jibsa_profile jp on(mc.jibsa_no = jp.member_no)
+		     join member m on(mc.member_no = m.member_no)
+	</select>
+	
+	<update id="member_Review_Detail">
+		update matching
+		set review_content = #{reviewContent}, review_status = 'Y'
+		where review_status = 'N' and matching_no = #{matchingNo}
+	</update>
+	
 </mapper>

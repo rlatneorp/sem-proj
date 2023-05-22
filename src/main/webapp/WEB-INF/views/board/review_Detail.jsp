@@ -252,7 +252,7 @@
 			</div>
 			<br><br>
 			<div class="col" style="margin-left: 160px;">
-				<button id="allReviewBtn"onclick="location.href='${contextPath}/review_Main.bo'">모든 후기 보기</button>
+				<button id="allReviewBtn" onclick="location.href='${contextPath}/review_Main.bo'">모든 후기 보기</button>
 			</div>
 		</div>
 			<br><br>

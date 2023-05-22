@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import semi.project.jsnr.board.model.exception.BoardException;
+import semi.project.jsnr.board.model.service.BoardService;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
@@ -43,6 +45,9 @@ public class MemberController {
 	
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
+	
+	@Autowired
+	private BoardService bService;
 	
 	// 예약 관리
 	@GetMapping("member_Reservation.me")
@@ -83,12 +88,12 @@ public class MemberController {
 		
 		ArrayList<Board> rList = mService.selectReserList(m.getMemberNo());
 		
-		Jibsa j = jService.selectJibsaChat(jibsaNo);
+//		Jibsa j = jService.selectJibsaChat(jibsaNo);
 		
 		if(!jList.isEmpty()) {
 			model.addAttribute("jList", jList);
 			model.addAttribute("rList", rList);
-			model.addAttribute("chat", j.getChatAddress());
+//			model.addAttribute("chat", j.getChatAddress());
 			
 			return "member_Reservation_Detail";
 		} else {
@@ -319,5 +324,6 @@ public class MemberController {
 			throw new MemberException("회원가입 실패");
 		}
 	}
+	
 	
 }
