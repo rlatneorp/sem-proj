@@ -23,28 +23,23 @@ public class MatchingServiceImpl implements MatchingService {
 	private MatchingDAO mcDAO;
 	
 	@Override
-	public ArrayList<JibsaProfile> selectMatchingResult(Matching mc) {
-		return mcDAO.selectMatchingResult(sqlSession, mc);
-	}
-
-	@Override
-	public int insertMatching(Matching mc) {
-		return mcDAO.insertMatching(sqlSession, mc);
-	}
-
-	@Override
 	public ArrayList<Animal> selectAnimalList(int mId) {
 		return mcDAO.selectAnimalList(sqlSession, mId);
 	}
 	
 	@Override
-	public int getAnimalCount(int mNo) {
-		return mcDAO.getAnimalCount(sqlSession, mNo);
+	public ArrayList<JibsaProfile> selectMatchingResult(Matching mc) {
+		return mcDAO.selectMatchingResult(sqlSession, mc);
 	}
 
 	@Override
 	public Jibsa selectJibsa(int jNo) {
 		return mcDAO.selectJibsa(sqlSession, jNo);
+	}
+	
+	@Override
+	public int insertMatching(Matching mc) {
+		return mcDAO.insertMatching(sqlSession, mc);
 	}
 
 	@Override
@@ -52,6 +47,10 @@ public class MatchingServiceImpl implements MatchingService {
 		return mcDAO.selectAnimal(sqlSession, aNo);
 	}
 
+//	@Override
+//	public int getAnimalCount(int mNo) {
+//		return mcDAO.getAnimalCount(sqlSession, mNo);
+//	}
 
 
 }
