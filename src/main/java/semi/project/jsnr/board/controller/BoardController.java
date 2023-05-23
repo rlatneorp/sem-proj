@@ -199,7 +199,6 @@ public class BoardController {
 		Board b = bService.reviewDetail(mId, yn);	
 		Board list = bService.selectReply(mId);
 		Image image = bService.selectAnimalImage(b.getMemberNo());
-		
 		if(b != null) {
 			mv.addObject("page", page);
 			mv.addObject("b", b);

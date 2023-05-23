@@ -23,13 +23,13 @@
 			#wrapper.toggled {
  			  padding-left: 250px;
 			}
-			
+			 
 			#sidebar-wrapper {
 			  z-index: 1000;
 			  position: fixed;
 			  left: 250px;
 			  width: 0;
-			  height: 70%;
+			  height: 523px;
 			  margin-left:-20px;
 			  overflow-y: auto;
 			  -webkit-transition: all 0.5s ease;
@@ -41,9 +41,10 @@
 			  font-weight: 700;
 			  font-size: 19px;
 			  border-right: 1px solid lightgray;
+			  text-decoration: none;
 			  
 			}
-			
+			#sidebar-wrapper:hover{color: black;}
 			#wrapper.toggled #sidebar-wrapper {
 			  width: 250px;
 			}
@@ -75,7 +76,7 @@
 			
 			.sidebar-nav .lab:hover {
 			  text-decoration: none;
-			  color: #fff;
+			  color: black;
 			  cursor: pointer;
 			}
 			
