@@ -54,7 +54,7 @@
 </style>
 
 </head>
-<body>
+<body class="">
 	<%@ include file="../common/top.jsp" %>
 <!-- 	session에 로그인 정보 없을 때 -->
 	<c:if test="${loginUser eq null}">
@@ -87,97 +87,104 @@
 	
 <!-- 	session에 로그인 정보 있을 때 -->
 	<c:if test="${loginUser ne null && loginUser.animalCount ne 0}">
-
-		<div class="container">
-			<br><br><br>
-			<h1>집사 매칭</h1>
-			<br>
-			<h5>우리 가족에게 딱 맞는 집사를 찾아보세요!</h5>
-			<b>*</b> 필수 입력값
-			<br><br>
-		</div>
-	
-		<form method="get" action="${contextPath}/matching_Result.mc">
-		<div class="container text-left">
-		  <div class="row">
-		    <div class="col-3 row colbox mx-3">
-			      <h4>희망 이용 시간</h4>
-					<div class="col-12 errorBox" style="display: none"></div>
-					<label for="date" class="col-3">날짜:</label>
-					<input type="date" class="date col-6 rounded" style="height:30px;" required>
-					<input type="hidden" name="startDate">
-					<div class="col-3"><b>*</b></div>
+		<div class="mx-auto">
+			<div class="d-flex justify-content-center row">
+				<div class="container text-center">
+					<br><br><br>
+					<h1>집사 매칭</h1>
 					<br>
-					<div class="col-12 errorBox" style="display: none"></div>
-					<label for="time" class="col-3">시간:</label>
-		          	<input class="timepicker text-center d-flex rounded card time col-6" style="height:30px;" name="startTime" value="00:00">
-					<div class="col-3"><b>*</b></div>
-			      <br><br>
-			      <h4>희망 종료 시간</h4>
-					<label for="date" class="col-3">날짜:</label>
-					<input type="date" class="date col-6 rounded" style="height:30px;" readonly>
-					<input type="hidden" name="endDate">
-					<div class="col-3"></div>
-					<br>
-					<div class="col-12 errorBox" style="display: none"></div>
-					<div class="col-12 errorBox" style="display: none"></div>
-					<label for="time" class="col-3">시간:</label>
-		          	<input class="timepicker text-center d-flex rounded card time col-6" style="height:30px;" name="endTime" value="00:00">
-					<div class="col-3"><b>*</b></div>
-			      <br><br>
-		    </div>
-		    <div class="col-3 row colbox mx-3">
-		      <h4>매칭을 원하는 동물</h4>
-		      <c:if test="${aList == null}"><h6>먼저 동물을 등록해주세요</h6><br><br></c:if>
-		      <c:if test="${aList != null}">
-		      	<div class="mb-4">
-					<c:forEach items="${aList}" var="a" varStatus="i">
-						
-						<div class="d-flex align-items-center" style="height: 40px;">
-							<input class="d-flex form-check-input me-2 my-0" type="radio" name="animalNo" id="${a.animalNo}" value="${a.animalNo}" <c:if test="${i.index eq 0}">checked</c:if>>
-							<label class="d-flex form-check-label" for="${a.animalNo}">${a.animalName}(${a.animalKind})</label>
-				    	</div>
-				  	</c:forEach>
-			  	</div>
-			  </c:if>
-				<div class="mb-4">
-					<h4>원하는 서비스</h4>
-					<select name="serviceType" class="rounded" style="height:30px;">
-						<option value="방문 돌봄">방문 돌봄</option>
-						<option value="방문 훈련">방문 훈련</option>
-					</select>
-			    </div>
-		      	<div>
-					<h4>원하는 집사님 성별</h4>
-					<input class="form-check-input" type="radio" name="wantJibsaGender" id="male" value="M" required>
-					<label class="form-check-label" for="male">남성</label><br>
-					<input class="form-check-input" type="radio" name="wantJibsaGender" id="female" value="F" checked required>
-					<label class="form-check-label" for="female">여성</label><br><br>
-		    	</div>
-		    </div>
-		    <div class="col-3 row colbox mx-3">
-				<div>
-					<h4>매칭 지역</h4>
-					<div class="search-container">
-					<input type="text" placeholder="지역을 입력하세요" name="wantMatchingPlace" class="rounded mb-4">
-<!-- 					<button class="search-button mb-4" type="button">검색</button> -->
-					<h4>매칭 장소<b>*</b></h4>
-					<div class="col-12 errorBox" style="display: none">x</div>
-					<textarea placeholder="정확한 주소를 입력하세요" name="matchingPlace" rows="4" class="w-100 rounded" required></textarea>
+					<h5>우리 가족에게 딱 맞는 집사를 찾아보세요!</h5>
+					<b>*</b> 필수 입력값
+					<br><br>
 				</div>
 			</div>
-		    <br><br>
-			<div class="d-flex justify-content-center">
-			    <button type="button" onclick="inputTime(this)" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">찾아보기</button>
-			</div>
-		    </div>
-		  </div>
 		</div>
+		<form method="get" action="${contextPath}/matching_Result.mc" class="d-flex justify-content-center w-100">
+			<div class="container d-flex justify-content-center text-left m-0">
+				<div class="row d-flex justify-content-center">
+			    	<div class="col-3 row colbox mx-3">
+						<h4>희망 이용 시간</h4>
+							<div class="col-12 errorBox" style="display: none"></div>
+							<label for="date" class="col-3">날짜:</label>
+							<input type="date" class="date col-7 rounded" style="height:30px;" required>
+							<input type="hidden" name="startDate">
+							<div class="col-2"><b>*</b></div>
+							<br>
+							<div class="col-12 errorBox" style="display: none"></div>
+							<label for="time" class="col-3">시간:</label>
+				          	<input class="timepicker text-center d-flex rounded card time col-7" style="height:30px;" name="startTime" value="00:00">
+							<div class="col-2"><b>*</b></div>
+						<br><br>
+						<h4>희망 종료 시간</h4>
+							<label for="date" class="col-3">날짜:</label>
+							<input type="date" class="date col-7 rounded" style="height:30px;" readonly>
+							<input type="hidden" name="endDate">
+							<div class="col-2"></div>
+							<br>
+							<div class="col-12 errorBox" style="display: none"></div>
+							<div class="col-12 errorBox" style="display: none"></div>
+							<label for="time" class="col-3">시간:</label>
+				          	<input class="timepicker text-center d-flex rounded card time col-7" style="height:30px;" name="endTime" value="00:00">
+							<div class="col-2"><b>*</b></div>
+						<br><br>
+			    	</div>
+			    	<div class="col-3 row colbox mx-3">
+						<h4>매칭을 원하는 동물</h4>
+						<c:if test="${aList == null}"><h6>먼저 동물을 등록해주세요</h6><br><br></c:if>
+						<c:if test="${aList != null}">
+			      			<div class="mb-4">
+								<c:forEach items="${aList}" var="a" varStatus="i">
+									<div class="d-flex align-items-center" style="height: 40px;">
+										<input class="d-flex form-check-input me-2 my-0" type="radio" name="animalNo" id="${a.animalNo}" value="${a.animalNo}" <c:if test="${i.index eq 0}">checked</c:if>>
+										<label class="d-flex form-check-label" for="${a.animalNo}">${a.animalName}(${a.animalKind})</label>
+						    		</div>
+					  			</c:forEach>
+				  			</div>
+						</c:if>
+						<div class="mb-4">
+							<h4>원하는 서비스</h4>
+							<select name="serviceType" class="rounded" style="height:30px;">
+								<option value="방문 돌봄">방문 돌봄</option>
+								<option value="방문 훈련">방문 훈련</option>
+							</select>
+					    </div>
+				      	<div>
+							<h4>원하는 집사님 성별</h4>
+							<input class="form-check-input" type="radio" name="wantJibsaGender" id="male" value="M" required>
+							<label class="form-check-label" for="male">남성</label><br>
+							<input class="form-check-input" type="radio" name="wantJibsaGender" id="female" value="F" checked required>
+							<label class="form-check-label" for="female">여성</label><br><br>
+				    	</div>
+				    </div>
+				    <div class="col-3 row colbox mx-3">
+						<div>
+							<h4>매칭 지역</h4>
+							<div class="search-container">
+								<input type="text" placeholder="지역을 입력하세요" name="wantMatchingPlace" class="rounded mb-4">
+								<h4>매칭 장소<b>*</b></h4>
+								<div class="col-12 errorBox" style="display: none">x</div>
+								<textarea placeholder="정확한 주소를 입력하세요" name="matchingPlace" rows="4" class="w-100 rounded" required></textarea>
+							</div>
+						</div>
+						<br><br>
+						<div class="d-flex justify-content-center">
+							<button type="button" onclick="inputTime(this)" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">찾아보기</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</form>
 	</c:if>
 	
-	<script>
 	
+	<br><br><br><br><br><br><br>
+	<hr>
+	
+	
+	<%@ include file="../common/bottom.jsp"%>
+	
+	
+	<script>
 		window.onload = () =>{
 			
 // 			희망 이용/종료 시간 (날짜 / 시간) - 오늘날짜, 현재시간+1시간 으로 설정
@@ -358,7 +365,6 @@
 				
 				document.getElementsByTagName('form')[0].submit();
 			}
-	
 		}
 		
 	

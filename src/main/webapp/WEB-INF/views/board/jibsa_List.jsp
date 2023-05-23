@@ -32,12 +32,6 @@
 				<button onclick="location.href='${contextPath}/jibsa_List.bo?type=1'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">집사</button>
 				<button onclick="location.href='${contextPath}/jibsa_List.bo?type=2'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">훈련사</button>
 			</div>
-			<div class="filter-group d-flex">
-<!-- 				<select id="sort-select"> -->
-<!-- 			   		<option value="price-low">금액 낮은 순</option> -->
-<!-- 			   		<option value="reviews-high">후기 많은 순</option> -->
-<!-- 			 	</select> -->
-			</div>
 		</div>
 		
 		<div class="row d-flex justify-content-center">
@@ -45,12 +39,12 @@
 				<div class="card col-3 mx-3 mb-4" style="width: 350px; height: 400px;">
 					<input type="hidden" value="${ jp.memberNo }">
 			  		<div class="card-body row d-flex justify-content-center">
-			  			<div class="col-12">
+			  			<div class="col-12" style="height:180px;">
 			  				<c:if test="${jp.image eq null}">
-				    			<img src="${ contextPath }/resources/image/logo.png" class="w-75">
+				    			<img src="${ contextPath }/resources/image/logo.png" class="w-75" style="border-radius: 10px;">
 			  				</c:if>
 			  				<c:if test="${jp.image ne null}">
-				    			<img src="${contextPath}/resources/uploadFiles/${ jp.image.renameName}" class="w-75">
+				    			<img src="${contextPath}/resources/uploadFiles/${ jp.image.renameName}" width="200" height="150" style="border-radius: 10px;">
 			  				</c:if>
 			    		</div>
 			    		<p class="name mb-2">${ jp.jibsaName } 집사님</p>
@@ -67,7 +61,10 @@
 				    			</span>
 			    			</div>
 			    			<div class="text-end">
-				    			<span class="px-0">평점 ${ jp.jibsaAvgRating }점</span>
+				    			<span class="px-0">
+				    				평점
+				    				<c:if test="${jp.jibsaAvgRating eq 0.0}">-</c:if>
+				    				<c:if test="${jp.jibsaAvgRating ne 0.0}">${jp.jibsaAvgRating}</c:if>
 			    			</div>
 				    	</div>
 					</div>
@@ -76,50 +73,11 @@
 			</c:forEach>
 		</div>
 		<%@ include file="../common/paging.jsp" %>
-		
-<!-- 			<nav aria-label="Standard pagination example" style="float: center;"> -->
-<!-- 				<ul class="pagination"> -->
-<!--           			<li class="page-item"> -->
-<%--           				<c:url var="goBack" value="${ loc }"> --%>
-<%--           					<c:if test="${ pi.currentPage-1 lt 1 }"> --%>
-<%-- 	          					<c:param name="page" value="1"></c:param> --%>
-<%-- 	          					<c:param name="type" value="${type}"></c:param> --%>
-<%--           					</c:if> --%>
-<%--           					<c:if test="${ pi.currentPage-1 gt 0 }"> --%>
-<%-- 	          					<c:param name="page" value="${ pi.currentPage-1 }"></c:param> --%>
-<%-- 	          					<c:param name="type" value="${type}"></c:param> --%>
-<%--           					</c:if> --%>
-<%--           				</c:url> --%>
-<%--           				<a class="page-link" href="${ goBack }" aria-label="Previous"> --%>
-<!--           					<span aria-hidden="true">&laquo;</span> -->
-<!--            				</a> -->
-<!--           			</li> -->
-<%--           			<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p"> --%>
-<%--          				<c:url var="goNum" value="${ loc }"> --%>
-<%--          					<c:param name="page" value="${ p }"></c:param> --%>
-<%--           					<c:param name="type" value="${type}"></c:param> --%>
-<%--          				</c:url> --%>
-<%--           				<li class="page-item"><a class="page-link" href="${ goNum }">${ p }</a></li> --%>
-<%--           			</c:forEach> --%>
-<!--           			<li class="page-item"> -->
-<%--           				<c:url var="goNext" value="${ loc }"> --%>
-<%--           					<c:if test="${ pi.currentPage+1 gt pi.endPage }"> --%>
-<%-- 	          					<c:param name="page" value="${ pi.endPage }"></c:param> --%>
-<%-- 	          					<c:param name="type" value="${type}"></c:param> --%>
-<%--           					</c:if> --%>
-<%--           					<c:if test="${ pi.currentPage+1 le pi.endPage }"> --%>
-<%-- 	          					<c:param name="page" value="${ pi.currentPage+1 }"></c:param> --%>
-<%-- 	          					<c:param name="type" value="${type}"></c:param> --%>
-<%--           					</c:if> --%>
-<%--           				</c:url> --%>
-<%--           				<a class="page-link" href="${ goNext }" aria-label="Next"> --%>
-<!--           					<span aria-hidden="true">&raquo;</span> -->
-<!--           				</a> -->
-<!--           			</li> -->
-<!--    				</ul> -->
-<!--      		</nav> -->
-		
 	</div>
+	
+	<br><br><br><br><br><br><br>
+	<hr>
+	
 	
 	<%@ include file="../common/bottom.jsp"%>
 	

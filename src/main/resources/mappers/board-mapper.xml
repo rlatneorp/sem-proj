@@ -339,9 +339,19 @@
 	<select id="selectJibsaImage" resultMap="imageResultSet">
 		select *
 		from image
-		where image_level = '2'
-			  and member_no = #{mId}
+		where image_no in (select max (image_no)
+						   from image
+						   where image_level = '2'
+						   		 and member_no = #{mId})
 	</select>	
 	
+	<select id="selectAnimalImage" resultMap="imageResultSet">
+		select *
+		from image
+		where image_no in (select max (image_no)
+						   from image
+						   where image_level = '1'
+						   		 and member_no = #{mNo})
+	</select>
 	
 </mapper>

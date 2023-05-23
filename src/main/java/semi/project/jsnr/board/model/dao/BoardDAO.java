@@ -146,6 +146,11 @@ public class BoardDAO {
 		return sqlSession.selectOne("boardMapper.selectJibsaImage", mId);
 	}
 
+	public Image selectAnimalImage(SqlSessionTemplate sqlSession, int mNo) {
+		return sqlSession.selectOne("boardMapper.selectAnimalImage", mNo);
+	}
+	
+
 
 	
 

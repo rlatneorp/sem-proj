@@ -102,57 +102,57 @@ body {
 <body>
 	<%@ include file="../common/top.jsp" %>
 	<%@ include file="../common/sideBar.jsp" %>
-		<div id="wrapper" class="toggled">
-	    	<div id="page-content-wrapper">
-	        	<div class="container text-center">
-				  <div class="row align-items-center">
-				    <div class="col"><br>
-				      	<div class="p-2">내 반려동물</div><br><br>
-		                    <div class="p-4"><br>
-			                    <c:if test="${ animal.isStatus eq 'Y' }">
-				                	<h5 class="h5">${ animal.animalKind } &nbsp; · &nbsp; ${ animal.animalName } &nbsp; · &nbsp; ${ animal.animalGender }</h5><br>
-				                	<c:if test="${ !empty image.memberNo }">
-				                    	<img src="${ contextPath }/resources/uploadFiles/${ image.renameName }" width="90%" height="245"/><br><br><br>
-				                    </c:if>
-				                    <c:if test="${ empty image.memberNo }">
-				                    	<br><br><br>내 반려동물의 사진을 등록해주세요<br><br><br>
-				                    </c:if>
-			                        <button class="inbtn" onclick="location.href='${ contextPath }/member_Pet_Insert_Edit.me'">수정하기</button>
-			                   	</c:if>
-  								<c:if test="${ animal.isStatus ne 'Y' }">
-				                	<h4 class="h6">본인의 반려동물 정보를 등록해주세요</h4><br><br>
-			                        <button class="inbtn" onclick="location.href='${ contextPath }/member_Pet_Insert.me'">등록하기</button>
+	<div id="wrapper" class="toggled">
+    	<div id="page-content-wrapper">
+        	<div class="container text-center">
+				<div class="row align-items-center">
+					<div class="col"><br>
+						<div class="p-2">내 반려동물</div>
+						<br><br>
+						<div class="p-4"><br>
+							<c:if test="${ animal.isStatus eq 'Y' }">
+		                		<h5 class="h5">${ animal.animalKind } &nbsp; · &nbsp; ${ animal.animalName } &nbsp; · &nbsp; ${ animal.animalGender }</h5><br>
+			                	<c:if test="${ !empty image.memberNo }">
+			                    	<img src="${ contextPath }/resources/uploadFiles/${ image.renameName }" width="90%" height="245"/><br><br><br>
 			                    </c:if>
-		                    </div>
-				    	</div>				 
-				    <div class="col">
+			                    <c:if test="${ empty image.memberNo }">
+			                    	<br><br><br>내 반려동물의 사진을 등록해주세요<br><br><br>
+			                    </c:if>
+		                        <button class="inbtn" onclick="location.href='${ contextPath }/member_Pet_Insert_Edit.me'">수정하기</button>
+		                   	</c:if>
+									<c:if test="${ animal.isStatus ne 'Y' }">
+			                	<h4 class="h6">본인의 반려동물 정보를 등록해주세요</h4><br><br>
+		                        <button class="inbtn" onclick="location.href='${ contextPath }/member_Pet_Insert.me'">등록하기</button>
+		                    </c:if>
+                    	</div>
+		    		</div>				 
+		    		<div class="col">
 				      	<div class="p-2">내 정보</div><br>
-		                    <div class="p-4">
-		                        <table class="info">
-		                            <tr>
-		                                <td class="bold">이름</td>
-		                                <td class="nbold">${ loginUser.memberName }</td>
-		                            </tr>
-		                            <tr>
-		                                <td class="bold">연락처</td>
-		                                <td class="nbold">${ loginUser.memberPhone }</td>
-		                            </tr>
-		                            <tr>
-		                                <td class="bold">찾아갈 주소</td>
-		                                <td class="nbold">${ loginUser.memberAddress }</td>
-		                            </tr>
-		                        </table><br>
-		                        <button class="inbtn" onclick="location.href='${contextPath}/member_EditInfo.me'">수정하기</button>
-		                    </div>
-				    </div><br><br>
-				    </div>
-				  </div>
+	                    <div class="p-4">
+	                        <table class="info">
+	                            <tr>
+	                                <td class="bold">이름</td>
+	                                <td class="nbold">${ loginUser.memberName }</td>
+	                            </tr>
+	                            <tr>
+	                                <td class="bold">연락처</td>
+	                                <td class="nbold">${ loginUser.memberPhone }</td>
+	                            </tr>
+	                            <tr>
+	                                <td class="bold">찾아갈 주소</td>
+	                                <td class="nbold">${ loginUser.memberAddress }</td>
+	                            </tr>
+	                        </table><br>
+	                        <button class="inbtn" onclick="location.href='${contextPath}/member_EditInfo.me'">수정하기</button>
+	                    </div>
+			    	</div><br><br>
 				</div>
-	    	</div>
+			</div>
 		</div>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br>
-<footer>
-<%@ include file="../common/bottom.jsp" %>
-</footer>
+   	</div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<footer>
+		<%@ include file="../common/bottom.jsp" %>
+	</footer>
 </body>
 </html>

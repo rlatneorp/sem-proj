@@ -12,7 +12,7 @@
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 	<title>집사 프로필보기</title>
 <style>
-body {font-family: 'Noto Sans KR', sans-serif;}
+	body {font-family: 'Noto Sans KR', sans-serif;}
 </style>
 </head>
 <body>
@@ -100,25 +100,22 @@ body {font-family: 'Noto Sans KR', sans-serif;}
 			</div>
 		</div>
 		
-		<div class="col-4">
-			<div class="card" style="border: 5px solid rgb(26, 188, 156); border-radius: 20px;">
+		<div class="col-4 my-auto">
+			<div class="card" style="border: 5px solid rgba(26, 188, 156, 0.3); border-radius: 20px;">
 				<c:if test="${image eq null}">
-					<img src="${ contextPath }/resources/image/logo.png">
+					<img src="${ contextPath }/resources/image/logo.png" style="border-radius: 15px;">
 				</c:if>
 				<c:if test="${image ne null}">
-					<img src="${contextPath}/resources/uploadFiles/${image.renameName}">
+					<img src="${contextPath}/resources/uploadFiles/${image.renameName}" style="border-radius: 15px;">
 				</c:if>
 			</div>
-<!-- 			<div class="container text-center mt-5"> -->
-<!-- 				<button class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 100px; height: 40px;">매칭하기</button> -->
-<!-- 			</div> -->
 		</div>
-		
-		<br><br><br><br><br><br><br><br><br>
-	
 	</div>
-	
-	
+	<div class="container text-center">
+		<button type="button" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;" onclick="history.back()">뒤로가기</button>
+	</div>
+	<br><br><br><br><br><br><br>
+	<hr>
 	
 	<%@ include file="../common/bottom.jsp"%>
 	

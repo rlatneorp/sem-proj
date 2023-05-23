@@ -158,10 +158,11 @@ public class BoardServiceImpl implements BoardService{
 		return bDAO.selectJibsaImage(sqlSession, mId);
 	}
 
-
-
-
-
+	@Override
+	public Image selectAnimalImage(int mNo) {
+		return bDAO.selectAnimalImage(sqlSession, mNo);
+	}
+		
 }
 
 

@@ -53,9 +53,16 @@ public class BoardController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 6);
 		ArrayList<Board> list = bService.reviewBoardList(pi);
 		
+		ArrayList<Image> imgList = new ArrayList<Image>();
+		for(Board b : list) {
+			Image image = bService.selectAnimalImage(b.getMemberNo());
+			imgList.add(image);
+		}
+			
 		if(list != null) {
 			model.addAttribute("pi", pi);
 			model.addAttribute("list", list);
+			model.addAttribute("imgList", imgList);
 			model.addAttribute("value", value);
 			return "review_Main"; 
 			
@@ -191,12 +198,13 @@ public class BoardController {
 		
 		Board b = bService.reviewDetail(mId, yn);	
 		Board list = bService.selectReply(mId);
-		 
+		Image image = bService.selectAnimalImage(b.getMemberNo());
+		
 		if(b != null) {
 			mv.addObject("page", page);
 			mv.addObject("b", b);
 			mv.addObject("list", list);
-				
+			mv.addObject("image", image);
 			mv.setViewName("review_Detail");
 			return mv;
 		} else {

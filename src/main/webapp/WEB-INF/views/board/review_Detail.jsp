@@ -197,15 +197,13 @@
 			  	<div class="col">
 				    <div class="review">
 						  <div class="profile">
-							   <div>
-								<c:if test="${empty img}">
-									<img src="${contextPath}/resources/image/logo.png" alt="로딩실패" width="72" height="72" class="rounded-circle image-block me-2">
+							  <c:if test="${empty image}">
+									<img src="resources/image/logo.png"> 
 								</c:if>
-								<c:if test="${!empty img}">
-									<img src="${contextPath}/resources/uploadFiles/${renameName}" alt="로딩실패" width="48" height="48" class="rounded-circle image-block me-2">
+								<c:if test="${!empty image}">
+									<img src="resources/uploadFiles/${image.renameName}"> 
 								</c:if>
-							 </div>
-							  <div class="username">${list.memberName}</div>
+							  <div class="username">${b.memberName}</div>
 						  </div>
 						  <div class="info">
 						  <table style="text-align: left;"> 

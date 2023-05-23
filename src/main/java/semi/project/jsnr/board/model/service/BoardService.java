@@ -58,6 +58,10 @@ public interface BoardService {
 
 	Image selectJibsaImage(int mId);
 
+	Image selectAnimalImage(int mNo);
 
+//	ArrayList<Board> member_Review_Detail(String userName);
+//
+//	
 
 }

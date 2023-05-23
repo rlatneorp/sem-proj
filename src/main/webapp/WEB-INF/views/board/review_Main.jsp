@@ -121,18 +121,16 @@
 	<div class="container text-left">
 	  <div class="row">
 	  <article id="reviewList">
-		<c:forEach items="${ list }" var="n">
+		<c:forEach items="${ list }" var="n" varStatus="st">
 		  	<div class="col" style="cursor: pointer;">
 		    	<div class="review">
 					<div class="profile">
-						 <div>
-							<c:if test="${empty image}">
-								<img src="${contextPath}/resources/image/logo.png" alt="로딩실패" width="72" height="72" class="rounded-circle image-block me-2">
-							</c:if>
-							<c:if test="${!empty image}">
-								<img src="${contextPath}/resources/uploadFiles/${renameName}" alt="로딩실패" width="48" height="48" class="rounded-circle image-block me-2">
-							</c:if>
-						 </div>
+						<c:if test="${empty imgList[st.index]}">
+							<img src="resources/image/logo.png"> 
+						</c:if>
+						<c:if test="${!empty imgList[st.index]}">
+							<img src="resources/uploadFiles/${imgList[st.index].renameName}"> 
+						</c:if>
 						 <div class="userName">${ n.memberName }</div>
 					</div>
 					<div class="info">
