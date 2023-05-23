@@ -84,7 +84,7 @@ public class MemberController {
 		model.addAttribute("matchingNo", matchingNo);
 		Member m = (Member)model.getAttribute("loginUser");
 		
-		ArrayList<JibsaProfile> jList = jService.selectReserJibsa();
+		ArrayList<JibsaProfile> jList = jService.selectReserJibsa(jibsaNo);
 		
 		ArrayList<Board> rList = mService.selectReserList(m.getMemberNo());
 		

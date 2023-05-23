@@ -227,14 +227,8 @@ public class HomeController {
 	
 	// 비밀번호 찾기 - 인증번호 받기 - 현지
 	@RequestMapping("pwd_Set.do")
-	public String pw_Set(@RequestParam("emailAuth") String emailAuth,
-						 @RequestParam("num") String num) {
-		
-		if(emailAuth.equals(num)) {
-			return "enroll/pwd_ReSetting";
-		} else {
-			return "enroll/pwd_Auth";
-		}
+	public String pw_Set() {
+		return "enroll/pwd_ReSetting";
 	}
 	
 	// 비번 찾기 - 새로운 비밀번호로 변경 - 현지

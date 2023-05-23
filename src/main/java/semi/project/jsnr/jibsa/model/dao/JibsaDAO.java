@@ -81,8 +81,8 @@ public class JibsaDAO {
 		return sqlSession.insert("jibsaMapper.insertTrainer", j);
 	}
 
-	public ArrayList<JibsaProfile> selectReserJibsa(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("jibsaMapper.selectReserJibsa");
+	public ArrayList<JibsaProfile> selectReserJibsa(SqlSessionTemplate sqlSession, int jibsaNo) {
+		return (ArrayList)sqlSession.selectList("jibsaMapper.selectReserJibsa", jibsaNo);
 	}
 
 
