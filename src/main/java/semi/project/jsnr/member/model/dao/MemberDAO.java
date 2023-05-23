@@ -106,10 +106,6 @@ public class MemberDAO {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectReser", memberNo);
 	}
 
-	public ArrayList<JibsaProfile> selectReserJibsa(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("memberMapper.selectReserJibsa");
-	}
-
 	public int cancelMatching(SqlSessionTemplate sqlSession, int matchingNo) {
 		return sqlSession.update("memberMapper.cancelMatching", matchingNo);
 	}

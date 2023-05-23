@@ -111,10 +111,6 @@ public class MemberService {
 		return mDAO.selectReserList(sqlSession, memberNo);
 	}
 
-	public ArrayList<JibsaProfile> selectReserJibsa() {
-		return mDAO.selectReserJibsa(sqlSession);
-	}
-
 	public int cancelMatching(int matchingNo) {
 		return mDAO.cancelMatching(sqlSession, matchingNo);
 	}
