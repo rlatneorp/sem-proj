@@ -59,7 +59,7 @@
 	
 	<update id="updateJibsaInfo">
 		update jibsa
-		set work_career = #{workCareer}, motive = #{motive},
+		set work_career = #{workCareer}, jibsa_license = #{license},
 			chat_address = #{chatAddress}
 		where member_no = #{memberNo}
 	</update>

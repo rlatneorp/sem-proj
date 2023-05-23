@@ -68,9 +68,7 @@
 							<br><br>
 							<div id="fileArea">
 								<div class="mb-3 adddd">
-									<c:forEach items="${ jibsaInfo }" var="j">
-										<input type="text" name="license" style="width: 400px;" value="${ j.license }">
-									</c:forEach>
+									<input type="text" name="license" style="width: 400px;" value="${ jibsaInfo.license }">
 								</div>
 							</div>
 							
