@@ -15,7 +15,7 @@
 <title>집사나라 - 로그인</title>
 <style>
 .material-symbols-outlined{border-color: rgb(166, 166, 166); text-align: center; padding : 10px 0; border-left-radius: 4px; background: rgb(237, 237, 237); display: block; width: 47px; height: 47px; font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 200, 'opsz' 40; color: rgb(166, 166, 166); margin-right: -6px;  border-left: solid 1px; border-bottom: solid 1px; border-top: solid 1px; vertical-align:middle; border-bottom-left-radius: 4px; border-top-left-radius: 4px; }
-.login1{box-shadow: 0px 0px 14px rgb(67, 154, 151); border-radius: 25px; width:437px; height: 618px; text-align: center; margin-left: 725px;}
+.login1{box-shadow: 0px 0px 14px rgb(67, 154, 151); border-radius: 25px; width:437px; height: 618px; text-align: center; margin: auto;}
 #loginLogo{width: 472px; margin-top: -70px;}
 #loginId{width: 203px; height:47px; vertical-align:middle; border-bottom: solid 1px rgb(166, 166, 166); border-right: solid 1px rgb(166, 166, 166); border-top: solid 1px rgb(166, 166, 166); border-bottom-right-radius: 4px; border-top-right-radius: 4px; border-left: none;}
 #person{display: inline;}

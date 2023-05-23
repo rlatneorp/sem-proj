@@ -173,17 +173,16 @@
 			</div>
 			
 			<div class="col-2">
-				<div class="card mb-5" style="border: 5px solid rgb(26, 188, 156); border-radius: 20px;">
+				<div class="card mb-5" style="border: 5px solid rgba(26, 188, 156, 0.3); border-radius: 20px;">
 					<c:if test="${empty image}">
 						<img src="${ contextPath }/resources/image/logo.png">
 					</c:if>
 					<c:if test="${!empty image}">
-						<img src="${ contextPath}/resources/uploadFiles/${image.renameName}" alt="load 실패">
+						<img src="${ contextPath}/resources/uploadFiles/${image.renameName}" alt="load 실패" style=" border-radius: 15px;">
 					</c:if>
 					
 				</div>
 			</div>
-<!-- 			<div class="col-2"></div> -->
 			
 		</div>
 					

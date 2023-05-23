@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import semi.project.jsnr.animal.model.vo.Animal;
+import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
@@ -124,6 +125,10 @@ public class MemberDAO {
 	
 	public Animal selectAnimal(SqlSessionTemplate sqlSession, int mNo) {
 		return sqlSession.selectOne("memberMapper.selectAnimal", mNo);
+	}
+
+	public Image selectAnimalImage(SqlSessionTemplate sqlSession, int aNo) {
+		return sqlSession.selectOne("memberMapper.selectAnimalImage", aNo);
 	}
 
 }

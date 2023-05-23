@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,9 +52,16 @@ public class BoardController {
 		
 		ArrayList<Board> list = bService.reviewBoardList(pi);
 		
+		ArrayList<Image> imgList = new ArrayList<Image>();
+		for(Board b : list) {
+			Image image = bService.selectAnimalImage(b.getMemberNo());
+			imgList.add(image);
+		}
+			
 		if(list != null) {
 			model.addAttribute("pi", pi);
 			model.addAttribute("list", list);
+			model.addAttribute("imgList", imgList);
 			model.addAttribute("value", value);
 			return "review_Main";
 		} else {
@@ -183,12 +189,13 @@ public class BoardController {
 		
 		Board b = bService.reviewDetail(mId, yn);	
 		Board list = bService.selectReply(mId);
+		Image image = bService.selectAnimalImage(b.getMemberNo());
 		
 		if(b != null) {
 			mv.addObject("page", page);
 			mv.addObject("b", b);
 			mv.addObject("list", list);
-				
+			mv.addObject("image", image);
 			mv.setViewName("review_Detail");
 			return mv;
 		} else {

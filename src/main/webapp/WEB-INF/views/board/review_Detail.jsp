@@ -197,7 +197,12 @@
 			  	<div class="col">
 				    <div class="review">
 						  <div class="profile">
-							  <img src="resources/image/user.png">
+							  <c:if test="${empty image}">
+									<img src="resources/image/logo.png"> 
+								</c:if>
+								<c:if test="${!empty image}">
+									<img src="resources/uploadFiles/${image.renameName}"> 
+								</c:if>
 							  <div class="username">${b.memberName}</div>
 						  </div>
 						  <div class="info">

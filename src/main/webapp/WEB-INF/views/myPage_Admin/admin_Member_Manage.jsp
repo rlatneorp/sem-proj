@@ -41,7 +41,6 @@
 								    		<th>아이디</th>
 								    		<th>등록 동물 수</th>
 								    		<th>가입 날짜</th>
-								    		<th>신고내역</th>
 								    		<th>상태여부</th>
 								    		<th><label for="allSelect">모두선택 &nbsp</label><input type="checkbox" name="allSelect" id="allSelect"></th>
 								    	</tr>
@@ -54,10 +53,6 @@
 									    		<td>${m.memberId }</td>
 									    		<td>${m.animalCount }</td>
 									    		<td>${m.enrollDate}</td>
-									    		<td>
-									    			<c:if test="${m.blackList gt 0}">${m.blackList}회</c:if>   
-									    			<c:if test="${m.blackList eq 0}"></c:if>   
-									    		</td>
 									    		<td>${m.memberStatus}</td>
 									    		<td><label for="s${m.memberNo}">선택&nbsp</label><input type="checkbox" id="s${m.memberNo}" name="select" value="${m.memberNo}"></td>
 									    	</tr>
@@ -73,7 +68,7 @@
 								<div>
 									<input type="hidden" name="page" value="${pi.currentPage}"> 
 									<select name="searchType" class="search" style="padding: 3px 4px;">
-										<c:if test="${searchType eq null}">
+										<c:if test="${empty searchType}">
 											<option value="name">이름</option>
 											<option value="id">아이디</option>
 										</c:if>

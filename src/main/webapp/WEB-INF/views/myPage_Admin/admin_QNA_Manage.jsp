@@ -8,7 +8,7 @@
 <style>
 	.table thead tr th{background: rgba(224, 224, 224, 0.51);}
 	.tablediv{
-		width: 800px;
+		width: 1000px;
 		text-align: center;
 		display: block;
 		margin: 0 auto;
