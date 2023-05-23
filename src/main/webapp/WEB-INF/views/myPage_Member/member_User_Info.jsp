@@ -116,7 +116,7 @@ body {
 							<c:if test="${ animal.isStatus eq 'Y' }">
 		                		<h5 class="h5">${ animal.animalKind } &nbsp; · &nbsp; ${ animal.animalName } &nbsp; · &nbsp; ${ animal.animalGender }</h5><br>
 			                	<c:if test="${ !empty image.memberNo }">
-			                    	<img src="${ contextPath }/resources/uploadFiles/${ image.renameName }" width="90%" height="245"/><br><br><br>
+			                    	<img src="${ contextPath }/resources/uploadFiles/${ image.renameName }" width="90%" height="245" style="border:none; border-radius: 10px;"/><br><br><br>
 			                    </c:if>
 			                    <c:if test="${ empty image.memberNo }">
 			                    	<br><br><br>내 반려동물의 사진을 등록해주세요<br><br><br>
