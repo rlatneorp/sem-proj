@@ -124,6 +124,8 @@ public class MemberDAO {
 
 	public int deleteReview(SqlSessionTemplate sqlSession, Board b) {
 		return sqlSession.update("memberMapper.deleteReview", b);
+	}
+	
 	public Animal selectAnimal(SqlSessionTemplate sqlSession, int mNo) {
 		return sqlSession.selectOne("memberMapper.selectAnimal", mNo);
 	}

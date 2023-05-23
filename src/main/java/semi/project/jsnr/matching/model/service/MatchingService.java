@@ -9,17 +9,17 @@ import semi.project.jsnr.matching.model.vo.Matching;
 
 public interface MatchingService {
 
+	ArrayList<Animal> selectAnimalList(int mNo);
+	
 	ArrayList<JibsaProfile> selectMatchingResult(Matching mc);
 
-	int insertMatching(Matching mc);
-
-	ArrayList<Animal> selectAnimalList(int mNo);
-
-	int getAnimalCount(int mNo);
-	
 	Jibsa selectJibsa(int jNo);
-
+	
+	int insertMatching(Matching mc);
+	
 	Animal selectAnimal(int aNo);
 
+//	int getAnimalCount(int mNo);
+	
 
 }

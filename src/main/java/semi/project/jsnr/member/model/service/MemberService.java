@@ -129,6 +129,8 @@ public class MemberService {
 
 	public int deleteReview(Board b) {
 		return mDAO.deleteReview(sqlSession, b);
+	}
+	
 	public Animal selectAnimal(int mNo) {
 		return mDAO.selectAnimal(sqlSession, mNo);
 	}
