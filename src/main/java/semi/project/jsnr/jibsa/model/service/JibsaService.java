@@ -89,8 +89,8 @@ public class JibsaService {
 		return jDAO.insertTrainer(sqlSession, j);
 	}
 
-	public ArrayList<JibsaProfile> selectReserJibsa() {
-		return jDAO.selectReserJibsa(sqlSession);
+	public ArrayList<JibsaProfile> selectReserJibsa(int jibsaNo) {
+		return jDAO.selectReserJibsa(sqlSession, jibsaNo);
 	}
 	
 	

@@ -187,10 +187,9 @@
 	
 	<!-- 해당 매칭에 맞는 집사 프로필 정보 -->
 	<select id="selectReserJibsa" resultMap="jibsaPResultMap">
-	  SELECT j.jibsa_name, j.profile_title, j.member_no
-	  FROM jibsa_profile j
-	  JOIN matching m ON (m.member_no = j.member_no)
-	  WHERE m.jibsa_no = j.member_no
+	  SELECT jibsa_name, profile_title, member_no
+	  FROM jibsa_profile
+	  WHERE member_no = #{jibsaNo}
 	</select>
 	
 	<select id="selectJibsaProfile" resultMap="jibsaPResultMap">
