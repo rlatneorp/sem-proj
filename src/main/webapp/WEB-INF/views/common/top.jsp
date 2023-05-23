@@ -19,7 +19,7 @@
 .menu1:hover:not(.active){color: rgb(51, 51, 51);}
 
 .btjipsa{width: 138px; height: 58px; background: rgb(26, 188, 156); border-style: none; border-radius: 4px;}
-#btjibsa_apply{color: white; border-radius: 4px; width:100px; height:37px; margin-left: 45px; 
+#btjibsa_apply{color: white; border-radius: 4px; width:110px; height:37px; margin-left: 45px; 
 		 font-family: 'Noto Sans KR', sans-serif; font-size : 18px}
 .topCont{width: 1200px; max-width: none !important; margin: 0 auto;}
 .logo{width: 160px;}
@@ -52,7 +52,7 @@
 		#drop-c{position: absolute; z-index: 1; border-radius: 15px; background-color: rgb(255, 255, 255); border-style: none; box-shadow: rgb(224, 224, 224) 0px 0px 20px 0px;}
 		#drop-c a{display: block; padding: 5px 20px; margin: 2px 0px 0px 0px; text-decoration: none;}
 		.myMenu{font-weight: 700; font-size: 18px; font-family: 'Noto Sans KR', sans-serif; margin: 10px; color: rgb(51, 51, 51); text-decoration: none;}
-		#logOut{border: solid 1px; border-radius: 4px; width:100px; height:37px; margin-left: 45px; border-color: rgb(151, 222, 206); background-color: white;
+		#logOut{border: solid 1px; border-radius: 4px; width:110px; height:37px; margin-left: 45px; border-color: rgb(151, 222, 206); background-color: white;
 		 font-family: 'Noto Sans KR', sans-serif; color: rgb(26, 188, 156);}
 		#droul{margin: 0px 0px 0px; padding: 1px 1px 1px 1px; list-style: none;}
 	
@@ -91,7 +91,7 @@
 				<a class="menu2">${ loginUser.memberName }</a>
 				<div class="dropd" style="float:right; " aria-expanded="false">
 					<button onclick="dp_menu()" class="butn"><img src="resources/image/down.png"></button>
-				    <div style="width: 230px; height: 410px; display: none;" id="drop-c">
+				    <div style="width: 240px; height: 420px; display: none;" id="drop-c">
 				    	<ul id="droul"><br>
 				    	<c:if test="${ loginUser.isAdmin eq 'Y' }">
 					       <li><a class="name">${ loginUser.memberName }관리자</a></li>
