@@ -68,7 +68,7 @@
 							<br><br>
 							<div id="fileArea">
 								<div class="mb-3 adddd">
-										<input type="text" name="license" style="width: 400px;" value="${ j.license }">
+									<input type="text" name="license" style="width: 400px;" value="${ jibsaInfo.license }">
 								</div>
 							</div>
 							
