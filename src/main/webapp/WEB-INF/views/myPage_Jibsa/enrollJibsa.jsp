@@ -22,9 +22,9 @@
 #picDog{
 display: inline-block;
 margin-top:-280px;
-margin-left: 700px;
-width:380px;
-height:412px;
+margin-left: 650px;
+width:412px;
+height:380px;
 border-style: none; border-radius:20px;
 }
 #applyText{display: inline-block; margin-left: 220px;}
@@ -65,7 +65,7 @@ text-align: center;}
 			</p>
 		</div>
 		<div>
-			<img id="picDog" src="resources/image/dog.png">
+			<img id="picDog" src="resources/image/catdog.jpg">
 		</div>
 		<br><br>
 	<hr/>

@@ -145,17 +145,9 @@ public class BoardDAO {
 	public Image selectJibsaImage(SqlSessionTemplate sqlSession, int mId) {
 		return sqlSession.selectOne("boardMapper.selectJibsaImage", mId);
 	}
-	
 
-//	public ArrayList<Board> member_Review(SqlSessionTemplate sqlSession, String userName) {
-//		return (ArrayList)sqlSession.selectList("boardMapper.member_Review", userName);
-//	}
-//
-//
-//	public int member_Review_Detail(SqlSessionTemplate sqlSession, Board b) {
-//		return sqlSession.update("boardMapper.member_Review_Detail", b);
-//	}
-//
+
+	
 
 }
 

@@ -175,9 +175,11 @@
 	</div>
 <br><br>
 
-	<div class="container">
-	  <img src="resources/image/home1.png" style=" border-radius: 20px;" alt="image description">
+
+	<div class="video-container">
+	  <video id="videoStyle" width="720" height="405" src="resources/video/video.mp4" loop="loop" title="YouTube Copyrights video player" autoplay="autoplay" muted="muted"></video>
 	</div>
+	
 	<div class="container">  
 	  <p id="matchingMain">더욱더 발전하는 반려동물 파트너 문화를 만드는 집사나라</p>
 	</div>
@@ -201,8 +203,8 @@
 	  </div>
 	</div>
 	<br><br>
-	<div class="video-container">
-	  <video id="videoStyle" width="720" height="405" src="resources/video/video.mp4" loop="loop" title="YouTube Copyrights video player" autoplay="autoplay" muted="muted"></video>
+	<div class="container">
+	  <img src="resources/image/home1.png" style=" border-radius: 20px; width: 720px; height: auto;" alt="image description">
 	</div>
 	<br><br>
 `	<%@ include file="../common/bottom.jsp" %>
