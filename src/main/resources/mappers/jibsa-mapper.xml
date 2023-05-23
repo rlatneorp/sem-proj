@@ -206,4 +206,15 @@
 	    <result column="JIBSA_AVG_RATING" property="jibsaAvgRating"/>
 	</resultMap>
 	
+	<select id="selectImage2" resultMap="imageResultSet">
+		select *
+		from image
+		where member_no = #{memberNo} and image_level = '2'
+	</select>
+	
+	<delete id="deleteImage">
+		delete from image
+		where member_no = #{memberNo} and image_level = '2'
+	</delete>
+	
 </mapper>

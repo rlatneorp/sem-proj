@@ -85,5 +85,13 @@ public class JibsaDAO {
 		return (ArrayList)sqlSession.selectList("jibsaMapper.selectReserJibsa", jibsaNo);
 	}
 
+	public Image selectImage2(SqlSessionTemplate sqlSession, int memberNo) {
+		return sqlSession.selectOne("jibsaMapper.selectImage2", memberNo);
+	}
+
+	public int deleteImage(SqlSessionTemplate sqlSession, Image existingImage) {
+		return sqlSession.delete("jibsaMapper.deleteImage", existingImage);
+	}
+
 
 }

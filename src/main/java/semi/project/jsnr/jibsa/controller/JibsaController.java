@@ -10,6 +10,7 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -290,14 +291,29 @@ public class JibsaController {
 	
 	// 집사 정보수정 - 현지
 	@GetMapping("jibsaModifyInfo.js")
-	public String jibsaModifyInfo(HttpSession session) {
+	public String jibsaModifyInfo(HttpSession session, @ModelAttribute Image i, Model model) {
 		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
 		
 		// 집사 정보 세션에 담아서 뷰로 보내기
 		Jibsa j = jService.selectJibsa(memberNo);
 		
-		session.setAttribute("jibsaInfo", j);
+		session.setAttribute("jibsaInfo", j);	
+		
+		Image image = jService.selectImage2(memberNo);
+		model.addAttribute("image", image);
+		
 		return "jibsa_Modify_Info";
+	}
+	
+	public void deleteFile(String fileName, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\uploadFiles";
+		
+		File f = new File(savePath + "\\" + fileName);
+		
+		if(f.exists()) {
+			f.delete();
+		}
 	}
 	
 	@GetMapping("jibsa_Modify_Schedule.js")
@@ -363,7 +379,9 @@ public class JibsaController {
 	// 집사 정보수정 처리 - 현지
 	@PostMapping("jibsaUpdateInfo.js")
 	public String jibsaUpdateInfo(@ModelAttribute Jibsa j, @ModelAttribute Member m, Model model,
-								  HttpSession session) {
+								  HttpSession session, HttpServletRequest request,
+			  					  @RequestParam("file") MultipartFile file,
+			  					  @RequestParam("deleteAttm") String[] deleteAttm) {
 		int result1 = jService.updateMemberInfo(m); // member부분 정보수정
 		int result2 = jService.updateJibsaInfo(j);  // jibsa 부분 정보수정
 		
@@ -376,6 +394,82 @@ public class JibsaController {
 	        
 	        model.addAttribute("loginUser", updatedMember);
 			// 정보 수정하면 값이 바로 바뀌게
+	        
+	        
+	        
+	     // 사진 수정
+
+			Image image = null;
+
+			if (file != null && !file.isEmpty()) { // 새 파일이 들어왔을 때
+				String[] returnArr = saveFile(file, request);
+				// returnArr[0] : 저장된 파일의 경로 - returnArr[1] : 저장된 파일의 새로운 이름
+
+				if (returnArr[1] != null) { // 새 파일 저장 성공
+					image = new Image();
+					image.setOriginalName(file.getOriginalFilename());
+					image.setRenameName(returnArr[1]);
+					image.setImagePath(returnArr[0]);
+					image.setImageLevel(2);
+					image.setMemberNo(j.getMemberNo());
+
+					Image existingImage = jService.selectImage2(j.getMemberNo());
+					if (existingImage == null) { // 기존 파일이 없을 때
+						int insertImage = jService.insertImage(image);
+						model.addAttribute("image", insertImage);
+						System.out.println("삽입");
+
+					} else { // 기존 파일이 있을 때
+						System.out.println(j.getMemberNo());
+						int deleteImage = jService.deleteImage(existingImage);
+	    				System.out.println("삭제");
+		            	
+		            	String rename = existingImage.getRenameName();
+		       			deleteFile(rename, request);
+		            	System.out.println("파일 저장소 삭제");
+		            	
+		            	int insertImage = jService.insertImage(image);
+			            model.addAttribute("image", insertImage);
+			            System.out.println("삭제 후 삽입");
+					}
+				}
+			}
+
+			if (file.isEmpty()) { // 새 파일이 안 들어왔을 때
+				Image existingImage = jService.selectImage2(j.getMemberNo());
+				if (existingImage != null) { // 기존 파일이 있을 때 (삭제 버튼을 눌렀을 때)
+					String delRename = "";
+					Integer delLevel = 0;
+
+					for (String rename : deleteAttm) { // deleteAttm에 담긴 rename과 level을 쪼개줌
+						if (!rename.equals("none")) { // rename 값이 비워져있을 수도 있기 때문에
+							String[] split = rename.split("/");
+							delRename += split[0];
+							delLevel += Integer.parseInt(split[1]);
+
+							if (!delRename.isEmpty()) { // 삭제하려고 넘겨준 파일의 대한 rename이 존재할 때
+								int deleteImage = jService.deleteImage(existingImage);
+								System.out.println(deleteImage);
+								System.out.println(existingImage);
+								System.out.println("삭제");
+
+								if (deleteImage > 0) { // 삭제된게 있는 상황에
+									deleteFile(rename, request);
+									System.out.println("파일 저장소 삭제");
+								}
+							}
+						}
+					}
+				}
+			}	
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
 			return "redirect:jibsaModifyInfo.js"; 
 		} else {
 			throw new JibsaException("정보 수정에 실패");

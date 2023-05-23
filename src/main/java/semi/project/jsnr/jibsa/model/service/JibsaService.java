@@ -92,6 +92,16 @@ public class JibsaService {
 	public ArrayList<JibsaProfile> selectReserJibsa(int jibsaNo) {
 		return jDAO.selectReserJibsa(sqlSession, jibsaNo);
 	}
+
+	public Image selectImage2(int memberNo) {
+		return jDAO.selectImage2(sqlSession, memberNo);
+	}
+
+	public int deleteImage(Image existingImage) {
+		return jDAO.deleteImage(sqlSession, existingImage);
+	}
+
+
 	
 	
 	
