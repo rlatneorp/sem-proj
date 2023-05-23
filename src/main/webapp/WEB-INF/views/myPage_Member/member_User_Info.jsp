@@ -8,6 +8,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap" rel="stylesheet">
 <title>마이페이지</title>
 <style>
+
+  #pp{
+  position:relative; margin-left: -200px; margin-top: 30px;}
+
 *{font-family: 'Noto Sans KR', sans-serif;}
 body {
   overflow-x: hidden;
@@ -96,7 +100,6 @@ body {
   .inbtn {
     margin-left: 0;
   }
-}
 </style>
 </head>
 <body>
@@ -108,7 +111,7 @@ body {
 				<div class="row align-items-center">
 					<div class="col"><br>
 						<div class="p-2">내 반려동물</div>
-						<br><br>
+						<br>
 						<div class="p-4"><br>
 							<c:if test="${ animal.isStatus eq 'Y' }">
 		                		<h5 class="h5">${ animal.animalKind } &nbsp; · &nbsp; ${ animal.animalName } &nbsp; · &nbsp; ${ animal.animalGender }</h5><br>
@@ -126,9 +129,9 @@ body {
 		                    </c:if>
                     	</div>
 		    		</div>				 
-		    		<div class="col">
-				      	<div class="p-2">내 정보</div><br>
-	                    <div class="p-4">
+		    		<div class="col" id="pp">
+				      	<div class="p-2">내 정보</div><br><bt>
+	                    <div class="p-4" >
 	                        <table class="info">
 	                            <tr>
 	                                <td class="bold">이름</td>
@@ -142,10 +145,10 @@ body {
 	                                <td class="bold">찾아갈 주소</td>
 	                                <td class="nbold">${ loginUser.memberAddress }</td>
 	                            </tr>
-	                        </table><br>
+	                        </table>
 	                        <button class="inbtn" onclick="location.href='${contextPath}/member_EditInfo.me'">수정하기</button>
 	                    </div>
-			    	</div><br><br>
+			    	</div><br>
 				</div>
 			</div>
 		</div>
