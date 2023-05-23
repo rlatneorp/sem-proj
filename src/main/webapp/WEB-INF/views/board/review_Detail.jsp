@@ -208,15 +208,15 @@
 						  <div class="info">
 						  <table style="text-align: left;"> 
 						  	  <tr>
-						  		  <td colspan="2"><h2>${b.jibsaName} 집사</h2><h4>${b.matchingPlace}</h4></td>
+						  		  <td colspan="2"><h2>${b.jibsaName} 집사</h2><h4>${list.matchingPlace}</h4></td>
 						  		  <td><td>
-						  	 	  <td>평균평점 ${b.reviewRating}점</td>
+						  	 	  <td>평균평점 ${list.reviewRating}점</td>
 						  	  </tr>
 						  	  <tr><td colspan="3"><br></td><tr>
 						  		  <td></td>
 						 	  <tr>
-								  <td><h4>${b.animalName}</h4></td>
-								  <td><h4>${b.animalKind}</h4></td>
+								  <td><h4>${list.animalName}</h4></td>
+								  <td><h4>${list.animalKind}</h4></td>
 								  <td></td>
 								  <td></td>
 						  	  </tr>

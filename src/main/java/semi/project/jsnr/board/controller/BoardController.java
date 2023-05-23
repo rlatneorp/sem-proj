@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import semi.project.jsnr.animal.model.service.AnimalService;
 import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.board.model.exception.BoardException;
 import semi.project.jsnr.board.model.service.BoardService;
@@ -36,10 +37,11 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService bService;
+	private AnimalService aService;
 	
 	@RequestMapping("review_Main.bo")
 	public String reviewBoardList(@RequestParam(value="page", required=false) Integer currentPage, 
-			@RequestParam(value="value", required=false) String value,
+			@RequestParam(value="value", required=false) String value, HttpSession session,
 			Model model) {
 		
 		if(currentPage == null) {
@@ -49,7 +51,6 @@ public class BoardController {
 		int listCount = bService.getListCount(1);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 6);
-		
 		ArrayList<Board> list = bService.reviewBoardList(pi);
 		
 		ArrayList<Image> imgList = new ArrayList<Image>();
@@ -63,12 +64,18 @@ public class BoardController {
 			model.addAttribute("list", list);
 			model.addAttribute("imgList", imgList);
 			model.addAttribute("value", value);
-			return "review_Main";
+			return "review_Main"; 
+			
 		} else {
 			throw new BoardException("게시글 조회를 실패하였습니다.");
 		}
 	}
 	
+	private Board Board() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	@GetMapping("jibsa_List.bo")
 	public String jibsaList(@RequestParam(value="page", required=false) Integer page,
 							@RequestParam(value="type", required=false) Integer type,
@@ -186,6 +193,8 @@ public class BoardController {
 		if(!userName.equals(login)) {
 			yn = true;
 		}
+		
+		
 		
 		Board b = bService.reviewDetail(mId, yn);	
 		Board list = bService.selectReply(mId);
