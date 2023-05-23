@@ -8,6 +8,9 @@
 	<title>myPage</title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20,400,0,0" />
 </head>
+<style>
+*{font-family: 'Noto Sans KR', sans-serif; font-size: 21px;}
+</style>
 <body>
 	<jsp:include page="../common/top.jsp"></jsp:include>
 	<div class="mb-5">

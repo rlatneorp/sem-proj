@@ -134,10 +134,12 @@
 						<c:if test="${aList != null}">
 			      			<div class="mb-4">
 								<c:forEach items="${aList}" var="a" varStatus="i">
+									<c:if test="${a.isStatus eq 'Y'}">
 									<div class="d-flex align-items-center" style="height: 40px;">
 										<input class="d-flex form-check-input me-2 my-0" type="radio" name="animalNo" id="${a.animalNo}" value="${a.animalNo}" <c:if test="${i.index eq 0}">checked</c:if>>
 										<label class="d-flex form-check-label" for="${a.animalNo}">${a.animalName}(${a.animalKind})</label>
-						    		</div>
+									</div>
+									</c:if>					    		
 					  			</c:forEach>
 				  			</div>
 						</c:if>
