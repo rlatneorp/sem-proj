@@ -51,7 +51,7 @@
  	#li2{ font-size: 30px; font-weight: 500;}
  	#li3{ float:right; margin-top:45px; display:inline-block; }
  	#li4{ text-align: left; vertical-align: text-top;}
- 	#li4{ font-size: 20px; font-weight: 400;}
+ 	#li4{ font-size: 15px; font-weight: 400; color:black;}
  	#li5{ margin-top: 130px; }
  	
 
@@ -120,7 +120,7 @@
 				<tr id="scrollReview">
 					<th scope="row">${ status.index + 1 }</th>
 					<td>${ i.memberName }</td>
-					<td>${ i.endDate }</td>
+					<td>${fn:substring(i.endDate, 0, 10)}</td>
 					<td>${ i.animalName }</td>
 					<td>
 						<button class="reBtn${ status.index+1}" style="color: #1abc9c; border: 1px solid #1abc9c; background-color: white; width:60px; height: 30px; border-radius: 20px;">후기</button>

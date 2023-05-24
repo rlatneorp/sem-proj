@@ -268,7 +268,7 @@
 				<textarea readonly cols="50" rows="10" style="resize: none; padding: 20px;" name="content" id="contentBox">  ${b.reviewContent }</textarea>
 				
 				<hr><br><hr><br>
-				<h4 style="text-align: center;">집사의 댓글</h4>
+				<h4 style="text-align: center;">${ b.jibsaName}집사의 댓글</h4>
 				<br>
 				<table id="reviewId">
 					<tbody class="tbody1" style="text-align: center;">	
