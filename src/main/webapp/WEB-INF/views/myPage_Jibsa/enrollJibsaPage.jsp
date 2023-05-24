@@ -90,7 +90,22 @@
 				
 				<label class ="e title">방문가능지역</label><br/>
 				<span class = "add">지역을 선택해주세요.</span><br/>
-				<input type="text" id="availableArea" name="availableArea" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 주소를 입력해주세요"><br/><br/>
+				<select id="availableArea" name="availableArea" class="mb-4" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" >
+									<option selected>서울</option>
+									<option>수도권</option>
+									<option>강원도</option>
+									<option>경상도</option>
+									<option>광주</option>
+									<option>대구</option>
+									<option>대전</option>
+									<option>부산</option>
+									<option>울산</option>
+									<option>전라도</option>
+									<option>제주도</option>
+									<option>충청도</option>
+				</select>
+				<br/>
+<!-- 				<input type="text" id="availableArea" name="availableArea" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 주소를 입력해주세요"><br/><br/> -->
 				
 				<label class ="e title"> 성별</label><br/>
 				<label style="margin-left: 25px;"><input type="radio" name="jibsaGender" value="M">남자</label>
@@ -141,7 +156,7 @@
 			<label style="margin-left: 25px;"><input type="checkbox" name="license" value="KPA 수료증"> KPA 수료증 (CTP, Foundation 등)</label>
 			<label style="margin-left: 75px;"><input type="checkbox" name="directInput" onclick="toggleDirectInput(this)"> 직접입력</label><br>
 			<label style="margin-left: 320px;" for="other-checkbox">
-			    <input type="text" name="license" id="directLicense" style="padding: 40px; margin-left: 23px; margin-top: 10px; border-radius: 5px; border-style: none; box-shadow: 0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width: 284px; height: 43px;" placeholder="이곳에 입력해주세요" size="25" disabled>
+			    <input type="text" name="license" id="directLicense" style="padding: 40px; margin-left: 23px; margin-top: 10px; border-radius: 5px; border-style: none; box-shadow: 0px 0px 1px 1px rgb(224, 224, 224); font-size: 17px; font-weight: normal; width: 284px; height: 43px;" placeholder="이곳에 입력해주세요"  disabled>
 			</label>
 			
 		</div>
