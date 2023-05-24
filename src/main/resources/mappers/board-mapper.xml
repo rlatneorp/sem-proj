@@ -198,7 +198,7 @@
 	        join animal a on(ma.animal_no = a.animal_no)
 	        join member m on(a.member_no = m.member_no)
 	        join jibsa_profile jp on(ma.jibsa_no = jp.member_no)
-	    where ma.matching_no = #{mId} and m.member_status = 'Y' and ma.matching_place like '% % ' escape ' '
+	    where ma.matching_no = #{mId} and m.member_status = 'Y'
 	</select>
 	
 <!-- 	<select id="reviewDetailReply" resultMap="boardResultSet"> -->
