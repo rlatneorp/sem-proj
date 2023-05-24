@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
+	
 	#reviewMain{width: 1200px; max-width: none !important; margin: 0 auto;}
  	
  	.reBtn {color: #1abc9c; border: 1px solid #1abc9c; background-color: white; width:60px; height: 30px; border-radius: 20px;}		
@@ -43,6 +44,7 @@
 	
 	.check {background-color: #1abc9c; color: white; border: none; width:85px; height: 33px;
 			border-radius: 20px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);}
+	
  	
 	#reviewId{font-family: 'Noto Sans KR', sans-serif;  font-weight: 500; list-style: none; position: relative; }
  	#btnX{float:right; margin-left: -60px;}
@@ -64,6 +66,8 @@
 	 color: rgb(98, 182, 183);
 	 font-size: 40px;  
 	}
+	#check4 {background-color: white; color: #1abc9c; border: 1px solid #1abc9c; width:120px; height: 33px; cursor:pointer; margin-left: 550px; text-align: center; padding: 5px;
+			border-radius: 20px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);}
 </style>
 </head>
 <body>
@@ -105,6 +109,7 @@
 		<div class="area" id="area3" style="overflow:scroll; overflow-x:hidden; ">
 			<span class="subtitle">조회결과</span><br>
 			<span>${ from } - ${ to }</span><br><br>
+			<div id="check4" onclick="location.href='${contextPath}/jibsa_Review.js'">모든후기 보기</div> 
 			<table class="table" id="scrollTable">
 				<thead>
 					<tr>
