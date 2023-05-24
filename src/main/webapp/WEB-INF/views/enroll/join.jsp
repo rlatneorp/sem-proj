@@ -176,7 +176,7 @@
 			
 		});
 		
-		// 인증번호 일치 시 회원가입 진행, 가입 완료시 완료 메세지
+		// 인증번호 일치 시 회원가입 진행
 		join.addEventListener('click', () => {
 			if(codeA.innerText == '인증번호가 일치합니다. 회원가입을 진행해주세요.' && pwdCheckResult.innerText == '비밀번호가 일치합니다' && idResult.innerText == '사용가능한 아이디입니다'){
 				alert('회원가입이 완료되었습니다! 로그인 해주세요.');
