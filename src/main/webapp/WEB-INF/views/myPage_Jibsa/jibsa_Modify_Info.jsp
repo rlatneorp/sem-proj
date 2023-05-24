@@ -31,7 +31,7 @@
 					<form method="post" action="${ contextPath }/jibsaUpdateInfo.js" enctype="multipart/form-data" id="attmForm">
 						
 						<p class="fs-5">프로필 수정</p>
-    					<img id="preview" width="60%" height="280"/>
+    					<img id="preview" width="60%" height="280" src="${contextPath}/resources/uploadFiles/${ image.renameName }"/>
     					<input class="form-control" type="file" accept="image/*" name="file" id="formFile" onchange="previewImage(event)"/><br>
     					현재 등록된 사진 : <c:if test="${ !empty image.originalName }">${ image.originalName }</c:if><c:if test="${ empty image.originalName }">없음</c:if>
     							  	<button type="button" class="btn btn-outline-dark btn-sm deleteAttm" id="delete-${ image.renameName }/${ image.imageLevel }">삭제</button>
