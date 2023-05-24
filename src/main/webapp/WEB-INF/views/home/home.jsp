@@ -190,11 +190,11 @@
 		  	보호자와 전문가를<br>서로 매칭해줍니다</p>
 		  <button class="select" onclick="location.href='${ contextPath }/matching_Main.mc'">집사매칭</button>
 		</div>
-	  <img src="resources/image/home2.jpg"  style=" border-radius: 20px;" alt="image description">
+	  <img src="resources/image/main1.jpg"  style=" border-radius: 20px; width: 400px; height: 400px;" alt="image description">
 	</div>
 	<br><br>
 	<div class="container">
-	  <img src="resources/image/home3.jpg"  style=" border-radius: 20px;" alt="image description">
+	  <img src="resources/image/main2.jpg"  style=" border-radius: 20px; width: 400px; height: 400px;" alt="image description">
 	  <div>
 		  <p>다양한 이용후기를 보면서 <br>
 		  	어떤 서비스를 받을지 결정하세요 
@@ -204,7 +204,7 @@
 	</div>
 	<br><br>
 	<div class="container">
-	  <img src="resources/image/home1.png" style=" border-radius: 20px; width: 720px; height: auto;" alt="image description">
+	  <img src="resources/image/maindog.PNG" style=" border-radius: 20px; width: 720px; height: auto;" alt="image description">
 	</div>
 	<br><br>
 `	<%@ include file="../common/bottom.jsp" %>
