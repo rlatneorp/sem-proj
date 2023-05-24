@@ -53,6 +53,11 @@
 				            <label for="exampleFormControlTextarea1">내용</label><br><br>
 				            <textarea class="form-control" id="exampleFormControlTextarea1" name="qnaContent" rows="10" style="resize: none">${q.qnaContent }</textarea>
 				        </div>
+     				    <br>
+				        <div class="form-group">
+				            <label for="exampleFormControlTextarea2">답변내용</label><br><br>
+				            <textarea class="form-control" id="exampleFormControlTextarea2" name="qnaAnswer" rows="10" style="resize: none" readonly>${q.qnaAnswer }</textarea>
+				        </div>
 				        <div class="text-center">
 				    		<button class="subbtn">수정하기</button>
 				    	</div>
