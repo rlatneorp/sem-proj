@@ -15,8 +15,8 @@
 		        #{expectedSalary}, 
 		        'kakao',
 		        'N',
-		        sysdate, 
-		        sysdate, 
+		        null, 
+		        null, 
 		        'N',
 		        #{license})
 	</insert>

@@ -81,6 +81,7 @@
 		<result column="PRIMIUM_END_DATE" property="primiumEndDate"/>
 		<result column="IS_TRAINER" property="isTrainer"/>
 		<result column="IS_JIBSA" property="jibsaStatus"/>
+		<result column="JIBSA_LICENSE" property="license"/>
 	</resultMap>
 	
 	<select id="selectAnimal" resultMap="animalResultSet">
