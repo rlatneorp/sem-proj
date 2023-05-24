@@ -77,12 +77,21 @@ public class JibsaDAO {
 		return sqlSession.selectOne("jibsaMapper.getMatchingCount", mNo);
 	}
 
-	public Jibsa selectJibsaChat(SqlSessionTemplate sqlSession, int jibsaNo) {
-		return sqlSession.selectOne("jibsaMapper.selectJibsaChat", jibsaNo);
-	}
-
 	public int insertTrainer(SqlSessionTemplate sqlSession, Jibsa j) {
 		return sqlSession.insert("jibsaMapper.insertTrainer", j);
 	}
+
+	public ArrayList<JibsaProfile> selectReserJibsa(SqlSessionTemplate sqlSession, int jibsaNo) {
+		return (ArrayList)sqlSession.selectList("jibsaMapper.selectReserJibsa", jibsaNo);
+	}
+
+	public Image selectImage2(SqlSessionTemplate sqlSession, int memberNo) {
+		return sqlSession.selectOne("jibsaMapper.selectImage2", memberNo);
+	}
+
+	public int deleteImage(SqlSessionTemplate sqlSession, Image existingImage) {
+		return sqlSession.delete("jibsaMapper.deleteImage", existingImage);
+	}
+
 
 }

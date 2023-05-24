@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
 			body {
-			  overflow-x: hidden;
+			  overflow-x: hidden; 
 			}
 			
 			#wrapper {
@@ -23,23 +23,28 @@
 			#wrapper.toggled {
  			  padding-left: 250px;
 			}
-			
+			 
 			#sidebar-wrapper {
 			  z-index: 1000;
 			  position: fixed;
 			  left: 250px;
 			  width: 0;
-			  height: 70%;
-			  margin-left: -250px;
+			  height: 523px;
+			  margin-left:-20px;
 			  overflow-y: auto;
-			  background: rgb(26, 188, 156);
 			  -webkit-transition: all 0.5s ease;
 			  -moz-transition: all 0.5s ease;
 			  -o-transition: all 0.5s ease;
 			  transition: all 0.5s ease;
-			  border-right: 1px solid gray;
+			  border:none; 
+			  font-family: 'Noto Sans KR', sans-serif;
+			  font-weight: 700;
+			  font-size: 19px;
+			  border-right: 1px solid lightgray;
+			  text-decoration: none;
+			  
 			}
-			
+			#sidebar-wrapper:hover{color: black;}
 			#wrapper.toggled #sidebar-wrapper {
 			  width: 250px;
 			}
@@ -71,7 +76,7 @@
 			
 			.sidebar-nav .lab:hover {
 			  text-decoration: none;
-			  color: #fff;
+			  color: black;
 			  cursor: pointer;
 			}
 			
@@ -111,7 +116,7 @@
 			    position: relative;
 			    margin-right: 0;
 			  }
-			}
+			
 			#inbtn1{
 			  	color: black;
 			  	display: inline-block;
@@ -135,7 +140,7 @@
 						
 				#btn4 { background-color: lightgray; color:white; border: none; width: 100px; height: 35px;
 						border-radius: 20px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);}
-				#jib{color: black; cursor: pointer; margin-left: 20px; text-decoration: none;}
+				#jib{color: black; cursor: pointer; margin-left: 10px; text-decoration: none;}
 				#jib:hover{color: black;}
 </style>
 </head>

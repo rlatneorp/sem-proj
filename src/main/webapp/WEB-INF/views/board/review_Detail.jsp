@@ -37,7 +37,8 @@
 	.review {
 	  display: flex;
 	  align-items: flex-start;
-	  justify-content: space-between;
+	  justify-content: flex-end;
+	  margin-left: 10px;
 	}
 	
 	.review .profile {
@@ -70,11 +71,12 @@
 	}
 	
 	.review .info {
-	  display: flex;
-	  flex-direction: column;
-	  align-items: center;
-	  text-align: center;
+/* 	  display: flex; */
+/* 	  flex-direction: column; */
+	  align-items: right;
+	  text-align: right;
 	  width: 100%;
+	  margin-left: 60px;
 	}
 	
 	#reviewBoxContainer {
@@ -179,7 +181,19 @@
 	vertical-align: top; writing-mode: vertical-lr;
 	text-align: center;}
 	.td2{margin-left: -56px; margin-top: -55px; position: absolute;}
+	
+	#star {
+	  font-variation-settings:
+	  'FILL' 1,
+	  'wght' 700,
+	  'GRAD' 200,
+	  'opsz' 48;
+	 color: rgb(98, 182, 183);
+	 font-size: 30px;  
+	}
+	#subtitle{text-align: left; }
 </style>
+	
 
 
  
@@ -197,22 +211,36 @@
 			  	<div class="col">
 				    <div class="review">
 						  <div class="profile">
-							  <img src="resources/image/user.png">
+							  <c:if test="${empty image}">
+									<img src="resources/image/logo.png"> 
+								</c:if>
+								<c:if test="${!empty image}">
+									<img src="resources/uploadFiles/${image.renameName}"> 
+								</c:if>
 							  <div class="username">${b.memberName}</div>
 						  </div>
 						  <div class="info">
-						  <table style="text-align: left;"> 
+						  <table style="text-align: left;">
 						  	  <tr>
-						  		  <td colspan="2"><h2>${b.jibsaName} 집사</h2><h4>${b.matchingPlace}</h4></td>
-						  		  <td><td>
-						  	 	  <td>평균평점 ${b.reviewRating}점</td>
-						  	  </tr>
-						  	  <tr><td colspan="3"><br></td><tr>
 						  		  <td></td>
+						  		  <td colspan="2"><h2>${b.jibsaName} 집사</h2><h4>${list.matchingPlace}</h4></td>
+						  	 	  <td></td>
+						  	 </tr>
+						  	  <tr id="subtitle">
+						  		  <td colspan="2"></td>
+						  	  	  <td>
+						  	  	  	<c:forEach  begin="0" end="0">평점 ${list.reviewRating}점</c:forEach>
+					  			  </td>
+					  			  <td></td>
+						  	 </tr>
 						 	  <tr>
-								  <td><h4>${b.animalName}</h4></td>
-								  <td><h4>${b.animalKind}</h4></td>
-								  <td></td>
+								  <td><h4>${list.animalName}</h4></td>
+								  <td><h4>${list.animalKind}</h4></td>
+								  <td>	
+						            <c:forEach begin="1" end="${list.reviewRating}">
+						             <span class="material-symbols-outlined" id="star" style="font-size: 30px;">star</span>
+						            </c:forEach>
+							      </td>
 								  <td></td>
 						  	  </tr>
 						  </table>

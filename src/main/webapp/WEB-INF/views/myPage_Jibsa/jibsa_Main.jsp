@@ -7,7 +7,11 @@
 	<meta charset="UTF-8">
 	<title>myPage</title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
+<style>
+*{font-family: 'Noto Sans KR', sans-serif; font-size: 21px;}
+</style>
 <body>
 	<jsp:include page="../common/top.jsp"></jsp:include>
 	<div class="mb-5">
@@ -24,7 +28,7 @@
 							<img src="${contextPath}/resources/image/logo.png" alt="로딩실패" width="72" height="72" class="rounded-circle image-block me-2">
 						</c:if>
 						<c:if test="${!empty img}">
-							<img src="${contextPath}/resources/uploadFiles/${img.renameName}" alt="로딩실패" width="48" height="48" class="rounded-circle image-block me-2">
+							<img src="${contextPath}/resources/uploadFiles/${img.renameName}" alt="로딩실패" width="60" height="60" class="rounded-circle image-block me-2">
 						</c:if>
 						<span class="text-small fw-bold">${j.memberName} 집사님</span>
 					</div>

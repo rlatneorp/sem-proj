@@ -193,22 +193,6 @@
 		where member_no = #{memberNo}
 	</select>
 	
-	<!-- 해당 매칭에 맞는 집사 프로필 정보 -->
-	<select id="selectReserJibsa" resultMap="reserJibsaResultMap">
-	  SELECT j.jibsa_name, j.profile_title, j.member_no
-	  FROM jibsa_profile j
-	  JOIN matching m ON (m.member_no = j.member_no)
-	  WHERE m.jibsa_no = j.member_no
-	</select>
-	
-	<resultMap type="JibsaProfile" id="reserJibsaResultMap">
-		<id column="MEMBER_NO" property="memberNo"/>
-	    <result column="JIBSA_NAME" property="jibsaName"/>
-	    <result column="PROFILE_TITLE" property="profileTitle"/>
-	    <result column="PROFILE_TAG" property="profileTag"/>
-	    <result column="JIBSA_AVG_RATING" property="jibsaAvgRating"/>
-	</resultMap>
-	
 	<!-- 매칭 취소 -->
 	<update id="cancelMatching">
 		update matching
@@ -257,5 +241,20 @@
 		<result column="BIRTH_DATE" property="birthDate" />
 		<result column="IS_STATUS" property="isStatus" />
 		<result column="IMAGE_LEVEL" property="imageLevel" />
+	</resultMap>
+	<select id="selectAnimalImage" resultMap="imageResultSet">
+		select *
+		from image
+			 join animal a using(member_no)
+		where animal_no = #{aNo}
+			  and a.image_level = 1
+	</select>
+	<resultMap type="Image" id="imageResultSet">
+		<id column="IMAGE_NO" property="imageNo"/>		
+		<result column="RENAME_NAME" property="renameName"/>
+		<result column="ORIGINAL_NAME" property="originalName"/>
+		<result column="IMAGE_LEVEL" property="imageLevel"/>
+		<result column="IMAGE_PATH" property="imagePath"/>
+		<result column="MEMBER_NO" property="memberNo"/>
 	</resultMap>
 </mapper>

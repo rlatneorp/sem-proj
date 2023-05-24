@@ -37,17 +37,10 @@
 		        			<c:if test="${q.qnaCategory eq '문의'}">
 		        				<option selected>문의</option>
 		        				<option>신고</option>
-		        				<option>말머9</option>
 		        			</c:if>
 		        			<c:if test="${q.qnaCategory eq '신고'}">
 		        				<option>문의</option>
 		        				<option selected>신고</option>
-		        				<option>말머9</option>
-		        			</c:if>
-		        			<c:if test="${q.qnaCategory eq '말머9'}">
-		        				<option>문의</option>
-		        				<option>신고</option>
-		        				<option selected>말머9</option>
 		        			</c:if>
 		        		</select>
 		        		<br><br>

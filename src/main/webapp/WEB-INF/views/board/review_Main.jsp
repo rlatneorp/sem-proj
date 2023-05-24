@@ -121,11 +121,16 @@
 	<div class="container text-left">
 	  <div class="row">
 	  <article id="reviewList">
-		<c:forEach items="${ list }" var="n">
+		<c:forEach items="${ list }" var="n" varStatus="st">
 		  	<div class="col" style="cursor: pointer;">
 		    	<div class="review">
 					<div class="profile">
-						 <img src="resources/image/profile.png"> 
+						<c:if test="${empty imgList[st.index]}">
+							<img src="resources/image/logo.png"> 
+						</c:if>
+						<c:if test="${!empty imgList[st.index]}">
+							<img src="resources/uploadFiles/${imgList[st.index].renameName}"> 
+						</c:if>
 						 <div class="userName">${ n.memberName }</div>
 					</div>
 					<div class="info">

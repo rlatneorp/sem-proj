@@ -66,7 +66,10 @@
 						<c:if test="${jList[s.index].license ne null}">${jList[s.index].license}</c:if>
 					</span>
 					<span class="col-4">평점</span>
-					<span class="col-8">${jp.jibsaAvgRating}</span>
+					<span class="col-8">
+						<c:if test="${jp.jibsaAvgRating eq 0.0}">-</c:if> 
+						<c:if test="${jp.jibsaAvgRating ne 0.0}">${jp.jibsaAvgRating}</c:if> 
+					</span>
 					<span class="col-4">희망시급</span>
 					<span class="col-8">
 						<fmt:formatNumber type="number" pattern="###,###,###" value="${jList[s.index].expectedSalary}"/>원

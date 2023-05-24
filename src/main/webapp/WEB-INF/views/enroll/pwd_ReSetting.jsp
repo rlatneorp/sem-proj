@@ -61,7 +61,7 @@
 		const form = document.getElementById('form');
 		
 		
-		npwd.addEventListener('keyup', () => {
+		npwd.addEventListener('change', () => {
 			if(pwd.value == '' || npwd.value == ''){
 				check.innerText = '';
 			} else if (pwd.value == npwd.value){

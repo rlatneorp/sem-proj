@@ -28,12 +28,16 @@
 						<p class="px-2 fs-5 fw-bold">정보 수정하기</p>
 					</div>
 					
-					<form method="post" action="${ contextPath }/jibsaUpdateInfo.js">
-						<div class="container mb-4">
+					<form method="post" action="${ contextPath }/jibsaUpdateInfo.js" enctype="multipart/form-data" id="attmForm">
+						
 						<p class="fs-5">프로필 수정</p>
-						<div id="img" style=""></div>
-    					<input type="file" class="input px-2 fs-7" style="width: 400px; color: rgba(0,0,0,0.8); cursor: pointer;" id="formFile">
-    					</div>
+    					<img id="preview" width="100%" height="245"/>
+    					<input class="form-control" type="file" accept="image/*" name="file" id="formFile" onchange="previewImage(event)"/><br>
+    					현재 등록된 사진 : <c:if test="${ !empty image.originalName }">${ image.originalName }</c:if><c:if test="${ empty image.originalName }">없음</c:if>
+    							  	<button type="button" class="btn btn-outline-dark btn-sm deleteAttm" id="delete-${ image.renameName }/${ image.imageLevel }">삭제</button>
+									<input type="hidden" name='deleteAttm' value='none'><br><br>
+    					
+    					
 						<input type="hidden" name="memberNo" value="${ loginUser.memberNo }">
 						<div class="container mb-4">
 							<p class="fs-5">이름</p>
@@ -68,7 +72,7 @@
 							<br><br>
 							<div id="fileArea">
 								<div class="mb-3 adddd">
-									<input type="text" name="motive" style="width: 400px;" value="${ jibsaInfo.motive }">
+									<input type="text" name="license" style="width: 400px;" value="${ jibsaInfo.license }">
 								</div>
 							</div>
 							
@@ -123,7 +127,71 @@
 		  reader.readAsDataURL(file);  
 		});
 		
+		// 삭제 OFF 버튼을 누르면, 배경은 검은색 글자는 하얀색으로 버튼이 바뀌며 삭제 ON으로 뜨게끔 만들기
+		// 버튼을 눌렀을 때 파라미터 deleteAttm 안에 삭제한 파일의 정보(리네임/레벨)가 들어가게 하시오
 		
+		 const deleteOn = document.getElementsByClassName('deleteAttm');
+			
+         for(const btn of deleteOn){
+            btn.addEventListener('click', function(){
+            	const nextHidden = this.nextElementSibling;
+            	if(nextHidden.value == 'none'){
+            		this.style.background = "black";
+              		this.style.color = "white";
+              		this.innerHTML = "삭제";
+            		nextHidden.value = this.id.split('-')[1];
+            	} else {
+            		this.style.background = "none";
+              		this.style.color = "black";
+              		this.innerHTML = "유지";
+            		nextHidden.value = 'none';
+            	}
+                              
+            })   
+        }
+   
+         
+        const form = document.getElementById('attmForm');
+			
+		document.getElementById('btn').addEventListener('click', ()=>{
+			const files = document.getElementsByName('file');
+			let isEmpty = true;
+			for(const f of files){
+				if(f.value != ''){
+					isEmpty = false;
+				}
+			}
+				
+			let isAllRemove = true;
+			for(const btn of deleteOn){
+				if(btn.innerText == '삭제'){
+					isAllRemove = false;
+				}
+			}
+				
+			if(isEmpty && isAllRemove){
+				$('#modalChoice').modal('show');
+			} else {
+				form.submit();
+			}
+		})
+		
+		
+		const previewImage = (event) => {
+		const input = event.target;
+		const preview = document.getElementById('preview');
+			
+			  if (input.files && input.files[0]) {
+			    const reader = new FileReader();
+			
+			    reader.onload = (e) => {
+			      preview.src = e.target.result;
+			    };
+			
+			    reader.readAsDataURL(input.files[0]);
+			  }
+			};
+			
 	</script>
 </body>
 </html>

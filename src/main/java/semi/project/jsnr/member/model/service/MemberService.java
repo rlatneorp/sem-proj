@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import semi.project.jsnr.animal.model.vo.Animal;
+import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.board.model.vo.Faq;
 import semi.project.jsnr.board.model.vo.Qna;
@@ -111,10 +112,6 @@ public class MemberService {
 		return mDAO.selectReserList(sqlSession, memberNo);
 	}
 
-	public ArrayList<JibsaProfile> selectReserJibsa() {
-		return mDAO.selectReserJibsa(sqlSession);
-	}
-
 	public int cancelMatching(int matchingNo) {
 		return mDAO.cancelMatching(sqlSession, matchingNo);
 	}
@@ -129,8 +126,14 @@ public class MemberService {
 
 	public int deleteReview(Board b) {
 		return mDAO.deleteReview(sqlSession, b);
+	}
+	
 	public Animal selectAnimal(int mNo) {
 		return mDAO.selectAnimal(sqlSession, mNo);
+	}
+
+	public Image selectAnimalImage(int aNo) {
+		return mDAO.selectAnimalImage(sqlSession, aNo);
 	}
 
 }
