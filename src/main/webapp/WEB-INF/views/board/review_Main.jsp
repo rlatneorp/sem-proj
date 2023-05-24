@@ -113,6 +113,19 @@
 	.star{
 	 vertical-align: top; display:inline-block;
 	}
+	.pagingBtnBefore{
+	 color: gray;
+	}
+	.pagingBtnAfter{
+	 color: black;
+	}
+	.pagingBtnNum{
+	 color:rgb(98, 182, 183);
+	}
+	
+	#searchCondition{
+	color: black;
+	}
 </style>
 </head>
 <body>
@@ -168,7 +181,7 @@
 	  </div>
 	</div>
 	</div>
-	
+	<br><br>
 	  <div class="row">
 			<div class="pagingArea" align="center">
 		<!-- 		이전 버튼 -->
@@ -180,7 +193,7 @@
 				    <c:param name="value" value="${value}" />
 				  </c:if>
 				</c:url>
-				<a href="${blistBack}">[이전]</a>
+				<a href="${blistBack}" class="pagingBtnBefore">[이전]</a>
 
 		<!-- 		숫자 버튼 -->
 					<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage}">
@@ -192,7 +205,7 @@
 					      <c:param name="value" value="${value}" />
 					    </c:if>
 					  </c:url>
-					  <a href="${blistNum}">${p}</a>
+					  <a href="${blistNum}" class="pagingBtnNum">${p}</a>
 					</c:forEach>
 
 		<!-- 		다음 버튼 -->
@@ -204,7 +217,7 @@
 			    <c:param name="value" value="${value}" />
 			  </c:if>
 			</c:url>
-			<a href="${blistNext}">[다음]</a>
+			<a href="${blistNext}" class="pagingBtnAfter">[다음]</a>
 
 			<div id="searchArea" align="center">
 			  <label>검색조건</label>

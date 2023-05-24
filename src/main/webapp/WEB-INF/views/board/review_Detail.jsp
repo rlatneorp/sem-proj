@@ -173,7 +173,7 @@
 	}
 	
 	#contentBox{border: 1px solid #7F8487; border-radius: 5px; }
-	.td1{text-align:center; font-size: 22px; width: 430px; height: 100px; resize: none; display:inline-block; border:none;}
+	.td1{text-align: left; font-size: 22px; width: 430px; height: 100px; resize: none; display:inline-block; border:none;}
 	#reBtn {border: none;
 	background-color: rgb(184,184,184);
 	color: white;
@@ -268,7 +268,7 @@
 				<textarea readonly cols="50" rows="10" style="resize: none; padding: 20px;" name="content" id="contentBox">  ${b.reviewContent }</textarea>
 				
 				<hr><br><hr><br>
-				<h4 style="text-align: center;">집사의 댓글</h4>
+				<h4 style="text-align: center;">${ b.jibsaName}집사의 댓글</h4>
 				<br>
 				<table id="reviewId">
 					<tbody class="tbody1" style="text-align: center;">	
