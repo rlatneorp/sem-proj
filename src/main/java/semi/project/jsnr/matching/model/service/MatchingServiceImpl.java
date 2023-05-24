@@ -1,13 +1,13 @@
 package semi.project.jsnr.matching.model.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import semi.project.jsnr.animal.model.vo.Animal;
+import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
 import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.matching.model.dao.MatchingDAO;
@@ -52,5 +52,8 @@ public class MatchingServiceImpl implements MatchingService {
 //		return mcDAO.getAnimalCount(sqlSession, mNo);
 //	}
 
-
+	@Override
+	public Image imageList(int memberNo) {
+		return mcDAO.imageList(sqlSession, memberNo);
+	}
 }
