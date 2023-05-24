@@ -45,106 +45,106 @@
 	
 		<c:forEach items="${jpList}" var="jp" varStatus="s">
 		<c:set value="${mc}" var="mc" scope="session"/>
-		  <div class="row mb-5">
-		    <div class="profile row py-5 px-5">
-		    	<div class="col-3">
-					<img src="${contextPath}/resources/image/logo.png" class="w-100">
-		    	</div>
-				<div class="info col-4 row">
-					<h4 class="col-12">${jList[s.index].memberName}</h4>
-					<p class="col-12 mb-1"><b>- ${fn:substring(jp.profileTitle,0,20)} -</b></p>	
-					<span class="col-4">나이</span>
-					<span class="col-8 age">${fn:substring(jList[s.index].jibsaRrn,0,4)}</span>
-					<span class="col-4">성별</span>
-					<span class="col-8">
-						<c:if test="${jList[s.index].jibsaGender eq 'F'}">여성</c:if>
-						<c:if test="${jList[s.index].jibsaGender eq 'M'}">남성</c:if>
-					</span>
-					<span class="col-4">자격증</span>
-					<span class="col-8">
-						<c:if test="${jList[s.index].license eq null}">-</c:if>
-						<c:if test="${jList[s.index].license ne null}">${jList[s.index].license}</c:if>
-					</span>
-					<span class="col-4">평점</span>
-					<span class="col-8">
-						<c:if test="${jp.jibsaAvgRating eq 0.0}">-</c:if> 
-						<c:if test="${jp.jibsaAvgRating ne 0.0}">${jp.jibsaAvgRating}</c:if> 
-					</span>
-					<span class="col-4">희망시급</span>
-					<span class="col-8">
-						<fmt:formatNumber type="number" pattern="###,###,###" value="${jList[s.index].expectedSalary}"/>원
-					</span>
-					<span class="col-4">흡연여부</span>
-					<span class="col-8">
-						<c:if test="${jList[s.index].isSmoking eq 'Y'}">흡연자</c:if>
-						<c:if test="${jList[s.index].isSmoking eq 'N'}">비흡연자</c:if>
-					</span>
-					
-				</div>
-				<div class="col-3 row workTimeBox">
-					<h4 class="col-12">근무 가능시간</h4>
-					<p class="col-4 my-0">월요일</p><c:set var="t" value="${jp.availableHourArr[1]}"/>
-					<c:if test="${t eq '00000000' }">
-						<span class="col-8">휴무</span>
-					</c:if>
-					<c:if test="${t ne '00000000' }">
-						<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
-					</c:if>
-
-					<p class="col-4 my-0">화요일</p><c:set var="t" value="${jp.availableHourArr[2]}"/>
-					<c:if test="${t eq '00000000' }">
-						<span class="col-8">휴무</span>
-					</c:if>
-					<c:if test="${t ne '00000000' }">
-						<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
-					</c:if>
-					
-					<p class="col-4 my-0">수요일</p><c:set var="t" value="${jp.availableHourArr[3]}"/>
-					<c:if test="${t eq '00000000' }">
-						<span class="col-8">휴무</span>
-					</c:if>
-					<c:if test="${t ne '00000000' }">
-						<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
-					</c:if>
-
-					<p class="col-4 my-0">목요일</p><c:set var="t" value="${jp.availableHourArr[4]}"/>
-					<c:if test="${t eq '00000000' }">
-						<span class="col-8">휴무</span>
-					</c:if>
-					<c:if test="${t ne '00000000' }">
-						<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
-					</c:if>
-
-					<p class="col-4 my-0">금요일</p><c:set var="t" value="${jp.availableHourArr[5]}"/>
-					<c:if test="${t eq '00000000' }">
-						<span class="col-8">휴무</span>
-					</c:if>
-					<c:if test="${t ne '00000000' }">
-						<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
-					</c:if>
-
-					<p class="col-4 my-0">토요일</p><c:set var="t" value="${jp.availableHourArr[6]}"/>
-					<c:if test="${t eq '00000000' }">
-						<span class="col-8">휴무</span>
-					</c:if>
-					<c:if test="${t ne '00000000' }">
-						<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
-					</c:if>
-
-					<p class="col-4 my-0">일요일</p><c:set var="t" value="${jp.availableHourArr[0]}"/>
-					<c:if test="${t eq '00000000' }">
-						<span class="col-8">휴무</span>
-					</c:if>
-					<c:if test="${t ne '00000000' }">
-						<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
-					</c:if>
-
-				</div>
-				<div class="col-2 d-flex justify-content-end align-items-center">
-					<button onclick="location.href='${contextPath}/matching_Success.mc?jNo=${jp.memberNo}'" class="shadow m-bg-color rounded-2 border-0 fs-7 fw-bold text-white me-2" style="width: 100px; height: 40px;">매칭하기</button>
+			<div class="row mb-5">
+			    <div class="profile row py-5 px-5">
+			    	<div class="col-3">
+						<img src="${contextPath}/resources/image/logo.png" height="200">
+			    	</div>
+					<div class="info col-4 row">
+						<h4 class="col-12">${jList[s.index].memberName}</h4>
+						<p class="col-12 mb-1"><b>- ${fn:substring(jp.profileTitle,0,20)} -</b></p>	
+						<span class="col-4">나이</span>
+						<span class="col-8 age">${fn:substring(jList[s.index].jibsaRrn,0,4)}</span>
+						<span class="col-4">성별</span>
+						<span class="col-8">
+							<c:if test="${jList[s.index].jibsaGender eq 'F'}">여성</c:if>
+							<c:if test="${jList[s.index].jibsaGender eq 'M'}">남성</c:if>
+						</span>
+						<span class="col-4">자격증</span>
+						<span class="col-8">
+							<c:if test="${jList[s.index].license eq null}">-</c:if>
+							<c:if test="${jList[s.index].license ne null}">${jList[s.index].license}</c:if>
+						</span>
+						<span class="col-4">평점</span>
+						<span class="col-8">
+							<c:if test="${jp.jibsaAvgRating eq 0.0}">-</c:if> 
+							<c:if test="${jp.jibsaAvgRating ne 0.0}">${jp.jibsaAvgRating}</c:if> 
+						</span>
+						<span class="col-4">희망시급</span>
+						<span class="col-8">
+							<fmt:formatNumber type="number" pattern="###,###,###" value="${jList[s.index].expectedSalary}"/>원
+						</span>
+						<span class="col-4">흡연여부</span>
+						<span class="col-8">
+							<c:if test="${jList[s.index].isSmoking eq 'Y'}">흡연자</c:if>
+							<c:if test="${jList[s.index].isSmoking eq 'N'}">비흡연자</c:if>
+						</span>
+						
+					</div>
+					<div class="col-3 row workTimeBox">
+						<h4 class="col-12">근무 가능시간</h4>
+						<p class="col-4 my-0">월요일</p><c:set var="t" value="${jp.availableHourArr[1]}"/>
+						<c:if test="${t eq '00000000' }">
+							<span class="col-8">휴무</span>
+						</c:if>
+						<c:if test="${t ne '00000000' }">
+							<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
+						</c:if>
+	
+						<p class="col-4 my-0">화요일</p><c:set var="t" value="${jp.availableHourArr[2]}"/>
+						<c:if test="${t eq '00000000' }">
+							<span class="col-8">휴무</span>
+						</c:if>
+						<c:if test="${t ne '00000000' }">
+							<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
+						</c:if>
+						
+						<p class="col-4 my-0">수요일</p><c:set var="t" value="${jp.availableHourArr[3]}"/>
+						<c:if test="${t eq '00000000' }">
+							<span class="col-8">휴무</span>
+						</c:if>
+						<c:if test="${t ne '00000000' }">
+							<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
+						</c:if>
+	
+						<p class="col-4 my-0">목요일</p><c:set var="t" value="${jp.availableHourArr[4]}"/>
+						<c:if test="${t eq '00000000' }">
+							<span class="col-8">휴무</span>
+						</c:if>
+						<c:if test="${t ne '00000000' }">
+							<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
+						</c:if>
+	
+						<p class="col-4 my-0">금요일</p><c:set var="t" value="${jp.availableHourArr[5]}"/>
+						<c:if test="${t eq '00000000' }">
+							<span class="col-8">휴무</span>
+						</c:if>
+						<c:if test="${t ne '00000000' }">
+							<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
+						</c:if>
+	
+						<p class="col-4 my-0">토요일</p><c:set var="t" value="${jp.availableHourArr[6]}"/>
+						<c:if test="${t eq '00000000' }">
+							<span class="col-8">휴무</span>
+						</c:if>
+						<c:if test="${t ne '00000000' }">
+							<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
+						</c:if>
+	
+						<p class="col-4 my-0">일요일</p><c:set var="t" value="${jp.availableHourArr[0]}"/>
+						<c:if test="${t eq '00000000' }">
+							<span class="col-8">휴무</span>
+						</c:if>
+						<c:if test="${t ne '00000000' }">
+							<span class="col-8">${fn:substring(t,0,2)}:${fn:substring(t,2,4)}~${fn:substring(t,4,6)}:${fn:substring(t,6,8)}</span>
+						</c:if>
+	
+					</div>
+					<div class="col-2 d-flex justify-content-end align-items-center">
+						<button onclick="location.href='${contextPath}/matching_Success.mc?jNo=${jp.memberNo}'" class="shadow m-bg-color rounded-2 border-0 fs-7 fw-bold text-white me-2" style="width: 100px; height: 40px;">매칭하기</button>
+					</div>
 				</div>
 			</div>
-		  </div>
 		</c:forEach>
 	
 		<div class="container text-center">

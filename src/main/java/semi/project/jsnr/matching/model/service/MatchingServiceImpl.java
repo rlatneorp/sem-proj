@@ -47,10 +47,4 @@ public class MatchingServiceImpl implements MatchingService {
 		return mcDAO.selectAnimal(sqlSession, aNo);
 	}
 
-//	@Override
-//	public int getAnimalCount(int mNo) {
-//		return mcDAO.getAnimalCount(sqlSession, mNo);
-//	}
-
-
 }

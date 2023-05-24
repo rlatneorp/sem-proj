@@ -19,7 +19,4 @@ public interface MatchingService {
 	
 	Animal selectAnimal(int aNo);
 
-//	int getAnimalCount(int mNo);
-	
-
 }
