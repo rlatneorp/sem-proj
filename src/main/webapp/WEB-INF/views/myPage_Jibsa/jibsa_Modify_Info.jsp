@@ -11,10 +11,7 @@
 	#img{
   		width: 400px; height: 250px; border: 1px solid gray;
   	}
-  	
-  	  .form-control {
-    width: 50px;
-  }
+
 </style>
 </head>
 <body>
