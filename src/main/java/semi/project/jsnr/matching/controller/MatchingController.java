@@ -107,9 +107,18 @@ public class MatchingController {
 			}
 			
 			ArrayList<Jibsa> jList = new ArrayList<Jibsa>();
+			
 			for(int i = 0; i < jpList.size(); i++) {
 				Jibsa j = mcService.selectJibsa(jpList.get(i).getMemberNo());
-				jList.add(j);
+				if(j.getIsPrimium().equals("Y")) {
+					jList.add(j);
+				}
+			}
+			for(int i = 0; i < jpList.size(); i++) {
+				Jibsa j = mcService.selectJibsa(jpList.get(i).getMemberNo());
+				if(j.getIsPrimium().equals("N")) {
+					jList.add(j);
+				}
 			}
 			
 			ArrayList<Image> iList = new ArrayList<Image>();

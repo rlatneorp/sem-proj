@@ -176,13 +176,8 @@
 			expected_salary = #{expectedSalary},
 			chat_address = #{chatAddress},
 			is_primium = #{isPrimium},
-			
-			<if test="primiumPaymentDate != null">
-				primium_payment_date = #{primiumPaymentDate},
-			</if>
-			<if test="primiumEndDate != null">
-				primium_end_date = #{primiumEndDate},
-			</if>
+			primium_payment_date = #{primiumPaymentDate},
+			primium_end_date = #{primiumEndDate},
 			is_trainer = #{isTrainer}
 		where member_no = #{memberNo}
 	</update>

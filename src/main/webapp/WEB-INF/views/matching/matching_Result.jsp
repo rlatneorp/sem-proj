@@ -51,7 +51,12 @@
 						 <img src="${contextPath}/resources/uploadFiles/${iList[s.index].renameName}" width="200px" height="250px" class="rounded shadow">
 			    	</div>
 					<div class="info col-4 row">
-						<h4 class="col-12">${jList[s.index].memberName}</h4>
+						<h4 class="col-4">${jList[s.index].memberName}</h4>
+						<div class="col-8">
+							<c:if test="${jList[s.index].isPrimium eq 'Y' }">
+								<h6 style="color: red;"><b>★강력추천!★</b></h6>
+							</c:if>
+						</div>
 						<p class="col-12 mb-1"><b>- ${fn:substring(jp.profileTitle,0,20)} -</b></p>	
 						<span class="col-4">나이</span>
 						<span class="col-8 age">${fn:substring(jList[s.index].jibsaRrn,0,4)}</span>

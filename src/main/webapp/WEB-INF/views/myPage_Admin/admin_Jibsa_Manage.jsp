@@ -71,8 +71,12 @@
 								    			<c:if test="${j.isPrimium eq 'Y'}">가입</c:if>
 								    			<c:if test="${j.isPrimium eq 'Y'}"></c:if>
 								    		</td>
-								    		<td>${j.primiumPaymentDate}</td>
-								    		<td>${j.primiumEndDate}</td>
+								    		<td>
+								    			<c:if test="${j.primiumPaymentDate != '2000-01-01'}">${j.primiumPaymentDate}</c:if>
+							    			</td>
+								    		<td>
+								    			<c:if test="${j.primiumEndDate != '2000-01-01'}">${j.primiumEndDate}</c:if>
+								    		</td>
 								    		<td>
 								    			<c:if test="${j.isTrainer eq 'Y'}">훈련사</c:if>
 								    			<c:if test="${j.isTrainer ne 'Y'}">집사</c:if>

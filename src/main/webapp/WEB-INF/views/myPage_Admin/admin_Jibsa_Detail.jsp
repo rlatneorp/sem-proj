@@ -144,12 +144,22 @@
 
 					<p class="col-4">프리미엄가입날짜</p>
 					<div class="col-8 px-0">
-						<input type="date" name="primiumPaymentDate" value="${j.primiumPaymentDate}">
+						<c:if test="${j.primiumPaymentDate != '2000-01-01' }">
+							<input type="date" name="primiumPaymentDate" value="${j.primiumPaymentDate}">
+						</c:if>
+						<c:if test="${j.primiumPaymentDate == '2000-01-01' }">
+							<input type="date" name="primiumPaymentDate">
+						</c:if>
 					</div>
 
 					<p class="col-4">프리미엄종료날짜</p>
 					<div class="col-8 px-0">
-						<input type="date" name="primiumEndDate" value="${j.primiumEndDate}">
+						<c:if test="${j.primiumEndDate != '2000-01-01' }">
+							<input type="date" name="primiumEndDate" value="${j.primiumEndDate}">
+						</c:if>
+						<c:if test="${j.primiumEndDate == '2000-01-01' }">
+							<input type="date" name="primiumEndDate">
+						</c:if>
 					</div>
 					
 					<p class="col-4">분류</p>
@@ -255,8 +265,18 @@
 					t.value += "00000000";
 				}
 			}
-			console.log(t);
-			document.getElementsByTagName('form')[0].submit();
+			const primiumPayDate = document.getElementsByName('primiumPaymentDate')[0];
+			const primiumEndDate = document.getElementsByName('primiumEndDate')[0];
+			
+			if(primiumPayDate.value.trim() == ''){
+				if(primiumEndDate.value.trim() == ''){
+					primiumPayDate.value = "2000-01-01";
+					primiumEndDate.value = "2000-01-01";
+					document.getElementsByTagName('form')[0].submit();
+				}
+			}else{
+				document.getElementsByTagName('form')[0].submit();
+			}
 		}
 		
 
