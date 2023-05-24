@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap"  rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <title>이용 후기</title>
 <style>
 	.review {
@@ -35,6 +36,7 @@
 	  font-size: 1.5rem;
 	  font-weight: bold;
 	  margin-bottom: 0; /* margin-bottom 제거 */
+	  display:inline-block;
 	}
 	.review div{
 	  font-size: 20px;
@@ -97,6 +99,20 @@
 	.marginLeft{margin-Left: 310px;}
 	.matchingNo{display:none;}
 	.jibsaNo{display:none;}
+	
+	
+	#starRating{
+	  font-variation-settings:
+	  'FILL' 1,
+	  'wght' 700,
+	  'GRAD' 200,
+	  'opsz' 48;
+	 color: rgb(98, 182, 183);
+	 font-size: 30px;  
+	}
+	.star{
+	 vertical-align: top; display:inline-block;
+	}
 </style>
 </head>
 <body>
@@ -135,6 +151,11 @@
 					</div>
 					<div class="info">
 					    <div class="jibsaName">${ n.jibsaName }</div>
+					  	<div class="star">　
+						  	<c:forEach begin="1" end="${n.reviewRating}">
+								    <span class="material-symbols-outlined" id="starRating" style="font-size: 30px;">star</span>
+							</c:forEach>
+						</div>
 					    <div class="reviewContent">${ n.reviewContent }</div>
 					  	<div class="jibsaNo">${ n.jibsaNo }</div>
 					  	<div class="matchingNo">${ n.matchingNo }</div>

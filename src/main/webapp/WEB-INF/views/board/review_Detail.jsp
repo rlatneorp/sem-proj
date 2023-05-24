@@ -56,11 +56,11 @@
 	.review h2 {
 	  font-size: 1.5rem;
 	  font-weight: bold;
-	  margin-left:20px;
+/* 	  margin-left:20px; */
 	}
 		.review h4 {
 	  font-size: 20px;
-	  margin-left:20px;
+/* 	  margin-left:20px; */
 	}
 	
 	.review p {
@@ -76,7 +76,7 @@
 	  align-items: right;
 	  text-align: right;
 	  width: 100%;
-	  margin-left: 60px;
+	  margin-left: 100px;
 	}
 	
 	#reviewBoxContainer {
@@ -191,7 +191,11 @@
 	 color: rgb(98, 182, 183);
 	 font-size: 30px;  
 	}
-	#subtitle{text-align: left; }
+	.animalInfo{
+	margin-top: -100px;
+	
+	}
+/* 	#subtitle{text-align: left; } */
 </style>
 	
 
@@ -222,28 +226,27 @@
 						  <div class="info">
 						  <table style="text-align: left;">
 						  	  <tr>
-						  		  <td></td>
-						  		  <td colspan="2"><h2>${b.jibsaName} 집사</h2><h4>${list.matchingPlace}</h4></td>
+						  		  <td colspan="2"></td>
+						  		  <td><h2>${b.jibsaName} 집사</h2><h4>${list.matchingPlace}</h4></td>
 						  	 	  <td></td>
 						  	 </tr>
 						  	  <tr id="subtitle">
 						  		  <td colspan="2"></td>
-						  	  	  <td>
-						  	  	  	<c:forEach  begin="0" end="0">평점 ${list.reviewRating}점</c:forEach>
+						  	  	  <td style="color: rgb(98, 182, 183);">
+						  	  	  	<c:forEach begin="0" end="0">평점 ${list.reviewRating}점</c:forEach>
 					  			  </td>
 					  			  <td></td>
 						  	 </tr>
 						 	  <tr>
-								  <td><h4>${list.animalName}</h4></td>
-								  <td><h4>${list.animalKind}</h4></td>
-								  <td>	
+						 	  <td></td>
+								  <td colspan="2">	
 						            <c:forEach begin="1" end="${list.reviewRating}">
 						             <span class="material-symbols-outlined" id="star" style="font-size: 30px;">star</span>
 						            </c:forEach>
 							      </td>
-								  <td></td>
 						  	  </tr>
 						  </table>
+						  <div class="animalInfo"><h4  style="color: rgb(26, 188, 156); font-weight: 500;">${b.animalName}</h4><h4>${b.animalKind}</h4></div>
 						  </div>
 					</div>
 					<br>
