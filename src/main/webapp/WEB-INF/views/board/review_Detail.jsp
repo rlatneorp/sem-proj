@@ -173,7 +173,7 @@
 	}
 	
 	#contentBox{border: 1px solid #7F8487; border-radius: 5px; }
-	.td1{text-align:center; font-size: 22px; width: 430px; height: 100px; resize: none; display:inline-block; border:none;}
+	.td1{text-align: left; font-size: 22px; width: 430px; height: 100px; resize: none; display:inline-block; border:none;}
 	#reBtn {border: none;
 	background-color: rgb(184,184,184);
 	color: white;
