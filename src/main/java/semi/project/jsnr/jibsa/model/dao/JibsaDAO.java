@@ -93,5 +93,9 @@ public class JibsaDAO {
 		return sqlSession.delete("jibsaMapper.deleteImage", existingImage);
 	}
 
+	public int insertPremium(SqlSessionTemplate sqlSession, HashMap<String, Integer> map) {
+		return sqlSession.update("jibsaMapper.insertPremium", map);
+	}
+
 
 }

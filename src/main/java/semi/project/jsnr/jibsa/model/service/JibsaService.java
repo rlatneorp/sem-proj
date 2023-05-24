@@ -101,6 +101,10 @@ public class JibsaService {
 		return jDAO.deleteImage(sqlSession, existingImage);
 	}
 
+	public int insertPremium(HashMap<String, Integer> map) {
+		return jDAO.insertPremium(sqlSession, map);
+	}
+
 
 	
 	

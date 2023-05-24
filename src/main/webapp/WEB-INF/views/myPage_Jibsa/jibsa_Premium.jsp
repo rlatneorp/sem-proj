@@ -87,7 +87,9 @@
 	
 	<jsp:include page="../common/bottom.jsp"/>
 <script>
-
+	const phone = '${loginUser.memberPhone}';
+	const email = '${loginUser.memberEmail}';
+	const name = '${loginUser.memberName}';
 	let pay = 0;
 	const cardss = document.querySelectorAll('.cards');
 	let noticePays = document.querySelector('#noticePay');
@@ -95,20 +97,42 @@
 		i.addEventListener('click', () => {
 			const userCode = "imp14397622";
 			IMP.init(userCode);
-			pay = i.value;
-			noticePays.innetText = ''; 
+			pay = parseInt(i.value);
+			noticePays.innerText = ''; 
 			noticePays.innerText = pay + '원 구독을 선택하셨습니다.';
 		})	
 	}
+
 	function requestPay() {
 		 IMP.request_pay({
-		    pg: "tosspayments",
+		    pg: "kakaopay",
 		    pay_method: "card",
-		    merchant_uid: "test_lhyeosfv",
-		    name: "집사나라 결제창",
+		    merchant_uid: "merchant_" + new Date().getTime(),
+		    name: '집사나라 ' + pay.toString().charAt(0) + '개월 구독',
 		    amount: pay,
-		    buyer_tel: "010-0000-0000",
-		    m_redirect_url: "http://localhost:8085/jsnr/",
+		    buyer_tel: phone,
+		    buyer_email : email,
+		    buyer_name : name
+		}, function(rsp){
+			if(rsp.success){
+				$.ajax({
+					type : 'POST',
+					url : '${contextPath}/insertPremium.js',
+					data : {date : pay.toString().charAt(0), memberNo : ${loginUser.memberNo}},
+					success : function(data) {
+						if(data == 'yes'){
+							console.log('업데이트 성공');
+						}else {
+							console.log('업데이트 실패');
+						}
+					},
+					error: function(data) {
+				          console.log('업데이트 실패');
+				        }
+				});
+			} else {
+				alert(rsp.error_msg);
+			}
 		})
 	}
 			

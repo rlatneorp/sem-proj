@@ -217,4 +217,10 @@
 		where member_no = #{memberNo} and image_level = '2'
 	</delete>
 	
+	<update id="insertPremium">
+		update jibsa
+		set is_primium = 'Y', primium_payment_date = sysdate, primium_end_date = add_months(sysdate, ${date})
+		where member_no = #{memberNo}
+	</update>
+	
 </mapper>
