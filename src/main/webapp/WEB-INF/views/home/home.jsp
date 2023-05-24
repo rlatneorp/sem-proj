@@ -211,10 +211,10 @@
 	<script>
 		// 각각의 이미지와 링크를 등록하는 함수
 		const images = [
-			{src: 'resources/image/광고(1).png', link: 'https://www.naver.com'},
-			{src: 'resources/image/광고(2).png', link: 'https://www.google.com'},
-			{src: 'resources/image/광고(3).png', link: 'https://www.daum.net'},
-			{src: 'resources/image/광고(4).png', link: 'https://www.nate.com'},
+			{src: 'resources/image/광고(1).png', link: 'https://smartstore.naver.com/nekostory/products/4252063645?n_media=11068&n_query=%EC%A5%90%EB%8F%8C%EC%9D%B4&n_rank=2&n_ad_group=grp-a001-02-000000025268717&n_ad=nad-a001-02-000000166143559&n_campaign_type=2&n_mall_id=nekostory&n_mall_pid=4252063645&n_ad_group_type=2&NaPm=ct%3Dli12h1u0%7Cci%3D0zK00035qkPynwYyJuYZ%7Ctr%3Dpla%7Chk%3D32415c577aea4540fe116c8472154b3a99dac0c9'},
+			{src: 'resources/image/광고(2).png', link: 'https://smartstore.naver.com/dreamsg/products/656478110?NaPm=ct%3Dli12n8ts%7Cci%3D46c87dfdfc4f30061d2df4f0e1055da8d975a8c7%7Ctr%3Dslsl%7Csn%3D264467%7Chk%3Dba2143c4cecb9facca184cc00cf310b2d39779b0'},
+			{src: 'resources/image/광고(3).png', link: 'https://smartstore.naver.com/tenbyten/products/7262239581?NaPm=ct%3Dli12o3ow%7Cci%3D30b8814750af154e720b4df11ff9d0988fd3277c%7Ctr%3Dslsl%7Csn%3D354287%7Chk%3Dfe2bf5c8c07cd80251173132985d820f3867f73e'},
+			{src: 'resources/image/광고(4).png', link: 'https://smartstore.naver.com/smart_jb/products/7034063908?n_media=11068&n_query=%EB%B0%98%EB%A0%A4%EB%8F%99%EB%AC%BC%EC%84%B8%EC%A0%95&n_rank=3&n_ad_group=grp-a001-02-000000031410995&n_ad=nad-a001-02-000000221457107&n_campaign_type=2&n_mall_id=ncp_1o4d7d_01&n_mall_pid=7034063908&n_ad_group_type=2&NaPm=ct%3Dli12p4q8%7Cci%3D0z40000YqQPyD9h7mvkl%7Ctr%3Dpla%7Chk%3D489bd9be6da38dc20d408c35655f10b3dbc04c1f'},
 		];
 
 		const ad = document.querySelector('.ad');

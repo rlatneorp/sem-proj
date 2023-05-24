@@ -22,7 +22,4 @@ public interface MatchingService {
 	
 	Image imageList(int memberNo);
 
-//	int getAnimalCount(int mNo);
-	
-
 }
