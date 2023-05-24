@@ -31,8 +31,8 @@
 					<form method="post" action="${ contextPath }/jibsaUpdateInfo.js" enctype="multipart/form-data" id="attmForm">
 						
 						<p class="fs-5">프로필 수정</p>
-    					<img id="preview" width="100%" height="245" src="${contextPath}/resources/uploadFiles/${ image.renameName }"/>
-						<input class="form-control" type="file" accept="image/*" name="file" id="formFile" onchange="previewImage(event)"><br>
+    					<img id="preview" width="100%" height="245"/>
+    					<input class="form-control" type="file" accept="image/*" name="file" id="formFile" onchange="previewImage(event)"/><br>
     					현재 등록된 사진 : <c:if test="${ !empty image.originalName }">${ image.originalName }</c:if><c:if test="${ empty image.originalName }">없음</c:if>
     							  	<button type="button" class="btn btn-outline-dark btn-sm deleteAttm" id="delete-${ image.renameName }/${ image.imageLevel }">삭제</button>
 									<input type="hidden" name='deleteAttm' value='none'><br><br>
@@ -94,21 +94,6 @@
 		</div>
 	</div>
 	<script>
-		const previewImage = (event) => {
-		    const input = event.target;
-		    const preview = document.getElementById('preview');
-		
-		    if (input.files && input.files[0]) {
-		        const reader = new FileReader();
-		
-		        reader.onload = (e) => {
-		            preview.src = e.target.result;
-		        };
-		
-		        reader.readAsDataURL(input.files[0]);
-		    }
-		};
-	
 		const add = document.getElementById('addFile');
 		const area = document.querySelector('#fileArea');
 		
@@ -192,7 +177,20 @@
 		})
 		
 		
-		
+		const previewImage = (event) => {
+		const input = event.target;
+		const preview = document.getElementById('preview');
+			
+			  if (input.files && input.files[0]) {
+			    const reader = new FileReader();
+			
+			    reader.onload = (e) => {
+			      preview.src = e.target.result;
+			    };
+			
+			    reader.readAsDataURL(input.files[0]);
+			  }
+			};
 			
 	</script>
 </body>
