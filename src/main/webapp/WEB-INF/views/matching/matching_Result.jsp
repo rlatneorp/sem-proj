@@ -48,7 +48,7 @@
 		  <div class="row mb-5">
 		    <div class="profile row py-5 px-5">
 		    	<div class="col-3">
-					<img src="${contextPath}/resources/image/logo.png" class="w-100">
+					<img src="${ contextPath }/resources/uploadFiles/${ jp.image.renameName }" class="w-100">
 		    	</div>
 				<div class="info col-4 row">
 					<h4 class="col-12">${jList[s.index].memberName}</h4>

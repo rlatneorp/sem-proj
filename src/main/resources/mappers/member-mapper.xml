@@ -23,8 +23,10 @@
 	
 	<insert id="enrollMember">
 		insert into member
-		values( SEQ_MEM_ID.NEXTVAL, #{ memberId }, #{ memberPwd }, #{ memberName }, #{ memberEmail }, default, default, default, sysdate, default, default, #{ memberPhone }, #{ memberAddress })
-	
+		values( SEQ_MEM_ID.NEXTVAL, #{ memberId }, #{ memberPwd }, 
+				#{ memberName }, #{ memberEmail }, default, default, 
+				default, sysdate, default, default, 
+				#{ memberPhone }, #{ memberAddress })
 	</insert>
 
 	<select id="getMemberQnaListCount" resultType="_int">
