@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +61,10 @@
 	}
 		.review h4 {
 	  font-size: 20px;
-/* 	  margin-left:20px; */
+	  display: inline-block;
+	}
+	.review h3 {
+	  font-size: 20px;
 	}
 	
 	.review p {
@@ -196,6 +200,8 @@
 	
 	}
 /* 	#subtitle{text-align: left; } */
+
+#address2{vertical-align: sub;}
 </style>
 	
 
@@ -227,8 +233,15 @@
 						  <table style="text-align: left;">
 						  	  <tr>
 						  		  <td colspan="2"></td>
-						  		  <td><h2>${b.jibsaName} 집사</h2><h4>${list.matchingPlace}</h4></td>
-						  	 	  <td></td>
+						  		  <td>
+							  		  <h2>${b.jibsaName} 집사</h2>
+							  		  <c:set var="mp" value="${fn:split(list.matchingPlace, ' ') }"/>
+							  		  <c:forEach var="mpWord" items="${mp}" begin="0" end="0">
+							  		    <h4>${fn:substring(mpWord, 0, 10)}</h4>
+							  		  </c:forEach>
+							  		   <c:forEach var="mpWord" items="${mp}" begin="1" end="1">
+							  		    <h4>${fn:substring(mpWord, 0, 10)}</h4>
+							  			</c:forEach>
 						  	 </tr>
 						  	  <tr id="subtitle">
 						  		  <td colspan="2"></td>
@@ -246,7 +259,7 @@
 							      </td>
 						  	  </tr>
 						  </table>
-						  <div class="animalInfo"><h4  style="color: rgb(26, 188, 156); font-weight: 500;">${b.animalName}</h4><h4>${b.animalKind}</h4></div>
+						  <div class="animalInfo"><h3 style="color: rgb(26, 188, 156); font-weight: 500;">${b.animalName}</h3><h3>${b.animalKind}</h3></div>
 						  </div>
 					</div>
 					<br>

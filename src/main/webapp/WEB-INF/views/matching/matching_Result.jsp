@@ -48,7 +48,7 @@
 		  <div class="row mb-5">
 		    <div class="profile row py-5 px-5">
 		    	<div class="col-3">
-					<img src="${contextPath}/resources/image/logo.png" class="w-100">
+					 <img src="${contextPath}/resources/uploadFiles/${iList[s.index].renameName}" class="w-100" width="200px" height="250px">
 		    	</div>
 				<div class="info col-4 row">
 					<h4 class="col-12">${jList[s.index].memberName}</h4>
@@ -144,7 +144,6 @@
 					<button onclick="location.href='${contextPath}/matching_Success.mc?jNo=${jp.memberNo}'" class="shadow m-bg-color rounded-2 border-0 fs-7 fw-bold text-white me-2" style="width: 100px; height: 40px;">매칭하기</button>
 				</div>
 			</div>
-		  </div>
 		</c:forEach>
 	
 		<div class="container text-center">
