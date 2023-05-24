@@ -177,7 +177,7 @@
 		})
 		
 		
-		const previewImage = (event) => {
+		function previewImage(event) {
 		const input = event.target;
 		const preview = document.getElementById('preview');
 			
