@@ -81,11 +81,27 @@
 		<result column="PRIMIUM_END_DATE" property="primiumEndDate"/>
 		<result column="IS_TRAINER" property="isTrainer"/>
 		<result column="IS_JIBSA" property="jibsaStatus"/>
+		<result column="JIBSA_LICENSE" property="license"/>
 	</resultMap>
 	
 	<select id="selectAnimal" resultMap="animalResultSet">
 		select *
 		from animal
 		where animal_no = #{aNo}
+	</select>
+	
+		<resultMap type="Image" id="imageResultSet">
+		<id column="IMAGE_NO" property="imageNo"/>		
+		<result column="RENAME_NAME" property="renameName"/>
+		<result column="ORIGINAL_NAME" property="originalName"/>
+		<result column="IMAGE_LEVEL" property="imageLevel"/>
+		<result column="IMAGE_PATH" property="imagePath"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+	</resultMap>
+	
+	<select id="imageList" resultMap="imageResultSet">
+	  select *
+	  from image
+	  where member_no = #{memberNo} and image_level = '2' 
 	</select>
 </mapper>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import semi.project.jsnr.animal.model.vo.Animal;
+import semi.project.jsnr.animal.model.vo.Image;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
 import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.matching.model.service.MatchingService;
@@ -111,9 +112,19 @@ public class MatchingController {
 				jList.add(j);
 			}
 			
+			ArrayList<Image> iList = new ArrayList<Image>();
+			for(int i = 0; i < jpList.size(); i++) {
+				Image image = mcService.imageList(jpList.get(i).getMemberNo());
+				iList.add(image);
+			}
+			
 			model.addAttribute("mc", mc);
 			model.addAttribute("jList", jList);
 			model.addAttribute("jpList", jpList);
+			model.addAttribute("iList", iList);
+			
+			System.out.println(jpList);
+			System.out.println(iList);
 			return "matching_Result";
 		}else {
 			System.out.println("매칭결과 에러");
