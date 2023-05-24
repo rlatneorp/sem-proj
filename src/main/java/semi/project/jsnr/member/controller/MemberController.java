@@ -211,8 +211,6 @@ public class MemberController {
 			model.addAttribute("fList", fList);
 			model.addAttribute("qList", qList);
 		}
-		System.out.println(fList);
-		System.out.println(qList);
 		return "member_FAQ";
 	}
 	
@@ -221,11 +219,9 @@ public class MemberController {
 	public String member_QnA_Detail(@RequestParam("qId") int qId,
 									Model model) {
 		Qna q = mService.getQnaSelect(qId);
-		
 		if( q != null) {
 			model.addAttribute("q", q);
 		}
-		System.out.println(q);
 		return "member_QnA_Detail";
 	}
 	
@@ -237,7 +233,6 @@ public class MemberController {
 		if( q != null) {
 			model.addAttribute("q", q);
 		}
-		System.out.println(q);
 		return "member_QnA_Edit";
 	}
 	

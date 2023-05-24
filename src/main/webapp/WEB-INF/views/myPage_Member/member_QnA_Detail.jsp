@@ -47,6 +47,11 @@
 				            <label for="exampleFormControlTextarea1">내용</label><br><br>
 				            <textarea class="form-control" id="exampleFormControlTextarea1" name="qnaContent" rows="10" style="resize: none" readonly>${q.qnaContent }</textarea>
 				        </div>
+				        <br>
+				        <div class="form-group">
+				            <label for="exampleFormControlTextarea2">답변내용</label><br><br>
+				            <textarea class="form-control" id="exampleFormControlTextarea2" name="qnaAnswer" rows="10" style="resize: none" readonly>${q.qnaAnswer }</textarea>
+				        </div>
 				    </form>
 				    <button class="subbtn" onclick="location.href='member_QnA_Edit.me?qId=${q.qnaNo}';">수정하기</button>
 				    <button class="subbtn" type="button" id="deleteModal">삭제하기</button>
