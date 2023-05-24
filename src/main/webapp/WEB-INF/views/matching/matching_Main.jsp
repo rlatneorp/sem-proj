@@ -162,7 +162,22 @@
 						<div>
 							<h4>매칭 지역</h4>
 							<div class="search-container">
-								<input type="text" placeholder="지역을 입력하세요" name="wantMatchingPlace" class="rounded mb-4">
+<!-- 								<input type="text" placeholder="지역을 입력하세요" name="wantMatchingPlace" class="rounded mb-4"> -->
+								<select name="wantMatchingPlace" class="mb-4">
+									<option>강원도</option>
+									<option>경상도</option>
+									<option>광주</option>
+									<option>대구</option>
+									<option>대전</option>
+									<option>부산</option>
+									<option selected>서울</option>
+									<option>수도권</option>
+									<option>울산</option>
+									<option>전라도</option>
+									<option>제주도</option>
+									<option>충청도</option>
+								</select>
+								
 								<h4>매칭 장소<b>*</b></h4>
 								<div class="col-12 errorBox" style="display: none">x</div>
 								<textarea placeholder="정확한 주소를 입력하세요" name="matchingPlace" rows="4" class="w-100 rounded" required></textarea>
