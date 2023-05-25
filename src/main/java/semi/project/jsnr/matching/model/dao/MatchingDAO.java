@@ -34,10 +34,6 @@ public class MatchingDAO {
 		return sqlSession.selectOne("matchingMapper.selectAnimal", aNo);
 	}
 	
-//	public int getAnimalCount(SqlSessionTemplate sqlSession, int mNo) {
-//		return sqlSession.selectOne("matchingMapper.getAnimalCount", mNo);
-//	}
-
 	public Image imageList(SqlSessionTemplate sqlSession, int memberNo) {
 		return sqlSession.selectOne("matchingMapper.imageList", memberNo);
 	}

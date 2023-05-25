@@ -4,6 +4,7 @@
 	<select id="getListCount" resultType="_int">
 		select count(*)
 		from matching
+		where review_content is not null
 	</select>
 
 	<select id="reviewBoardList" resultMap="boardResultSet">
@@ -14,6 +15,7 @@
 		     join animal a on(a.animal_no = mc.animal_no)
 		     join jibsa_profile jp on(mc.jibsa_no = jp.member_no)
 		     join member m on(mc.member_no = m.member_no)
+		where mc.review_content is not null
 		order by mc.matching_no desc
 	</select>
 	

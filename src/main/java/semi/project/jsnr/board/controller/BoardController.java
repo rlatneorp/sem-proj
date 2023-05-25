@@ -37,7 +37,6 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService bService;
-	private AnimalService aService;
 	
 	@RequestMapping("review_Main.bo")
 	public String reviewBoardList(@RequestParam(value="page", required=false) Integer currentPage, 
@@ -71,11 +70,6 @@ public class BoardController {
 		}
 	}
 	
-	private Board Board() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@GetMapping("jibsa_List.bo")
 	public String jibsaList(@RequestParam(value="page", required=false) Integer page,
 							@RequestParam(value="type", required=false) Integer type,
