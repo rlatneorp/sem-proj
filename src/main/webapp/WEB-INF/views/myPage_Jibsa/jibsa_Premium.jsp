@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,16 +45,45 @@
 	#btn:active {background-color: white; color:#1abc9c; border: 1px solid #1abc9c; width:300px; height: 70px;
 			border-radius: 50px;}
 	h4 {display: inline-block; display: flex; align-items: center; width: 100px; }
-	
-	
+	.table thead tr th{background: rgba(224, 224, 224, 0.51);}
+	.tableDiv{
+		width: 800px;
+		text-align: center;
+		display: block;
+		margin: 0 auto;
+	}
 </style>
 <body>
 	<jsp:include page="../common/top.jsp"/>
 	
 	<br>
 	<h2 class="title">마이페이지</h2><br>
-	<h4 class="title">프리미엄 결제</h4><br><br>
-	<h5 class="subtitle">검색 상단에 올라가는 혜택이!</h5><br>
+	<h4 class="title" style="width: 200px;">프리미엄 결제</h4><br><br>
+	<h5 class="subtitle">검색 상단에 올라가는 혜택이!</h5><br><br>
+	<c:if test="${ jibsaInfo.isPrimium eq 'Y' }">
+		<div class="tableDiv">
+			<p style="margin-right: 520px;">${ loginUser.memberName }님은 이미 혜택을 받고 계십니다!</p>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>이름</th>
+						<th>구독 기간</th>
+						<th>시작 날짜</th>
+						<th>종료 날짜</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>${ loginUser.memberName }</td>
+						<td id="date"></td>
+						<td>${ jibsaInfo.primiumPaymentDate }</td>
+						<td>${ jibsaInfo.primiumEndDate }</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</c:if>
+	<c:if test="${ jibsaInfo.isPrimium eq 'N' }">
 	<span class="subtitle">원하는 프리미엄 결제 개월 수를 선택해주세요</span><br><br><br>
 	
 	<div class="area">
@@ -76,10 +106,20 @@
 	</div>
 	
 	<h4 class="subtitle"></h4>
-	
+	</c:if>
+	<br><br><br><br>
+	<c:if test="${ jibsaInfo.isPrimium eq 'N' }">
 	<div class="area2" >
   		<button id="btn" onclick="requestPay()">결제하기</button><br>
 	</div><br>
+	</c:if>
+	
+	<c:if test="${ jibsaInfo.isPrimium eq 'Y' }">
+	<div class="area2" >
+  		<button id="btn" onclick="location.href='javascript:history.back()'">뒤로가기</button><br>
+	</div><br>
+	</c:if>
+	
 	
 	<br><br><br>
 	<br><br><br>
@@ -104,6 +144,9 @@
 	}
 
 	function requestPay() {
+		if(pay === 0){
+			notivePays.innerText = '원하시는 구독을 골라주세요.';
+		}
 		 IMP.request_pay({
 		    pg: "kakaopay",
 		    pay_method: "card",
@@ -119,14 +162,14 @@
 					type : 'POST',
 					url : '${contextPath}/insertPremium.js',
 					data : {date : pay.toString().charAt(0), memberNo : ${loginUser.memberNo}},
-					success : function(data) {
+					success : data => {
 						if(data == 'yes'){
-							console.log('업데이트 성공');
-						}else {
+							location.href = '${contextPath}/premium_success.js?date='+pay.toString().charAt(0);
+						} else {
 							console.log('업데이트 실패');
 						}
 					},
-					error: function(data) {
+					error: data => {
 				          console.log('업데이트 실패');
 				        }
 				});
@@ -135,7 +178,12 @@
 			}
 		})
 	}
-			
+	
+	const startDate = '${jibsaInfo.primiumPaymentDate}';
+	const endDate = '${jibsaInfo.primiumEndDate}';
+	const period = endDate.substring(5,7) - startDate.substring(5,7);
+	const date = document.getElementById('date');
+	date.innerText = period + '개월';
 </script>
 </body>
 </html>

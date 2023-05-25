@@ -8,16 +8,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -307,6 +306,15 @@ public class JibsaController {
 		return "jibsa_Modify_Info";
 	}
 	
+	@RequestMapping("premium_success.js")
+	public String premiumSuccess(@RequestParam String date ,Model model, HttpSession session) {
+		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
+		Jibsa j = jService.selectJibsa(memberNo);
+		session.setAttribute("jibsaInfo", j);	
+		session.setAttribute("date", date);
+		return "jibsa_Premium_Success";
+	}
+	
 	public void deleteFile(String fileName, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String savePath = root + "\\uploadFiles";
@@ -369,7 +377,10 @@ public class JibsaController {
 	}
 	
 	@GetMapping("premium.js")
-	public String premium() {
+	public String premium(Model model) {
+		int memberNo = ((Member)model.getAttribute("loginUser")).getMemberNo();
+		Jibsa j = jService.selectJibsa(memberNo);
+		model.addAttribute("jibsaInfo", j);
 		return "jibsa_Premium";
 	}
 	
@@ -465,13 +476,6 @@ public class JibsaController {
 				}
 			}	
 	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
 			return "redirect:jibsaModifyInfo.js"; 
 		} else {
 			throw new JibsaException("정보 수정에 실패");
@@ -499,18 +503,20 @@ public class JibsaController {
 	@RequestMapping("insertPremium.js")
 	@ResponseBody
 	public String insertPremium(@RequestParam("date") int date, @RequestParam("memberNo") int memberNo) {
-		System.out.println(date);
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("date", date);
 		map.put("memberNo", memberNo);
 		
-		int result = jService.insertPremium(map);
-		System.out.println(result);
+		int count = jService.insertPremium(map);
 		
-		String result2 = result == 1 ? "yes" : "no";
+		String result = count == 1 ? "yes" : "no";
 		
-		return result2;
+		return result;
 	}
+	
+	
+	
+	
 	
 	
 	

@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="matchingMapper">
+
+
+	<select id="selectAnimalList" resultMap="animalResultSet">
+		select *
+		from animal
+		where member_no = #{mId}
+	</select> 
+	<resultMap type="Animal" id="animalResultSet">
+		<id column="ANIMAL_NO" property="animalNo" />
+		<result column="ANIMAL_NAME" property="animalName" />
+		<result column="ANIMAL_GENDER" property="animalGender" />
+		<result column="ANIMAL_KIND" property="animalKind" />
+		<result column="ANIMAL_WEIGHT" property="animalWeight" />
+		<result column="ANIMAL_NOTE" property="animalNote" />
+		<result column="MEMBER_NO" property="memberNo" />
+		<result column="ANIMAL_TYPE" property="animalType" />
+		<result column="ANIMAL_SIZE" property="animalSize" />
+		<result column="IS_NEUTER" property="isNeuter" />
+		<result column="BIRTH_DATE" property="birthDate" />
+		<result column="IS_STATUS" property="isStatus" />
+		<result column="IMAGE_LEVEL" property="imageLevel" />
+	</resultMap>
+
+
 	<select id="selectMatchingResult" resultMap="jibsaProfileResultSet">
 		select *
 		from jibsa j
@@ -25,38 +49,6 @@
 		<result column="EXPECTED_SALARY" property="expectedSalary"/>
 	</resultMap>
 	
-	<insert id="insertMatching">
-		insert into matching
-		values(seq_mat_id.nextval, #{animalNo}, #{memberNo}, #{startDate}, #{endDate}, #{matchingPlace}, 
-				default, default, default, default, default, default, #{jibsaNo}, #{serviceType}  )
-	</insert>
-	
-	<select id="selectAnimalList" resultMap="animalResultSet">
-		select *
-		from animal
-		where member_no = #{mId}
-	</select> 
-	<resultMap type="Animal" id="animalResultSet">
-		<id column="ANIMAL_NO" property="animalNo" />
-		<result column="ANIMAL_NAME" property="animalName" />
-		<result column="ANIMAL_GENDER" property="animalGender" />
-		<result column="ANIMAL_KIND" property="animalKind" />
-		<result column="ANIMAL_WEIGHT" property="animalWeight" />
-		<result column="ANIMAL_NOTE" property="animalNote" />
-		<result column="MEMBER_NO" property="memberNo" />
-		<result column="ANIMAL_TYPE" property="animalType" />
-		<result column="ANIMAL_SIZE" property="animalSize" />
-		<result column="IS_NEUTER" property="isNeuter" />
-		<result column="BIRTH_DATE" property="birthDate" />
-		<result column="IS_STATUS" property="isStatus" />
-		<result column="IMAGE_LEVEL" property="imageLevel" />
-	</resultMap>
-	
-	<select id="getAnimalCount" resultType="_int">
-		select count(*)
-		from animal
-		where member_no = #{mId}
-	</select>
 	
 	<select id="selectJibsa" resultMap="jibsaResultSet">
 		select *
@@ -84,13 +76,20 @@
 		<result column="JIBSA_LICENSE" property="license"/>
 	</resultMap>
 	
+	
+	<insert id="insertMatching">
+		insert into matching
+		values(seq_mat_id.nextval, #{animalNo}, #{memberNo}, #{startDate}, #{endDate}, #{matchingPlace}, 
+				default, default, default, default, default, default, #{jibsaNo}, #{serviceType}  )
+	</insert>
+	
+	
 	<select id="selectAnimal" resultMap="animalResultSet">
 		select *
 		from animal
 		where animal_no = #{aNo}
 	</select>
-	
-		<resultMap type="Image" id="imageResultSet">
+	<resultMap type="Image" id="imageResultSet">
 		<id column="IMAGE_NO" property="imageNo"/>		
 		<result column="RENAME_NAME" property="renameName"/>
 		<result column="ORIGINAL_NAME" property="originalName"/>
@@ -98,6 +97,7 @@
 		<result column="IMAGE_PATH" property="imagePath"/>
 		<result column="MEMBER_NO" property="memberNo"/>
 	</resultMap>
+	
 	
 	<select id="imageList" resultMap="imageResultSet">
 	  select *

@@ -28,9 +28,10 @@
 	<div class="container text-center mb-5">
 		<div class="filter d-flex  mb-5" style="margin-left: 850px;">
 			<div class="filter-group d-flex">
-				<button onclick="location.href='${contextPath}/jibsa_List.bo'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">전체</button>
-				<button onclick="location.href='${contextPath}/jibsa_List.bo?type=1'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">집사</button>
-				<button onclick="location.href='${contextPath}/jibsa_List.bo?type=2'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">훈련사</button>
+				<button onclick="location.href='${contextPath}/jibsa_List.bo?searchType=0'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">전체</button>
+				<button onclick="location.href='${contextPath}/jibsa_List.bo?searchType=3'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">추천</button>
+				<button onclick="location.href='${contextPath}/jibsa_List.bo?searchType=1'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">집사</button>
+				<button onclick="location.href='${contextPath}/jibsa_List.bo?searchType=2'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">훈련사</button>
 			</div>
 		</div>
 		
@@ -47,7 +48,10 @@
 				    			<img src="${contextPath}/resources/uploadFiles/${ jp.image.renameName}" width="200" height="150" style="border-radius: 10px;">
 			  				</c:if>
 			    		</div>
-			    		<p class="name mb-2">${ jp.jibsaName } 집사님</p>
+			    		<p class="col-12 name mb-2">${ jp.jibsaName } 집사님</p>
+			    		<p class="col-12 text-end">
+			    			<c:if test="${ jp.isPrimium eq 'Y'}"><b style="color: red;">★추천★</b></c:if>
+			    		</p>
 			    		<div class="text-black me-2 mx-0 px-0">
 				    		<div class="row px-0 text-start" style="height: 50px;">
 				    			<span class="col-4 ps-3">활동지역</span>
@@ -65,6 +69,7 @@
 				    				평점
 				    				<c:if test="${jp.jibsaAvgRating eq 0.0}">-</c:if>
 				    				<c:if test="${jp.jibsaAvgRating ne 0.0}">${jp.jibsaAvgRating}</c:if>
+				    			</span>
 			    			</div>
 				    	</div>
 					</div>

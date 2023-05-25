@@ -52,10 +52,12 @@ public class MatchingController {
 								  Model model,
 								  HttpSession session) {
 		
-		ArrayList<JibsaProfile> orgJpList = mcService.selectMatchingResult(mc);
-		if(orgJpList != null) {
+//		SQL문으로 1차 조건을 제외한 첫번째 (집사프로필)리스트
+		ArrayList<JibsaProfile> jpListOne = mcService.selectMatchingResult(mc);
+		
+		if(jpListOne != null) {
 			
-			for(JibsaProfile j: orgJpList) {
+			for(JibsaProfile j: jpListOne) {
 				String[] arr = new String[7];
 				for(int i = 0; i < 7; i++) {
 					arr[i] = j.getAvailableHour().split(",")[i];
@@ -63,67 +65,54 @@ public class MatchingController {
 				j.setAvailableHourArr(arr);
 			}
 			
-//			시간 비교하기 / 리턴리스트에 넣기
-			ArrayList<JibsaProfile> jpList = new ArrayList<JibsaProfile>();
+//			시간 비교의 결과물이 될 두번째 (집사프로필)리스트
+			ArrayList<JibsaProfile> jpListTwo = new ArrayList<JibsaProfile>();
 			
 //			이용자가 입력한 값 변수에 Integer타입으로 초기화
-			int startTime = Integer.parseInt(mc.getStartDate().substring(11));
-			int startDay = Integer.parseInt(mc.getStartDate().substring(10,11));
-			int endTime = Integer.parseInt(mc.getEndDate().substring(11));
-			int endDay = Integer.parseInt(mc.getEndDate().substring(10,11));
+			int mStartTime = Integer.parseInt(mc.getStartDate().substring(11));
+			int mStartDay = Integer.parseInt(mc.getStartDate().substring(10,11));
+			int mEndTime = Integer.parseInt(mc.getEndDate().substring(11));
+			int mEndDay = Integer.parseInt(mc.getEndDate().substring(10,11));
 			
-			for(JibsaProfile j: orgJpList) {
+			for(JibsaProfile j: jpListOne) {
 				if(j.getMemberNo() == ((Member)session.getAttribute("loginUser")).getMemberNo()) {
 //					나-나 매칭 제외
 				}else {
 					int jStartTime = 0;
-					if(!j.getAvailableHourArr()[startDay].equals("00000000")) {
-//															┌ String -> Double			┌ int -> String				 ┌뒤의 4자리를 버리기 위함
-						jStartTime = (int)Math.floor(  Double.parseDouble(j.getAvailableHourArr()[startDay]  )*0.0001  );
+					if(!j.getAvailableHourArr()[mStartDay].equals("00000000")) {
+						jStartTime = Integer.parseInt((j.getAvailableHourArr()[mStartDay]).substring(0, 4));
 					}
 					int jEndTime = 0;
-					if(jStartTime <= startTime) {
-						
-						int endD = Integer.parseInt(j.getAvailableHourArr()[endDay]);
-						
-//						ex) 00000000 ->    0		-> 0
-						if(endD == 0) {
-							jEndTime = 0;
-							
-//						ex) 00002000 -> 2000		-> 2000
-						}else if(endD < 10000 ) {
-							jEndTime = Integer.parseInt((j.getAvailableHourArr()[endDay]));
-							
-//						ex) 10002000 -> 10002000	-> 2000
-						}else{
-							jEndTime = Integer.parseInt((j.getAvailableHourArr()[endDay]).substring(4, 8));
-						}
-						
-						if(jEndTime >= endTime) {
-							jpList.add(j);
+					if(jStartTime <= mStartTime) {
+						jEndTime = Integer.parseInt((j.getAvailableHourArr()[mEndDay]).substring(4, 8));
+						if(jEndTime >= mEndTime) {
+							jpListTwo.add(j);
 						}
 					}
 				}
 			}
-			
+//			프리미엄 가입자 상단에 올리기		/		집사, 집사 프로필 리스트 순서에 맞춰 다시 담기
 			ArrayList<Jibsa> jList = new ArrayList<Jibsa>();
-			
-			for(int i = 0; i < jpList.size(); i++) {
-				Jibsa j = mcService.selectJibsa(jpList.get(i).getMemberNo());
+			ArrayList<JibsaProfile> jpList = new ArrayList<JibsaProfile>();
+			for(int i = 0; i < jpListTwo.size(); i++) {
+				Jibsa j = mcService.selectJibsa(jpListTwo.get(i).getMemberNo());
 				if(j.getIsPrimium().equals("Y")) {
+					jpList.add(jpListTwo.get(i));
 					jList.add(j);
 				}
 			}
-			for(int i = 0; i < jpList.size(); i++) {
-				Jibsa j = mcService.selectJibsa(jpList.get(i).getMemberNo());
+			for(int i = 0; i < jpListTwo.size(); i++) {
+				Jibsa j = mcService.selectJibsa(jpListTwo.get(i).getMemberNo());
 				if(j.getIsPrimium().equals("N")) {
+					jpList.add(jpListTwo.get(i));
 					jList.add(j);
 				}
 			}
 			
+//			집사 이미지 불러오기
 			ArrayList<Image> iList = new ArrayList<Image>();
-			for(int i = 0; i < jpList.size(); i++) {
-				Image image = mcService.imageList(jpList.get(i).getMemberNo());
+			for(int i = 0; i < jpListTwo.size(); i++) {
+				Image image = mcService.imageList(jpListTwo.get(i).getMemberNo());
 				iList.add(image);
 			}
 			

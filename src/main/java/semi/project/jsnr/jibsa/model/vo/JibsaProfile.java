@@ -15,13 +15,13 @@ public class JibsaProfile {
 	private String availableArea;
 	private int expectedSalary;
 	private Image image;
-	private int matchingNo;
+	private String isPrimium; 
 	
 	public JibsaProfile() {}
 
 	public JibsaProfile(int memberNo, String jibsaName, String profileTitle, String profileTag, double jibsaAvgRating,
 			String availableHour, String[] availableHourArr, String availableArea, int expectedSalary, Image image,
-			int matchingNo) {
+			String isPrimium) {
 		super();
 		this.memberNo = memberNo;
 		this.jibsaName = jibsaName;
@@ -33,7 +33,7 @@ public class JibsaProfile {
 		this.availableArea = availableArea;
 		this.expectedSalary = expectedSalary;
 		this.image = image;
-		this.matchingNo = matchingNo;
+		this.isPrimium = isPrimium;
 	}
 
 	public int getMemberNo() {
@@ -116,12 +116,12 @@ public class JibsaProfile {
 		this.image = image;
 	}
 
-	public int getMatchingNo() {
-		return matchingNo;
+	public String getIsPrimium() {
+		return isPrimium;
 	}
 
-	public void setMatchingNo(int matchingNo) {
-		this.matchingNo = matchingNo;
+	public void setIsPrimium(String isPrimium) {
+		this.isPrimium = isPrimium;
 	}
 
 	@Override
@@ -129,11 +129,8 @@ public class JibsaProfile {
 		return "JibsaProfile [memberNo=" + memberNo + ", jibsaName=" + jibsaName + ", profileTitle=" + profileTitle
 				+ ", profileTag=" + profileTag + ", jibsaAvgRating=" + jibsaAvgRating + ", availableHour="
 				+ availableHour + ", availableHourArr=" + Arrays.toString(availableHourArr) + ", availableArea="
-				+ availableArea + ", expectedSalary=" + expectedSalary + ", image=" + image + ", matchingNo="
-				+ matchingNo + "]";
+				+ availableArea + ", expectedSalary=" + expectedSalary + ", image=" + image + ", isPrimium=" + isPrimium
+				+ "]";
 	}
-
 	
-
-		
 }

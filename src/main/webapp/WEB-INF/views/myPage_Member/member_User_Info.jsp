@@ -130,7 +130,7 @@ body {
                     	</div>
 		    		</div>
 		    		<div class="col" id="pp">
-				      	<div class="p-2">내 정보</div><br><bt>
+				      	<div class="p-2">내 정보</div><br>
 	                    <div class="p-4" >
 	                        <table class="info">
 	                            <tr>
