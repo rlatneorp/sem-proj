@@ -23,7 +23,56 @@
 	<div class="text-center">
 		<div class="card shadow mb-4 mainBox">
 			<div class="card-body text-start p-5">
-				<div>
+				<div id="viewBox">
+					<p class="fs-2 mb-5 fw-bold">마이페이지</p>
+					
+					<div class="container px-0 mb-5 mx-0">
+						<p class="px-2 fs-5 fw-bold">스케줄</p>
+					</div>
+					
+					<div class="container px-2 mb-5 mx-0">
+						<c:if test="${empty image}">
+							<img src="${contextPath}/resources/image/logo.png" alt="로딩실패" width="72" height="72" class="rounded-circle image-block me-2">
+						</c:if>
+						<c:if test="${!empty image}">
+							<img src="${contextPath}/resources/uploadFiles/${image.renameName}" alt="로딩실패" width="48" height="48" class="rounded-circle image-block me-2">
+						</c:if>
+						<div class="d-inline-block align-middle">
+							<div class="row">
+								<span class="fs-5 fw-bold">${mc.memberName}</span>
+								<span class="fs-6">${mc.animalName} - ${mc.animalKind}</span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="mb-1 text-top">
+						<form method="post" action="${ contextPath }/jibsa_Schedule_Update.js">
+							<input type="hidden" name="matchingNo" value="${mc.matchingNo}">
+							<div class="container mb-3">
+								<p class="mb-4 fs-5 fw-bold">일정</p>
+								
+								<div class="shadow w-100 card px-4 py-3 text-center mb-3 endDate">
+									<span class="fs-5">
+										${fn:substring(mc.startDate,0,10)} ${fn:substring(mc.startDate,11,13)}:${fn:substring(mc.startDate,13,15)}
+										~ ${fn:substring(mc.endDate,11,13)}:${fn:substring(mc.endDate,13,15)}
+									</span>
+								</div>
+							</div>
+							
+							<div class="container text-center">
+								<button onclick="location.href='${contextPath}/jibsa_Manage_Schedule.js'" type="button" class="cancelModal shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 120px; height: 40px;">뒤로가기</button>
+							</div>
+						</form>
+						
+					</div>
+				</div>
+			
+			
+			
+			
+			
+			
+				<div id="modifyBox">
 					<p class="fs-2 mb-5 fw-bold">마이페이지</p>
 					
 					<div class="container px-0 mb-5 mx-0">
@@ -134,6 +183,25 @@
 		});
 		
 		window.onload = () =>{
+// 			날짜확인 후 변경가능 / readonly 선택하여 viewBox or modifyBox 보여주기
+			const viewBox = document.getElementById('viewBox');
+			const modifyBox = document.getElementById('modifyBox');
+			const endDateBox = document.getElementsByClassName('endDate')[0];
+			const today = new Date();
+			
+			const endMonth = endDateBox.innerText.substring(5,7);
+			const endDate = endDateBox.innerText.substring(8,10);
+			
+			if(endMonth <= today.getMonth()+1 && endDate <= today.getDate()){
+				viewBox.style.display = 'block';
+				modifyBox.style.display = 'none';
+			}else{
+				viewBox.style.display = 'none';
+				modifyBox.style.display = 'block';
+			}
+			
+			
+			
 			const dates = document.getElementsByClassName('date');
 			const times = document.getElementsByClassName('time');
 			const d = new Date(Date.now());
@@ -156,7 +224,6 @@
 						eBoxs[0].style.color = "red";
 					}else{
 						eBoxs[0].innerText = "";
-// 						eBoxs[0].style.display = "none";
 					}
 					
 					dates[1].value = dates[0].value;	
