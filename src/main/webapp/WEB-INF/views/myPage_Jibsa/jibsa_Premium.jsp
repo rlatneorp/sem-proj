@@ -121,7 +121,7 @@
 					data : {date : pay.toString().charAt(0), memberNo : ${loginUser.memberNo}},
 					success : data => {
 						if(data == 'yes'){
-							location.href = '${contextPath}/jibsa_Main.js';
+							location.href = '${contextPath}/premium_success.js?date='+pay.toString().charAt(0);
 						} else {
 							console.log('업데이트 실패');
 						}
