@@ -15,11 +15,13 @@ public class JibsaProfile {
 	private String availableArea;
 	private int expectedSalary;
 	private Image image;
+	private String isPrimium; 
 	
 	public JibsaProfile() {}
 
 	public JibsaProfile(int memberNo, String jibsaName, String profileTitle, String profileTag, double jibsaAvgRating,
-			String availableHour, String[] availableHourArr, String availableArea, int expectedSalary, Image image) {
+			String availableHour, String[] availableHourArr, String availableArea, int expectedSalary, Image image,
+			String isPrimium) {
 		super();
 		this.memberNo = memberNo;
 		this.jibsaName = jibsaName;
@@ -31,6 +33,7 @@ public class JibsaProfile {
 		this.availableArea = availableArea;
 		this.expectedSalary = expectedSalary;
 		this.image = image;
+		this.isPrimium = isPrimium;
 	}
 
 	public int getMemberNo() {
@@ -113,13 +116,21 @@ public class JibsaProfile {
 		this.image = image;
 	}
 
+	public String getIsPrimium() {
+		return isPrimium;
+	}
+
+	public void setIsPrimium(String isPrimium) {
+		this.isPrimium = isPrimium;
+	}
+
 	@Override
 	public String toString() {
 		return "JibsaProfile [memberNo=" + memberNo + ", jibsaName=" + jibsaName + ", profileTitle=" + profileTitle
 				+ ", profileTag=" + profileTag + ", jibsaAvgRating=" + jibsaAvgRating + ", availableHour="
 				+ availableHour + ", availableHourArr=" + Arrays.toString(availableHourArr) + ", availableArea="
-				+ availableArea + ", expectedSalary=" + expectedSalary + ", image=" + image + "]";
+				+ availableArea + ", expectedSalary=" + expectedSalary + ", image=" + image + ", isPrimium=" + isPrimium
+				+ "]";
 	}
-
-		
+	
 }

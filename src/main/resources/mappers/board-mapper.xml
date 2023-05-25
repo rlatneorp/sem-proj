@@ -45,24 +45,33 @@
 		select count(*)
 		from jibsa_profile
 			 join jibsa using(member_no)
+		<if test="selectType == 0">
+		</if>
 		<if test="selectType == 1">
 			where is_trainer = 'N'
 		</if>
 		<if test="selectType == 2">
 			where is_trainer = 'Y'
+		</if>
+		<if test="selectType == 3">
+			where is_primium = 'Y'
 		</if>
 	</select>
 	
 	<select id="selectJibsaProfileList" resultMap="jibsaProfileResultSet">
 		select *
-		from jibsa_profile
-			 join jibsa using(member_no)
-<!-- 		where profile_status = 'Y' -->
+		from jibsa
+			 join jibsa_profile using(member_no)
+		<if test="selectType == 0">
+		</if>
 		<if test="selectType == 1">
 			where is_trainer = 'N'
 		</if>
 		<if test="selectType == 2">
 			where is_trainer = 'Y'
+		</if>
+		<if test="selectType == 3">
+			where is_primium = 'Y'
 		</if>
 		order by member_no desc
 	</select>
@@ -75,6 +84,7 @@
 		<result column="JIBSA_AVG_RATING" property="jibsaAvgRating"/>
 		<result column="AVAILABLE_AREA" property="availableArea"/>
 		<result column="EXPECTED_SALARY" property="expectedSalary"/>
+		<result column="is_primium" property="isPrimium"/>
 	</resultMap>
 	
 	<select id="getJibsaInfo" resultMap="jibsaResultSet">
