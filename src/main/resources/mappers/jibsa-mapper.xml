@@ -160,6 +160,8 @@
 		<result column="IMAGE_LEVEL" property="imageLevel"/>
 		<result column="IMAGE_PATH" property="imagePath"/>
 		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="MATCHING_NO" property="matchingNo"/>
 	</resultMap>
 	
 	<update id="cancelMatching">
@@ -224,21 +226,23 @@
 		where member_no = #{memberNo}
 	</update>
 	
-	<select id="todayJibsa" resultMap="jibsaPResultMap">
-		select *
-		from member
-		    join jibsa_profile using(member_no)
-		    join jibsa using(member_no)
-		where is_primium = 'Y'
-        order by dbms_random.random()
-	</select>
+<!-- 	<select id="todayJibsa" resultMap="jibsaPResultMap"> -->
+<!-- 		select * -->
+<!-- 		from member -->
+<!-- 		    join jibsa_profile using(member_no) -->
+<!-- 		    join jibsa using(member_no) -->
+<!-- 		where is_primium = 'Y' -->
+<!--         order by dbms_random.random() -->
+<!-- 	</select> -->
 	
 	<select id="todayJibsaImage" resultMap="imageResultSet">
 		select *
 		from image
 			join jibsa_profile using(member_no)
             join jibsa using(member_no)
+            join member using(member_no)
 		where is_primium = 'Y' and image_level = '2'
+		order by dbms_random.random()
 	</select>
 	
 	

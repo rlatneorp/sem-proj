@@ -7,10 +7,13 @@ public class Image {
 	private int imageLevel;
 	private String imagePath;
 	private int memberNo;
+	private String memberName;
+	private int matchingNo;
 	
-	public Image() {};
+	public Image() {}
 
-	public Image(int imageNo, String renameName, String originalName, int imageLevel, String imagePath, int memberNo) {
+	public Image(int imageNo, String renameName, String originalName, int imageLevel, String imagePath, int memberNo,
+			String memberName, int matchingNo) {
 		super();
 		this.imageNo = imageNo;
 		this.renameName = renameName;
@@ -18,6 +21,8 @@ public class Image {
 		this.imageLevel = imageLevel;
 		this.imagePath = imagePath;
 		this.memberNo = memberNo;
+		this.memberName = memberName;
+		this.matchingNo = matchingNo;
 	}
 
 	public int getImageNo() {
@@ -68,10 +73,28 @@ public class Image {
 		this.memberNo = memberNo;
 	}
 
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+
+	public int getMatchingNo() {
+		return matchingNo;
+	}
+
+	public void setMatchingNo(int matchingNo) {
+		this.matchingNo = matchingNo;
+	}
+
 	@Override
 	public String toString() {
 		return "Image [imageNo=" + imageNo + ", renameName=" + renameName + ", originalName=" + originalName
-				+ ", imageLevel=" + imageLevel + ", imagePath=" + imagePath + ", memberNo=" + memberNo + "]";
+				+ ", imageLevel=" + imageLevel + ", imagePath=" + imagePath + ", memberNo=" + memberNo + ", memberName="
+				+ memberName + ", matchingNo=" + matchingNo + "]";
 	};
+
 	
 }

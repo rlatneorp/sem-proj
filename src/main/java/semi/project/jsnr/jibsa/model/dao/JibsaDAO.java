@@ -98,12 +98,9 @@ public class JibsaDAO {
 		return sqlSession.update("jibsaMapper.insertPremium", map);
 	}
 
-	public ArrayList<Member> todayJibsa(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("jibsaMapper.todayJibsa");
-	}
 
-	public ArrayList<Image> todayJibsaImage(SqlSessionTemplate sqlSession, ArrayList<Member> list) {
-		return (ArrayList)sqlSession.selectList("jibsaMapper.todayJibsaImage", list);
+	public ArrayList<Image> todayJibsaImage(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("jibsaMapper.todayJibsaImage");
 	}
 
 

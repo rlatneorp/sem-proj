@@ -59,11 +59,9 @@ public class HomeController {
 	@RequestMapping("home.do")
 	public String home(HttpSession session, Model model) {
 		
-		ArrayList<Member> list = jService.todayJibsa();
-		ArrayList<Image> iList = jService.todayJibsaImage(list);
-		model.addAttribute("list", list);
+		ArrayList<Image> iList = jService.todayJibsaImage();
 		model.addAttribute("iList", iList);
-	
+		System.out.println(iList);
 		return "home/home";
 	}
 	

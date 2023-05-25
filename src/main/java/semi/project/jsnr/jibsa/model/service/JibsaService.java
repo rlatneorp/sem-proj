@@ -106,13 +106,9 @@ public class JibsaService {
 	}
 
 
-	public ArrayList<Member> todayJibsa() {
-		return jDAO.todayJibsa(sqlSession);
-	}
 
-
-	public ArrayList<Image> todayJibsaImage(ArrayList<Member> list) {
-		return jDAO.todayJibsaImage(sqlSession, list);
+	public ArrayList<Image> todayJibsaImage() {
+		return jDAO.todayJibsaImage(sqlSession);
 	}
 
 

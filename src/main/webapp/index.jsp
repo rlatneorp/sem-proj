@@ -31,14 +31,12 @@
 <%-- 	<%@ include file="WEB-INF/views/matching/matching2.jsp"%> --%>
 <%-- 	<%@ include file="WEB-INF/views/matching/matching3.jsp"%> --%>
 	<%@ include file="WEB-INF/views/home/home.jsp" %>
-	<script>
+<!--  하단은 항상 켜놓기 -->	<script>
 		window.onload = () =>{
-			location.href="home.do";
 			location.href="home.do";
 			
 		}
 	</script>
-<!--  하단은 항상 켜놓기 -->
 <%-- 	<%@ include file="WEB-INF/views/myPage_Member/jibsa_Apply.jsp"%> --%>
 </body>
 </html> 

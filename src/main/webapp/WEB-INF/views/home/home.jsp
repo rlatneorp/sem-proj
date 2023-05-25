@@ -230,15 +230,11 @@
 		<h1>오늘의 집사 <span style="font-size: 40px;" class="material-symbols-outlined">thumb_up</span></h1> <br>
 		<h5>집사나라에서 추천하는 집사님을 소개합니다</h5><br><br>
 		<div class="todayJibsa">
-			<c:forEach items="${ list }" var="l" begin="0" end="1">
-			<c:forEach items="${ iList }" var="i" begin="0" end="1">
-				<c:if test="${l.memberNo eq i.memberNo}"> 
-					<h3 id="jibsaN">${ l.jibsaName } 집사 <span class="material-symbols-outlined">verified</span></h3>
+			<c:forEach items="${ iList }" var="i" begin="0" end="0">
+					<h3 id="jibsaN">${ i.memberName } 집사 <span class="material-symbols-outlined">verified</span></h3>
 					<div><img src="${contextPath}/resources/uploadFiles/${ i.renameName}" width="300" height="250" style="border-radius: 10px;"></div><br>
-					<button id="directMatching" onclick="location.href='${contextPath}/jibsa_Detail.bo?mId=${l.memberNo }&page=${pi.currentPage}'">바로 매칭 하러 가기</button>
+					<button id="directMatching" onclick="location.href='${contextPath}/jibsa_Detail.bo?mId=${i.memberNo }&page=${pi.currentPage}'">바로 매칭 하러 가기</button>
 					<input id="hiddenNo" type="hidden"/>
-				</c:if>
-			</c:forEach>	
 			</c:forEach>	
 		</div>
 <!-- 	  <img src="resources/image/maindog.PNG" style=" border-radius: 20px; width: 720px; height: auto;" alt="image description"> -->
