@@ -306,6 +306,15 @@ public class JibsaController {
 		return "jibsa_Modify_Info";
 	}
 	
+	@RequestMapping("premium_success.js")
+	public String premiumSuccess(@RequestParam String date ,Model model, HttpSession session) {
+		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
+		Jibsa j = jService.selectJibsa(memberNo);
+		session.setAttribute("jibsaInfo", j);	
+		session.setAttribute("date", date);
+		return "jibsa_Premium_Success";
+	}
+	
 	public void deleteFile(String fileName, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String savePath = root + "\\uploadFiles";
@@ -466,6 +475,7 @@ public class JibsaController {
 					}
 				}
 			}	
+	        
 			return "redirect:jibsaModifyInfo.js"; 
 		} else {
 			throw new JibsaException("정보 수정에 실패");
@@ -503,4 +513,15 @@ public class JibsaController {
 		
 		return result;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

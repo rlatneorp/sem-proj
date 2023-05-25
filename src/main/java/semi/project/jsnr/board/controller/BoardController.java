@@ -37,7 +37,6 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService bService;
-	private AnimalService aService;
 	
 	@RequestMapping("review_Main.bo")
 	public String reviewBoardList(@RequestParam(value="page", required=false) Integer currentPage, 
@@ -71,22 +70,17 @@ public class BoardController {
 		}
 	}
 	
-	private Board Board() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@GetMapping("jibsa_List.bo")
 	public String jibsaList(@RequestParam(value="page", required=false) Integer page,
-							@RequestParam(value="type", required=false) Integer type,
+							@RequestParam(value="searchType", required=false) Integer searchType,
 							Model model) {
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
 		}
-		int selectType = 0;
-		if(type != null) {
-			selectType = type;
+		int selectType = 3;
+		if(searchType != null) {
+			selectType = searchType;
 		}
 
 		int listCount = bService.getJibsaListCount(selectType);
@@ -105,7 +99,7 @@ public class BoardController {
 		}
 		
 		if(jpList != null) {
-			model.addAttribute("type", type);
+			model.addAttribute("searchType", searchType);
 			model.addAttribute("pi", pi);
 			model.addAttribute("jpList", jpList);
 		}
