@@ -105,8 +105,6 @@ public class JibsaService {
 		return jDAO.insertPremium(sqlSession, map);
 	}
 
-
-	
 	
 	
 }
