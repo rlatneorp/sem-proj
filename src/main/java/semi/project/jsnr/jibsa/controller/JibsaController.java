@@ -368,7 +368,10 @@ public class JibsaController {
 	}
 	
 	@GetMapping("premium.js")
-	public String premium() {
+	public String premium(Model model) {
+		int memberNo = ((Member)model.getAttribute("loginUser")).getMemberNo();
+		Jibsa j = jService.selectJibsa(memberNo);
+		model.addAttribute("jibsaInfo", j);
 		return "jibsa_Premium";
 	}
 	
@@ -463,14 +466,6 @@ public class JibsaController {
 					}
 				}
 			}	
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
 			return "redirect:jibsaModifyInfo.js"; 
 		} else {
 			throw new JibsaException("정보 수정에 실패");
@@ -508,12 +503,4 @@ public class JibsaController {
 		
 		return result;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 }
