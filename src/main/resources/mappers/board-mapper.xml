@@ -84,7 +84,7 @@
 		<result column="JIBSA_AVG_RATING" property="jibsaAvgRating"/>
 		<result column="AVAILABLE_AREA" property="availableArea"/>
 		<result column="EXPECTED_SALARY" property="expectedSalary"/>
-		<result column="is_primium" property="isPrimium"/>
+		<result column="IS_PRIMIUM" property="isPrimium"/>
 	</resultMap>
 	
 	<select id="getJibsaInfo" resultMap="jibsaResultSet">
@@ -117,8 +117,9 @@
 	
 	<select id="getJibsaProfile" resultMap="jibsaProfileResultSet">
 		select *
-		from jibsa_profile
-			 join member using(member_no)
+		from jibsa j
+			 join jibsa_profile jp using(member_no)
+			 join member m using(member_no)
 		where member_no = #{mId} and member_status = 'Y'
 		
 	</select>
