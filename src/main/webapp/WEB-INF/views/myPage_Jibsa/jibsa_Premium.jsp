@@ -119,14 +119,14 @@
 					type : 'POST',
 					url : '${contextPath}/insertPremium.js',
 					data : {date : pay.toString().charAt(0), memberNo : ${loginUser.memberNo}},
-					success : function(data) {
+					success : data => {
 						if(data == 'yes'){
-							console.log('업데이트 성공');
-						}else {
+							location.href = '${contextPath}/jibsa_Main.js';
+						} else {
 							console.log('업데이트 실패');
 						}
 					},
-					error: function(data) {
+					error: data => {
 				          console.log('업데이트 실패');
 				        }
 				});

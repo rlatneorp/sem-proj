@@ -131,7 +131,7 @@
 			  .bot{
 			  	padding-top: 70%; margin-left: 5px;
 			  }
-			  	#modal { width: 320px; height: 250px; border: 1px solid #eee; padding: 50px; margin: auto; display: none;
+			  	#modal { width: 320px; height: 280px; border: 1px solid #eee; padding: 50px; margin: auto; display: none;
 						border-radius: 20px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);  text-align: center; background-color: white;
 						 position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;}
 				
