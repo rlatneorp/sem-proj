@@ -58,6 +58,16 @@
   	width: 400px; height: 250px; border: 1px solid gray;
   	}
 	#finalBtn{font-size:30px; font-weight:bold; border-style: none; border-radius:20px; width: 192px; height:76px; display: inline-block; margin-left: 305px; background: rgb(26, 188, 156); color: white;}
+	
+	 .checkbox-group {
+/*         display: flex; */
+        flex-wrap: wrap;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+        margin-right: 10px;
+        margin-left : 30px;
+    }
 </style>
 </head>
 <body>
@@ -90,20 +100,20 @@
 				
 				<label class ="e title">방문가능지역</label><br/>
 				<span class = "add">지역을 선택해주세요.</span><br/>
-				<select id="availableArea" name="availableArea" class="mb-4" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" >
-									<option selected>서울</option>
-									<option>수도권</option>
-									<option>강원도</option>
-									<option>경상도</option>
-									<option>광주</option>
-									<option>대구</option>
-									<option>대전</option>
-									<option>부산</option>
-									<option>울산</option>
-									<option>전라도</option>
-									<option>제주도</option>
-									<option>충청도</option>
-				</select>
+				<div class="checkbox-group">
+				    <input type="checkbox" name="availableArea" value="서울"> 서울 
+				    <input type="checkbox" name="availableArea" value="수도권"> 수도권<br>
+				    <input type="checkbox" name="availableArea" value="강원도"> 강원도
+				    <input type="checkbox" name="availableArea" value="경상도"> 경상도<br>
+				    <input type="checkbox" name="availableArea" value="광주"> 광주
+				    <input type="checkbox" name="availableArea" value="대구"> 대구<br>
+				    <input type="checkbox" name="availableArea" value="대전"> 대전
+				    <input type="checkbox" name="availableArea" value="부산"> 부산<br>
+				    <input type="checkbox" name="availableArea" value="울산"> 울산
+				    <input type="checkbox" name="availableArea" value="전라도"> 전라도<br>
+				    <input type="checkbox" name="availableArea" value="제주도"> 제주도
+				    <input type="checkbox" name="availableArea" value="충청도"> 충청도<br>
+				</div>
 				<br/>
 <!-- 				<input type="text" id="availableArea" name="availableArea" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 주소를 입력해주세요"><br/><br/> -->
 				
