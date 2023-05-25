@@ -55,11 +55,11 @@
 		<div class="row">
 			
 			<p class="col-4 text-start">구독기간</p>
-			<p class="col-8 text-start">${ date } 개월</p><br/><br/>
+			<p class="col-8 text-start">${ date }개월</p><br/><br/>
 			<p class="col-4 text-start">프리미엄 시작일</p>
 			<p class="col-8 text-start">${ jibsaInfo.primiumPaymentDate }</p><br/><br/>
 			<p class="col-4 text-start">프리미엄 종료일</p>
-			<p class="col-8 text-start">${ jibsaInfo.primiumEndDate }</p><br/><br/>
+			<p class="col-8 text-start">${ jibsaInfo.primiumEndDate }</p>
 		</div>
 		<br>
 	</div>

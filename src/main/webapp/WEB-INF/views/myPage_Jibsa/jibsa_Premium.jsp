@@ -107,7 +107,7 @@
 	
 	<h4 class="subtitle"></h4>
 	</c:if>
-	<br><br><br><br><br>
+	<br><br><br><br>
 	<c:if test="${ jibsaInfo.isPrimium eq 'N' }">
 	<div class="area2" >
   		<button id="btn" onclick="requestPay()">결제하기</button><br>
@@ -144,6 +144,9 @@
 	}
 
 	function requestPay() {
+		if(pay === 0){
+			notivePays.innerText = '원하시는 구독을 골라주세요.';
+		}
 		 IMP.request_pay({
 		    pg: "kakaopay",
 		    pay_method: "card",
