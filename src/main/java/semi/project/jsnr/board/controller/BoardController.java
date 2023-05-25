@@ -28,6 +28,7 @@ import semi.project.jsnr.board.model.service.BoardService;
 import semi.project.jsnr.board.model.vo.Board;
 import semi.project.jsnr.common.Pagination;
 import semi.project.jsnr.common.model.vo.PageInfo;
+import semi.project.jsnr.jibsa.model.service.JibsaService;
 import semi.project.jsnr.jibsa.model.vo.Jibsa;
 import semi.project.jsnr.jibsa.model.vo.JibsaProfile;
 import semi.project.jsnr.member.model.vo.Member;
@@ -37,7 +38,11 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService bService;
+	@Autowired
 	private AnimalService aService;
+	
+	@Autowired
+	private JibsaService jService;
 	
 	@RequestMapping("review_Main.bo")
 	public String reviewBoardList(@RequestParam(value="page", required=false) Integer currentPage, 
@@ -195,7 +200,9 @@ public class BoardController {
 		}
 		
 		
+		
 		Board b = bService.reviewDetail(mId, yn);	
+		 
 		Board list = bService.selectReply(mId);
 		Image image = bService.selectAnimalImage(b.getMemberNo());
 		if(b != null) {
@@ -223,7 +230,6 @@ public class BoardController {
 		GsonBuilder gb = new GsonBuilder().setDateFormat("yyyy-MM-dd");
 		Gson gson = gb.create();
 		String json = gson.toJson(b);
-		System.out.println(json);
 		
 	    try {
 	        response.getWriter().write(json);
@@ -247,7 +253,6 @@ public class BoardController {
 		    } catch (IOException e) {
 		        e.printStackTrace();
 		    }
-		
 	}	
 	
 	@RequestMapping("jibsa_Review.js")
@@ -391,7 +396,6 @@ public class BoardController {
 //		}	
 //		
 //	}
-//		
 	
 	
 

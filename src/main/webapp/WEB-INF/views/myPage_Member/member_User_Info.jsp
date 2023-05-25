@@ -10,7 +10,7 @@
 <style>
 
   #pp{
-  position:relative; margin-left: -200px; margin-top: 30px;}
+  position:relative; margin-left: -200px; margin-top: 20px;}
 
 *{font-family: 'Noto Sans KR', sans-serif;}
 body {
@@ -105,7 +105,7 @@ body {
 <body>
 	<%@ include file="../common/top.jsp" %>
 	<%@ include file="../common/sideBar.jsp" %>
-	<div id="wrapper" class="toggled">
+	<div id="wrapper" class="toggled" style="margin-left: 140px; margin-top: -40px;">
     	<div id="page-content-wrapper">
         	<div class="container text-center">
 				<div class="row align-items-center">
@@ -116,7 +116,7 @@ body {
 							<c:if test="${ animal.isStatus eq 'Y' }">
 		                		<h5 class="h5">${ animal.animalKind } &nbsp; · &nbsp; ${ animal.animalName } &nbsp; · &nbsp; ${ animal.animalGender }</h5><br>
 			                	<c:if test="${ !empty image.memberNo }">
-			                    	<img src="${ contextPath }/resources/uploadFiles/${ image.renameName }" width="90%" height="245" style="border:none; border-radius: 10px;"/><br><br><br>
+			                    	<img src="${ contextPath }/resources/uploadFiles/${ image.renameName }" width="360" height="245" style="border:none; border-radius: 10px;"/><br><br><br>
 			                    </c:if>
 			                    <c:if test="${ empty image.memberNo }">
 			                    	<br><br><br>내 반려동물의 사진을 등록해주세요<br><br><br>
@@ -128,7 +128,7 @@ body {
 		                        <button class="inbtn" onclick="location.href='${ contextPath }/member_Pet_Insert.me'">등록하기</button>
 		                    </c:if>
                     	</div>
-		    		</div>				 
+		    		</div>
 		    		<div class="col" id="pp">
 				      	<div class="p-2">내 정보</div><br><bt>
 	                    <div class="p-4" >

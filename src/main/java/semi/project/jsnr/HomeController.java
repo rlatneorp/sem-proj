@@ -1,5 +1,6 @@
 package semi.project.jsnr;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -7,7 +8,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -25,6 +25,9 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import semi.project.jsnr.animal.model.vo.Animal;
+import semi.project.jsnr.animal.model.vo.Image;
+import semi.project.jsnr.jibsa.model.service.JibsaService;
+import semi.project.jsnr.jibsa.model.vo.Jibsa;
 import semi.project.jsnr.member.model.service.MemberService;
 import semi.project.jsnr.member.model.vo.Member;
 
@@ -37,6 +40,8 @@ public class HomeController {
 	
 	@Autowired
 	private MemberService mService;
+	@Autowired
+	private JibsaService jService;
 	
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
@@ -53,7 +58,13 @@ public class HomeController {
 	// 홈으로 가기
 	@RequestMapping("home.do")
 	public String home(HttpSession session, Model model) {
-	    return "home/home";
+		
+		ArrayList<Member> list = jService.todayJibsa();
+		ArrayList<Image> iList = jService.todayJibsaImage(list);
+		model.addAttribute("list", list);
+		model.addAttribute("iList", iList);
+	
+		return "home/home";
 	}
 	
 	@RequestMapping("loginView.do")
@@ -290,4 +301,6 @@ public class HomeController {
 			return "no";
 		}
 	}
+	
+	
 }

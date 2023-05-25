@@ -2,6 +2,7 @@ package semi.project.jsnr.jibsa.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -96,6 +97,15 @@ public class JibsaDAO {
 	public int insertPremium(SqlSessionTemplate sqlSession, HashMap<String, Integer> map) {
 		return sqlSession.update("jibsaMapper.insertPremium", map);
 	}
+
+	public ArrayList<Member> todayJibsa(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("jibsaMapper.todayJibsa");
+	}
+
+	public ArrayList<Image> todayJibsaImage(SqlSessionTemplate sqlSession, ArrayList<Member> list) {
+		return (ArrayList)sqlSession.selectList("jibsaMapper.todayJibsaImage", list);
+	}
+
 
 
 }

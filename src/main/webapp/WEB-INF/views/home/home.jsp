@@ -5,6 +5,7 @@
 <html>
 <head>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 	<title>광고 페이지</title>
 	<meta charset="UTF-8">
 	<style>
@@ -147,6 +148,17 @@
 		border: none; /* 외각선 제거 */
 		margin: 0 auto;
 		}
+		#directMatching {
+		background-color: rgb(26, 188, 156);
+		color: white;
+		text-align: center;
+		font-size: 1.7rem;
+		padding: 0.7rem 1.5rem;
+		background-color: rgb(26, 188, 156);
+		border-radius: 15px; /* 둥근 모서리 크기 */
+		border: none; /* 외각선 제거 */
+		margin: 0 auto;
+		}
 		
 		.video-container {
 		  display: flex;
@@ -158,6 +170,17 @@
         #videoStyle{
           border-radius: 20px;
         }
+       
+		.material-symbols-outlined {
+		  font-variation-settings:
+		  'FILL' 0,
+		  'wght' 500,
+		  'GRAD' 300,
+		  'opsz' 48;
+		  color: rgb(26, 188, 156);
+		  font-size: 40px;
+		}
+
 	</style>
 </head>
 <body>
@@ -203,8 +226,22 @@
 	  </div>
 	</div>
 	<br><br>
-	<div class="container">
-	  <img src="resources/image/maindog.PNG" style=" border-radius: 20px; width: 720px; height: auto;" alt="image description">
+	<div style="text-align: center;">
+		<h1>오늘의 집사 <span style="font-size: 40px;" class="material-symbols-outlined">thumb_up</span></h1> <br>
+		<h5>집사나라에서 추천하는 집사님을 소개합니다</h5><br><br>
+		<div class="todayJibsa">
+			<c:forEach items="${ list }" var="l" begin="0" end="1">
+			<c:forEach items="${ iList }" var="i" begin="0" end="1">
+				<c:if test="${l.memberNo eq i.memberNo}"> 
+					<h3 id="jibsaN">${ l.jibsaName } 집사 <span class="material-symbols-outlined">verified</span></h3>
+					<div><img src="${contextPath}/resources/uploadFiles/${ i.renameName}" width="300" height="250" style="border-radius: 10px;"></div><br>
+					<button id="directMatching" onclick="location.href='${contextPath}/jibsa_Detail.bo?mId=${l.memberNo }&page=${pi.currentPage}'">바로 매칭 하러 가기</button>
+					<input id="hiddenNo" type="hidden"/>
+				</c:if>
+			</c:forEach>	
+			</c:forEach>	
+		</div>
+<!-- 	  <img src="resources/image/maindog.PNG" style=" border-radius: 20px; width: 720px; height: auto;" alt="image description"> -->
 	</div>
 	<br><br>
 `	<%@ include file="../common/bottom.jsp" %>
@@ -260,6 +297,8 @@
 			window.open(link);
 		});
 		
+
+	
 	</script>
 	
 </body>

@@ -71,6 +71,7 @@
 		delete from image
 		where member_no = #{memberNo} and image_level = '1'
 	</delete>
+	
 
 </mapper>
 

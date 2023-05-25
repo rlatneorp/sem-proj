@@ -17,8 +17,8 @@
 </head>
 <body>
 	<jsp:include page="../common/top.jsp"/>
-	<div class="container text-center border rounded mb-5">
-		<br>
+	<div class="container text-center rounded mb-5">
+		<br><br><br>
 		<h1>집사 / 훈련사</h1>
 		<br>
 		<h5>집사나라의 파트너를 소개합니다!</h5>
@@ -26,7 +26,7 @@
 	</div>
 	
 	<div class="container text-center mb-5">
-		<div class="filter d-flex justify-content-end mb-5">
+		<div class="filter d-flex  mb-5" style="margin-left: 850px;">
 			<div class="filter-group d-flex">
 				<button onclick="location.href='${contextPath}/jibsa_List.bo'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">전체</button>
 				<button onclick="location.href='${contextPath}/jibsa_List.bo?type=1'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">집사</button>

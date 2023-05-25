@@ -79,7 +79,7 @@
 				<h1>먼저 반려동물 등록을 해주세요!</h1>
 				<br>
 				<h5>매칭에는 반려동물 등록이 필요해요!</h5>
-				<br><br>
+				<br><br><br>
 				<button onclick="location.href='${contextPath}/member_Pet_Insert.me'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 120px; height: 40px;">반려동물 등록</button>
 			</div>
 		</div>
@@ -95,7 +95,7 @@
 					<br>
 					<h5>우리 가족에게 딱 맞는 집사를 찾아보세요!</h5>
 					<b>*</b> 필수 입력값
-					<br><br>
+					<br><br><br>
 				</div>
 			</div>
 		</div>

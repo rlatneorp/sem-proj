@@ -134,19 +134,9 @@
 	<div class="container">
 	  
 		<br><br><br>
-		<h1>이용 후기</h1>
-		
-	<c:if test="${value eq null}">
-	<div class="container">
-	<select name="sortBy" id="sort">
-	  <option selected value="0">---------------------------</option>
-	  <option value="1">평점 높은 순으로 보기</option>
-	  <option value="2">조회수 많은 순으로 보기</option>
-	  <option value="3">이름 순으로 보기</option>
-	</select>
-	</div>
-	</c:if>
-	  
+		<h1 style="text-align: center; margin-left: -300px;">이용 후기</h1><br>
+		<h5 style="text-align: center; margin-left: -300px;">집사나라 서비스를 이용한 고객분들의 이용후기 입니다</h5>
+		<br><br><br>
 	<div class="container text-left">
 	  <div class="row">
 	  <article id="reviewList">
@@ -163,11 +153,11 @@
 						 <div class="userName">${ n.memberName }</div>
 					</div>
 					<div class="info">
-					    <div class="jibsaName">${ n.jibsaName }</div>
-					  	<div class="star">　
+					    <div class="jibsaName">${ n.jibsaName } 집사</div><br>
+					  	<div class="star">
 						  	<c:forEach begin="1" end="${n.reviewRating}">
-								    <span class="material-symbols-outlined" id="starRating" style="font-size: 30px;">star</span>
-							</c:forEach>
+						  	<span class="material-symbols-outlined" id="starRating" style="font-size: 30px;">star</span>
+						  	</c:forEach>
 						</div>
 					    <div class="reviewContent">${ n.reviewContent }</div>
 					  	<div class="jibsaNo">${ n.jibsaNo }</div>

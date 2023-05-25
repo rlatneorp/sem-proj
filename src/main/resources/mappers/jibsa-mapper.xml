@@ -204,6 +204,7 @@
 	    <result column="PROFILE_TITLE" property="profileTitle"/>
 	    <result column="PROFILE_TAG" property="profileTag"/>
 	    <result column="JIBSA_AVG_RATING" property="jibsaAvgRating"/>
+	    <result column="MATCHING_NO" property="matchingNo"/>
 	</resultMap>
 	
 	<select id="selectImage2" resultMap="imageResultSet">
@@ -222,5 +223,25 @@
 		set is_primium = 'Y', primium_payment_date = sysdate, primium_end_date = add_months(sysdate, ${date})
 		where member_no = #{memberNo}
 	</update>
+	
+	<select id="todayJibsa" resultMap="jibsaPResultMap">
+		select *
+		from member
+		    join jibsa_profile using(member_no)
+		    join jibsa using(member_no)
+		where is_primium = 'Y'
+        order by dbms_random.random()
+	</select>
+	
+	<select id="todayJibsaImage" resultMap="imageResultSet">
+		select *
+		from image
+			join jibsa_profile using(member_no)
+            join jibsa using(member_no)
+		where is_primium = 'Y' and image_level = '2'
+	</select>
+	
+	
+
 	
 </mapper>
