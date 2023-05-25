@@ -61,7 +61,6 @@ public class HomeController {
 		
 		ArrayList<Image> iList = jService.todayJibsaImage();
 		model.addAttribute("iList", iList);
-		System.out.println(iList);
 		return "home/home";
 	}
 	
