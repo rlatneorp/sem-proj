@@ -233,7 +233,7 @@
 			<c:forEach items="${ iList }" var="i" begin="0" end="0">
 					<h3 id="jibsaN">${ i.memberName } 집사 <span class="material-symbols-outlined">verified</span></h3>
 					<div><img src="${contextPath}/resources/uploadFiles/${ i.renameName}" width="300" height="250" style="border-radius: 10px;"></div><br>
-					<button id="directMatching" onclick="location.href='${contextPath}/jibsa_Detail.bo?mId=${i.memberNo }&page=${pi.currentPage}'">바로 매칭 하러 가기</button>
+					<button id="directMatching" onclick="location.href='${contextPath}/jibsa_Detail.bo?mId=${i.memberNo }&page=${pi.currentPage}'">집사 보러가기</button>
 					<input id="hiddenNo" type="hidden"/>
 			</c:forEach>	
 		</div>
