@@ -47,7 +47,7 @@
 							</div>
 							<div class="col-4 row">
 								<span class="fs-6 col-12">${fn:substring(mc.startDate,0,10)} ${fn:substring(mc.startDate,11,13)}:${fn:substring(mc.startDate,13,15)}</span>
-								<span class="fs-6 col-12">~${fn:substring(mc.endDate,0,10)} ${fn:substring(mc.endDate,11,13)}:${fn:substring(mc.endDate,13,15)}</span>
+								<span class="fs-6 col-12 endDate">~${fn:substring(mc.endDate,0,10)} ${fn:substring(mc.endDate,11,13)}:${fn:substring(mc.endDate,13,15)}</span>
 								<span class="fs-6 col-12">${fn:substring(mc.matchingPlace,0,16)}</span>
 							</div>
 							<div class="col-1 d-flex align-items-center">
@@ -85,9 +85,7 @@
 					    		</div>
 					  		</div>
 						</div>
-											
 					</c:forEach>
-					
 					
 					<!-- 페이징 -->
 					<%@ include file="../common/paging.jsp" %>
@@ -99,22 +97,27 @@
 		</div>
 	</div>
 	
-
-	
 	<script>
 		window.onload = () =>{
+			
+			const endDates = document.getElementsByClassName('endDate');
+			const today = new Date();
 			const cancelModals = document.getElementsByClassName('cancelModal');
+			
 			for(const i in cancelModals){
-				if(cancelModals[i] != null && cancelModals[i].type == "button"){
+				const endMonth = endDates[i].innerText.substring(6,8)*1
+				const endDate = endDates[i].innerText.substring(9,11)*1
+				
+				if(endMonth <= today.getMonth()+1 && endDate <= today.getDate()){
+					cancelModals[i].style.display = 'none';
+				}else if(cancelModals[i] != null && cancelModals[i].type == "button"){
 					cancelModals[i].addEventListener('click', ()=>{
 						$('.modalChoice').eq(i).modal('show');
-					})
+					});
 				}
 			}
 		}
-			
 	</script>
-	
 
 </body>
 </html>
