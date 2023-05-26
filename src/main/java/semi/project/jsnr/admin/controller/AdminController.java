@@ -350,10 +350,10 @@ public class AdminController {
 			currentPage = page;
 		}
 		Board r = aService.selectReview(rId);
+		
 		if(r != null) {
 			model.addAttribute("page", currentPage);
 			model.addAttribute("r", r);
-			System.out.println(r);
 			return "admin_Review_Detail";
 		} else {
 			System.out.println("Review LIST정보 불러오기 실패함");
