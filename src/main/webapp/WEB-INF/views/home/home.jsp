@@ -16,6 +16,10 @@
 			padding: 0;
 			font-family: Arial, sans-serif;
 		}
+		.matchingNotice{
+			font-size: 25px;
+			font-weight: 700;
+		}
 
 		.container {
 			display: flex;
@@ -23,9 +27,6 @@
 			align-items: center;
 			gap : 20px;
 			padding: 20px;
-			font-size: 25px;
-		}
-		#matchingNotice{
 			font-size: 25px;
 		}
 		#matchingMain{
@@ -204,14 +205,14 @@
 	</div>
 	
 	<div class="container">  
-	  <p id="matchingMain">더욱더 발전하는 반려동물 파트너 문화를 만드는 집사나라</p>
+	  <p id="matchingMain">더욱더 발전하는 <a style="color: white; background-color:rgb(26, 188, 156);">반려동물</a> <a style="color: rgb(26, 188, 156);">파트너 문화</a>를 만드는 집사나라</p>
 	</div>
 	<br><br>
 	<div class="container">
 		<div>
-		  <p id="matchingNotice">반려동물 위탁돌봄을 희망하는<br>
+		  <p class="matchingNotice" style="padding: 20px; font-size: 25px; font-weight: 700;">반려동물 위탁돌봄을 희망하는<br>
 		  	보호자와 전문가를<br>서로 매칭해줍니다</p>
-		  <button class="select" onclick="location.href='${ contextPath }/matching_Main.mc'">집사매칭</button>
+		  <button class="select"style="margin-left: 20px;" onclick="location.href='${ contextPath }/matching_Main.mc'">집사매칭</button>
 		</div>
 	  <img src="resources/image/main1.jpg"  style=" border-radius: 20px; width: 400px; height: 400px;" alt="image description">
 	</div>
@@ -219,15 +220,15 @@
 	<div class="container">
 	  <img src="resources/image/main2.jpg"  style=" border-radius: 20px; width: 400px; height: 400px;" alt="image description">
 	  <div>
-		  <p>다양한 이용후기를 보면서 <br>
+		  <p class="matchingNotice">다양한 이용후기를 보면서 <br>
 		  	어떤 서비스를 받을지 결정하세요 
 		  </p>
 		  <button class="select" onclick="location.href='${ contextPath }/review_Main.bo'">이용후기</button>
 	  </div>
 	</div>
-	<br><br>
+	<br><br><br><br>
 	<div style="text-align: center;">
-		<h1>오늘의 집사 <span style="font-size: 40px;" class="material-symbols-outlined">thumb_up</span></h1> <br>
+		<h1 style="font-weight: 500;">오늘의 집사 <span style="font-size: 40px;" class="material-symbols-outlined">thumb_up</span></h1> <br>
 		<h5>집사나라에서 추천하는 집사님을 소개합니다</h5><br><br>
 		<div class="todayJibsa">
 			<c:forEach items="${ iList }" var="i" begin="0" end="0">
@@ -239,7 +240,7 @@
 		</div>
 <!-- 	  <img src="resources/image/maindog.PNG" style=" border-radius: 20px; width: 720px; height: auto;" alt="image description"> -->
 	</div>
-	<br><br>
+	<br><br><br><br>
 `	<%@ include file="../common/bottom.jsp" %>
 	<script>
 		// 각각의 이미지와 링크를 등록하는 함수

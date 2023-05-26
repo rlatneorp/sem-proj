@@ -21,12 +21,12 @@
 .btjipsa{width: 138px; height: 58px; background: rgb(26, 188, 156); border-style: none; border-radius: 4px;}
 #btjibsa_apply{color: white; border-radius: 4px; width:120px; height:40px; margin-left: 45px; 
 		 font-family: 'Noto Sans KR', sans-serif; font-size : 18px}
-.topCont{width: 1200px; max-width: none !important; margin: 0 auto;}
+.topCont{width: 1000px; max-width: none !important; margin: 0 auto;}
 .logo{width: 160px;}
 .menu1{font-size: 23px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; margin: 10px; color: rgb(51, 51, 51); text-decoration: none;}
 .menu2{font-size: 23px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; margin: 10px; color: white;}
 .topLeft{margin-left: 5%; display: inline;}
-.topRight{margin-left: 15%; display: inline;}
+.topRight{margin-left: 13%; display: inline;}
 #top_hr{border: 20px solid rgb(26, 188, 156); opacity: 1; margin: 0;}
 #top_hr2{border: 1px solid gray;}
 		.menu1:hover:not(.active){color: rgb(51, 51, 51);}
@@ -47,7 +47,7 @@
 		.name:hover:not(.active){color: rgb(51, 51, 51);}
 		.name{font-size: 23px; font-weight: 700; font-family: 'Noto Sans KR', sans-serif; margin: 0px; color: rgb(51, 51, 51); text-decoration: none; display: inline-block;}
 		.animal{font-style: inherit; font-size: 18px; font-family: 'Noto Sans KR', sans-serif; margin: 0; color: rgb(51, 51, 51); text-decoration: none;}
-		.dropd{margin-top: 3.5%; margin-right: 12%}
+		.dropd{margin-top: 3.5%; margin-right: 3%}
 		.butn{padding: 10px 20px; background-color: transparent; border: none;}
 		#drop-c{position: absolute; z-index: 1; border-radius: 15px; background-color: rgb(255, 255, 255); border-style: none; box-shadow: rgb(224, 224, 224) 0px 0px 20px 0px;}
 		#drop-c a{display: block; padding: 5px 20px; margin: 2px 0px 0px 0px; text-decoration: none;}

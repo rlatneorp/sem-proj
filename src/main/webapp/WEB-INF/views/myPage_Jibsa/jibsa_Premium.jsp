@@ -126,64 +126,64 @@
 	<br><br><br>
 	
 	<jsp:include page="../common/bottom.jsp"/>
-<script>
-	const phone = '${loginUser.memberPhone}';
-	const email = '${loginUser.memberEmail}';
-	const name = '${loginUser.memberName}';
-	let pay = 0;
-	const cardss = document.querySelectorAll('.cards');
-	let noticePays = document.querySelector('#noticePay');
-	for(const i of cardss){
-		i.addEventListener('click', () => {
-			const userCode = "imp14397622";
-			IMP.init(userCode);
-			pay = parseInt(i.value);
-			noticePays.innerText = ''; 
-			noticePays.innerText = pay + '원 구독을 선택하셨습니다.';
-		})	
-	}
-
-	function requestPay() {
-		if(pay === 0){
-			notivePays.innerText = '원하시는 구독을 골라주세요.';
+	<script>
+		const phone = '${loginUser.memberPhone}';
+		const email = '${loginUser.memberEmail}';
+		const name = '${loginUser.memberName}';
+		let pay = 0;
+		const cardss = document.querySelectorAll('.cards');
+		let noticePays = document.querySelector('#noticePay');
+		for(const i of cardss){
+			i.addEventListener('click', () => {
+				const userCode = "imp14397622";
+				IMP.init(userCode);
+				pay = parseInt(i.value);
+				noticePays.innerText = ''; 
+				noticePays.innerText = pay + '원 구독을 선택하셨습니다.';
+			})	
 		}
-		 IMP.request_pay({
-		    pg: "kakaopay",
-		    pay_method: "card",
-		    merchant_uid: "merchant_" + new Date().getTime(),
-		    name: '집사나라 ' + pay.toString().charAt(0) + '개월 구독',
-		    amount: pay,
-		    buyer_tel: phone,
-		    buyer_email : email,
-		    buyer_name : name
-		}, function(rsp){
-			if(rsp.success){
-				$.ajax({
-					type : 'POST',
-					url : '${contextPath}/insertPremium.js',
-					data : {date : pay.toString().charAt(0), memberNo : ${loginUser.memberNo}},
-					success : data => {
-						if(data == 'yes'){
-							location.href = '${contextPath}/premium_success.js?date='+pay.toString().charAt(0);
-						} else {
-							console.log('업데이트 실패');
-						}
-					},
-					error: data => {
-				          console.log('업데이트 실패');
-				        }
-				});
-			} else {
-				alert(rsp.error_msg);
-			}
-		})
-	}
 	
-	const startDate = '${jibsaInfo.primiumPaymentDate}';
-	const endDate = '${jibsaInfo.primiumEndDate}';
-	const period = endDate.substring(5,7) - startDate.substring(5,7);
-	const date = document.getElementById('date');
-	date.innerText = period + '개월';
-</script>
+		function requestPay() {
+			if(pay === 0){
+				notivePays.innerText = '';
+			}
+			 IMP.request_pay({
+			    pg: "kakao",
+			    pay_method: "card",
+			    merchant_uid: "merchant_" + new Date().getTime(),
+			    name: '집사나라 ' + pay.toString().charAt(0) + '개월 구독',
+			    amount: pay,
+			    buyer_tel: phone,
+			    buyer_email : email,
+			    buyer_name : name
+			}, function(rsp){
+				if(rsp.success){
+					$.ajax({
+						type : 'POST',
+						url : '${contextPath}/insertPremium.js',
+						data : {date : pay.toString().charAt(0), memberNo : ${loginUser.memberNo}},
+						success : data => {
+							if(data == 'yes'){
+								location.href = '${contextPath}/premium_success.js?date='+pay.toString().charAt(0);
+							} else {
+								console.log('업데이트 실패');
+							}
+						},
+						error: data => {
+					          console.log('업데이트 실패');
+					        }
+					});
+				} else {
+					alert(rsp.error_msg);
+				}
+			})
+		}
+		
+		const startDate = '${jibsaInfo.primiumPaymentDate}';
+		const endDate = '${jibsaInfo.primiumEndDate}';
+		const period = endDate.substring(5,7) - startDate.substring(5,7);
+		const date = document.getElementById('date');
+		date.innerText = period + '개월';
+	</script>
 </body>
 </html>

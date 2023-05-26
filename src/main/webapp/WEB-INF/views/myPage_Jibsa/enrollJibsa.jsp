@@ -9,13 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
+
+#applyText{display: inline-block; margin-left: 210px;}
 #applyTitle{font-size: 23px; 
 	font-family: 'Noto Sans KR', sans-serif; 
 	font-weight: 700; 
 	color: rgb(51, 51, 51);}
 	
 #applyTitle{
-	width: 1200px; 
+	width: 1300px; 
 	max-width: none !important; 
 	margin: 0 auto;  
 	}
@@ -27,7 +29,6 @@ width:412px;
 height:380px;
 border-style: none; border-radius:20px;
 }
-#applyText{display: inline-block; margin-left: 220px;}
 
 #box1{width:340px; height:162px; display: inline-block; margin-left: 220px;
 box-shadow:0px 0px 15px 5px rgb(224, 224, 224); border-style: none; border-radius: 30px;
@@ -96,10 +97,10 @@ text-align: center;}
 				</tr>
 				<tr>
 					<td>
-						<button id="btn1" onclick="location.href='${contextPath}/enrollJibsaPage.js'">집사 지원하기</button>
+						<button id="btn1">집사 지원하기</button>
 					</td>
 					<td>
-						<button id="btn2" onclick="location.href='${contextPath}/enrollTrainerPage.js'">훈련사 지원하기</button>
+						<button id="btn2">훈련사 지원하기</button>
 					</td>
 				</tr>
 			</table>
@@ -131,5 +132,35 @@ text-align: center;}
 	</div>		
 </div>
 <%@ include file="../common/bottom.jsp" %>
+<script>
+	const btn1 = document.getElementById('btn1');
+	const btn2 = document.getElementById('btn2');
+	const user = '${loginUser}';
+	
+// 	const enrollJibsa = () => {
+// 		if(!user){
+// 			alert('로그인을 먼저 해주세요!');
+// 			return;
+// 		}
+// 	}
+	
+// 	btn1.addEventListener('click', enrollJibsa);
+// 	btn2.addEventListener('click', enrollJibsa);
+	btn1.addEventListener('click', () => {
+		if(!user){
+			alert('로그인을 먼저 해주세요!');
+		} else {
+			location.href='${contextPath}/enrollJibsaPage.js';
+		}
+	});
+	
+	btn2.addEventListener('click', () => {
+		if(!user){
+			alert('로그인을 먼저 해주세요!');
+		} else {
+			location.href='${contextPath}/enrollTrainerPage.js';
+		}
+	});
+</script>
 </body>
 </html>
