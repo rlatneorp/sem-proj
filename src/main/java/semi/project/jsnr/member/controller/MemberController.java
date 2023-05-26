@@ -324,6 +324,20 @@ public class MemberController {
 		}
 	}
 	
+	// ajax 현재 비밀번호 체크
+	@RequestMapping("checkCurrentPwd.me")
+	@ResponseBody
+	public String checkCurrentPwd(@RequestParam("memberId") String memberId, @RequestParam("memberPwd") String memberPwd,
+								  Model model) {
+		Member m = (Member)model.getAttribute("loginUser");
+		
+		if(bcrypt.matches(memberPwd, m.getMemberPwd())) {
+			return "yes";
+		} else {
+			return "no";
+		}
+	}
+	
 	// 회원 마이페이지 - 정보수정에서 비번 재설정 - 현지
 	@RequestMapping("member_UpdatePwd.me")
 	public String member_updatePwd(@RequestParam("memberPwd") String pwd, 
@@ -332,22 +346,18 @@ public class MemberController {
 		// 세션에 있는 loginUser 정보 m에 담기
 		Member m = (Member)model.getAttribute("loginUser");
 		
-		if(bcrypt.matches(pwd, m.getMemberPwd())) {
-			HashMap<String, String> map = new HashMap<String, String>();
-			map.put("memberId", m.getMemberId());
-			map.put("newPwd", bcrypt.encode(newpwd));
-			int result = mService.updatePwd(map);
-			if(result > 0) {
-				Member update = mService.login(m);
-				model.addAttribute("loginUser", update);
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("memberId", m.getMemberId());
+		map.put("newPwd", bcrypt.encode(newpwd));
+		int result = mService.updatePwd(map);
+		if(result > 0) {
+			Member update = mService.login(m);
+			model.addAttribute("loginUser", update);
 				
-				return "redirect:member_EditInfo.me";
-			} else {
-				throw new MemberException("비밀번호 변경에 실패하였습니다.");
-			}
+			return "redirect:member_EditInfo.me";
 		} else {
-			throw new MemberException("비밀번호 수정에 실패하였습니다");
-		} 
+			throw new MemberException("비밀번호 변경에 실패하였습니다.");
+		}
 	} 
 	
 	// 회원 탈퇴 - 현지
