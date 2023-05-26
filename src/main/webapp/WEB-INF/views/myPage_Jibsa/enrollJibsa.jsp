@@ -9,13 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
+
+#applyText{display: inline-block; margin-left: 210px;}
 #applyTitle{font-size: 23px; 
 	font-family: 'Noto Sans KR', sans-serif; 
 	font-weight: 700; 
 	color: rgb(51, 51, 51);}
 	
 #applyTitle{
-	width: 1200px; 
+	width: 1300px; 
 	max-width: none !important; 
 	margin: 0 auto;  
 	}
@@ -27,7 +29,6 @@ width:412px;
 height:380px;
 border-style: none; border-radius:20px;
 }
-#applyText{display: inline-block; margin-left: 220px;}
 
 #box1{width:340px; height:162px; display: inline-block; margin-left: 220px;
 box-shadow:0px 0px 15px 5px rgb(224, 224, 224); border-style: none; border-radius: 30px;

@@ -9,25 +9,24 @@
 <title>마이페이지</title>
 <style>
 
-  #pp{
-  position:relative; margin-left: -200px; margin-top: 20px;}
-
 *{font-family: 'Noto Sans KR', sans-serif;}
+  #pp{
+   margin-left: -30%; margin-top: 20px;}
+
 body {
   overflow-x: hidden;
 }
 .p-2{
   font-weight: bold;
   font-size: 24px;
-  margin-left: 80px;
+  margin-left: 180px;
   text-align: left;
 }
 .p-4{
-  width: 450px;
+  width: 400px;
   height: 480px;
   border-radius: 10px;
   box-shadow: 0px 0px 14px gray;
-  margin-left: 20px;
   display: inline-block;
 }
 .h4{
@@ -99,20 +98,21 @@ body {
   }
   .inbtn {
     margin-left: 0;
+    matgin-top:10px;
   }
 </style>
 </head>
 <body>
 	<%@ include file="../common/top.jsp" %>
 	<%@ include file="../common/sideBar.jsp" %>
-	<div id="wrapper" class="toggled" style="margin-left: 140px; margin-top: -40px;">
+	<div id="wrapper" class="toggled" style="margin-left: 50px; margin-top: -40px;">
     	<div id="page-content-wrapper">
         	<div class="container text-center">
 				<div class="row align-items-center">
 					<div class="col"><br>
 						<div class="p-2">내 반려동물</div>
 						<br>
-						<div class="p-4"><br>
+						<div class="p-4" style="margin-left: 5px;"><br>
 							<c:if test="${ animal.isStatus eq 'Y' }">
 		                		<h5 class="h5">${ animal.animalKind } &nbsp; · &nbsp; ${ animal.animalName } &nbsp; · &nbsp; ${ animal.animalGender }</h5><br>
 			                	<c:if test="${ !empty image.memberNo }">
@@ -130,7 +130,7 @@ body {
                     	</div>
 		    		</div>
 		    		<div class="col" id="pp">
-				      	<div class="p-2">내 정보</div><br>
+				      	<div class="p-2">   내 정보</div><br>
 	                    <div class="p-4" >
 	                        <table class="info">
 	                            <tr>
