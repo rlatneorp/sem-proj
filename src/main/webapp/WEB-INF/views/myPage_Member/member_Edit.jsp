@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <title>내 정보 수정</title>
 <style>
 	#ebtn{
@@ -117,7 +118,7 @@
 					<form action="${ contextPath }/member_UpdatePwd.me" method="post">
 						<p class="sel">1. 현재 비밀번호</p>
 	    				<input type="password" name="memberPwd" class="pwd" id="pwd"/>
-	    				<br><br>
+	    				<div style="height: 30px; font-size: 12px;" id="pwdDiv1"></div>
 						<p class="sel">2. 변경할 비밀번호</p>
 	    				<input type="password" name="memberNewPwd" id="newPwd" class="pwd"/>
 	    				<br><br>
@@ -146,10 +147,12 @@
 						const pwd = document.getElementById('newPwd');
 						const pwdc = document.getElementById('pwdConfirm');
 						const pwdDiv = document.getElementById('pwdDiv');
+						const pwdDiv1 = document.getElementById('pwdDiv1');
 						const btn5 = document.getElementById('btn5');
 						const form = document.getElementById('editForm');
 						const cuPwd = document.getElementById('currentPwd');
 						const cPwd = document.getElementById('pwd');
+						const memberId = document.getElementById('id');
 						
 						// 비밀번호 칸
 						pwd.addEventListener('keyup', (e) => {
@@ -179,22 +182,45 @@
 							}
 						});
 						
-						btn5.addEventListener('click', (e) => {
-							if(pwdDiv.innerText == '비밀번호가 일치하지 않습니다.'){
-								alert('비밀번호가 일치하지 않습니다.');
-								pwdc.focus();
-								e.preventDefault();
-							} else if(cuPwd.value != cPwd.value){
-								alert('현재 비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
-								cPwd.focus();
-								e.preventDefault();
-							} else if(pwdDiv.innerText == '비밀번호가 일치합니다.') {
-								form.submit();
-								alert('비밀번호가 변경되었습니다.');
+						// 현재 비밀번호 체크
+						cPwd.addEventListener('keyup', () => {
+							if(cPwd.value == ''){
+								alert('현재 비밀번호를 입력해주세요.');
+							} else {
+								$.ajax({
+									type : 'POST',
+									url : '${contextPath}/checkCurrentPwd.me',
+									data : {memberId : memberId.value, memberPwd : cPwd.value},
+									success : data => {
+										if(data === 'yes'){
+											pwdDiv1.innerText = '현재 비밀번호가 일치합니다.';
+											pwdDiv1.style.color = 'green';
+										} else {
+											pwdDiv1.innerText = '현재 비밀번호가 일치하지 않습니다.';
+											pwdDiv1.style.color = 'red';
+										}
+									},
+									error : data => {
+										
+									}
+								});
 							}
-						})
+						});
 						
 					}
+
+					btn5.addEventListener('click', (e) => {
+						if(pwdDiv1.innerText == '현재 비밀번호가 일치하지 않습니다.'){
+							alert('현재 비밀번호가 일치하지 않습니다.');
+							e.preventDefault();
+						} else if(pwdDiv.innerText == '비밀번호가 일치하지 않습니다.'){
+							alert('비밀번호가 일치하지 않습니다.');
+							e.preventDefault();
+						} else if(pwdDiv.innerText == '비밀번호가 일치합니다.') {
+							alert('비밀번호가 변경되었습니다.');
+							form.submit();
+						}
+					})
 					
 				</script>
 		<br><br><br><br><br><br><br><br><br><br><br><br><br>

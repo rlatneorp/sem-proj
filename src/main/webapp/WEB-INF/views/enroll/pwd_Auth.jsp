@@ -45,7 +45,7 @@
 		<br><br>
 		<div id="foundPwd"> 
 			<a id="foundPwdTitle">비밀번호 찾기</a>
-			<form action="${ contextPath }/pwd_Set.do" method="post">
+			<form action="${ contextPath }/pwd_Set.do" method="post" id="form">
 			<input type="hidden" name="num" value="${ num }" id="num">
 			<br><br><br><br>
 			<div class="input_container">
@@ -67,17 +67,20 @@
 		const check = document.getElementById('check');
 		const num = document.getElementById('num');
 		const btn = document.getElementById('foundPwdNext1');
+		const form = document.getElementById('form');
 		
 		// 인증번호 확인
-		emailCode.addEventListener('change', () => {
+		btn.addEventListener('click', (e) => {
 			if(emailCode.value == num.value){
-				btn.disabled = false;
-				btn.style.background = 'rgb(26, 188, 156)';
+				form.action = '${contextPath}/pwd_Set.do';
+				form.submit();
 			} else {
-				btn.disabled = true;
-				btn.style.background = 'gray';
+				alert('인증에 실패하였습니다. 처음부터 진행해주세요!');
+				e.preventDefault();
+				location.href = 'javascript:history.back()';
 			}
 		});
+		// 인증번호 틀리면 다시 처음부터 진행하도록 함
 		
 // 		const timer = document.getElementById('timer');
 		
