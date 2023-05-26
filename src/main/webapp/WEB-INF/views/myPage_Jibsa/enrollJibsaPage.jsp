@@ -101,15 +101,15 @@
 				<label class ="e title">방문가능지역</label><br/>
 				<span class = "add">지역을 선택해주세요.</span><br/>
 				<div class="checkbox-group">
-				    <input type="checkbox" name="availableArea" value="서울"> 서울 
+				    <input type="checkbox" name="availableArea" value="서울"> 서울 &nbsp;&nbsp;&nbsp;
 				    <input type="checkbox" name="availableArea" value="수도권"> 수도권<br>
 				    <input type="checkbox" name="availableArea" value="강원도"> 강원도
 				    <input type="checkbox" name="availableArea" value="경상도"> 경상도<br>
-				    <input type="checkbox" name="availableArea" value="광주"> 광주
+				    <input type="checkbox" name="availableArea" value="광주"> 광주 &nbsp;&nbsp;&nbsp;
 				    <input type="checkbox" name="availableArea" value="대구"> 대구<br>
-				    <input type="checkbox" name="availableArea" value="대전"> 대전
+				    <input type="checkbox" name="availableArea" value="대전"> 대전 &nbsp;&nbsp;&nbsp;
 				    <input type="checkbox" name="availableArea" value="부산"> 부산<br>
-				    <input type="checkbox" name="availableArea" value="울산"> 울산
+				    <input type="checkbox" name="availableArea" value="울산"> 울산 &nbsp;&nbsp;&nbsp;
 				    <input type="checkbox" name="availableArea" value="전라도"> 전라도<br>
 				    <input type="checkbox" name="availableArea" value="제주도"> 제주도
 				    <input type="checkbox" name="availableArea" value="충청도"> 충청도<br>
