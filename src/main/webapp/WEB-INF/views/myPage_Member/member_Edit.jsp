@@ -184,10 +184,6 @@
 								alert('비밀번호가 일치하지 않습니다.');
 								pwdc.focus();
 								e.preventDefault();
-							} else if(cuPwd.value != cPwd.value){
-								alert('현재 비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
-								cPwd.focus();
-								e.preventDefault();
 							} else if(pwdDiv.innerText == '비밀번호가 일치합니다.') {
 								form.submit();
 								alert('비밀번호가 변경되었습니다.');
