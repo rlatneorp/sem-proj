@@ -98,7 +98,7 @@ body {
     							  	</label>
     							  	<div class="hide">
     							  		&nbsp;&nbsp;<input type="text" name="dType" placeholder="품종">이에요<br>
-    							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="ds" value="small" required><label for="ds">&nbsp;소형</label>
+    							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="ds" value="small"><label for="ds">&nbsp;소형</label>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="dm" value="medium"><label for="dm">&nbsp;중형</label>
     							  		&nbsp;&nbsp;<input type="radio" name="animalSize" id="dl" value="large"><label for="dl">&nbsp;대형</label>
     							  	</div>
