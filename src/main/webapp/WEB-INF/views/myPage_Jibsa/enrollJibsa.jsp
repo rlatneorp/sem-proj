@@ -97,10 +97,10 @@ text-align: center;}
 				</tr>
 				<tr>
 					<td>
-						<button id="btn1" onclick="location.href='${contextPath}/enrollJibsaPage.js'">집사 지원하기</button>
+						<button id="btn1">집사 지원하기</button>
 					</td>
 					<td>
-						<button id="btn2" onclick="location.href='${contextPath}/enrollTrainerPage.js'">훈련사 지원하기</button>
+						<button id="btn2">훈련사 지원하기</button>
 					</td>
 				</tr>
 			</table>
@@ -132,5 +132,35 @@ text-align: center;}
 	</div>		
 </div>
 <%@ include file="../common/bottom.jsp" %>
+<script>
+	const btn1 = document.getElementById('btn1');
+	const btn2 = document.getElementById('btn2');
+	const user = '${loginUser}';
+	
+// 	const enrollJibsa = () => {
+// 		if(!user){
+// 			alert('로그인을 먼저 해주세요!');
+// 			return;
+// 		}
+// 	}
+	
+// 	btn1.addEventListener('click', enrollJibsa);
+// 	btn2.addEventListener('click', enrollJibsa);
+	btn1.addEventListener('click', () => {
+		if(!user){
+			alert('로그인을 먼저 해주세요!');
+		} else {
+			location.href='${contextPath}/enrollJibsaPage.js';
+		}
+	});
+	
+	btn2.addEventListener('click', () => {
+		if(!user){
+			alert('로그인을 먼저 해주세요!');
+		} else {
+			location.href='${contextPath}/enrollTrainerPage.js';
+		}
+	});
+</script>
 </body>
 </html>
