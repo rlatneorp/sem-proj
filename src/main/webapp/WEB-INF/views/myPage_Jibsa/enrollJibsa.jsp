@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,11 +99,22 @@ text-align: center;}
 				</tr>
 				<tr>
 					<td>
-						<button id="btn1" onclick="location.href='${contextPath}/enrollJibsaPage.js'">집사 지원하기</button>
+						<c:if test=" ${ !loginUser }">
+							<p> 로그인을 먼저 해주세요
+						</c:if>
+						<c:if test=" ${ loginUser.isJibsa eq 'N'  } " >
+							<button id="btn1" onclick="location.href='${contextPath}/enrollJibsaPage.js'">집사 지원하기</button>
+						</c:if>
+						<c:if test=" ${ loginUser.isJibsa eq 'Y'  } " >
+							<p> 이미 집사입니다. </p>
+						</c:if>
 					</td>
 					<td>
+						<c:if test=" ${ loginUser.isJibsa eq 'N' } " >
 						<button id="btn2" onclick="location.href='${contextPath}/enrollTrainerPage.js'">훈련사 지원하기</button>
+						</c:if>
 					</td>
+						
 				</tr>
 			</table>
 		</div><br><br><br>

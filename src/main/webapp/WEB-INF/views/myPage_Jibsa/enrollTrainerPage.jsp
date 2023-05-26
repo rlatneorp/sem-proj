@@ -67,6 +67,7 @@
   	width: 400px; height: 250px; border: 1px solid gray;
   	}
 	#finalBtn{font-size:30px; font-weight:bold; border-style: none; border-radius:20px; width: 192px; height:76px; display: inline-block; margin-left: 305px; background: rgb(26, 188, 156); color: white;}
+	
 </style>
 </head>
 <body>
@@ -102,13 +103,13 @@
 				<input type="text" id="availableArea" name="availableArea" class=" i name" style="	paddig : 40px; 	margin-left: 23px; margin-top:5px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 주소를 입력해주세요" required><br/><br/>
 				
 				<label class ="e title"> 성별</label><br/>
-				<label style="margin-left: 25px;"><input type="radio" name="jibsaGender" value="m">남자</label>
+				<label style="margin-left: 25px;"><input type="radio" name="jibsaGender" value="m">남자 </label>
 				<label><input type="radio" id="jibsaGender" name="jibsaGender" value="f">여자</label>
 				<br/><br/>
 				
 				<label class ="e title"> 흡연유무 </label><br/>
 				<span class = "add">거짓기재시 불이익이 있을 수 있습니다.</span><br/>
-				<label style="margin-left: 25px;"><input type="radio" name="isSmoking" value="y">흡연 함</label>
+				<label style="margin-left: 25px;"><input type="radio" name="isSmoking" value="y">흡연 함 </label> 
 				<label><input type="radio" id="isSmoking" name="isSmoking" value="n">흡연 안함</label>
 			</div>
 			
