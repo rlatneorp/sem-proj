@@ -89,7 +89,7 @@ text-align: center;}
 						반려동물의 기본교육과<br/>
 						문제 행동 교육을 해줄 수 있다면?
 						</p>
-						<p style="font-size: 15px;">* 훈련사 지원은 집사인 상태에서 지원 가능합니다.</p>
+<!-- 						<p style="font-size: 15px;">* 훈련사 지원은 집사인 상태에서 지원 가능합니다.</p> -->
 					</div>
 					</td>
 				</tr>
@@ -98,12 +98,32 @@ text-align: center;}
 				<td><br><br></td>
 				</tr>
 				<tr>
-					<td>
-						<button id="btn1">집사 지원하기</button>
-					</td>
-					<td>
-						<button id="btn2" disabled style="background: gray;">훈련사 지원하기</button>
-					</td>
+					<c:if test="${ empty loginUser }">
+						<td>
+							<button id="btn1">집사 지원하기</button>
+						</td>
+						<td>
+							<button id="btn2">훈련사 지원하기</button>
+						</td>
+					</c:if>
+					<c:if test="${ !empty loginUser }">
+						<td>
+							<c:if test="${ loginUser.isJibsa eq 'N' }">
+								<button id="btn1" onclick="location.href='${contextPath}/enrollJibsaPage.js'">집사 지원하기</button>
+							</c:if>
+							<c:if test="${ loginUser.isJibsa eq 'Y' }">
+								<p style="margin-left: 260px;">${ loginUser.memberName }님은 이미 집사입니다!</p>
+							</c:if>
+						</td>
+						<td>
+							<c:if test="${ j.isTrainer eq 'N' }">
+								<button id="btn2" onclick="location.href='${contextPath}/enrollTrainerPage.js'">훈련사 지원하기</button>
+							</c:if>
+							<c:if test="${ j.isTrainer eq 'Y' }">
+								<p style="margin-left: 130px;">${ loginUser.memberName }님은 이미 훈련사입니다!</p>
+							</c:if>
+						</td>
+					</c:if>
 				</tr>
 			</table>
 		</div><br><br><br>

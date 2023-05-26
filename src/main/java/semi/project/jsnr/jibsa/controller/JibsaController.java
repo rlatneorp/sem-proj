@@ -46,8 +46,11 @@ public class JibsaController {
 	
 	
 	@RequestMapping("enrollJibsa.js")
-	public String enroll(@ModelAttribute Member m,
+	public String enroll(@ModelAttribute Member m, HttpSession session,
+						@ModelAttribute Jibsa j,
 						Model model) {
+		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
+		j.setMemberNo(memberNo);
 		return "enrollJibsa";
 	}
 	
@@ -111,7 +114,8 @@ public class JibsaController {
 	}
 	
 	@PostMapping("insertTrainer.js")
-	public String insertTrainer(@ModelAttribute Jibsa j,  HttpSession session,
+	public String insertTrainer(@ModelAttribute Jibsa j,  
+							@ModelAttribute JibsaProfile jp, HttpSession session,
 							Model model, HttpServletRequest request,
 							@RequestParam("file") MultipartFile file) {
 		
@@ -120,9 +124,11 @@ public class JibsaController {
 		String memberName = ((Member)session.getAttribute("loginUser")).getMemberName();
 		j.setMemberNo(memberNo);
 		j.setMemberName(memberName);
+		jp.setMemberNo(memberNo);
+		jp.setJibsaName(memberName);
 		
 		int result1 = jService.insertTrainer(j);
-//		int result2 = jService.insertJibsaProfile(j);
+		int result2 = jService.insertJibsaProfile(jp);
 		
 		Image image = null;
 		
@@ -137,7 +143,7 @@ public class JibsaController {
 				image.setImageLevel(2);
 				image.setMemberNo(memberNo);
 				
-				int insertImageResult = jService.insertImage(image);
+				int insertImage = jService.insertImage(image);
 				model.addAttribute("image", image);
 			}
 		} else {

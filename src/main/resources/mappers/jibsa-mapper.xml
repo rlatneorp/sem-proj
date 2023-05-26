@@ -39,15 +39,23 @@
 <!-- 	</insert> -->
 
 	<insert id="insertTrainer">
-		INSERT INTO jibsa (MEMBER_NO, JIBSA_GENDER, JIBSA_RRN, IS_SMOKING, WORK_CAREER, AVAILABLE_HOUR, AVAILABLE_AREA, MOTIVE,
-							EXPECTED_SALARY, CHAT_ADDRESS, PRIMIUM_PAYMENT_DATE, PRIMIUM_END_DATE, IS_TRAINER, JIBSA_LICENSE  )
-	    SELECT #{memberNo}, #{jibsaGender}, #{jibsaRrn}, #{isSmoking}, #{workCareer}, '00000000,00000000,00000000,00000000,00000000,00000000,00000000',
-		    #{availableArea}, #{motive}, #{expectedSalary}, 'kakao', sysdate, sysdate, 'Y', #{license}
-	    FROM dual;
-	
-	    INSERT INTO jibsa_profile (MEMBER_NO, JIBSA_NAME, PROFILE_TITLE, PROFILE_TAG )
-	    SELECT #{memberNo}, #{memberName}, #{profileTitle}, #{profileTag}
-	    FROM dual;
+		 INSERT INTO jibsa
+	    VALUES (#{memberNo}, 
+		    	#{jibsaGender}, 
+		    	#{jibsaRrn}, 
+		    	#{isSmoking}, 
+		    	#{workCareer}, 
+		    	'00000000,00000000,00000000,00000000,00000000,00000000,00000000',
+		        #{availableArea}, 
+		        #{motive}, 
+		        #{expectedSalary}, 
+		        'kakao',
+		        'N',
+		        null, 
+		        null, 
+		        'Y',
+		        #{license})
+	  
 	</insert>
 	
 	<update id="updateMemberInfo">
