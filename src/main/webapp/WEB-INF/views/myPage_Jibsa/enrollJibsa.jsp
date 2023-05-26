@@ -89,6 +89,7 @@ text-align: center;}
 						반려동물의 기본교육과<br/>
 						문제 행동 교육을 해줄 수 있다면?
 						</p>
+						<p style="font-size: 15px;">* 훈련사 지원은 집사인 상태에서 지원 가능합니다.</p>
 					</div>
 					</td>
 				</tr>
@@ -101,7 +102,7 @@ text-align: center;}
 						<button id="btn1">집사 지원하기</button>
 					</td>
 					<td>
-						<button id="btn2">훈련사 지원하기</button>
+						<button id="btn2" disabled style="background: gray;">훈련사 지원하기</button>
 					</td>
 				</tr>
 			</table>
