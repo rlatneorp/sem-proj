@@ -26,7 +26,7 @@
 	</div>
 	
 	<div class="container text-center mb-5">
-		<div class="filter d-flex  mb-5" style="margin-left: 850px;">
+		<div class="filter d-flex  mb-5" style="margin-left: 780px;">
 			<div class="filter-group d-flex">
 				<button onclick="location.href='${contextPath}/jibsa_List.bo?searchType=0'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">전체</button>
 				<button onclick="location.href='${contextPath}/jibsa_List.bo?searchType=3'" class="shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white me-2" style="width: 100px; height: 40px;">추천</button>
