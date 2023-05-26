@@ -48,8 +48,13 @@ public class JibsaController {
 	@RequestMapping("enrollJibsa.js")
 	public String enroll(@ModelAttribute Member m,
 						Model model) {
-		
+		if(model.getAttribute("loginUser") != null) {
+			Jibsa j = ((Jibsa)jService.selectJibsa(((Member)model.getAttribute("loginUser")).getMemberNo()));
+			model.addAttribute("j", j);
 			return "enrollJibsa";
+		}else {
+			return "enrollJibsa";
+		}
 	}
 	
 	@RequestMapping("enrollJibsaPage.js")

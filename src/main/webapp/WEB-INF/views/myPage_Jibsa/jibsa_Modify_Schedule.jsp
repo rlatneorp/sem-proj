@@ -46,24 +46,20 @@
 					</div>
 					
 					<div class="mb-1 text-top">
-						<form method="post" action="${ contextPath }/jibsa_Schedule_Update.js">
-							<input type="hidden" name="matchingNo" value="${mc.matchingNo}">
-							<div class="container mb-3">
-								<p class="mb-4 fs-5 fw-bold">일정</p>
-								
-								<div class="shadow w-100 card px-4 py-3 text-center mb-3 endDate">
-									<span class="fs-5">
-										${fn:substring(mc.startDate,0,10)} ${fn:substring(mc.startDate,11,13)}:${fn:substring(mc.startDate,13,15)}
-										~ ${fn:substring(mc.endDate,11,13)}:${fn:substring(mc.endDate,13,15)}
-									</span>
-								</div>
-							</div>
+						<div class="container mb-3">
+							<p class="mb-4 fs-5 fw-bold">일정</p>
 							
-							<div class="container text-center">
-								<button onclick="location.href='${contextPath}/jibsa_Manage_Schedule.js'" type="button" class="cancelModal shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 120px; height: 40px;">뒤로가기</button>
+							<div class="shadow w-100 card px-4 py-3 text-center mb-3 endDate">
+								<span class="fs-5">
+									${fn:substring(mc.startDate,0,10)} ${fn:substring(mc.startDate,11,13)}:${fn:substring(mc.startDate,13,15)}
+									~ ${fn:substring(mc.endDate,11,13)}:${fn:substring(mc.endDate,13,15)}
+								</span>
 							</div>
-						</form>
+						</div>
 						
+						<div class="container text-center">
+							<button onclick="location.href='${contextPath}/jibsa_Manage_Schedule.js'" type="button" class="cancelModal shadow m-bg-color rounded-2 border-0 fs-6 fw-bold text-white" style="width: 120px; height: 40px;">뒤로가기</button>
+						</div>
 					</div>
 				</div>
 			
@@ -288,7 +284,7 @@
 				if(eBoxs[1].innerText == "" && eBoxs[2].innerText == "" && eBoxs[3].innerText == ""){
 //						값을 대입하고, form을 submit()하는 함수 실행
 					inputTime();
-				}m
+				}
 			}
 			
 //			값을 대입하고, form을 submit()하는 함수

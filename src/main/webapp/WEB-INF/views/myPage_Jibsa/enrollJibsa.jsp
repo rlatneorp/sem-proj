@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,23 +97,32 @@ text-align: center;}
 				<td><br><br></td>
 				</tr>
 				<tr>
+					<c:if test="${ empty loginUser }">
 					<td>
-						<c:if test=" ${ !loginUser }">
-							<p> 로그인을 먼저 해주세요
-						</c:if>
-						<c:if test=" ${ loginUser.isJibsa eq 'N'  } " >
-							<button id="btn1" onclick="location.href='${contextPath}/enrollJibsaPage.js'">집사 지원하기</button>
-						</c:if>
-						<c:if test=" ${ loginUser.isJibsa eq 'Y'  } " >
-							<p> 이미 집사입니다. </p>
-						</c:if>
+						<button id="btn1">집사 지원하기</button>
 					</td>
 					<td>
-						<c:if test=" ${ loginUser.isJibsa eq 'N' } " >
+						<button id="btn2">훈련사 지원하기</button>
+					</td>
+					</c:if>
+					<c:if test="${ !empty loginUser }">
+					<td>
+					<c:if test="${ loginUser.isJibsa eq 'N' }">
+						<button id="btn1" onclick="location.href='${contextPath}/enrollJibsaPage.js'">집사 지원하기</button>
+					</c:if>
+					<c:if test="${ loginUser.isJibsa eq 'Y' }">
+						<p style="margin-left: 260px;">${ loginUser.memberName }님은 이미 집사입니다!</p>
+					</c:if>
+					</td>
+					<td>
+					<c:if test="${ j.isTrainer eq 'N' }">
 						<button id="btn2" onclick="location.href='${contextPath}/enrollTrainerPage.js'">훈련사 지원하기</button>
-						</c:if>
+					</c:if>
+					<c:if test="${ j.isTrainer eq 'Y' }">
+						<p style="margin-left: 130px;">${ loginUser.memberName }님은 이미 훈련사입니다!</p>
+					</c:if>
 					</td>
-						
+					</c:if>
 				</tr>
 			</table>
 		</div><br><br><br>
@@ -145,5 +153,26 @@ text-align: center;}
 	</div>		
 </div>
 <%@ include file="../common/bottom.jsp" %>
+<script>
+	const btn1 = document.getElementById('btn1');
+	const btn2 = document.getElementById('btn2');
+	const user = '${loginUser}';
+	
+	btn1.addEventListener('click', () => {
+		if(!user){
+			alert('로그인을 먼저 해주세요!');
+		} else {
+			location.href='${contextPath}/enrollJibsaPage.js';
+		}
+	});
+	
+	btn2.addEventListener('click', () => {
+		if(!user){
+			alert('로그인을 먼저 해주세요!');
+		} else {
+			location.href='${contextPath}/enrollTrainerPage.js';
+		}
+	});
+</script>
 </body>
 </html>
