@@ -202,7 +202,7 @@
 	<update id="reviewCount">
    		update matching
 		set review_count = review_count + 1
-		where matching_no = #{mId}  
+		where matching_no = #{mId} and review_status = 'Y'
 	</update>
 	
 	<select id="reviewDetail" resultMap="boardResultSet">
@@ -211,7 +211,7 @@
 	        join animal a on(ma.animal_no = a.animal_no)
 	        join member m on(a.member_no = m.member_no)
 	        join jibsa_profile jp on(ma.jibsa_no = jp.member_no)
-	    where ma.matching_no = #{mId} and m.member_status = 'Y'
+	    where ma.matching_no = #{mId} and m.member_status = 'Y' and ma.review_status = 'Y'
 	</select>
 	
 <!-- 	<select id="reviewDetailReply" resultMap="boardResultSet"> -->
