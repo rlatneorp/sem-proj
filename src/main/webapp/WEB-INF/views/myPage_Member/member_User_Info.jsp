@@ -30,7 +30,7 @@ body {
   display: inline-block;
 }
 .h4{
-  margin-right: 300px;
+  margin-right: 280px;
 }
 .h6{
   margin-right: 200px;
