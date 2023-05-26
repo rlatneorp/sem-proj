@@ -4,7 +4,7 @@
 	<select id="getListCount" resultType="_int">
 		select count(*)
 		from matching
-		where review_content is not null
+		where review_content is not null and review_status = 'Y'
 	</select>
 
 	<select id="reviewBoardList" resultMap="boardResultSet">
@@ -15,7 +15,7 @@
 		     join animal a on(a.animal_no = mc.animal_no)
 		     join jibsa_profile jp on(mc.jibsa_no = jp.member_no)
 		     join member m on(mc.member_no = m.member_no)
-		where mc.review_content is not null
+		where mc.review_content is not null and mc.review_status = 'Y'
 		order by mc.matching_no desc
 	</select>
 	
@@ -43,18 +43,21 @@
 	
 	<select id="getJibsaListCount" resultType="_int">
 		select count(*)
-		from jibsa_profile
-			 join jibsa using(member_no)
+		from jibsa
+			 join jibsa_profile using(member_no)
+			 join member using(member_no)
+		where is_jibsa = 'Y'
+			 and not available_hour = '00000000,00000000,00000000,00000000,00000000,00000000,00000000'
 		<if test="selectType == 0">
 		</if>
 		<if test="selectType == 1">
-			where is_trainer = 'N'
+			and is_trainer = 'N'
 		</if>
 		<if test="selectType == 2">
-			where is_trainer = 'Y'
+			and is_trainer = 'Y'
 		</if>
 		<if test="selectType == 3">
-			where is_primium = 'Y'
+			and is_primium = 'Y'
 		</if>
 	</select>
 	
@@ -62,17 +65,21 @@
 		select *
 		from jibsa
 			 join jibsa_profile using(member_no)
+			 join member using(member_no)
+		where is_jibsa = 'Y'
+			 and not available_hour = '00000000,00000000,00000000,00000000,00000000,00000000,00000000'
 		<if test="selectType == 0">
 		</if>
 		<if test="selectType == 1">
-			where is_trainer = 'N'
+			and is_trainer = 'N'
 		</if>
 		<if test="selectType == 2">
-			where is_trainer = 'Y'
+			and is_trainer = 'Y'
 		</if>
 		<if test="selectType == 3">
-			where is_primium = 'Y'
+			and is_primium = 'Y'
 		</if>
+		
 		order by member_no desc
 	</select>
 	
@@ -202,7 +209,7 @@
 	<update id="reviewCount">
    		update matching
 		set review_count = review_count + 1
-		where matching_no = #{mId}  
+		where matching_no = #{mId}
 	</update>
 	
 	<select id="reviewDetail" resultMap="boardResultSet">
@@ -211,7 +218,7 @@
 	        join animal a on(ma.animal_no = a.animal_no)
 	        join member m on(a.member_no = m.member_no)
 	        join jibsa_profile jp on(ma.jibsa_no = jp.member_no)
-	    where ma.matching_no = #{mId} and m.member_status = 'Y'
+	    where ma.matching_no = #{mId} and m.member_status = 'Y' and ma.review_status = 'Y'
 	</select>
 	
 <!-- 	<select id="reviewDetailReply" resultMap="boardResultSet"> -->
