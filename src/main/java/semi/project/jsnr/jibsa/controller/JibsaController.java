@@ -513,15 +513,4 @@ public class JibsaController {
 		
 		return result;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

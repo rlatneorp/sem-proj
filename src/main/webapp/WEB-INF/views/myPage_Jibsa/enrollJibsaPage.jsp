@@ -166,7 +166,7 @@
 			<label style="margin-left: 25px;"><input type="checkbox" name="license" value="KPA 수료증"> KPA 수료증 (CTP, Foundation 등)</label>
 			<label style="margin-left: 75px;"><input type="checkbox" name="directInput" onclick="toggleDirectInput(this)"> 직접입력</label><br>
 			<label style="margin-left: 320px;" for="other-checkbox">
-			    <input type="text" name="license" id="directLicense" style="padding: 40px; margin-left: 23px; margin-top: 10px; border-radius: 5px; border-style: none; box-shadow: 0px 0px 1px 1px rgb(224, 224, 224); font-size: 17px; font-weight: normal; width: 284px; height: 43px;" placeholder="이곳에 입력해주세요"  disabled>
+			    <input type="text" name="license" id="directLicense"  style="paddig : 40px; margin-left: 23px; margin-top:10px;	border-radius: 5px; border-style: none;	box-shadow:0px 0px 1px 1px rgb(224, 224, 224); font-size: 15px; font-weight: normal; width:284px; height: 43px;" placeholder=" 이곳에 입력해주세요" size="25" disabled>
 			</label>
 			
 		</div>
