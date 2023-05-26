@@ -148,7 +148,7 @@
 				notivePays.innerText = '';
 			}
 			 IMP.request_pay({
-			    pg: "kakao",
+			    pg: "kakaopay",
 			    pay_method: "card",
 			    merchant_uid: "merchant_" + new Date().getTime(),
 			    name: '집사나라 ' + pay.toString().charAt(0) + '개월 구독',
