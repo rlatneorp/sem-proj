@@ -4,7 +4,7 @@
 	<select id="getListCount" resultType="_int">
 		select count(*)
 		from matching
-		where review_content is not null
+		where review_content is not null and review_status = 'Y'
 	</select>
 
 	<select id="reviewBoardList" resultMap="boardResultSet">
@@ -15,7 +15,7 @@
 		     join animal a on(a.animal_no = mc.animal_no)
 		     join jibsa_profile jp on(mc.jibsa_no = jp.member_no)
 		     join member m on(mc.member_no = m.member_no)
-		where mc.review_content is not null
+		where mc.review_content is not null and mc.review_status = 'Y'
 		order by mc.matching_no desc
 	</select>
 	
@@ -209,7 +209,7 @@
 	<update id="reviewCount">
    		update matching
 		set review_count = review_count + 1
-		where matching_no = #{mId}  
+		where matching_no = #{mId}
 	</update>
 	
 	<select id="reviewDetail" resultMap="boardResultSet">
@@ -218,7 +218,7 @@
 	        join animal a on(ma.animal_no = a.animal_no)
 	        join member m on(a.member_no = m.member_no)
 	        join jibsa_profile jp on(ma.jibsa_no = jp.member_no)
-	    where ma.matching_no = #{mId} and m.member_status = 'Y'
+	    where ma.matching_no = #{mId} and m.member_status = 'Y' and ma.review_status = 'Y'
 	</select>
 	
 <!-- 	<select id="reviewDetailReply" resultMap="boardResultSet"> -->

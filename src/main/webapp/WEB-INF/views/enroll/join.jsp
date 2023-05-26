@@ -120,7 +120,7 @@
 	        pwdCheckResult.style.color = 'red';
 	    }
 	});
-	
+
 	const send = document.getElementById('sendMail');
 	const memberEmail = document.getElementById('memberEmail');
 	const emailCode = document.getElementById('emailCode');
@@ -177,8 +177,10 @@
 		});
 		
 		// 인증번호 일치 시 회원가입 진행
+		const phone = document.getElementById('memberPhone');
+		const address = document.getElementById('memberAddress');
 		join.addEventListener('click', () => {
-			if(codeA.innerText == '인증번호가 일치합니다. 회원가입을 진행해주세요.' && pwdCheckResult.innerText == '비밀번호가 일치합니다' && idResult.innerText == '사용가능한 아이디입니다'){
+			if(codeA.innerText == '인증번호가 일치합니다. 회원가입을 진행해주세요.' && pwdCheckResult.innerText == '비밀번호가 일치합니다' && idResult.innerText == '사용가능한 아이디입니다' && address.value !='' && phone.value !=''){
 				alert('회원가입이 완료되었습니다! 로그인 해주세요.');
 				form.action = '${contextPath}/enrollMember.do';
 				form.submit();
